@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -87,13 +88,13 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        StartCoroutine(TurnManager.Inst.StartGameCo());
+        TurnManager.Inst.StartGameCo();
     }
 
-    public void Notification(string title, string message)
+    public void Notification(string title, string message, Action onComplete)
     {
         turnNotificationTMP.text = message;
-        notificationPanel.Show(title);
+        notificationPanel.Show(title, onComplete);
     }
 
     public IEnumerator GameOver(bool isMyWin)

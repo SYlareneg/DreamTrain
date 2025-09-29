@@ -48,7 +48,7 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    public IEnumerator StartGameCo()
+    public void StartGameCo()
     {
         GameSetup();
         isLoading = true;
@@ -69,32 +69,30 @@ public class TurnManager : MonoBehaviour
         CardManager.Inst.InitializeItemBuffer();
         CardManager.Inst.ShuffleDeck();
 
-        StartCoroutine(Draw(startCardCount));
-        yield return delay05;
-        StartCoroutine(StartTurnCo());
+        StartCoroutine(Draw(startCardCount, () => StartTurnCo()));
     }
 
-    public IEnumerator StartTurnCo()
+    public void StartTurnCo()
     {
         isLoading = true;
         turnNum++;
         nowCost = turnCost;
+
+        GameManager.Inst.Notification("My Turn", "Turn "+turnNum.ToString(), StartTurnCo_AfterNotify);        
+    }
+
+    void StartTurnCo_AfterNotify()
+    {
         OnTurnStart?.Invoke();
-
-        GameManager.Inst.Notification("My Turn", "Turn "+turnNum.ToString());
-
-        yield return delay07;
         EnemyManager.Inst.ShowAllActions();
-        StartCoroutine(Draw(drawCardCount));
-        yield return delay10;
-        isLoading = false;
+        StartCoroutine(Draw(drawCardCount, () => isLoading = false));
     }
 
     public void EndTurn()
     {
-        StartCoroutine(EndTurnCo());
         isLoading = true;
         Discard();
+        StartCoroutine(EndTurnCo());
     }
 
     public IEnumerator EndTurnCo()
@@ -106,17 +104,18 @@ public class TurnManager : MonoBehaviour
         yield return delay15;
         if (GameManager.Inst.gameOverSignal == false)
         {
-            StartCoroutine(StartTurnCo());
+            StartTurnCo();
         }
     }
 
-    public IEnumerator Draw(int drawNum)
+    public IEnumerator Draw(int drawNum, Action onComplete)
     {
         for (int i = 0; i < drawNum; i++)
         {
             yield return delay05;
             OnAddCard?.Invoke();
         }
+        onComplete?.Invoke();
     }
 
     public void Discard()
