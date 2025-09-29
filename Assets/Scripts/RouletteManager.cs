@@ -99,7 +99,7 @@ public class RouletteManager : MonoBehaviour
 
     public void RouletteMouseDown()
     {
-        if(!spinFlag)
+        if(!spinFlag && !TurnManager.Inst.isLoading)
         {
             spinFlag = true;
             isRouletteDrag = true;
