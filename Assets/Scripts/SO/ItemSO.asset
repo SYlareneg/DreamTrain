@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 617335804ece29c478490df8171a8373, type: 3}
+  m_Name: ItemSO
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  items:
+  - name: Turn Card 1
+    cost: 1
+    type: 0
+    element: 0
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    text: Turn the Roulette clockwise 3 slots
+    num: 5
+  - name: Turn Card 2
+    cost: 1
+    type: 0
+    element: 0
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    text: Turn the Roulette clockwise 2 slots
+    num: 5
+  - name: Turn Card 3
+    cost: 1
+    type: 0
+    element: 0
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    text: Turn the Roulette counter-clockwise 3 slots
+    num: 5
+  - name: Savior
+    cost: 3
+    type: 2
+    element: 0
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    text: Restore player's health by half of maximum health
+    num: 5
+  - name: Spirit
+    cost: 0
+    type: 2
+    element: 0
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    text: Earn 2 cost. Lose 2 health in return
+    num: 5
+  - name: Turn Card 4
+    cost: 1
+    type: 0
+    element: 0
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    text: Turn the Roulette counter-clockwise 2 slots
+    num: 5
+  - name: Turn Card 5
+    cost: 1
+    type: 0
+    element: 0
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    text: Turn the Roulette clockwise 1 slot
+    num: 5
+  - name: Enchant Heal
+    cost: 1
+    type: 1
+    element: 0
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    text: Turn the current roulette slot to heal 3 slot
+    num: 5
