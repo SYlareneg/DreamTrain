@@ -58,7 +58,7 @@ public class RelicManager : MonoBehaviour
                     relicAction += () => TurnManager.Inst.nowCost += relicList[localIndex].affectValue;
                     break;
                 case ERelicAffectItem.Draw:
-                    relicAction += () => { for(int j = 0; j < relicList[localIndex].affectValue; j++) TurnManager.OnAddCard?.Invoke(); };
+                    relicAction += () => TurnManager.Inst.drawCardCount += relicList[localIndex].affectValue;
                     break;
             }
             switch (relicList[localIndex].type)
