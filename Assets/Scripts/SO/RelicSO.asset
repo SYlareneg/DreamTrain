@@ -18,10 +18,16 @@ MonoBehaviour:
     type: 0
     affectItem: 0
     affectValue: 1
-    relicTxt: Heal player health by 1
+    relicTxt: Heal player health by 1 at turn begin
   - relicName: Draw Booster
     relicSprite: {fileID: -7264017630307359951, guid: 88a05f07c610deb4abd949fa602e1906, type: 3}
     type: 0
     affectItem: 2
     affectValue: 1
     relicTxt: Draw 1 card at turn begin
+  - relicName: Lucid Nightmare
+    relicSprite: {fileID: 9181274246992998818, guid: ca71119c4f516fa4a90950e97f223a72, type: 3}
+    type: 0
+    affectItem: 1
+    affectValue: 1
+    relicTxt: Earn 1 cost at turn begin

@@ -64,9 +64,9 @@ public class RelicManager : MonoBehaviour
             switch (relicList[localIndex].type)
             {
                 case ERelicActivateType.TurnBegin:
-                    TurnManager.OnTurnStart = relicAction; break;
+                    TurnManager.OnTurnStart += relicAction; break;
                 case ERelicActivateType.TurnEnd:
-                    TurnManager.OnTurnEnd = relicAction; break;
+                    TurnManager.OnTurnEnd += relicAction; break;
             }
         }
     }
