@@ -302,7 +302,7 @@ public class CardManager : MonoBehaviour
 
     void CardDrag()
     {
-        if(!onMyCardArea && selectedCard != null)
+        if(selectedCard != null)
         {
             selectedCard.MoveTransform(new PRS(Utils.MousePos, Utils.QI, selectedCard.originPRS.scale), false);
         }
