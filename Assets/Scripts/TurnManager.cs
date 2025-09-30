@@ -94,7 +94,9 @@ public class TurnManager : MonoBehaviour
     {
         isLoading = true;
         Discard();
-        StartCoroutine(EndTurnCo());
+        RouletteManager.Inst.ActivateRoulette();
+
+        GameManager.Inst.Notification("Enemy Turn", "Turn "+turnNum.ToString(), () => StartCoroutine(EndTurnCo()));
     }
 
     public IEnumerator EndTurnCo()

@@ -77,8 +77,14 @@ public class RoulettePiece : MonoBehaviour
                 }
                 break;
             case ERouletteType.Charge:
-                //TEMP: Enemy passive trigger
-                TurnManager.Inst.TriggerEnemyPassive(roulette.value);
+                if (isEnemy)
+                {
+                    TurnManager.Inst.EnemyTakeDmg(-roulette.value);
+                }
+                else
+                {
+                    TurnManager.Inst.TakeDmg(roulette.value);
+                }
                 break;
         }
         if (isTriggered == true)
