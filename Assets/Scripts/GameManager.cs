@@ -21,9 +21,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text deckNum;
     [SerializeField] TMP_Text costTMP;
     [SerializeField] TMP_Text healthTMP;
+    [SerializeField] GameObject shieldObj;
+    [SerializeField] TMP_Text shieldTMP;
     [SerializeField] TMP_Text triggerCountTMP;
     [SerializeField] TMP_Text enemyHealthTMP;
     [SerializeField] TMP_Text enemyTriggerCountTMP;
+    [SerializeField] GameObject enemyShieldObj;
+    [SerializeField] TMP_Text enemyShieldTMP;
 
     public CharacterSO characterSO;
 
@@ -53,9 +57,27 @@ public class GameManager : MonoBehaviour
         deckNum.text = CardManager.Inst.itemDeck.Count.ToString();
         costTMP.text = TurnManager.Inst.nowCost.ToString() + "/" + TurnManager.Inst.turnCost.ToString();
         healthTMP.text = TurnManager.Inst.curHealth.ToString() + "/" + TurnManager.Inst.maxHealth.ToString();
+        if(TurnManager.Inst.shieldHealth > 0)
+        {
+            shieldObj.SetActive(true);
+        }
+        else
+        {
+            shieldObj.SetActive(false);
+        }
+        shieldTMP.text = TurnManager.Inst.shieldHealth.ToString();
         triggerCountTMP.text = TurnManager.Inst.playerTriggerCnt.ToString() + "/" + TurnManager.Inst.playerTriggerMaxCnt.ToString();
         enemyHealthTMP.text = TurnManager.Inst.enemyCurHealth.ToString() + "/" + TurnManager.Inst.enemyMaxHealth.ToString();
         enemyTriggerCountTMP.text = TurnManager.Inst.enemyTriggerCnt.ToString() + "/" + TurnManager.Inst.enemyTriggerMaxCnt.ToString();
+        if(TurnManager.Inst.enemyShieldHealth > 0)
+        {
+            enemyShieldObj.SetActive(true);
+        }
+        else
+        {
+            enemyShieldObj.SetActive(false);
+        }
+        enemyShieldTMP.text = TurnManager.Inst.enemyShieldHealth.ToString();
     }
 
     void InputCheatKey()

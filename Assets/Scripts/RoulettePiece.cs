@@ -20,8 +20,10 @@ public class RoulettePiece : MonoBehaviour
                 roulettePiece.sprite = rouletteTypeSprites[1]; break;
             case ERouletteType.Heal:
                 roulettePiece.sprite = rouletteTypeSprites[2]; break;
-            case ERouletteType.Charge:
+            case ERouletteType.Shield:
                 roulettePiece.sprite = rouletteTypeSprites[3]; break;
+            case ERouletteType.Charge:
+                roulettePiece.sprite = rouletteTypeSprites[4]; break;
             default:
                 roulettePiece.sprite = rouletteTypeSprites[0]; break;
         }
@@ -74,6 +76,16 @@ public class RoulettePiece : MonoBehaviour
                 else
                 {
                     TurnManager.Inst.TakeDmg(-roulette.value);
+                }
+                break;
+            case ERouletteType.Shield:
+                if (isEnemy)
+                {
+                    TurnManager.Inst.enemyShieldHealth += roulette.value;
+                }
+                else
+                {
+                    TurnManager.Inst.shieldHealth += roulette.value;
                 }
                 break;
             case ERouletteType.Charge:

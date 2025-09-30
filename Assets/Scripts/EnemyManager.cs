@@ -51,6 +51,7 @@ public class EnemyManager : MonoBehaviour
 
     public void ExecuteBestAction()
     {
+        TurnManager.Inst.enemyShieldHealth = 0;
         if (actionList.Count > 0)
         {
             actionList[0].transform.DOMove(enemyExecutePos.position, 0.7f).OnComplete(DeleteActionList);

@@ -24,8 +24,10 @@ public class TurnManager : MonoBehaviour
     public int turnDraw;
     public int maxHealth;
     public int curHealth;
+    public int shieldHealth;
     public int enemyMaxHealth;
     public int enemyCurHealth;
+    public int enemyShieldHealth;
     public int playerTriggerMaxCnt;
     public int playerTriggerCnt;
     public int enemyTriggerMaxCnt;
@@ -58,8 +60,10 @@ public class TurnManager : MonoBehaviour
         turnDraw = drawCardCount;
         maxHealth = GameManager.Inst.characterSO.maxHealth;
         curHealth = GameManager.Inst.characterSO.curHealth;
+        shieldHealth = 0;
         enemyMaxHealth = GameManager.Inst.characterSO.enemyMaxHealth;
         enemyCurHealth = GameManager.Inst.characterSO.enemyCurHealth;
+        enemyShieldHealth = 0;
         playerTriggerMaxCnt = GameManager.Inst.characterSO.playerTriggerMaxCnt;
         playerTriggerCnt = 0;
         enemyTriggerMaxCnt = GameManager.Inst.characterSO.enemyTriggerMaxCnt;
@@ -79,6 +83,7 @@ public class TurnManager : MonoBehaviour
         isLoading = true;
         turnNum++;
         nowCost = turnCost;
+        shieldHealth = 0;
 
         GameManager.Inst.Notification("My Turn", "Turn "+turnNum.ToString(), StartTurnCo_AfterNotify);        
     }
@@ -129,8 +134,21 @@ public class TurnManager : MonoBehaviour
 
     public bool TakeDmg(int damage)
     {
-        if(curHealth > damage)
+        if(curHealth + shieldHealth > damage)
         {
+            if(damage > 0)
+            {
+                if(shieldHealth >= damage)
+                {
+                    shieldHealth -= damage;
+                    return true;
+                }
+                else
+                {
+                    shieldHealth = 0;
+                    damage -= shieldHealth;
+                }
+            }
             curHealth -= damage;
             if(curHealth > maxHealth)
             {
@@ -148,8 +166,21 @@ public class TurnManager : MonoBehaviour
 
     public bool EnemyTakeDmg(int damage)
     {
-        if(enemyCurHealth > damage)
+        if(enemyCurHealth + enemyShieldHealth > damage)
         {
+            if(damage > 0)
+            {
+                if(enemyShieldHealth >= damage)
+                {
+                    enemyShieldHealth -= damage;
+                    return true;
+                }
+                else
+                {
+                    enemyShieldHealth = 0;
+                    damage -= enemyShieldHealth;
+                }
+            }
             enemyCurHealth -= damage;
             if(enemyCurHealth > enemyMaxHealth)
             {
