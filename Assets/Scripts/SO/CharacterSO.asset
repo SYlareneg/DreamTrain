@@ -18,5 +18,5 @@ MonoBehaviour:
   enemyCurHealth: 75
   enemyMaxActionVal: 2
   enemyActionNum: 2
-  playerTriggerMaxCnt: 12
-  enemyTriggerMaxCnt: 10
+  playerTriggerMaxCnt: 6
+  enemyTriggerMaxCnt: 5

@@ -21,6 +21,7 @@ public class TurnManager : MonoBehaviour
     public bool isLoading;
     public int turnNum;
     public int nowCost;
+    public int turnDraw;
     public int maxHealth;
     public int curHealth;
     public int enemyMaxHealth;
@@ -54,6 +55,7 @@ public class TurnManager : MonoBehaviour
         isLoading = true;
         turnNum = 0;
         nowCost = 0;
+        turnDraw = drawCardCount;
         maxHealth = GameManager.Inst.characterSO.maxHealth;
         curHealth = GameManager.Inst.characterSO.curHealth;
         enemyMaxHealth = GameManager.Inst.characterSO.enemyMaxHealth;
@@ -85,7 +87,7 @@ public class TurnManager : MonoBehaviour
     {
         OnTurnStart?.Invoke();
         EnemyManager.Inst.ShowAllActions();
-        StartCoroutine(Draw(drawCardCount, () => isLoading = false));
+        StartCoroutine(Draw(turnDraw, () => isLoading = false));
     }
 
     public void EndTurn()
@@ -168,20 +170,32 @@ public class TurnManager : MonoBehaviour
 
     public void TriggerPlayerPassive(int value)
     {
-        playerTriggerCnt += value;
-        if(playerTriggerCnt >= playerTriggerMaxCnt)
+        if(playerTriggerCnt < playerTriggerMaxCnt)
         {
-            playerTriggerCnt -= playerTriggerMaxCnt;
+            playerTriggerCnt += value;
+            if(playerTriggerCnt > playerTriggerMaxCnt)
+            {
+                playerTriggerCnt = playerTriggerMaxCnt;
+            }
+        }
+        if(playerTriggerCnt == playerTriggerMaxCnt)
+        {
             RouletteManager.Inst.TriggerRoulette();
         }
     }
 
     public void TriggerEnemyPassive(int value)
     {
-        enemyTriggerCnt += value;
-        if(enemyTriggerCnt >= enemyTriggerMaxCnt)
+        if(enemyTriggerCnt < enemyTriggerMaxCnt)
         {
-            enemyTriggerCnt -= enemyTriggerMaxCnt;
+            enemyTriggerCnt += value;
+            if(enemyTriggerCnt > enemyTriggerMaxCnt)
+            {
+                enemyTriggerCnt = enemyTriggerMaxCnt;
+            }
+        }
+        if(enemyTriggerCnt == enemyTriggerMaxCnt)
+        {
             EnemyManager.Inst.EnemyTriggerAction();
         }
     }

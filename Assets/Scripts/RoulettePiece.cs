@@ -87,6 +87,7 @@ public class RoulettePiece : MonoBehaviour
             var tempRoulettePiece = this.roulette;
             tempRoulettePiece.type = ERouletteType.None;
             this.Setup(tempRoulettePiece);
+            TurnManager.Inst.playerTriggerCnt = 0;
         }
     }
 

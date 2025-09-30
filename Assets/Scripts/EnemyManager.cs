@@ -60,6 +60,7 @@ public class EnemyManager : MonoBehaviour
     public void EnemyTriggerAction()
     {
         TurnManager.Inst.TakeDmg(2);
+        TurnManager.Inst.enemyTriggerCnt = 0;
     }
 
     void DeleteActionList()
