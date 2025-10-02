@@ -24,6 +24,7 @@ public class CardUI_DeckBuild : CardUI, IBeginDragHandler, IDragHandler, IEndDra
             DeckBuildManager.Inst.draggingCardUI.GetComponent<RectTransform>().sizeDelta = this.GetComponent<RectTransform>().sizeDelta;
             var draggingCard = DeckBuildManager.Inst.draggingCardUI.GetComponent<CardUI_DeckBuild>();
             draggingCard.Setup(this.item);
+            draggingCard.availableNum = 0;
             if(availableNum > 0)
             {
                 availableNum--;
@@ -53,9 +54,14 @@ public class CardUI_DeckBuild : CardUI, IBeginDragHandler, IDragHandler, IEndDra
             foreach(var result in results)
             {
                 CardUI_DeckBuild hitcard = result.gameObject.GetComponent<CardUI_DeckBuild>();
-                if(hitcard != null && hitcard.item != this.item)
+                if(hitcard != null && result.gameObject != DeckBuildManager.Inst.draggingCardUI)
                 {
-                    if(hitcard.item != null)
+                    if(hitcard.item == this.item)
+                    {
+                        hitcard.availableNum++;
+                        hitflag--;
+                    }
+                    else if(hitcard.item != null)
                     {
                         Destroy(DeckBuildManager.Inst.draggingCardUI);
                         if(hitcard.originObject == null)
@@ -78,6 +84,7 @@ public class CardUI_DeckBuild : CardUI, IBeginDragHandler, IDragHandler, IEndDra
                         DeckBuildManager.Inst.draggingCardUI.GetComponent<RectTransform>().sizeDelta = this.GetComponent<RectTransform>().sizeDelta;
                         var draggingCard = DeckBuildManager.Inst.draggingCardUI.GetComponent<CardUI_DeckBuild>();
                         draggingCard.Setup(hitcard.item);
+                        draggingCard.availableNum = 0;
                         hitcard.Setup(this.item);
                         DeckBuildManager.Inst.draggingCardUI.transform.DOMove(hitcard.originObject.transform.position, 0.5f)
                         .OnComplete(() => {
