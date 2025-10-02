@@ -3,9 +3,12 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 
 public class CardUI_Draggable : CardUI_DeckBuild
 {
+    [SerializeField] public TMP_Text availableNumTMP;
+
     public override void OnBeginDrag(PointerEventData data)
     {
         if(DeckBuildManager.Inst.isLoading == false && availableNum > 0)

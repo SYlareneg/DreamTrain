@@ -11,7 +11,6 @@ public class CardUI_DeckBuild : CardUI, IBeginDragHandler, IDragHandler, IEndDra
     public GameObject cardUIPrefab;
     public GraphicRaycaster raycaster;
     public GameObject originObject;
-    [SerializeField] public TMP_Text availableNumTMP;
     public int availableNum;
 
     public virtual void OnBeginDrag(PointerEventData data)
@@ -56,12 +55,7 @@ public class CardUI_DeckBuild : CardUI, IBeginDragHandler, IDragHandler, IEndDra
                 CardUI_DeckBuild hitcard = result.gameObject.GetComponent<CardUI_DeckBuild>();
                 if(hitcard != null && result.gameObject != DeckBuildManager.Inst.draggingCardUI)
                 {
-                    if(hitcard.item == this.item)
-                    {
-                        hitcard.availableNum++;
-                        hitflag--;
-                    }
-                    else if(hitcard.item != null)
+                    if(hitcard.item != null)
                     {
                         Destroy(DeckBuildManager.Inst.draggingCardUI);
                         if(hitcard.originObject == null)
@@ -154,18 +148,6 @@ public class CardUI_DeckBuild : CardUI, IBeginDragHandler, IDragHandler, IEndDra
                     DeckBuildManager.Inst.draggingCardUI = null;
                 });
             }
-        }
-    }
-
-    private void Update()
-    {
-        if(availableNum <= 0)
-        {
-            availableNumTMP.text = "";
-        }
-        else
-        {
-            availableNumTMP.text = "x" + availableNum.ToString();
         }
     }
 }
