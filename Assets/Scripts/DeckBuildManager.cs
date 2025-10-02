@@ -20,6 +20,7 @@ public class DeckBuildManager : MonoBehaviour
     public static int deckCardNum = 12;
     [SerializeField] GameObject cardUIPrefab;
     public ItemSO itemSO;
+    [SerializeField] TMP_Text cardListTitleTMP;
     [SerializeField] GameObject cardListScroll;
     public List<CardUI_Draggable> availableCardList;
     [SerializeField] GameObject draggableCardUIPrefab;
@@ -124,6 +125,15 @@ public class DeckBuildManager : MonoBehaviour
                 card.availableNum = item.num;
                 availableCardList.Add(card);
             }
+        }
+
+        if(newP.name == "")
+        {
+            cardListTitleTMP.text = "Available Cards";
+        }
+        else
+        {
+            cardListTitleTMP.text = "Available Cards for " + newP.name;
         }
     }
 

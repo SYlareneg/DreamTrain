@@ -2141,6 +2141,7 @@ MonoBehaviour:
   deckList: []
   cardUIPrefab: {fileID: 5217781338463960961, guid: ab526733d7fd92a4f91f227d5a5c8cb8, type: 3}
   itemSO: {fileID: 11400000, guid: bd268a67003469242809dbd20a8498df, type: 2}
+  cardListTitleTMP: {fileID: 860603867}
   cardListScroll: {fileID: 136853196}
   availableCardList: []
   draggableCardUIPrefab: {fileID: 5851942250818561724, guid: 9be078fd2a5462e42b633a4a15705c7e, type: 3}
@@ -3822,7 +3823,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Persona Text
+  m_text: Shadow Text
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5583,7 +5584,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Persona Name
+  m_text: Shadow Name
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
