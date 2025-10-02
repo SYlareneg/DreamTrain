@@ -42,11 +42,11 @@ public class Card : MonoBehaviour
 
         switch(this.item.element)
         {
-            case CardElement.Fire:
+            case EPassiveType.Normal:
                 element.sprite = elementTypes[0]; break;
-            case CardElement.Grass:
+            case EPassiveType.Persona:
                 element.sprite = elementTypes[1]; break;
-            case CardElement.Water:
+            case EPassiveType.Shadow:
                 element.sprite = elementTypes[2]; break;
         }
 

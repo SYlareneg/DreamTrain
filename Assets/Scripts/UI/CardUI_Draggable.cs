@@ -1,0 +1,100 @@
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System.Collections.Generic;
+using DG.Tweening;
+
+public class CardUI_Draggable : CardUI_DeckBuild
+{
+    public override void OnBeginDrag(PointerEventData data)
+    {
+        if(DeckBuildManager.Inst.isLoading == false && availableNum > 0)
+        {
+            DeckBuildManager.Inst.isLoading = true;
+            originObject = this.gameObject;
+            DeckBuildManager.Inst.draggingCardUI = Instantiate(cardUIPrefab, this.transform.position, Utils.QI);
+            DeckBuildManager.Inst.draggingCardUI.transform.SetParent(DeckBuildManager.Inst.backgroundPanel.transform);
+            DeckBuildManager.Inst.draggingCardUI.GetComponent<RectTransform>().sizeDelta = this.GetComponent<RectTransform>().sizeDelta;
+            var draggingCard = DeckBuildManager.Inst.draggingCardUI.GetComponent<CardUI>();
+            draggingCard.Setup(this.item);
+            if(availableNum > 0)
+            {
+                availableNum--;
+            }
+        }
+    }
+
+    public override void OnEndDrag(PointerEventData data)
+    {
+        if(DeckBuildManager.Inst.draggingCardUI != null)
+        {
+            List<RaycastResult> results = new List<RaycastResult>();
+            raycaster.Raycast(data, results);
+            int hitflag = 1;
+            foreach(var result in results)
+            {
+                CardUI_DeckBuild hitcard = result.gameObject.GetComponent<CardUI_DeckBuild>();
+                if(hitcard != null && hitcard.item != this.item)
+                {
+                    if(hitcard.item != null)
+                    {
+                        Destroy(DeckBuildManager.Inst.draggingCardUI);
+                        DeckBuildManager.Inst.draggingCardUI = Instantiate(cardUIPrefab, hitcard.transform.position, Utils.QI);
+                        DeckBuildManager.Inst.draggingCardUI.transform.SetParent(DeckBuildManager.Inst.backgroundPanel.transform);
+                        DeckBuildManager.Inst.draggingCardUI.GetComponent<RectTransform>().sizeDelta = this.GetComponent<RectTransform>().sizeDelta;
+                        var draggingCard = DeckBuildManager.Inst.draggingCardUI.GetComponent<CardUI_DeckBuild>();
+                        draggingCard.Setup(hitcard.item);
+                        hitcard.Setup(this.item);
+                        DeckBuildManager.Inst.draggingCardUI.transform.DOMove(hitcard.originObject.transform.position, 0.5f)
+                        .OnComplete(() => {
+                            CardUI_Draggable originCardUI = hitcard.originObject.GetComponent<CardUI_Draggable>();
+                            originCardUI.availableNum += hitcard.availableNum;
+                            hitcard.availableNum = 1;
+                            hitcard.originObject = originObject;
+                            DeckBuildManager.Inst.isLoading = false;
+                            Destroy(DeckBuildManager.Inst.draggingCardUI);
+                            DeckBuildManager.Inst.draggingCardUI = null;
+                        });
+                        return;
+                    }
+                    else
+                    {
+                        hitcard.Setup(DeckBuildManager.Inst.draggingCardUI.GetComponent<CardUI_DeckBuild>().item);
+                        hitcard.availableNum = 1;
+                        hitcard.originObject = originObject;
+                        hitflag--;
+                    }
+                }
+            }
+            if(hitflag == 0)
+            {
+                DeckBuildManager.Inst.isLoading = false;
+                Destroy(DeckBuildManager.Inst.draggingCardUI);
+                DeckBuildManager.Inst.draggingCardUI = null;
+            }
+            else
+            {
+                DeckBuildManager.Inst.draggingCardUI.transform.DOMove(originObject.transform.position, 0.5f)
+                .OnComplete(() => {
+                    CardUI_Draggable originCardUI = originObject.GetComponent<CardUI_Draggable>();
+                    originCardUI.availableNum++;
+                    DeckBuildManager.Inst.isLoading = false;
+                    Destroy(DeckBuildManager.Inst.draggingCardUI);
+                    DeckBuildManager.Inst.draggingCardUI = null;
+                });
+            }
+        }
+    }
+
+    private void Update()
+    {
+        if(availableNum == 0)
+        {
+            this.SetAlpha(0.4f);
+        }
+        else
+        {
+            this.SetAlpha(1.0f);
+        }
+    }
+}

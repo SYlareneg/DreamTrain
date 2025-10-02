@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class CardUI : MonoBehaviour
 {
@@ -19,15 +20,17 @@ public class CardUI : MonoBehaviour
 
     public void Setup(Item item)
     {
-        if(item == null)
+        if (item == null)
         {
             this.item = null;
+            SetBlank();
             return;
         }
 
         this.item = item;
+        UnsetBlank();
 
-        switch(this.item.type)
+        switch (this.item.type)
         {
             case CardType.Turn:
                 cardImg.sprite = cardTypes[0]; break;
@@ -39,18 +42,49 @@ public class CardUI : MonoBehaviour
 
         character.sprite = this.item.sprite;
 
-        switch(this.item.element)
+        switch (this.item.element)
         {
-            case CardElement.Fire:
+            case EPassiveType.Normal:
                 element.sprite = elementTypes[0]; break;
-            case CardElement.Grass:
+            case EPassiveType.Persona:
                 element.sprite = elementTypes[1]; break;
-            case CardElement.Water:
+            case EPassiveType.Shadow:
                 element.sprite = elementTypes[2]; break;
         }
 
         nameTMP.text = this.item.name;
         costTMP.text = this.item.cost.ToString();
         textTMP.text = this.item.text;
+    }
+
+    public void SetBlank()
+    {
+        character.gameObject.SetActive(false);
+        element.gameObject.SetActive(false);
+        nameTMP.gameObject.SetActive(false);
+        costTMP.gameObject.SetActive(false);
+        textTMP.gameObject.SetActive(false);
+        cardImg.color = Color.gray;
+    }
+
+    public void UnsetBlank()
+    {
+        character.gameObject.SetActive(true);
+        element.gameObject.SetActive(true);
+        nameTMP.gameObject.SetActive(true);
+        costTMP.gameObject.SetActive(true);
+        textTMP.gameObject.SetActive(true);
+        cardImg.color = Color.white;
+    }
+
+    public void SetAlpha(float alpha)
+    {
+        Image[] images = this.gameObject.GetComponentsInChildren<Image>(true);
+        foreach (Image img in images)
+        {
+            Color c = img.color;
+            c.a = alpha;
+            img.color = c;
+        }
     }
 }

@@ -16,16 +16,15 @@ public class RelicManager : MonoBehaviour
     public GameObject relicUIPrefab;
     public List<RelicItem> relicList;
 
-    public List<RelicUI> RelicItemListToRelicUIList(List<RelicItem> rItemList)
+    public List<RelicUI> RelicItemListToRelicUIList(List<RelicItem> rItemList, Transform attachUI)
     {
         List<RelicUI> rUIList = new List<RelicUI>();
         List<RelicItem> sortedRelicList = rItemList.OrderBy(x => x.relicName).ToList();
-        Vector3 standardListPosition = GameManager.Inst.relicListScroll.transform.position;
 
         foreach (RelicItem rItem in sortedRelicList)
         {
-            var relicObject = Instantiate(relicUIPrefab, standardListPosition, Utils.QI);
-            relicObject.transform.SetParent(GameManager.Inst.relicListScroll.transform);
+            var relicObject = Instantiate(relicUIPrefab, Vector3.zero, Utils.QI);
+            relicObject.transform.SetParent(attachUI);
             var relic = relicObject.GetComponent<RelicUI>();
 
             relic.Setup(rItem);

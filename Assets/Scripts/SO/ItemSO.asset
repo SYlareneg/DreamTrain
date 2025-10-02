@@ -17,55 +17,63 @@ MonoBehaviour:
     cost: 1
     type: 0
     element: 0
+    passiveNum: 0
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     text: Turn the Roulette clockwise 3 slots
-    num: 5
+    num: 0
   - name: Turn Card 2
     cost: 1
     type: 0
     element: 0
+    passiveNum: 0
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     text: Turn the Roulette clockwise 2 slots
-    num: 5
+    num: 1
   - name: Turn Card 3
     cost: 1
     type: 0
     element: 0
+    passiveNum: 1
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     text: Turn the Roulette counter-clockwise 3 slots
-    num: 5
+    num: 0
   - name: Savior
     cost: 3
     type: 2
     element: 0
+    passiveNum: 1
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     text: Restore player's health by half of maximum health
-    num: 5
+    num: 1
   - name: Spirit
     cost: 0
     type: 2
     element: 0
+    passiveNum: 2
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     text: Earn 2 cost. Lose 2 health in return
-    num: 5
+    num: 0
   - name: Turn Card 4
     cost: 1
     type: 0
     element: 0
+    passiveNum: 2
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     text: Turn the Roulette counter-clockwise 2 slots
-    num: 5
+    num: 1
   - name: Turn Card 5
     cost: 1
     type: 0
     element: 0
+    passiveNum: 3
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     text: Turn the Roulette clockwise 1 slot
-    num: 5
+    num: 1
   - name: Enchant Heal
     cost: 1
     type: 1
     element: 0
+    passiveNum: 3
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     text: Turn the current roulette slot to heal 3 slot
-    num: 5
+    num: 0

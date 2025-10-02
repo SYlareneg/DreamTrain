@@ -189,7 +189,7 @@ public class GameManager : MonoBehaviour
                 Destroy(relic.gameObject);
             }
 
-            relicList = RelicManager.Inst.RelicItemListToRelicUIList(RelicManager.Inst.relicList);
+            relicList = RelicManager.Inst.RelicItemListToRelicUIList(RelicManager.Inst.relicList, relicListScroll.transform);
             Canvas.ForceUpdateCanvases();
 
             relicScrollView.SetActive(true);

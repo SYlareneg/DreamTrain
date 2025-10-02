@@ -332,13 +332,17 @@ public class CardManager : MonoBehaviour
 
     void SetECardState()
     {
-        if(TurnManager.Inst.isLoading)
+        if (!TurnManager.Inst)
         {
-            eCardState = ECardState.Nothing;
+            return;
         }
-        else
-        {
-            eCardState = ECardState.CanMouseDrag;
-        }
+        if (TurnManager.Inst.isLoading)
+            {
+                eCardState = ECardState.Nothing;
+            }
+            else
+            {
+                eCardState = ECardState.CanMouseDrag;
+            }
     }
 }
