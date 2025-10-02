@@ -39,6 +39,16 @@ public class CardUI_Draggable : CardUI_DeckBuild
                     if(hitcard.item != null)
                     {
                         Destroy(DeckBuildManager.Inst.draggingCardUI);
+                        if(hitcard.originObject == null)
+                        {
+                            DeckBuildManager.Inst.changeCardNum(hitcard.item, hitcard.availableNum);
+                            hitcard.Setup(this.item);
+                            hitcard.availableNum = 1;
+                            hitcard.originObject = originObject;
+                            DeckBuildManager.Inst.isLoading = false;
+                            DeckBuildManager.Inst.draggingCardUI = null;
+                            return;
+                        }
                         DeckBuildManager.Inst.draggingCardUI = Instantiate(cardUIPrefab, hitcard.transform.position, Utils.QI);
                         DeckBuildManager.Inst.draggingCardUI.transform.SetParent(DeckBuildManager.Inst.backgroundPanel.transform);
                         DeckBuildManager.Inst.draggingCardUI.GetComponent<RectTransform>().sizeDelta = this.GetComponent<RectTransform>().sizeDelta;
@@ -95,6 +105,14 @@ public class CardUI_Draggable : CardUI_DeckBuild
         else
         {
             this.SetAlpha(1.0f);
+        }
+        if(availableNum == 0)
+        {
+            availableNumTMP.text = "";
+        }
+        else
+        {
+            availableNumTMP.text = "x" + availableNum.ToString();
         }
     }
 }

@@ -202,8 +202,9 @@ public class DeckBuildManager : MonoBehaviour
                 }
                 else
                 {
-                    changeCardNum(deckCard.item, 1);
+                    changeCardNum(deckCard.item, deckCard.availableNum);
                     deckCard.Setup(null);
+                    deckCard.availableNum = 0;
                 }
             }
         }

@@ -60,7 +60,7 @@ MonoBehaviour:
     passiveNum: 2
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     text: Turn the Roulette counter-clockwise 2 slots
-    num: 1
+    num: 0
   - name: Turn Card 5
     cost: 1
     type: 0
