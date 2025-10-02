@@ -59,6 +59,7 @@ public class CardUI_DeckBuild : CardUI, IBeginDragHandler, IDragHandler, IEndDra
                         Destroy(DeckBuildManager.Inst.draggingCardUI);
                         if(hitcard.originObject == null)
                         {
+                            DeckBuildManager.Inst.changeCardNum(hitcard.item, hitcard.availableNum);
                             hitcard.Setup(this.item);
                             hitcard.availableNum = 1;
                             hitcard.originObject = originObject;
@@ -119,6 +120,7 @@ public class CardUI_DeckBuild : CardUI, IBeginDragHandler, IDragHandler, IEndDra
             {
                 if(originObject == null)
                 {
+                    DeckBuildManager.Inst.changeCardNum(this.item, 1);
                     DeckBuildManager.Inst.isLoading = false;
                     if(availableNum == 0)
                     {

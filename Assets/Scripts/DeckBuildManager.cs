@@ -81,17 +81,31 @@ public class DeckBuildManager : MonoBehaviour
         }
     }
 
+    public void setCardNum(Item item, int newNum)
+    {
+        int itemIdx = Array.FindIndex(itemSO.items, x => x.name == item.name);
+        if(itemIdx != -1)
+        {
+            itemSO.items[itemIdx].num = newNum;
+        }
+    }
+
+    public void changeCardNum(Item item, int changeNum)
+    {
+        int itemIdx = Array.FindIndex(itemSO.items, x => x.name == item.name);
+        if(itemIdx != -1)
+        {
+            itemSO.items[itemIdx].num += changeNum;
+        }
+    }
+
     public void CardListSet(Passive newP)
     {
         foreach(CardUI_Draggable card in availableCardList)
         {
             if(card != null)
             {
-                int itemIdx = Array.FindIndex(itemSO.items, x => x.name == card.item.name);
-                if(itemIdx != -1)
-                {
-                    itemSO.items[itemIdx].num = card.availableNum;
-                }
+                setCardNum(card.item, card.availableNum);
                 Destroy(card.gameObject);
             }
         }
@@ -178,6 +192,7 @@ public class DeckBuildManager : MonoBehaviour
                 }
                 else
                 {
+                    changeCardNum(deckCard.item, 1);
                     deckCard.Setup(null);
                 }
             }

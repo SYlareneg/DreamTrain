@@ -20,7 +20,7 @@ MonoBehaviour:
     passiveNum: 0
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     text: Turn the Roulette clockwise 3 slots
-    num: 0
+    num: 1
   - name: Turn Card 2
     cost: 1
     type: 0
@@ -36,7 +36,7 @@ MonoBehaviour:
     passiveNum: 1
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     text: Turn the Roulette counter-clockwise 3 slots
-    num: 0
+    num: 1
   - name: Savior
     cost: 3
     type: 2
@@ -52,7 +52,7 @@ MonoBehaviour:
     passiveNum: 2
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     text: Earn 2 cost. Lose 2 health in return
-    num: 0
+    num: 1
   - name: Turn Card 4
     cost: 1
     type: 0
@@ -76,4 +76,4 @@ MonoBehaviour:
     passiveNum: 3
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     text: Turn the current roulette slot to heal 3 slot
-    num: 0
+    num: 1
