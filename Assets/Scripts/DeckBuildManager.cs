@@ -127,7 +127,7 @@ public class DeckBuildManager : MonoBehaviour
             }
         }
 
-        if(newP.name == null)
+        if(newP == null || newP.name == null)
         {
             cardListTitleTMP.text = "Available Cards";
         }
@@ -203,19 +203,22 @@ public class DeckBuildManager : MonoBehaviour
 
         CardListSet(p);
         
-        if (p.type == EPassiveType.Persona)
+        if(p != null)
         {
-            selectedPersona = p;
-            personaButton.sprite = p.sprite;
-            personaName.text = p.name;
-            personaText.text = p.text;
-        }
-        else if (p.type == EPassiveType.Shadow)
-        {
-            selectedShadow = p;
-            shadowButton.sprite = p.sprite;
-            shadowName.text = p.name;
-            shadowText.text = p.text;
+            if (p.type == EPassiveType.Persona)
+            {
+                selectedPersona = p;
+                personaButton.sprite = p.sprite;
+                personaName.text = p.name;
+                personaText.text = p.text;
+            }
+            else if (p.type == EPassiveType.Shadow)
+            {
+                selectedShadow = p;
+                shadowButton.sprite = p.sprite;
+                shadowName.text = p.name;
+                shadowText.text = p.text;
+            }
         }
         
         foreach (CardUI_DeckBuild deckCard in deckList)
@@ -227,6 +230,10 @@ public class DeckBuildManager : MonoBehaviour
                     continue;
                 }
                 else if(selectedShadow != null && (selectedShadow.name == passiveSO.passives[deckCard.item.passiveNum].name))
+                {
+                    continue;
+                }
+                else if(deckCard.item.element == EPassiveType.Normal)
                 {
                     continue;
                 }
