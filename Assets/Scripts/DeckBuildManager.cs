@@ -114,7 +114,7 @@ public class DeckBuildManager : MonoBehaviour
 
         foreach(Item item in itemSO.items)
         {
-            if(newP != null && (newP.name == passiveSO.passives[item.passiveNum].name))
+            if(newP != null && newP.name == passiveSO.passives[item.passiveNum].name && newP.type == item.element )
             {
                 var cardObject = Instantiate(draggableCardUIPrefab, cardListScroll.transform.position, Utils.QI);
                 cardObject.transform.SetParent(cardListScroll.transform);
@@ -127,7 +127,7 @@ public class DeckBuildManager : MonoBehaviour
             }
         }
 
-        if(newP.name == "")
+        if(newP.name == null)
         {
             cardListTitleTMP.text = "Available Cards";
         }
@@ -135,6 +135,36 @@ public class DeckBuildManager : MonoBehaviour
         {
             cardListTitleTMP.text = "Available Cards for " + newP.name;
         }
+    }
+
+    public void NormalCardListSet()
+    {
+        foreach(CardUI_Draggable card in availableCardList)
+        {
+            if(card != null)
+            {
+                setCardNum(card.item, card.availableNum);
+                Destroy(card.gameObject);
+            }
+        }
+        availableCardList.Clear();
+
+        foreach(Item item in itemSO.items)
+        {
+            if(item.element == EPassiveType.Normal)
+            {
+                var cardObject = Instantiate(draggableCardUIPrefab, cardListScroll.transform.position, Utils.QI);
+                cardObject.transform.SetParent(cardListScroll.transform);
+                var card = cardObject.GetComponent<CardUI_Draggable>();
+
+                card.Setup(item);
+                card.raycaster = canvas.GetComponent<GraphicRaycaster>();
+                card.availableNum = item.num;
+                availableCardList.Add(card);
+            }
+        }
+
+        cardListTitleTMP.text = "Available Cards for Prim";
     }
 
     public void PassiveList(EPassiveType pType)
@@ -223,14 +253,13 @@ public class DeckBuildManager : MonoBehaviour
                 }
             }
             passiveList.Clear();
+
+            NormalCardListSet();
         }
         else
         {
             PassiveList(EPassiveType.Persona);
-            if(selectedPersona != null)
-            {
-                SelectPassive(selectedPersona);
-            }
+            SelectPassive(selectedPersona);
             passiveScrollView.GetComponent<Image>().color = personaShow.GetComponent<Image>().color;
             passiveScrollView.SetActive(true);
         }
@@ -252,6 +281,8 @@ public class DeckBuildManager : MonoBehaviour
                 }
             }
             passiveList.Clear();
+
+            NormalCardListSet();
         }
         else
         {
@@ -259,19 +290,24 @@ public class DeckBuildManager : MonoBehaviour
             shadowShow.transform.position = personaShow.transform.position;
             personaShow.transform.position = temp;
             PassiveList(EPassiveType.Shadow);
-            if(selectedShadow != null)
-            {
-                SelectPassive(selectedShadow);
-            }
+            SelectPassive(selectedShadow);
             passiveScrollView.GetComponent<Image>().color = shadowShow.GetComponent<Image>().color;
             passiveScrollView.SetActive(true);
         }
     }
 
-    void Start()
+    public void InitializeDeckBuildUI()
     {
         isLoading = false;
         RelicList();
         DeckListInit();
+        NormalCardListSet();
+    }
+
+    void Start()
+    {
+        selectedPersona = null;
+        selectedShadow = null;
+        InitializeDeckBuildUI();
     }
 }
