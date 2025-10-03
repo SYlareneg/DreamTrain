@@ -81,11 +81,11 @@ public class RoulettePiece : MonoBehaviour
             case ERouletteType.Shield:
                 if (isEnemy)
                 {
-                    TurnManager.Inst.enemyShieldHealth += roulette.value;
+                    TurnManager.Inst.GetShield(true, roulette.value);
                 }
                 else
                 {
-                    TurnManager.Inst.shieldHealth += roulette.value;
+                    TurnManager.Inst.GetShield(false, roulette.value);
                 }
                 break;
             case ERouletteType.Charge:

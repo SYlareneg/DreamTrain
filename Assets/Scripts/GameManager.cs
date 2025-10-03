@@ -126,6 +126,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator GameOver(bool isMyWin)
     {
         gameOverSignal = true;
+        TurnManager.OnGameEnd?.Invoke();
         TurnManager.Inst.isLoading = true;
         endTurnBtn.SetActive(false);
         yield return new WaitForSeconds(0.5f);

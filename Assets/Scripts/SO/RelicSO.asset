@@ -13,21 +13,51 @@ MonoBehaviour:
   m_Name: RelicSO
   m_EditorClassIdentifier: Assembly-CSharp::RelicSO
   relicItems:
-  - relicName: Lucid Dream
-    relicSprite: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
-    type: 0
-    affectItem: 0
-    affectValue: 1
+  - relicSprite: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
+    relicName: Lucid Dream
     relicTxt: Heal player health by 1 at turn begin
-  - relicName: Draw Booster
-    relicSprite: {fileID: -7264017630307359951, guid: 88a05f07c610deb4abd949fa602e1906, type: 3}
-    type: 0
-    affectItem: 2
-    affectValue: 1
+    relicTimings: 00000000
+    relicConditions:
+    - conditions:
+      - type: 0
+        value: 0
+        fvalue: 0
+    relicEffects:
+    - type: 1
+      value: 1
+  - relicSprite: {fileID: -7264017630307359951, guid: 88a05f07c610deb4abd949fa602e1906, type: 3}
+    relicName: Draw Booster
     relicTxt: Draw 1 card at turn begin
-  - relicName: Lucid Nightmare
-    relicSprite: {fileID: 9181274246992998818, guid: ca71119c4f516fa4a90950e97f223a72, type: 3}
-    type: 0
-    affectItem: 1
-    affectValue: 1
+    relicTimings: 00000000
+    relicConditions:
+    - conditions:
+      - type: 0
+        value: 0
+        fvalue: 0
+    relicEffects:
+    - type: 4
+      value: 1
+  - relicSprite: {fileID: 9181274246992998818, guid: ca71119c4f516fa4a90950e97f223a72, type: 3}
+    relicName: Lucid Nightmare
     relicTxt: Earn 1 cost at turn begin
+    relicTimings: 00000000
+    relicConditions:
+    - conditions:
+      - type: 0
+        value: 0
+        fvalue: 0
+    relicEffects:
+    - type: 2
+      value: 1
+  - relicSprite: {fileID: 9181274246992998818, guid: ca71119c4f516fa4a90950e97f223a72, type: 3}
+    relicName: Lucid Nightmare
+    relicTxt: Earn 1 cost at turn begin
+    relicTimings: 00000000
+    relicConditions:
+    - conditions:
+      - type: 12
+        value: 0
+        fvalue: 0.99
+    relicEffects:
+    - type: 21
+      value: 0

@@ -30,11 +30,12 @@ public class RelicManager : MonoBehaviour
             relic.Setup(rItem);
             rUIList.Add(relic);
         }
-        
+
         return rUIList;
     }
     public void InitRelicList()
     {
+        relicList.Clear();
         foreach (RelicItem rItem in relicSO.relicItems)
         {
             relicList.Add(rItem);
@@ -47,26 +48,291 @@ public class RelicManager : MonoBehaviour
         for (int i = 0; i < relicList.Count; i++)
         {
             Action relicAction = null;
-            int localIndex = i;
-            switch (relicList[localIndex].affectItem)
+            foreach (var effect in relicList[i].relicEffects)
             {
-                case ERelicAffectItem.Health:
-                    relicAction += () => TurnManager.Inst.TakeDmg(-relicList[localIndex].affectValue);
-                    break;
-                case ERelicAffectItem.Cost:
-                    relicAction += () => TurnManager.Inst.nowCost += relicList[localIndex].affectValue;
-                    break;
-                case ERelicAffectItem.Draw:
-                    relicAction += () => TurnManager.Inst.turnDraw = TurnManager.Inst.drawCardCount + relicList[localIndex].affectValue;
-                    break;
+                var localEffect = effect;
+                switch (localEffect.type)
+                {
+                    case ERelicActivateEffectType.Player_Shield:
+                        relicAction += () => { TurnManager.Inst.shieldHealth += localEffect.value; }; break;
+                    case ERelicActivateEffectType.Player_Heal:
+                        relicAction += () => { TurnManager.Inst.TakeDmg(-localEffect.value); }; break;
+                    case ERelicActivateEffectType.Player_Cost_Increase:
+                        relicAction += () => { TurnManager.Inst.nowCost += localEffect.value; }; break;
+                    case ERelicActivateEffectType.Player_Max_Cost_Increase:
+                        relicAction += () => { TurnManager.Inst.turnCost += localEffect.value; }; break;
+                    case ERelicActivateEffectType.Card_Draw:
+                        relicAction += () => { StartCoroutine(TurnManager.Inst.Draw(localEffect.value, null)); }; break;
+                    case ERelicActivateEffectType.Card_Cost_Change:
+                        relicAction += () => { }; break;
+                    case ERelicActivateEffectType.Card_Value_Change:
+                        relicAction += () => { }; break;
+                    case ERelicActivateEffectType.Card_Duplicate_Hand:
+                        relicAction += () => { }; break;
+                    case ERelicActivateEffectType.Card_Duplicate_Deck:
+                        relicAction += () => { }; break;
+                    case ERelicActivateEffectType.Card_Add_Hand:
+                        relicAction += () => { }; break;
+                    case ERelicActivateEffectType.Card_Add_Deck:
+                        relicAction += () => { }; break;
+                    case ERelicActivateEffectType.Roulette_Value_Change:
+                        relicAction += () => { }; break;
+                    case ERelicActivateEffectType.Roulette_Spin_CW:
+                        relicAction += () => { RouletteManager.Inst.Spin(true, localEffect.value); }; break;
+                    case ERelicActivateEffectType.Roulette_Spin_CCW:
+                        relicAction += () => { RouletteManager.Inst.Spin(false, localEffect.value); }; break;
+                    case ERelicActivateEffectType.Roulette_Enchant:
+                        relicAction += () => { }; break;
+                    case ERelicActivateEffectType.Roulette_Trigger:
+                        relicAction += () => { RouletteManager.Inst.TriggerRoulette(); }; break;
+                    case ERelicActivateEffectType.Enemy_Action_Hide:
+                        relicAction += () => { }; break;
+                    case ERelicActivateEffectType.Enemy_Action_Delete:
+                        relicAction += () => { }; break;
+                    case ERelicActivateEffectType.Enemy_Spin_Reverse:
+                        relicAction += () => { }; break;
+                    case ERelicActivateEffectType.Enemy_Spin_Ignore:
+                        relicAction += () => { }; break;
+                    case ERelicActivateEffectType.Enemy_Damage:
+                        relicAction += () => { TurnManager.Inst.EnemyTakeDmg(localEffect.value); }; break;
+                    case ERelicActivateEffectType.Develop_Test:
+                        relicAction += () => { Debug.LogWarning("Develop relic effect activated"); }; break;
+                    default:
+                        Debug.LogWarning("Error in relic effect"); break;
+                }
             }
-            switch (relicList[localIndex].type)
+            Action relicActivation = null;
+            foreach (var conditionAND in relicList[i].relicConditions)
             {
-                case ERelicActivateType.TurnBegin:
-                    TurnManager.OnPlayerTurnStart += relicAction; break;
-                case ERelicActivateType.TurnEnd:
-                    TurnManager.OnPlayerTurnEnd += relicAction; break;
+                Action totalCondition = relicAction;
+                foreach (var condition in conditionAND.conditions)
+                {
+                    var localCondition = condition;
+                    Action temp = totalCondition;
+                    switch (localCondition.type)
+                    {
+                        case ERelicActivateConditionType.None:
+                            break;
+                        case ERelicActivateConditionType.Turn_Count:
+                            totalCondition = () =>
+                            {
+                                if (TurnManager.Inst.turnNum % localCondition.value == 0)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Turn_Begin:
+                            totalCondition = () =>
+                            {
+                                if (TurnManager.Inst.turnNum >= localCondition.value)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Roulette_Count:
+                            totalCondition = () =>
+                            {
+                                if (RouletteManager.Inst.spinCount >= localCondition.value)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Roulette_Direction:
+                            totalCondition = () =>
+                            {
+                                if (RouletteManager.Inst.spinDirection == localCondition.value)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Roulette_Distance:
+                            totalCondition = () =>
+                            {
+                                if (RouletteManager.Inst.spinDistance >= localCondition.value)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Roulette_IsSpinned:
+                            totalCondition = () =>
+                            {
+                                if ((RouletteManager.Inst.spinCount > 0) == (localCondition.value > 0))
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Card_Cost:
+                            totalCondition = () =>
+                            {
+                                if (CardManager.Inst.selectedCard.item.cost == localCondition.value)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Card_Count:
+                            totalCondition = () =>
+                            {
+                                if (CardManager.Inst.useCount >= localCondition.value)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Card_IsUsed:
+                            totalCondition = () =>
+                            {
+                                if ((CardManager.Inst.useCount > 0) == (localCondition.value > 0))
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Card_Type:
+                            break; // TODO
+                        case ERelicActivateConditionType.Enemy_Health_GE:
+                            totalCondition = () =>
+                            {
+                                if (((float)TurnManager.Inst.enemyCurHealth / TurnManager.Inst.enemyMaxHealth) >= localCondition.fvalue)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Enemy_Health_LE:
+                            totalCondition = () =>
+                            {
+                                if (((float)TurnManager.Inst.enemyCurHealth / TurnManager.Inst.enemyMaxHealth) <= localCondition.fvalue)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Enemy_Shield_GE:
+                            totalCondition = () =>
+                            {
+                                if (TurnManager.Inst.enemyShieldHealth >= localCondition.value)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Player_Health_GE:
+                            totalCondition = () =>
+                            {
+                                if (((float)TurnManager.Inst.curHealth / TurnManager.Inst.maxHealth) >= localCondition.fvalue)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Player_Health_LE:
+                            totalCondition = () =>
+                            {
+                                if (((float)TurnManager.Inst.curHealth / TurnManager.Inst.maxHealth) <= localCondition.fvalue)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Player_Shield_GE:
+                            totalCondition = () =>
+                            {
+                                if (TurnManager.Inst.shieldHealth >= localCondition.value)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Activate_Trigger:
+                            totalCondition = () =>
+                            {
+                                if (RouletteManager.Inst.playerLookat == RouletteManager.Inst.triggerPos || RouletteManager.Inst.enemyLookat == RouletteManager.Inst.triggerPos)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        default:
+                            Debug.LogWarning("Error in relic condition"); break;
+                    }
+                }
+                relicActivation += totalCondition; break;
+            }
+            foreach (var timing in relicList[i].relicTimings)
+            {
+                var localTiming = timing;
+                switch (localTiming)
+                {
+                    case ERelicActivateTimingType.Player_Turn_Start:
+                        TurnManager.OnPlayerTurnStart += relicActivation; break;
+                    case ERelicActivateTimingType.Player_Turn_End:
+                        TurnManager.OnPlayerTurnEnd += relicActivation; break;
+                    case ERelicActivateTimingType.Enemy_Turn_Start:
+                        TurnManager.OnEnemyTurnStart += relicActivation; break;
+                    case ERelicActivateTimingType.Enemy_Turn_End:
+                        TurnManager.OnEnemyTurnEnd += relicActivation; break;
+                    case ERelicActivateTimingType.Game_Start:
+                        TurnManager.OnGameStart += relicActivation; break;
+                    case ERelicActivateTimingType.Game_End:
+                        TurnManager.OnGameEnd += relicActivation; break;
+                    case ERelicActivateTimingType.Roulette_Spin_Count:
+                        break; // TODO
+                    case ERelicActivateTimingType.Roulette_Spin_Direction:
+                        break;
+                    case ERelicActivateTimingType.Roulette_Spin_Distance:
+                        break; // TODO
+                    case ERelicActivateTimingType.Roulette_Trigger:
+                        TurnManager.OnRouletteTrigger += relicActivation; break;
+                    case ERelicActivateTimingType.Roulette_Enchant:
+                        break; // TODO
+                    case ERelicActivateTimingType.Roulette_Activate:
+                        TurnManager.OnRouletteActivate += relicActivation; break;
+                    case ERelicActivateTimingType.Card_Use_Cost:
+                        break; // TODO
+                    case ERelicActivateTimingType.Card_Use_Count:
+                        break; // TODO
+                    case ERelicActivateTimingType.Card_Use_Type:
+                        break; // TODO
+                    case ERelicActivateTimingType.Card_Draw:
+                        TurnManager.OnAddCard += relicActivation; break;
+                    case ERelicActivateTimingType.Enemy_Damage:
+                        TurnManager.OnEnemyDamaged += relicActivation; break;
+                    case ERelicActivateTimingType.Enemy_Heal:
+                        TurnManager.OnEnemyHealed += relicActivation; break;
+                    case ERelicActivateTimingType.Enemy_Trigger:
+                        TurnManager.OnEnemyTrigger += relicActivation; break;
+                    case ERelicActivateTimingType.Enemy_Shield:
+                        TurnManager.OnEnemyShielded += relicActivation; break;
+                    case ERelicActivateTimingType.Enemy_Action:
+                        break; // TODO
+                    case ERelicActivateTimingType.Player_Damage:
+                        TurnManager.OnPlayerDamaged += relicActivation; break;
+                    case ERelicActivateTimingType.Player_Heal:
+                        TurnManager.OnPlayerHealed += relicActivation; break;
+                    case ERelicActivateTimingType.Player_Trigger:
+                        TurnManager.OnPlayerTrigger += relicActivation; break;
+                    case ERelicActivateTimingType.Player_Shield:
+                        TurnManager.OnPlayerShielded += relicActivation; break;
+                    default:
+                        Debug.LogWarning("Error in relic timing"); break;
+                }
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        TurnManager.OnPlayerTurnStart = null;
+        TurnManager.OnPlayerTurnEnd = null;
+        TurnManager.OnEnemyTurnStart = null;
+        TurnManager.OnEnemyTurnEnd = null;
+        TurnManager.OnGameStart = null;
+        TurnManager.OnGameEnd = null;
+        TurnManager.OnAddCard = null;
+        TurnManager.OnDiscardCard = null;
+        TurnManager.OnPlayerDamaged = null;
+        TurnManager.OnPlayerHealed = null;
+        TurnManager.OnPlayerShielded = null;
+        TurnManager.OnPlayerTrigger = null;
+        TurnManager.OnEnemyDamaged = null;
+        TurnManager.OnEnemyHealed = null;
+        TurnManager.OnEnemyShielded = null;
+        TurnManager.OnEnemyTrigger = null;
+        TurnManager.OnEnemyAction = null;
+        TurnManager.OnRouletteSpinCW = null;
+        TurnManager.OnRouletteSpinCCW = null;
+        TurnManager.OnRouletteTrigger = null;
+        TurnManager.OnRouletteActivate = null;
     }
 }

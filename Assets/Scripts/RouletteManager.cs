@@ -30,16 +30,31 @@ public class RouletteManager : MonoBehaviour
     Quaternion lastRotation;
 
     public static float spinDelay = 0.7f;
+    public int spinCount;
+    public int spinCount_Turn;
+    public int spinDistance;
+    public int spinDistance_Turn;
+    public int spinDirection;
 
     public void Spin(bool isClockwise, int pieces)
     {
         if (!spinFlag)
         {
+            spinCount++;
+            spinCount_Turn++;
+            spinDistance += pieces;
+            spinDistance_Turn += pieces;
+            spinDirection = isClockwise ? 1 : 0;
             spinFlag = true;
             var newRotation = this.transform.rotation;
             if (isClockwise)
             {
+                TurnManager.OnRouletteSpinCW?.Invoke();
                 pieces *= -1;
+            }
+            else
+            {
+                TurnManager.OnRouletteSpinCCW?.Invoke();
             }
             newRotation *= Quaternion.Euler(0f, 0f, 360f * pieces / rouletteNum);
             playerLookat = (playerLookat + rouletteNum - pieces) % rouletteNum;
@@ -54,12 +69,14 @@ public class RouletteManager : MonoBehaviour
 
     public void ActivateRoulette()
     {
+        TurnManager.OnRouletteActivate?.Invoke();
         roulettePieces[playerLookat].Activate(false);
         roulettePieces[enemyLookat].Activate(true);
     }
 
     public void TriggerRoulette()
     {
+        TurnManager.OnRouletteTrigger?.Invoke();
         roulettePieces[triggerPos].Setup(rouletteSO.roulettePattern[20 - triggerPos]);
         roulettePieces[triggerPos].Trigger(true);
     }
@@ -84,6 +101,10 @@ public class RouletteManager : MonoBehaviour
         playerLookat = 0;
         enemyLookat = 7;
         triggerPos = 8;
+        spinCount = 0;
+        spinCount_Turn = 0;
+        spinDistance = 0;
+        spinDistance_Turn = 0;
         isTriggerActivated = false;
 
         for (int i = 0; i < rouletteNum; i++)
@@ -104,6 +125,7 @@ public class RouletteManager : MonoBehaviour
         if(!spinFlag && !TurnManager.Inst.isLoading)
         {
             spinFlag = true;
+            TurnManager.Inst.isLoading = true;
             isRouletteDrag = true;
             lastRotation = this.transform.rotation;
         }
@@ -114,7 +136,11 @@ public class RouletteManager : MonoBehaviour
         if(isRouletteDrag)
         {
             isRouletteDrag = false;
-            this.transform.DORotateQuaternion(lastRotation, 0.7f).OnComplete(() => spinFlag = false);
+            this.transform.DORotateQuaternion(lastRotation, 0.7f).OnComplete(() =>
+            {
+                spinFlag = false;
+                TurnManager.Inst.isLoading = false;
+            });
         }
     }
 
@@ -136,9 +162,19 @@ public class RouletteManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        TurnManager.OnPlayerTurnStart += () => { spinCount_Turn = 0; spinDistance_Turn = 0; };
+    }
+
+    private void OnDestroy()
+    {
+        TurnManager.OnPlayerTurnStart = null;
+    }
+
     private void Update()
     {
-        if(isRouletteDrag)
+        if (isRouletteDrag)
         {
             RouletteDrag();
         }

@@ -30,6 +30,9 @@ public class CardManager : MonoBehaviour
     bool isMyCardDrag;
     bool onMyCardArea;
 
+    public int useCount;
+    public int useCount_Turn;
+
     enum ECardState { Nothing, CanMouseOver, CanMouseDrag }
 
     public List<CardUI> ItemBufferToCardUIList(List<Item> items)
@@ -105,12 +108,14 @@ public class CardManager : MonoBehaviour
     {
         TurnManager.OnAddCard += AddCard;
         TurnManager.OnDiscardCard += DiscardCard;
+        TurnManager.OnPlayerTurnStart += () => { useCount_Turn = 0; };
     }
 
     private void OnDestroy()
     {
-        TurnManager.OnAddCard -= AddCard;
-        TurnManager.OnDiscardCard -= DiscardCard;
+        TurnManager.OnAddCard = null;
+        TurnManager.OnDiscardCard = null;
+        TurnManager.OnPlayerTurnStart = null;
     }
 
     // Update is called once per frame
@@ -291,6 +296,8 @@ public class CardManager : MonoBehaviour
             myCards.Remove(selectedCard);
             TurnManager.Inst.nowCost -= selectedCard.item.cost;
             selectedCard.UseCard(true);
+            useCount++;
+            useCount_Turn++;
             StartCoroutine(DiscardSingleCard(selectedCard));
             isMyCardDrag = false;
             selectedCard = null;

@@ -50,12 +50,23 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action OnPlayerTurnEnd;
     [HideInInspector] public static Action OnEnemyTurnStart;
     [HideInInspector] public static Action OnEnemyTurnEnd;
+    [HideInInspector] public static Action OnGameStart;
+    [HideInInspector] public static Action OnGameEnd;
     [HideInInspector] public static Action OnAddCard;
     [HideInInspector] public static Action OnDiscardCard;
     [HideInInspector] public static Action OnPlayerDamaged;
     [HideInInspector] public static Action OnPlayerHealed;
+    [HideInInspector] public static Action OnPlayerShielded;
+    [HideInInspector] public static Action OnPlayerTrigger;
     [HideInInspector] public static Action OnEnemyDamaged;
     [HideInInspector] public static Action OnEnemyHealed;
+    [HideInInspector] public static Action OnEnemyShielded;
+    [HideInInspector] public static Action OnEnemyTrigger;
+    [HideInInspector] public static Action OnEnemyAction;
+    [HideInInspector] public static Action OnRouletteSpinCW;
+    [HideInInspector] public static Action OnRouletteSpinCCW;
+    [HideInInspector] public static Action OnRouletteTrigger;
+    [HideInInspector] public static Action OnRouletteActivate;
 
     // 개발자 설정 적용
     void GameDeveloperSetup()
@@ -105,6 +116,7 @@ public class TurnManager : MonoBehaviour
     public void StartGameCo()
     {
         InitializeGame();
+        OnGameStart?.Invoke();
         turnDraw = drawCardCount;
         // startCardCount만큼 카드를 뽑고, StartPlayerTurn 호출
         StartCoroutine(Draw(startCardCount, StartPlayerTurn));
@@ -241,6 +253,20 @@ public class TurnManager : MonoBehaviour
         nowCost += value;
     }
 
+    public void GetShield(bool isEnemy, int value)
+    {
+        if (isEnemy)
+        {
+            OnEnemyShielded?.Invoke();
+            enemyShieldHealth += value;
+        }
+        else
+        {
+            OnPlayerShielded?.Invoke();
+            shieldHealth += value;
+        }
+    }
+
     // 플레이어 트리거 카운터 증가. 카운터 모두 채워졌을 시 발동
     public void TriggerPlayerPassive(int value)
     {
@@ -254,6 +280,7 @@ public class TurnManager : MonoBehaviour
         }
         if (playerTriggerCnt == playerTriggerMaxCnt)
         {
+            OnPlayerTrigger?.Invoke();
             RouletteManager.Inst.TriggerRoulette();
         }
     }
@@ -271,6 +298,7 @@ public class TurnManager : MonoBehaviour
         }
         if (enemyTriggerCnt == enemyTriggerMaxCnt)
         {
+            OnEnemyTrigger?.Invoke();
             EnemyManager.Inst.EnemyTriggerAction();
         }
     }
