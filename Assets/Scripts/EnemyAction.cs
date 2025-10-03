@@ -29,16 +29,15 @@ public class EnemyAction : MonoBehaviour
 
     public void ExecuteAction()
     {
-        if(actionVal != 0)
+        if (actionVal != 0)
         {
-            switch(actionType)
+            switch (actionType)
             {
                 case EEnemyActionType.CW:
                     RouletteManager.Inst.Spin(true, actionVal); break;
                 case EEnemyActionType.CCW:
                     RouletteManager.Inst.Spin(false, actionVal); break;
             }
-            RouletteManager.Inst.ActivateRoulette();
         }
     }
 }

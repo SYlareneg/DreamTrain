@@ -29,25 +29,27 @@ public class RouletteManager : MonoBehaviour
     bool onRouletteArea;
     Quaternion lastRotation;
 
+    public static float spinDelay = 0.7f;
+
     public void Spin(bool isClockwise, int pieces)
     {
-        if(!spinFlag)
+        if (!spinFlag)
         {
             spinFlag = true;
             var newRotation = this.transform.rotation;
-            if(isClockwise)
+            if (isClockwise)
             {
                 pieces *= -1;
             }
             newRotation *= Quaternion.Euler(0f, 0f, 360f * pieces / rouletteNum);
             playerLookat = (playerLookat + rouletteNum - pieces) % rouletteNum;
             enemyLookat = (enemyLookat + rouletteNum - pieces) % rouletteNum;
-            this.transform.DORotateQuaternion(newRotation, 0.7f).OnComplete(() => spinFlag = false);
+            this.transform.DORotateQuaternion(newRotation, spinDelay).OnComplete(() => spinFlag = false);
 
             //TEMP: Enemy passive trigger
             TurnManager.Inst.TriggerEnemyPassive(1);
         }
-        
+
     }
 
     public void ActivateRoulette()

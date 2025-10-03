@@ -504,24 +504,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TurnManager
   fastMode: 1
-  maxCardCount: 10
-  startCardCount: 0
-  drawCardCount: 4
-  turnCost: 4
-  isLoading: 0
   turnNum: 0
-  nowCost: 0
+  maxCardCount: 10
+  drawCardCount: 4
+  startCardCount: 0
   turnDraw: 0
+  turnCost: 4
+  nowCost: 0
   maxHealth: 0
   curHealth: 0
   shieldHealth: 0
+  playerTriggerMaxCnt: 0
+  playerTriggerCnt: 0
   enemyMaxHealth: 0
   enemyCurHealth: 0
   enemyShieldHealth: 0
-  playerTriggerMaxCnt: 0
-  playerTriggerCnt: 0
   enemyTriggerMaxCnt: 0
   enemyTriggerCnt: 0
+  characterSO: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
+  isLoading: 0
 --- !u!1 &62641915
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,7 +621,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 57490508}
         m_TargetAssemblyTypeName: TurnManager, Assembly-CSharp
-        m_MethodName: EndTurn
+        m_MethodName: EndPlayerTurn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -716,24 +717,23 @@ MonoBehaviour:
   resultPanel: {fileID: 656351733}
   endTurnBtn: {fileID: 62641915}
   turnNotificationTMP: {fileID: 1591758289}
+  cardScrollView: {fileID: 735414293}
+  cardListScroll: {fileID: 249217477}
+  cardList: []
   drawNum: {fileID: 873036742}
   discardNum: {fileID: 1720420501}
   deckNum: {fileID: 822045990}
+  relicScrollView: {fileID: 1036296288}
+  relicListScroll: {fileID: 1304274880}
   costTMP: {fileID: 1404764844}
   healthTMP: {fileID: 704130615}
   shieldObj: {fileID: 944970702}
   shieldTMP: {fileID: 51984679}
   triggerCountTMP: {fileID: 849047958}
   enemyHealthTMP: {fileID: 1224261234}
-  enemyTriggerCountTMP: {fileID: 325048212}
   enemyShieldObj: {fileID: 1619881393}
   enemyShieldTMP: {fileID: 1388279481}
-  characterSO: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
-  cardScrollView: {fileID: 735414293}
-  cardListScroll: {fileID: 249217477}
-  cardList: []
-  relicScrollView: {fileID: 1036296288}
-  relicListScroll: {fileID: 1304274880}
+  enemyTriggerCountTMP: {fileID: 325048212}
   relicList: []
   gameOverSignal: 0
 --- !u!1 &182728542
@@ -6208,7 +6208,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Relics
+  m_text: Id
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

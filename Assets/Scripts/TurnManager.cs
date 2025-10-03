@@ -10,113 +10,138 @@ public class TurnManager : MonoBehaviour
     public static TurnManager Inst { get; private set; }
     private void Awake() => Inst = this;
 
-    [Header("Develop")]
+    [Header("개발 설정")]
     [SerializeField][Tooltip("카드 배분이 매우 빨라집니다")] bool fastMode;
-    [SerializeField][Tooltip("최대 카드 개수를 정합니다")] public int maxCardCount;
-    [SerializeField][Tooltip("시작 카드 개수를 정합니다")] public int startCardCount;
-    [SerializeField][Tooltip("매 턴 드로우할 카드 개수를 정합니다")] public int drawCardCount;
-    [SerializeField][Tooltip("매 턴 얻는 코스트를 정합니다")] public int turnCost;
+    [Header("턴")]
+    [Tooltip("턴 카운트")] public int turnNum;
 
-    [Header("Properties")]
-    public bool isLoading;
-    public int turnNum;
-    public int nowCost;
-    public int turnDraw;
-    public int maxHealth;
-    public int curHealth;
-    public int shieldHealth;
-    public int enemyMaxHealth;
-    public int enemyCurHealth;
-    public int enemyShieldHealth;
-    public int playerTriggerMaxCnt;
-    public int playerTriggerCnt;
-    public int enemyTriggerMaxCnt;
-    public int enemyTriggerCnt;
+    [Header("카드")]
+    [Tooltip("최대 카드 개수")] public int maxCardCount;
+    [Tooltip("매 턴 드로우할 기본 카드 개수")] public int drawCardCount;
+    [Tooltip("시작 카드 개수")] public int startCardCount;
+    [Tooltip("매 턴 드로우하는 카드 개수")] public int turnDraw;
+    [Header("행동력")]
+    [Tooltip("최대 행동력")] public int turnCost;
+    [Tooltip("현재 행동력")] public int nowCost;
+    [Header("플레이어")]
+    [Tooltip("최대 체력")] public int maxHealth;
+    [Tooltip("현재 체력")] public int curHealth;
+    [Tooltip("현재 실드량")] public int shieldHealth;
+    [Tooltip("트리거 조건")] public int playerTriggerMaxCnt;
+    [Tooltip("트리거 조건 현재 카운트")] public int playerTriggerCnt;
+    [Header("적")]
+    [Tooltip("최대 체력")] public int enemyMaxHealth;
+    [Tooltip("현재 체력")] public int enemyCurHealth;
+    [Tooltip("현재 실드량")] public int enemyShieldHealth;
+    [Tooltip("트리거 조건")] public int enemyTriggerMaxCnt;
+    [Tooltip("트리거 조건 현재 카운트")] public int enemyTriggerCnt;
+    [Header("SO")]
+    [Tooltip("플레이어/적 정보")] public CharacterSO characterSO;
+
+    // 로딩 여부. 로딩중일 경우 인터랙션 불가.
+    [HideInInspector] public bool isLoading;
 
     WaitForSeconds delay05 = new WaitForSeconds(0.5f);
     WaitForSeconds delay07 = new WaitForSeconds(0.7f);
     WaitForSeconds delay10 = new WaitForSeconds(1.0f);
     WaitForSeconds delay15 = new WaitForSeconds(1.5f);
 
-    public static Action OnAddCard;
-    public static Action OnDiscardCard;
-    public static Action OnTurnStart;
-    public static Action OnTurnEnd;
+    [HideInInspector] public static Action OnPlayerTurnStart;
+    [HideInInspector] public static Action OnPlayerTurnEnd;
+    [HideInInspector] public static Action OnEnemyTurnStart;
+    [HideInInspector] public static Action OnEnemyTurnEnd;
+    [HideInInspector] public static Action OnAddCard;
+    [HideInInspector] public static Action OnDiscardCard;
+    [HideInInspector] public static Action OnPlayerDamaged;
+    [HideInInspector] public static Action OnPlayerHealed;
+    [HideInInspector] public static Action OnEnemyDamaged;
+    [HideInInspector] public static Action OnEnemyHealed;
 
-    void GameSetup()
+    // 개발자 설정 적용
+    void GameDeveloperSetup()
     {
-        if(fastMode)
+        // 카드 배분 속도 조정
+        if (fastMode)
         {
             delay05 = new WaitForSeconds(0.05f);
         }
     }
 
-    public void StartGameCo()
+    // characterSO 정보 적용
+    void InitializeCharacters()
     {
-        GameSetup();
-        isLoading = true;
-        turnNum = 0;
-        nowCost = 0;
-        turnDraw = drawCardCount;
-        maxHealth = GameManager.Inst.characterSO.maxHealth;
-        curHealth = GameManager.Inst.characterSO.curHealth;
-        shieldHealth = 0;
-        enemyMaxHealth = GameManager.Inst.characterSO.enemyMaxHealth;
-        enemyCurHealth = GameManager.Inst.characterSO.enemyCurHealth;
-        enemyShieldHealth = 0;
-        playerTriggerMaxCnt = GameManager.Inst.characterSO.playerTriggerMaxCnt;
-        playerTriggerCnt = 0;
-        enemyTriggerMaxCnt = GameManager.Inst.characterSO.enemyTriggerMaxCnt;
-        enemyTriggerCnt = 0;
+        // 플레이어 정보 적용
+        maxHealth = characterSO.maxHealth;
+        curHealth = characterSO.curHealth;
+        playerTriggerMaxCnt = characterSO.playerTriggerMaxCnt;
+        // 적 정보 적용
+        enemyMaxHealth = characterSO.enemyMaxHealth;
+        enemyCurHealth = characterSO.enemyCurHealth;
+        enemyTriggerMaxCnt = characterSO.enemyTriggerMaxCnt;
+        EnemyManager.Inst.maxActionVal = characterSO.enemyMaxActionVal;
+        EnemyManager.Inst.actionNum = characterSO.enemyActionNum;
+    }
+
+    // 게임 매니저 초기화
+    void InitializeManagers()
+    {
         RelicManager.Inst.ActivateRelics();
-        EnemyManager.Inst.maxActionVal = GameManager.Inst.characterSO.enemyMaxActionVal;
-        EnemyManager.Inst.actionNum = GameManager.Inst.characterSO.enemyActionNum;
         RouletteManager.Inst.InitRoulette();
         CardManager.Inst.InitializeItemBuffer();
         CardManager.Inst.ShuffleDeck();
-
-        StartCoroutine(Draw(startCardCount, () => StartTurnCo()));
     }
 
-    public void StartTurnCo()
+    // 게임 시작 전 초기화
+    void InitializeGame()
+    {
+        GameDeveloperSetup();
+        isLoading = true;
+        turnNum = 0;
+        InitializeCharacters();
+        InitializeManagers();
+    }
+
+    // 게임 시작
+    public void StartGameCo()
+    {
+        InitializeGame();
+        turnDraw = drawCardCount;
+        // startCardCount만큼 카드를 뽑고, StartPlayerTurn 호출
+        StartCoroutine(Draw(startCardCount, StartPlayerTurn));
+    }
+
+    // 플레이어 턴 시작
+    public void StartPlayerTurn()
     {
         isLoading = true;
         turnNum++;
         nowCost = turnCost;
         shieldHealth = 0;
-
-        GameManager.Inst.Notification("My Turn", "Turn "+turnNum.ToString(), StartTurnCo_AfterNotify);        
+        // 플레이어 턴 시작 UI를 띄우고, StartPlayerTurn_AfterNotify 호출
+        GameManager.Inst.Notification("My Turn", "Turn " + turnNum.ToString(), StartPlayerTurn_AfterNotify);
     }
 
-    void StartTurnCo_AfterNotify()
+    // 플레이어 턴 시작 - UI 호출 이후
+    void StartPlayerTurn_AfterNotify()
     {
-        OnTurnStart?.Invoke();
-        EnemyManager.Inst.ShowAllActions();
+        // 플레이어 턴 시작 시 호출해야 할 액션(함수) 목록 모두 호출
+        OnPlayerTurnStart?.Invoke();
+        // turnDraw만큼 카드를 뽑고, 로딩을 종료 (플레이어 인터랙션 가능)
         StartCoroutine(Draw(turnDraw, () => isLoading = false));
     }
 
-    public void EndTurn()
+    // 플레이어 턴 종료
+    public void EndPlayerTurn()
     {
         isLoading = true;
+        OnPlayerTurnEnd?.Invoke();
         Discard();
         RouletteManager.Inst.ActivateRoulette();
-
-        GameManager.Inst.Notification("Enemy Turn", "Turn "+turnNum.ToString(), () => StartCoroutine(EndTurnCo()));
+        // 적 턴 시작 UI를 띄우고, StartPlayerTurn_AfterNotify 호출
+        GameManager.Inst.Notification("Enemy Turn", "Turn " + turnNum.ToString(), EnemyManager.Inst.StartEnemyTurn);
     }
 
-    public IEnumerator EndTurnCo()
-    {
-        bool allCoFinished = false;
-        OnTurnEnd += () => allCoFinished = true;
-        OnTurnEnd?.Invoke();
-        yield return new WaitUntil(() => allCoFinished);
-        yield return delay15;
-        if (GameManager.Inst.gameOverSignal == false)
-        {
-            StartTurnCo();
-        }
-    }
-
+    // 카드 드로우
     public IEnumerator Draw(int drawNum, Action onComplete)
     {
         for (int i = 0; i < drawNum; i++)
@@ -127,18 +152,21 @@ public class TurnManager : MonoBehaviour
         onComplete?.Invoke();
     }
 
+    // 카드 버림 (카드 사용시 카드는 버려짐. 버려진 카드는 무덤으로 감.)
     public void Discard()
     {
         OnDiscardCard?.Invoke();
     }
 
+    // 플레이어 체력 변동 (데미지 or 힐, 실드 고려). 플레이어 생존 여부 반환
     public bool TakeDmg(int damage)
     {
-        if(curHealth + shieldHealth > damage)
+        if (curHealth + shieldHealth > damage)
         {
-            if(damage > 0)
+            if (damage > 0)
             {
-                if(shieldHealth >= damage)
+                OnPlayerDamaged?.Invoke();
+                if (shieldHealth >= damage)
                 {
                     shieldHealth -= damage;
                     return true;
@@ -149,8 +177,12 @@ public class TurnManager : MonoBehaviour
                     damage -= shieldHealth;
                 }
             }
+            else
+            {
+                OnPlayerHealed?.Invoke();
+            }
             curHealth -= damage;
-            if(curHealth > maxHealth)
+            if (curHealth > maxHealth)
             {
                 curHealth = maxHealth;
             }
@@ -158,19 +190,22 @@ public class TurnManager : MonoBehaviour
         }
         else
         {
+            OnPlayerDamaged?.Invoke();
             curHealth = 0;
             StartCoroutine(GameManager.Inst.GameOver(false));
             return false;
         }
     }
 
+    // 적 체력 변동 (데미지 or 힐, 실드 고려). 적 생존 여부 반환
     public bool EnemyTakeDmg(int damage)
     {
-        if(enemyCurHealth + enemyShieldHealth > damage)
+        if (enemyCurHealth + enemyShieldHealth > damage)
         {
-            if(damage > 0)
+            if (damage > 0)
             {
-                if(enemyShieldHealth >= damage)
+                OnEnemyDamaged?.Invoke();
+                if (enemyShieldHealth >= damage)
                 {
                     enemyShieldHealth -= damage;
                     return true;
@@ -181,8 +216,12 @@ public class TurnManager : MonoBehaviour
                     damage -= enemyShieldHealth;
                 }
             }
+            else
+            {
+                OnEnemyHealed?.Invoke();
+            }
             enemyCurHealth -= damage;
-            if(enemyCurHealth > enemyMaxHealth)
+            if (enemyCurHealth > enemyMaxHealth)
             {
                 enemyCurHealth = enemyMaxHealth;
             }
@@ -190,6 +229,7 @@ public class TurnManager : MonoBehaviour
         }
         else
         {
+            OnEnemyDamaged?.Invoke();
             enemyCurHealth = 0;
             StartCoroutine(GameManager.Inst.GameOver(true));
             return false;
@@ -201,33 +241,35 @@ public class TurnManager : MonoBehaviour
         nowCost += value;
     }
 
+    // 플레이어 트리거 카운터 증가. 카운터 모두 채워졌을 시 발동
     public void TriggerPlayerPassive(int value)
     {
-        if(playerTriggerCnt < playerTriggerMaxCnt)
+        if (playerTriggerCnt < playerTriggerMaxCnt)
         {
             playerTriggerCnt += value;
-            if(playerTriggerCnt > playerTriggerMaxCnt)
+            if (playerTriggerCnt > playerTriggerMaxCnt)
             {
                 playerTriggerCnt = playerTriggerMaxCnt;
             }
         }
-        if(playerTriggerCnt == playerTriggerMaxCnt)
+        if (playerTriggerCnt == playerTriggerMaxCnt)
         {
             RouletteManager.Inst.TriggerRoulette();
         }
     }
 
+    // 적 트리거 카운터 증가. 카운터 모두 채워졌을 시 발동
     public void TriggerEnemyPassive(int value)
     {
-        if(enemyTriggerCnt < enemyTriggerMaxCnt)
+        if (enemyTriggerCnt < enemyTriggerMaxCnt)
         {
             enemyTriggerCnt += value;
-            if(enemyTriggerCnt > enemyTriggerMaxCnt)
+            if (enemyTriggerCnt > enemyTriggerMaxCnt)
             {
                 enemyTriggerCnt = enemyTriggerMaxCnt;
             }
         }
-        if(enemyTriggerCnt == enemyTriggerMaxCnt)
+        if (enemyTriggerCnt == enemyTriggerMaxCnt)
         {
             EnemyManager.Inst.EnemyTriggerAction();
         }

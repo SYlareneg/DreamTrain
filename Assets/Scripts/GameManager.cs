@@ -12,36 +12,38 @@ public class GameManager : MonoBehaviour
     public static GameManager Inst { get; private set; }
     void Awake() => Inst = this;
 
-    [SerializeField] NotificationPanel notificationPanel;
-    [SerializeField] ResultPanel resultPanel;
-    [SerializeField] GameObject endTurnBtn;
-    [SerializeField] TMP_Text turnNotificationTMP;
-    [SerializeField] TMP_Text drawNum;
-    [SerializeField] TMP_Text discardNum;
-    [SerializeField] TMP_Text deckNum;
-    [SerializeField] TMP_Text costTMP;
-    [SerializeField] TMP_Text healthTMP;
-    [SerializeField] GameObject shieldObj;
-    [SerializeField] TMP_Text shieldTMP;
-    [SerializeField] TMP_Text triggerCountTMP;
-    [SerializeField] TMP_Text enemyHealthTMP;
-    [SerializeField] TMP_Text enemyTriggerCountTMP;
-    [SerializeField] GameObject enemyShieldObj;
-    [SerializeField] TMP_Text enemyShieldTMP;
+    [Header("게임 UI")]
+    [SerializeField][Tooltip("화면 중심 안내 UI")] NotificationPanel notificationPanel;
+    [SerializeField][Tooltip("게임 종료 UI")] ResultPanel resultPanel;
+    [SerializeField][Tooltip("턴 종료 버튼")] GameObject endTurnBtn;
+    [SerializeField][Tooltip("턴 텍스트")] TMP_Text turnNotificationTMP;
+    [Header("카드 UI")]
+    [SerializeField][Tooltip("카드 목록 UI")] GameObject cardScrollView;
+    [Tooltip("카드 목록 content")] public GameObject cardListScroll;
+    [HideInInspector] public List<CardUI> cardList;
+    [SerializeField][Tooltip("드로우풀 카드 수 UI")] TMP_Text drawNum;
+    [SerializeField][Tooltip("무덤 카드 수 UI")] TMP_Text discardNum;
+    [SerializeField][Tooltip("덱 카드 수 UI")] TMP_Text deckNum;
+    [Header("이드 UI")]
+    [SerializeField][Tooltip("이드 목록 UI")] GameObject relicScrollView;
+    [Tooltip("이드 목록 content")] public GameObject relicListScroll;
+    [Header("플레이어 UI")]
+    [SerializeField][Tooltip("플레이어 행동력 값 텍스트")] TMP_Text costTMP;
+    [SerializeField][Tooltip("플레이어 체력 값 텍스트")] TMP_Text healthTMP;
+    [SerializeField][Tooltip("플레이어 실드 UI")] GameObject shieldObj;
+    [SerializeField][Tooltip("플레이어 실드 값 텍스트")] TMP_Text shieldTMP;
+    [SerializeField][Tooltip("플레이어 트리거 조건 텍스트")] TMP_Text triggerCountTMP;
+    [Header("적 UI")]
+    [SerializeField][Tooltip("적 체력 값 텍스트")] TMP_Text enemyHealthTMP;
+    [SerializeField][Tooltip("적 실드 UI")] GameObject enemyShieldObj;
+    [SerializeField][Tooltip("적 실드 값 텍스트")] TMP_Text enemyShieldTMP;
+    [SerializeField][Tooltip("적 트리거 조건 텍스트")] TMP_Text enemyTriggerCountTMP;
+    [HideInInspector] public List<RelicUI> relicList;
 
-    public CharacterSO characterSO;
-
-    [SerializeField] GameObject cardScrollView;
-    public GameObject cardListScroll;
-    public List<CardUI> cardList;
-    [SerializeField] GameObject relicScrollView;
-    public GameObject relicListScroll;
-    public List<RelicUI> relicList;
-
-    public bool gameOverSignal;
+    [HideInInspector] public bool gameOverSignal;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         DOTween.SetTweensCapacity(500, 50);
         gameOverSignal = false;
@@ -52,6 +54,41 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         InputCheatKey();
+        UpdateUIState();
+    }
+
+    // 개발자용 특수입력
+    void InputCheatKey()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            TurnManager.OnAddCard?.Invoke();
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            TurnManager.Inst.EndPlayerTurn();
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            RouletteManager.Inst.Spin(false, 1);
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            RouletteManager.Inst.Spin(true, 1);
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            RouletteManager.Inst.ActivateRoulette();
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            RouletteManager.Inst.TriggerRoulette();
+        }
+    }
+
+    // UI 텍스트, 숨김 여부 설정
+    void UpdateUIState()
+    {
         drawNum.text = CardManager.Inst.itemDraw.Count.ToString();
         discardNum.text = CardManager.Inst.itemDiscard.Count.ToString();
         deckNum.text = CardManager.Inst.itemDeck.Count.ToString();
@@ -80,45 +117,12 @@ public class GameManager : MonoBehaviour
         enemyShieldTMP.text = TurnManager.Inst.enemyShieldHealth.ToString();
     }
 
-    void InputCheatKey()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            TurnManager.OnAddCard?.Invoke();
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            TurnManager.Inst.EndTurn();
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            RouletteManager.Inst.Spin(false, 1);
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            RouletteManager.Inst.Spin(true, 1);
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            RouletteManager.Inst.ActivateRoulette();
-        }
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            RouletteManager.Inst.TriggerRoulette();
-        }
-    }
-
     public void StartGame()
     {
         TurnManager.Inst.StartGameCo();
     }
 
-    public void Notification(string title, string message, Action onComplete)
-    {
-        turnNotificationTMP.text = message;
-        notificationPanel.Show(title, onComplete);
-    }
-
+    // 게임 종료
     public IEnumerator GameOver(bool isMyWin)
     {
         gameOverSignal = true;
@@ -128,9 +132,17 @@ public class GameManager : MonoBehaviour
 
         resultPanel.Show(isMyWin ? "Win" : "Lose");
     }
+    
+    // 화면 중심 안내 UI 호출
+    public void Notification(string title, string message, Action onComplete)
+    {
+        turnNotificationTMP.text = message;
+        notificationPanel.Show(title, onComplete);
+    }
 
     public enum ListType { Deck, Draw, Discard };
 
+    // 카드 목록 UI 호출
     public void CardList(ListType listType)
     {
         if (cardScrollView.activeSelf == false)
@@ -164,21 +176,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // 덱 카드 목록 띄움
     public void DeckCardList()
     {
         CardList(ListType.Deck);
     }
 
+    // 드로우 풀 카드 목록 띄움
     public void DrawCardList()
     {
         CardList(ListType.Draw);
     }
 
+    // 무덤 카드 목록 띄움
     public void DiscardCardList()
     {
         CardList(ListType.Discard);
     }
 
+    // 이드 목록 띄움
     public void RelicList()
     {
         if (relicScrollView.activeSelf == false)
