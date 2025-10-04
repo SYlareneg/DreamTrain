@@ -46,15 +46,11 @@ public class RouletteManager : MonoBehaviour
             spinDistance_Turn += pieces;
             spinDirection = isClockwise ? 1 : 0;
             spinFlag = true;
+            TurnManager.OnRouletteSpin?.Invoke();
             var newRotation = this.transform.rotation;
             if (isClockwise)
             {
-                TurnManager.OnRouletteSpinCW?.Invoke();
                 pieces *= -1;
-            }
-            else
-            {
-                TurnManager.OnRouletteSpinCCW?.Invoke();
             }
             newRotation *= Quaternion.Euler(0f, 0f, 360f * pieces / rouletteNum);
             playerLookat = (playerLookat + rouletteNum - pieces) % rouletteNum;
@@ -86,7 +82,8 @@ public class RouletteManager : MonoBehaviour
         RouletteItem rItem = new RouletteItem();
         rItem.type = rType;
         rItem.value = rValue;
-        if(isEnemy)
+        TurnManager.OnRouletteEnchant?.Invoke();
+        if (isEnemy)
         {
             roulettePieces[enemyLookat].Setup(rItem);
         }

@@ -52,6 +52,7 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action OnEnemyTurnEnd;
     [HideInInspector] public static Action OnGameStart;
     [HideInInspector] public static Action OnGameEnd;
+    [HideInInspector] public static Action OnUseCard;
     [HideInInspector] public static Action OnAddCard;
     [HideInInspector] public static Action OnDiscardCard;
     [HideInInspector] public static Action OnPlayerDamaged;
@@ -63,9 +64,9 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action OnEnemyShielded;
     [HideInInspector] public static Action OnEnemyTrigger;
     [HideInInspector] public static Action OnEnemyAction;
-    [HideInInspector] public static Action OnRouletteSpinCW;
-    [HideInInspector] public static Action OnRouletteSpinCCW;
+    [HideInInspector] public static Action OnRouletteSpin;
     [HideInInspector] public static Action OnRouletteTrigger;
+    [HideInInspector] public static Action OnRouletteEnchant;
     [HideInInspector] public static Action OnRouletteActivate;
 
     // 개발자 설정 적용
@@ -128,7 +129,6 @@ public class TurnManager : MonoBehaviour
         isLoading = true;
         turnNum++;
         nowCost = turnCost;
-        shieldHealth = 0;
         // 플레이어 턴 시작 UI를 띄우고, StartPlayerTurn_AfterNotify 호출
         GameManager.Inst.Notification("My Turn", "Turn " + turnNum.ToString(), StartPlayerTurn_AfterNotify);
     }
@@ -136,6 +136,7 @@ public class TurnManager : MonoBehaviour
     // 플레이어 턴 시작 - UI 호출 이후
     void StartPlayerTurn_AfterNotify()
     {
+        shieldHealth = 0;
         // 플레이어 턴 시작 시 호출해야 할 액션(함수) 목록 모두 호출
         OnPlayerTurnStart?.Invoke();
         // turnDraw만큼 카드를 뽑고, 로딩을 종료 (플레이어 인터랙션 가능)

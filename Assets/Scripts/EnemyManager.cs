@@ -24,9 +24,10 @@ public class EnemyManager : MonoBehaviour
     [Tooltip("액션별 최대 실행값\n(예: 2일 경우 회전 액션은 최대 2칸 회전)")] public int maxActionVal;
 
     [Tooltip("액션 개수")] public int actionNum;
-    [HideInInspector] public List<EnemyAction> actionList;
-    [HideInInspector] public List<EnemyAction> executeActionList;
+    public List<EnemyAction> actionList;
+    public List<EnemyAction> executeActionList;
     static float actionInterval = 0.5f;
+    public EnemyAction lastAction;
 
     // 액션 리스트 초기화. 랜덤한 액션을 actionNum 개수만큼 생성
     public void InitActionList()
@@ -42,15 +43,16 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    // 액션 심볼 스폰. 액션 리스트 생성, 해당 리스트에 따라 액션 심볼 오브젝트 소환
-    public void ShowAllActions()
+    public void AllignActionList()
     {
-        InitActionList();
         for (int i = 0; i < actionList.Count; i++)
         {
             var targetPos = enemyActionPos.position;
             targetPos.x += i * (actionPrefab.GetComponent<SpriteRenderer>().bounds.size.x + actionMargin);
-            actionList[i].transform.DOMove(targetPos, 0.7f);
+            if (actionList[i].transform.position != targetPos)
+            {
+                actionList[i].transform.DOMove(targetPos, 0.7f);
+            }
         }
     }
 
@@ -59,6 +61,48 @@ public class EnemyManager : MonoBehaviour
     {
         TurnManager.Inst.TakeDmg(2);
         TurnManager.Inst.enemyTriggerCnt = 0;
+    }
+
+    public void RemoveAction(int index)
+    {
+        if (index >= 0 && index < actionList.Count)
+        {
+            actionList[index].IgnoreAction(true);
+        }
+    }
+
+    public void HideAction(int index)
+    {
+        if (index >= 0 && index < actionList.Count)
+        {
+            actionList[index].HideAction(true);
+        }
+    }
+
+    public void RemoveAllSpin()
+    {
+        foreach (var action in actionList)
+        {
+            if (action.actionType == EEnemyActionType.CW || action.actionType == EEnemyActionType.CCW)
+            {
+                action.IgnoreAction(true);
+            }
+        }
+    }
+
+    public void ReverseSpin()
+    {
+        foreach (var action in actionList)
+        {
+            if (action.actionType == EEnemyActionType.CW)
+            {
+                action.SetActionType(EEnemyActionType.CCW);
+            }
+            else if (action.actionType == EEnemyActionType.CCW)
+            {
+                action.SetActionType(EEnemyActionType.CW);
+            }
+        }
     }
 
     // 적 최선의 행동 계산, executeActionList에 최적 행동 리스트 저장. TODO
@@ -75,11 +119,20 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < executeActionList.Count; i++)
         {
             int localIndex = i;
-            executionSeq.Append(executeActionList[localIndex].gameObject.transform.DOMove(enemyExecutePos.position, actionInterval).OnComplete(() =>
+            var originalPos = executeActionList[localIndex].transform.position;
+            executionSeq.Append(executeActionList[localIndex].transform.DOMove(enemyExecutePos.position, actionInterval).OnComplete(() =>
             {
+                lastAction = executeActionList[localIndex];
                 executeActionList[localIndex].ExecuteAction();
             }));
-            executionSeq.AppendInterval(RouletteManager.spinDelay);
+            if (executeActionList[localIndex].isIgnore)
+            {
+                executionSeq.Append(executeActionList[localIndex].transform.DOMove(originalPos, RouletteManager.spinDelay));
+            }
+            else
+            {
+                executionSeq.AppendInterval(RouletteManager.spinDelay);
+            }
         }
         executionSeq.AppendCallback(EndEnemyTurn);
         executionSeq.Play();
@@ -118,11 +171,12 @@ public class EnemyManager : MonoBehaviour
 
     private void Start()
     {
-        TurnManager.OnPlayerTurnStart += ShowAllActions;
+        TurnManager.OnPlayerTurnStart = InitActionList + TurnManager.OnPlayerTurnStart;
+        TurnManager.OnPlayerTurnStart += AllignActionList;
     }
 
     private void OnDestroy()
     {
-        TurnManager.OnPlayerTurnStart -= ShowAllActions;
+        TurnManager.OnPlayerTurnStart = null;
     }
 }

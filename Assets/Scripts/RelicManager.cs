@@ -86,13 +86,13 @@ public class RelicManager : MonoBehaviour
                     case ERelicActivateEffectType.Roulette_Trigger:
                         relicAction += () => { RouletteManager.Inst.TriggerRoulette(); }; break;
                     case ERelicActivateEffectType.Enemy_Action_Hide:
-                        relicAction += () => { }; break;
+                        relicAction += () => { EnemyManager.Inst.HideAction(localEffect.value); }; break;
                     case ERelicActivateEffectType.Enemy_Action_Delete:
-                        relicAction += () => { }; break;
+                        relicAction += () => { EnemyManager.Inst.RemoveAction(localEffect.value); }; break;
                     case ERelicActivateEffectType.Enemy_Spin_Reverse:
-                        relicAction += () => { }; break;
+                        relicAction += () => { EnemyManager.Inst.ReverseSpin(); }; break;
                     case ERelicActivateEffectType.Enemy_Spin_Ignore:
-                        relicAction += () => { }; break;
+                        relicAction += () => { EnemyManager.Inst.RemoveAllSpin(); }; break;
                     case ERelicActivateEffectType.Enemy_Damage:
                         relicAction += () => { TurnManager.Inst.EnemyTakeDmg(localEffect.value); }; break;
                     case ERelicActivateEffectType.Develop_Test:
@@ -121,7 +121,7 @@ public class RelicManager : MonoBehaviour
                                     temp?.Invoke();
                                 }
                             }; break;
-                        case ERelicActivateConditionType.Turn_Begin:
+                        case ERelicActivateConditionType.Turn_GE:
                             totalCondition = () =>
                             {
                                 if (TurnManager.Inst.turnNum >= localCondition.value)
@@ -129,10 +129,58 @@ public class RelicManager : MonoBehaviour
                                     temp?.Invoke();
                                 }
                             }; break;
+                        case ERelicActivateConditionType.Turn_EQ:
+                            totalCondition = () =>
+                            {
+                                if (TurnManager.Inst.turnNum == localCondition.value)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
                         case ERelicActivateConditionType.Roulette_Count:
                             totalCondition = () =>
                             {
+                                if (RouletteManager.Inst.spinCount % localCondition.value == 0)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Roulette_Count_Turn:
+                            totalCondition = () =>
+                            {
+                                if (RouletteManager.Inst.spinCount_Turn % localCondition.value == 0)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Roulette_Count_GE:
+                            totalCondition = () =>
+                            {
                                 if (RouletteManager.Inst.spinCount >= localCondition.value)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Roulette_Count_GE_Turn:
+                            totalCondition = () =>
+                            {
+                                if (RouletteManager.Inst.spinCount_Turn >= localCondition.value)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Roulette_Count_EQ:
+                            totalCondition = () =>
+                            {
+                                if (RouletteManager.Inst.spinCount == localCondition.value)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Roulette_Count_EQ_Turn:
+                            totalCondition = () =>
+                            {
+                                if (RouletteManager.Inst.spinCount_Turn == localCondition.value)
                                 {
                                     temp?.Invoke();
                                 }
@@ -148,7 +196,47 @@ public class RelicManager : MonoBehaviour
                         case ERelicActivateConditionType.Roulette_Distance:
                             totalCondition = () =>
                             {
+                                if (RouletteManager.Inst.spinDistance % localCondition.value == 0)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Roulette_Distance_Turn:
+                            totalCondition = () =>
+                            {
+                                if (RouletteManager.Inst.spinDistance_Turn % localCondition.value == 0)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Roulette_Distance_GE:
+                            totalCondition = () =>
+                            {
                                 if (RouletteManager.Inst.spinDistance >= localCondition.value)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Roulette_Distance_GE_Turn:
+                            totalCondition = () =>
+                            {
+                                if (RouletteManager.Inst.spinDistance_Turn >= localCondition.value)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Roulette_Distance_EQ:
+                            totalCondition = () =>
+                            {
+                                if (RouletteManager.Inst.spinDistance == localCondition.value)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Roulette_Distance_EQ_Turn:
+                            totalCondition = () =>
+                            {
+                                if (RouletteManager.Inst.spinDistance_Turn == localCondition.value)
                                 {
                                     temp?.Invoke();
                                 }
@@ -157,6 +245,14 @@ public class RelicManager : MonoBehaviour
                             totalCondition = () =>
                             {
                                 if ((RouletteManager.Inst.spinCount > 0) == (localCondition.value > 0))
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Roulette_IsSpinned_Turn:
+                            totalCondition = () =>
+                            {
+                                if ((RouletteManager.Inst.spinCount_Turn > 0) == (localCondition.value > 0))
                                 {
                                     temp?.Invoke();
                                 }
@@ -172,7 +268,47 @@ public class RelicManager : MonoBehaviour
                         case ERelicActivateConditionType.Card_Count:
                             totalCondition = () =>
                             {
+                                if (CardManager.Inst.useCount % localCondition.value == 0)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Card_Count_Turn:
+                            totalCondition = () =>
+                            {
+                                if (CardManager.Inst.useCount_Turn % localCondition.value == 0)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Card_Count_GE:
+                            totalCondition = () =>
+                            {
                                 if (CardManager.Inst.useCount >= localCondition.value)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Card_Count_GE_Turn:
+                            totalCondition = () =>
+                            {
+                                if (CardManager.Inst.useCount_Turn >= localCondition.value)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Card_Count_EQ:
+                            totalCondition = () =>
+                            {
+                                if (CardManager.Inst.useCount == localCondition.value)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Card_Count_EQ_Turn:
+                            totalCondition = () =>
+                            {
+                                if (CardManager.Inst.useCount_Turn == localCondition.value)
                                 {
                                     temp?.Invoke();
                                 }
@@ -185,8 +321,30 @@ public class RelicManager : MonoBehaviour
                                     temp?.Invoke();
                                 }
                             }; break;
+                        case ERelicActivateConditionType.Card_IsUsed_Turn:
+                            totalCondition = () =>
+                            {
+                                if ((CardManager.Inst.useCount_Turn > 0) == (localCondition.value > 0))
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
                         case ERelicActivateConditionType.Card_Type:
-                            break; // TODO
+                            totalCondition = () =>
+                            {
+                                if (CardManager.Inst.selectedCard.item.type == localCondition.ivalue.type)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Card_Element:
+                            totalCondition = () =>
+                            {
+                                if (CardManager.Inst.selectedCard.item.element == localCondition.ivalue.element)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
                         case ERelicActivateConditionType.Enemy_Health_GE:
                             totalCondition = () =>
                             {
@@ -207,6 +365,14 @@ public class RelicManager : MonoBehaviour
                             totalCondition = () =>
                             {
                                 if (TurnManager.Inst.enemyShieldHealth >= localCondition.value)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Enemy_Action_Type:
+                            totalCondition = () =>
+                            {
+                                if (EnemyManager.Inst.lastAction.actionType == localCondition.actionType)
                                 {
                                     temp?.Invoke();
                                 }
@@ -266,24 +432,16 @@ public class RelicManager : MonoBehaviour
                         TurnManager.OnGameStart += relicActivation; break;
                     case ERelicActivateTimingType.Game_End:
                         TurnManager.OnGameEnd += relicActivation; break;
-                    case ERelicActivateTimingType.Roulette_Spin_Count:
-                        break; // TODO
-                    case ERelicActivateTimingType.Roulette_Spin_Direction:
-                        break;
-                    case ERelicActivateTimingType.Roulette_Spin_Distance:
-                        break; // TODO
+                    case ERelicActivateTimingType.Roulette_Spin:
+                        TurnManager.OnRouletteSpin += relicActivation; break;
                     case ERelicActivateTimingType.Roulette_Trigger:
                         TurnManager.OnRouletteTrigger += relicActivation; break;
                     case ERelicActivateTimingType.Roulette_Enchant:
-                        break; // TODO
+                        TurnManager.OnRouletteEnchant += relicActivation; break;
                     case ERelicActivateTimingType.Roulette_Activate:
                         TurnManager.OnRouletteActivate += relicActivation; break;
-                    case ERelicActivateTimingType.Card_Use_Cost:
-                        break; // TODO
-                    case ERelicActivateTimingType.Card_Use_Count:
-                        break; // TODO
-                    case ERelicActivateTimingType.Card_Use_Type:
-                        break; // TODO
+                    case ERelicActivateTimingType.Card_Use:
+                        TurnManager.OnUseCard += relicActivation; break;
                     case ERelicActivateTimingType.Card_Draw:
                         TurnManager.OnAddCard += relicActivation; break;
                     case ERelicActivateTimingType.Enemy_Damage:
@@ -295,7 +453,7 @@ public class RelicManager : MonoBehaviour
                     case ERelicActivateTimingType.Enemy_Shield:
                         TurnManager.OnEnemyShielded += relicActivation; break;
                     case ERelicActivateTimingType.Enemy_Action:
-                        break; // TODO
+                        TurnManager.OnEnemyAction += relicActivation; break;
                     case ERelicActivateTimingType.Player_Damage:
                         TurnManager.OnPlayerDamaged += relicActivation; break;
                     case ERelicActivateTimingType.Player_Heal:
@@ -319,6 +477,7 @@ public class RelicManager : MonoBehaviour
         TurnManager.OnEnemyTurnEnd = null;
         TurnManager.OnGameStart = null;
         TurnManager.OnGameEnd = null;
+        TurnManager.OnUseCard = null;
         TurnManager.OnAddCard = null;
         TurnManager.OnDiscardCard = null;
         TurnManager.OnPlayerDamaged = null;
@@ -330,9 +489,9 @@ public class RelicManager : MonoBehaviour
         TurnManager.OnEnemyShielded = null;
         TurnManager.OnEnemyTrigger = null;
         TurnManager.OnEnemyAction = null;
-        TurnManager.OnRouletteSpinCW = null;
-        TurnManager.OnRouletteSpinCCW = null;
+        TurnManager.OnRouletteSpin = null;
         TurnManager.OnRouletteTrigger = null;
+        TurnManager.OnRouletteEnchant = null;
         TurnManager.OnRouletteActivate = null;
     }
 }

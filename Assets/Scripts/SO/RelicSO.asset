@@ -22,6 +22,16 @@ MonoBehaviour:
       - type: 0
         value: 0
         fvalue: 0
+        ivalue:
+          name: 
+          cost: 0
+          type: 0
+          element: 0
+          passiveNum: 0
+          sprite: {fileID: 0}
+          text: 
+          num: 0
+        actionType: 0
     relicEffects:
     - type: 1
       value: 1
@@ -34,6 +44,16 @@ MonoBehaviour:
       - type: 0
         value: 0
         fvalue: 0
+        ivalue:
+          name: 
+          cost: 0
+          type: 0
+          element: 0
+          passiveNum: 0
+          sprite: {fileID: 0}
+          text: 
+          num: 0
+        actionType: 0
     relicEffects:
     - type: 4
       value: 1
@@ -46,18 +66,38 @@ MonoBehaviour:
       - type: 0
         value: 0
         fvalue: 0
+        ivalue:
+          name: 
+          cost: 0
+          type: 0
+          element: 0
+          passiveNum: 0
+          sprite: {fileID: 0}
+          text: 
+          num: 0
+        actionType: 0
     relicEffects:
     - type: 2
       value: 1
   - relicSprite: {fileID: 9181274246992998818, guid: ca71119c4f516fa4a90950e97f223a72, type: 3}
     relicName: Lucid Nightmare
     relicTxt: Earn 1 cost at turn begin
-    relicTimings: 00000000
+    relicTimings: 0a000000
     relicConditions:
     - conditions:
-      - type: 12
-        value: 0
-        fvalue: 0.99
+      - type: 29
+        value: 3
+        fvalue: 0
+        ivalue:
+          name: 
+          cost: 0
+          type: 0
+          element: 1
+          passiveNum: 0
+          sprite: {fileID: 0}
+          text: 
+          num: 0
+        actionType: 0
     relicEffects:
     - type: 21
       value: 0

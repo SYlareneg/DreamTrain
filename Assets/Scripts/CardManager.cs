@@ -298,6 +298,7 @@ public class CardManager : MonoBehaviour
             selectedCard.UseCard(true);
             useCount++;
             useCount_Turn++;
+            TurnManager.OnUseCard?.Invoke();
             StartCoroutine(DiscardSingleCard(selectedCard));
             isMyCardDrag = false;
             selectedCard = null;

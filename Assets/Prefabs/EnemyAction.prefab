@@ -107,11 +107,13 @@ MonoBehaviour:
   enemyAction: {fileID: 1068350944104055487}
   enemyActionTMP: {fileID: 2747324800066987363}
   enemyActionSprites:
+  - {fileID: 1599388452501240626, guid: f2660930dd1408c43b1357f97f2fdf1e, type: 3}
   - {fileID: -7264017630307359951, guid: 88a05f07c610deb4abd949fa602e1906, type: 3}
   - {fileID: 694185428071178852, guid: bbe0aeaa37d03054e9b959bf0aeaf95e, type: 3}
   actionType: 0
   maxActionVal: 0
   actionVal: 0
+  isIgnore: 0
 --- !u!1 &6706112517402818183
 GameObject:
   m_ObjectHideFlags: 0
