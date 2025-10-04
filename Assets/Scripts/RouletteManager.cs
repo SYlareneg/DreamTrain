@@ -53,8 +53,8 @@ public class RouletteManager : MonoBehaviour
                 pieces *= -1;
             }
             newRotation *= Quaternion.Euler(0f, 0f, 360f * pieces / rouletteNum);
-            playerLookat = (playerLookat + rouletteNum - pieces) % rouletteNum;
-            enemyLookat = (enemyLookat + rouletteNum - pieces) % rouletteNum;
+            playerLookat = (playerLookat + pieces + rouletteNum) % rouletteNum;
+            enemyLookat = (enemyLookat + pieces + rouletteNum) % rouletteNum;
             this.transform.DORotateQuaternion(newRotation, spinDelay).OnComplete(() => spinFlag = false);
 
             //TEMP: Enemy passive trigger
@@ -73,31 +73,36 @@ public class RouletteManager : MonoBehaviour
     public void TriggerRoulette()
     {
         TurnManager.OnRouletteTrigger?.Invoke();
-        roulettePieces[triggerPos].Setup(rouletteSO.roulettePattern[20 - triggerPos]);
+        roulettePieces[triggerPos].Setup(rouletteSO.roulettePattern[triggerPos]);
         roulettePieces[triggerPos].Trigger(true);
     }
 
-    public void EnchantRoulettePiece(bool isEnemy, ERouletteType rType, int rValue)
+    public void EnchantRoulette(bool isEnemy, ERouletteType rType, int rValue)
+    {
+        if (isEnemy)
+        {
+            EnchantRoulettePiece(enemyLookat, rType, rValue);
+        }
+        else
+        {
+            EnchantRoulettePiece(playerLookat, rType, rValue);
+        }
+    }
+
+    public void EnchantRoulettePiece(int index, ERouletteType rType, int rValue)
     {
         RouletteItem rItem = new RouletteItem();
         rItem.type = rType;
         rItem.value = rValue;
         TurnManager.OnRouletteEnchant?.Invoke();
-        if (isEnemy)
-        {
-            roulettePieces[enemyLookat].Setup(rItem);
-        }
-        else
-        {
-            roulettePieces[playerLookat].Setup(rItem);
-        }
+        roulettePieces[index].Setup(rItem);
     }
 
     public void InitRoulette()
     {
-        playerLookat = 0;
-        enemyLookat = 7;
-        triggerPos = 8;
+        playerLookat = (rouletteNum - 1) / 2;
+        enemyLookat = rouletteNum - 1;
+        triggerPos = rouletteNum - 2;
         spinCount = 0;
         spinCount_Turn = 0;
         spinDistance = 0;
@@ -107,10 +112,10 @@ public class RouletteManager : MonoBehaviour
         for (int i = 0; i < rouletteNum; i++)
         {
             var roulettePiece = Instantiate(roulettePiecePrefab, this.transform.position, Utils.QI);
-            roulettePiece.transform.rotation *= Quaternion.Euler(0f, 0f, -180f + 360f * i / rouletteNum);
+            roulettePiece.transform.rotation *= Quaternion.Euler(0f, 0f, -180f / rouletteNum - 360f * i / rouletteNum);
             roulettePiece.transform.SetParent(this.transform, true);
             roulettePieces[i] = roulettePiece.GetComponent<RoulettePiece>();
-            roulettePieces[i].Setup(rouletteSO.roulettePattern[((i > 7) ? (20 - i) : (7 - i))]);
+            roulettePieces[i].Setup(rouletteSO.roulettePattern[i]);
         }
         var tempRoulettePiece = roulettePieces[triggerPos].roulette;
         tempRoulettePiece.type = ERouletteType.None;

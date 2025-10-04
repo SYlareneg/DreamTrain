@@ -120,7 +120,7 @@ public class Card : MonoBehaviour
                 TurnManager.Inst.TakeDmg(2);
                 break;
             case "Enchant Heal":
-                RouletteManager.Inst.EnchantRoulettePiece(false, ERouletteType.Heal, 3);
+                RouletteManager.Inst.EnchantRoulette(false, ERouletteType.Heal, 3);
                 break;
         }
 

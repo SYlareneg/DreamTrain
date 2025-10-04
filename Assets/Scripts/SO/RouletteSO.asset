@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: RouletteSO
   m_EditorClassIdentifier: Assembly-CSharp::RouletteSO
   roulettePattern:
-  - type: 1
-    value: 4
   - type: 0
     value: 0
   - type: 0
@@ -39,3 +37,5 @@ MonoBehaviour:
     value: 0
   - type: 1
     value: 20
+  - type: 1
+    value: 4

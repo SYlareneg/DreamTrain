@@ -93,11 +93,14 @@ public enum ERelicActivateEffectType
     Card_Duplicate_Hand,
     Card_Duplicate_Deck,
     Card_Add_Hand,
-    Card_Add_Deck,
-    Roulette_Value_Change,
+    Card_Add_Draw,
+    Card_Add_Discard,
+    Roulette_Value_Change_ADD,
+    Roulette_Value_Change_MUL,
     Roulette_Spin_CW,
     Roulette_Spin_CCW,
-    Roulette_Enchant,
+    Roulette_Enchant_Type,
+    Roulette_Enchant_Val,
     Roulette_Trigger,
     Enemy_Action_Hide,
     Enemy_Action_Delete,
@@ -111,6 +114,9 @@ public struct RelicActivateEffect
 {
     public ERelicActivateEffectType type;
     public int value;
+    public int value2;
+    public Item ivalue;
+    public RouletteItem rlvalue;
 }
 
 [System.Serializable]

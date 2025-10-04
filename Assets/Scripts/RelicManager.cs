@@ -72,17 +72,41 @@ public class RelicManager : MonoBehaviour
                     case ERelicActivateEffectType.Card_Duplicate_Deck:
                         relicAction += () => { }; break;
                     case ERelicActivateEffectType.Card_Add_Hand:
-                        relicAction += () => { }; break;
-                    case ERelicActivateEffectType.Card_Add_Deck:
-                        relicAction += () => { }; break;
-                    case ERelicActivateEffectType.Roulette_Value_Change:
-                        relicAction += () => { }; break;
+                        relicAction += () =>
+                        {
+                            CardManager.Inst.itemDeck.Add(localEffect.ivalue);
+                            CardManager.Inst.CreateCardInHand(localEffect.ivalue);
+                        }; break;
+                    case ERelicActivateEffectType.Card_Add_Draw:
+                        relicAction += () =>
+                        {
+                            CardManager.Inst.itemDeck.Add(localEffect.ivalue);
+                            CardManager.Inst.itemDraw.Add(localEffect.ivalue);
+                        }; break;
+                    case ERelicActivateEffectType.Card_Add_Discard:
+                        relicAction += () =>
+                        {
+                            CardManager.Inst.itemDeck.Add(localEffect.ivalue);
+                            CardManager.Inst.itemDiscard.Add(localEffect.ivalue);
+                        }; break;
+                    case ERelicActivateEffectType.Roulette_Value_Change_ADD:
+                        relicAction += () => {
+                            RouletteManager.Inst.roulettePieces[localEffect.value].roulette.value += localEffect.value2;
+                            RouletteManager.Inst.roulettePieces[localEffect.value].Setup(RouletteManager.Inst.roulettePieces[localEffect.value].roulette);
+                        }; break;
+                    case ERelicActivateEffectType.Roulette_Value_Change_MUL:
+                        relicAction += () => {
+                            RouletteManager.Inst.roulettePieces[localEffect.value].roulette.value *= localEffect.value2;
+                            RouletteManager.Inst.roulettePieces[localEffect.value].Setup(RouletteManager.Inst.roulettePieces[localEffect.value].roulette);
+                        }; break;
                     case ERelicActivateEffectType.Roulette_Spin_CW:
                         relicAction += () => { RouletteManager.Inst.Spin(true, localEffect.value); }; break;
                     case ERelicActivateEffectType.Roulette_Spin_CCW:
                         relicAction += () => { RouletteManager.Inst.Spin(false, localEffect.value); }; break;
-                    case ERelicActivateEffectType.Roulette_Enchant:
-                        relicAction += () => { }; break;
+                    case ERelicActivateEffectType.Roulette_Enchant_Type:
+                        relicAction += () => { RouletteManager.Inst.EnchantRoulettePiece(localEffect.value, localEffect.rlvalue.type, RouletteManager.Inst.roulettePieces[localEffect.value].roulette.value); }; break;
+                    case ERelicActivateEffectType.Roulette_Enchant_Val:
+                        relicAction += () => { RouletteManager.Inst.EnchantRoulettePiece(localEffect.value, RouletteManager.Inst.roulettePieces[localEffect.value].roulette.type, localEffect.rlvalue.value); }; break;
                     case ERelicActivateEffectType.Roulette_Trigger:
                         relicAction += () => { RouletteManager.Inst.TriggerRoulette(); }; break;
                     case ERelicActivateEffectType.Enemy_Action_Hide:

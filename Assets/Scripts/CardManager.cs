@@ -130,11 +130,11 @@ public class CardManager : MonoBehaviour
         SetECardState();
     }
 
-    void AddCard()
+    public void CreateCardInHand(Item item)
     {
         var cardObject = Instantiate(cardPrefab, cardSpawnPoint.position, Utils.QI);
         var card = cardObject.GetComponent<Card>();
-        card.Setup(PopItem());
+        card.Setup(item);
         if(card.item != null)
         {
             myCards.Add(card);
@@ -151,6 +151,11 @@ public class CardManager : MonoBehaviour
         {
             StartCoroutine(DiscardSingleCard(card));
         }
+    }
+
+    void AddCard()
+    {
+        CreateCardInHand(PopItem());
     }
 
     IEnumerator DiscardSingleCard(Card card)
