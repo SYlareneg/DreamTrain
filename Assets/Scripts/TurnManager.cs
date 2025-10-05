@@ -37,6 +37,7 @@ public class TurnManager : MonoBehaviour
     [Tooltip("트리거 조건 현재 카운트")] public int enemyTriggerCnt;
     [Header("SO")]
     [Tooltip("플레이어/적 정보")] public CharacterSO characterSO;
+    [Tooltip("플레이어/적 정보")] public DreamPieceSO dreamPieceSO;
 
     // 로딩 여부. 로딩중일 경우 인터랙션 불가.
     [HideInInspector] public bool isLoading;
@@ -92,6 +93,20 @@ public class TurnManager : MonoBehaviour
         enemyTriggerMaxCnt = characterSO.enemyTriggerMaxCnt;
         EnemyManager.Inst.maxActionVal = characterSO.enemyMaxActionVal;
         EnemyManager.Inst.actionNum = characterSO.enemyActionNum;
+        // 카드 정보 적용 - 임시
+        CardManager.Inst.itemSO.items.Clear();
+        foreach (Item i in dreamPieceSO.dreamPieces[0].normalCards)
+        {
+            CardManager.Inst.itemSO.items.Add(i);
+        }
+        foreach (Item i in dreamPieceSO.dreamPieces[0].personaCards)
+        {
+            CardManager.Inst.itemSO.items.Add(i);
+        }
+        foreach (Item i in dreamPieceSO.dreamPieces[0].shadowCards)
+        {
+            CardManager.Inst.itemSO.items.Add(i);
+        }
     }
 
     // 게임 매니저 초기화
@@ -172,7 +187,7 @@ public class TurnManager : MonoBehaviour
     }
 
     // 플레이어 체력 변동 (데미지 or 힐, 실드 고려). 플레이어 생존 여부 반환
-    public bool TakeDmg(int damage)
+    public int TakeDmg(int damage)
     {
         if (curHealth + shieldHealth > damage)
         {
@@ -182,7 +197,7 @@ public class TurnManager : MonoBehaviour
                 if (shieldHealth >= damage)
                 {
                     shieldHealth -= damage;
-                    return true;
+                    return 0;
                 }
                 else
                 {
@@ -194,24 +209,25 @@ public class TurnManager : MonoBehaviour
             {
                 OnPlayerHealed?.Invoke();
             }
-            curHealth -= damage;
-            if (curHealth > maxHealth)
+            if (curHealth - damage > maxHealth)
             {
-                curHealth = maxHealth;
+                damage = curHealth - maxHealth;
             }
-            return true;
+            curHealth -= damage;
+            return damage;
         }
         else
         {
             OnPlayerDamaged?.Invoke();
+            damage = curHealth;
             curHealth = 0;
             StartCoroutine(GameManager.Inst.GameOver(false));
-            return false;
+            return damage;
         }
     }
 
     // 적 체력 변동 (데미지 or 힐, 실드 고려). 적 생존 여부 반환
-    public bool EnemyTakeDmg(int damage)
+    public int EnemyTakeDmg(int damage)
     {
         if (enemyCurHealth + enemyShieldHealth > damage)
         {
@@ -221,7 +237,7 @@ public class TurnManager : MonoBehaviour
                 if (enemyShieldHealth >= damage)
                 {
                     enemyShieldHealth -= damage;
-                    return true;
+                    return 0;
                 }
                 else
                 {
@@ -233,19 +249,20 @@ public class TurnManager : MonoBehaviour
             {
                 OnEnemyHealed?.Invoke();
             }
-            enemyCurHealth -= damage;
-            if (enemyCurHealth > enemyMaxHealth)
+            if (enemyCurHealth - damage > enemyMaxHealth)
             {
-                enemyCurHealth = enemyMaxHealth;
+                damage = enemyCurHealth - enemyMaxHealth;
             }
-            return true;
+            enemyCurHealth -= damage;
+            return damage;
         }
         else
         {
             OnEnemyDamaged?.Invoke();
+            damage = enemyCurHealth;
             enemyCurHealth = 0;
             StartCoroutine(GameManager.Inst.GameOver(true));
-            return false;
+            return damage;
         }
     }
 

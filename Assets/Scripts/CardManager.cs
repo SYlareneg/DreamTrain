@@ -160,14 +160,24 @@ public class CardManager : MonoBehaviour
 
     IEnumerator DiscardSingleCard(Card card)
     {
-        itemDiscard.Add(card.item);
-        myCards.Remove(card);
-        card.MoveTransform(new PRS(cardDiscardPoint.position, Utils.QI, new Vector3(1, 1, 1)), true, 0.7f);
+        if (card.item.isRemain == false)
+        {
+            myCards.Remove(card);
+        }
+        
+        if (card.item.isVolatile == false && card.item.isRemain == false)
+        {
+            itemDiscard.Add(card.item);
+            card.MoveTransform(new PRS(cardDiscardPoint.position, Utils.QI, new Vector3(1, 1, 1)), true, 0.7f);
+        }
 
         SetOriginOrder();
         CardAlignment();
         yield return new WaitForSeconds(0.7f);
-        Destroy(card.gameObject);
+        if (card.item.isRemain == false)
+        {
+            Destroy(card.gameObject);
+        }
     }
 
     void DiscardCard()
@@ -304,7 +314,15 @@ public class CardManager : MonoBehaviour
             useCount++;
             useCount_Turn++;
             TurnManager.OnUseCard?.Invoke();
-            StartCoroutine(DiscardSingleCard(selectedCard));
+            if (selectedCard.item.isVanish == true)
+            {
+                myCards.Remove(card);
+                Destroy(card.gameObject);
+            }
+            else
+            {
+                StartCoroutine(DiscardSingleCard(selectedCard));
+            }
             isMyCardDrag = false;
             selectedCard = null;
             

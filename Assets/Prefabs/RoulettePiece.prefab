@@ -113,6 +113,7 @@ MonoBehaviour:
   - {fileID: -4028666944602328941, guid: 5108a0a9c09f171499b728cc7b3288bd, type: 3}
   - {fileID: 5728235063738559423, guid: a688f36ac99609548a6015e9b494d37d, type: 3}
   - {fileID: 6846121943559979705, guid: 5867783c36e712e46874557e68c5be8f, type: 3}
+  - {fileID: -4966424932998807961, guid: 76cb5696f0f01d64e95a1216bd297ce1, type: 3}
   roulette:
     type: 0
     value: 0
@@ -289,8 +290,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278976256
+  m_fontColor: {r: 0, g: 1, b: 0.043539047, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

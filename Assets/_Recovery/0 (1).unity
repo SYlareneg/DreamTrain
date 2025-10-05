@@ -4118,6 +4118,7 @@ MonoBehaviour:
   enemyLookat: 0
   triggerPos: 0
   isTriggerActivated: 0
+  spinFlag: 0
   spinCount: 0
   spinCount_Turn: 0
   spinDistance: 0

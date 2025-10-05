@@ -24,7 +24,7 @@ public class RouletteManager : MonoBehaviour
     public int triggerPos;
     public bool isTriggerActivated;
 
-    bool spinFlag = false;
+    public bool spinFlag = false;
     bool isRouletteDrag;
     bool onRouletteArea;
     Quaternion lastRotation;
@@ -68,6 +68,12 @@ public class RouletteManager : MonoBehaviour
         TurnManager.OnRouletteActivate?.Invoke();
         roulettePieces[playerLookat].Activate(false);
         roulettePieces[enemyLookat].Activate(true);
+    }
+
+    public void ActivateRoulettePiece(int index, bool isEnemy)
+    {
+        TurnManager.OnRouletteActivate?.Invoke();
+        roulettePieces[index].Activate(isEnemy);
     }
 
     public void TriggerRoulette()
@@ -164,6 +170,21 @@ public class RouletteManager : MonoBehaviour
         }
     }
 
+    void ShowBuffedPieces()
+    {
+        for (int i = 0; i < rouletteNum; i++)
+        {
+            if (i == playerLookat || i == enemyLookat)
+            {
+                roulettePieces[i].ShowTotalValue();
+            }
+            else
+            {
+                roulettePieces[i].HideTotalValue();
+            }
+        }
+    }
+
     private void Start()
     {
         TurnManager.OnPlayerTurnStart += () => { spinCount_Turn = 0; spinDistance_Turn = 0; };
@@ -182,5 +203,6 @@ public class RouletteManager : MonoBehaviour
         }
 
         DetectRouletteArea();
+        ShowBuffedPieces();
     }
 }

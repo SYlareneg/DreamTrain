@@ -42,6 +42,7 @@ public class DeckBuildManager : MonoBehaviour
     public List<PassiveUI> passiveList;
     [SerializeField] GameObject passivePrefab;
     public PassiveSO passiveSO;
+    public DreamPieceSO dreamPieceSO;
 
     [SerializeField] public Image tooltip;
     public TMP_Text tooltipTxt;
@@ -84,20 +85,20 @@ public class DeckBuildManager : MonoBehaviour
 
     public void setCardNum(Item item, int newNum)
     {
-        int itemIdx = Array.FindIndex(itemSO.items, x => x.name == item.name);
+        /*int itemIdx = Array.FindIndex(itemSO.items, x => x.name == item.name);
         if(itemIdx != -1)
         {
             itemSO.items[itemIdx].num = newNum;
-        }
+        }*/
     }
 
     public void changeCardNum(Item item, int changeNum)
     {
-        int itemIdx = Array.FindIndex(itemSO.items, x => x.name == item.name);
+        /*int itemIdx = Array.FindIndex(itemSO.items, x => x.name == item.name);
         if(itemIdx != -1)
         {
             itemSO.items[itemIdx].num += changeNum;
-        }
+        }*/
     }
 
     public void CardListSet(Passive newP)
@@ -151,7 +152,7 @@ public class DeckBuildManager : MonoBehaviour
 
         foreach(Item item in itemSO.items)
         {
-            if(item.element == EPassiveType.Normal)
+            if(item.passiveNum < 0)
             {
                 var cardObject = Instantiate(draggableCardUIPrefab, cardListScroll.transform.position, Utils.QI);
                 cardObject.transform.SetParent(cardListScroll.transform);
@@ -169,22 +170,30 @@ public class DeckBuildManager : MonoBehaviour
 
     public void PassiveList(EPassiveType pType)
     {
-        foreach (Passive p in passiveSO.passives)
-            {
-                if (p.type == pType)
-                {
-                    var pObject = Instantiate(passivePrefab, passiveListScroll.transform.position, Utils.QI);
-                    pObject.transform.SetParent(passiveListScroll.transform);
+        foreach (DreamPiece dp in dreamPieceSO.dreamPieces)
+        {
+            var pObject = Instantiate(passivePrefab, passiveListScroll.transform.position, Utils.QI);
+            pObject.transform.SetParent(passiveListScroll.transform);
 
-                    var passive = pObject.GetComponent<PassiveUI>();
-                    passive.Setup(p);
-                    if ((pType == EPassiveType.Persona && selectedPersona == p) || (pType == EPassiveType.Shadow && selectedShadow == p))
-                    {
-                        passive.Select(true);
-                    }
-                    passiveList.Add(passive);
+            var passive = pObject.GetComponent<PassiveUI>();
+            if (pType == EPassiveType.Persona)
+            {
+                passive.Setup(dp.persona);
+                if (selectedPersona == dp.persona)
+                {
+                    passive.Select(true);
                 }
             }
+            else if (pType == EPassiveType.Shadow)
+            {
+                passive.Setup(dp.shadow);
+                if (selectedShadow == dp.shadow)
+                {
+                    passive.Select(true);
+                }
+            }
+            passiveList.Add(passive);
+        }
     }
 
     public void SelectPassive(Passive p)

@@ -28,6 +28,9 @@ MonoBehaviour:
           type: 0
           element: 0
           passiveNum: 0
+          isVolatile: 0
+          isVanish: 0
+          isRemain: 0
           sprite: {fileID: 0}
           text: 
           num: 0
@@ -42,6 +45,9 @@ MonoBehaviour:
         type: 0
         element: 0
         passiveNum: 0
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
         sprite: {fileID: 0}
         text: 
         num: 0
@@ -63,6 +69,9 @@ MonoBehaviour:
           type: 0
           element: 0
           passiveNum: 0
+          isVolatile: 0
+          isVanish: 0
+          isRemain: 0
           sprite: {fileID: 0}
           text: 
           num: 0
@@ -77,6 +86,9 @@ MonoBehaviour:
         type: 0
         element: 0
         passiveNum: 0
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
         sprite: {fileID: 0}
         text: 
         num: 0
@@ -98,6 +110,9 @@ MonoBehaviour:
           type: 0
           element: 0
           passiveNum: 0
+          isVolatile: 0
+          isVanish: 0
+          isRemain: 0
           sprite: {fileID: 0}
           text: 
           num: 0
@@ -112,44 +127,12 @@ MonoBehaviour:
         type: 0
         element: 0
         passiveNum: 0
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
         sprite: {fileID: 0}
         text: 
         num: 0
       rlvalue:
         type: 0
         value: 0
-  - relicSprite: {fileID: 9181274246992998818, guid: ca71119c4f516fa4a90950e97f223a72, type: 3}
-    relicName: Lucid Nightmare
-    relicTxt: Earn 1 cost at turn begin
-    relicTimings: 0a000000
-    relicConditions:
-    - conditions:
-      - type: 0
-        value: 3
-        fvalue: 0
-        ivalue:
-          name: 
-          cost: 0
-          type: 0
-          element: 1
-          passiveNum: 0
-          sprite: {fileID: 0}
-          text: 
-          num: 0
-        actionType: 0
-    relicEffects:
-    - type: 11
-      value: 12
-      value2: 10
-      ivalue:
-        name: Instantiated Card
-        cost: 10
-        type: 0
-        element: 0
-        passiveNum: 0
-        sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-        text: This card is created by developer
-        num: 0
-      rlvalue:
-        type: 2
-        value: 10
