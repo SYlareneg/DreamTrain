@@ -133,7 +133,7 @@ public class Card : MonoBehaviour
                 tempItem.cost = item.cost;
                 tempItem.type = item.type;
                 tempItem.element = item.element;
-                tempItem.passiveNum = item.passiveNum;
+                tempItem.dreamPieceNum = item.dreamPieceNum;
                 tempItem.isVanish = true;
                 tempItem.sprite = item.sprite;
                 tempItem.text = item.text;

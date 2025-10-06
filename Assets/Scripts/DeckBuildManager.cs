@@ -19,19 +19,19 @@ public class DeckBuildManager : MonoBehaviour
     public List<CardUI_DeckBuild> deckList;
     public static int deckCardNum = 12;
     [SerializeField] GameObject cardUIPrefab;
-    public ItemSO itemSO;
+    public ItemSO normalItemSO;
     [SerializeField] TMP_Text cardListTitleTMP;
     [SerializeField] GameObject cardListScroll;
     public List<CardUI_Draggable> availableCardList;
     [SerializeField] GameObject draggableCardUIPrefab;
     public GameObject draggingCardUI;
 
-    public Passive selectedPersona;
+    public DreamPiece selectedPersona;
     [SerializeField] GameObject personaShow;
     [SerializeField] Image personaButton;
     [SerializeField] TMP_Text personaName;
     [SerializeField] TMP_Text personaText;
-    public Passive selectedShadow;
+    public DreamPiece selectedShadow;
     [SerializeField] GameObject shadowShow;
     [SerializeField] Image shadowButton;
     [SerializeField] TMP_Text shadowName;
@@ -85,27 +85,31 @@ public class DeckBuildManager : MonoBehaviour
 
     public void setCardNum(Item item, int newNum)
     {
-        /*int itemIdx = Array.FindIndex(itemSO.items, x => x.name == item.name);
-        if(itemIdx != -1)
-        {
-            itemSO.items[itemIdx].num = newNum;
-        }*/
+        item.num = newNum;
     }
 
     public void changeCardNum(Item item, int changeNum)
     {
-        /*int itemIdx = Array.FindIndex(itemSO.items, x => x.name == item.name);
-        if(itemIdx != -1)
-        {
-            itemSO.items[itemIdx].num += changeNum;
-        }*/
+        item.num += changeNum;
     }
 
-    public void CardListSet(Passive newP)
+    public CardUI_Draggable FindInCardListByName(string name)
     {
-        foreach(CardUI_Draggable card in availableCardList)
+        foreach (CardUI_Draggable card in availableCardList)
         {
-            if(card != null)
+            if (card.item.name == name)
+            {
+                return card;
+            }
+        }
+        return null;
+    }
+
+    public void CardListSet(DreamPiece newDP, EPassiveType pType)
+    {
+        foreach (CardUI_Draggable card in availableCardList)
+        {
+            if (card != null)
             {
                 setCardNum(card.item, card.availableNum);
                 Destroy(card.gameObject);
@@ -113,9 +117,21 @@ public class DeckBuildManager : MonoBehaviour
         }
         availableCardList.Clear();
 
-        foreach(Item item in itemSO.items)
+        if (newDP == null || newDP.name == null)
         {
-            if(newP != null && newP.name == passiveSO.passives[item.passiveNum].name && newP.type == item.element )
+            cardListTitleTMP.text = "Available Cards";
+        }
+        else
+        {
+            cardListTitleTMP.text = "Available Cards for " + newDP.name;
+        }
+
+        if (newDP == null) return;
+
+        Item[] itemList = newDP.cards;
+        foreach (Item item in itemList)
+        {
+            if (item.element == pType)
             {
                 var cardObject = Instantiate(draggableCardUIPrefab, cardListScroll.transform.position, Utils.QI);
                 cardObject.transform.SetParent(cardListScroll.transform);
@@ -126,15 +142,6 @@ public class DeckBuildManager : MonoBehaviour
                 card.availableNum = item.num;
                 availableCardList.Add(card);
             }
-        }
-
-        if(newP == null || newP.name == null)
-        {
-            cardListTitleTMP.text = "Available Cards";
-        }
-        else
-        {
-            cardListTitleTMP.text = "Available Cards for " + newP.name;
         }
     }
 
@@ -150,18 +157,49 @@ public class DeckBuildManager : MonoBehaviour
         }
         availableCardList.Clear();
 
-        foreach(Item item in itemSO.items)
+        foreach(Item item in normalItemSO.items)
         {
-            if(item.passiveNum < 0)
-            {
-                var cardObject = Instantiate(draggableCardUIPrefab, cardListScroll.transform.position, Utils.QI);
-                cardObject.transform.SetParent(cardListScroll.transform);
-                var card = cardObject.GetComponent<CardUI_Draggable>();
+            var cardObject = Instantiate(draggableCardUIPrefab, cardListScroll.transform.position, Utils.QI);
+            cardObject.transform.SetParent(cardListScroll.transform);
+            var card = cardObject.GetComponent<CardUI_Draggable>();
 
-                card.Setup(item);
-                card.raycaster = canvas.GetComponent<GraphicRaycaster>();
-                card.availableNum = item.num;
-                availableCardList.Add(card);
+            card.Setup(item);
+            card.raycaster = canvas.GetComponent<GraphicRaycaster>();
+            card.availableNum = item.num;
+            availableCardList.Add(card);
+        }
+        if (selectedPersona != null)
+        {
+            foreach (Item item in selectedPersona.cards)
+            {
+                if (item.element == EPassiveType.Normal)
+                {
+                    var cardObject = Instantiate(draggableCardUIPrefab, cardListScroll.transform.position, Utils.QI);
+                    cardObject.transform.SetParent(cardListScroll.transform);
+                    var card = cardObject.GetComponent<CardUI_Draggable>();
+
+                    card.Setup(item);
+                    card.raycaster = canvas.GetComponent<GraphicRaycaster>();
+                    card.availableNum = item.num;
+                    availableCardList.Add(card);
+                }
+            }
+        }
+        if (selectedShadow != null && selectedShadow != selectedPersona)
+        {
+            foreach (Item item in selectedShadow.cards)
+            {
+                if (item.element == EPassiveType.Normal)
+                {
+                    var cardObject = Instantiate(draggableCardUIPrefab, cardListScroll.transform.position, Utils.QI);
+                    cardObject.transform.SetParent(cardListScroll.transform);
+                    var card = cardObject.GetComponent<CardUI_Draggable>();
+
+                    card.Setup(item);
+                    card.raycaster = canvas.GetComponent<GraphicRaycaster>();
+                    card.availableNum = item.num;
+                    availableCardList.Add(card);
+                }
             }
         }
 
@@ -178,16 +216,16 @@ public class DeckBuildManager : MonoBehaviour
             var passive = pObject.GetComponent<PassiveUI>();
             if (pType == EPassiveType.Persona)
             {
-                passive.Setup(dp.persona);
-                if (selectedPersona == dp.persona)
+                passive.Setup(dp, EPassiveType.Persona);
+                if (selectedPersona == dp)
                 {
                     passive.Select(true);
                 }
             }
             else if (pType == EPassiveType.Shadow)
             {
-                passive.Setup(dp.shadow);
-                if (selectedShadow == dp.shadow)
+                passive.Setup(dp, EPassiveType.Shadow);
+                if (selectedShadow == dp)
                 {
                     passive.Select(true);
                 }
@@ -196,11 +234,11 @@ public class DeckBuildManager : MonoBehaviour
         }
     }
 
-    public void SelectPassive(Passive p)
+    public void SelectPassive(DreamPiece dp, EPassiveType pType)
     {
         foreach (PassiveUI pUI in passiveList)
         {
-            if (pUI.passive == p)
+            if (pUI.dreamPiece == dp)
             {
                 pUI.Select(true);
             }
@@ -210,23 +248,23 @@ public class DeckBuildManager : MonoBehaviour
             }
         }
 
-        CardListSet(p);
+        CardListSet(dp, pType);
         
-        if(p != null)
+        if(dp != null)
         {
-            if (p.type == EPassiveType.Persona)
+            if (pType == EPassiveType.Persona)
             {
-                selectedPersona = p;
-                personaButton.sprite = p.sprite;
-                personaName.text = p.name;
-                personaText.text = p.text;
+                selectedPersona = dp;
+                personaButton.sprite = dp.persona.sprite;
+                personaName.text = dp.persona.name;
+                personaText.text = dp.persona.text;
             }
-            else if (p.type == EPassiveType.Shadow)
+            else if (pType == EPassiveType.Shadow)
             {
-                selectedShadow = p;
-                shadowButton.sprite = p.sprite;
-                shadowName.text = p.name;
-                shadowText.text = p.text;
+                selectedShadow = dp;
+                shadowButton.sprite = dp.shadow.sprite;
+                shadowName.text = dp.shadow.name;
+                shadowText.text = dp.shadow.text;
             }
         }
         
@@ -234,15 +272,15 @@ public class DeckBuildManager : MonoBehaviour
         {
             if(deckCard.item != null)
             {
-                if(selectedPersona != null && (selectedPersona.name == passiveSO.passives[deckCard.item.passiveNum].name))
+                if(deckCard.item.element == EPassiveType.Normal)
                 {
                     continue;
                 }
-                else if(selectedShadow != null && (selectedShadow.name == passiveSO.passives[deckCard.item.passiveNum].name))
+                else if(selectedPersona != null && (selectedPersona.name == dreamPieceSO.dreamPieces[deckCard.item.dreamPieceNum].name))
                 {
                     continue;
                 }
-                else if(deckCard.item.element == EPassiveType.Normal)
+                else if(selectedShadow != null && (selectedShadow.name == dreamPieceSO.dreamPieces[deckCard.item.dreamPieceNum].name))
                 {
                     continue;
                 }
@@ -275,7 +313,7 @@ public class DeckBuildManager : MonoBehaviour
         else
         {
             PassiveList(EPassiveType.Persona);
-            SelectPassive(selectedPersona);
+            SelectPassive(selectedPersona, EPassiveType.Persona);
             passiveScrollView.GetComponent<Image>().color = personaShow.GetComponent<Image>().color;
             passiveScrollView.SetActive(true);
         }
@@ -306,14 +344,57 @@ public class DeckBuildManager : MonoBehaviour
             shadowShow.transform.position = personaShow.transform.position;
             personaShow.transform.position = temp;
             PassiveList(EPassiveType.Shadow);
-            SelectPassive(selectedShadow);
+            SelectPassive(selectedShadow, EPassiveType.Shadow);
             passiveScrollView.GetComponent<Image>().color = shadowShow.GetComponent<Image>().color;
             passiveScrollView.SetActive(true);
         }
     }
 
+    public void FinishDeckBuild()
+    {
+        bool isReady = true;
+        foreach (CardUI_DeckBuild card in deckList)
+        {
+            if (card.item == null || card.item.name == null)
+            {
+                isReady = false;
+            }
+        }
+        if (isReady == true)
+        {
+            CardManager.Inst.playerDeckSO.items.Clear();
+            foreach (CardUI_DeckBuild card in deckList)
+            {
+                Item existItem = CardManager.Inst.playerDeckSO.items.Find(x => x.name == card.item.name);
+                if (existItem == null)
+                {
+                    Item tempItem = new Item();
+                    tempItem.name = card.item.name;
+                    tempItem.cost = card.item.cost;
+                    tempItem.type = card.item.type;
+                    tempItem.element = card.item.element;
+                    tempItem.dreamPieceNum = card.item.dreamPieceNum;
+                    tempItem.isVolatile = card.item.isVolatile;
+                    tempItem.isVanish = card.item.isVanish;
+                    tempItem.isRemain = card.item.isRemain;
+                    tempItem.sprite = card.item.sprite;
+                    tempItem.text = card.item.text;
+                    tempItem.num = 1;
+                    CardManager.Inst.playerDeckSO.items.Add(tempItem);
+                }
+                else
+                {
+                    existItem.num++;
+                }
+            }
+            Destroy(this.gameObject);
+        }
+    }
+
     public void InitializeDeckBuildUI()
     {
+        selectedPersona = null;
+        selectedShadow = null;
         isLoading = false;
         RelicList();
         DeckListInit();
@@ -322,8 +403,6 @@ public class DeckBuildManager : MonoBehaviour
 
     void Start()
     {
-        selectedPersona = null;
-        selectedShadow = null;
         InitializeDeckBuildUI();
     }
 }

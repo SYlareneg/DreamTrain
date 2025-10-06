@@ -14,7 +14,6 @@ public class CardUI_Draggable : CardUI_DeckBuild
         if(DeckBuildManager.Inst.isLoading == false && availableNum > 0)
         {
             DeckBuildManager.Inst.isLoading = true;
-            originObject = this.gameObject;
             DeckBuildManager.Inst.draggingCardUI = Instantiate(cardUIPrefab, this.transform.position, Utils.QI);
             DeckBuildManager.Inst.draggingCardUI.transform.SetParent(DeckBuildManager.Inst.backgroundPanel.transform);
             DeckBuildManager.Inst.draggingCardUI.GetComponent<RectTransform>().sizeDelta = this.GetComponent<RectTransform>().sizeDelta;
@@ -48,12 +47,12 @@ public class CardUI_Draggable : CardUI_DeckBuild
                     else if(hitcard.item != null)
                     {
                         Destroy(DeckBuildManager.Inst.draggingCardUI);
-                        if(hitcard.originObject == null)
+                        var originCard = DeckBuildManager.Inst.FindInCardListByName(hitcard.item.name);
+                        if (originCard == null)
                         {
                             DeckBuildManager.Inst.changeCardNum(hitcard.item, hitcard.availableNum);
                             hitcard.Setup(this.item);
                             hitcard.availableNum = 1;
-                            hitcard.originObject = originObject;
                             DeckBuildManager.Inst.isLoading = false;
                             DeckBuildManager.Inst.draggingCardUI = null;
                             return;
@@ -65,12 +64,10 @@ public class CardUI_Draggable : CardUI_DeckBuild
                         draggingCard.Setup(hitcard.item);
                         draggingCard.availableNum = 0;
                         hitcard.Setup(this.item);
-                        DeckBuildManager.Inst.draggingCardUI.transform.DOMove(hitcard.originObject.transform.position, 0.5f)
+                        DeckBuildManager.Inst.draggingCardUI.transform.DOMove(originCard.transform.position, 0.5f)
                         .OnComplete(() => {
-                            CardUI_Draggable originCardUI = hitcard.originObject.GetComponent<CardUI_Draggable>();
-                            originCardUI.availableNum += hitcard.availableNum;
+                            originCard.availableNum += hitcard.availableNum;
                             hitcard.availableNum = 1;
-                            hitcard.originObject = originObject;
                             DeckBuildManager.Inst.isLoading = false;
                             Destroy(DeckBuildManager.Inst.draggingCardUI);
                             DeckBuildManager.Inst.draggingCardUI = null;
@@ -81,7 +78,6 @@ public class CardUI_Draggable : CardUI_DeckBuild
                     {
                         hitcard.Setup(DeckBuildManager.Inst.draggingCardUI.GetComponent<CardUI_DeckBuild>().item);
                         hitcard.availableNum = 1;
-                        hitcard.originObject = originObject;
                         hitflag--;
                     }
                 }
@@ -94,10 +90,9 @@ public class CardUI_Draggable : CardUI_DeckBuild
             }
             else
             {
-                DeckBuildManager.Inst.draggingCardUI.transform.DOMove(originObject.transform.position, 0.5f)
+                DeckBuildManager.Inst.draggingCardUI.transform.DOMove(transform.position, 0.5f)
                 .OnComplete(() => {
-                    CardUI_Draggable originCardUI = originObject.GetComponent<CardUI_Draggable>();
-                    originCardUI.availableNum++;
+                    availableNum++;
                     DeckBuildManager.Inst.isLoading = false;
                     Destroy(DeckBuildManager.Inst.draggingCardUI);
                     DeckBuildManager.Inst.draggingCardUI = null;

@@ -9,20 +9,30 @@ public class PassiveUI : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] Image passiveImage;
     [SerializeField] TMP_Text passiveNameTMP;
-    public Passive passive;
+    public DreamPiece dreamPiece;
+    public EPassiveType pType;
     public bool isSelected;
 
-    public void Setup(Passive pSet)
+    public void Setup(DreamPiece dp, EPassiveType p)
     {
-        passive = pSet;
-        passiveImage.sprite = pSet.sprite;
-        passiveNameTMP.text = pSet.name;
+        dreamPiece = dp;
+        pType = p;
+        if (p == EPassiveType.Persona)
+        {
+            passiveImage.sprite = dp.persona.sprite;
+            passiveNameTMP.text = dp.persona.name;
+        }
+        else if (p == EPassiveType.Shadow)
+        {
+            passiveImage.sprite = dp.shadow.sprite;
+            passiveNameTMP.text = dp.shadow.name;
+        }
         Select(false);
     }
 
     public void OnPointerClick(PointerEventData data)
     {
-        DeckBuildManager.Inst.SelectPassive(passive);
+        DeckBuildManager.Inst.SelectPassive(dreamPiece, pType);
     }
 
     public void Select(bool onSelect)
@@ -30,7 +40,7 @@ public class PassiveUI : MonoBehaviour, IPointerClickHandler
         isSelected = onSelect;
         if (!isSelected)
         {
-            passiveImage.color = Color.gray;
+            passiveImage.color = Color.black;
         }
         else
         {

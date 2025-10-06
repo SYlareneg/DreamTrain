@@ -3,12 +3,10 @@ using UnityEngine;
 [System.Serializable]
 public class DreamPiece
 {
-    [SerializeField] string name;
+    public string name;
     public Passive persona;
     public Passive shadow;
-    public Item[] normalCards;
-    public Item[] personaCards;
-    public Item[] shadowCards;
+    public Item[] cards;
 }
 
 [CreateAssetMenu(fileName = "DreamPieceSO", menuName = "Scriptable Objects/DreamPieceSO")]

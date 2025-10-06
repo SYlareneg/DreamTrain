@@ -95,15 +95,7 @@ public class TurnManager : MonoBehaviour
         EnemyManager.Inst.actionNum = characterSO.enemyActionNum;
         // 카드 정보 적용 - 임시
         CardManager.Inst.itemSO.items.Clear();
-        foreach (Item i in dreamPieceSO.dreamPieces[0].normalCards)
-        {
-            CardManager.Inst.itemSO.items.Add(i);
-        }
-        foreach (Item i in dreamPieceSO.dreamPieces[0].personaCards)
-        {
-            CardManager.Inst.itemSO.items.Add(i);
-        }
-        foreach (Item i in dreamPieceSO.dreamPieces[0].shadowCards)
+        foreach (Item i in dreamPieceSO.dreamPieces[0].cards)
         {
             CardManager.Inst.itemSO.items.Add(i);
         }

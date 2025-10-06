@@ -13,6 +13,7 @@ public class CardManager : MonoBehaviour
     void Awake() => Inst = this;
 
     public ItemSO itemSO;
+    public ItemSO playerDeckSO;
     [SerializeField] GameObject cardPrefab;
     [SerializeField] GameObject cardUIPrefab;
     public List<Card> myCards;
