@@ -152,8 +152,7 @@ public class Card : MonoBehaviour
                 TurnManager.Inst.TakeDmg(-2);
                 break;
             case "Humanist":
-                BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.totalRouletteBuff_Attack, -3, 1, 1);
-                // TODO
+                BuffManager.Inst.AddPlayerBuff(BuffManager.Inst.damageBuff, -3, 1, 1);
                 break;
             case "Blue Blood":
                 BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.totalRouletteBuff_Lifesteal_Dmg, 0, 3, 2);
@@ -174,8 +173,5 @@ public class Card : MonoBehaviour
                 RouletteManager.Inst.Spin(false, 4);
                 break;
         }
-
-        //TEMP: player passive trigger
-        TurnManager.Inst.TriggerPlayerPassive(1);
     }
 }

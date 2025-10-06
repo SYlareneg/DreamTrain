@@ -58,7 +58,7 @@ public class RelicManager : MonoBehaviour
                     case ERelicActivateEffectType.Player_Heal:
                         relicAction += () => { TurnManager.Inst.TakeDmg(-localEffect.value); }; break;
                     case ERelicActivateEffectType.Player_Cost_Increase:
-                        relicAction += () => { TurnManager.Inst.nowCost += localEffect.value; }; break;
+                        relicAction += () => { TurnManager.Inst.IncreaseCost(localEffect.value); }; break;
                     case ERelicActivateEffectType.Player_Max_Cost_Increase:
                         relicAction += () => { TurnManager.Inst.turnCost += localEffect.value; }; break;
                     case ERelicActivateEffectType.Card_Draw:
@@ -457,7 +457,7 @@ public class RelicManager : MonoBehaviour
                     case ERelicActivateTimingType.Game_End:
                         TurnManager.OnGameEnd += relicActivation; break;
                     case ERelicActivateTimingType.Roulette_Spin:
-                        TurnManager.OnRouletteSpin += relicActivation; break;
+                        TurnManager.OnRouletteSpin += (x) => relicActivation(); break;
                     case ERelicActivateTimingType.Roulette_Trigger:
                         TurnManager.OnRouletteTrigger += relicActivation; break;
                     case ERelicActivateTimingType.Roulette_Enchant:
@@ -469,23 +469,25 @@ public class RelicManager : MonoBehaviour
                     case ERelicActivateTimingType.Card_Draw:
                         TurnManager.OnAddCard += relicActivation; break;
                     case ERelicActivateTimingType.Enemy_Damage:
-                        TurnManager.OnEnemyDamaged += relicActivation; break;
+                        TurnManager.OnEnemyDamaged += (x) => relicActivation(); break;
                     case ERelicActivateTimingType.Enemy_Heal:
-                        TurnManager.OnEnemyHealed += relicActivation; break;
+                        TurnManager.OnEnemyHealed += (x) => relicActivation(); break;
                     case ERelicActivateTimingType.Enemy_Trigger:
                         TurnManager.OnEnemyTrigger += relicActivation; break;
                     case ERelicActivateTimingType.Enemy_Shield:
-                        TurnManager.OnEnemyShielded += relicActivation; break;
+                        TurnManager.OnEnemyShielded += (x) => relicActivation(); break;
                     case ERelicActivateTimingType.Enemy_Action:
                         TurnManager.OnEnemyAction += relicActivation; break;
                     case ERelicActivateTimingType.Player_Damage:
-                        TurnManager.OnPlayerDamaged += relicActivation; break;
+                        TurnManager.OnPlayerDamaged += (x) => relicActivation(); break;
                     case ERelicActivateTimingType.Player_Heal:
-                        TurnManager.OnPlayerHealed += relicActivation; break;
+                        TurnManager.OnPlayerHealed += (x) => relicActivation(); break;
                     case ERelicActivateTimingType.Player_Trigger:
                         TurnManager.OnPlayerTrigger += relicActivation; break;
                     case ERelicActivateTimingType.Player_Shield:
-                        TurnManager.OnPlayerShielded += relicActivation; break;
+                        TurnManager.OnPlayerShielded += (x) => relicActivation(); break;
+                    case ERelicActivateTimingType.Cost_Change:
+                        TurnManager.OnCostChange += (x) => relicActivation(); break;
                     default:
                         Debug.LogWarning("Error in relic timing"); break;
                 }

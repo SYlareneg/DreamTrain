@@ -58,8 +58,8 @@ MonoBehaviour:
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Lose 2 health, gain 1 cost.
       num: 2
-    - name: Blood, My Power
-      cost: 0
+    - name: Emergency Transfusion
+      cost: 1
       type: 2
       element: 0
       dreamPieceNum: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Lose 2 health, gain 1 cost.
+      text: Heal 2 health.
       num: 2
     - name: Humanist
       cost: 2

@@ -919,6 +919,50 @@ MonoBehaviour:
   m_Spacing: {x: 100, y: 60}
   m_Constraint: 1
   m_ConstraintCount: 5
+--- !u!1 &257622348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 257622350}
+  - component: {fileID: 257622349}
+  m_Layer: 0
+  m_Name: PassiveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &257622349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257622348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ae0b81a8ac1ed547b8af5a5f32dfbf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PassiveManager
+--- !u!4 &257622350
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257622348}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &277007951
 GameObject:
   m_ObjectHideFlags: 0
@@ -1220,6 +1264,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81887d2e462476144964818313fc7f2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuffManager
+  rouletteBuffs: []
+  totalRouletteBuff_Attack:
+    add: 0
+    mul: 0
+    lastingTime: 0
+  totalRouletteBuff_Heal:
+    add: 0
+    mul: 0
+    lastingTime: 0
+  totalRouletteBuff_Shield:
+    add: 0
+    mul: 0
+    lastingTime: 0
+  totalRouletteBuff_Charge:
+    add: 0
+    mul: 0
+    lastingTime: 0
+  totalRouletteBuff_Lifesteal_Dmg:
+    add: 0
+    mul: 0
+    lastingTime: 0
+  totalRouletteBuff_Lifesteal_Heal:
+    add: 0
+    mul: 0
+    lastingTime: 0
+  singleRouletteBuff_Trigger:
+    add: 0
+    mul: 0
+    lastingTime: 0
 --- !u!4 &456693628
 Transform:
   m_ObjectHideFlags: 0
@@ -1229,7 +1302,7 @@ Transform:
   m_GameObject: {fileID: 456693626}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 12.4, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1280,6 +1353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardManager
   itemSO: {fileID: 11400000, guid: bd268a67003469242809dbd20a8498df, type: 2}
+  playerDeckSO: {fileID: 11400000, guid: 149a57459b8b407488f3bf0d8485c273, type: 2}
   cardPrefab: {fileID: 3101435894562736061, guid: 00faca8f8365c654ba92e1bca964104a, type: 3}
   cardUIPrefab: {fileID: 2874763482636186485, guid: 8165cd5009ea959418b5ae143b538cab, type: 3}
   myCards: []
@@ -4118,6 +4192,7 @@ MonoBehaviour:
   enemyLookat: 0
   triggerPos: 0
   isTriggerActivated: 0
+  spinFlag: 0
   spinCount: 0
   spinCount_Turn: 0
   spinDistance: 0
@@ -6838,6 +6913,7 @@ SceneRoots:
   - {fileID: 1374728767}
   - {fileID: 457359559}
   - {fileID: 456693628}
+  - {fileID: 257622350}
   - {fileID: 2092133040}
   - {fileID: 722924043}
   - {fileID: 519420032}

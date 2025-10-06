@@ -37,7 +37,6 @@ public class TurnManager : MonoBehaviour
     [Tooltip("트리거 조건 현재 카운트")] public int enemyTriggerCnt;
     [Header("SO")]
     [Tooltip("플레이어/적 정보")] public CharacterSO characterSO;
-    [Tooltip("플레이어/적 정보")] public DreamPieceSO dreamPieceSO;
 
     // 로딩 여부. 로딩중일 경우 인터랙션 불가.
     [HideInInspector] public bool isLoading;
@@ -56,19 +55,20 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action OnUseCard;
     [HideInInspector] public static Action OnAddCard;
     [HideInInspector] public static Action OnDiscardCard;
-    [HideInInspector] public static Action OnPlayerDamaged;
-    [HideInInspector] public static Action OnPlayerHealed;
-    [HideInInspector] public static Action OnPlayerShielded;
+    [HideInInspector] public static Action<int> OnPlayerDamaged;
+    [HideInInspector] public static Action<int> OnPlayerHealed;
+    [HideInInspector] public static Action<int> OnPlayerShielded;
     [HideInInspector] public static Action OnPlayerTrigger;
-    [HideInInspector] public static Action OnEnemyDamaged;
-    [HideInInspector] public static Action OnEnemyHealed;
-    [HideInInspector] public static Action OnEnemyShielded;
+    [HideInInspector] public static Action<int> OnEnemyDamaged;
+    [HideInInspector] public static Action<int> OnEnemyHealed;
+    [HideInInspector] public static Action<int> OnEnemyShielded;
     [HideInInspector] public static Action OnEnemyTrigger;
     [HideInInspector] public static Action OnEnemyAction;
-    [HideInInspector] public static Action OnRouletteSpin;
+    [HideInInspector] public static Action<int> OnRouletteSpin;
     [HideInInspector] public static Action OnRouletteTrigger;
     [HideInInspector] public static Action OnRouletteEnchant;
     [HideInInspector] public static Action OnRouletteActivate;
+    [HideInInspector] public static Action<int> OnCostChange;
 
     // 개발자 설정 적용
     void GameDeveloperSetup()
@@ -86,19 +86,12 @@ public class TurnManager : MonoBehaviour
         // 플레이어 정보 적용
         maxHealth = characterSO.maxHealth;
         curHealth = characterSO.curHealth;
-        playerTriggerMaxCnt = characterSO.playerTriggerMaxCnt;
         // 적 정보 적용
         enemyMaxHealth = characterSO.enemyMaxHealth;
         enemyCurHealth = characterSO.enemyCurHealth;
         enemyTriggerMaxCnt = characterSO.enemyTriggerMaxCnt;
         EnemyManager.Inst.maxActionVal = characterSO.enemyMaxActionVal;
         EnemyManager.Inst.actionNum = characterSO.enemyActionNum;
-        // 카드 정보 적용 - 임시
-        CardManager.Inst.itemSO.items.Clear();
-        foreach (Item i in dreamPieceSO.dreamPieces[0].cards)
-        {
-            CardManager.Inst.itemSO.items.Add(i);
-        }
     }
 
     // 게임 매니저 초기화
@@ -117,6 +110,8 @@ public class TurnManager : MonoBehaviour
         isLoading = true;
         turnNum = 0;
         InitializeCharacters();
+        PassiveManager.Inst.SetPersona();
+        PassiveManager.Inst.SetShadow();
         InitializeManagers();
     }
 
@@ -136,6 +131,7 @@ public class TurnManager : MonoBehaviour
         isLoading = true;
         turnNum++;
         nowCost = turnCost;
+        OnCostChange?.Invoke(nowCost);
         // 플레이어 턴 시작 UI를 띄우고, StartPlayerTurn_AfterNotify 호출
         GameManager.Inst.Notification("My Turn", "Turn " + turnNum.ToString(), StartPlayerTurn_AfterNotify);
     }
@@ -181,11 +177,30 @@ public class TurnManager : MonoBehaviour
     // 플레이어 체력 변동 (데미지 or 힐, 실드 고려). 플레이어 생존 여부 반환
     public int TakeDmg(int damage)
     {
+        if (damage > 0)
+        {
+            damage = BuffManager.Inst.GetPlayerBuffValue(BuffManager.Inst.damageBuff, damage);
+            if (damage < 0)
+            {
+                damage = 0;
+                return 0;
+            }
+        }
+        else
+        {
+            damage = -BuffManager.Inst.GetPlayerBuffValue(BuffManager.Inst.healBuff, -damage);
+            if (damage > 0)
+            {
+                damage = 0;
+                return 0;
+            }
+        }
+        Debug.Log("Take Damage: " + damage.ToString());
         if (curHealth + shieldHealth > damage)
         {
             if (damage > 0)
             {
-                OnPlayerDamaged?.Invoke();
+                OnPlayerDamaged?.Invoke(damage);
                 if (shieldHealth >= damage)
                 {
                     shieldHealth -= damage;
@@ -199,7 +214,7 @@ public class TurnManager : MonoBehaviour
             }
             else
             {
-                OnPlayerHealed?.Invoke();
+                OnPlayerHealed?.Invoke(-damage);
             }
             if (curHealth - damage > maxHealth)
             {
@@ -210,8 +225,8 @@ public class TurnManager : MonoBehaviour
         }
         else
         {
-            OnPlayerDamaged?.Invoke();
             damage = curHealth;
+            OnPlayerDamaged?.Invoke(damage);
             curHealth = 0;
             StartCoroutine(GameManager.Inst.GameOver(false));
             return damage;
@@ -225,7 +240,7 @@ public class TurnManager : MonoBehaviour
         {
             if (damage > 0)
             {
-                OnEnemyDamaged?.Invoke();
+                OnEnemyDamaged?.Invoke(damage);
                 if (enemyShieldHealth >= damage)
                 {
                     enemyShieldHealth -= damage;
@@ -239,7 +254,7 @@ public class TurnManager : MonoBehaviour
             }
             else
             {
-                OnEnemyHealed?.Invoke();
+                OnEnemyHealed?.Invoke(-damage);
             }
             if (enemyCurHealth - damage > enemyMaxHealth)
             {
@@ -250,8 +265,8 @@ public class TurnManager : MonoBehaviour
         }
         else
         {
-            OnEnemyDamaged?.Invoke();
             damage = enemyCurHealth;
+            OnEnemyDamaged?.Invoke(damage);
             enemyCurHealth = 0;
             StartCoroutine(GameManager.Inst.GameOver(true));
             return damage;
@@ -261,19 +276,20 @@ public class TurnManager : MonoBehaviour
     public void IncreaseCost(int value)
     {
         nowCost += value;
+        OnCostChange?.Invoke(value);
     }
 
     public void GetShield(bool isEnemy, int value)
     {
         if (isEnemy)
         {
-            OnEnemyShielded?.Invoke();
             enemyShieldHealth += value;
+            OnEnemyShielded?.Invoke(value);
         }
         else
         {
-            OnPlayerShielded?.Invoke();
             shieldHealth += value;
+            OnPlayerShielded?.Invoke(value);
         }
     }
 
@@ -290,8 +306,8 @@ public class TurnManager : MonoBehaviour
         }
         if (playerTriggerCnt == playerTriggerMaxCnt)
         {
-            OnPlayerTrigger?.Invoke();
             RouletteManager.Inst.TriggerRoulette();
+            OnPlayerTrigger?.Invoke();
         }
     }
 
@@ -308,8 +324,8 @@ public class TurnManager : MonoBehaviour
         }
         if (enemyTriggerCnt == enemyTriggerMaxCnt)
         {
-            OnEnemyTrigger?.Invoke();
             EnemyManager.Inst.EnemyTriggerAction();
+            OnEnemyTrigger?.Invoke();
         }
     }
 }

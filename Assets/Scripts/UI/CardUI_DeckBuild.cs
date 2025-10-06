@@ -10,11 +10,10 @@ public class CardUI_DeckBuild : CardUI, IBeginDragHandler, IDragHandler, IEndDra
 {
     public GameObject cardUIPrefab;
     public GraphicRaycaster raycaster;
-    public int availableNum;
 
     public virtual void OnBeginDrag(PointerEventData data)
     {
-        if(DeckBuildManager.Inst.isLoading == false && availableNum > 0)
+        if(DeckBuildManager.Inst.isLoading == false && item.num > 0)
         {
             DeckBuildManager.Inst.isLoading = true;
             DeckBuildManager.Inst.draggingCardUI = Instantiate(cardUIPrefab, this.transform.position, Utils.QI);
@@ -22,15 +21,8 @@ public class CardUI_DeckBuild : CardUI, IBeginDragHandler, IDragHandler, IEndDra
             DeckBuildManager.Inst.draggingCardUI.GetComponent<RectTransform>().sizeDelta = this.GetComponent<RectTransform>().sizeDelta;
             var draggingCard = DeckBuildManager.Inst.draggingCardUI.GetComponent<CardUI_DeckBuild>();
             draggingCard.Setup(this.item);
-            draggingCard.availableNum = 0;
-            if(availableNum > 0)
-            {
-                availableNum--;
-                if(availableNum == 0)
-                {
-                    SetBlank();
-                }
-            }
+            this.item = null;
+            SetBlank();
         }
     }
 
@@ -56,18 +48,14 @@ public class CardUI_DeckBuild : CardUI, IBeginDragHandler, IDragHandler, IEndDra
                 {
                     if(hitcard.item != null)
                     {
+                        Item tempItem = hitcard.item;
+                        hitcard.item.num++;
+                        hitcard.Setup(DeckBuildManager.Inst.draggingCardUI.GetComponent<CardUI_DeckBuild>().item);
                         Destroy(DeckBuildManager.Inst.draggingCardUI);
                         var originCard = DeckBuildManager.Inst.FindInCardListByName(hitcard.item.name);
                         if (originCard == null)
                         {
-                            DeckBuildManager.Inst.changeCardNum(hitcard.item, hitcard.availableNum);
-                            hitcard.Setup(this.item);
-                            hitcard.availableNum = 1;
                             DeckBuildManager.Inst.isLoading = false;
-                            if (availableNum == 0)
-                            {
-                                this.item = null;
-                            }
                             DeckBuildManager.Inst.draggingCardUI = null;
                             return;
                         }
@@ -75,20 +63,11 @@ public class CardUI_DeckBuild : CardUI, IBeginDragHandler, IDragHandler, IEndDra
                         DeckBuildManager.Inst.draggingCardUI.transform.SetParent(DeckBuildManager.Inst.backgroundPanel.transform);
                         DeckBuildManager.Inst.draggingCardUI.GetComponent<RectTransform>().sizeDelta = this.GetComponent<RectTransform>().sizeDelta;
                         var draggingCard = DeckBuildManager.Inst.draggingCardUI.GetComponent<CardUI_DeckBuild>();
-                        draggingCard.Setup(hitcard.item);
-                        draggingCard.availableNum = 0;
-                        hitcard.Setup(this.item);
+                        draggingCard.Setup(tempItem);
                         DeckBuildManager.Inst.draggingCardUI.transform.DOMove(originCard.transform.position, 0.5f)
                         .OnComplete(() => {
-                            originCard.availableNum += hitcard.availableNum;
-                            originCard.SetAlpha(1.0f);
-                            hitcard.availableNum = 1;
-                            DeckBuildManager.Inst.isLoading = false;
-                            if(availableNum == 0)
-                            {
-                                this.item = null;
-                            }
                             Destroy(DeckBuildManager.Inst.draggingCardUI);
+                            DeckBuildManager.Inst.isLoading = false;
                             DeckBuildManager.Inst.draggingCardUI = null;
                         });
                         return;
@@ -96,7 +75,6 @@ public class CardUI_DeckBuild : CardUI, IBeginDragHandler, IDragHandler, IEndDra
                     else
                     {
                         hitcard.Setup(DeckBuildManager.Inst.draggingCardUI.GetComponent<CardUI_DeckBuild>().item);
-                        hitcard.availableNum = 1;
                         hitflag--;
                     }
                 }
@@ -104,39 +82,24 @@ public class CardUI_DeckBuild : CardUI, IBeginDragHandler, IDragHandler, IEndDra
             if(hitflag == 0)
             {
                 DeckBuildManager.Inst.isLoading = false;
-                if(availableNum == 0)
-                {
-                    this.item = null;
-                }
                 Destroy(DeckBuildManager.Inst.draggingCardUI);
                 DeckBuildManager.Inst.draggingCardUI = null;
             }
             else
             {
-                var originCard = DeckBuildManager.Inst.FindInCardListByName(this.item.name);
+                var originCard = DeckBuildManager.Inst.FindInCardListByName(DeckBuildManager.Inst.draggingCardUI.GetComponent<CardUI_DeckBuild>().item.name);
                 if (originCard == null)
                 {
-                    DeckBuildManager.Inst.changeCardNum(this.item, 1);
-                    DeckBuildManager.Inst.isLoading = false;
-                    if (availableNum == 0)
-                    {
-                        this.item = null;
-                    }
                     Destroy(DeckBuildManager.Inst.draggingCardUI);
+                    DeckBuildManager.Inst.isLoading = false;
                     DeckBuildManager.Inst.draggingCardUI = null;
                     return;
                 }
                 DeckBuildManager.Inst.draggingCardUI.transform.DOMove(originCard.transform.position, 0.5f)
                 .OnComplete(() => {
-                    CardUI_Draggable originCardUI = originCard.GetComponent<CardUI_Draggable>();
-                    originCardUI.availableNum++;
-                    originCardUI.SetAlpha(1.0f);
-                    DeckBuildManager.Inst.isLoading = false;
-                    if(availableNum == 0)
-                    {
-                        this.item = null;
-                    }
+                    originCard.item.num++;
                     Destroy(DeckBuildManager.Inst.draggingCardUI);
+                    DeckBuildManager.Inst.isLoading = false;
                     DeckBuildManager.Inst.draggingCardUI = null;
                 });
             }

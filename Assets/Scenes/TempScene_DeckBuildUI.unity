@@ -2455,6 +2455,7 @@ MonoBehaviour:
   passivePrefab: {fileID: 5665352611089148646, guid: 064ad9c7d0e96be45baf578501d83183, type: 3}
   passiveSO: {fileID: 11400000, guid: 24b56f859cdb1944dad9549b90aa3ee3, type: 2}
   dreamPieceSO: {fileID: 11400000, guid: 5216e38d02d27364ab4ec73aa032e6f7, type: 2}
+  characterSO: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
   tooltip: {fileID: 232839391}
   tooltipTxt: {fileID: 676218675}
   isLoading: 0

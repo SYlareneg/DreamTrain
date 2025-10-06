@@ -24,7 +24,8 @@ public enum ERelicActivateTimingType
     Player_Damage,
     Player_Heal,
     Player_Trigger,
-    Player_Shield
+    Player_Shield,
+    Cost_Change
 }
 public enum ERelicActivateConditionType
 {

@@ -22,6 +22,8 @@ public class RouletteManager : MonoBehaviour
     public int playerLookat;
     public int enemyLookat;
     public int triggerPos;
+    public RouletteItem triggerPiece;
+    public RouletteItem triggerPiece_None;
     public bool isTriggerActivated;
 
     public bool spinFlag = false;
@@ -46,7 +48,7 @@ public class RouletteManager : MonoBehaviour
             spinDistance_Turn += pieces;
             spinDirection = isClockwise ? 1 : 0;
             spinFlag = true;
-            TurnManager.OnRouletteSpin?.Invoke();
+            TurnManager.OnRouletteSpin?.Invoke(pieces);
             var newRotation = this.transform.rotation;
             if (isClockwise)
             {
@@ -65,22 +67,21 @@ public class RouletteManager : MonoBehaviour
 
     public void ActivateRoulette()
     {
-        TurnManager.OnRouletteActivate?.Invoke();
         roulettePieces[playerLookat].Activate(false);
         roulettePieces[enemyLookat].Activate(true);
+        TurnManager.OnRouletteActivate?.Invoke();
     }
 
     public void ActivateRoulettePiece(int index, bool isEnemy)
     {
-        TurnManager.OnRouletteActivate?.Invoke();
         roulettePieces[index].Activate(isEnemy);
     }
 
     public void TriggerRoulette()
     {
-        TurnManager.OnRouletteTrigger?.Invoke();
-        roulettePieces[triggerPos].Setup(rouletteSO.roulettePattern[triggerPos]);
+        roulettePieces[triggerPos].Setup(triggerPiece);
         roulettePieces[triggerPos].Trigger(true);
+        TurnManager.OnRouletteTrigger?.Invoke();
     }
 
     public void EnchantRoulette(bool isEnemy, ERouletteType rType, int rValue)
@@ -123,8 +124,10 @@ public class RouletteManager : MonoBehaviour
             roulettePieces[i] = roulettePiece.GetComponent<RoulettePiece>();
             roulettePieces[i].Setup(rouletteSO.roulettePattern[i]);
         }
-        var tempRoulettePiece = roulettePieces[triggerPos].roulette;
+        RouletteItem tempRoulettePiece = new RouletteItem();
         tempRoulettePiece.type = ERouletteType.None;
+        tempRoulettePiece.value = triggerPiece.value;
+        triggerPiece_None = tempRoulettePiece;
         roulettePieces[triggerPos].Setup(tempRoulettePiece);
     }
 
@@ -174,14 +177,7 @@ public class RouletteManager : MonoBehaviour
     {
         for (int i = 0; i < rouletteNum; i++)
         {
-            if (i == playerLookat || i == enemyLookat)
-            {
-                roulettePieces[i].ShowTotalValue();
-            }
-            else
-            {
-                roulettePieces[i].HideTotalValue();
-            }
+            roulettePieces[i].ShowTotalValue();
         }
     }
 

@@ -17,4 +17,7 @@ public class CharacterSO : ScriptableObject
 
     [Tooltip("플레이어 트리거 발동조건")] public int playerTriggerMaxCnt;
     [Tooltip("적 트리거 발동조건")] public int enemyTriggerMaxCnt;
+
+    public DreamPiece personaPiece;
+    public DreamPiece shadowPiece;
 }

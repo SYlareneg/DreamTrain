@@ -38,21 +38,8 @@ public class RoulettePiece : MonoBehaviour
 
     public void ShowTotalValue()
     {
-        RouletteBuff target = new RouletteBuff();
-        switch (roulette.type)
-        {
-            case ERouletteType.Attack:
-                target = BuffManager.Inst.totalRouletteBuff_Attack; break;
-            case ERouletteType.Heal:
-                target = BuffManager.Inst.totalRouletteBuff_Heal; break;
-            case ERouletteType.Shield:
-                target = BuffManager.Inst.totalRouletteBuff_Shield; break;
-            case ERouletteType.Charge:
-                target = BuffManager.Inst.totalRouletteBuff_Charge; break;
-            case ERouletteType.Lifesteal:
-                target = BuffManager.Inst.totalRouletteBuff_Lifesteal_Dmg; break;
-        }
-        int totalVal = BuffManager.Inst.GetBuffedRouletteValue(target, roulette.value);
+        int totalVal = BuffManager.Inst.GetBuffedRouletteValue(this);
+
         if (totalVal > roulette.value)
         {
             rouletteValueTMP.color = Color.green;
@@ -100,11 +87,10 @@ public class RoulettePiece : MonoBehaviour
 
     public void Activate(bool isEnemy)
     {
-        int totalVal = 0;
+        int totalVal = BuffManager.Inst.GetBuffedRouletteValue(this);
         switch (roulette.type)
         {
             case ERouletteType.Attack:
-                totalVal = BuffManager.Inst.GetBuffedRouletteValue(BuffManager.Inst.totalRouletteBuff_Attack, roulette.value);
                 if (isEnemy)
                 {
                     TurnManager.Inst.EnemyTakeDmg(totalVal);
@@ -115,7 +101,6 @@ public class RoulettePiece : MonoBehaviour
                 }
                 break;
             case ERouletteType.Heal:
-                totalVal = BuffManager.Inst.GetBuffedRouletteValue(BuffManager.Inst.totalRouletteBuff_Heal, roulette.value);
                 if (isEnemy)
                 {
                     TurnManager.Inst.EnemyTakeDmg(-totalVal);
@@ -126,7 +111,6 @@ public class RoulettePiece : MonoBehaviour
                 }
                 break;
             case ERouletteType.Shield:
-                totalVal = BuffManager.Inst.GetBuffedRouletteValue(BuffManager.Inst.totalRouletteBuff_Shield, roulette.value);
                 if (isEnemy)
                 {
                     TurnManager.Inst.GetShield(true, totalVal);
@@ -137,7 +121,6 @@ public class RoulettePiece : MonoBehaviour
                 }
                 break;
             case ERouletteType.Charge:
-                totalVal = BuffManager.Inst.GetBuffedRouletteValue(BuffManager.Inst.totalRouletteBuff_Charge, roulette.value);
                 if (isEnemy)
                 {
                     TurnManager.Inst.EnemyTakeDmg(-totalVal);
@@ -148,17 +131,16 @@ public class RoulettePiece : MonoBehaviour
                 }
                 break;
             case ERouletteType.Lifesteal:
-                int totalVal_Dmg = BuffManager.Inst.GetBuffedRouletteValue(BuffManager.Inst.totalRouletteBuff_Lifesteal_Dmg, roulette.value);
                 if (isEnemy)
                 {
-                    int trueDamage = TurnManager.Inst.EnemyTakeDmg(totalVal_Dmg);
-                    int totalVal_Heal = BuffManager.Inst.GetBuffedRouletteValue(BuffManager.Inst.totalRouletteBuff_Lifesteal_Heal, trueDamage / 3);
+                    int trueDamage = TurnManager.Inst.EnemyTakeDmg(totalVal);
+                    int totalVal_Heal = BuffManager.Inst.GetTotalRouletteBuffValue(BuffManager.Inst.totalRouletteBuff_Lifesteal_Heal, trueDamage / 3);
                     TurnManager.Inst.TakeDmg(-totalVal_Heal);
                 }
                 else
                 {
-                    int trueDamage = TurnManager.Inst.TakeDmg(totalVal_Dmg);
-                    int totalVal_Heal = BuffManager.Inst.GetBuffedRouletteValue(BuffManager.Inst.totalRouletteBuff_Lifesteal_Heal, trueDamage / 3);
+                    int trueDamage = TurnManager.Inst.TakeDmg(totalVal);
+                    int totalVal_Heal = BuffManager.Inst.GetTotalRouletteBuffValue(BuffManager.Inst.totalRouletteBuff_Lifesteal_Heal, trueDamage / 3);
                     TurnManager.Inst.EnemyTakeDmg(-totalVal_Heal);
                 }
                 break;
@@ -166,9 +148,7 @@ public class RoulettePiece : MonoBehaviour
         if (isTriggered == true)
         {
             Trigger(false);
-            var tempRoulettePiece = this.roulette;
-            tempRoulettePiece.type = ERouletteType.None;
-            this.Setup(tempRoulettePiece);
+            this.Setup(RouletteManager.Inst.triggerPiece_None);
             TurnManager.Inst.playerTriggerCnt = 0;
         }
     }

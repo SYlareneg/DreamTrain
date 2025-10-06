@@ -20,3 +20,209 @@ MonoBehaviour:
   enemyActionNum: 2
   playerTriggerMaxCnt: 6
   enemyTriggerMaxCnt: 5
+  personaPiece:
+    name: Vampire's Dream
+    persona:
+      type: 1
+      sprite: {fileID: 1599388452501240626, guid: f2660930dd1408c43b1357f97f2fdf1e, type: 3}
+      name: Cursed Blood
+      text: text
+    shadow:
+      type: 2
+      sprite: {fileID: 1599388452501240626, guid: f2660930dd1408c43b1357f97f2fdf1e, type: 3}
+      name: Unleashed Instinct
+      text: text
+    cards:
+    - name: Vampiric Empowerment
+      cost: 2
+      type: 1
+      element: 0
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: Enchant 'lifesteal' on enemy roulette slot.
+      num: 0
+    - name: Blood Flow
+      cost: 0
+      type: 0
+      element: 0
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: Spin roulette clockwise 1 slot, lose 1 health.
+      num: 0
+    - name: Blood, My Power
+      cost: 0
+      type: 2
+      element: 0
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: Lose 2 health, gain 1 cost.
+      num: 1
+    - name: Emergency Transfusion
+      cost: 1
+      type: 2
+      element: 0
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: Heal 2 health.
+      num: 1
+    - name: Humanist
+      cost: 2
+      type: 2
+      element: 1
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: Reduce all damages of attacks by 3.
+      num: 1
+    - name: Blue Blood
+      cost: 3
+      type: 2
+      element: 1
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: Your 'lifesteal' slots deal 3 times more damage, but can't heal for 2
+        turns.
+      num: 0
+    - name: Feast Time
+      cost: 3
+      type: 2
+      element: 2
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: Your 'lifesteal' slots deal 2 times more damage for 2 turns.
+      num: 0
+    - name: Crimson Wings
+      cost: 2
+      type: 0
+      element: 2
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: Spin roulette counter-clockwise 4 slots. Activate all 'lifesteal' slots
+        in the way.
+      num: 1
+  shadowPiece:
+    name: Vampire's Dream
+    persona:
+      type: 1
+      sprite: {fileID: 1599388452501240626, guid: f2660930dd1408c43b1357f97f2fdf1e, type: 3}
+      name: Thicker than Water
+      text: text
+    shadow:
+      type: 2
+      sprite: {fileID: 1599388452501240626, guid: f2660930dd1408c43b1357f97f2fdf1e, type: 3}
+      name: Unleashed Instinct
+      text: text
+    cards:
+    - name: Vampiric Empowerment
+      cost: 2
+      type: 1
+      element: 0
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: Enchant 'lifesteal' on enemy roulette slot.
+      num: 0
+    - name: Blood Flow
+      cost: 0
+      type: 0
+      element: 0
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: Spin roulette clockwise 1 slot, lose 1 health.
+      num: 0
+    - name: Blood, My Power
+      cost: 0
+      type: 2
+      element: 0
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: Lose 2 health, gain 1 cost.
+      num: 1
+    - name: Emergency Transfusion
+      cost: 1
+      type: 2
+      element: 0
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: Heal 2 health.
+      num: 1
+    - name: Humanist
+      cost: 2
+      type: 2
+      element: 1
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: Reduce all damages of attacks by 3.
+      num: 1
+    - name: Blue Blood
+      cost: 3
+      type: 2
+      element: 1
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: Your 'lifesteal' slots deal 3 times more damage, but can't heal for 2
+        turns.
+      num: 0
+    - name: Feast Time
+      cost: 3
+      type: 2
+      element: 2
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: Your 'lifesteal' slots deal 2 times more damage for 2 turns.
+      num: 0
+    - name: Crimson Wings
+      cost: 2
+      type: 0
+      element: 2
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: Spin roulette counter-clockwise 4 slots. Activate all 'lifesteal' slots
+        in the way.
+      num: 1

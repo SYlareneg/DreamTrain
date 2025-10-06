@@ -83,7 +83,7 @@ public class CardManager : MonoBehaviour
         itemDraw = new List<Item>();
         itemDiscard = new List<Item>();
         
-        foreach(Item itemInDeck in itemSO.items)
+        foreach(Item itemInDeck in playerDeckSO.items)
         {
             for(int j = 0; j < itemInDeck.num; j++)
             {
@@ -310,7 +310,7 @@ public class CardManager : MonoBehaviour
                 return;
             }
             myCards.Remove(selectedCard);
-            TurnManager.Inst.nowCost -= selectedCard.item.cost;
+            TurnManager.Inst.IncreaseCost(-selectedCard.item.cost);
             selectedCard.UseCard(true);
             useCount++;
             useCount_Turn++;

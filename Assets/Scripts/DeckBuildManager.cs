@@ -43,6 +43,7 @@ public class DeckBuildManager : MonoBehaviour
     [SerializeField] GameObject passivePrefab;
     public PassiveSO passiveSO;
     public DreamPieceSO dreamPieceSO;
+    public CharacterSO characterSO;
 
     [SerializeField] public Image tooltip;
     public TMP_Text tooltipTxt;
@@ -70,6 +71,24 @@ public class DeckBuildManager : MonoBehaviour
         }
         deckList.Clear();
 
+        foreach (Item item in CardManager.Inst.playerDeckSO.items)
+        {
+            Item found = null;
+            if (item.dreamPieceNum < 0)
+            {
+                found = normalItemSO.items.Find(x => x.name == item.name);
+            }
+            else
+            {
+                found = Array.Find(dreamPieceSO.dreamPieces[item.dreamPieceNum].cards, x => x.name == item.name);
+            }
+            if (found != null)
+            {
+                changeCardNum(found, item.num);
+            }
+        }
+        CardManager.Inst.playerDeckSO.items.Clear();
+
         for (int i = 0; i < deckCardNum; i++)
         {
             var cardObject = Instantiate(cardUIPrefab, deckListScroll.transform.position, Utils.QI);
@@ -78,7 +97,6 @@ public class DeckBuildManager : MonoBehaviour
 
             card.Setup(null);
             card.raycaster = canvas.GetComponent<GraphicRaycaster>();
-            card.availableNum = 0;
             deckList.Add(card);
         }
     }
@@ -111,7 +129,6 @@ public class DeckBuildManager : MonoBehaviour
         {
             if (card != null)
             {
-                setCardNum(card.item, card.availableNum);
                 Destroy(card.gameObject);
             }
         }
@@ -139,7 +156,6 @@ public class DeckBuildManager : MonoBehaviour
 
                 card.Setup(item);
                 card.raycaster = canvas.GetComponent<GraphicRaycaster>();
-                card.availableNum = item.num;
                 availableCardList.Add(card);
             }
         }
@@ -151,7 +167,6 @@ public class DeckBuildManager : MonoBehaviour
         {
             if(card != null)
             {
-                setCardNum(card.item, card.availableNum);
                 Destroy(card.gameObject);
             }
         }
@@ -165,7 +180,6 @@ public class DeckBuildManager : MonoBehaviour
 
             card.Setup(item);
             card.raycaster = canvas.GetComponent<GraphicRaycaster>();
-            card.availableNum = item.num;
             availableCardList.Add(card);
         }
         if (selectedPersona != null)
@@ -180,7 +194,6 @@ public class DeckBuildManager : MonoBehaviour
 
                     card.Setup(item);
                     card.raycaster = canvas.GetComponent<GraphicRaycaster>();
-                    card.availableNum = item.num;
                     availableCardList.Add(card);
                 }
             }
@@ -197,7 +210,6 @@ public class DeckBuildManager : MonoBehaviour
 
                     card.Setup(item);
                     card.raycaster = canvas.GetComponent<GraphicRaycaster>();
-                    card.availableNum = item.num;
                     availableCardList.Add(card);
                 }
             }
@@ -286,9 +298,7 @@ public class DeckBuildManager : MonoBehaviour
                 }
                 else
                 {
-                    changeCardNum(deckCard.item, deckCard.availableNum);
                     deckCard.Setup(null);
-                    deckCard.availableNum = 0;
                 }
             }
         }
@@ -387,7 +397,9 @@ public class DeckBuildManager : MonoBehaviour
                     existItem.num++;
                 }
             }
-            Destroy(this.gameObject);
+            characterSO.personaPiece = selectedPersona;
+            characterSO.shadowPiece = selectedShadow;
+            EndDeckBuildUI();
         }
     }
 
@@ -399,6 +411,12 @@ public class DeckBuildManager : MonoBehaviour
         RelicList();
         DeckListInit();
         NormalCardListSet();
+    }
+
+    public void EndDeckBuildUI()
+    {
+        // TODO. exit UI or something.
+        //InitializeDeckBuildUI();
     }
 
     void Start()
