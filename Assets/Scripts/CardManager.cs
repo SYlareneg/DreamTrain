@@ -30,6 +30,7 @@ public class CardManager : MonoBehaviour
 
     bool isMyCardDrag;
     bool onMyCardArea;
+    public bool duplicateMode;
 
     public int useCount;
     public int useCount_Turn;
@@ -301,16 +302,24 @@ public class CardManager : MonoBehaviour
             return;
         }
 
-        if(!onMyCardArea)
+        if (duplicateMode == true)
         {
-            if(selectedCard.item.cost > TurnManager.Inst.nowCost)
+            CreateCardInHand(selectedCard.item);
+            duplicateMode = false;
+            return;
+        }
+
+        if (!onMyCardArea)
+        {
+            int buffedCost = BuffManager.Inst.GetBuffedCardCost(selectedCard.item);
+            if (buffedCost > TurnManager.Inst.nowCost)
             {
                 EnlargeCard(false, selectedCard);
                 selectedCard = null;
                 return;
             }
             myCards.Remove(selectedCard);
-            TurnManager.Inst.IncreaseCost(-selectedCard.item.cost);
+            TurnManager.Inst.IncreaseCost(-buffedCost);
             selectedCard.UseCard(true);
             useCount++;
             useCount_Turn++;
@@ -326,7 +335,7 @@ public class CardManager : MonoBehaviour
             }
             isMyCardDrag = false;
             selectedCard = null;
-            
+
             SetOriginOrder();
             CardAlignment();
         }

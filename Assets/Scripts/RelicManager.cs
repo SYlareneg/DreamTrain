@@ -64,7 +64,7 @@ public class RelicManager : MonoBehaviour
                     case ERelicActivateEffectType.Card_Draw:
                         relicAction += () => { StartCoroutine(TurnManager.Inst.Draw(localEffect.value, null)); }; break;
                     case ERelicActivateEffectType.Card_Cost_Change:
-                        relicAction += () => { }; break;
+                        relicAction += () => { BuffManager.Inst.AddCardBuff(BuffManager.Inst.allCardCostBuff, localEffect.value, 1, localEffect.value2); }; break;
                     case ERelicActivateEffectType.Card_Value_Change:
                         relicAction += () => { }; break;
                     case ERelicActivateEffectType.Card_Duplicate_Hand:

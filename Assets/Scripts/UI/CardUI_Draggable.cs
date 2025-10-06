@@ -5,11 +5,12 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 
-public class CardUI_Draggable : CardUI_DeckBuild
-{
+public class CardUI_Draggable : CardUI, IBeginDragHandler, IDragHandler, IEndDragHandler
+{   public GameObject cardUIPrefab;
+    public GraphicRaycaster raycaster;
     [SerializeField] public TMP_Text availableNumTMP;
 
-    public override void OnBeginDrag(PointerEventData data)
+    public void OnBeginDrag(PointerEventData data)
     {
         if(DeckBuildManager.Inst.isLoading == false && item.num > 0)
         {
@@ -23,19 +24,27 @@ public class CardUI_Draggable : CardUI_DeckBuild
         }
     }
 
-    public override void OnEndDrag(PointerEventData data)
+    public void OnDrag(PointerEventData data)
     {
         if(DeckBuildManager.Inst.draggingCardUI != null)
+        {
+            DeckBuildManager.Inst.draggingCardUI.transform.position = Input.mousePosition;
+        }
+    }
+    
+    public void OnEndDrag(PointerEventData data)
+    {
+        if (DeckBuildManager.Inst.draggingCardUI != null)
         {
             List<RaycastResult> results = new List<RaycastResult>();
             raycaster.Raycast(data, results);
             int hitflag = 1;
-            foreach(var result in results)
+            foreach (var result in results)
             {
                 CardUI_DeckBuild hitcard = result.gameObject.GetComponent<CardUI_DeckBuild>();
-                if(hitcard != null && result.gameObject != DeckBuildManager.Inst.draggingCardUI)
+                if (hitcard != null && result.gameObject != DeckBuildManager.Inst.draggingCardUI)
                 {
-                    if(hitcard.item != null)
+                    if (hitcard.item != null)
                     {
                         Item tempItem = hitcard.item;
                         hitcard.item.num++;
@@ -54,7 +63,8 @@ public class CardUI_Draggable : CardUI_DeckBuild
                         var draggingCard = DeckBuildManager.Inst.draggingCardUI.GetComponent<CardUI_DeckBuild>();
                         draggingCard.Setup(tempItem);
                         DeckBuildManager.Inst.draggingCardUI.transform.DOMove(originCard.transform.position, 0.5f)
-                        .OnComplete(() => {
+                        .OnComplete(() =>
+                        {
                             Destroy(DeckBuildManager.Inst.draggingCardUI);
                             DeckBuildManager.Inst.isLoading = false;
                             DeckBuildManager.Inst.draggingCardUI = null;
@@ -68,7 +78,7 @@ public class CardUI_Draggable : CardUI_DeckBuild
                     }
                 }
             }
-            if(hitflag == 0)
+            if (hitflag == 0)
             {
                 Destroy(DeckBuildManager.Inst.draggingCardUI);
                 DeckBuildManager.Inst.isLoading = false;
@@ -77,7 +87,8 @@ public class CardUI_Draggable : CardUI_DeckBuild
             else
             {
                 DeckBuildManager.Inst.draggingCardUI.transform.DOMove(transform.position, 0.5f)
-                .OnComplete(() => {
+                .OnComplete(() =>
+                {
                     item.num++;
                     Destroy(DeckBuildManager.Inst.draggingCardUI);
                     DeckBuildManager.Inst.isLoading = false;

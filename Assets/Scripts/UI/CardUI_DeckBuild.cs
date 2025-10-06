@@ -11,9 +11,9 @@ public class CardUI_DeckBuild : CardUI, IBeginDragHandler, IDragHandler, IEndDra
     public GameObject cardUIPrefab;
     public GraphicRaycaster raycaster;
 
-    public virtual void OnBeginDrag(PointerEventData data)
+    public void OnBeginDrag(PointerEventData data)
     {
-        if(DeckBuildManager.Inst.isLoading == false && item.num > 0)
+        if(DeckBuildManager.Inst.isLoading == false)
         {
             DeckBuildManager.Inst.isLoading = true;
             DeckBuildManager.Inst.draggingCardUI = Instantiate(cardUIPrefab, this.transform.position, Utils.QI);
@@ -34,7 +34,7 @@ public class CardUI_DeckBuild : CardUI, IBeginDragHandler, IDragHandler, IEndDra
         }
     }
 
-    public virtual void OnEndDrag(PointerEventData data)
+    public void OnEndDrag(PointerEventData data)
     {
         if(DeckBuildManager.Inst.draggingCardUI != null)
         {

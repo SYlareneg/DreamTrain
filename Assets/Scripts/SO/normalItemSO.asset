@@ -23,6 +23,7 @@ MonoBehaviour:
     isRemain: 0
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     text: Spin roulette clockwise 3 slots.
+    cardValues: 
     num: 2
   - name: Turn Card 2
     cost: 1
@@ -34,6 +35,7 @@ MonoBehaviour:
     isRemain: 0
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     text: Spin roulette clockwise 2 slots.
+    cardValues: 
     num: 2
   - name: Turn Card 3
     cost: 1
@@ -45,6 +47,7 @@ MonoBehaviour:
     isRemain: 0
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     text: Spin roulette counter-clockwise 3 slots.
+    cardValues: 
     num: 2
   - name: Savior
     cost: 3
@@ -56,6 +59,7 @@ MonoBehaviour:
     isRemain: 0
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     text: Restore player health by half of maximum health.
+    cardValues: 
     num: 2
   - name: Spirit
     cost: 0
@@ -67,6 +71,7 @@ MonoBehaviour:
     isRemain: 0
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     text: Gain 2 cost, lose 2 health.
+    cardValues: 
     num: 2
   - name: Turn Card 4
     cost: 1
@@ -78,6 +83,7 @@ MonoBehaviour:
     isRemain: 0
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     text: Spin roulette counter-clockwise 2 slots.
+    cardValues: 
     num: 2
   - name: Turn Card 5
     cost: 1
@@ -89,4 +95,5 @@ MonoBehaviour:
     isRemain: 0
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     text: Spin roulette clockwise 1 slot.
+    cardValues: 
     num: 2

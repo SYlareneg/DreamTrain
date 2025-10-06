@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 [System.Serializable]
 public class Buff
@@ -23,6 +24,15 @@ public class Buff
         mul = m;
         lastingTime = time;
     }
+
+    public static bool IsEqual(Buff a, Buff b)
+    {
+        if (a.target == b.target && a.add == b.add && a.mul == b.mul && a.lastingTime == b.lastingTime)
+        {
+            return true;
+        }
+        return false;
+    }
 }
 public class BuffManager : MonoBehaviour
 {
@@ -44,6 +54,11 @@ public class BuffManager : MonoBehaviour
     public Buff healBuff;
     public Buff shieldBuff;
     public Buff costBuff;
+
+    public List<Buff> cardBuffs;
+    public Buff allCardValueBuff;
+    public Buff allCardCostBuff;
+    public Dictionary<Item, Buff> singleCardCostBuff = new Dictionary<Item, Buff>();
 
     public void InitRouletteBuff()
     {
@@ -72,6 +87,18 @@ public class BuffManager : MonoBehaviour
         costBuff.InitBuff();
     }
 
+    public void InitCardBuff()
+    {
+        allCardValueBuff.InitBuff();
+        allCardCostBuff.InitBuff();
+
+        var keys = singleCardCostBuff.Keys.ToList();
+        foreach (var key in keys)
+        {
+            singleCardCostBuff[key].InitBuff();
+        }
+    }
+
     public void AddRouletteBuff(Buff target, int add, int mul, int turns)
     {
         Buff rb = new Buff();
@@ -90,6 +117,32 @@ public class BuffManager : MonoBehaviour
         rb.mul = mul;
         rb.lastingTime = turns;
         playerBuffs.Add(rb);
+    }
+
+    public void AddCardBuff(Buff target, int add, int mul, int turns)
+    {
+        Buff rb = new Buff();
+        rb.target = target;
+        rb.add = add;
+        rb.mul = mul;
+        rb.lastingTime = turns;
+        cardBuffs.Add(rb);
+    }
+
+    public void AddSingleCardCostBuff(Item card, int add, int mul, int turns)
+    {
+        Buff rb = new Buff();
+        if (singleCardCostBuff.ContainsKey(card) == false)
+        {
+            Buff temp = new Buff();
+            temp.InitBuff();
+            singleCardCostBuff[card] = temp;
+        }
+        rb.target = singleCardCostBuff[card];
+        rb.add = add;
+        rb.mul = mul;
+        rb.lastingTime = turns;
+        cardBuffs.Add(rb);
     }
 
     public void CalcTotalRouletteBuff()
@@ -152,6 +205,32 @@ public class BuffManager : MonoBehaviour
         }
     }
 
+    public void CalcTotalCardBuff()
+    {
+        InitCardBuff();
+        foreach (Buff cb in cardBuffs)
+        {
+            if (cb.lastingTime > 0)
+            {
+                cb.target.add += cb.add;
+                cb.target.mul *= cb.mul;
+            }
+        }
+    }
+
+    public void CalcSingleCardCostBuff(Item card)
+    {
+        CalcTotalCardBuff();
+        if (singleCardCostBuff.ContainsKey(card) == false)
+        {
+            Buff temp = new Buff();
+            temp.InitBuff();
+            singleCardCostBuff[card] = temp;
+        }
+        singleCardCostBuff[card].add += allCardCostBuff.add;
+        singleCardCostBuff[card].mul *= allCardCostBuff.mul;
+    }
+
     public int GetBuffedRouletteValue(RoulettePiece targetPiece)
     {
         CalcTotalRouletteBuff();
@@ -168,6 +247,18 @@ public class BuffManager : MonoBehaviour
     {
         CalcTotalPlayerBuff();
         return (value + pBuff.add) * pBuff.mul;
+    }
+
+    public int GetBuffedCardCost(Item targetCard)
+    {
+        CalcSingleCardCostBuff(targetCard);
+        return (targetCard.cost + singleCardCostBuff[targetCard].add) * singleCardCostBuff[targetCard].mul;
+    }
+
+    public int GetCardBuffValue(Buff cBuff, int value)
+    {
+        CalcTotalCardBuff();
+        return (value + cBuff.add) * cBuff.mul;
     }
 
     public void ReduceRouletteBuffCounter()
@@ -194,10 +285,23 @@ public class BuffManager : MonoBehaviour
         }
     }
 
+    public void ReduceCardBuffCounter()
+    {
+        for (int i = cardBuffs.Count - 1; i >= 0; i--)
+        {
+            cardBuffs[i].lastingTime--;
+            if (cardBuffs[i].lastingTime == 0)
+            {
+                cardBuffs.RemoveAt(i);
+            }
+        }
+    }
+
     public void ReduceBuffCounter()
     {
         ReducePlayerBuffCounter();
         ReduceRouletteBuffCounter();
+        ReduceCardBuffCounter();
     }
 
     private void Start()

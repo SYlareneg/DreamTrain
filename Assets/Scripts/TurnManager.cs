@@ -67,6 +67,7 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action<int> OnRouletteSpin;
     [HideInInspector] public static Action OnRouletteTrigger;
     [HideInInspector] public static Action OnRouletteEnchant;
+    [HideInInspector] public static Action BeforeRouletteActivate;
     [HideInInspector] public static Action OnRouletteActivate;
     [HideInInspector] public static Action<int> OnCostChange;
 
@@ -130,8 +131,7 @@ public class TurnManager : MonoBehaviour
     {
         isLoading = true;
         turnNum++;
-        nowCost = turnCost;
-        OnCostChange?.Invoke(nowCost);
+        SetFullCost();
         // 플레이어 턴 시작 UI를 띄우고, StartPlayerTurn_AfterNotify 호출
         GameManager.Inst.Notification("My Turn", "Turn " + turnNum.ToString(), StartPlayerTurn_AfterNotify);
     }
@@ -277,6 +277,12 @@ public class TurnManager : MonoBehaviour
     {
         nowCost += value;
         OnCostChange?.Invoke(value);
+    }
+
+    public void SetFullCost()
+    {
+        OnCostChange?.Invoke(turnCost - nowCost);
+        nowCost = turnCost;
     }
 
     public void GetShield(bool isEnemy, int value)

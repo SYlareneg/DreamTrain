@@ -67,6 +67,7 @@ public class RouletteManager : MonoBehaviour
 
     public void ActivateRoulette()
     {
+        TurnManager.BeforeRouletteActivate?.Invoke();
         roulettePieces[playerLookat].Activate(false);
         roulettePieces[enemyLookat].Activate(true);
         TurnManager.OnRouletteActivate?.Invoke();
@@ -101,8 +102,8 @@ public class RouletteManager : MonoBehaviour
         RouletteItem rItem = new RouletteItem();
         rItem.type = rType;
         rItem.value = rValue;
-        TurnManager.OnRouletteEnchant?.Invoke();
         roulettePieces[index].Setup(rItem);
+        TurnManager.OnRouletteEnchant?.Invoke();
     }
 
     public void InitRoulette()

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ERouletteType { None, Attack, Heal, Shield, Charge, Lifesteal };
+public enum ERouletteType { None, Attack, Heal, Shield, Charge, Lifesteal, MagicBox };
 
 [System.Serializable]
 public class RouletteItem

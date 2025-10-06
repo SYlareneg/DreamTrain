@@ -26,6 +26,8 @@ public class RoulettePiece : MonoBehaviour
                 roulettePiece.sprite = rouletteTypeSprites[4]; break;
             case ERouletteType.Lifesteal:
                 roulettePiece.sprite = rouletteTypeSprites[5]; break;
+            case ERouletteType.MagicBox:
+                roulettePiece.sprite = rouletteTypeSprites[6]; break;
             default:
                 roulettePiece.sprite = rouletteTypeSprites[0]; break;
         }
