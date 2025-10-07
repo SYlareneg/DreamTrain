@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: bbe0aeaa37d03054e9b959bf0aeaf95e
+guid: ddae0aa653d142d4aa972d46d0908c0d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 694185428071178852
-    second: CCW_0
+      213: -9072811048990575798
+    second: EnemyAction_Heal_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,24 +96,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CCW_0
+      name: EnemyAction_Heal_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4626f6808fd32a900800000000000000
-      internalID: 694185428071178852
+      spriteID: a437da6bb66e61280800000000000000
+      internalID: -9072811048990575798
       vertices: []
       indices: 
       edges: []
@@ -148,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      CCW_0: 694185428071178852
+      EnemyAction_Heal_0: -9072811048990575798
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

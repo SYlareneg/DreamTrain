@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f2660930dd1408c43b1357f97f2fdf1e
+guid: 32c12076c92029b4386ac4bea32a937b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1599388452501240626
-    second: Hidden_0
+      213: -5369134341623826004
+    second: RoulettePiece_drain_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,14 +100,14 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hidden_0
+      name: RoulettePiece_drain_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 36
-        height: 36
-      alignment: 0
+        width: 137
+        height: 293
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 23bb239d25b223610800000000000000
-      internalID: 1599388452501240626
+      spriteID: ca9392063c00d75b0800000000000000
+      internalID: -5369134341623826004
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 32022491d4d9b594f831d970f9e5564b
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Hidden_0: 1599388452501240626
+      RoulettePiece_drain_0: -5369134341623826004
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

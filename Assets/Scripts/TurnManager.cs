@@ -88,11 +88,7 @@ public class TurnManager : MonoBehaviour
         maxHealth = characterSO.maxHealth;
         curHealth = characterSO.curHealth;
         // 적 정보 적용
-        enemyMaxHealth = characterSO.enemyMaxHealth;
-        enemyCurHealth = characterSO.enemyCurHealth;
-        enemyTriggerMaxCnt = characterSO.enemyTriggerMaxCnt;
-        EnemyManager.Inst.maxActionVal = characterSO.enemyMaxActionVal;
-        EnemyManager.Inst.actionNum = characterSO.enemyActionNum;
+        EnemyManager.Inst.InitEnemy();
     }
 
     // 게임 매니저 초기화
@@ -195,7 +191,6 @@ public class TurnManager : MonoBehaviour
                 return 0;
             }
         }
-        Debug.Log("Take Damage: " + damage.ToString());
         if (curHealth + shieldHealth > damage)
         {
             if (damage > 0)
@@ -208,8 +203,8 @@ public class TurnManager : MonoBehaviour
                 }
                 else
                 {
-                    shieldHealth = 0;
                     damage -= shieldHealth;
+                    shieldHealth = 0;
                 }
             }
             else
@@ -220,6 +215,7 @@ public class TurnManager : MonoBehaviour
             {
                 damage = curHealth - maxHealth;
             }
+            
             curHealth -= damage;
             return damage;
         }
@@ -248,8 +244,8 @@ public class TurnManager : MonoBehaviour
                 }
                 else
                 {
-                    enemyShieldHealth = 0;
                     damage -= enemyShieldHealth;
+                    enemyShieldHealth = 0;
                 }
             }
             else

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 88a05f07c610deb4abd949fa602e1906
+guid: 2a52294a21365ef449b22a23d4a355a6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7264017630307359951
-    second: CW_0
+      213: -9202054676734628973
+    second: EnemyAction_Enchant_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,24 +96,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CW_0
+      name: EnemyAction_Enchant_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 133ea5f9376013b90800000000000000
-      internalID: -7264017630307359951
+      spriteID: 39ba28da60cbb4080800000000000000
+      internalID: -9202054676734628973
       vertices: []
       indices: 
       edges: []
@@ -148,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      CW_0: -7264017630307359951
+      EnemyAction_Enchant_0: -9202054676734628973
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

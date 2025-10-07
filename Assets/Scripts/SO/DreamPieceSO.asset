@@ -36,7 +36,7 @@ MonoBehaviour:
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Enchant 'lifesteal' on enemy roulette slot.
       cardValues: 
-      num: 4
+      num: 2
     - name: Blood Flow
       cost: 0
       type: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Spin roulette clockwise 1 slot, lose 1 health.
       cardValues: 
-      num: 4
+      num: 2
     - name: Blood, My Power
       cost: 0
       type: 2
@@ -60,7 +60,7 @@ MonoBehaviour:
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Lose 2 health, gain 1 cost.
       cardValues: 
-      num: 3
+      num: 2
     - name: Emergency Transfusion
       cost: 1
       type: 2
@@ -72,7 +72,7 @@ MonoBehaviour:
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Heal 2 health.
       cardValues: 
-      num: 3
+      num: 2
     - name: Humanist
       cost: 2
       type: 2
@@ -84,7 +84,7 @@ MonoBehaviour:
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Reduce all damages of attacks by 3.
       cardValues: 
-      num: 4
+      num: 2
     - name: Blue Blood
       cost: 3
       type: 2
@@ -97,7 +97,7 @@ MonoBehaviour:
       text: Your 'lifesteal' slots deal 3 times more damage, but can't heal for 2
         turns.
       cardValues: 
-      num: 4
+      num: 2
     - name: Feast Time
       cost: 3
       type: 2

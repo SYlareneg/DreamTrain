@@ -46,14 +46,21 @@ public class BuffManager : MonoBehaviour
     public Buff totalRouletteBuff_Charge;
     public Buff totalRouletteBuff_Lifesteal_Dmg;
     public Buff totalRouletteBuff_Lifesteal_Heal;
+    public Buff totalRouletteBuff_Drain_Dmg;
+    public Buff totalRouletteBuff_Drain_Heal;
     public Buff singleRouletteBuff_Trigger;
-    public Dictionary<RoulettePiece, Buff> roulettePieceBuff;
+    public Dictionary<RoulettePiece, Buff> roulettePieceBuff = new Dictionary<RoulettePiece, Buff>();
 
     public List<Buff> playerBuffs;
     public Buff damageBuff;
     public Buff healBuff;
     public Buff shieldBuff;
     public Buff costBuff;
+    public List<Buff> enemyBuffs;
+    public Buff enemyAttackBuff;
+    public Buff enemyHealBuff;
+    public Buff enemyShieldBuff;
+    public Buff enemyDrainBuff;
 
     public List<Buff> cardBuffs;
     public Buff allCardValueBuff;
@@ -68,6 +75,8 @@ public class BuffManager : MonoBehaviour
         totalRouletteBuff_Charge.InitBuff();
         totalRouletteBuff_Lifesteal_Dmg.InitBuff();
         totalRouletteBuff_Lifesteal_Heal.InitBuff();
+        totalRouletteBuff_Drain_Dmg.InitBuff();
+        totalRouletteBuff_Drain_Heal.InitBuff();
         singleRouletteBuff_Trigger.InitBuff();
 
         roulettePieceBuff = new Dictionary<RoulettePiece, Buff>();
@@ -85,6 +94,14 @@ public class BuffManager : MonoBehaviour
         healBuff.InitBuff();
         shieldBuff.InitBuff();
         costBuff.InitBuff();
+    }
+
+    public void InitEnemyBuff()
+    {
+        enemyAttackBuff.InitBuff();
+        enemyHealBuff.InitBuff();
+        enemyShieldBuff.InitBuff();
+        enemyDrainBuff.InitBuff();
     }
 
     public void InitCardBuff()
@@ -119,15 +136,25 @@ public class BuffManager : MonoBehaviour
         playerBuffs.Add(rb);
     }
 
-    public void AddCardBuff(Buff target, int add, int mul, int turns)
+    public void AddEnemyBuff(Buff target, int add, int mul, int turns)
     {
         Buff rb = new Buff();
         rb.target = target;
         rb.add = add;
         rb.mul = mul;
         rb.lastingTime = turns;
-        cardBuffs.Add(rb);
+        enemyBuffs.Add(rb);
     }
+
+    public void AddCardBuff(Buff target, int add, int mul, int turns)
+{
+    Buff rb = new Buff();
+    rb.target = target;
+    rb.add = add;
+    rb.mul = mul;
+    rb.lastingTime = turns;
+    cardBuffs.Add(rb);
+}
 
     public void AddSingleCardCostBuff(Item card, int add, int mul, int turns)
     {
@@ -150,7 +177,7 @@ public class BuffManager : MonoBehaviour
         InitRouletteBuff();
         foreach (Buff rb in rouletteBuffs)
         {
-            if (rb.lastingTime > 0)
+            if (rb.lastingTime != 0)
             {
                 rb.target.add += rb.add;
                 rb.target.mul *= rb.mul;
@@ -183,6 +210,10 @@ public class BuffManager : MonoBehaviour
                     roulettePieceBuff[roulettePiece].add += totalRouletteBuff_Lifesteal_Dmg.add;
                     roulettePieceBuff[roulettePiece].mul *= totalRouletteBuff_Lifesteal_Dmg.mul;
                     break;
+                case ERouletteType.Drain:
+                    roulettePieceBuff[roulettePiece].add += totalRouletteBuff_Drain_Dmg.add;
+                    roulettePieceBuff[roulettePiece].mul *= totalRouletteBuff_Drain_Dmg.mul;
+                    break;
             }
             if (i == RouletteManager.Inst.triggerPos)
             {
@@ -197,10 +228,23 @@ public class BuffManager : MonoBehaviour
         InitPlayerBuff();
         foreach (Buff pb in playerBuffs)
         {
-            if (pb.lastingTime > 0)
+            if (pb.lastingTime != 0)
             {
                 pb.target.add += pb.add;
                 pb.target.mul *= pb.mul;
+            }
+        }
+    }
+
+    public void CalcTotalEnemyBuff()
+    {
+        InitEnemyBuff();
+        foreach (Buff eb in enemyBuffs)
+        {
+            if (eb.lastingTime != 0)
+            {
+                eb.target.add += eb.add;
+                eb.target.mul *= eb.mul;
             }
         }
     }
@@ -210,7 +254,7 @@ public class BuffManager : MonoBehaviour
         InitCardBuff();
         foreach (Buff cb in cardBuffs)
         {
-            if (cb.lastingTime > 0)
+            if (cb.lastingTime != 0)
             {
                 cb.target.add += cb.add;
                 cb.target.mul *= cb.mul;
@@ -249,6 +293,12 @@ public class BuffManager : MonoBehaviour
         return (value + pBuff.add) * pBuff.mul;
     }
 
+    public int GetEnemyBuffValue(Buff eBuff, int value)
+    {
+        CalcTotalEnemyBuff();
+        return (value + eBuff.add) * eBuff.mul;
+    }
+
     public int GetBuffedCardCost(Item targetCard)
     {
         CalcSingleCardCostBuff(targetCard);
@@ -285,6 +335,18 @@ public class BuffManager : MonoBehaviour
         }
     }
 
+    public void ReduceEnemyBuffCounter()
+    {
+        for (int i = enemyBuffs.Count - 1; i >= 0; i--)
+        {
+            enemyBuffs[i].lastingTime--;
+            if (enemyBuffs[i].lastingTime == 0)
+            {
+                enemyBuffs.RemoveAt(i);
+            }
+        }
+    }
+
     public void ReduceCardBuffCounter()
     {
         for (int i = cardBuffs.Count - 1; i >= 0; i--)
@@ -300,13 +362,14 @@ public class BuffManager : MonoBehaviour
     public void ReduceBuffCounter()
     {
         ReducePlayerBuffCounter();
+        ReduceEnemyBuffCounter();
         ReduceRouletteBuffCounter();
         ReduceCardBuffCounter();
     }
 
     private void Start()
     {
-        TurnManager.OnPlayerTurnStart += ReduceBuffCounter;
+        TurnManager.OnPlayerTurnStart = ReduceBuffCounter + TurnManager.OnPlayerTurnStart;
     }
 
     private void OnDestroy()

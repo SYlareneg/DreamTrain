@@ -43,6 +43,7 @@ MonoBehaviour:
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Enchant 'lifesteal' on enemy roulette slot.
+      cardValues: 
       num: 0
     - name: Blood Flow
       cost: 0
@@ -54,6 +55,7 @@ MonoBehaviour:
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Spin roulette clockwise 1 slot, lose 1 health.
+      cardValues: 
       num: 0
     - name: Blood, My Power
       cost: 0
@@ -65,6 +67,7 @@ MonoBehaviour:
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Lose 2 health, gain 1 cost.
+      cardValues: 
       num: 1
     - name: Emergency Transfusion
       cost: 1
@@ -76,6 +79,7 @@ MonoBehaviour:
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Heal 2 health.
+      cardValues: 
       num: 1
     - name: Humanist
       cost: 2
@@ -87,6 +91,7 @@ MonoBehaviour:
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Reduce all damages of attacks by 3.
+      cardValues: 
       num: 1
     - name: Blue Blood
       cost: 3
@@ -99,6 +104,7 @@ MonoBehaviour:
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Your 'lifesteal' slots deal 3 times more damage, but can't heal for 2
         turns.
+      cardValues: 
       num: 0
     - name: Feast Time
       cost: 3
@@ -110,6 +116,7 @@ MonoBehaviour:
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Your 'lifesteal' slots deal 2 times more damage for 2 turns.
+      cardValues: 
       num: 0
     - name: Crimson Wings
       cost: 2
@@ -122,6 +129,7 @@ MonoBehaviour:
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Spin roulette counter-clockwise 4 slots. Activate all 'lifesteal' slots
         in the way.
+      cardValues: 
       num: 1
   shadowPiece:
     name: Vampire's Dream
@@ -146,6 +154,7 @@ MonoBehaviour:
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Enchant 'lifesteal' on enemy roulette slot.
+      cardValues: 
       num: 0
     - name: Blood Flow
       cost: 0
@@ -157,6 +166,7 @@ MonoBehaviour:
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Spin roulette clockwise 1 slot, lose 1 health.
+      cardValues: 
       num: 0
     - name: Blood, My Power
       cost: 0
@@ -168,6 +178,7 @@ MonoBehaviour:
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Lose 2 health, gain 1 cost.
+      cardValues: 
       num: 1
     - name: Emergency Transfusion
       cost: 1
@@ -179,6 +190,7 @@ MonoBehaviour:
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Heal 2 health.
+      cardValues: 
       num: 1
     - name: Humanist
       cost: 2
@@ -190,6 +202,7 @@ MonoBehaviour:
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Reduce all damages of attacks by 3.
+      cardValues: 
       num: 1
     - name: Blue Blood
       cost: 3
@@ -202,6 +215,7 @@ MonoBehaviour:
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Your 'lifesteal' slots deal 3 times more damage, but can't heal for 2
         turns.
+      cardValues: 
       num: 0
     - name: Feast Time
       cost: 3
@@ -213,6 +227,7 @@ MonoBehaviour:
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Your 'lifesteal' slots deal 2 times more damage for 2 turns.
+      cardValues: 
       num: 0
     - name: Crimson Wings
       cost: 2
@@ -225,4 +240,75 @@ MonoBehaviour:
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Spin roulette counter-clockwise 4 slots. Activate all 'lifesteal' slots
         in the way.
+      cardValues: 
       num: 1
+  enemy:
+    name: Vampire Paul
+    health: 70
+    actionNum: 1
+    passive: Small Wings
+    triggerNum: 2
+    phase:
+    - name: Anemia
+      patterns:
+      - pattern:
+        - type: 0
+          val: 3
+      - pattern:
+        - type: 5
+          val: 5
+      - pattern:
+        - type: 3
+          val: 4
+      - pattern:
+        - type: 5
+          val: 5
+      phaseClear: 0
+    - name: 'Awaken: Vampire'
+      patterns:
+      - pattern:
+        - type: 1
+          val: 5
+        - type: 0
+          val: 3
+      - pattern:
+        - type: 5
+          val: 5
+        - type: 0
+          val: 3
+      - pattern:
+        - type: 4
+          val: 0
+        - type: 0
+          val: -3
+      - pattern:
+        - type: 0
+          val: 3
+        - type: 0
+          val: 3
+      phaseClear: 0
+    roulettePattern:
+    - type: 1
+      value: 5
+    - type: 0
+      value: 0
+    - type: 0
+      value: 0
+    - type: 3
+      value: 5
+    - type: 0
+      value: 0
+    - type: 0
+      value: 0
+    - type: 3
+      value: 5
+    - type: 1
+      value: 5
+    - type: 2
+      value: 2
+    - type: 0
+      value: 0
+    - type: 0
+      value: 0
+    - type: 0
+      value: 0

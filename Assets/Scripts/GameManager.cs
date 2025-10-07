@@ -60,29 +60,32 @@ public class GameManager : MonoBehaviour
     // 개발자용 특수입력
     void InputCheatKey()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (TurnManager.Inst.isLoading == false)
         {
-            TurnManager.OnAddCard?.Invoke();
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            TurnManager.Inst.EndPlayerTurn();
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            RouletteManager.Inst.Spin(false, 1);
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            RouletteManager.Inst.Spin(true, 1);
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            RouletteManager.Inst.ActivateRoulette();
-        }
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            RouletteManager.Inst.TriggerRoulette();
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                TurnManager.OnAddCard?.Invoke();
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                TurnManager.Inst.EndPlayerTurn();
+            }
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                RouletteManager.Inst.Spin(false, 1);
+            }
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                RouletteManager.Inst.Spin(true, 1);
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                RouletteManager.Inst.ActivateRoulette();
+            }
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                RouletteManager.Inst.TriggerRoulette();
+            }
         }
     }
 

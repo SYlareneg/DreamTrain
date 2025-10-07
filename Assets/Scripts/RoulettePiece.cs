@@ -28,6 +28,8 @@ public class RoulettePiece : MonoBehaviour
                 roulettePiece.sprite = rouletteTypeSprites[5]; break;
             case ERouletteType.MagicBox:
                 roulettePiece.sprite = rouletteTypeSprites[6]; break;
+            case ERouletteType.Drain:
+                roulettePiece.sprite = rouletteTypeSprites[7]; break;
             default:
                 roulettePiece.sprite = rouletteTypeSprites[0]; break;
         }
@@ -143,6 +145,20 @@ public class RoulettePiece : MonoBehaviour
                 {
                     int trueDamage = TurnManager.Inst.TakeDmg(totalVal);
                     int totalVal_Heal = BuffManager.Inst.GetTotalRouletteBuffValue(BuffManager.Inst.totalRouletteBuff_Lifesteal_Heal, trueDamage / 3);
+                    TurnManager.Inst.EnemyTakeDmg(-totalVal_Heal);
+                }
+                break;
+            case ERouletteType.Drain:
+                if (isEnemy)
+                {
+                    int trueDamage = TurnManager.Inst.EnemyTakeDmg(totalVal);
+                    int totalVal_Heal = BuffManager.Inst.GetTotalRouletteBuffValue(BuffManager.Inst.totalRouletteBuff_Drain_Heal, trueDamage);
+                    TurnManager.Inst.EnemyTakeDmg(-totalVal_Heal);
+                }
+                else
+                {
+                    int trueDamage = TurnManager.Inst.TakeDmg(totalVal);
+                    int totalVal_Heal = BuffManager.Inst.GetTotalRouletteBuffValue(BuffManager.Inst.totalRouletteBuff_Drain_Heal, trueDamage);
                     TurnManager.Inst.EnemyTakeDmg(-totalVal_Heal);
                 }
                 break;

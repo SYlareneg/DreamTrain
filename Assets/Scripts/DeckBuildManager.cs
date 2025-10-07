@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DeckBuildManager : MonoBehaviour
 {
@@ -416,7 +417,7 @@ public class DeckBuildManager : MonoBehaviour
     public void EndDeckBuildUI()
     {
         // TODO. exit UI or something.
-        //InitializeDeckBuildUI();
+        SceneManager.LoadScene("BattleScene");
     }
 
     void Start()

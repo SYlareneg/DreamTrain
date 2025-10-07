@@ -522,7 +522,6 @@ MonoBehaviour:
   enemyTriggerMaxCnt: 0
   enemyTriggerCnt: 0
   characterSO: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
-  dreamPieceSO: {fileID: 11400000, guid: 5216e38d02d27364ab4ec73aa032e6f7, type: 2}
   isLoading: 0
 --- !u!1 &62641915
 GameObject:
@@ -1293,6 +1292,32 @@ MonoBehaviour:
     add: 0
     mul: 0
     lastingTime: 0
+  playerBuffs: []
+  damageBuff:
+    add: 0
+    mul: 0
+    lastingTime: 0
+  healBuff:
+    add: 0
+    mul: 0
+    lastingTime: 0
+  shieldBuff:
+    add: 0
+    mul: 0
+    lastingTime: 0
+  costBuff:
+    add: 0
+    mul: 0
+    lastingTime: 0
+  cardBuffs: []
+  allCardValueBuff:
+    add: 0
+    mul: 0
+    lastingTime: 0
+  allCardCostBuff:
+    add: 0
+    mul: 0
+    lastingTime: 0
 --- !u!4 &456693628
 Transform:
   m_ObjectHideFlags: 0
@@ -1366,6 +1391,7 @@ MonoBehaviour:
   itemDraw: []
   itemDiscard: []
   selectedCard: {fileID: 0}
+  duplicateMode: 0
   useCount: 0
   useCount_Turn: 0
 --- !u!1 &464756121
@@ -2716,13 +2742,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 799101417}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.35429102, w: 0.93513525}
+  m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1267354757}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 41.5}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
 --- !u!212 &799101419
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4191,6 +4217,12 @@ MonoBehaviour:
   playerLookat: 0
   enemyLookat: 0
   triggerPos: 0
+  triggerPiece:
+    type: 0
+    value: 0
+  triggerPiece_None:
+    type: 0
+    value: 0
   isTriggerActivated: 0
   spinFlag: 0
   spinCount: 0
@@ -4462,6 +4494,17 @@ MonoBehaviour:
   actionList: []
   executeActionList: []
   lastAction: {fileID: 0}
+  enemy:
+    name: 
+    health: 0
+    actionNum: 0
+    passive: 
+    triggerNum: 0
+    phase: []
+    roulettePattern: []
+  phaseNum: 0
+  patternNum: 0
+  currentPattern: []
 --- !u!4 &1374728767
 Transform:
   m_ObjectHideFlags: 0
@@ -6517,13 +6560,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863639879}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.120570034, w: 0.99270487}
-  m_LocalPosition: {x: -2.1, y: -7, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -7.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2092133040}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.85}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1863639881
 SpriteRenderer:
   m_ObjectHideFlags: 0

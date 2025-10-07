@@ -8,6 +8,7 @@ public class PassiveManager : MonoBehaviour
     private void Awake() => Inst = this;
     public void SetPersona()
     {
+        if (TurnManager.Inst.characterSO.personaPiece == null) return;
         switch (TurnManager.Inst.characterSO.personaPiece.persona.name)
         {
             case "Thicker than Water":
@@ -72,6 +73,7 @@ public class PassiveManager : MonoBehaviour
     }
     public void SetShadow()
     {
+        if (TurnManager.Inst.characterSO.shadowPiece == null) return;
         RouletteItem rItem = new RouletteItem();
         switch (TurnManager.Inst.characterSO.shadowPiece.shadow.name)
         {

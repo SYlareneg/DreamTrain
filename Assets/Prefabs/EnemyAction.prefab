@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7264017630307359951, guid: 88a05f07c610deb4abd949fa602e1906, type: 3}
+  m_Sprite: {fileID: 5904909229579441647, guid: d9d90f4fdacbc1641bc089f578d3fc05, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -107,11 +107,15 @@ MonoBehaviour:
   enemyAction: {fileID: 1068350944104055487}
   enemyActionTMP: {fileID: 2747324800066987363}
   enemyActionSprites:
-  - {fileID: 1599388452501240626, guid: f2660930dd1408c43b1357f97f2fdf1e, type: 3}
-  - {fileID: -7264017630307359951, guid: 88a05f07c610deb4abd949fa602e1906, type: 3}
-  - {fileID: 694185428071178852, guid: bbe0aeaa37d03054e9b959bf0aeaf95e, type: 3}
+  - {fileID: 5904909229579441647, guid: d9d90f4fdacbc1641bc089f578d3fc05, type: 3}
+  - {fileID: -503537775607994396, guid: e6516cbe38e9c54488c3fa3a7ae338cf, type: 3}
+  - {fileID: 6740872868151833609, guid: 671a4e7a7a35abf4d9dc01020d64d413, type: 3}
+  - {fileID: -9072811048990575798, guid: ddae0aa653d142d4aa972d46d0908c0d, type: 3}
+  - {fileID: 4760986240223711845, guid: 08f886e1f88bc6a42bfc4541c1aaf99d, type: 3}
+  - {fileID: -9202054676734628973, guid: 2a52294a21365ef449b22a23d4a355a6, type: 3}
+  - {fileID: -1521565114957691944, guid: b8b8956a5637e7f49819dc7206e06c9a, type: 3}
   actionType: 0
-  maxActionVal: 0
+  baseActionVal: 0
   actionVal: 0
   isIgnore: 0
 --- !u!1 &6706112517402818183

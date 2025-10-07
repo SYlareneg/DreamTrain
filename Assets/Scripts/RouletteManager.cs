@@ -16,13 +16,14 @@ public class RouletteManager : MonoBehaviour
     [SerializeField] GameObject roulettePiecePrefab;
     [SerializeField] RouletteSO rouletteSO;
 
-    public static int rouletteNum = 13;
+    public static int rouletteNum = 12;
 
     public RoulettePiece[] roulettePieces = new RoulettePiece[rouletteNum];
     public int playerLookat;
     public int enemyLookat;
     public int triggerPos;
     public RouletteItem triggerPiece;
+    public RouletteItem enemyTriggerPiece;
     public RouletteItem triggerPiece_None;
     public bool isTriggerActivated;
 
@@ -58,9 +59,6 @@ public class RouletteManager : MonoBehaviour
             playerLookat = (playerLookat + pieces + rouletteNum) % rouletteNum;
             enemyLookat = (enemyLookat + pieces + rouletteNum) % rouletteNum;
             this.transform.DORotateQuaternion(newRotation, spinDelay).OnComplete(() => spinFlag = false);
-
-            //TEMP: Enemy passive trigger
-            TurnManager.Inst.TriggerEnemyPassive(1);
         }
 
     }
@@ -85,6 +83,13 @@ public class RouletteManager : MonoBehaviour
         TurnManager.OnRouletteTrigger?.Invoke();
     }
 
+    public void EnemyTriggerRoulette()
+    {
+        roulettePieces[triggerPos].Setup(enemyTriggerPiece);
+        roulettePieces[triggerPos].Trigger(true);
+        TurnManager.OnRouletteTrigger?.Invoke();
+    }
+
     public void EnchantRoulette(bool isEnemy, ERouletteType rType, int rValue)
     {
         if (isEnemy)
@@ -99,6 +104,7 @@ public class RouletteManager : MonoBehaviour
 
     public void EnchantRoulettePiece(int index, ERouletteType rType, int rValue)
     {
+        if (index == triggerPos) return;
         RouletteItem rItem = new RouletteItem();
         rItem.type = rType;
         rItem.value = rValue;
@@ -123,7 +129,7 @@ public class RouletteManager : MonoBehaviour
             roulettePiece.transform.rotation *= Quaternion.Euler(0f, 0f, -180f / rouletteNum - 360f * i / rouletteNum);
             roulettePiece.transform.SetParent(this.transform, true);
             roulettePieces[i] = roulettePiece.GetComponent<RoulettePiece>();
-            roulettePieces[i].Setup(rouletteSO.roulettePattern[i]);
+            roulettePieces[i].Setup(EnemyManager.Inst.enemy.roulettePattern[i]);
         }
         RouletteItem tempRoulettePiece = new RouletteItem();
         tempRoulettePiece.type = ERouletteType.None;

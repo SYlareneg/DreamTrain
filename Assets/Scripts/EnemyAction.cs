@@ -4,8 +4,6 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 
-public enum EEnemyActionType { CW, CCW };
-
 public class EnemyAction : MonoBehaviour
 {
     [SerializeField] SpriteRenderer enemyAction;
@@ -13,20 +11,9 @@ public class EnemyAction : MonoBehaviour
     [SerializeField] Sprite[] enemyActionSprites;
 
     public EEnemyActionType actionType;
-    public int maxActionVal;
+    public int baseActionVal;
     public int actionVal;
     public bool isIgnore = false;
-
-    public void SetRandomAction()
-    {
-        EEnemyActionType[] typeVal = (EEnemyActionType[])System.Enum.GetValues(typeof(EEnemyActionType));
-        int randSelect = Random.Range(0, typeVal.Length);
-        actionType = typeVal[randSelect];
-        enemyAction.sprite = enemyActionSprites[randSelect + 1];
-
-        actionVal = Random.Range(1, maxActionVal + 1);
-        enemyActionTMP.text = actionVal.ToString();
-    }
 
     public void SetActionType(EEnemyActionType type)
     {
@@ -36,8 +23,57 @@ public class EnemyAction : MonoBehaviour
 
     public void SetActionVal(int value)
     {
+        baseActionVal = value;
         actionVal = value;
-        enemyActionTMP.text = value.ToString();
+    }
+
+    public void ShowAction()
+    {
+        int totalVal = actionVal;
+        if (actionType == EEnemyActionType.Drain)
+        {
+            totalVal = BuffManager.Inst.GetEnemyBuffValue(BuffManager.Inst.enemyDrainBuff, actionVal);
+        }
+        
+        if (actionVal == 0)
+        {
+            enemyActionTMP.text = "";
+        }
+        else
+        {
+            enemyActionTMP.text = totalVal.ToString();
+        }
+
+        if (totalVal > actionVal)
+        {
+            enemyActionTMP.color = Color.green;
+        }
+        else if (totalVal == actionVal)
+        {
+            enemyActionTMP.color = Color.black;
+        }
+        else
+        {
+            enemyActionTMP.color = Color.red;
+        }
+    }
+
+    public void SetAction(EnemyPattern p)
+    {
+        SetActionType(p.type);
+        SetActionVal(p.val);
+        isIgnore = false;
+
+        if (actionType == EEnemyActionType.Turn)
+        {
+            actionVal = Random.Range(1, baseActionVal + 1);
+            if (baseActionVal < 0)
+            {
+                enemyAction.flipX = !enemyAction.flipX;
+                actionVal = -actionVal;
+            }
+        }
+        ShowAction();
     }
 
     public void IgnoreAction(bool bIg)
@@ -69,16 +105,82 @@ public class EnemyAction : MonoBehaviour
 
     public void ExecuteAction()
     {
-        if (actionVal != 0 && isIgnore == false)
+        if (isIgnore == false)
         {
             TurnManager.OnEnemyAction?.Invoke();
             switch (actionType)
             {
-                case EEnemyActionType.CW:
-                    RouletteManager.Inst.Spin(true, actionVal); break;
-                case EEnemyActionType.CCW:
-                    RouletteManager.Inst.Spin(false, actionVal); break;
+                case EEnemyActionType.Turn:
+                    RouletteManager.Inst.Spin(actionVal > 0, actionVal); break;
+                case EEnemyActionType.Attack:
+                    TurnManager.Inst.TakeDmg(actionVal); break;
+                case EEnemyActionType.Heal:
+                    TurnManager.Inst.EnemyTakeDmg(-actionVal); break;
+                case EEnemyActionType.Shield:
+                    TurnManager.Inst.GetShield(true, actionVal); break;
+                case EEnemyActionType.Enchant_Random:
+                    if (EnemyManager.Inst.enemy.name == "Vampire Paul")
+                    {
+                        DrainEnchantAction();
+                    }
+                    break;
+                case EEnemyActionType.Drain:
+                    DrainAction(actionVal);
+                    break;
             }
         }
+    }
+
+    public static void DrainAction(int x)
+    {
+        int totalVal = BuffManager.Inst.GetEnemyBuffValue(BuffManager.Inst.enemyDrainBuff, x);
+        int damage = TurnManager.Inst.TakeDmg(totalVal);
+        TurnManager.Inst.EnemyTakeDmg(-damage);
+        if (damage > 0)
+        {
+            TurnManager.Inst.TriggerEnemyPassive(1);
+        }
+    }
+
+    public static void DrainEnchantAction()
+    {
+        List<int> noneIdx = new List<int>();
+        for (int i = 0; i < RouletteManager.rouletteNum; i++)
+        {
+            if (i != RouletteManager.Inst.triggerPos && RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.None)
+            {
+                noneIdx.Add(i);
+            }
+        }
+        int randIdx;
+        if (noneIdx.Count > 0)
+        {
+            randIdx = noneIdx[Random.Range(0, noneIdx.Count)];
+            RouletteManager.Inst.EnchantRoulettePiece(randIdx, ERouletteType.Drain, 5);
+        }
+        else
+        {
+            for (int i = 0; i < RouletteManager.rouletteNum; i++)
+            {
+                if (i != RouletteManager.Inst.triggerPos && RouletteManager.Inst.roulettePieces[i].roulette.type != ERouletteType.Drain)
+                {
+                    noneIdx.Add(i);
+                }
+            }
+            if (noneIdx.Count > 0)
+            {
+                randIdx = noneIdx[Random.Range(0, noneIdx.Count)];
+                RouletteManager.Inst.EnchantRoulettePiece(randIdx, ERouletteType.Drain, 5);
+            }
+            else
+            {
+                DrainAction(5);
+            }
+        }
+    }
+
+    private void Update()
+    {
+        ShowAction();
     }
 }

@@ -29,18 +29,93 @@ public class EnemyManager : MonoBehaviour
     static float actionInterval = 0.5f;
     public EnemyAction lastAction;
 
+    public Enemy enemy;
+    public int phaseNum;
+    public int patternNum;
+    public List<EnemyPattern> currentPattern;
+    Action extendPattern;
+
+    public void InitEnemy()
+    {
+        enemy = TurnManager.Inst.characterSO.enemy;
+        TurnManager.Inst.enemyMaxHealth = enemy.health;
+        TurnManager.Inst.enemyCurHealth = enemy.health;
+        actionNum = enemy.actionNum;
+        switch (enemy.passive)
+        {
+            case "Humanist":
+                BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.totalRouletteBuff_Attack, -3, 1, -1);
+                break;
+            case "Small Wings":
+                actionNum++;
+                extendPattern += () =>
+                {
+                    EnemyPattern ePat = new EnemyPattern(EEnemyActionType.Turn, 3);
+                    var newActionObj = Instantiate(actionPrefab, enemyPos.position, Utils.QI);
+                    newActionObj.transform.SetParent(enemyPos);
+                    var newAction = newActionObj.GetComponent<EnemyAction>();
+                    newAction.SetAction(ePat);
+                    actionList.Add(newAction);
+                };
+                break;
+            case "Sharp Teeth":
+                BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.totalRouletteBuff_Drain_Dmg, 1, 1, -1);
+                BuffManager.Inst.AddEnemyBuff(BuffManager.Inst.enemyDrainBuff, 1, 1, -1);
+                break;
+        }
+        TurnManager.Inst.enemyTriggerMaxCnt = enemy.triggerNum;
+        TurnManager.Inst.enemyTriggerCnt = 0;
+        phaseNum = 0;
+        patternNum = 0;
+        currentPattern = enemy.phase[0].patterns[0].pattern;
+
+        switch (enemy.name)
+        {
+            case "Vampire Paul":
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    if (TurnManager.Inst.turnNum % 2 == 0)
+                    {
+                        BuffManager.Inst.AddEnemyBuff(BuffManager.Inst.enemyDrainBuff, TurnManager.Inst.turnNum / 2, 1, 2);
+                        BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.totalRouletteBuff_Drain_Dmg, TurnManager.Inst.turnNum / 2, 1, 2);
+                    }
+                };
+
+                RouletteItem rItem = new RouletteItem();
+                rItem.type = ERouletteType.Drain;
+                rItem.value = 5;
+                RouletteManager.Inst.enemyTriggerPiece = rItem;
+                break;
+        }
+    }
+
+    public void CheckPhase()
+    {
+        if (enemy.phase[phaseNum].phaseClear)
+        {
+            phaseNum++;
+            patternNum = 0;
+            currentPattern = enemy.phase[phaseNum].patterns[0].pattern;
+        }
+    }
+
     // 액션 리스트 초기화. 랜덤한 액션을 actionNum 개수만큼 생성
     public void InitActionList()
     {
+        currentPattern = enemy.phase[phaseNum].patterns[patternNum].pattern;
+        patternNum = (patternNum + 1) % enemy.phase[phaseNum].patterns.Count;
         actionList.Clear();
-        for (int i = 0; i < actionNum; i++)
+        for (int i = 0; i < currentPattern.Count; i++)
         {
             var newActionObj = Instantiate(actionPrefab, enemyPos.position, Utils.QI);
+            newActionObj.transform.SetParent(enemyPos);
             var newAction = newActionObj.GetComponent<EnemyAction>();
-            newAction.maxActionVal = maxActionVal;
-            newAction.SetRandomAction();
+
+            newAction.SetAction(currentPattern[i]);
+
             actionList.Add(newAction);
         }
+        extendPattern?.Invoke();
     }
 
     public void AllignActionList()
@@ -56,10 +131,24 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    // 적 트리거 발동. TODO
+    // 적 트리거 발동.
     public void EnemyTriggerAction()
     {
-        TurnManager.Inst.TakeDmg(2);
+        switch (enemy.name)
+        {
+            case "Vampire Paul":
+                if (phaseNum == 0)
+                {
+                    phaseNum++;
+                    EnemyAction.DrainEnchantAction();
+                    EnemyAction.DrainEnchantAction();
+                }
+                else if (phaseNum == 1)
+                {
+                    RouletteManager.Inst.EnemyTriggerRoulette();
+                }
+                break;
+        }
         TurnManager.Inst.enemyTriggerCnt = 0;
     }
 
@@ -83,7 +172,7 @@ public class EnemyManager : MonoBehaviour
     {
         foreach (var action in actionList)
         {
-            if (action.actionType == EEnemyActionType.CW || action.actionType == EEnemyActionType.CCW)
+            if (action.actionType == EEnemyActionType.Turn)
             {
                 action.IgnoreAction(true);
             }
@@ -94,21 +183,100 @@ public class EnemyManager : MonoBehaviour
     {
         foreach (var action in actionList)
         {
-            if (action.actionType == EEnemyActionType.CW)
-            {
-                action.SetActionType(EEnemyActionType.CCW);
-            }
-            else if (action.actionType == EEnemyActionType.CCW)
-            {
-                action.SetActionType(EEnemyActionType.CW);
-            }
+            action.actionVal = -action.actionVal;
         }
     }
 
-    // 적 최선의 행동 계산, executeActionList에 최적 행동 리스트 저장. TODO
+    // 적 최선의 행동 계산, executeActionList에 최적 행동 리스트 저장.
     public void GetBestAction()
     {
-        executeActionList.Add(actionList[0]);
+        List<int> turnActions = new List<int>();
+        List<int> executeIdx = new List<int>();
+        for (int i = 0; i < actionList.Count; i++)
+        {
+            if (actionList[i].actionType != EEnemyActionType.Turn)
+            {
+                executeIdx.Add(i);
+            }
+            else
+            {
+                turnActions.Add(i);
+            }
+        }
+        Dictionary<int, List<int>> turnActionSet = new Dictionary<int, List<int>>();
+        turnActionSet[0] = new List<int>();
+        foreach (var action in turnActions)
+        {
+            int newTurn = actionList[action].actionVal;
+            Dictionary<int, List<int>> tempTurnActionSet = new Dictionary<int, List<int>>();
+            foreach (var actionSet in turnActionSet)
+            {
+                int newKey = actionSet.Key + newTurn;
+                List<int> newSet = new List<int>(actionSet.Value);
+                newSet.Add(action);
+                if (tempTurnActionSet.ContainsKey(newKey) == false)
+                {
+                    tempTurnActionSet[newKey] = newSet;
+                }
+            }
+            foreach (var actionSet in tempTurnActionSet)
+            {
+                turnActionSet[actionSet.Key] = actionSet.Value;
+            }
+        }
+        List<int> bestTurnSequence = new List<int>();
+        bool selectedFlag = false;
+        foreach (var turnAction in turnActionSet)
+        {
+            int turnNum = turnAction.Key;
+            Debug.Log(turnNum);
+            List<int> turnSequence = turnAction.Value;
+            RoulettePiece playerSlot_afterTurn = RouletteManager.Inst.roulettePieces[(RouletteManager.Inst.playerLookat - turnNum + RouletteManager.rouletteNum) % RouletteManager.rouletteNum];
+            RoulettePiece enemySlot_afterTurn = RouletteManager.Inst.roulettePieces[(RouletteManager.Inst.enemyLookat - turnNum + RouletteManager.rouletteNum) % RouletteManager.rouletteNum];
+            Debug.Log(playerSlot_afterTurn.roulette.type);
+
+            // 우선순위 정책
+            if (enemy.name == "Vampire Paul")
+            {
+                if (playerSlot_afterTurn.isTriggered == true)
+                {
+                    bestTurnSequence = turnSequence;
+                    selectedFlag = true;
+                    break;
+                }
+                if (playerSlot_afterTurn.roulette.type == ERouletteType.Drain)
+                {
+                    bestTurnSequence = turnSequence;
+                    selectedFlag = true;
+                    break;
+                }
+                if (enemySlot_afterTurn.roulette.type == ERouletteType.Shield)
+                {
+                    bestTurnSequence = turnSequence;
+                    selectedFlag = true;
+                    break;
+                }
+                if (playerSlot_afterTurn.roulette.type == ERouletteType.Attack)
+                {
+                    bestTurnSequence = turnSequence;
+                    selectedFlag = true;
+                    break;
+                }
+            }
+        }
+        if (selectedFlag == false)
+        {
+            List<int> keys = new List<int>(turnActionSet.Keys);
+            int randKey = keys[Random.Range(0, keys.Count)];
+            bestTurnSequence = turnActionSet[randKey];
+        }
+        executeIdx.AddRange(bestTurnSequence);
+        executeIdx.Sort();
+
+        foreach (int idx in executeIdx)
+        {
+            executeActionList.Add(actionList[idx]);
+        }
     }
 
     // 적 최선의 행동 실행.
@@ -178,5 +346,10 @@ public class EnemyManager : MonoBehaviour
     private void OnDestroy()
     {
         TurnManager.OnPlayerTurnStart = null;
+    }
+
+    private void Update()
+    {
+        CheckPhase();
     }
 }

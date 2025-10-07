@@ -2,6 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EEnemyActionType { Turn, Attack, Heal, Shield, Enchant_Random, Drain };
+
+[System.Serializable]
+public struct EnemyPattern
+{
+    public EEnemyActionType type;
+    public int val;
+
+    public EnemyPattern(EEnemyActionType t, int v)
+    {
+        type = t;
+        val = v;
+    }
+}
+
+[System.Serializable]
+public struct EnemyPatterns
+{
+    public List<EnemyPattern> pattern;
+}
+
+[System.Serializable]
+public struct EnemyPhase
+{
+    public string name;
+    public List<EnemyPatterns> patterns;
+    public bool phaseClear;
+
+    public EnemyPhase(string s)
+    {
+        name = s;
+        patterns = new List<EnemyPatterns>();
+        phaseClear = false;
+    }
+}
+
+[System.Serializable]
+public class Enemy
+{
+    public string name;
+    public int health;
+    public int actionNum;
+    public string passive;
+    public int triggerNum;
+    public List<EnemyPhase> phase;
+    public RouletteItem[] roulettePattern;
+}
+
 [CreateAssetMenu(fileName = "CharacterSO", menuName = "Scriptable Objects/CharacterSO")]
 public class CharacterSO : ScriptableObject
 {
@@ -9,15 +57,8 @@ public class CharacterSO : ScriptableObject
     [Tooltip("플레이어 최대 체력")] public int maxHealth;
     [Tooltip("플레이어 남은 체력")] public int curHealth;
 
-    [Tooltip("적 최대 체력")] public int enemyMaxHealth;
-    [Tooltip("적 남은 체력")] public int enemyCurHealth;
-
-    [Tooltip("적이 취할 수 있는 행동의 최대값\n(예: 2일 경우 최대 2칸만 회전 가능)")] public int enemyMaxActionVal;
-    [Tooltip("적이 취할 수 있는 행동의 개수\n(예: 2일 경우 적은 2가지 행동 중 선택)")] public int enemyActionNum;
-
-    [Tooltip("플레이어 트리거 발동조건")] public int playerTriggerMaxCnt;
-    [Tooltip("적 트리거 발동조건")] public int enemyTriggerMaxCnt;
-
     public DreamPiece personaPiece;
     public DreamPiece shadowPiece;
+
+    public Enemy enemy;
 }
