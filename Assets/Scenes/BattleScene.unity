@@ -1288,6 +1288,14 @@ MonoBehaviour:
     add: 0
     mul: 0
     lastingTime: 0
+  totalRouletteBuff_Drain_Dmg:
+    add: 0
+    mul: 0
+    lastingTime: 0
+  totalRouletteBuff_Drain_Heal:
+    add: 0
+    mul: 0
+    lastingTime: 0
   singleRouletteBuff_Trigger:
     add: 0
     mul: 0
@@ -1306,6 +1314,23 @@ MonoBehaviour:
     mul: 0
     lastingTime: 0
   costBuff:
+    add: 0
+    mul: 0
+    lastingTime: 0
+  enemyBuffs: []
+  enemyAttackBuff:
+    add: 0
+    mul: 0
+    lastingTime: 0
+  enemyHealBuff:
+    add: 0
+    mul: 0
+    lastingTime: 0
+  enemyShieldBuff:
+    add: 0
+    mul: 0
+    lastingTime: 0
+  enemyDrainBuff:
     add: 0
     mul: 0
     lastingTime: 0
@@ -1394,6 +1419,9 @@ MonoBehaviour:
   duplicateMode: 0
   useCount: 0
   useCount_Turn: 0
+  uiCanvas: {fileID: 522255572}
+  tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
+  keywordSO: {fileID: 11400000, guid: abbf7fb3f8e35e34fb1ce08de70d7715, type: 2}
 --- !u!1 &464756121
 GameObject:
   m_ObjectHideFlags: 0
@@ -4218,6 +4246,9 @@ MonoBehaviour:
   enemyLookat: 0
   triggerPos: 0
   triggerPiece:
+    type: 0
+    value: 0
+  enemyTriggerPiece:
     type: 0
     value: 0
   triggerPiece_None:

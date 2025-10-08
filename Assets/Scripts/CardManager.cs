@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
+using TMPro;
 
 public class CardManager : MonoBehaviour
 {
@@ -34,6 +35,13 @@ public class CardManager : MonoBehaviour
 
     public int useCount;
     public int useCount_Turn;
+    
+    [SerializeField] Canvas uiCanvas;
+    [SerializeField] GameObject tooltipPrefab;
+    private Camera mainCam;
+    private GameObject tooltip;
+    private RectTransform canvasRect;
+    public KeywordSO keywordSO;
 
     enum ECardState { Nothing, CanMouseOver, CanMouseDrag }
 
@@ -108,6 +116,9 @@ public class CardManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
+        mainCam = Camera.main;
+        canvasRect = uiCanvas.GetComponent<RectTransform>();
+
         TurnManager.OnAddCard += AddCard;
         TurnManager.OnDiscardCard += DiscardCard;
         TurnManager.OnPlayerTurnStart += () => { useCount_Turn = 0; };
@@ -260,27 +271,66 @@ public class CardManager : MonoBehaviour
 
     public void CardMouseOver(Card card)
     {
-        if(eCardState == ECardState.Nothing)
+        if (eCardState == ECardState.Nothing)
         {
             return;
         }
-        if(!onMyCardArea)
+        if (!onMyCardArea)
         {
             return;
         }
 
         selectedCard = card;
         EnlargeCard(true, card);
+
+        int wordIndex = TMP_TextUtilities.FindIntersectingWord(card.textTMP, Input.mousePosition, mainCam);
+
+        if (wordIndex != -1)
+        {
+            TMP_WordInfo wordInfo = card.textTMP.textInfo.wordInfo[wordIndex];
+            string hoveredWord = wordInfo.GetWord();
+            Keyword keyword = Array.Find(keywordSO.keywords, x => x.word == hoveredWord);
+            if (keyword != null)
+            {
+                if (tooltip == null)
+                {
+                    tooltip = Instantiate(tooltipPrefab, uiCanvas.transform);
+                }
+
+                Vector2 localPos;
+                RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                    canvasRect,
+                    Input.mousePosition,
+                    uiCanvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : uiCanvas.worldCamera,
+                    out localPos);
+
+                RectTransform tooltipRect = tooltip.GetComponent<RectTransform>();
+                tooltipRect.anchoredPosition = localPos + new Vector2(20f, 20f);
+
+                tooltip.GetComponentInChildren<TMP_Text>().text = keyword.explanation;
+                return;
+            }
+        }
+        
+        if (tooltip != null)
+        {
+            Destroy(tooltip);
+        }
     }
 
     public void CardMouseExit(Card card)
     {
-        if(!onMyCardArea)
+        if (!onMyCardArea)
         {
             return;
         }
 
         EnlargeCard(false, card);
+        
+        if (tooltip != null)
+        {
+            Destroy(tooltip);
+        }
     }
 
     public void CardMouseDown(Card card)

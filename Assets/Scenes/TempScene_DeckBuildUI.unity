@@ -2500,8 +2500,12 @@ MonoBehaviour:
   itemDraw: []
   itemDiscard: []
   selectedCard: {fileID: 0}
+  duplicateMode: 0
   useCount: 0
   useCount_Turn: 0
+  uiCanvas: {fileID: 607179300}
+  tooltipPrefab: {fileID: 0}
+  keywordSO: {fileID: 0}
 --- !u!1 &714374253
 GameObject:
   m_ObjectHideFlags: 0

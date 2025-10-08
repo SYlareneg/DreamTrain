@@ -13,7 +13,7 @@ public class Card : MonoBehaviour
     [SerializeField] SpriteRenderer element;
     [SerializeField] TMP_Text nameTMP;
     [SerializeField] TMP_Text costTMP;
-    [SerializeField] TMP_Text textTMP;
+    public TMP_Text textTMP;
     [SerializeField] Sprite[] cardTypes;
     [SerializeField] Sprite[] elementTypes;
 
