@@ -271,6 +271,14 @@ public class DeckBuildManager : MonoBehaviour
                 personaButton.sprite = dp.persona.sprite;
                 personaName.text = dp.persona.name;
                 personaText.text = dp.persona.text;
+
+                if (selectedShadow == dp)
+                {
+                    selectedShadow = null;
+                    shadowButton.sprite = null;
+                    shadowName.text = "";
+                    shadowText.text = "";
+                }
             }
             else if (pType == EPassiveType.Shadow)
             {
@@ -278,6 +286,14 @@ public class DeckBuildManager : MonoBehaviour
                 shadowButton.sprite = dp.shadow.sprite;
                 shadowName.text = dp.shadow.name;
                 shadowText.text = dp.shadow.text;
+
+                if (selectedPersona == dp)
+                {
+                    selectedPersona = null;
+                    personaButton.sprite = null;
+                    personaName.text = "";
+                    personaText.text = "";
+                }
             }
         }
         
