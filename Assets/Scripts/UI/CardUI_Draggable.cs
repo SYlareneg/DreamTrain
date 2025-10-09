@@ -5,23 +5,28 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 
-public class CardUI_Draggable : CardUI, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class CardUI_Draggable : CardUI, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {   public GameObject cardUIPrefab;
     public GraphicRaycaster raycaster;
     [SerializeField] public TMP_Text availableNumTMP;
 
+    public void CreateDraggingCard(CardUI card)
+    {
+        DeckBuildManager.Inst.draggingCardUI = Instantiate(cardUIPrefab, card.transform.position, Utils.QI);
+        DeckBuildManager.Inst.draggingCardUI.transform.SetParent(DeckBuildManager.Inst.backgroundPanel.transform);
+        var rect = DeckBuildManager.Inst.draggingCardUI.GetComponent<RectTransform>();
+        rect.anchorMax = new Vector2(0, 0);
+        rect.sizeDelta = this.GetComponent<RectTransform>().sizeDelta;
+        var draggingCard = DeckBuildManager.Inst.draggingCardUI.GetComponent<CardUI_DeckBuild>();
+        draggingCard.Setup(card.item);
+    }
+
     public void OnBeginDrag(PointerEventData data)
     {
-        if(DeckBuildManager.Inst.isLoading == false && item.num > 0)
+        if (DeckBuildManager.Inst.isLoading == false && item.num > 0)
         {
             DeckBuildManager.Inst.isLoading = true;
-            DeckBuildManager.Inst.draggingCardUI = Instantiate(cardUIPrefab, this.transform.position, Utils.QI);
-            DeckBuildManager.Inst.draggingCardUI.transform.SetParent(DeckBuildManager.Inst.backgroundPanel.transform);
-            var rect = DeckBuildManager.Inst.draggingCardUI.GetComponent<RectTransform>();
-            rect.anchorMax = new Vector2(0, 0);
-            rect.sizeDelta = this.GetComponent<RectTransform>().sizeDelta;
-            var draggingCard = DeckBuildManager.Inst.draggingCardUI.GetComponent<CardUI_DeckBuild>();
-            draggingCard.Setup(this.item);
+            CreateDraggingCard(this);
             item.num--;
         }
     }
@@ -100,9 +105,44 @@ public class CardUI_Draggable : CardUI, IBeginDragHandler, IDragHandler, IEndDra
         }
     }
 
+    public void OnPointerClick(PointerEventData data)
+    {
+        if (DeckBuildManager.Inst.isLoading == false && item.num > 0)
+        {
+            if (data.clickCount == 2)
+            {
+                CardUI_DeckBuild targetDeck = null;
+                foreach (var deckCard in DeckBuildManager.Inst.deckList)
+                {
+                    if (deckCard.item == null)
+                    {
+                        targetDeck = deckCard;
+                        break;
+                    }
+                }
+                if (targetDeck != null)
+                {
+                    DeckBuildManager.Inst.isLoading = true;
+                    CreateDraggingCard(this);
+                    DeckBuildManager.Inst.draggingCardUI.transform.position = this.transform.position;
+                    this.item.num--;
+
+                    DeckBuildManager.Inst.draggingCardUI.transform.DOMove(targetDeck.transform.position, 0.5f)
+                    .OnComplete(() =>
+                    {
+                        targetDeck.Setup(this.item);
+                        Destroy(DeckBuildManager.Inst.draggingCardUI);
+                        DeckBuildManager.Inst.isLoading = false;
+                        DeckBuildManager.Inst.draggingCardUI = null;
+                    });
+                }
+            }
+        }
+    }
+
     private void Update()
     {
-        if(item.num == 0)
+        if (item.num == 0)
         {
             this.SetAlpha(0.4f);
         }
@@ -110,7 +150,7 @@ public class CardUI_Draggable : CardUI, IBeginDragHandler, IDragHandler, IEndDra
         {
             this.SetAlpha(1.0f);
         }
-        if(item.num == 0)
+        if (item.num == 0)
         {
             availableNumTMP.text = "";
         }
