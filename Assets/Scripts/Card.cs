@@ -299,9 +299,9 @@ public class Card : MonoBehaviour
                 {
                     RouletteManager.Inst.roulettePieces[RouletteManager.Inst.triggerPos].Trigger(false);
                     RouletteManager.Inst.roulettePieces[RouletteManager.Inst.triggerPos].Setup(RouletteManager.Inst.triggerPiece_None);
-                    TurnManager.OnPlayerTurnEnd -= endTrigger;
+                    TurnManager.OnRouletteActivate -= endTrigger;
                 };
-                TurnManager.OnPlayerTurnEnd += endTrigger;
+                TurnManager.OnRouletteActivate += endTrigger;
                 break;
         }
     }

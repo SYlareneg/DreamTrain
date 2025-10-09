@@ -239,7 +239,7 @@ public class DeckBuildManager : MonoBehaviour
                 selectedPersona = dp;
                 personaButton.sprite = dp.persona.sprite;
                 personaName.text = dp.name;
-                personaText.text = dp.persona.name + ": " + dp.persona.text;
+                personaText.text = dp.persona.name + ":\n" + dp.persona.text;
 
                 if (selectedShadow == dp)
                 {
@@ -254,7 +254,7 @@ public class DeckBuildManager : MonoBehaviour
                 selectedShadow = dp;
                 shadowButton.sprite = dp.shadow.sprite;
                 shadowName.text = dp.name;
-                shadowText.text = dp.shadow.name + ": " + dp.shadow.text;
+                shadowText.text = dp.shadow.name + ":\n" + dp.shadow.text;
 
                 if (selectedPersona == dp)
                 {

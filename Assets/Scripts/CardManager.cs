@@ -369,8 +369,8 @@ public class CardManager : MonoBehaviour
                 return;
             }
             myCards.Remove(selectedCard);
-            TurnManager.Inst.IncreaseCost(-buffedCost);
             selectedCard.UseCard(true);
+            TurnManager.Inst.IncreaseCost(-buffedCost);
             useCount++;
             useCount_Turn++;
             TurnManager.OnUseCard?.Invoke();
