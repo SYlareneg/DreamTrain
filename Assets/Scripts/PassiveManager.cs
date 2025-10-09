@@ -94,6 +94,22 @@ public class PassiveManager : MonoBehaviour
                 rItem.value = 0;
                 RouletteManager.Inst.triggerPiece = rItem;
                 int counter = 0;
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    counter = RouletteManager.rouletteNum - 1;
+                    counter -= RouletteManager.Inst.CountRouletteType(ERouletteType.None);
+                    counter -= RouletteManager.Inst.CountRouletteType(ERouletteType.Attack);
+                    counter -= RouletteManager.Inst.CountRouletteType(ERouletteType.Shield);
+                    BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.singleRouletteBuff_Trigger, counter * 7, 1, 1);
+                };
+                TurnManager.OnRouletteEnchant += () =>
+                {
+                    int newCnt = RouletteManager.rouletteNum - 1;
+                    newCnt -= RouletteManager.Inst.CountRouletteType(ERouletteType.None);
+                    newCnt -= RouletteManager.Inst.CountRouletteType(ERouletteType.Attack);
+                    newCnt -= RouletteManager.Inst.CountRouletteType(ERouletteType.Shield);
+                    BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.singleRouletteBuff_Trigger, (newCnt - counter) * 7, 1, 1);
+                };
                 TurnManager.BeforeRouletteActivate += () =>
                 {
                     if (RouletteManager.Inst.roulettePieces[RouletteManager.Inst.triggerPos].isTriggered == true)
@@ -112,10 +128,8 @@ public class PassiveManager : MonoBehaviour
                                     rItem.type = ERouletteType.None;
                                     rItem.value = 0;
                                     RouletteManager.Inst.roulettePieces[i].Setup(rItem);
-                                    counter++;
                                 }
                             }
-                            BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.singleRouletteBuff_Trigger, counter * 7, 1, 1);
                         }
                     }
                 };

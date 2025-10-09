@@ -130,10 +130,9 @@ public class Card : MonoBehaviour
         }
     }
 
-    public void UseCard(bool isMine)
+    public bool UseCard(bool isMine)
     {
-        Debug.Log(item.name + " 사용!");
-
+        bool isCardUsed = true;
         switch (item.name)
         {
             case "Turn Card 1":
@@ -159,10 +158,10 @@ public class Card : MonoBehaviour
                 TurnManager.Inst.TakeDmg(2);
                 break;
             case "Enchant Heal":
-                RouletteManager.Inst.EnchantRoulette(false, ERouletteType.Heal, 3);
+                isCardUsed = RouletteManager.Inst.EnchantRoulette(false, ERouletteType.Heal, 3);
                 break;
             case "Vampiric Empowerment":
-                RouletteManager.Inst.EnchantRoulette(true, ERouletteType.Lifesteal, 6);
+                isCardUsed = RouletteManager.Inst.EnchantRoulette(true, ERouletteType.Lifesteal, 6);
                 break;
             case "Blood Flow":
                 RouletteManager.Inst.Spin(true, 1);
@@ -212,7 +211,7 @@ public class Card : MonoBehaviour
                 RouletteManager.Inst.Spin(false, 4);
                 break;
             case "Magic Box":
-                RouletteManager.Inst.EnchantRoulette(false, ERouletteType.MagicBox, 12);
+                isCardUsed = RouletteManager.Inst.EnchantRoulette(false, ERouletteType.MagicBox, 12);
                 break;
             case "Magic-Dove":
                 bool checkMagic = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].roulette.type == ERouletteType.MagicBox;
@@ -304,6 +303,11 @@ public class Card : MonoBehaviour
                 TurnManager.OnRouletteActivate += endTrigger;
                 break;
         }
+        if (isCardUsed)
+        {
+            Debug.Log(item.name + " 사용!");
+        }
+        return isCardUsed;
     }
 
     private void Update()

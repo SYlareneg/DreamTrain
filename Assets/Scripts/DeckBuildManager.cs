@@ -72,7 +72,7 @@ public class DeckBuildManager : MonoBehaviour
             Destroy(deckCard.gameObject);
         }
         deckList.Clear();
-
+        
         foreach (Item item in CardManager.Inst.playerDeckSO.items)
         {
             Item found = null;
@@ -270,7 +270,7 @@ public class DeckBuildManager : MonoBehaviour
         {
             if(deckCard.item != null)
             {
-                if(deckCard.item.element == EPassiveType.Normal)
+                if(deckCard.item.dreamPieceNum < 0)
                 {
                     continue;
                 }
@@ -284,6 +284,7 @@ public class DeckBuildManager : MonoBehaviour
                 }
                 else
                 {
+                    changeCardNum(deckCard.item, 1);
                     deckCard.Setup(null);
                 }
             }

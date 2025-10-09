@@ -368,8 +368,13 @@ public class CardManager : MonoBehaviour
                 selectedCard = null;
                 return;
             }
+            if (selectedCard.UseCard(true) == false)
+            {
+                EnlargeCard(false, selectedCard);
+                selectedCard = null;
+                return;
+            }
             myCards.Remove(selectedCard);
-            selectedCard.UseCard(true);
             TurnManager.Inst.IncreaseCost(-buffedCost);
             useCount++;
             useCount_Turn++;

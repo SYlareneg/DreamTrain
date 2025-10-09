@@ -90,26 +90,49 @@ public class RouletteManager : MonoBehaviour
         TurnManager.OnRouletteTrigger?.Invoke();
     }
 
-    public void EnchantRoulette(bool isEnemy, ERouletteType rType, int rValue)
+    public bool EnchantRoulette(bool isEnemy, ERouletteType rType, int rValue)
     {
         if (isEnemy)
         {
+            if (enemyLookat == triggerPos) return false;
             EnchantRoulettePiece(enemyLookat, rType, rValue);
         }
         else
         {
+            if (playerLookat == triggerPos) return false;
             EnchantRoulettePiece(playerLookat, rType, rValue);
         }
+        return true;
     }
 
     public void EnchantRoulettePiece(int index, ERouletteType rType, int rValue)
     {
-        if (index == triggerPos) return;
+        if (index == triggerPos)
+        {
+            return;
+        }
         RouletteItem rItem = new RouletteItem();
         rItem.type = rType;
         rItem.value = rValue;
         roulettePieces[index].Setup(rItem);
         TurnManager.OnRouletteEnchant?.Invoke();
+    }
+
+    public int CountRouletteType(ERouletteType rType)
+    {
+        int counter = 0;
+        for (int i = 0; i < rouletteNum; i++)
+        {
+            if (i == triggerPos)
+            {
+                continue;
+            }
+            if (roulettePieces[i].roulette.type == rType)
+            {
+                counter++;
+            }
+        }
+        return counter;
     }
 
     public void InitRoulette()
