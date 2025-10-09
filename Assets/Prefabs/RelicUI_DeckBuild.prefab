@@ -34,9 +34,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 30}
-  m_SizeDelta: {x: 0, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 25}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &1343917587297873018
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -92,11 +92,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
+  m_fontSize: 22.35
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 0
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
@@ -173,10 +173,10 @@ RectTransform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &1615588023202825484
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -232,12 +232,12 @@ MonoBehaviour:
   relicNameTMP: {fileID: 8898247696465949871}
   relicTextTMP: {fileID: 0}
   relicItem:
-    relicName: 
     relicSprite: {fileID: 0}
-    type: 0
-    affectItem: 0
-    affectValue: 0
+    relicName: 
     relicTxt: 
+    relicTimings: 
+    relicConditions: []
+    relicEffects: []
 --- !u!114 &7482375727340046718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,8 +250,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a00420b01652994990b4f0921a3d65a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tooltip
-  tooltipScreen: {fileID: 0}
-  tooltipTMP: {fileID: 0}
 --- !u!61 &-3339177711081086106
 BoxCollider2D:
   m_ObjectHideFlags: 0

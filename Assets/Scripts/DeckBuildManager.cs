@@ -15,6 +15,7 @@ public class DeckBuildManager : MonoBehaviour
 
     [SerializeField] GameObject relicListScroll;
     public List<RelicUI> relicList;
+    [SerializeField] GameObject itemScrollView;
 
     [SerializeField] GameObject deckListScroll;
     public List<CardUI_DeckBuild> deckList;
@@ -144,12 +145,12 @@ public class DeckBuildManager : MonoBehaviour
             cardListTitleTMP.text = "Available Cards for " + newDP.name;
         }
 
-        if (newDP == null) return;
+        if (newDP == null || newDP.cards == null) return;
 
         Item[] itemList = newDP.cards;
         foreach (Item item in itemList)
         {
-            if (item.element == pType)
+            if (item.element == pType || item.element == EPassiveType.Normal)
             {
                 var cardObject = Instantiate(draggableCardUIPrefab, cardListScroll.transform.position, Utils.QI);
                 cardObject.transform.SetParent(cardListScroll.transform);
@@ -182,38 +183,6 @@ public class DeckBuildManager : MonoBehaviour
             card.Setup(item);
             card.raycaster = canvas.GetComponent<GraphicRaycaster>();
             availableCardList.Add(card);
-        }
-        if (selectedPersona != null)
-        {
-            foreach (Item item in selectedPersona.cards)
-            {
-                if (item.element == EPassiveType.Normal)
-                {
-                    var cardObject = Instantiate(draggableCardUIPrefab, cardListScroll.transform.position, Utils.QI);
-                    cardObject.transform.SetParent(cardListScroll.transform);
-                    var card = cardObject.GetComponent<CardUI_Draggable>();
-
-                    card.Setup(item);
-                    card.raycaster = canvas.GetComponent<GraphicRaycaster>();
-                    availableCardList.Add(card);
-                }
-            }
-        }
-        if (selectedShadow != null && selectedShadow != selectedPersona)
-        {
-            foreach (Item item in selectedShadow.cards)
-            {
-                if (item.element == EPassiveType.Normal)
-                {
-                    var cardObject = Instantiate(draggableCardUIPrefab, cardListScroll.transform.position, Utils.QI);
-                    cardObject.transform.SetParent(cardListScroll.transform);
-                    var card = cardObject.GetComponent<CardUI_Draggable>();
-
-                    card.Setup(item);
-                    card.raycaster = canvas.GetComponent<GraphicRaycaster>();
-                    availableCardList.Add(card);
-                }
-            }
         }
 
         cardListTitleTMP.text = "Available Cards for Prim";
@@ -269,8 +238,8 @@ public class DeckBuildManager : MonoBehaviour
             {
                 selectedPersona = dp;
                 personaButton.sprite = dp.persona.sprite;
-                personaName.text = dp.persona.name;
-                personaText.text = dp.persona.text;
+                personaName.text = dp.name;
+                personaText.text = dp.persona.name + ": " + dp.persona.text;
 
                 if (selectedShadow == dp)
                 {
@@ -284,8 +253,8 @@ public class DeckBuildManager : MonoBehaviour
             {
                 selectedShadow = dp;
                 shadowButton.sprite = dp.shadow.sprite;
-                shadowName.text = dp.shadow.name;
-                shadowText.text = dp.shadow.text;
+                shadowName.text = dp.name;
+                shadowText.text = dp.shadow.name + ": " + dp.shadow.text;
 
                 if (selectedPersona == dp)
                 {
@@ -325,6 +294,8 @@ public class DeckBuildManager : MonoBehaviour
     {
         if (passiveScrollView.activeSelf == true)
         {
+            itemScrollView.SetActive(true);
+            shadowShow.SetActive(true);
             passiveScrollView.SetActive(false);
             foreach (PassiveUI pUI in passiveList)
             {
@@ -339,6 +310,8 @@ public class DeckBuildManager : MonoBehaviour
         }
         else
         {
+            itemScrollView.SetActive(false);
+            shadowShow.SetActive(false);
             PassiveList(EPassiveType.Persona);
             SelectPassive(selectedPersona, EPassiveType.Persona);
             passiveScrollView.GetComponent<Image>().color = personaShow.GetComponent<Image>().color;
@@ -350,6 +323,8 @@ public class DeckBuildManager : MonoBehaviour
     {
         if (passiveScrollView.activeSelf == true)
         {
+            itemScrollView.SetActive(true);
+            personaShow.SetActive(true);
             var temp = shadowShow.transform.position;
             shadowShow.transform.position = personaShow.transform.position;
             personaShow.transform.position = temp;
@@ -367,6 +342,8 @@ public class DeckBuildManager : MonoBehaviour
         }
         else
         {
+            itemScrollView.SetActive(false);
+            personaShow.SetActive(false);
             var temp = shadowShow.transform.position;
             shadowShow.transform.position = personaShow.transform.position;
             personaShow.transform.position = temp;

@@ -20,12 +20,12 @@ public class PassiveUI : MonoBehaviour, IPointerClickHandler
         if (p == EPassiveType.Persona)
         {
             passiveImage.sprite = dp.persona.sprite;
-            passiveNameTMP.text = dp.persona.name;
+            passiveNameTMP.text = dp.name;
         }
         else if (p == EPassiveType.Shadow)
         {
             passiveImage.sprite = dp.shadow.sprite;
-            passiveNameTMP.text = dp.shadow.name;
+            passiveNameTMP.text = dp.name;
         }
         Select(false);
     }

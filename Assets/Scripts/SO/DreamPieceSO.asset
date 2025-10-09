@@ -36,7 +36,7 @@ MonoBehaviour:
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Enchant 'lifesteal' on enemy roulette slot.
       cardValues: 
-      num: 0
+      num: 2
     - name: Blood Flow
       cost: 0
       type: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Spin roulette clockwise 1 slot, lose 1 health.
       cardValues: 
-      num: 0
+      num: 2
     - name: Blood, My Power
       cost: 0
       type: 2
@@ -72,7 +72,7 @@ MonoBehaviour:
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Heal 2 health.
       cardValues: 
-      num: 0
+      num: 2
     - name: Humanist
       cost: 2
       type: 2
@@ -146,7 +146,7 @@ MonoBehaviour:
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Enchant a 'magic-box' on player roulette slot.
       cardValues: 
-      num: 0
+      num: 2
     - name: Magic-Dove
       cost: 1
       type: 2
@@ -158,7 +158,7 @@ MonoBehaviour:
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Give 1 damage to enemy, use 'magic-box' to block enemy's next first action.
       cardValues: 
-      num: 1
+      num: 2
     - name: Magic-Cards
       cost: 1
       type: 0
@@ -171,7 +171,7 @@ MonoBehaviour:
       text: Spin roulette clockwise 1 slot, use 'magic-box' to duplicate 1 card in
         hand.
       cardValues: 
-      num: 1
+      num: 2
     - name: Magic-Sawing
       cost: 2
       type: 2
@@ -183,7 +183,7 @@ MonoBehaviour:
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Give 2 damage to enemy, use 'magic-box' to destroy all of enemy's armor.
       cardValues: 
-      num: 1
+      num: 2
     - name: Magic-Teleportation
       cost: 2
       type: 0
@@ -195,7 +195,7 @@ MonoBehaviour:
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Spin roulette clockwise 2 slots, use 'magic-box' to gain 12 shield.
       cardValues: 
-      num: 1
+      num: 2
     - name: Magic-Prediction
       cost: 3
       type: 2

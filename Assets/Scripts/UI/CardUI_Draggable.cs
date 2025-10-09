@@ -17,7 +17,9 @@ public class CardUI_Draggable : CardUI, IBeginDragHandler, IDragHandler, IEndDra
             DeckBuildManager.Inst.isLoading = true;
             DeckBuildManager.Inst.draggingCardUI = Instantiate(cardUIPrefab, this.transform.position, Utils.QI);
             DeckBuildManager.Inst.draggingCardUI.transform.SetParent(DeckBuildManager.Inst.backgroundPanel.transform);
-            DeckBuildManager.Inst.draggingCardUI.GetComponent<RectTransform>().sizeDelta = this.GetComponent<RectTransform>().sizeDelta;
+            var rect = DeckBuildManager.Inst.draggingCardUI.GetComponent<RectTransform>();
+            rect.anchorMax = new Vector2(0, 0);
+            rect.sizeDelta = this.GetComponent<RectTransform>().sizeDelta;
             var draggingCard = DeckBuildManager.Inst.draggingCardUI.GetComponent<CardUI_DeckBuild>();
             draggingCard.Setup(this.item);
             item.num--;
