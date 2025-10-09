@@ -127,6 +127,7 @@ public class TurnManager : MonoBehaviour
     {
         isLoading = true;
         turnNum++;
+        nowCost = 0;
         SetFullCost();
         // 플레이어 턴 시작 UI를 띄우고, StartPlayerTurn_AfterNotify 호출
         GameManager.Inst.Notification("My Turn", "Turn " + turnNum.ToString(), StartPlayerTurn_AfterNotify);
@@ -277,8 +278,9 @@ public class TurnManager : MonoBehaviour
 
     public void SetFullCost()
     {
-        OnCostChange?.Invoke(turnCost - nowCost);
+        int temp = nowCost;
         nowCost = turnCost;
+        OnCostChange?.Invoke(turnCost - temp);
     }
 
     public void GetShield(bool isEnemy, int value)

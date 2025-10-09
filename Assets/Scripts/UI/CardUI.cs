@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Text.RegularExpressions;
 
 public class CardUI : MonoBehaviour
 {
@@ -54,7 +55,25 @@ public class CardUI : MonoBehaviour
 
         nameTMP.text = this.item.name;
         costTMP.text = this.item.cost.ToString();
-        textTMP.text = this.item.text;
+        
+        if (this.item.cardValues.Count == 0)
+        {
+            int index = 0;
+            string itemText = Regex.Replace(this.item.text, @"\d+", match =>
+            {
+                this.item.cardValues.Add(int.Parse(match.Value));
+                string replacement = $"{{cardValues[{index}]}}";
+                index++;
+                return replacement;
+            });
+            this.item.text = $"{itemText}";
+        }
+        string showText = this.item.text;
+        for (int i = 0; i < this.item.cardValues.Count; i++)
+        {
+            showText = Regex.Replace(showText, @"\{cardValues\[" + i + @"\]\}", this.item.cardValues[i].ToString());
+        }
+        textTMP.text = $"{showText}";
     }
 
     public void SetBlank()

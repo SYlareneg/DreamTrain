@@ -66,7 +66,27 @@ public class PassiveManager : MonoBehaviour
                     ace.num = 1;
                     CardManager.Inst.itemDeck.Add(ace);
                     CardManager.Inst.itemDraw.Add(ace);
-                    //CardManager.Inst.ShuffleDeck();
+                    CardManager.Inst.ShuffleDeck();
+
+                    TurnManager.OnRouletteSpin += (x) =>
+                    {
+                        if (RouletteManager.Inst.spinDirection == 1)
+                        {
+                            for (int i = 0; i < RouletteManager.rouletteNum; i++)
+                            {
+                                if (RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.MagicBox)
+                                {
+                                    RouletteManager.Inst.roulettePieces[i].roulette.value--;
+                                    if (RouletteManager.Inst.roulettePieces[i].roulette.value == 0)
+                                    {
+                                        RouletteItem tempItem = new RouletteItem();
+                                        RouletteManager.Inst.roulettePieces[i].roulette.type = ERouletteType.None;
+                                        RouletteManager.Inst.roulettePieces[i].Setup(RouletteManager.Inst.roulettePieces[i].roulette);
+                                    }
+                                }
+                            }
+                        }
+                    };
                 };
                 break;
         }
@@ -81,11 +101,17 @@ public class PassiveManager : MonoBehaviour
                 rItem.type = ERouletteType.Attack;
                 rItem.value = 8;
                 RouletteManager.Inst.triggerPiece = rItem;
-                TurnManager.OnPlayerTurnEnd += () =>
+                TurnManager.OnPlayerTrigger += () =>
+                {
+                    Debug.Log(TurnManager.Inst.nowCost);
+                    BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.singleRouletteBuff_Trigger, TurnManager.Inst.nowCost * 8, 1, 1);
+                };
+                TurnManager.OnCostChange += (x) =>
                 {
                     if (RouletteManager.Inst.roulettePieces[RouletteManager.Inst.triggerPos].isTriggered == true)
                     {
-                        BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.singleRouletteBuff_Trigger, TurnManager.Inst.nowCost * 8, 1, 1);
+                        Debug.Log("Trigger buff");
+                        BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.singleRouletteBuff_Trigger, x * 8, 1, 1);
                     }
                 };
                 break;

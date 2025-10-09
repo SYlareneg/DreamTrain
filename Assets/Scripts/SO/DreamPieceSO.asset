@@ -36,7 +36,7 @@ MonoBehaviour:
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Enchant 'lifesteal' on enemy roulette slot.
       cardValues: 
-      num: 0
+      num: 2
     - name: Blood Flow
       cost: 0
       type: 0
@@ -46,9 +46,9 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Spin roulette clockwise 1 slot, lose 1 health.
-      cardValues: 
-      num: 0
+      text: Spin roulette clockwise {cardValues[0]} slot, lose {cardValues[1]} health.
+      cardValues: 0100000001000000
+      num: 2
     - name: Blood, My Power
       cost: 0
       type: 2
@@ -58,9 +58,9 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Lose 2 health, gain 1 cost.
-      cardValues: 
-      num: 0
+      text: Lose {cardValues[0]} health, gain {cardValues[1]} cost.
+      cardValues: 0200000001000000
+      num: 2
     - name: Emergency Transfusion
       cost: 1
       type: 2
@@ -70,8 +70,8 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Heal 2 health.
-      cardValues: 
+      text: Heal {cardValues[0]} health.
+      cardValues: 02000000
       num: 2
     - name: Humanist
       cost: 2
@@ -82,8 +82,8 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Reduce all damages of attacks by 3.
-      cardValues: 
+      text: Reduce all damages of attacks by {cardValues[0]}.
+      cardValues: 03000000
       num: 2
     - name: Blue Blood
       cost: 3
@@ -94,9 +94,9 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Your 'lifesteal' slots deal 3 times more damage, but can't heal for 2
-        turns.
-      cardValues: 
+      text: Your 'lifesteal' slots deal {cardValues[0]} times more damage, but can't
+        heal for {cardValues[1]} turns.
+      cardValues: 0300000002000000
       num: 2
     - name: Feast Time
       cost: 3
@@ -107,8 +107,9 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Your 'lifesteal' slots deal 2 times more damage for 2 turns.
-      cardValues: 
+      text: Your 'lifesteal' slots deal {cardValues[0]} times more damage for {cardValues[1]}
+        turns.
+      cardValues: 0200000002000000
       num: 2
     - name: Crimson Wings
       cost: 2
@@ -119,9 +120,9 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Spin roulette counter-clockwise 4 slots. Activate all 'lifesteal' slots
-        in the way.
-      cardValues: 
+      text: Spin roulette counter-clockwise {cardValues[0]} slots. Activate all 'lifesteal'
+        slots in the way.
+      cardValues: 04000000
       num: 2
   - name: Magician's Dream
     persona:
@@ -146,7 +147,7 @@ MonoBehaviour:
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
       text: Enchant a 'magic-box' on player roulette slot.
       cardValues: 
-      num: 0
+      num: 2
     - name: Magic-Dove
       cost: 1
       type: 2
@@ -156,9 +157,10 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Give 1 damage to enemy, use 'magic-box' to block enemy's next first action.
-      cardValues: 
-      num: 0
+      text: Give {cardValues[0]} damage to enemy, use 'magic-box' to block enemy's
+        next first action.
+      cardValues: 01000000
+      num: 2
     - name: Magic-Cards
       cost: 1
       type: 0
@@ -168,10 +170,10 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Spin roulette clockwise 1 slot, use 'magic-box' to duplicate 1 card in
-        hand.
-      cardValues: 
-      num: 0
+      text: Spin roulette clockwise {cardValues[0]} slot, use 'magic-box' to duplicate
+        {cardValues[1]} card in hand.
+      cardValues: 0100000001000000
+      num: 2
     - name: Magic-Sawing
       cost: 2
       type: 2
@@ -181,8 +183,9 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Give 2 damage to enemy, use 'magic-box' to destroy all of enemy's armor.
-      cardValues: 
+      text: Give {cardValues[0]} damage to enemy, use 'magic-box' to destroy all
+        of enemy's armor.
+      cardValues: 02000000
       num: 2
     - name: Magic-Teleportation
       cost: 2
@@ -193,8 +196,9 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Spin roulette clockwise 2 slots, use 'magic-box' to gain 12 shield.
-      cardValues: 
+      text: Spin roulette clockwise {cardValues[0]} slots, use 'magic-box' to gain
+        {cardValues[1]} shield.
+      cardValues: 020000000c000000
       num: 2
     - name: Magic-Prediction
       cost: 3
@@ -205,9 +209,9 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Next turn, your 'Ace' card costs 0, and it restores all your costs when
-        you use it.
-      cardValues: 
+      text: Next turn, your 'Ace' card costs {cardValues[0]}, and it restores all
+        your costs when you use it.
+      cardValues: 00000000
       num: 2
     - name: Sleight of Hand
       cost: 1
@@ -218,8 +222,8 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Draw 1 card from deck.
-      cardValues: 
+      text: Draw {cardValues[0]} card from deck.
+      cardValues: 01000000
       num: 2
     - name: ESP-Prediction
       cost: 2
@@ -242,6 +246,6 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Spin roulette clockwise current cost * 1 slots.
-      cardValues: 
+      text: Spin roulette clockwise current cost * {cardValues[0]} slots.
+      cardValues: 01000000
       num: 2

@@ -156,7 +156,7 @@ public class RouletteManager : MonoBehaviour
         }
         RouletteItem tempRoulettePiece = new RouletteItem();
         tempRoulettePiece.type = ERouletteType.None;
-        tempRoulettePiece.value = triggerPiece.value;
+        tempRoulettePiece.value = 0;
         triggerPiece_None = tempRoulettePiece;
         roulettePieces[triggerPos].Setup(tempRoulettePiece);
     }

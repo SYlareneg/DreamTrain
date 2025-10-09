@@ -384,6 +384,7 @@ public class DeckBuildManager : MonoBehaviour
                     tempItem.isRemain = card.item.isRemain;
                     tempItem.sprite = card.item.sprite;
                     tempItem.text = card.item.text;
+                    tempItem.cardValues = card.item.cardValues;
                     tempItem.num = 1;
                     CardManager.Inst.playerDeckSO.items.Add(tempItem);
                 }

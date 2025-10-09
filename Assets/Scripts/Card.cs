@@ -70,7 +70,7 @@ public class Card : MonoBehaviour
         string showText = this.item.text;
         for (int i = 0; i < this.item.cardValues.Count; i++)
         {
-            showText = showText.Replace($"{{cardValues[{i}]}}", this.item.cardValues[i].ToString());
+            showText = Regex.Replace(showText, @"\{cardValues\[" + i + @"\]\}", this.item.cardValues[i].ToString());
         }
         textTMP.text = $"{showText}";
     }
@@ -293,6 +293,7 @@ public class Card : MonoBehaviour
                 break;
             case "Ace":
                 RouletteManager.Inst.TriggerRoulette();
+                TurnManager.OnPlayerTrigger?.Invoke();
                 Action endTrigger = null;
                 endTrigger = () =>
                 {
