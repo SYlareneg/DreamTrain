@@ -73,22 +73,6 @@ public class DeckBuildManager : MonoBehaviour
         }
         deckList.Clear();
         
-        foreach (Item item in CardManager.Inst.playerDeckSO.items)
-        {
-            Item found = null;
-            if (item.dreamPieceNum < 0)
-            {
-                found = normalItemSO.items.Find(x => x.name == item.name);
-            }
-            else
-            {
-                found = Array.Find(dreamPieceSO.dreamPieces[item.dreamPieceNum].cards, x => x.name == item.name);
-            }
-            if (found != null)
-            {
-                changeCardNum(found, item.num);
-            }
-        }
         CardManager.Inst.playerDeckSO.items.Clear();
 
         for (int i = 0; i < deckCardNum; i++)
@@ -392,6 +376,7 @@ public class DeckBuildManager : MonoBehaviour
                 {
                     existItem.num++;
                 }
+                card.item.num++;
             }
             characterSO.personaPiece = selectedPersona;
             characterSO.shadowPiece = selectedShadow;
