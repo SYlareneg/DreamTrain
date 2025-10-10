@@ -17,8 +17,24 @@ public class Item
     [Tooltip("잔류")] public bool isRemain;
     [Tooltip("카드 이미지")] public Sprite sprite;
     [Tooltip("카드 설명")] public string text;
-    [Tooltip("카드 계수")] public List<int> cardValues = new List<int>();
+    [Tooltip("카드 계수")] public List<int> cardValues;
     [Tooltip("덱 내 카드 장수")] public int num;
+
+    public void SetItem(Item item)
+    {
+        name = item.name;
+        cost = item.cost;
+        type = item.type;
+        element = item.element;
+        dreamPieceNum = item.dreamPieceNum;
+        isVolatile = item.isVolatile;
+        isVanish = item.isVanish;
+        isRemain = item.isRemain;
+        sprite = item.sprite;
+        text = item.text;
+        cardValues = item.cardValues;
+        num = item.num;
+    }
 }
 
 [CreateAssetMenu(fileName = "ItemSO", menuName = "Scriptable Objects/ItemSO")]

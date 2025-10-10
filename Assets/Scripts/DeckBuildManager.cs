@@ -358,17 +358,7 @@ public class DeckBuildManager : MonoBehaviour
                 if (existItem == null)
                 {
                     Item tempItem = new Item();
-                    tempItem.name = card.item.name;
-                    tempItem.cost = card.item.cost;
-                    tempItem.type = card.item.type;
-                    tempItem.element = card.item.element;
-                    tempItem.dreamPieceNum = card.item.dreamPieceNum;
-                    tempItem.isVolatile = card.item.isVolatile;
-                    tempItem.isVanish = card.item.isVanish;
-                    tempItem.isRemain = card.item.isRemain;
-                    tempItem.sprite = card.item.sprite;
-                    tempItem.text = card.item.text;
-                    tempItem.cardValues = card.item.cardValues;
+                    tempItem.SetItem(card.item);
                     tempItem.num = 1;
                     CardManager.Inst.playerDeckSO.items.Add(tempItem);
                 }

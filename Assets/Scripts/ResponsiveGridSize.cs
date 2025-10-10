@@ -39,7 +39,7 @@ public class ResponsiveGrid : MonoBehaviour
         {
             totalWidth = rect.rect.height - (grid.padding.top + grid.padding.bottom);
             cellWidth = (totalWidth - spacing.x * (constraintCount - 1)) / constraintCount * GetCanvasScaleFactor();
-            grid.cellSize = new Vector2(cellWidth / grid.cellSize.x * grid.cellSize.y, cellWidth);
+            grid.cellSize = new Vector2(cellWidth / grid.cellSize.y * grid.cellSize.x, cellWidth);
             grid.spacing = spacing + grid.cellSize * (1 / GetCanvasScaleFactor() - 1);
         }
         else if (grid.constraint == GridLayoutGroup.Constraint.FixedColumnCount)
@@ -49,6 +49,11 @@ public class ResponsiveGrid : MonoBehaviour
             grid.cellSize = new Vector2(cellWidth, cellWidth / grid.cellSize.x * grid.cellSize.y);
             grid.spacing = spacing + grid.cellSize * (1 / GetCanvasScaleFactor() - 1);
         }
+        
+        grid.padding.top = (int)(grid.spacing.y / 2);
+        grid.padding.left = (int)(grid.spacing.x / 2);
+        grid.padding.bottom = (int)(grid.spacing.y / 2);
+        grid.padding.right = (int)(grid.spacing.x / 2);
     }
 
     float GetCanvasScaleFactor()

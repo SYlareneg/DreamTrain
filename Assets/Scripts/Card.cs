@@ -167,15 +167,9 @@ public class Card : MonoBehaviour
                 RouletteManager.Inst.Spin(true, 1);
                 TurnManager.Inst.TakeDmg(1);
                 Item tempItem = new Item();
+                tempItem.SetItem(item);
                 tempItem.name = "Blood Flow (Vanish)";
-                tempItem.cost = item.cost;
-                tempItem.type = item.type;
-                tempItem.element = item.element;
-                tempItem.dreamPieceNum = item.dreamPieceNum;
                 tempItem.isVanish = true;
-                tempItem.sprite = item.sprite;
-                tempItem.text = item.text;
-                tempItem.num = item.num;
                 CardManager.Inst.CreateCardInHand(tempItem);
                 break;
             case "Blood Flow (Vanish)":
