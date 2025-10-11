@@ -13,6 +13,8 @@ public class DialogueUI : MonoBehaviour
 
     public GameObject branchPanel;
     public Button branchButtonPrefab;
+    public GameObject moooPanel;
+    public GameObject playerPanel;
 
     private int currentID = 1;
     private InputSystem_Actions input;
@@ -51,18 +53,27 @@ public class DialogueUI : MonoBehaviour
     void ClearBranchButtons()
     {
         foreach (Transform t in branchPanel.transform)
-            Destroy(t.gameObject);
+        {
+            if (t.GetComponent<Button>() != null)
+            {
+                Destroy(t.gameObject);
+            }
+        }
     }
+
 
     public void ShowDialogue(int id)
     {
         ClearBranchButtons();
-        branchPanel.SetActive(false);
+        //branchPanel.SetActive(false);
         isBranchActive = false;
         if (id == 0)
         {
             MoooText.text = "";
             PlayerText.text = "";
+            branchPanel.SetActive(false);
+            moooPanel.SetActive(false);
+            playerPanel.SetActive(false);
             Debug.Log("End of dialogue");
             return;
         }
@@ -84,7 +95,7 @@ public class DialogueUI : MonoBehaviour
         }
         else if (firstEntry.Type == "Branch")
         {
-            branchPanel.SetActive(true);
+            playerPanel.SetActive(false);
             isBranchActive = true;
             currentID = 0;
 
@@ -99,6 +110,8 @@ public class DialogueUI : MonoBehaviour
                     isBranchActive = false;
                     currentID = nextId; 
                     ShowDialogue(nextId);
+                    ClearBranchButtons();
+                    playerPanel.SetActive(true);
                 });
             }
         }
