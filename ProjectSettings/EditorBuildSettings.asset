@@ -11,6 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TempScene_DeckBuildUI.unity
     guid: b15b38ba606d04a45ac7a9d5c7b22009
+  - enabled: 1
+    path: Assets/Scenes/HallScene.unity
+    guid: a588b88518bbc234fb6e485ec2595242
+  - enabled: 1
+    path: Assets/Scenes/Room/Room2.unity
+    guid: 63fd3ac6fc259894d9941d6e3aa9949d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

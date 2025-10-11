@@ -11,6 +11,8 @@ public class HallplayerControll : MonoBehaviour
     private bool movingToClick = false;
 
     private SpriteRenderer spriteRenderer;
+    
+    public bool IsMovingToClick => movingToClick;
 
     private void Awake()
     {
@@ -39,12 +41,12 @@ public class HallplayerControll : MonoBehaviour
     private void OnMovePerformed(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
-        movingToClick = false; // 수동 이동 시 클릭 이동 중단
+        movingToClick = false; 
     }
     
     private void OnMoveCanceled(InputAction.CallbackContext context)
     {
-        moveInput = Vector2.zero; // 키보드 입력 끝나면 이동 멈춤
+        moveInput = Vector2.zero;
     }
     
     private void OnClickPerformed(InputAction.CallbackContext context)
@@ -52,9 +54,15 @@ public class HallplayerControll : MonoBehaviour
         Vector2 mouseScreenPos = input.Player.Point.ReadValue<Vector2>();
         Vector3 worldPos = mainCamera.ScreenToWorldPoint(mouseScreenPos);
         worldPos.z = transform.position.z;
+        worldPos.y = transform.position.y;
 
         targetPosition = worldPos;
         movingToClick = true;
+        
+        if (targetPosition.x < transform.position.x)
+            spriteRenderer.flipX = false;
+        else if (targetPosition.x > transform.position.x)
+            spriteRenderer.flipX = true;
     }
     
     private void Update()
@@ -64,15 +72,17 @@ public class HallplayerControll : MonoBehaviour
             movingToClick = false;
             transform.Translate(Vector3.right * moveInput.x * moveSpeed * Time.deltaTime);
 
-            if (moveInput.x > 0) spriteRenderer.flipX = false; 
-            else if (moveInput.x < 0) spriteRenderer.flipX = true;
+            if (moveInput.x < 0) spriteRenderer.flipX = false;
+            else if (moveInput.x > 0) spriteRenderer.flipX = true;
         }
         else if (movingToClick)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-
-            if (targetPosition.x < transform.position.x) spriteRenderer.flipX = true;
-            else if (targetPosition.x > transform.position.x) spriteRenderer.flipX = false;
+            Vector3 newPosition = transform.position;
+            newPosition.x = Mathf.MoveTowards(transform.position.x, targetPosition.x, moveSpeed * Time.deltaTime);
+            transform.position = newPosition;
+            
+            if (targetPosition.x > transform.position.x) spriteRenderer.flipX = true;
+            else if (targetPosition.x < transform.position.x) spriteRenderer.flipX = false;
 
             if (Vector3.Distance(transform.position, targetPosition) < 0.05f)
                 movingToClick = false;
