@@ -738,7 +738,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000012144611}
+  m_AnchoredPosition: {x: 0, y: 0.000012877313}
   m_SizeDelta: {x: 0, y: 553}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &136853199
@@ -2046,7 +2046,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 169054676}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99998134
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2491,7 +2491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardManager
   itemSO: {fileID: 11400000, guid: bd268a67003469242809dbd20a8498df, type: 2}
   playerDeckSO: {fileID: 11400000, guid: 149a57459b8b407488f3bf0d8485c273, type: 2}
-  cardPrefab: {fileID: 0}
+  cardPrefab: {fileID: 3101435894562736061, guid: 00faca8f8365c654ba92e1bca964104a, type: 3}
   cardUIPrefab: {fileID: 5217781338463960961, guid: ab526733d7fd92a4f91f227d5a5c8cb8, type: 3}
   myCards: []
   cardSpawnPoint: {fileID: 0}
@@ -6121,7 +6121,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1746279508}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999814
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6614,7 +6614,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0004272461}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 553}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1974442451
