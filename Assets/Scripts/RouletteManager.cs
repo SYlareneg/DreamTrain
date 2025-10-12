@@ -65,9 +65,9 @@ public class RouletteManager : MonoBehaviour
 
     private int ActivationWeight(int index)
     {
+        if (roulettePieces[index].isTriggered == true) return 2;
         if (roulettePieces[index].roulette.type == ERouletteType.Shield) return 0;
         if (roulettePieces[index].roulette.type == ERouletteType.Heal) return 1;
-        if (roulettePieces[index].isTriggered == true) return 2;
         if (roulettePieces[index].roulette.type == ERouletteType.Attack) return 4;
         if (roulettePieces[index].roulette.type == ERouletteType.None) return 5;
         return 3;

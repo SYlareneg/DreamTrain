@@ -41,7 +41,10 @@ public class DialogueRelicManager : MonoBehaviour
     {
         if(idx >= 0 && idx < relicSO.relicItems.Count)
         {
-            playerRelicSO.relicItems.Add(relicSO.relicItems[idx]);
+            if (playerRelicSO.relicItems.Find(x => x.relicName == relicSO.relicItems[idx].relicName) == null)
+            {
+                playerRelicSO.relicItems.Add(relicSO.relicItems[idx]);
+            }
         }
     }
 }
