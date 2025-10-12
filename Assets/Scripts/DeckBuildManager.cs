@@ -34,6 +34,9 @@ public class DeckBuildManager : MonoBehaviour
     [SerializeField] GameObject showCardUIPrefab;
     public List<CardUI> playerDeckList;
     public TMP_Text playerDeckNum;
+    [SerializeField] GameObject playerRelicScrollView;
+    [SerializeField] GameObject playerRelicListScroll;
+    public List<RelicUI> playerRelicList;
 
     public DreamPiece selectedPersona;
     [SerializeField] GameObject personaShow;
@@ -54,7 +57,7 @@ public class DeckBuildManager : MonoBehaviour
     public DreamPieceSO dreamPieceSO;
     public CharacterSO characterSO;
 
-    [SerializeField] public Image tooltip;
+    [SerializeField] public GameObject tooltip;
     public TMP_Text tooltipTxt;
 
     public bool isLoading;
@@ -394,9 +397,9 @@ public class DeckBuildManager : MonoBehaviour
             List<Item> sortedItemList = CardManager.Inst.playerDeckSO.items.OrderBy(x => x.name).ToList();
             Vector3 standardListPosition = playerDeckListScroll.transform.position;
 
-            foreach(Item item in sortedItemList)
+            foreach (Item item in sortedItemList)
             {
-                for(int i = 0; i < item.num; i++)
+                for (int i = 0; i < item.num; i++)
                 {
                     var cardObject = Instantiate(showCardUIPrefab, standardListPosition, Utils.QI);
                     cardObject.transform.SetParent(playerDeckListScroll.transform);
@@ -413,6 +416,26 @@ public class DeckBuildManager : MonoBehaviour
         else
         {
             playerDeckScrollView.SetActive(false);
+        }
+    }
+    
+    public void PlayerRelicList()
+    {
+        if (playerRelicScrollView.activeSelf == false)
+        {
+            foreach (RelicUI relic in playerRelicList)
+            {
+                Destroy(relic.gameObject);
+            }
+
+            playerRelicList = RelicManager.Inst.RelicItemListToRelicUIList(RelicManager.Inst.relicList, playerRelicListScroll.transform);
+            Canvas.ForceUpdateCanvases();
+
+            playerRelicScrollView.SetActive(true);
+        }
+        else
+        {
+            playerRelicScrollView.SetActive(false);
         }
     }
 
