@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -27,6 +29,11 @@ public class DeckBuildManager : MonoBehaviour
     public List<CardUI_Draggable> availableCardList;
     [SerializeField] GameObject draggableCardUIPrefab;
     public GameObject draggingCardUI;
+    [SerializeField] GameObject playerDeckScrollView;
+    [SerializeField] GameObject playerDeckListScroll;
+    [SerializeField] GameObject showCardUIPrefab;
+    public List<CardUI> playerDeckList;
+    public TMP_Text playerDeckNum;
 
     public DreamPiece selectedPersona;
     [SerializeField] GameObject personaShow;
@@ -374,6 +381,41 @@ public class DeckBuildManager : MonoBehaviour
         }
     }
 
+    public void PlayerDeckList()
+    {
+        if (playerDeckScrollView.activeSelf == false)
+        {
+            foreach (CardUI card in playerDeckList)
+            {
+                Destroy(card.gameObject);
+            }
+
+            playerDeckList = new List<CardUI>();
+            List<Item> sortedItemList = CardManager.Inst.playerDeckSO.items.OrderBy(x => x.name).ToList();
+            Vector3 standardListPosition = playerDeckListScroll.transform.position;
+
+            foreach(Item item in sortedItemList)
+            {
+                for(int i = 0; i < item.num; i++)
+                {
+                    var cardObject = Instantiate(showCardUIPrefab, standardListPosition, Utils.QI);
+                    cardObject.transform.SetParent(playerDeckListScroll.transform);
+                    var card = cardObject.GetComponent<CardUI>();
+
+                    card.Setup(item);
+                    playerDeckList.Add(card);
+                }
+            }
+            Canvas.ForceUpdateCanvases();
+
+            playerDeckScrollView.SetActive(true);
+        }
+        else
+        {
+            playerDeckScrollView.SetActive(false);
+        }
+    }
+
     public void InitializeDeckBuildUI()
     {
         selectedPersona = null;
@@ -394,5 +436,15 @@ public class DeckBuildManager : MonoBehaviour
     void Start()
     {
         InitializeDeckBuildUI();
+    }
+
+    private void Update()
+    {
+        int num = 0;
+        foreach(var item in CardManager.Inst.playerDeckSO.items)
+        {
+            num += item.num;
+        }
+        playerDeckNum.text = num.ToString();
     }
 }
