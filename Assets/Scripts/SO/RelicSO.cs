@@ -134,5 +134,5 @@ public class RelicItem
 [CreateAssetMenu(fileName = "RelicSO", menuName = "Scriptable Objects/RelicSO")]
 public class RelicSO : ScriptableObject
 {
-    public RelicItem[] relicItems;
+    public List<RelicItem> relicItems;
 }

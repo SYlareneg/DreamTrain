@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class DialogueUI : MonoBehaviour
 {
@@ -75,6 +76,11 @@ public class DialogueUI : MonoBehaviour
             moooPanel.SetActive(false);
             playerPanel.SetActive(false);
             Debug.Log("End of dialogue");
+
+            int newRelicIndex = DialogueRelicManager.Inst.GetMaxWeightIndex() - 1;
+            DialogueRelicManager.Inst.AddPlayerRelic(newRelicIndex);
+
+            SceneManager.LoadScene("BattleScene");
             return;
         }
         Debug.Log(id);
@@ -83,6 +89,11 @@ public class DialogueUI : MonoBehaviour
 
         MoooText.text = "";
         PlayerText.text = "";
+
+        if(firstEntry.IdToGet != 0)
+        {
+            DialogueRelicManager.Inst.relicWeights[firstEntry.IdToGet] += firstEntry.IdPoint;
+        }
 
         if (firstEntry.Type == "Normal")
         {

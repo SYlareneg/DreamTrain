@@ -43,8 +43,20 @@ public class HallSceneControll : MonoBehaviour
     {
         if (currentDoor != null)
         {
-            Debug.Log($"Entering room: {currentDoor.roomSceneName}");
-            SceneManager.LoadScene(currentDoor.roomSceneName);
+            int deckCount = 0;
+            foreach(var item in CardManager.Inst.playerDeckSO.items)
+            {
+                deckCount += item.num;
+            }
+            if (deckCount == DeckBuildManager.deckCardNum)
+            {
+                Debug.Log($"Entering room: {currentDoor.roomSceneName}");
+                SceneManager.LoadScene(currentDoor.roomSceneName);
+            }
+            else
+            {
+                Debug.Log("Player deck is not ready.");
+            }
         }
         else
         {

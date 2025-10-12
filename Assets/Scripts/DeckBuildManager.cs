@@ -387,7 +387,8 @@ public class DeckBuildManager : MonoBehaviour
     public void EndDeckBuildUI()
     {
         // TODO. exit UI or something.
-        SceneManager.LoadScene("BattleScene");
+        //SceneManager.LoadScene("BattleScene");
+        backgroundPanel.SetActive(false);
     }
 
     void Start()
