@@ -1,9 +1,11 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using Debug = UnityEngine.Debug;
 
 public class DialogueUI : MonoBehaviour
 {
@@ -12,18 +14,20 @@ public class DialogueUI : MonoBehaviour
     public TextMeshProUGUI MoooText; // Guest 발화
     public TextMeshProUGUI PlayerText; // Player 발화
 
-    public GameObject branchPanel;
     public Button branchButtonPrefab;
-    public GameObject moooPanel;
     public GameObject playerPanel;
 
     private int currentID = 1;
     private InputSystem_Actions input;
     private bool isBranchActive = false;
+    private VerticalLayoutGroup playerLayoutGroup;
 
     private void Awake()
     {
         input = new InputSystem_Actions();
+        playerLayoutGroup = playerPanel.GetComponent<VerticalLayoutGroup>();
+        if (playerLayoutGroup != null)
+            playerLayoutGroup.enabled = false; // 초기엔 LayoutGroup 끔
     }
 
     private void OnEnable()
@@ -53,79 +57,89 @@ public class DialogueUI : MonoBehaviour
 
     void ClearBranchButtons()
     {
-        foreach (Transform t in branchPanel.transform)
+        foreach (Transform t in playerPanel.transform)
         {
             if (t.GetComponent<Button>() != null)
-            {
                 Destroy(t.gameObject);
-            }
         }
     }
-
-
-    public void ShowDialogue(int id)
+public void ShowDialogue(int id)
     {
-        ClearBranchButtons();
-        //branchPanel.SetActive(false);
+        Debug.Log($"ShowDialogue({id}) 호출됨");
+
         isBranchActive = false;
+        ClearBranchButtons();
+
         if (id == 0)
         {
-            MoooText.text = "";
-            PlayerText.text = "";
-            branchPanel.SetActive(false);
-            moooPanel.SetActive(false);
-            playerPanel.SetActive(false);
-            Debug.Log("End of dialogue");
-
-            int newRelicIndex = DialogueRelicManager.Inst.GetMaxWeightIndex() - 1;
-            DialogueRelicManager.Inst.AddPlayerRelic(newRelicIndex);
-
-            SceneManager.LoadScene("BattleScene");
+            EndDialogue();
             return;
         }
-        Debug.Log(id);
+
         List<DialogueEntry> entries = dialogueManager.GetDialogueOptionsByID(id);
+        if (entries.Count == 0)
+        {
+            Debug.LogWarning($"No dialogue entry found for ID {id}");
+            return;
+        }
+
         DialogueEntry firstEntry = entries[0];
 
         MoooText.text = "";
         PlayerText.text = "";
 
-        if(firstEntry.IdToGet != 0)
+        if (firstEntry.IdToGet != 0)
         {
             DialogueRelicManager.Inst.relicWeights[firstEntry.IdToGet] += firstEntry.IdPoint;
         }
 
         if (firstEntry.Type == "Normal")
         {
+            // Normal 대사 처리
+            playerLayoutGroup.enabled = false;
             if (firstEntry.BoxLocation == "Guest")
                 MoooText.text = firstEntry.Dialogue_KO;
-            else if (firstEntry.BoxLocation == "Player")
+            else
                 PlayerText.text = firstEntry.Dialogue_KO;
 
-            currentID = firstEntry.NextID != 0 ? firstEntry.NextID : 0;
+            currentID = firstEntry.NextID;
         }
         else if (firstEntry.Type == "Branch")
         {
-            playerPanel.SetActive(false);
+            // Branch 대사 처리
+            playerLayoutGroup.enabled = true; // LayoutGroup 켬
             isBranchActive = true;
-            currentID = 0;
 
             foreach (var option in entries)
             {
-                Button btn = Instantiate(branchButtonPrefab, branchPanel.transform);
+                Button btn = Instantiate(branchButtonPrefab, playerPanel.transform);
                 btn.GetComponentInChildren<TextMeshProUGUI>().text = option.Dialogue_KO;
 
                 int nextId = option.NextID;
                 btn.onClick.AddListener(() =>
                 {
+                    // 버튼 클릭 시만 다음 ID로 진행
                     isBranchActive = false;
-                    currentID = nextId; 
-                    ShowDialogue(nextId);
+                    currentID = nextId;
                     ClearBranchButtons();
-                    playerPanel.SetActive(true);
+                    playerLayoutGroup.enabled = false;
+                    ShowDialogue(nextId);
                 });
             }
         }
+    }
+
+    private void EndDialogue()
+    {
+        MoooText.text = "";
+        PlayerText.text = "";
+        playerPanel.SetActive(false);
+
+        int newRelicIndex = DialogueRelicManager.Inst.GetMaxWeightIndex() - 1;
+        DialogueRelicManager.Inst.AddPlayerRelic(newRelicIndex);
+
+        Debug.Log("End of dialogue");
+        SceneManager.LoadScene("BattleScene");
     }
 
 }

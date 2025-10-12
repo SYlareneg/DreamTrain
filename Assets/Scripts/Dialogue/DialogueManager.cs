@@ -65,6 +65,7 @@ public class DialogueManager : MonoBehaviour
                 entry.Function = cells[9].Trim();
 
                 dialogueList.Add(entry);
+                Debug.Log($"Parsed ID: {entry.ID}, Dialogue_KO: {entry.Dialogue_KO}");
             }
             catch (System.Exception e)
             {
