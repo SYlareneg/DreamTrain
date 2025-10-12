@@ -63,11 +63,31 @@ public class RouletteManager : MonoBehaviour
 
     }
 
+    private int ActivationWeight(int index)
+    {
+        if (roulettePieces[index].roulette.type == ERouletteType.Shield) return 0;
+        if (roulettePieces[index].roulette.type == ERouletteType.Heal) return 1;
+        if (roulettePieces[index].isTriggered == true) return 2;
+        if (roulettePieces[index].roulette.type == ERouletteType.Attack) return 4;
+        if (roulettePieces[index].roulette.type == ERouletteType.None) return 5;
+        return 3;
+    }
+
     public void ActivateRoulette()
     {
         TurnManager.BeforeRouletteActivate?.Invoke();
-        roulettePieces[playerLookat].Activate(false);
-        roulettePieces[enemyLookat].Activate(true);
+        int playerWeight = ActivationWeight(playerLookat);
+        int enemyWeight = ActivationWeight(enemyLookat);
+        if (playerWeight < enemyWeight)
+        {
+            roulettePieces[playerLookat].Activate(false);
+            roulettePieces[enemyLookat].Activate(true);
+        }
+        else
+        {
+            roulettePieces[enemyLookat].Activate(true);
+            roulettePieces[playerLookat].Activate(false);
+        }
         TurnManager.OnRouletteActivate?.Invoke();
     }
 
