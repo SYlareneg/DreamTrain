@@ -57,7 +57,7 @@ SpriteRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
@@ -108,14 +108,14 @@ MonoBehaviour:
   roulettePiece: {fileID: 5993241829711952476}
   rouletteValueTMP: {fileID: 7409682080955745942}
   rouletteTypeSprites:
-  - {fileID: 9181274246992998818, guid: ca71119c4f516fa4a90950e97f223a72, type: 3}
-  - {fileID: -2080449949847777435, guid: 7189eb4edf0d0354a97932dd58f40d03, type: 3}
-  - {fileID: -4028666944602328941, guid: 5108a0a9c09f171499b728cc7b3288bd, type: 3}
-  - {fileID: 5728235063738559423, guid: a688f36ac99609548a6015e9b494d37d, type: 3}
-  - {fileID: 6846121943559979705, guid: 5867783c36e712e46874557e68c5be8f, type: 3}
-  - {fileID: -4966424932998807961, guid: 76cb5696f0f01d64e95a1216bd297ce1, type: 3}
-  - {fileID: 9074578433580552698, guid: d7f60ea7973ce1d4d9c9f60fe8c733bd, type: 3}
-  - {fileID: -5369134341623826004, guid: 32c12076c92029b4386ac4bea32a937b, type: 3}
+  - {fileID: 1579775890662008003, guid: 3144cdc1f3632ba40bef378c2038322c, type: 3}
+  - {fileID: 5301150221465536405, guid: c53e46bb395a59c42a367fa17a77f66b, type: 3}
+  - {fileID: 3375822314222703638, guid: a041ada8be0eb6d499c201160f5fa148, type: 3}
+  - {fileID: -1603803061443464624, guid: 73435535910bf8244a026492dc76623c, type: 3}
+  - {fileID: -6694683516753140928, guid: 311cd513a5e13e8469d7f4b689ff03f3, type: 3}
+  - {fileID: 3372071434943392156, guid: a83e06a63255ee2408beb1f880295f2c, type: 3}
+  - {fileID: -1033747301121760791, guid: d70a422d594c0c64ca0e09b3852cd601, type: 3}
+  - {fileID: 2548602056424267579, guid: d9684565a5c77ee4084b7c729e932a89, type: 3}
   roulette:
     type: 0
     value: 0

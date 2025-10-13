@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3144cdc1f3632ba40bef378c2038322c
+guid: cc72f94c55f9b304e8cd93b0b6a63d18
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1579775890662008003
-    second: NewRoulletePiece_0
+      213: 6591160121764855195
+    second: Health_Icon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NewRoulletePiece_0
+      name: Health_Icon_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 148
-        height: 296
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 138
+        y: 168
+        width: 748
+        height: 672
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3c4a2a37dcd7ce510800000000000000
-      internalID: 1579775890662008003
+      spriteID: b9db3839531887b50800000000000000
+      internalID: 6591160121764855195
       vertices: []
       indices: 
       edges: []
@@ -125,8 +125,8 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f5afbb33e355b574085532f4ae485e91
-    internalID: 0
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      NewRoulletePiece_0: 1579775890662008003
+      Health_Icon_0: 6591160121764855195
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

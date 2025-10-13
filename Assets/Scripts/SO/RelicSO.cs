@@ -66,6 +66,9 @@ public enum ERelicActivateConditionType
     Player_Health_GE,
     Player_Health_LE,
     Player_Shield_GE,
+    Player_Card_Num_GE,
+    Player_Card_Num_EQ,
+    Player_Card_Num_LE,
     Activate_Trigger
 }
 [System.Serializable]
