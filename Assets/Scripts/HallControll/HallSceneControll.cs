@@ -36,6 +36,7 @@ public class HallSceneControll : MonoBehaviour
         {
             Debug.Log($"[HallScene] Player left {door.name}");
             currentDoor = null;
+           
         }
     }
 
