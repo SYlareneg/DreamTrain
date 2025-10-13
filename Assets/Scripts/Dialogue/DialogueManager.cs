@@ -4,14 +4,79 @@ using System.Text.RegularExpressions;
 
 public class DialogueManager : MonoBehaviour
 {
+    public static DialogueManager Instance { get; private set; }
+
     public TextAsset dialogueCSV;
     public List<DialogueEntry> dialogueList = new List<DialogueEntry>();
-
+    
+    public DialogueUI dialogueUI;
+    private HashSet<int> completedDialogueIDs = new HashSet<int>();
+    
+    private InteractableObject currentInteractableObject;
+    private InteractableObjectData itemToCollectAfterDialogue;
+    
     void Awake()
+    {
+        Instance = this;
+    }
+    
+    void Start()
     {
         ParseCSV();
     }
 
+    public void StartDialogueFromObject(InteractableObjectData data, InteractableObject obj)
+    {
+        if (currentInteractableObject != null)
+        {
+            currentInteractableObject.isInteractionEnabled = false;
+        }
+        itemToCollectAfterDialogue = data;
+        currentInteractableObject = obj;
+        foreach (var option in data.DialogueList)
+        {
+            if (option.prerequisiteDialogueID == -1 || completedDialogueIDs.Contains(option.prerequisiteDialogueID))
+            {
+                if (!completedDialogueIDs.Contains(option.dialogueIDToPlay))
+                {
+                    Debug.Log($"조건 만족! 대화 ID: {option.dialogueIDToPlay}를 시작합니다.");
+                    dialogueUI.ShowDialogue(option.dialogueIDToPlay); 
+                    return;
+                }
+            }
+        }
+
+        if (data.DialogueList.Count > 0)
+        {
+            Debug.Log($"진행할 대화가 없으므로 첫 번째 대화 ID: {data.DialogueList[0].dialogueIDToPlay}를 다시 시작합니다.");
+            dialogueUI.ShowDialogue(data.DialogueList[0].dialogueIDToPlay);
+        }
+    }
+    public void OnDialogueEnded()
+    {
+        if (itemToCollectAfterDialogue != null && currentInteractableObject != null)
+        {if (itemToCollectAfterDialogue.itemIcon != null)
+            {
+                bool success = InventoryManager.Instance.CollectItem(itemToCollectAfterDialogue);
+                if (success)
+                {
+                    currentInteractableObject.OnCollectionComplete();
+                }
+            }
+            itemToCollectAfterDialogue = null;
+            currentInteractableObject = null;
+        }
+    }
+
+    public void MarkDialogueAsCompleted(int dialogueId)
+    {
+        if (!completedDialogueIDs.Contains(dialogueId))
+        {
+            completedDialogueIDs.Add(dialogueId);
+            Debug.Log($"Dialogue {dialogueId} is marked as completed.");
+        }
+    }
+    
     void ParseCSV()
     {
         dialogueList.Clear();
