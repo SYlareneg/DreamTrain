@@ -91,13 +91,63 @@ public class RelicManager : MonoBehaviour
                         }; break;
                     case ERelicActivateEffectType.Roulette_Value_Change_ADD:
                         relicAction += () => {
-                            RouletteManager.Inst.roulettePieces[localEffect.value].roulette.value += localEffect.value2;
-                            RouletteManager.Inst.roulettePieces[localEffect.value].Setup(RouletteManager.Inst.roulettePieces[localEffect.value].roulette);
+                            Buff buffTarget = null;
+                            Buff buffTarget2 = null;
+                            switch (localEffect.rlvalue.type)
+                            {
+                                case ERouletteType.Attack:
+                                    buffTarget = BuffManager.Inst.totalRouletteBuff_Attack; break;
+                                case ERouletteType.Heal:
+                                    buffTarget = BuffManager.Inst.totalRouletteBuff_Heal; break;
+                                case ERouletteType.Shield:
+                                    buffTarget = BuffManager.Inst.totalRouletteBuff_Shield; break;
+                                case ERouletteType.Charge:
+                                    buffTarget = BuffManager.Inst.totalRouletteBuff_Charge; break;
+                                case ERouletteType.Lifesteal:
+                                    buffTarget = BuffManager.Inst.totalRouletteBuff_Lifesteal_Dmg;
+                                    buffTarget2 = BuffManager.Inst.totalRouletteBuff_Lifesteal_Heal; break;
+                                case ERouletteType.Drain:
+                                    buffTarget = BuffManager.Inst.totalRouletteBuff_Drain_Dmg;
+                                    buffTarget2 = BuffManager.Inst.totalRouletteBuff_Drain_Heal; break;
+                            }
+                            if (buffTarget != null)
+                            {
+                                BuffManager.Inst.AddRouletteBuff(buffTarget, localEffect.value, 1, localEffect.value2);
+                            }
+                            if(buffTarget2 != null)
+                            {
+                                BuffManager.Inst.AddRouletteBuff(buffTarget2, localEffect.value, 1, localEffect.value2);
+                            }
                         }; break;
                     case ERelicActivateEffectType.Roulette_Value_Change_MUL:
                         relicAction += () => {
-                            RouletteManager.Inst.roulettePieces[localEffect.value].roulette.value *= localEffect.value2;
-                            RouletteManager.Inst.roulettePieces[localEffect.value].Setup(RouletteManager.Inst.roulettePieces[localEffect.value].roulette);
+                            Buff buffTarget = null;
+                            Buff buffTarget2 = null;
+                            switch (localEffect.rlvalue.type)
+                            {
+                                case ERouletteType.Attack:
+                                    buffTarget = BuffManager.Inst.totalRouletteBuff_Attack; break;
+                                case ERouletteType.Heal:
+                                    buffTarget = BuffManager.Inst.totalRouletteBuff_Heal; break;
+                                case ERouletteType.Shield:
+                                    buffTarget = BuffManager.Inst.totalRouletteBuff_Shield; break;
+                                case ERouletteType.Charge:
+                                    buffTarget = BuffManager.Inst.totalRouletteBuff_Charge; break;
+                                case ERouletteType.Lifesteal:
+                                    buffTarget = BuffManager.Inst.totalRouletteBuff_Lifesteal_Dmg;
+                                    buffTarget2 = BuffManager.Inst.totalRouletteBuff_Lifesteal_Heal; break;
+                                case ERouletteType.Drain:
+                                    buffTarget = BuffManager.Inst.totalRouletteBuff_Drain_Dmg;
+                                    buffTarget2 = BuffManager.Inst.totalRouletteBuff_Drain_Heal; break;
+                            }
+                            if (buffTarget != null)
+                            {
+                                BuffManager.Inst.AddRouletteBuff(buffTarget, 0, localEffect.value, localEffect.value2);
+                            }
+                            if(buffTarget2 != null)
+                            {
+                                BuffManager.Inst.AddRouletteBuff(buffTarget2, 0, localEffect.value, localEffect.value2);
+                            }
                         }; break;
                     case ERelicActivateEffectType.Roulette_Spin_CW:
                         relicAction += () => { RouletteManager.Inst.Spin(true, localEffect.value); }; break;
@@ -421,6 +471,30 @@ public class RelicManager : MonoBehaviour
                             totalCondition = () =>
                             {
                                 if (TurnManager.Inst.shieldHealth >= localCondition.value)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Player_Card_Num_GE:
+                            totalCondition = () =>
+                            {
+                                if (CardManager.Inst.myCards.Count >= localCondition.value)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Player_Card_Num_EQ:
+                            totalCondition = () =>
+                            {
+                                if (CardManager.Inst.myCards.Count == localCondition.value)
+                                {
+                                    temp?.Invoke();
+                                }
+                            }; break;
+                        case ERelicActivateConditionType.Player_Card_Num_LE:
+                            totalCondition = () =>
+                            {
+                                if (CardManager.Inst.myCards.Count <= localCondition.value)
                                 {
                                     temp?.Invoke();
                                 }

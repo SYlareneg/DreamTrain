@@ -13,9 +13,52 @@ MonoBehaviour:
   m_Name: RelicSO
   m_EditorClassIdentifier: Assembly-CSharp::RelicSO
   relicItems:
-  - relicSprite: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
-    relicName: Lucid Dream
-    relicTxt: Heal player health by 1 at turn begin
+  - relicSprite: {fileID: 8408277706390387068, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
+    relicName: Noble
+    relicTxt: All attack roulettes deal 2 more damage.
+    relicTimings: 04000000
+    relicConditions:
+    - conditions:
+      - type: 0
+        value: 0
+        fvalue: 0
+        ivalue:
+          name: 
+          cost: 0
+          type: 0
+          element: 0
+          dreamPieceNum: 0
+          isVolatile: 0
+          isVanish: 0
+          isRemain: 0
+          sprite: {fileID: 0}
+          text: 
+          cardValues: 
+          num: 0
+        actionType: 0
+    relicEffects:
+    - type: 12
+      value: 2
+      value2: -1
+      ivalue:
+        name: 
+        cost: 0
+        type: 0
+        element: 0
+        dreamPieceNum: 0
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 0}
+        text: 
+        cardValues: 
+        num: 0
+      rlvalue:
+        type: 1
+        value: 0
+  - relicSprite: {fileID: 6787262553418446798, guid: 97cf6276bc58332439c15a527f8af6b2, type: 3}
+    relicName: Forever Young
+    relicTxt: Heal 1 health at beginning of turn.
     relicTimings: 00000000
     relicConditions:
     - conditions:
@@ -33,10 +76,11 @@ MonoBehaviour:
           isRemain: 0
           sprite: {fileID: 0}
           text: 
+          cardValues: 
           num: 0
         actionType: 0
     relicEffects:
-    - type: 24
+    - type: 1
       value: 1
       value2: 0
       ivalue:
@@ -50,13 +94,14 @@ MonoBehaviour:
         isRemain: 0
         sprite: {fileID: 0}
         text: 
+        cardValues: 
         num: 0
       rlvalue:
-        type: 0
+        type: 1
         value: 0
-  - relicSprite: {fileID: -7264017630307359951, guid: 88a05f07c610deb4abd949fa602e1906, type: 3}
-    relicName: Draw Booster
-    relicTxt: Draw 1 card at turn begin
+  - relicSprite: {fileID: 0}
+    relicName: 
+    relicTxt: 
     relicTimings: 00000000
     relicConditions:
     - conditions:
@@ -74,47 +119,7 @@ MonoBehaviour:
           isRemain: 0
           sprite: {fileID: 0}
           text: 
-          num: 0
-        actionType: 0
-    relicEffects:
-    - type: 4
-      value: 1
-      value2: 0
-      ivalue:
-        name: 
-        cost: 0
-        type: 0
-        element: 0
-        dreamPieceNum: 0
-        isVolatile: 0
-        isVanish: 0
-        isRemain: 0
-        sprite: {fileID: 0}
-        text: 
-        num: 0
-      rlvalue:
-        type: 0
-        value: 0
-  - relicSprite: {fileID: 9181274246992998818, guid: ca71119c4f516fa4a90950e97f223a72, type: 3}
-    relicName: Lucid Nightmare
-    relicTxt: Earn 1 cost at turn begin
-    relicTimings: 00000000
-    relicConditions:
-    - conditions:
-      - type: 0
-        value: 0
-        fvalue: 0
-        ivalue:
-          name: 
-          cost: 0
-          type: 0
-          element: 0
-          dreamPieceNum: 0
-          isVolatile: 0
-          isVanish: 0
-          isRemain: 0
-          sprite: {fileID: 0}
-          text: 
+          cardValues: 
           num: 0
         actionType: 0
     relicEffects:
@@ -132,7 +137,51 @@ MonoBehaviour:
         isRemain: 0
         sprite: {fileID: 0}
         text: 
+        cardValues: 
         num: 0
       rlvalue:
+        type: 1
+        value: 0
+  - relicSprite: {fileID: 7660517227772562288, guid: 1e7f3e874d21fa74ebdb0c05791af4c5, type: 3}
+    relicName: Treasure
+    relicTxt: If player does not have any cards in hand, draw 1 card.
+    relicTimings: 0a000000
+    relicConditions:
+    - conditions:
+      - type: 38
+        value: 0
+        fvalue: 0
+        ivalue:
+          name: 
+          cost: 0
+          type: 0
+          element: 0
+          dreamPieceNum: 0
+          isVolatile: 0
+          isVanish: 0
+          isRemain: 0
+          sprite: {fileID: 0}
+          text: 
+          cardValues: 
+          num: 0
+        actionType: 0
+    relicEffects:
+    - type: 4
+      value: 1
+      value2: 0
+      ivalue:
+        name: 
+        cost: 0
         type: 0
+        element: 0
+        dreamPieceNum: 0
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 0}
+        text: 
+        cardValues: 
+        num: 0
+      rlvalue:
+        type: 1
         value: 0
