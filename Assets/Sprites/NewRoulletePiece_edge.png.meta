@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3144cdc1f3632ba40bef378c2038322c
+guid: 74b2c715fc8f12549a1c76d97b7832b2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1579775890662008003
-    second: NewRoulletePiece_0
+      213: -4882064825431682719
+    second: NewRoulletePiece_edge_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,14 +100,14 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NewRoulletePiece_0
+      name: NewRoulletePiece_edge_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 148
         height: 296
-      alignment: 6
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3c4a2a37dcd7ce510800000000000000
-      internalID: 1579775890662008003
+      spriteID: 16117b558eb6f3cb0800000000000000
+      internalID: -4882064825431682719
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f5afbb33e355b574085532f4ae485e91
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      NewRoulletePiece_0: 1579775890662008003
+      NewRoulletePiece_edge_0: -4882064825431682719
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

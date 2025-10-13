@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3144cdc1f3632ba40bef378c2038322c
+guid: cf58b29d8048bdf419cd706db6d6cd9f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1579775890662008003
-    second: NewRoulletePiece_0
+      213: -7935226861627755592
+    second: Card_Icon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NewRoulletePiece_0
+      name: Card_Icon_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 148
-        height: 296
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        x: 186
+        y: 184
+        width: 652
+        height: 662
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 40, y: 40, z: 40, w: 40}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3c4a2a37dcd7ce510800000000000000
-      internalID: 1579775890662008003
+      spriteID: 8b33a84463960e190800000000000000
+      internalID: -7935226861627755592
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f5afbb33e355b574085532f4ae485e91
+    spriteID: dc029ea39070bb54696eaa2a955c280b
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      NewRoulletePiece_0: 1579775890662008003
+      Card_Icon_0: -7935226861627755592
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

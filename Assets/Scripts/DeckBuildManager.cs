@@ -469,5 +469,6 @@ public class DeckBuildManager : MonoBehaviour
             num += item.num;
         }
         playerDeckNum.text = num.ToString();
+        playerDeckNum.color = Color.white;
     }
 }
