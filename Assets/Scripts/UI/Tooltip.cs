@@ -21,7 +21,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler
         newPos.x += offset.x;
         newPos.y += offset.y;
         tooltip = Instantiate(tooltipPrefab, newPos, Utils.QI);
-        Canvas canvas = FindObjectOfType<Canvas>();
+        Canvas canvas = FindAnyObjectByType<Canvas>();
         tooltip.transform.SetParent(canvas.transform);
         tooltip.transform.SetAsLastSibling();
         tooltip.GetComponent<Image>().raycastTarget = false;

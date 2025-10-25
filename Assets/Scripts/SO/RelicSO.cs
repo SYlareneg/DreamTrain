@@ -126,6 +126,7 @@ public struct RelicActivateEffect
 [System.Serializable]
 public class RelicItem
 {
+    public int relicOwner;
     public Sprite relicSprite;
     public string relicName;
     public string relicTxt;

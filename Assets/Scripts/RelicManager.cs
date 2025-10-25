@@ -19,18 +19,26 @@ public class RelicManager : MonoBehaviour
     public List<RelicUI> RelicItemListToRelicUIList(List<RelicItem> rItemList, Transform attachUI)
     {
         List<RelicUI> rUIList = new List<RelicUI>();
-        List<RelicItem> sortedRelicList = rItemList.OrderBy(x => x.relicName).ToList();
+        List<RelicItem> sortedRelicList = rItemList.OrderBy(x => x.relicOwner).ToList();
 
-        foreach (RelicItem rItem in sortedRelicList)
+        for(int i = 0; i < sortedRelicList.Count; i++)
         {
             var relicObject = Instantiate(relicUIPrefab, Vector3.zero, Utils.QI);
             relicObject.transform.SetParent(attachUI);
             var relic = relicObject.GetComponent<RelicUI>();
 
-            relic.Setup(rItem);
-            rUIList.Add(relic);
+            if (i < sortedRelicList.Count - 1 && sortedRelicList[i + 1].relicOwner == sortedRelicList[i].relicOwner)
+            {
+                relic.Setup(sortedRelicList[i], sortedRelicList[i + 1]);
+                rUIList.Add(relic);
+                i++;
+            }
+            else
+            {
+                relic.Setup(sortedRelicList[i], null);
+                rUIList.Add(relic);
+            }
         }
-
         return rUIList;
     }
     public void InitRelicList()

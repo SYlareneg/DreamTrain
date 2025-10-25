@@ -13,7 +13,52 @@ MonoBehaviour:
   m_Name: PlayerRelicSO
   m_EditorClassIdentifier: Assembly-CSharp::RelicSO
   relicItems:
-  - relicSprite: {fileID: 6787262553418446798, guid: 97cf6276bc58332439c15a527f8af6b2, type: 3}
+  - relicOwner: 0
+    relicSprite: {fileID: 6787262553418446798, guid: 97cf6276bc58332439c15a527f8af6b2, type: 3}
+    relicName: forever young
+    relicTxt: heal 1 health at turn start
+    relicTimings: 00000000
+    relicConditions:
+    - conditions:
+      - type: 0
+        value: 0
+        fvalue: 0
+        ivalue:
+          name: 
+          cost: 0
+          type: 0
+          element: 0
+          dreamPieceNum: 0
+          isVolatile: 0
+          isVanish: 0
+          isRemain: 0
+          sprite: {fileID: 0}
+          text: 
+          cardValues: 
+          num: 0
+        actionType: 0
+    relicEffects:
+    - type: 1
+      value: 1
+      value2: 0
+      ivalue:
+        name: 
+        cost: 0
+        type: 0
+        element: 0
+        dreamPieceNum: 0
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 0}
+        text: 
+        cardValues: 
+        num: 0
+      rlvalue:
+        type: 0
+        value: 0
+  - relicOwner: 0
+    relicSprite: {fileID: -7710461012236393104, guid: 97cf6276bc58332439c15a527f8af6b2, type: 3}
     relicName: forever young
     relicTxt: heal 1 health at turn start
     relicTimings: 00000000
