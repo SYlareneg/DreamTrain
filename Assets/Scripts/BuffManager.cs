@@ -38,6 +38,7 @@ public class BuffManager : MonoBehaviour
 {
     public static BuffManager Inst { get; private set; }
     private void Awake() => Inst = this;
+    [SerializeField] GameObject buffUIPrefab;
 
     public List<Buff> rouletteBuffs;
     public Buff totalRouletteBuff_Attack;
@@ -66,6 +67,20 @@ public class BuffManager : MonoBehaviour
     public Buff allCardValueBuff;
     public Buff allCardCostBuff;
     public Dictionary<Item, Buff> singleCardCostBuff = new Dictionary<Item, Buff>();
+
+    public List<BuffUI> BuffListToBuffUIList(List<Buff> BuffList, GameObject parent)
+    {
+        List<BuffUI> returnList = new List<BuffUI>();
+        foreach(var b in BuffList)
+        {
+            var bUIObj = Instantiate(buffUIPrefab, parent.transform.position, Utils.QI);
+            bUIObj.transform.SetParent(parent.transform);
+            BuffUI bUI = bUIObj.GetComponent<BuffUI>();
+            bUI.Setup(b);
+            returnList.Add(bUI);
+        }
+        return returnList;
+    }
 
     public void InitRouletteBuff()
     {
@@ -124,6 +139,7 @@ public class BuffManager : MonoBehaviour
         rb.mul = mul;
         rb.lastingTime = turns;
         rouletteBuffs.Add(rb);
+        GameManager.Inst.SetRouletteBuffUI();
     }
 
     public void AddPlayerBuff(Buff target, int add, int mul, int turns)
@@ -134,6 +150,7 @@ public class BuffManager : MonoBehaviour
         rb.mul = mul;
         rb.lastingTime = turns;
         playerBuffs.Add(rb);
+        GameManager.Inst.SetPlayerBuffUI();
     }
 
     public void AddEnemyBuff(Buff target, int add, int mul, int turns)
@@ -144,17 +161,19 @@ public class BuffManager : MonoBehaviour
         rb.mul = mul;
         rb.lastingTime = turns;
         enemyBuffs.Add(rb);
+        GameManager.Inst.SetEnemyBuffUI();
     }
 
     public void AddCardBuff(Buff target, int add, int mul, int turns)
-{
-    Buff rb = new Buff();
-    rb.target = target;
-    rb.add = add;
-    rb.mul = mul;
-    rb.lastingTime = turns;
-    cardBuffs.Add(rb);
-}
+    {
+        Buff rb = new Buff();
+        rb.target = target;
+        rb.add = add;
+        rb.mul = mul;
+        rb.lastingTime = turns;
+        cardBuffs.Add(rb);
+        GameManager.Inst.SetPlayerBuffUI();
+    }
 
     public void AddSingleCardCostBuff(Item card, int add, int mul, int turns)
     {
@@ -321,6 +340,7 @@ public class BuffManager : MonoBehaviour
                 rouletteBuffs.RemoveAt(i);
             }
         }
+        GameManager.Inst.SetRouletteBuffUI();
     }
 
     public void ReducePlayerBuffCounter()
@@ -333,6 +353,7 @@ public class BuffManager : MonoBehaviour
                 playerBuffs.RemoveAt(i);
             }
         }
+        GameManager.Inst.SetPlayerBuffUI();
     }
 
     public void ReduceEnemyBuffCounter()
@@ -345,6 +366,7 @@ public class BuffManager : MonoBehaviour
                 enemyBuffs.RemoveAt(i);
             }
         }
+        GameManager.Inst.SetEnemyBuffUI();
     }
 
     public void ReduceCardBuffCounter()
@@ -357,6 +379,7 @@ public class BuffManager : MonoBehaviour
                 cardBuffs.RemoveAt(i);
             }
         }
+        GameManager.Inst.SetPlayerBuffUI();
     }
 
     public void ReduceBuffCounter()

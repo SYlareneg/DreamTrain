@@ -57,9 +57,6 @@ public class DeckBuildManager : MonoBehaviour
     public DreamPieceSO dreamPieceSO;
     public CharacterSO characterSO;
 
-    [SerializeField] public GameObject tooltip;
-    public TMP_Text tooltipTxt;
-
     public bool isLoading;
 
     public void RelicList()
@@ -447,6 +444,7 @@ public class DeckBuildManager : MonoBehaviour
         RelicList();
         DeckListInit();
         NormalCardListSet();
+        backgroundPanel.SetActive(true);
     }
 
     public void EndDeckBuildUI()
@@ -458,7 +456,7 @@ public class DeckBuildManager : MonoBehaviour
 
     void Start()
     {
-        InitializeDeckBuildUI();
+        RelicList();
     }
 
     private void Update()

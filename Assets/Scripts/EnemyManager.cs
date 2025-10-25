@@ -24,6 +24,8 @@ public class EnemyManager : MonoBehaviour
     [Tooltip("액션별 최대 실행값\n(예: 2일 경우 회전 액션은 최대 2칸 회전)")] public int maxActionVal;
 
     [Tooltip("액션 개수")] public int actionNum;
+
+    [SerializeField] GameObject actionBox;
     public List<EnemyAction> actionList;
     public List<EnemyAction> executeActionList;
     static float actionInterval = 0.5f;
@@ -105,6 +107,7 @@ public class EnemyManager : MonoBehaviour
         currentPattern = enemy.phase[phaseNum].patterns[patternNum].pattern;
         patternNum = (patternNum + 1) % enemy.phase[phaseNum].patterns.Count;
         actionList.Clear();
+        actionBox.SetActive(true);
         for (int i = 0; i < currentPattern.Count; i++)
         {
             var newActionObj = Instantiate(actionPrefab, enemyPos.position, Utils.QI);
@@ -129,6 +132,9 @@ public class EnemyManager : MonoBehaviour
                 actionList[i].transform.DOMove(targetPos, 0.7f);
             }
         }
+        Vector3 newScale = actionBox.transform.localScale;
+        newScale.x *= (actionPrefab.GetComponent<SpriteRenderer>().bounds.size.x + actionMargin) * actionList.Count / actionBox.GetComponent<SpriteRenderer>().bounds.size.x;
+        actionBox.transform.localScale = newScale;
     }
 
     // 적 트리거 발동.
@@ -329,6 +335,7 @@ public class EnemyManager : MonoBehaviour
     public void EndEnemyTurn()
     {
         DestroyAllActionObjects();
+        actionBox.SetActive(false);
         TurnManager.OnEnemyTurnEnd?.Invoke();
         RouletteManager.Inst.ActivateRoulette();
         if (GameManager.Inst.gameOverSignal == false)

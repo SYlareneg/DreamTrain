@@ -40,6 +40,10 @@ public class RelicManager : MonoBehaviour
         {
             relicList.Add(rItem);
         }
+        if(GameManager.Inst != null)
+        {
+            GameManager.Inst.RelicList();
+        }
     }
 
     public void ActivateRelics()

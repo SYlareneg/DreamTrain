@@ -15,6 +15,7 @@ public class RouletteManager : MonoBehaviour
 
     [SerializeField] GameObject roulettePiecePrefab;
     [SerializeField] RouletteSO rouletteSO;
+    [SerializeField] GameObject rouletteArea;
 
     public static int rouletteNum = 12;
 
@@ -50,7 +51,7 @@ public class RouletteManager : MonoBehaviour
             spinDirection = isClockwise ? 1 : 0;
             spinFlag = true;
             TurnManager.OnRouletteSpin?.Invoke(pieces);
-            var newRotation = this.transform.rotation;
+            var newRotation = rouletteArea.transform.rotation;
             if (isClockwise)
             {
                 pieces *= -1;
@@ -58,7 +59,7 @@ public class RouletteManager : MonoBehaviour
             newRotation *= Quaternion.Euler(0f, 0f, 360f * pieces / rouletteNum);
             playerLookat = (playerLookat + pieces + rouletteNum) % rouletteNum;
             enemyLookat = (enemyLookat + pieces + rouletteNum) % rouletteNum;
-            this.transform.DORotateQuaternion(newRotation, spinDelay).OnComplete(() => spinFlag = false);
+            rouletteArea.transform.DORotateQuaternion(newRotation, spinDelay).OnComplete(() => spinFlag = false);
         }
 
     }
@@ -168,9 +169,9 @@ public class RouletteManager : MonoBehaviour
 
         for (int i = 0; i < rouletteNum; i++)
         {
-            var roulettePiece = Instantiate(roulettePiecePrefab, this.transform.position, Utils.QI);
+            var roulettePiece = Instantiate(roulettePiecePrefab, Vector3.zero, Utils.QI);
             roulettePiece.transform.rotation *= Quaternion.Euler(0f, 0f, -180f / rouletteNum - 360f * i / rouletteNum);
-            roulettePiece.transform.SetParent(this.transform, true);
+            roulettePiece.transform.SetParent(rouletteArea.transform, false);
             roulettePieces[i] = roulettePiece.GetComponent<RoulettePiece>();
             roulettePieces[i].Setup(EnemyManager.Inst.enemy.roulettePattern[i]);
         }

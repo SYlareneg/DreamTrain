@@ -29,7 +29,7 @@ public class CardManager : MonoBehaviour
     public List<Item> itemDiscard;
     public Card selectedCard;
 
-    bool isMyCardDrag;
+    public bool isMyCardDrag;
     bool onMyCardArea;
     public bool duplicateMode;
 
@@ -215,7 +215,7 @@ public class CardManager : MonoBehaviour
     void CardAlignment()
     {
         List<PRS> originCardPRSs = new List<PRS>();
-        originCardPRSs = RoundAlignment(myCardLeft, myCardRight, myCards.Count, 0.5f, new Vector3(6, 7.2f, 1));
+        originCardPRSs = RoundAlignment(myCardLeft, myCardRight, myCards.Count, 0.5f, cardPrefab.transform.localScale);
 
         var targetCards = myCards;
         for(int i = 0; i < targetCards.Count; i++)
@@ -279,6 +279,10 @@ public class CardManager : MonoBehaviour
         {
             return;
         }
+        if (isMyCardDrag)
+        {
+            return;
+        }
 
         selectedCard = card;
         EnlargeCard(true, card);
@@ -320,7 +324,11 @@ public class CardManager : MonoBehaviour
 
     public void CardMouseExit(Card card)
     {
-        if (!onMyCardArea)
+        if (eCardState == ECardState.Nothing)
+        {
+            return;
+        }
+        if (isMyCardDrag)
         {
             return;
         }
@@ -335,7 +343,7 @@ public class CardManager : MonoBehaviour
 
     public void CardMouseDown(Card card)
     {
-        if(eCardState != ECardState.CanMouseDrag)
+        if (eCardState != ECardState.CanMouseDrag)
         {
             return;
         }
@@ -433,12 +441,12 @@ public class CardManager : MonoBehaviour
             return;
         }
         if (TurnManager.Inst.isLoading)
-            {
-                eCardState = ECardState.Nothing;
-            }
-            else
-            {
-                eCardState = ECardState.CanMouseDrag;
-            }
+        {
+            eCardState = ECardState.Nothing;
+        }
+        else
+        {
+            eCardState = ECardState.CanMouseDrag;
+        }
     }
 }

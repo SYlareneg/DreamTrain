@@ -4,13 +4,28 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.EventSystems;
 
-public class Tooltip : MonoBehaviour
+public class Tooltip : MonoBehaviour, IPointerEnterHandler
 {
-    public void SetupTooltip(Vector3 tooltipPos, string tooltipTxt)
+    [SerializeField] GameObject tooltipPrefab;
+    GameObject tooltip;
+    RectTransform rect;
+    public string tooltipTxt;
+    [SerializeField] Vector2 offset;
+
+    public void SetupTooltip()
     {
-        DeckBuildManager.Inst.tooltip.transform.position = tooltipPos;
-        var tooltipRect = DeckBuildManager.Inst.tooltip.GetComponent<RectTransform>();
+        if (tooltip != null) return;
+        Vector3 newPos = Input.mousePosition;
+        newPos.x += offset.x;
+        newPos.y += offset.y;
+        tooltip = Instantiate(tooltipPrefab, newPos, Utils.QI);
+        Canvas canvas = FindObjectOfType<Canvas>();
+        tooltip.transform.SetParent(canvas.transform);
+        tooltip.transform.SetAsLastSibling();
+        tooltip.GetComponent<Image>().raycastTarget = false;
+        var tooltipRect = tooltip.GetComponent<RectTransform>();
 
         Vector3[] corners = new Vector3[4];
         tooltipRect.GetWorldCorners(corners);
@@ -26,12 +41,31 @@ public class Tooltip : MonoBehaviour
         else if (outBottom) pivot.y = 0;
         tooltipRect.pivot = pivot;
 
-        DeckBuildManager.Inst.tooltipTxt.text = tooltipTxt;
-        DeckBuildManager.Inst.tooltip.SetActive(true);
+        TMP_Text tooltipTMP = tooltip.GetComponentInChildren<TMP_Text>();
+        tooltipTMP.text = tooltipTxt;
+        tooltip.SetActive(true);
     }
 
     public void HideTooltip()
     {
-        DeckBuildManager.Inst.tooltip.SetActive(false);
+        tooltip.SetActive(false);
+        Destroy(tooltip);
+        tooltip = null;
+    }
+
+    public void OnPointerEnter(PointerEventData data)
+    {
+        SetupTooltip();
+    }
+
+    private void Start()
+    {
+        rect = GetComponent<RectTransform>();
+    }
+
+    private void Update()
+    {
+        if (RectTransformUtility.RectangleContainsScreenPoint(rect, Input.mousePosition, null)) return;
+        if(tooltip != null) HideTooltip();
     }
 }

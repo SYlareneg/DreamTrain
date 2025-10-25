@@ -5,9 +5,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEditor;
-using UnityEngine.EventSystems;
 
-public class RelicUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class RelicUI : MonoBehaviour
 {
     [SerializeField] Image backgroundImg;
     [SerializeField] Image relicImg;
@@ -29,23 +28,7 @@ public class RelicUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (relicImg) relicImg.sprite = rItem.relicSprite;
         if (relicNameTMP) relicNameTMP.text = rItem.relicName;
         if (relicTextTMP) relicTextTMP.text = rItem.relicTxt;
-    }
-
-    public void OnPointerEnter(PointerEventData data)
-    {
-        var tooltipComponent = GetComponent<Tooltip>();
-        if (tooltipComponent)
-        {
-            tooltipComponent.SetupTooltip(this.transform.position, relicItem.relicTxt);
-        }
-    }
-
-    public void OnPointerExit(PointerEventData data)
-    {
-        var tooltipComponent = GetComponent<Tooltip>();
-        if (tooltipComponent)
-        {
-            tooltipComponent.HideTooltip();
-        }
+        Tooltip tooltip = GetComponent<Tooltip>();
+        if (tooltip) tooltip.tooltipTxt = rItem.relicTxt;
     }
 }
