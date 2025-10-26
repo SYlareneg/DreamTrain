@@ -135,65 +135,65 @@ public class Card : MonoBehaviour
         bool isCardUsed = true;
         switch (item.name)
         {
-            case "Turn Card 1":
+            case "회전 카드 1":
                 RouletteManager.Inst.Spin(true, 3);
                 break;
-            case "Turn Card 2":
+            case "회전 카드 2":
                 RouletteManager.Inst.Spin(true, 2);
                 break;
-            case "Turn Card 3":
+            case "회전 카드 3":
                 RouletteManager.Inst.Spin(false, 3);
                 break;
-            case "Turn Card 4":
+            case "회전 카드 4":
                 RouletteManager.Inst.Spin(false, 2);
                 break;
-            case "Turn Card 5":
+            case "회전 카드 5":
                 RouletteManager.Inst.Spin(true, 1);
                 break;
-            case "Savior":
+            case "구원":
                 TurnManager.Inst.TakeDmg(-TurnManager.Inst.maxHealth / 2);
                 break;
-            case "Spirit":
+            case "혼령":
                 TurnManager.Inst.IncreaseCost(2);
                 TurnManager.Inst.TakeDmg(2);
                 break;
-            case "Enchant Heal":
+            case "회복 부여":
                 isCardUsed = RouletteManager.Inst.EnchantRoulette(false, ERouletteType.Heal, 3);
                 break;
-            case "Vampiric Empowerment":
+            case "흡혈 부여":
                 isCardUsed = RouletteManager.Inst.EnchantRoulette(true, ERouletteType.Lifesteal, 6);
                 break;
-            case "Blood Flow":
+            case "혈액 순환":
                 RouletteManager.Inst.Spin(true, 1);
                 TurnManager.Inst.TakeDmg(1);
                 Item tempItem = new Item();
                 tempItem.SetItem(item);
-                tempItem.name = "Blood Flow (Vanish)";
+                tempItem.name = "혈액 순환 (소멸)";
                 tempItem.isVanish = true;
                 CardManager.Inst.CreateCardInHand(tempItem);
                 break;
-            case "Blood Flow (Vanish)":
+            case "혈액 순환 (소멸)":
                 RouletteManager.Inst.Spin(true, 1);
                 TurnManager.Inst.TakeDmg(1);
                 break;
-            case "Blood, My Power":
+            case "피는 나의 힘":
                 TurnManager.Inst.TakeDmg(2);
                 TurnManager.Inst.IncreaseCost(1);
                 break;
-            case "Emergency Transfusion":
+            case "긴급 수혈":
                 TurnManager.Inst.TakeDmg(-2);
                 break;
-            case "Humanist":
+            case "휴머니스트":
                 BuffManager.Inst.AddPlayerBuff(BuffManager.Inst.damageBuff, -3, 1, 1);
                 break;
-            case "Blue Blood":
+            case "블루 블러드":
                 BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.totalRouletteBuff_Lifesteal_Dmg, 0, 3, 2);
                 BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.totalRouletteBuff_Lifesteal_Heal, 0, 0, 2);
                 break;
-            case "Feast Time":
+            case "만찬 시간":
                 BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.totalRouletteBuff_Lifesteal_Dmg, 0, 2, 2);
                 break;
-            case "Crimson Wings":
+            case "핏빛 날개":
                 for (int i = 0; i < 4; i++)
                 {
                     int tempIdx = (RouletteManager.Inst.enemyLookat + i) % RouletteManager.rouletteNum;
@@ -204,10 +204,10 @@ public class Card : MonoBehaviour
                 }
                 RouletteManager.Inst.Spin(false, 4);
                 break;
-            case "Magic Box":
+            case "마술 상자":
                 isCardUsed = RouletteManager.Inst.EnchantRoulette(false, ERouletteType.MagicBox, 12);
                 break;
-            case "Magic-Dove":
+            case "마술-비둘기":
                 bool checkMagic = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].roulette.type == ERouletteType.MagicBox;
                 TurnManager.Inst.EnemyTakeDmg(1);
                 if (checkMagic)
@@ -215,7 +215,7 @@ public class Card : MonoBehaviour
                     EnemyManager.Inst.RemoveAction(0);
                 }
                 break;
-            case "Magic-Cards":
+            case "마술-카드":
                 checkMagic = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.type == ERouletteType.MagicBox;
                 RouletteManager.Inst.Spin(true, 1);
                 if (checkMagic)
@@ -224,7 +224,7 @@ public class Card : MonoBehaviour
                     CardManager.Inst.duplicateMode = true;
                 }
                 break;
-            case "Magic-Sawing":
+            case "마술-절단":
                 checkMagic = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].roulette.type == ERouletteType.MagicBox;
                 TurnManager.Inst.EnemyTakeDmg(2);
                 if (checkMagic)
@@ -232,7 +232,7 @@ public class Card : MonoBehaviour
                     TurnManager.Inst.enemyShieldHealth = 0;
                 }
                 break;
-            case "Magic-Teleportation":
+            case "마술-순간이동":
                 checkMagic = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.type == ERouletteType.MagicBox;
                 RouletteManager.Inst.Spin(true, 2);
                 if (checkMagic)
@@ -240,7 +240,7 @@ public class Card : MonoBehaviour
                     TurnManager.Inst.GetShield(false, 12);
                 }
                 break;
-            case "Magic-Prediction":
+            case "마술-예언":
                 Action aceNull = null;
                 aceNull = () =>
                 {
@@ -267,10 +267,10 @@ public class Card : MonoBehaviour
                 };
                 TurnManager.OnPlayerTurnStart += aceNull;
                 break;
-            case "Sleight of Hand":
+            case "재빠른 손놀림":
                 StartCoroutine(TurnManager.Inst.Draw(1, null));
                 break;
-            case "ESP-Prediction":
+            case "초능력-예언":
                 Action fullCost = null;
                 fullCost = () =>
                 {
@@ -282,10 +282,10 @@ public class Card : MonoBehaviour
                 };
                 TurnManager.OnPlayerTurnStart += fullCost;
                 break;
-            case "ESP-Telekinesis":
+            case "초능력-염력":
                 RouletteManager.Inst.Spin(true, TurnManager.Inst.nowCost);
                 break;
-            case "Ace":
+            case "에이스":
                 RouletteManager.Inst.TriggerRoulette();
                 TurnManager.OnPlayerTrigger?.Invoke();
                 Action endTrigger = null;
@@ -300,7 +300,7 @@ public class Card : MonoBehaviour
         }
         if (isCardUsed)
         {
-            Debug.Log(item.name + " 사용!");
+            Debug.Log(item.name + " 카드 사용!");
         }
         return isCardUsed;
     }

@@ -176,7 +176,7 @@ public class GameManager : MonoBehaviour
         endTurnBtn.SetActive(false);
         yield return new WaitForSeconds(0.5f);
 
-        resultPanel.Show(isMyWin ? "Win" : "Lose");
+        resultPanel.Show(isMyWin ? "승리" : "패배");
     }
     
     // 화면 중심 안내 UI 호출

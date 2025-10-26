@@ -11,11 +11,11 @@ public class PassiveManager : MonoBehaviour
         if (TurnManager.Inst.characterSO.personaPiece == null) return;
         switch (TurnManager.Inst.characterSO.personaPiece.persona.name)
         {
-            case "Thicker than Water":
+            case "물보다 진한 피":
                 TurnManager.Inst.playerTriggerMaxCnt = 3;
                 TurnManager.OnRouletteActivate += () =>
                 {
-                    if (TurnManager.Inst.characterSO.personaPiece.persona.name == "Thicker than Water")
+                    if (TurnManager.Inst.characterSO.personaPiece.persona.name == "물보다 진한 피")
                     {
                         var playerPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat];
                         var enemyPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat];
@@ -34,26 +34,27 @@ public class PassiveManager : MonoBehaviour
                             TurnManager.Inst.TriggerPlayerPassive(1);
                         }
                     }
-                    else if (TurnManager.Inst.characterSO.personaPiece.persona.name == "Cursed Blood")
+                    else if (TurnManager.Inst.characterSO.personaPiece.persona.name == "저주받은 피")
                     {
                         if (RouletteManager.Inst.playerLookat == RouletteManager.Inst.triggerPos || RouletteManager.Inst.enemyLookat == RouletteManager.Inst.triggerPos)
                         {
-                            TurnManager.Inst.characterSO.personaPiece.persona.name = "Thicker than Water";
+                            TurnManager.Inst.characterSO.personaPiece.persona.name = "물보다 진한 피";
                             TurnManager.Inst.turnCost++;
                         }
                     }
                 };
                 TurnManager.OnRouletteTrigger += () =>
                 {
-                    TurnManager.Inst.characterSO.personaPiece.persona.name = "Cursed Blood";
+                    TurnManager.Inst.characterSO.personaPiece.persona.name = "저주받은 피";
+                    TurnManager.Inst.characterSO.personaPiece.persona.text = "플레이어 턴 시작 시 행동력을 1 잃습니다. 플레이어의 트리거 효과가 해제되면 효과가 제거됩니다.";
                     TurnManager.Inst.turnCost--;
                 };
                 break;
-            case "Palming Cards":
+            case "카드 숨기기":
                 TurnManager.OnGameStart += () =>
                 {
                     Item ace = new Item();
-                    ace.name = "Ace";
+                    ace.name = "에이스";
                     ace.cost = 1;
                     ace.type = CardType.Effect;
                     ace.element = EPassiveType.Normal;
@@ -61,7 +62,7 @@ public class PassiveManager : MonoBehaviour
                     ace.isVolatile = false;
                     ace.isVanish = false;
                     ace.isRemain = false;
-                    ace.text = "Trigger player slot. This trigger always ends at end of turn.";
+                    ace.text = "트리거합니다. 이 카드 효과로 트리거된 12번 슬롯은 턴 종료시 비활성화됩니다.";
                     ace.cardValues = new List<int>();
                     ace.num = 1;
                     CardManager.Inst.itemDeck.Add(ace);
@@ -97,7 +98,7 @@ public class PassiveManager : MonoBehaviour
         RouletteItem rItem = new RouletteItem();
         switch (TurnManager.Inst.characterSO.shadowPiece.shadow.name)
         {
-            case "Unleashed Instinct":
+            case "해방된 본능":
                 rItem.type = ERouletteType.Attack;
                 rItem.value = 8;
                 RouletteManager.Inst.triggerPiece = rItem;
@@ -110,12 +111,11 @@ public class PassiveManager : MonoBehaviour
                 {
                     if (RouletteManager.Inst.roulettePieces[RouletteManager.Inst.triggerPos].isTriggered == true)
                     {
-                        Debug.Log("Trigger buff");
                         BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.singleRouletteBuff_Trigger, x * 8, 1, 1);
                     }
                 };
                 break;
-            case "Exposure":
+            case "마술 해체":
                 rItem.type = ERouletteType.Attack;
                 rItem.value = 0;
                 RouletteManager.Inst.triggerPiece = rItem;

@@ -11,7 +11,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler
     [SerializeField] GameObject tooltipPrefab;
     GameObject tooltip;
     RectTransform rect;
-    public string tooltipTxt;
+    public string tooltipTitle, tooltipTxt;
     [SerializeField] Vector2 offset;
 
     public void SetupTooltip()
@@ -41,8 +41,9 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler
         else if (outBottom) pivot.y = 0;
         tooltipRect.pivot = pivot;
 
-        TMP_Text tooltipTMP = tooltip.GetComponentInChildren<TMP_Text>();
-        tooltipTMP.text = tooltipTxt;
+        TMP_Text[] tooltipTMP = tooltip.GetComponentsInChildren<TMP_Text>();
+        tooltipTMP[0].text = tooltipTitle;
+        tooltipTMP[1].text = tooltipTxt;
         tooltip.SetActive(true);
     }
 

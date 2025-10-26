@@ -65,17 +65,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Passive Name
+  m_text: "\uD328\uC2DC\uBE0C \uC774\uB984"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 366155e3dbfcce3409668f4821da9ade, type: 2}
+  m_sharedMaterial: {fileID: -7959174977532065633, guid: 366155e3dbfcce3409668f4821da9ade, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -227,9 +227,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PassiveUI
   passiveImage: {fileID: 6211296744594471981}
   passiveNameTMP: {fileID: 2463337273982660459}
-  passive:
-    type: 0
-    sprite: {fileID: 0}
+  dreamPiece:
     name: 
-    text: 
+    persona:
+      type: 0
+      sprite: {fileID: 0}
+      name: 
+      text: 
+    shadow:
+      type: 0
+      sprite: {fileID: 0}
+      name: 
+      text: 
+    cards: []
+  pType: 0
   isSelected: 0

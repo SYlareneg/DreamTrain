@@ -129,11 +129,11 @@ public class DeckBuildManager : MonoBehaviour
 
         if (newDP == null || newDP.name == null)
         {
-            cardListTitleTMP.text = "Available Cards";
+            cardListTitleTMP.text = "카드 풀";
         }
         else
         {
-            cardListTitleTMP.text = "Available Cards for " + newDP.name;
+            cardListTitleTMP.text = newDP.name + " 카드 풀";
         }
 
         if (newDP == null || newDP.cards == null) return;
@@ -176,7 +176,7 @@ public class DeckBuildManager : MonoBehaviour
             availableCardList.Add(card);
         }
 
-        cardListTitleTMP.text = "Available Cards for Prim";
+        cardListTitleTMP.text = "공용 카드 풀";
     }
 
     public void PassiveList(EPassiveType pType)

@@ -27,7 +27,11 @@ public class RelicUI : MonoBehaviour
         this.relicItem1 = rItem1;
         if (relicImg1) relicImg1.sprite = rItem1.relicSprite;
         Tooltip tooltip = relicMask1.GetComponent<Tooltip>();
-        if (tooltip) tooltip.tooltipTxt = rItem1.relicName + ": " + rItem1.relicTxt;
+        if (tooltip)
+        {
+            tooltip.tooltipTitle = rItem1.relicName;
+            tooltip.tooltipTxt = rItem1.relicTxt;
+        }
 
         if (rItem2 == null)
         {
@@ -39,7 +43,11 @@ public class RelicUI : MonoBehaviour
         {
             if (relicImg2) relicImg2.sprite = rItem2.relicSprite;
             Tooltip tooltip2 = relicMask2.GetComponent<Tooltip>();
-            if (tooltip2) tooltip2.tooltipTxt = rItem2.relicName + ": " + rItem2.relicTxt;
+            if (tooltip2)
+            {
+                tooltip2.tooltipTitle = rItem2.relicName;
+                tooltip2.tooltipTxt = rItem2.relicTxt;
+            }
         }
     }
 }

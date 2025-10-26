@@ -43,7 +43,7 @@ public class EnemyManager : MonoBehaviour
         TurnManager.Inst.enemyMaxHealth = enemy.health;
         TurnManager.Inst.enemyCurHealth = enemy.health;
         actionNum = enemy.actionNum;
-        switch (enemy.passive)
+        /*switch (enemy.passive)
         {
             case "Humanist":
                 BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.totalRouletteBuff_Attack, -3, 1, -1);
@@ -64,7 +64,7 @@ public class EnemyManager : MonoBehaviour
                 BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.totalRouletteBuff_Drain_Dmg, 1, 1, -1);
                 BuffManager.Inst.AddEnemyBuff(BuffManager.Inst.enemyDrainBuff, 1, 1, -1);
                 break;
-        }
+        }*/
         TurnManager.Inst.enemyTriggerMaxCnt = enemy.triggerNum;
         TurnManager.Inst.enemyTriggerCnt = 0;
         phaseNum = 0;

@@ -13,19 +13,26 @@ MonoBehaviour:
   m_Name: DreamPieceSO
   m_EditorClassIdentifier: Assembly-CSharp::DreamPieceSO
   dreamPieces:
-  - name: Vampire's Dream
+  - name: "\uBC40\uD30C\uC774\uC5B4\uC758 \uAFC8"
     persona:
       type: 1
       sprite: {fileID: 1599388452501240626, guid: f2660930dd1408c43b1357f97f2fdf1e, type: 3}
-      name: Thicker than Water
-      text: text
+      name: "\uBB3C\uBCF4\uB2E4 \uC9C4\uD55C \uD53C"
+      text: "\uACF5\uACA9 \uB8F0\uB81B\uC73C\uB85C \uD53C\uD574\uB97C \uC785\uD788\uBA74
+        \uC900 \uB370\uBBF8\uC9C0\uC758 1/3(\uC18C\uC218\uC810 \uBC84 \uB9BC)\uB9CC\uD07C
+        \uCCB4\uB825\uC744 \uD68C\uBCF5\uD558\uACE0, \uD761\uD608 \uCE74\uC6B4\uD2B8\uB97C
+        1 \uC5BB\uC2B5\uB2C8\uB2E4. \uD761\uD608 \uCE74\uC6B4\uD2B8\uB97C 3\uAC1C
+        \uC5BB\uC73C\uBA74 \uD2B8\uB9AC\uAC70\uD558\uACE0 '\uC800\uC8FC\uBC1B\uC740
+        \uD53C'\uB85C \uC804\uD658\uB429\uB2C8\uB2E4. "
     shadow:
       type: 2
       sprite: {fileID: 1599388452501240626, guid: f2660930dd1408c43b1357f97f2fdf1e, type: 3}
-      name: Unleashed Instinct
-      text: text
+      name: "\uD574\uBC29\uB41C \uBCF8\uB2A5"
+      text: "8\uC758 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4. \uD134 \uC885\uB8CC\uC2DC
+        \uB0A8\uC544\uC788\uB358 \uD589\uB3D9\uB825 1\uB2F9 8\uC758 \uCD94\uAC00
+        \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
     cards:
-    - name: Vampiric Empowerment
+    - name: "\uD761\uD608 \uBD80\uC5EC"
       cost: 2
       type: 1
       element: 0
@@ -34,10 +41,11 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Enchant 'lifesteal' on enemy roulette slot.
+      text: "\uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
+        '\uD761\uD608' \uD6A8\uACFC\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4."
       cardValues: 
       num: 2
-    - name: Blood Flow
+    - name: "\uD608\uC561 \uC21C\uD658"
       cost: 0
       type: 0
       element: 0
@@ -46,10 +54,12 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Spin roulette clockwise {cardValues[0]} slot, lose {cardValues[1]} health.
-      cardValues: 0100000001000000
+      text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C \uD55C \uCE78
+        \uD68C\uC804\uC2DC\uD0A4\uACE0, \uCCB4\uB825\uC744 1 \uC783\uC2B5\uB2C8\uB2E4.
+        \uC989\uC2DC \uCE74\uB4DC\uB97C \uBCF5\uC81C\uD574 \uC190\uD328\uC5D0 \uCD94\uAC00\uD569\uB2C8\uB2E4."
+      cardValues: 
       num: 2
-    - name: Blood, My Power
+    - name: "\uD53C\uB294 \uB098\uC758 \uD798"
       cost: 0
       type: 2
       element: 0
@@ -58,10 +68,10 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Lose {cardValues[0]} health, gain {cardValues[1]} cost.
-      cardValues: 0200000001000000
+      text: "\uCCB4\uB825\uC744 2 \uC783\uACE0, \uD589\uB3D9\uB825\uC744 1 \uC5BB\uC2B5\uB2C8\uB2E4."
+      cardValues: 
       num: 2
-    - name: Emergency Transfusion
+    - name: "\uAE34\uAE09 \uC218\uD608"
       cost: 1
       type: 2
       element: 0
@@ -70,10 +80,10 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Heal {cardValues[0]} health.
-      cardValues: 02000000
+      text: "\uCCB4\uB825\uC744 2 \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+      cardValues: 
       num: 2
-    - name: Humanist
+    - name: "\uD734\uBA38\uB2C8\uC2A4\uD2B8"
       cost: 2
       type: 2
       element: 1
@@ -82,10 +92,11 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Reduce all damages of attacks by {cardValues[0]}.
-      cardValues: 03000000
+      text: "1\uD134 \uB3D9\uC548 \uBAA8\uB4E0 \uACF5\uACA9 \uB8F0\uB81B\uACFC \uACF5\uACA9
+        \uD589\uB3D9\uC758 \uB370\uBBF8\uC9C0\uB97C 3 \uAC10\uC18C\uC2DC\uD0B5\uB2C8\uB2E4."
+      cardValues: 
       num: 2
-    - name: Blue Blood
+    - name: "\uBE14\uB8E8 \uBE14\uB7EC\uB4DC"
       cost: 3
       type: 2
       element: 1
@@ -94,11 +105,12 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Your 'lifesteal' slots deal {cardValues[0]} times more damage, but can't
-        heal for {cardValues[1]} turns.
-      cardValues: 0300000002000000
+      text: "2\uD134 \uB3D9\uC548 '\uD761\uD608' \uB8F0\uB81B\uC73C\uB85C \uCCB4\uB825\uC744
+        \uD68C\uBCF5\uD560 \uC218 \uC5C6\uAC8C \uB418\uB294 \uB300\uC2E0, \uAC00\uD558\uB294
+        \uB370\uBBF8\uC9C0\uAC00 3\uBC30\uAC00 \uB429\uB2C8\uB2E4."
+      cardValues: 
       num: 2
-    - name: Feast Time
+    - name: "\uB9CC\uCC2C \uC2DC\uAC04"
       cost: 3
       type: 2
       element: 2
@@ -107,11 +119,11 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Your 'lifesteal' slots deal {cardValues[0]} times more damage for {cardValues[1]}
-        turns.
-      cardValues: 0200000002000000
+      text: "2\uD134 \uB3D9\uC548 '\uD761\uD608' \uB8F0\uB81B\uC73C\uB85C \uAC00\uD558\uB294
+        \uB370\uBBF8\uC9C0\uAC00 2\uBC30\uAC00 \uB429\uB2C8\uB2E4."
+      cardValues: 
       num: 2
-    - name: Crimson Wings
+    - name: "\uD54F\uBE5B \uB0A0\uAC1C"
       cost: 2
       type: 0
       element: 2
@@ -120,23 +132,30 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Spin roulette counter-clockwise {cardValues[0]} slots. Activate all 'lifesteal'
-        slots in the way.
-      cardValues: 04000000
+      text: "\uB8F0\uB81B\uC744 \uBC18\uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 4\uCE78
+        \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4. \uC2A4\uD0AC\uC758 \uD68C\uC804\uC73C\uB85C
+        \uD761\uD608 \uB8F0\uB81B\uC774 \uC801\uC758 \uD6A8 \uACFC \uC874\uC744 \uC9C0\uB098\uAC00\uB294
+        \uACBD\uC6B0 \uB8F0\uB81B\uC758 \uD6A8\uACFC\uB97C \uC989\uC2DC \uC801\uC6A9\uD569\uB2C8\uB2E4."
+      cardValues: 0400000004000000
       num: 2
-  - name: Magician's Dream
+  - name: "\uB9C8\uC220\uC0AC\uC758 \uAFC8"
     persona:
       type: 1
       sprite: {fileID: 1599388452501240626, guid: f2660930dd1408c43b1357f97f2fdf1e, type: 3}
-      name: Palming Cards
-      text: text
+      name: "\uCE74\uB4DC \uC228\uAE30\uAE30"
+      text: "\uAC8C\uC784 \uC2DC\uC791 \uC2DC \uB371\uC5D0 \uC5D0\uC774\uC2A4 \uCE74\uB4DC\uB97C
+        \uD55C \uC7A5 \uCD94\uAC00\uD569\uB2C8\uB2E4. \uC5D0\uC774\uC2A4 \uCE74\uB4DC\uB97C
+        \uC0AC\uC6A9\uD558\uC5EC \uD2B8\uB9AC\uAC70\uD569\uB2C8\uB2E4. "
     shadow:
       type: 2
       sprite: {fileID: 1599388452501240626, guid: f2660930dd1408c43b1357f97f2fdf1e, type: 3}
-      name: Exposure
-      text: text
+      name: "\uB9C8\uC220 \uD574\uCCB4"
+      text: "\uACF5\uACA9\uACFC \uC218\uBE44\uB97C \uC81C\uC678\uD558\uACE0 \uB8F0\uB81B\uC5D0
+        \uBD80\uC5EC\uB41C \uBAA8\uB4E0 \uD6A8\uACFC\uB97C \uC81C\uAC70\uD569\uB2C8\uB2E4.
+        \uC81C\uAC70\uD55C \uBD80\uC5EC \uD6A8\uACFC \uAC1C\uC218 x 7\uC758 \uB370\uBBF8\uC9C0\uB97C
+        \uC90D\uB2C8\uB2E4."
     cards:
-    - name: Magic Box
+    - name: "\uB9C8\uC220 \uC0C1\uC790"
       cost: 1
       type: 1
       element: 0
@@ -145,10 +164,11 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Enchant a 'magic-box' on player roulette slot.
+      text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
+        '\uB9C8\uC220\uC0C1\uC790'\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4"
       cardValues: 
       num: 2
-    - name: Magic-Dove
+    - name: "\uB9C8\uC220-\uBE44\uB458\uAE30"
       cost: 1
       type: 2
       element: 0
@@ -157,11 +177,13 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Give {cardValues[0]} damage to enemy, use 'magic-box' to block enemy's
-        next first action.
-      cardValues: 01000000
+      text: "1\uB370\uBBF8\uC9C0\uB97C \uC8FC\uACE0, \uB9C8\uC220\uC744 \uD3BC\uCCD0
+        \uC801\uC758 \uB2E4\uC74C \uD134 \uCCAB\uBC88\uC9F8 \uD589\uB3D9\uC744 \uBC29\uD574\uD569\uB2C8\uB2E4.
+        \uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uB9C8 \uC220 \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74
+        \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4."
+      cardValues: 
       num: 2
-    - name: Magic-Cards
+    - name: "\uB9C8\uC220-\uCE74\uB4DC"
       cost: 1
       type: 0
       element: 0
@@ -170,11 +192,14 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Spin roulette clockwise {cardValues[0]} slot, use 'magic-box' to duplicate
-        {cardValues[1]} card in hand.
-      cardValues: 0100000001000000
+      text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 1\uCE78 \uD68C\uC804\uC2DC\uD0A4\uACE0,
+        \uB9C8\uC220\uC744 \uD3BC\uCCD0 \uD328\uC758 \uCE74\uB4DC \uD55C \uC7A5\uC744
+        \uC120\uD0DD\uD574 \uBCF5\uC81C\uD569\uB2C8\uB2E4. \uD50C\uB808\uC774\uC5B4\uC758
+        \uD6A8\uACFC \uC874\uC5D0 \uB9C8\uC220 \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74
+        \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4."
+      cardValues: 
       num: 2
-    - name: Magic-Sawing
+    - name: "\uB9C8\uC220-\uC808\uB2E8"
       cost: 2
       type: 2
       element: 0
@@ -183,11 +208,13 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Give {cardValues[0]} damage to enemy, use 'magic-box' to destroy all
-        of enemy's armor.
-      cardValues: 02000000
+      text: "\uC801\uC5D0\uAC8C 2 \uB370\uBBF8\uC9C0\uB97C \uC8FC\uACE0, \uB9C8\uC220\uC744
+        \uD3BC\uCCD0 \uBC29\uC5B4\uB3C4\uB97C \uBAA8\uB450 \uD30C\uAD34\uD569\uB2C8\uB2E4.
+        \uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uB9C8\uC220 \uC0C1 \uC790\uAC00 \uC5C6\uB2E4\uBA74
+        \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4."
+      cardValues: 
       num: 2
-    - name: Magic-Teleportation
+    - name: "\uB9C8\uC220-\uC21C\uAC04\uC774\uB3D9"
       cost: 2
       type: 0
       element: 0
@@ -196,11 +223,13 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Spin roulette clockwise {cardValues[0]} slots, use 'magic-box' to gain
-        {cardValues[1]} shield.
-      cardValues: 020000000c000000
+      text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 2\uCE78 \uD68C\uC804\uC2DC\uD0A4\uACE0,
+        \uB9C8\uC220\uC744 \uD3BC\uCCD0 \uBC29\uC5B4\uB3C4\uB97C 12 \uBD80\uC5EC\uD569\uB2C8\uB2E4.
+        \uD50C\uB808\uC774\uC5B4\uC758 \uD6A8\uACFC \uC874\uC5D0 \uB9C8\uC220 \uC0C1\uC790\uAC00
+        \uC5C6\uB2E4\uBA74 \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4. "
+      cardValues: 
       num: 2
-    - name: Magic-Prediction
+    - name: "\uB9C8\uC220-\uC608\uC5B8"
       cost: 3
       type: 2
       element: 1
@@ -209,11 +238,14 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Next turn, your 'Ace' card costs {cardValues[0]}, and it restores all
-        your costs when you use it.
-      cardValues: 00000000
+      text: "\uB2E4\uC74C \uD134\uC5D0 '\uC5D0\uC774\uC2A4' \uCE74\uB4DC\uB97C \uC0AC\uC6A9\uD558\uBA74
+        \uCF54\uC2A4\uD2B8\uB97C \uC18C\uBAA8\uD558\uC9C0 \uC54A\uACE0, \uD589\uB3D9\uB825\uC744
+        \uCD5C\uB300\uB85C \uD68C\uBCF5\uD569\uB2C8\uB2E4. \uC790\uC2E0\uC758 \uD6A8\uACFC
+        \uC874\uC5D0 \uB9C8\uC220 \uC0C1\uC790\uAC00 \uC788\uB2E4\uBA74 \uC774 \uCE74\uB4DC\uC758
+        \uC18C\uBAA8 \uCF54\uC2A4\uD2B8\uAC00 2 \uAC10\uC18C\uD569\uB2C8\uB2E4."
+      cardValues: 
       num: 2
-    - name: Sleight of Hand
+    - name: "\uC7AC\uBE60\uB978 \uC190\uB180\uB9BC"
       cost: 1
       type: 2
       element: 1
@@ -222,10 +254,10 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Draw {cardValues[0]} card from deck.
-      cardValues: 01000000
+      text: "\uB371\uC5D0\uC11C \uCE74\uB4DC\uB97C 1\uC7A5 \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
+      cardValues: 
       num: 2
-    - name: ESP-Prediction
+    - name: "\uCD08\uB2A5\uB825-\uC608\uC5B8"
       cost: 2
       type: 2
       element: 2
@@ -234,10 +266,11 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Next turn, when triggered, restore all your costs.
+      text: "\uB2E4\uC74C \uD134\uC5D0 12\uBC88 \uC2AC\uB86F\uC774 \uD2B8\uB9AC\uAC70\uB418\uBA74,
+        \uC989\uC2DC \uD589\uB3D9\uB825\uC744 \uCD5C\uB300\uB85C \uD68C\uBCF5\uD569\uB2C8\uB2E4."
       cardValues: 
       num: 2
-    - name: ESP-Telekinesis
+    - name: "\uCD08\uB2A5\uB825-\uC5FC\uB825"
       cost: 1
       type: 0
       element: 2
@@ -246,6 +279,7 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-      text: Spin roulette clockwise current cost * {cardValues[0]} slots.
-      cardValues: 01000000
+      text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C \uD604\uC7AC
+        \uD589\uB3D9\uB825 x 1\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
+      cardValues: 
       num: 2

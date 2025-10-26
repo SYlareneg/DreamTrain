@@ -311,7 +311,9 @@ public class CardManager : MonoBehaviour
                 RectTransform tooltipRect = tooltip.GetComponent<RectTransform>();
                 tooltipRect.anchoredPosition = localPos + new Vector2(20f, 20f);
 
-                tooltip.GetComponentInChildren<TMP_Text>().text = keyword.explanation;
+                TMP_Text[] tooltipTMP = tooltip.GetComponentsInChildren<TMP_Text>();
+                tooltipTMP[0].text = hoveredWord;
+                tooltipTMP[1].text = keyword.explanation;
                 return;
             }
         }

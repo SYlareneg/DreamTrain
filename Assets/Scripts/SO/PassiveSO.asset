@@ -12,24 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc1f45db155ec554a9d0daeafaeda1a9, type: 3}
   m_Name: PassiveSO
   m_EditorClassIdentifier: Assembly-CSharp::PassiveSO
-  passives:
-  - type: 1
-    sprite: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
-    name: Persona 1
-    text: This is Persona #1
-  - type: 1
-    sprite: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
-    name: Persona 2
-    text: This is Persona #2
-  - type: 2
-    sprite: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
-    name: Shadow 1
-    text: This is Shadow #1
-  - type: 2
-    sprite: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
-    name: Shadow 2
-    text: This is Shadow #2
-  - type: 2
-    sprite: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
-    name: Shadow 3
-    text: This is Shadow #3
+  passives: []

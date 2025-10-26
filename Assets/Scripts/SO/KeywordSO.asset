@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: KeywordSO
   m_EditorClassIdentifier: Assembly-CSharp::KeywordSO
   keywords:
-  - word: lifesteal
-    explanation: Give 6 damage. Heal 1/3 of damage dealt.
-  - word: magic-box
-    explanation: Start with 12 counters. Each time the roulette is spinned clockwise,
-      the counter decreases. When the counter becomes 0, this effect is removed.
+  - word: "\uD761\uD608"
+    explanation: "6\uC758 \uD53C\uD574\uB97C \uC8FC\uACE0, \uC785\uD78C \uD53C\uD574\uC758
+      1/3\uB9CC\uD07C \uCCB4\uB825\uC744 \uD68C\uBCF5\uD569\uB2C8\uB2E4. \uD761\uD608
+      \uCE74\uC6B4\uD130\uB97C 1 \uC5BB\uC2B5\uB2C8\uB2E4."
+  - word: "\uB9C8\uC220\uC0C1\uC790"
+    explanation: "12\uC758 \uCE74\uC6B4\uD130\uB85C \uC2DC\uC791\uD569\uB2C8\uB2E4.
+      \uB8F0\uB81B\uC774 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C \uD68C\uC804\uD560
+      \uB54C\uB9C8\uB2E4 \uCE74\uC6B4\uD2B8\uAC00 1 \uAC10\uC18C\uD558\uACE0, 0\uC774
+      \uB418\uBA74 \uD6A8\uACFC\uAC00 \uC81C\uAC70\uB429\uB2C8\uB2E4."

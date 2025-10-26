@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: normalItemSO
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   items:
-  - name: Turn Card 1
+  - name: "\uD68C\uC804 \uCE74\uB4DC 1"
     cost: 1
     type: 0
     element: 0
@@ -25,7 +25,7 @@ MonoBehaviour:
     text: Spin roulette clockwise 3 slots.
     cardValues: 
     num: 2
-  - name: Turn Card 2
+  - name: "\uD68C\uC804 \uCE74\uB4DC 2"
     cost: 1
     type: 0
     element: 0
@@ -34,10 +34,10 @@ MonoBehaviour:
     isVanish: 0
     isRemain: 0
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-    text: Spin roulette clockwise 2 slots.
+    text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 2\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
     cardValues: 
     num: 2
-  - name: Turn Card 3
+  - name: "\uD68C\uC804 \uCE74\uB4DC 3"
     cost: 1
     type: 0
     element: 0
@@ -46,10 +46,11 @@ MonoBehaviour:
     isVanish: 0
     isRemain: 0
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-    text: Spin roulette counter-clockwise 3 slots.
+    text: "\uB8F0\uB81B\uC744 \uBC18\uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 3\uCE78
+      \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
     cardValues: 
     num: 2
-  - name: Savior
+  - name: "\uAD6C\uC6D0"
     cost: 3
     type: 2
     element: 0
@@ -58,10 +59,11 @@ MonoBehaviour:
     isVanish: 0
     isRemain: 0
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-    text: Restore player health by half of maximum health.
+    text: "\uD50C\uB808\uC774\uC5B4 \uCCB4\uB825\uC744 \uCD5C\uB300 \uCCB4\uB825\uC758
+      \uC808\uBC18\uB9CC\uD07C \uD68C\uBCF5\uD569\uB2C8\uB2E4."
     cardValues: 
     num: 2
-  - name: Spirit
+  - name: "\uD63C\uB839"
     cost: 0
     type: 2
     element: 0
@@ -70,10 +72,10 @@ MonoBehaviour:
     isVanish: 0
     isRemain: 0
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-    text: Gain 2 cost, lose 2 health.
+    text: "\uD589\uB3D9\uB825\uC744 2 \uC5BB\uACE0, \uCCB4\uB825\uC744 2 \uC783\uC2B5\uB2C8\uB2E4."
     cardValues: 
     num: 2
-  - name: Turn Card 4
+  - name: "\uD68C\uC804 \uCE74\uB4DC 4"
     cost: 1
     type: 0
     element: 0
@@ -82,10 +84,11 @@ MonoBehaviour:
     isVanish: 0
     isRemain: 0
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-    text: Spin roulette counter-clockwise 2 slots.
+    text: "\uB8F0\uB81B\uC744 \uBC18\uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 2\uCE78
+      \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
     cardValues: 
     num: 2
-  - name: Turn Card 5
+  - name: "\uD68C\uC804 \uCE74\uB4DC 5"
     cost: 1
     type: 0
     element: 0
@@ -94,6 +97,6 @@ MonoBehaviour:
     isVanish: 0
     isRemain: 0
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-    text: Spin roulette clockwise 1 slot.
+    text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 1\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
     cardValues: 
     num: 2
