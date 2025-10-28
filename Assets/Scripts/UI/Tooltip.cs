@@ -13,10 +13,12 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler
     RectTransform rect;
     public string tooltipTitle, tooltipTxt;
     [SerializeField] Vector2 offset;
+    public bool tooltipDisable = false;
+    bool objectEnter;
 
     public void SetupTooltip()
     {
-        if (tooltip != null) return;
+        if (tooltip != null || tooltipDisable == true) return;
         Vector3 newPos = Input.mousePosition;
         newPos.x += offset.x;
         newPos.y += offset.y;
@@ -49,6 +51,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler
 
     public void HideTooltip()
     {
+        if (tooltip == null || tooltipDisable == true) return;
         tooltip.SetActive(false);
         Destroy(tooltip);
         tooltip = null;
@@ -59,14 +62,28 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler
         SetupTooltip();
     }
 
+    void OnMouseEnter()
+    {
+        SetupTooltip();
+        objectEnter = true;
+    }
+
+    void OnMouseExit()
+    {
+        HideTooltip();
+        objectEnter = false;
+    }
+
     private void Start()
     {
         rect = GetComponent<RectTransform>();
+        objectEnter = false;
     }
 
     private void Update()
     {
         if (RectTransformUtility.RectangleContainsScreenPoint(rect, Input.mousePosition, null)) return;
+        if (objectEnter) return;
         if(tooltip != null) HideTooltip();
     }
 }

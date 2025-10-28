@@ -1146,6 +1146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tooltip
   tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
+  tooltipTitle: 
   tooltipTxt: 
   offset: {x: 0, y: 0}
 --- !u!1 &157389870
@@ -2347,84 +2348,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuffManager
   buffUIPrefab: {fileID: 8978749989755242890, guid: 36880f50e684e25479b9c055b58ab5a6, type: 3}
-  rouletteBuffs: []
-  totalRouletteBuff_Attack:
-    add: 0
-    mul: 0
-    lastingTime: 0
-  totalRouletteBuff_Heal:
-    add: 0
-    mul: 0
-    lastingTime: 0
-  totalRouletteBuff_Shield:
-    add: 0
-    mul: 0
-    lastingTime: 0
-  totalRouletteBuff_Charge:
-    add: 0
-    mul: 0
-    lastingTime: 0
-  totalRouletteBuff_Lifesteal_Dmg:
-    add: 0
-    mul: 0
-    lastingTime: 0
-  totalRouletteBuff_Lifesteal_Heal:
-    add: 0
-    mul: 0
-    lastingTime: 0
-  totalRouletteBuff_Drain_Dmg:
-    add: 0
-    mul: 0
-    lastingTime: 0
-  totalRouletteBuff_Drain_Heal:
-    add: 0
-    mul: 0
-    lastingTime: 0
-  singleRouletteBuff_Trigger:
-    add: 0
-    mul: 0
-    lastingTime: 0
-  playerBuffs: []
-  damageBuff:
-    add: 0
-    mul: 0
-    lastingTime: 0
-  healBuff:
-    add: 0
-    mul: 0
-    lastingTime: 0
-  shieldBuff:
-    add: 0
-    mul: 0
-    lastingTime: 0
-  costBuff:
-    add: 0
-    mul: 0
-    lastingTime: 0
-  enemyBuffs: []
-  enemyAttackBuff:
-    add: 0
-    mul: 0
-    lastingTime: 0
-  enemyHealBuff:
-    add: 0
-    mul: 0
-    lastingTime: 0
-  enemyShieldBuff:
-    add: 0
-    mul: 0
-    lastingTime: 0
-  enemyDrainBuff:
-    add: 0
-    mul: 0
-    lastingTime: 0
-  cardBuffs: []
+  showBuffSO: {fileID: 11400000, guid: 34efdef70164c754eb3b6b8b79fdc033, type: 2}
+  rouletteShowBuffs: []
+  rouletteBuff_Attack: []
+  rouletteBuff_Heal: []
+  rouletteBuff_Shield: []
+  rouletteBuff_Charge: []
+  rouletteBuff_Lifesteal_Dmg: []
+  rouletteBuff_Lifesteal_Heal: []
+  rouletteBuff_Drain_Dmg: []
+  rouletteBuff_Drain_Heal: []
+  rouletteBuff_Trigger: []
+  playerShowBuffs: []
+  playerBuff_Damage: []
+  playerBuff_Heal: []
+  playerBuff_Shield: []
+  playerBuff_Cost: []
+  playerBuff_Draw: []
+  enemyShowBuffs: []
+  enemyBuff_Damage: []
+  enemyBuff_Heal: []
+  enemyBuff_Shield: []
+  enemyBuff_Attack: []
+  enemyBuff_Drain: []
   allCardValueBuff:
-    add: 0
+  - add: 0
+    mul: 0
+    lastingTime: 0
+  - add: 0
+    mul: 0
+    lastingTime: 0
+  - add: 0
     mul: 0
     lastingTime: 0
   allCardCostBuff:
-    add: 0
+  - add: 0
+    mul: 0
+    lastingTime: 0
+  - add: 0
+    mul: 0
+    lastingTime: 0
+  - add: 0
     mul: 0
     lastingTime: 0
 --- !u!4 &456693628
@@ -3539,6 +3503,7 @@ GameObject:
   - component: {fileID: 602175947}
   - component: {fileID: 602175949}
   - component: {fileID: 602175948}
+  - component: {fileID: 602175950}
   m_Layer: 5
   m_Name: EnemyImage
   m_TagString: Untagged
@@ -3603,6 +3568,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 602175946}
   m_CullTransparentMesh: 1
+--- !u!114 &602175950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602175946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a00420b01652994990b4f0921a3d65a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tooltip
+  tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
+  tooltipTitle: 
+  tooltipTxt: 
+  offset: {x: 0, y: 0}
 --- !u!1 &624052081
 GameObject:
   m_ObjectHideFlags: 0
@@ -5975,7 +5956,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 3c154be87f09ac04c956e662cd75381a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6361,7 +6342,7 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2092133040}
+  m_Father: {fileID: 1418156065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15}
 --- !u!212 &1100351107
 SpriteRenderer:
@@ -7158,6 +7139,7 @@ MonoBehaviour:
     value: 0
   isTriggerActivated: 0
   spinFlag: 0
+  isRouletteDrag: 0
   spinCount: 0
   spinCount_Turn: 0
   spinDistance: 0
@@ -7661,6 +7643,7 @@ MonoBehaviour:
   maxActionVal: 0
   actionNum: 0
   actionBox: {fileID: 984188660}
+  enemyImg: {fileID: 602175946}
   actionList: []
   executeActionList: []
   lastAction: {fileID: 0}
@@ -7966,6 +7949,39 @@ RectTransform:
   m_AnchoredPosition: {x: 20, y: -20}
   m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0, y: 1}
+--- !u!1 &1418156064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1418156065}
+  m_Layer: 0
+  m_Name: RouletteMarker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1418156065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418156064}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1962210254}
+  - {fileID: 1100351106}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1420406248
 GameObject:
   m_ObjectHideFlags: 0
@@ -8905,6 +8921,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tooltip
   tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
+  tooltipTitle: 
   tooltipTxt: 
   offset: {x: 0, y: 0}
 --- !u!1 &1513554506
@@ -11068,7 +11085,7 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2092133040}
+  m_Father: {fileID: 1418156065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 195}
 --- !u!212 &1962210255
 SpriteRenderer:
@@ -11342,7 +11359,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -11463,8 +11480,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2062499096}
-  - {fileID: 1962210254}
-  - {fileID: 1100351106}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2095660457
@@ -11726,6 +11741,7 @@ SceneRoots:
   - {fileID: 257622350}
   - {fileID: 1300602956}
   - {fileID: 2092133040}
+  - {fileID: 1418156065}
   - {fileID: 722924043}
   - {fileID: 519420032}
   - {fileID: 1212938908}

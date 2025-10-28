@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum EEnemyActionType { Turn, Attack, Heal, Shield, Enchant_Random, Drain };
 
@@ -24,15 +25,17 @@ public struct EnemyPatterns
 }
 
 [System.Serializable]
-public struct EnemyPhase
+public class EnemyPhase
 {
     public string name;
+    public string text;
     public List<EnemyPatterns> patterns;
     public bool phaseClear;
 
-    public EnemyPhase(string s)
+    public EnemyPhase(string s, string t)
     {
         name = s;
+        text = t;
         patterns = new List<EnemyPatterns>();
         phaseClear = false;
     }
@@ -44,7 +47,7 @@ public class Enemy
     public string name;
     public int health;
     public int actionNum;
-    public string passive;
+    public Passive passive;
     public int triggerNum;
     public List<EnemyPhase> phase;
     public RouletteItem[] roulettePattern;

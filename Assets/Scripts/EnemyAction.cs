@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+using System;
+using Random = UnityEngine.Random;
 
 public class EnemyAction : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class EnemyAction : MonoBehaviour
     public int baseActionVal;
     public int actionVal;
     public bool isIgnore = false;
+    Tooltip tooltip;
 
     public void SetActionType(EEnemyActionType type)
     {
@@ -32,10 +35,14 @@ public class EnemyAction : MonoBehaviour
         int totalVal = actionVal;
         if (actionType == EEnemyActionType.Drain)
         {
-            totalVal = BuffManager.Inst.GetEnemyBuffValue(BuffManager.Inst.enemyDrainBuff, actionVal);
+            totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Drain, totalVal);
+        }
+        if(actionType == EEnemyActionType.Attack)
+        {
+            totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Attack, totalVal);
         }
         
-        if (actionVal == 0)
+        if (totalVal == 0)
         {
             enemyActionTMP.text = "";
         }
@@ -56,6 +63,38 @@ public class EnemyAction : MonoBehaviour
         {
             enemyActionTMP.color = Color.red;
         }
+
+        if (tooltip == null) return;
+        switch(actionType)
+        {
+            case EEnemyActionType.Attack:
+                tooltip.tooltipTitle = "공격";
+                tooltip.tooltipTxt = "피해를 " + totalVal.ToString() + "만큼 줍니다.";
+                break;
+            case EEnemyActionType.Drain:
+                tooltip.tooltipTitle = "흡혈";
+                tooltip.tooltipTxt = "피해를 " + totalVal.ToString() + "만큼 주고 입힌 피해의 1/3만큼 체력을 회복합니다.";
+                break;
+            case EEnemyActionType.Enchant_Random:
+                if (EnemyManager.Inst.enemy.name == "Vampire Paul")
+                {
+                    tooltip.tooltipTitle = "부여";
+                    tooltip.tooltipTxt = "무작위 빈 룰렛 칸에 흡혈을 부여합니다. 빈 칸이 없을 경우 무작위 칸에 부여합니다.";
+                }
+                break;
+            case EEnemyActionType.Heal:
+                tooltip.tooltipTitle = "회복";
+                tooltip.tooltipTxt = "체력을 " + totalVal.ToString() + "만큼 회복합니다.";
+                break;
+            case EEnemyActionType.Shield:
+                tooltip.tooltipTitle = "실드";
+                tooltip.tooltipTxt = "실드를 " + totalVal.ToString() + "만큼 얻습니다.";
+                break;
+            case EEnemyActionType.Turn:
+                tooltip.tooltipTitle = "회전";
+                tooltip.tooltipTxt = "룰렛을 " + ((totalVal >= 0)? "시계방향으로 " : "반시계방향으로 ") + Math.Abs(totalVal).ToString() + "칸 회전시킵니다.";
+                break;
+        }
     }
 
     public void SetAction(EnemyPattern p)
@@ -66,13 +105,17 @@ public class EnemyAction : MonoBehaviour
 
         if (actionType == EEnemyActionType.Turn)
         {
-            actionVal = Random.Range(1, baseActionVal + 1);
             if (baseActionVal < 0)
             {
                 enemyAction.flipX = !enemyAction.flipX;
-                actionVal = -actionVal;
+                actionVal = Random.Range(-baseActionVal, 0);
+            }
+            else
+            {
+                actionVal = Random.Range(1, baseActionVal + 1);
             }
         }
+        tooltip = GetComponent<Tooltip>();
         ShowAction();
     }
 
@@ -133,7 +176,7 @@ public class EnemyAction : MonoBehaviour
 
     public static void DrainAction(int x)
     {
-        int totalVal = BuffManager.Inst.GetEnemyBuffValue(BuffManager.Inst.enemyDrainBuff, x);
+        int totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Drain, x);
         int damage = TurnManager.Inst.TakeDmg(totalVal);
         TurnManager.Inst.EnemyTakeDmg(-damage);
         if (damage > 0)

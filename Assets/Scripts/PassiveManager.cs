@@ -12,7 +12,7 @@ public class PassiveManager : MonoBehaviour
         switch (TurnManager.Inst.characterSO.personaPiece.persona.name)
         {
             case "물보다 진한 피":
-                TurnManager.Inst.playerTriggerMaxCnt = 3;
+                TurnManager.Inst.playerTriggerMaxCnt = 12;
                 TurnManager.OnRouletteActivate += () =>
                 {
                     if (TurnManager.Inst.characterSO.personaPiece.persona.name == "물보다 진한 피")
@@ -22,35 +22,34 @@ public class PassiveManager : MonoBehaviour
                         if (enemyPiece.roulette.type == ERouletteType.Attack)
                         {
                             int damage = BuffManager.Inst.GetBuffedRouletteValue(enemyPiece);
-                            damage = BuffManager.Inst.GetPlayerBuffValue(BuffManager.Inst.damageBuff, damage);
                             TurnManager.Inst.TakeDmg(-damage / 3);
-                            TurnManager.Inst.TriggerPlayerPassive(1);
+                            TurnManager.Inst.TriggerPlayerPassive(damage / 3);
                         }
                         if (playerPiece.roulette.type == ERouletteType.Attack)
                         {
                             int damage = BuffManager.Inst.GetBuffedRouletteValue(playerPiece);
-                            damage = BuffManager.Inst.GetPlayerBuffValue(BuffManager.Inst.damageBuff, damage);
                             TurnManager.Inst.TakeDmg(-damage / 3);
-                            TurnManager.Inst.TriggerPlayerPassive(1);
+                            TurnManager.Inst.TriggerPlayerPassive(damage / 3);
                         }
                     }
-                    else if (TurnManager.Inst.characterSO.personaPiece.persona.name == "저주받은 피")
+                    /*else if (TurnManager.Inst.characterSO.personaPiece.persona.name == "저주받은 피")
                     {
                         if (RouletteManager.Inst.playerLookat == RouletteManager.Inst.triggerPos || RouletteManager.Inst.enemyLookat == RouletteManager.Inst.triggerPos)
                         {
                             TurnManager.Inst.characterSO.personaPiece.persona.name = "물보다 진한 피";
                             TurnManager.Inst.turnCost++;
                         }
-                    }
+                    }*/
                 };
-                TurnManager.OnRouletteTrigger += () =>
+                /*TurnManager.OnRouletteTrigger += () =>
                 {
                     TurnManager.Inst.characterSO.personaPiece.persona.name = "저주받은 피";
                     TurnManager.Inst.characterSO.personaPiece.persona.text = "플레이어 턴 시작 시 행동력을 1 잃습니다. 플레이어의 트리거 효과가 해제되면 효과가 제거됩니다.";
                     TurnManager.Inst.turnCost--;
-                };
+                };*/
                 break;
             case "카드 숨기기":
+                TurnManager.Inst.playerTriggerMaxCnt = 99;
                 TurnManager.OnGameStart += () =>
                 {
                     Item ace = new Item();
@@ -62,7 +61,7 @@ public class PassiveManager : MonoBehaviour
                     ace.isVolatile = false;
                     ace.isVanish = false;
                     ace.isRemain = false;
-                    ace.text = "트리거합니다. 이 카드 효과로 트리거된 12번 슬롯은 턴 종료시 비활성화됩니다.";
+                    ace.text = "트리거 게이지를 최대로 얻습니다. 이번 턴이 종료될 때 12번 슬롯을 비활성화합니다.";
                     ace.cardValues = new List<int>();
                     ace.num = 1;
                     CardManager.Inst.itemDeck.Add(ace);
@@ -105,13 +104,13 @@ public class PassiveManager : MonoBehaviour
                 TurnManager.OnPlayerTrigger += () =>
                 {
                     Debug.Log(TurnManager.Inst.nowCost);
-                    BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.singleRouletteBuff_Trigger, TurnManager.Inst.nowCost * 8, 1, 1);
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, TurnManager.Inst.nowCost * 8, 1, 1);
                 };
                 TurnManager.OnCostChange += (x) =>
                 {
                     if (RouletteManager.Inst.roulettePieces[RouletteManager.Inst.triggerPos].isTriggered == true)
                     {
-                        BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.singleRouletteBuff_Trigger, x * 8, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, x * 8, 1, 1);
                     }
                 };
                 break;
@@ -126,7 +125,7 @@ public class PassiveManager : MonoBehaviour
                     counter -= RouletteManager.Inst.CountRouletteType(ERouletteType.None);
                     counter -= RouletteManager.Inst.CountRouletteType(ERouletteType.Attack);
                     counter -= RouletteManager.Inst.CountRouletteType(ERouletteType.Shield);
-                    BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.singleRouletteBuff_Trigger, counter * 7, 1, 1);
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, counter * 7, 1, 1);
                 };
                 TurnManager.OnRouletteEnchant += () =>
                 {
@@ -134,7 +133,7 @@ public class PassiveManager : MonoBehaviour
                     newCnt -= RouletteManager.Inst.CountRouletteType(ERouletteType.None);
                     newCnt -= RouletteManager.Inst.CountRouletteType(ERouletteType.Attack);
                     newCnt -= RouletteManager.Inst.CountRouletteType(ERouletteType.Shield);
-                    BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.singleRouletteBuff_Trigger, (newCnt - counter) * 7, 1, 1);
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, (newCnt - counter) * 7, 1, 1);
                 };
                 TurnManager.BeforeRouletteActivate += () =>
                 {

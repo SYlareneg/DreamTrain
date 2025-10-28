@@ -184,14 +184,14 @@ public class Card : MonoBehaviour
                 TurnManager.Inst.TakeDmg(-2);
                 break;
             case "휴머니스트":
-                BuffManager.Inst.AddPlayerBuff(BuffManager.Inst.damageBuff, -3, 1, 1);
+                BuffManager.Inst.AddShowBuff("주저함", EBuffAffectType.Enemy, 1);
+                BuffManager.Inst.AddShowBuff("주저함", EBuffAffectType.Roulette, 1);
                 break;
             case "블루 블러드":
-                BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.totalRouletteBuff_Lifesteal_Dmg, 0, 3, 2);
-                BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.totalRouletteBuff_Lifesteal_Heal, 0, 0, 2);
+                BuffManager.Inst.AddShowBuff("블루 블러드", EBuffAffectType.Roulette, 2);
                 break;
             case "만찬 시간":
-                BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.totalRouletteBuff_Lifesteal_Dmg, 0, 2, 2);
+                BuffManager.Inst.AddShowBuff("만찬 시간", EBuffAffectType.Roulette, 2);
                 break;
             case "핏빛 날개":
                 for (int i = 0; i < 4; i++)
@@ -241,46 +241,13 @@ public class Card : MonoBehaviour
                 }
                 break;
             case "마술-예언":
-                Action aceNull = null;
-                aceNull = () =>
-                {
-                    Item ace = CardManager.Inst.itemDeck.Find(x => x.name == "Ace");
-                    BuffManager.Inst.AddSingleCardCostBuff(ace, 0, 0, 1);
-                    Action fullCost = null;
-                    fullCost = () =>
-                    {
-                        if (CardManager.Inst.selectedCard.item.name == "Ace")
-                        {
-                            TurnManager.Inst.SetFullCost();
-                            TurnManager.OnUseCard -= fullCost;
-                        }
-                    };
-                    TurnManager.OnUseCard += fullCost;
-                    Action eraseFullCost = null;
-                    eraseFullCost = () =>
-                    {
-                        TurnManager.OnUseCard -= fullCost;
-                        TurnManager.OnPlayerTurnStart -= eraseFullCost;
-                    };
-                    TurnManager.OnPlayerTurnStart += eraseFullCost;
-                    TurnManager.OnPlayerTurnStart -= aceNull;
-                };
-                TurnManager.OnPlayerTurnStart += aceNull;
+                BuffManager.Inst.AddShowBuff("예언-준비", EBuffAffectType.Player, 1);
                 break;
             case "재빠른 손놀림":
                 StartCoroutine(TurnManager.Inst.Draw(1, null));
                 break;
             case "초능력-예언":
-                Action fullCost = null;
-                fullCost = () =>
-                {
-                    TurnManager.OnPlayerTrigger += () =>
-                    {
-                        TurnManager.Inst.SetFullCost();
-                    };
-                    TurnManager.OnPlayerTurnStart -= fullCost;
-                };
-                TurnManager.OnPlayerTurnStart += fullCost;
+                BuffManager.Inst.AddShowBuff("예언-준비", EBuffAffectType.Player, 1);
                 break;
             case "초능력-염력":
                 RouletteManager.Inst.Spin(true, TurnManager.Inst.nowCost);

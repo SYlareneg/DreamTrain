@@ -29,7 +29,7 @@ public class RouletteManager : MonoBehaviour
     public bool isTriggerActivated;
 
     public bool spinFlag = false;
-    bool isRouletteDrag;
+    public bool isRouletteDrag;
     bool onRouletteArea;
     Quaternion lastRotation;
 
@@ -55,11 +55,15 @@ public class RouletteManager : MonoBehaviour
             if (isClockwise)
             {
                 pieces *= -1;
+                TurnManager.Inst.TriggerPlayerPassive(1);
             }
             newRotation *= Quaternion.Euler(0f, 0f, 360f * pieces / rouletteNum);
             playerLookat = (playerLookat + pieces + rouletteNum) % rouletteNum;
             enemyLookat = (enemyLookat + pieces + rouletteNum) % rouletteNum;
-            rouletteArea.transform.DORotateQuaternion(newRotation, spinDelay).OnComplete(() => spinFlag = false);
+            rouletteArea.transform.parent.DORotateQuaternion(newRotation, spinDelay).OnComplete(() => {
+                spinFlag = false;
+                TurnManager.AfterRouletteSpin?.Invoke(pieces);
+            });
         }
 
     }
@@ -101,6 +105,8 @@ public class RouletteManager : MonoBehaviour
     {
         roulettePieces[triggerPos].Setup(triggerPiece);
         roulettePieces[triggerPos].Trigger(true);
+        roulettePieces[triggerPos].GetComponent<Tooltip>().tooltipTitle = TurnManager.Inst.characterSO.shadowPiece.shadow.name;
+        roulettePieces[triggerPos].GetComponent<Tooltip>().tooltipTxt = TurnManager.Inst.characterSO.shadowPiece.shadow.text;
         TurnManager.OnRouletteTrigger?.Invoke();
     }
 
@@ -108,6 +114,8 @@ public class RouletteManager : MonoBehaviour
     {
         roulettePieces[triggerPos].Setup(enemyTriggerPiece);
         roulettePieces[triggerPos].Trigger(true);
+        roulettePieces[triggerPos].GetComponent<Tooltip>().tooltipTitle = EnemyManager.Inst.enemy.passive.name;
+        roulettePieces[triggerPos].GetComponent<Tooltip>().tooltipTxt = EnemyManager.Inst.enemy.passive.text;
         TurnManager.OnRouletteTrigger?.Invoke();
     }
 
@@ -171,7 +179,7 @@ public class RouletteManager : MonoBehaviour
         {
             var roulettePiece = Instantiate(roulettePiecePrefab, Vector3.zero, Utils.QI);
             roulettePiece.transform.rotation *= Quaternion.Euler(0f, 0f, -180f / rouletteNum - 360f * i / rouletteNum);
-            roulettePiece.transform.SetParent(rouletteArea.transform, false);
+            roulettePiece.transform.SetParent(rouletteArea.transform.parent, false);
             roulettePieces[i] = roulettePiece.GetComponent<RoulettePiece>();
             roulettePieces[i].Setup(EnemyManager.Inst.enemy.roulettePattern[i]);
         }
@@ -189,7 +197,7 @@ public class RouletteManager : MonoBehaviour
             spinFlag = true;
             TurnManager.Inst.isLoading = true;
             isRouletteDrag = true;
-            lastRotation = this.transform.rotation;
+            lastRotation = rouletteArea.transform.parent.rotation;
         }
     }
 
@@ -198,7 +206,7 @@ public class RouletteManager : MonoBehaviour
         if(isRouletteDrag)
         {
             isRouletteDrag = false;
-            this.transform.DORotateQuaternion(lastRotation, 0.7f).OnComplete(() =>
+            rouletteArea.transform.parent.DORotateQuaternion(lastRotation, 0.7f).OnComplete(() =>
             {
                 spinFlag = false;
                 TurnManager.Inst.isLoading = false;
@@ -208,9 +216,9 @@ public class RouletteManager : MonoBehaviour
 
     void RouletteDrag()
     {
-        Vector3 mouseOrtho = new Vector3(Utils.MousePos.x, Utils.MousePos.y, this.transform.position.z);
-        Quaternion mouseRotation = Quaternion.FromToRotation(this.transform.position, mouseOrtho);
-        this.transform.rotation = lastRotation * mouseRotation;
+        Vector3 mouseOrtho = new Vector3(Utils.MousePos.x, Utils.MousePos.y, rouletteArea.transform.parent.position.z);
+        Quaternion mouseRotation = Quaternion.FromToRotation(rouletteArea.transform.parent.position, mouseOrtho);
+        rouletteArea.transform.parent.rotation = lastRotation * mouseRotation;
     }
 
     void DetectRouletteArea()

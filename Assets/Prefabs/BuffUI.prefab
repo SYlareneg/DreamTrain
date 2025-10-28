@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 4070324792480204617}
   - component: {fileID: 3755147174522738402}
   - component: {fileID: 3967150855229402424}
+  - component: {fileID: 6107715085856425398}
   m_Layer: 5
   m_Name: BuffUI
   m_TagString: Untagged
@@ -230,6 +231,26 @@ MonoBehaviour:
   BuffSpriteList:
   - {fileID: 7482667652216324306, guid: e6de391201c875e42b750d5f9543515c, type: 3}
   buff:
-    add: 0
-    mul: 0
-    lastingTime: 0
+    name: 
+    text: 
+    icon: {fileID: 0}
+    type: 0
+    affectType: 0
+    val: 0
+    affectBuffs: []
+--- !u!114 &6107715085856425398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8978749989755242890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a00420b01652994990b4f0921a3d65a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tooltip
+  tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
+  tooltipTitle: 
+  tooltipTxt: 
+  offset: {x: 0, y: 0}

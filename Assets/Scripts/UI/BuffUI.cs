@@ -2,30 +2,27 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 public class BuffUI : MonoBehaviour
 {
     [SerializeField] Image BuffImg;
     [SerializeField] TMP_Text BuffValue;
     [SerializeField] List<Sprite> BuffSpriteList;
-    public Buff buff;
-    public void Setup(Buff b)
+    public ShowBuff buff;
+    public void Setup(ShowBuff b)
     {
         this.buff = b;
-        switch(buff.target)
+        BuffImg.sprite = b.icon;
+        BuffValue.text = b.val.ToString();
+
+        this.GetComponent<Tooltip>().tooltipTitle = b.name;
+
+        string buffText = Regex.Replace(b.text, @"값", match =>
         {
-            default:
-                BuffImg.sprite = BuffSpriteList[0];
-                break;
-        }
-        BuffValue.text = "";
-        if (buff.mul != 1)
-        {
-            BuffValue.text += "x" + buff.mul.ToString() + " ";
-        }
-        if (buff.add != 0)
-        {
-            BuffValue.text = "+" + buff.add.ToString() + " ";
-        }
+            string replacement = $"{b.val}";
+            return replacement;
+        });
+        this.GetComponent<Tooltip>().tooltipTxt = $"{buffText}";
     }
 }

@@ -76,7 +76,7 @@ public class RelicManager : MonoBehaviour
                     case ERelicActivateEffectType.Card_Draw:
                         relicAction += () => { StartCoroutine(TurnManager.Inst.Draw(localEffect.value, null)); }; break;
                     case ERelicActivateEffectType.Card_Cost_Change:
-                        relicAction += () => { BuffManager.Inst.AddCardBuff(BuffManager.Inst.allCardCostBuff, localEffect.value, 1, localEffect.value2); }; break;
+                        relicAction += () => { BuffManager.AddBuffToTarget(BuffManager.Inst.allCardCostBuff, localEffect.value, 1, localEffect.value2); }; break;
                     case ERelicActivateEffectType.Card_Value_Change:
                         relicAction += () => { }; break;
                     case ERelicActivateEffectType.Card_Duplicate_Hand:
@@ -103,62 +103,62 @@ public class RelicManager : MonoBehaviour
                         }; break;
                     case ERelicActivateEffectType.Roulette_Value_Change_ADD:
                         relicAction += () => {
-                            Buff buffTarget = null;
-                            Buff buffTarget2 = null;
+                            List<Buff> buffTarget = null;
+                            List<Buff> buffTarget2 = null;
                             switch (localEffect.rlvalue.type)
                             {
                                 case ERouletteType.Attack:
-                                    buffTarget = BuffManager.Inst.totalRouletteBuff_Attack; break;
+                                    buffTarget = BuffManager.Inst.rouletteBuff_Attack; break;
                                 case ERouletteType.Heal:
-                                    buffTarget = BuffManager.Inst.totalRouletteBuff_Heal; break;
+                                    buffTarget = BuffManager.Inst.rouletteBuff_Heal; break;
                                 case ERouletteType.Shield:
-                                    buffTarget = BuffManager.Inst.totalRouletteBuff_Shield; break;
+                                    buffTarget = BuffManager.Inst.rouletteBuff_Shield; break;
                                 case ERouletteType.Charge:
-                                    buffTarget = BuffManager.Inst.totalRouletteBuff_Charge; break;
+                                    buffTarget = BuffManager.Inst.rouletteBuff_Charge; break;
                                 case ERouletteType.Lifesteal:
-                                    buffTarget = BuffManager.Inst.totalRouletteBuff_Lifesteal_Dmg;
-                                    buffTarget2 = BuffManager.Inst.totalRouletteBuff_Lifesteal_Heal; break;
+                                    buffTarget = BuffManager.Inst.rouletteBuff_Lifesteal_Dmg;
+                                    buffTarget2 = BuffManager.Inst.rouletteBuff_Lifesteal_Heal; break;
                                 case ERouletteType.Drain:
-                                    buffTarget = BuffManager.Inst.totalRouletteBuff_Drain_Dmg;
-                                    buffTarget2 = BuffManager.Inst.totalRouletteBuff_Drain_Heal; break;
+                                    buffTarget = BuffManager.Inst.rouletteBuff_Drain_Dmg;
+                                    buffTarget2 = BuffManager.Inst.rouletteBuff_Drain_Heal; break;
                             }
                             if (buffTarget != null)
                             {
-                                BuffManager.Inst.AddRouletteBuff(buffTarget, localEffect.value, 1, localEffect.value2);
+                                BuffManager.AddBuffToTarget(buffTarget, localEffect.value, 1, localEffect.value2);
                             }
                             if(buffTarget2 != null)
                             {
-                                BuffManager.Inst.AddRouletteBuff(buffTarget2, localEffect.value, 1, localEffect.value2);
+                                BuffManager.AddBuffToTarget(buffTarget2, localEffect.value, 1, localEffect.value2);
                             }
                         }; break;
                     case ERelicActivateEffectType.Roulette_Value_Change_MUL:
                         relicAction += () => {
-                            Buff buffTarget = null;
-                            Buff buffTarget2 = null;
+                            List<Buff> buffTarget = null;
+                            List<Buff> buffTarget2 = null;
                             switch (localEffect.rlvalue.type)
                             {
                                 case ERouletteType.Attack:
-                                    buffTarget = BuffManager.Inst.totalRouletteBuff_Attack; break;
+                                    buffTarget = BuffManager.Inst.rouletteBuff_Attack; break;
                                 case ERouletteType.Heal:
-                                    buffTarget = BuffManager.Inst.totalRouletteBuff_Heal; break;
+                                    buffTarget = BuffManager.Inst.rouletteBuff_Heal; break;
                                 case ERouletteType.Shield:
-                                    buffTarget = BuffManager.Inst.totalRouletteBuff_Shield; break;
+                                    buffTarget = BuffManager.Inst.rouletteBuff_Shield; break;
                                 case ERouletteType.Charge:
-                                    buffTarget = BuffManager.Inst.totalRouletteBuff_Charge; break;
+                                    buffTarget = BuffManager.Inst.rouletteBuff_Charge; break;
                                 case ERouletteType.Lifesteal:
-                                    buffTarget = BuffManager.Inst.totalRouletteBuff_Lifesteal_Dmg;
-                                    buffTarget2 = BuffManager.Inst.totalRouletteBuff_Lifesteal_Heal; break;
+                                    buffTarget = BuffManager.Inst.rouletteBuff_Lifesteal_Dmg;
+                                    buffTarget2 = BuffManager.Inst.rouletteBuff_Lifesteal_Heal; break;
                                 case ERouletteType.Drain:
-                                    buffTarget = BuffManager.Inst.totalRouletteBuff_Drain_Dmg;
-                                    buffTarget2 = BuffManager.Inst.totalRouletteBuff_Drain_Heal; break;
+                                    buffTarget = BuffManager.Inst.rouletteBuff_Drain_Dmg;
+                                    buffTarget2 = BuffManager.Inst.rouletteBuff_Drain_Heal; break;
                             }
                             if (buffTarget != null)
                             {
-                                BuffManager.Inst.AddRouletteBuff(buffTarget, 0, localEffect.value, localEffect.value2);
+                                BuffManager.AddBuffToTarget(buffTarget, 0, localEffect.value, localEffect.value2);
                             }
                             if(buffTarget2 != null)
                             {
-                                BuffManager.Inst.AddRouletteBuff(buffTarget2, 0, localEffect.value, localEffect.value2);
+                                BuffManager.AddBuffToTarget(buffTarget2, 0, localEffect.value, localEffect.value2);
                             }
                         }; break;
                     case ERelicActivateEffectType.Roulette_Spin_CW:

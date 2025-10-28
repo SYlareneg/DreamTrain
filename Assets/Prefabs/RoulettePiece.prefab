@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5993241829711952476}
   - component: {fileID: 5668914283684189758}
   - component: {fileID: 4611826967908162120}
+  - component: {fileID: -136783278700999254}
   m_Layer: 0
   m_Name: RoulettePiece
   m_TagString: Untagged
@@ -178,6 +179,23 @@ PolygonCollider2D:
       - {x: 0.9, y: 1.64}
       - {x: 1.16, y: 2.1399999}
   m_UseDelaunayMesh: 0
+--- !u!114 &-136783278700999254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32629867273819317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a00420b01652994990b4f0921a3d65a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tooltip
+  tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
+  tooltipTitle: 
+  tooltipTxt: 
+  offset: {x: 0, y: 0}
+  tooltipDisable: 0
 --- !u!1 &7079689124317470329
 GameObject:
   m_ObjectHideFlags: 0

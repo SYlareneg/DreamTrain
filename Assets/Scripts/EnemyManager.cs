@@ -26,6 +26,7 @@ public class EnemyManager : MonoBehaviour
     [Tooltip("액션 개수")] public int actionNum;
 
     [SerializeField] GameObject actionBox;
+    [SerializeField] GameObject enemyImg;
     public List<EnemyAction> actionList;
     public List<EnemyAction> executeActionList;
     static float actionInterval = 0.5f;
@@ -70,6 +71,12 @@ public class EnemyManager : MonoBehaviour
         phaseNum = 0;
         patternNum = 0;
         currentPattern = enemy.phase[0].patterns[0].pattern;
+        foreach(var p in enemy.phase)
+        {
+            p.phaseClear = false;
+        }
+        enemyImg.GetComponent<Tooltip>().tooltipTitle = enemy.phase[0].name;
+        enemyImg.GetComponent<Tooltip>().tooltipTxt = enemy.phase[0].text;
 
         switch (enemy.name)
         {
@@ -78,8 +85,8 @@ public class EnemyManager : MonoBehaviour
                 {
                     if (TurnManager.Inst.turnNum % 2 == 0)
                     {
-                        BuffManager.Inst.AddEnemyBuff(BuffManager.Inst.enemyDrainBuff, TurnManager.Inst.turnNum / 2, 1, 2);
-                        BuffManager.Inst.AddRouletteBuff(BuffManager.Inst.totalRouletteBuff_Drain_Dmg, TurnManager.Inst.turnNum / 2, 1, 2);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Drain, TurnManager.Inst.turnNum / 2, 1, 2);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Drain_Dmg, TurnManager.Inst.turnNum / 2, 1, 2);
                     }
                 };
 
@@ -98,6 +105,8 @@ public class EnemyManager : MonoBehaviour
             phaseNum++;
             patternNum = 0;
             currentPattern = enemy.phase[phaseNum].patterns[0].pattern;
+            enemyImg.GetComponent<Tooltip>().tooltipTitle = enemy.phase[phaseNum].name;
+            enemyImg.GetComponent<Tooltip>().tooltipTxt = enemy.phase[phaseNum].text;
         }
     }
 
@@ -145,7 +154,7 @@ public class EnemyManager : MonoBehaviour
             case "Vampire Paul":
                 if (phaseNum == 0)
                 {
-                    phaseNum++;
+                    enemy.phase[0].phaseClear = true;
                     EnemyAction.DrainEnchantAction();
                     EnemyAction.DrainEnchantAction();
                 }
@@ -348,6 +357,8 @@ public class EnemyManager : MonoBehaviour
     {
         TurnManager.OnPlayerTurnStart = InitActionList + TurnManager.OnPlayerTurnStart;
         TurnManager.OnPlayerTurnStart += AllignActionList;
+
+        actionBox.SetActive(false);
     }
 
     private void OnDestroy()

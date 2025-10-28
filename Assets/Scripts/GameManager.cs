@@ -259,8 +259,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(playerBuffUIView.transform.GetChild(i).gameObject);
         }
-        BuffManager.Inst.BuffListToBuffUIList(BuffManager.Inst.playerBuffs, playerBuffUIView);
-        BuffManager.Inst.BuffListToBuffUIList(BuffManager.Inst.cardBuffs, playerBuffUIView);
+        BuffManager.Inst.BuffListToBuffUIList(BuffManager.Inst.playerShowBuffs, playerBuffUIView);
     }
 
     public void SetEnemyBuffUI()
@@ -269,7 +268,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(enemyBuffUIView.transform.GetChild(i).gameObject);
         }
-        BuffManager.Inst.BuffListToBuffUIList(BuffManager.Inst.enemyBuffs, enemyBuffUIView);
+        BuffManager.Inst.BuffListToBuffUIList(BuffManager.Inst.enemyShowBuffs, enemyBuffUIView);
     }
 
     public void SetRouletteBuffUI()
@@ -278,6 +277,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(rouletteBuffUIView.transform.GetChild(i).gameObject);
         }
-        BuffManager.Inst.BuffListToBuffUIList(BuffManager.Inst.rouletteBuffs, rouletteBuffUIView);
+        BuffManager.Inst.BuffListToBuffUIList(BuffManager.Inst.rouletteShowBuffs, rouletteBuffUIView);
     }
 }

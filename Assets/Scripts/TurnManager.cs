@@ -65,6 +65,7 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action OnEnemyTrigger;
     [HideInInspector] public static Action OnEnemyAction;
     [HideInInspector] public static Action<int> OnRouletteSpin;
+    [HideInInspector] public static Action<int> AfterRouletteSpin;
     [HideInInspector] public static Action OnRouletteTrigger;
     [HideInInspector] public static Action OnRouletteEnchant;
     [HideInInspector] public static Action BeforeRouletteActivate;
@@ -176,7 +177,7 @@ public class TurnManager : MonoBehaviour
     {
         if (damage > 0)
         {
-            damage = BuffManager.Inst.GetPlayerBuffValue(BuffManager.Inst.damageBuff, damage);
+            damage = BuffManager.GetTargetBuffedValue(BuffManager.Inst.playerBuff_Damage, damage);
             if (damage < 0)
             {
                 damage = 0;
@@ -185,7 +186,7 @@ public class TurnManager : MonoBehaviour
         }
         else
         {
-            damage = -BuffManager.Inst.GetPlayerBuffValue(BuffManager.Inst.healBuff, -damage);
+            damage = -BuffManager.GetTargetBuffedValue(BuffManager.Inst.playerBuff_Heal, -damage);
             if (damage > 0)
             {
                 damage = 0;
@@ -233,6 +234,24 @@ public class TurnManager : MonoBehaviour
     // 적 체력 변동 (데미지 or 힐, 실드 고려). 적 생존 여부 반환
     public int EnemyTakeDmg(int damage)
     {
+        if (damage > 0)
+        {
+            damage = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Damage, damage);
+            if (damage < 0)
+            {
+                damage = 0;
+                return 0;
+            }
+        }
+        else
+        {
+            damage = -BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Heal, -damage);
+            if (damage > 0)
+            {
+                damage = 0;
+                return 0;
+            }
+        }
         if (enemyCurHealth + enemyShieldHealth > damage)
         {
             if (damage > 0)
@@ -287,11 +306,13 @@ public class TurnManager : MonoBehaviour
     {
         if (isEnemy)
         {
+            value = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Shield, value);
             enemyShieldHealth += value;
             OnEnemyShielded?.Invoke(value);
         }
         else
         {
+            value = BuffManager.GetTargetBuffedValue(BuffManager.Inst.playerBuff_Shield, value);
             shieldHealth += value;
             OnPlayerShielded?.Invoke(value);
         }
