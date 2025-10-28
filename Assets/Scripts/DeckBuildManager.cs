@@ -58,6 +58,7 @@ public class DeckBuildManager : MonoBehaviour
     public CharacterSO characterSO;
 
     public bool isLoading;
+    public static bool IsDeckBuildOpen = false;
 
     public void RelicList()
     {
@@ -445,6 +446,7 @@ public class DeckBuildManager : MonoBehaviour
         DeckListInit();
         NormalCardListSet();
         backgroundPanel.SetActive(true);
+        IsDeckBuildOpen = true;
     }
 
     public void EndDeckBuildUI()
@@ -452,6 +454,7 @@ public class DeckBuildManager : MonoBehaviour
         // TODO. exit UI or something.
         //SceneManager.LoadScene("BattleScene");
         backgroundPanel.SetActive(false);
+        IsDeckBuildOpen = false;
     }
 
     void Start()

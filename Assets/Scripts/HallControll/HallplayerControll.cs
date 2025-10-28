@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class HallplayerControll : MonoBehaviour
 {
@@ -51,6 +52,7 @@ public class HallplayerControll : MonoBehaviour
     
     private void OnClickPerformed(InputAction.CallbackContext context)
     {
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
         Vector2 mouseScreenPos = input.Player.Point.ReadValue<Vector2>();
         Vector3 worldPos = mainCamera.ScreenToWorldPoint(mouseScreenPos);
         worldPos.z = transform.position.z;
@@ -66,7 +68,8 @@ public class HallplayerControll : MonoBehaviour
     }
     
     private void Update()
-    {
+    {    
+        if (DeckBuildManager.IsDeckBuildOpen) return;
         if (Mathf.Abs(moveInput.x) > 0.01f)
         {
             movingToClick = false;
