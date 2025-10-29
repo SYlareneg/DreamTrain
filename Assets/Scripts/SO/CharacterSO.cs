@@ -48,9 +48,16 @@ public class Enemy
     public int health;
     public int actionNum;
     public Passive passive;
+    public List<RelicItem> relics;
     public int triggerNum;
     public List<EnemyPhase> phase;
     public RouletteItem[] roulettePattern;
+    public Sprite specialRoulette1Sprite;
+    public string specialRoulette1Title;
+    public string specialRoulette1Text;
+    public Sprite specialRoulette2Sprite;
+    public string specialRoulette2Title;
+    public string specialRoulette2Text;
 }
 
 [CreateAssetMenu(fileName = "CharacterSO", menuName = "Scriptable Objects/CharacterSO")]

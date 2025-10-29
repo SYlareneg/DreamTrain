@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using TMPro;
 
 public class Lever : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Lever : MonoBehaviour
     public int useCost;
     [SerializeField] Transform leverUp;
     [SerializeField] Transform leverDown;
+    [SerializeField] TMP_Text leverCostText;
     Vector3 lastMousePos;
     bool isLeverDrag = false;
     private void OnMouseDown()
@@ -25,13 +27,19 @@ public class Lever : MonoBehaviour
         {
             if (this.transform.position.y <= leverDown.position.y)
             {
-                if (TurnManager.Inst.nowCost >= useCost)
-                {
-                    TurnManager.Inst.IncreaseCost(-useCost);
-                    RouletteManager.Inst.ActivateRoulette();
-                }
+                ActivateRouletteUsingLever();
             }
             this.transform.DOMove(leverUp.position, leverRecoveryTime).OnComplete(() => isLeverDrag = false);
+        }
+    }
+
+    private void ActivateRouletteUsingLever()
+    {
+        if (TurnManager.Inst.nowCost >= useCost)
+        {
+            TurnManager.Inst.IncreaseCost(-useCost);
+            RouletteManager.Inst.ActivateRoulette();
+            useCost += 1;
         }
     }
 
@@ -40,14 +48,7 @@ public class Lever : MonoBehaviour
         Sequence actSeq = DOTween.Sequence();
         actSeq.Append(this.transform.DOMove(leverDown.position, leverRecoveryTime).OnComplete(() =>
         {
-            if (this.transform.position.y <= leverDown.position.y)
-            {
-                if (TurnManager.Inst.nowCost >= useCost)
-                {
-                    TurnManager.Inst.IncreaseCost(-useCost);
-                    RouletteManager.Inst.ActivateRoulette();
-                }
-            }
+            ActivateRouletteUsingLever();
         }));
         actSeq.AppendInterval(0.1f);
         actSeq.Append(this.transform.DOMove(leverUp.position, leverRecoveryTime));
@@ -56,6 +57,11 @@ public class Lever : MonoBehaviour
     private void Start()
     {
         this.transform.SetPositionAndRotation(leverUp.position, leverUp.rotation);
+        useCost = 1;
+        TurnManager.OnRouletteSpin += (x) =>
+        {
+            useCost = 1;
+        };
     }
     private void Update()
     {
@@ -75,5 +81,7 @@ public class Lever : MonoBehaviour
             }
             this.transform.SetPositionAndRotation(newLeverPos, this.transform.rotation);
         }
+
+        leverCostText.text = "현재비용: " + useCost.ToString();
     }
 }

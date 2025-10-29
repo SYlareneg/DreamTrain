@@ -150,7 +150,6 @@ public class TurnManager : MonoBehaviour
         isLoading = true;
         OnPlayerTurnEnd?.Invoke();
         Discard();
-        RouletteManager.Inst.ActivateRoulette();
         // 적 턴 시작 UI를 띄우고, StartPlayerTurn_AfterNotify 호출
         GameManager.Inst.Notification("적 턴", "턴 " + turnNum.ToString(), EnemyManager.Inst.StartEnemyTurn);
     }
@@ -328,11 +327,14 @@ public class TurnManager : MonoBehaviour
             {
                 playerTriggerCnt = playerTriggerMaxCnt;
             }
+            if(playerTriggerCnt < 0)
+            {
+                playerTriggerCnt = 0;
+            }
         }
-        if (playerTriggerCnt == playerTriggerMaxCnt)
+        if (playerTriggerCnt != 0 && playerTriggerCnt == playerTriggerMaxCnt)
         {
             RouletteManager.Inst.TriggerRoulette();
-            OnPlayerTrigger?.Invoke();
         }
     }
 
@@ -346,8 +348,12 @@ public class TurnManager : MonoBehaviour
             {
                 enemyTriggerCnt = enemyTriggerMaxCnt;
             }
+            if(enemyTriggerCnt < 0)
+            {
+                enemyTriggerCnt = 0;
+            }
         }
-        if (enemyTriggerCnt == enemyTriggerMaxCnt)
+        if (enemyTriggerCnt != 0 && enemyTriggerCnt == enemyTriggerMaxCnt)
         {
             EnemyManager.Inst.EnemyTriggerAction();
             OnEnemyTrigger?.Invoke();

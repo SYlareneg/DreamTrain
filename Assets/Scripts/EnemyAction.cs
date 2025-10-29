@@ -164,7 +164,7 @@ public class EnemyAction : MonoBehaviour
                 case EEnemyActionType.Enchant_Random:
                     if (EnemyManager.Inst.enemy.name == "Vampire Paul")
                     {
-                        DrainEnchantAction();
+                        EnchantAction(ERouletteType.Enemy_Special_1);
                     }
                     break;
                 case EEnemyActionType.Drain:
@@ -185,7 +185,7 @@ public class EnemyAction : MonoBehaviour
         }
     }
 
-    public static void DrainEnchantAction()
+    public static void EnchantAction(ERouletteType rType)
     {
         List<int> noneIdx = new List<int>();
         for (int i = 0; i < RouletteManager.rouletteNum; i++)
@@ -199,13 +199,13 @@ public class EnemyAction : MonoBehaviour
         if (noneIdx.Count > 0)
         {
             randIdx = noneIdx[Random.Range(0, noneIdx.Count)];
-            RouletteManager.Inst.EnchantRoulettePiece(randIdx, ERouletteType.Drain, 5);
+            RouletteManager.Inst.EnchantRoulettePiece(randIdx, rType, 5);
         }
         else
         {
             for (int i = 0; i < RouletteManager.rouletteNum; i++)
             {
-                if (i != RouletteManager.Inst.triggerPos && RouletteManager.Inst.roulettePieces[i].roulette.type != ERouletteType.Drain)
+                if (i != RouletteManager.Inst.triggerPos && RouletteManager.Inst.roulettePieces[i].roulette.type != rType)
                 {
                     noneIdx.Add(i);
                 }
@@ -213,7 +213,7 @@ public class EnemyAction : MonoBehaviour
             if (noneIdx.Count > 0)
             {
                 randIdx = noneIdx[Random.Range(0, noneIdx.Count)];
-                RouletteManager.Inst.EnchantRoulettePiece(randIdx, ERouletteType.Drain, 5);
+                RouletteManager.Inst.EnchantRoulettePiece(randIdx, rType, 5);
             }
             else
             {

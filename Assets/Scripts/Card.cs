@@ -161,7 +161,7 @@ public class Card : MonoBehaviour
                 isCardUsed = RouletteManager.Inst.EnchantRoulette(false, ERouletteType.Heal, 3);
                 break;
             case "흡혈 부여":
-                isCardUsed = RouletteManager.Inst.EnchantRoulette(true, ERouletteType.Lifesteal, 6);
+                isCardUsed = RouletteManager.Inst.EnchantRoulette(true, ERouletteType.Player_Special_1, 6);
                 break;
             case "혈액 순환":
                 RouletteManager.Inst.Spin(true, 1);
@@ -197,7 +197,7 @@ public class Card : MonoBehaviour
                 for (int i = 0; i < 4; i++)
                 {
                     int tempIdx = (RouletteManager.Inst.enemyLookat + i) % RouletteManager.rouletteNum;
-                    if (RouletteManager.Inst.roulettePieces[tempIdx].roulette.type == ERouletteType.Lifesteal)
+                    if (RouletteManager.Inst.roulettePieces[tempIdx].roulette.type == ERouletteType.Player_Special_2)
                     {
                         RouletteManager.Inst.ActivateRoulettePiece(tempIdx, true);
                     }
@@ -205,10 +205,14 @@ public class Card : MonoBehaviour
                 RouletteManager.Inst.Spin(false, 4);
                 break;
             case "마술 상자":
-                isCardUsed = RouletteManager.Inst.EnchantRoulette(false, ERouletteType.MagicBox, 12);
+                ERouletteType magicBox = ERouletteType.Player_Special_1;
+                if (TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum != this.item.dreamPieceNum) magicBox = ERouletteType.Player_Special_2;
+                isCardUsed = RouletteManager.Inst.EnchantRoulette(false, magicBox, 12);
                 break;
             case "마술-비둘기":
-                bool checkMagic = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].roulette.type == ERouletteType.MagicBox;
+                magicBox = ERouletteType.Player_Special_1;
+                if (TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum != this.item.dreamPieceNum) magicBox = ERouletteType.Player_Special_2;
+                bool checkMagic = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].roulette.type == magicBox;
                 TurnManager.Inst.EnemyTakeDmg(1);
                 if (checkMagic)
                 {
@@ -216,7 +220,9 @@ public class Card : MonoBehaviour
                 }
                 break;
             case "마술-카드":
-                checkMagic = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.type == ERouletteType.MagicBox;
+                magicBox = ERouletteType.Player_Special_1;
+                if (TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum != this.item.dreamPieceNum) magicBox = ERouletteType.Player_Special_2;
+                checkMagic = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.type == magicBox;
                 RouletteManager.Inst.Spin(true, 1);
                 if (checkMagic)
                 {
@@ -225,7 +231,9 @@ public class Card : MonoBehaviour
                 }
                 break;
             case "마술-절단":
-                checkMagic = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].roulette.type == ERouletteType.MagicBox;
+                magicBox = ERouletteType.Player_Special_1;
+                if (TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum != this.item.dreamPieceNum) magicBox = ERouletteType.Player_Special_2;
+                checkMagic = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].roulette.type == magicBox;
                 TurnManager.Inst.EnemyTakeDmg(2);
                 if (checkMagic)
                 {
@@ -233,7 +241,9 @@ public class Card : MonoBehaviour
                 }
                 break;
             case "마술-순간이동":
-                checkMagic = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.type == ERouletteType.MagicBox;
+                magicBox = ERouletteType.Player_Special_1;
+                if (TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum != this.item.dreamPieceNum) magicBox = ERouletteType.Player_Special_2;
+                checkMagic = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.type == magicBox;
                 RouletteManager.Inst.Spin(true, 2);
                 if (checkMagic)
                 {

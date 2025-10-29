@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -27,6 +28,7 @@ public class EnemyManager : MonoBehaviour
 
     [SerializeField] GameObject actionBox;
     [SerializeField] GameObject enemyImg;
+    [SerializeField] TMP_Text enemyName;
     public List<EnemyAction> actionList;
     public List<EnemyAction> executeActionList;
     static float actionInterval = 0.5f;
@@ -37,6 +39,14 @@ public class EnemyManager : MonoBehaviour
     public int patternNum;
     public List<EnemyPattern> currentPattern;
     Action extendPattern;
+    public static Action<bool, int> EnemySpecialRoulette1Activation;
+    public static Action<bool, int> EnemySpecialRoulette2Activation;
+    public Sprite EnemySpecialRoulette1Sprite;
+    public string EnemySpecialRoulette1Title;
+    public string EnemySpecialRoulette1Text;
+    public Sprite EnemySpecialRoulette2Sprite;
+    public string EnemySpecialRoulette2Title;
+    public string EnemySpecialRoulette2Text;
 
     public void InitEnemy()
     {
@@ -66,34 +76,75 @@ public class EnemyManager : MonoBehaviour
                 BuffManager.Inst.AddEnemyBuff(BuffManager.Inst.enemyDrainBuff, 1, 1, -1);
                 break;
         }*/
+        foreach(var relic in enemy.relics)
+        {
+            RelicManager.Inst.ActivateRelic(relic);
+        }
         TurnManager.Inst.enemyTriggerMaxCnt = enemy.triggerNum;
         TurnManager.Inst.enemyTriggerCnt = 0;
         phaseNum = 0;
         patternNum = 0;
         currentPattern = enemy.phase[0].patterns[0].pattern;
-        foreach(var p in enemy.phase)
+        foreach (var p in enemy.phase)
         {
             p.phaseClear = false;
         }
+        enemyName.text = enemy.name;
         enemyImg.GetComponent<Tooltip>().tooltipTitle = enemy.phase[0].name;
         enemyImg.GetComponent<Tooltip>().tooltipTxt = enemy.phase[0].text;
 
+        EnemySpecialRoulette1Sprite = enemy.specialRoulette1Sprite;
+        EnemySpecialRoulette1Title = enemy.specialRoulette1Title;
+        EnemySpecialRoulette1Text = enemy.specialRoulette1Text;
+        EnemySpecialRoulette2Sprite = enemy.specialRoulette2Sprite;
+        EnemySpecialRoulette2Title = enemy.specialRoulette2Title;
+        EnemySpecialRoulette2Text = enemy.specialRoulette2Text;
+
         switch (enemy.name)
         {
-            case "Vampire Paul":
+            case "뱀파이어 폴":
+                BuffManager.InitSpecialRouletteBuffs += () =>
+                {
+                    BuffManager.Inst.rouletteBuff_EnemySpecial1.Add(new List<Buff>());
+                    BuffManager.Inst.rouletteBuff_EnemySpecial1.Add(new List<Buff>());
+                };
+                EnemySpecialRoulette1Activation = (isEnemy, value) =>
+                {
+                    if (isEnemy)
+                    {
+                        int trueDamage = TurnManager.Inst.EnemyTakeDmg(value);
+                        int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_EnemySpecial1[1], trueDamage);
+                        TurnManager.Inst.EnemyTakeDmg(-totalVal_Heal);
+                    }
+                    else
+                    {
+                        int trueDamage = TurnManager.Inst.TakeDmg(value);
+                        int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_EnemySpecial1[1], trueDamage);
+                        TurnManager.Inst.EnemyTakeDmg(-totalVal_Heal);
+                    }
+                };
                 TurnManager.OnPlayerTurnStart += () =>
                 {
                     if (TurnManager.Inst.turnNum % 2 == 0)
                     {
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Drain, TurnManager.Inst.turnNum / 2, 1, 2);
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Drain_Dmg, TurnManager.Inst.turnNum / 2, 1, 2);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_EnemySpecial1[0], TurnManager.Inst.turnNum / 2, 1, 2);
                     }
                 };
 
                 RouletteItem rItem = new RouletteItem();
-                rItem.type = ERouletteType.Drain;
-                rItem.value = 5;
+                rItem.type = ERouletteType.Enemy_Special_1;
+                rItem.value.Add(15);
                 RouletteManager.Inst.enemyTriggerPiece = rItem;
+                TurnManager.OnEnemyTrigger += () =>
+                {
+                    BuffManager.Inst.rouletteBuff_Trigger.Clear();
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, -10, 3, -1);
+                };
+                RouletteManager.EnemyTriggerActivation = (isEnemy, totalVal) =>
+                {
+                    EnemySpecialRoulette1Activation?.Invoke(isEnemy, totalVal);
+                };
                 break;
         }
     }
@@ -151,12 +202,12 @@ public class EnemyManager : MonoBehaviour
     {
         switch (enemy.name)
         {
-            case "Vampire Paul":
+            case "뱀파이어 폴":
                 if (phaseNum == 0)
                 {
                     enemy.phase[0].phaseClear = true;
-                    EnemyAction.DrainEnchantAction();
-                    EnemyAction.DrainEnchantAction();
+                    EnemyAction.EnchantAction(ERouletteType.Enemy_Special_1);
+                    EnemyAction.EnchantAction(ERouletteType.Enemy_Special_1);
                 }
                 else if (phaseNum == 1)
                 {
@@ -251,7 +302,7 @@ public class EnemyManager : MonoBehaviour
             Debug.Log(playerSlot_afterTurn.roulette.type);
 
             // 우선순위 정책
-            if (enemy.name == "Vampire Paul")
+            if (enemy.name == "뱀파이어 폴")
             {
                 if (playerSlot_afterTurn.isTriggered == true)
                 {
@@ -259,7 +310,7 @@ public class EnemyManager : MonoBehaviour
                     selectedFlag = true;
                     break;
                 }
-                if (playerSlot_afterTurn.roulette.type == ERouletteType.Drain)
+                if (playerSlot_afterTurn.roulette.type == ERouletteType.Enemy_Special_1)
                 {
                     bestTurnSequence = turnSequence;
                     selectedFlag = true;
@@ -364,6 +415,8 @@ public class EnemyManager : MonoBehaviour
     private void OnDestroy()
     {
         TurnManager.OnPlayerTurnStart = null;
+        EnemySpecialRoulette1Activation = null;
+        EnemySpecialRoulette2Activation = null;
     }
 
     private void Update()

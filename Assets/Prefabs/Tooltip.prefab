@@ -69,8 +69,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 366155e3dbfcce3409668f4821da9ade, type: 2}
-  m_sharedMaterial: {fileID: -7959174977532065633, guid: 366155e3dbfcce3409668f4821da9ade, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 47cca83c53488344680ff6471d8b9082, type: 2}
+  m_sharedMaterial: {fileID: 2511819687917346823, guid: 47cca83c53488344680ff6471d8b9082, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26.05
+  m_fontSize: 27.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -205,8 +205,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Tooltip text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 366155e3dbfcce3409668f4821da9ade, type: 2}
-  m_sharedMaterial: {fileID: -7959174977532065633, guid: 366155e3dbfcce3409668f4821da9ade, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 47cca83c53488344680ff6471d8b9082, type: 2}
+  m_sharedMaterial: {fileID: 2511819687917346823, guid: 47cca83c53488344680ff6471d8b9082, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

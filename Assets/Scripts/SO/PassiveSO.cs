@@ -9,6 +9,7 @@ public class Passive
     public Sprite sprite;
     public string name;
     public string text;
+    public int dreamPieceNum;
 }
 
 [CreateAssetMenu(fileName = "PassiveSO", menuName = "Scriptable Objects/PassiveSO")]

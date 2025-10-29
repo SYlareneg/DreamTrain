@@ -27,6 +27,9 @@ public class RouletteManager : MonoBehaviour
     public RouletteItem enemyTriggerPiece;
     public RouletteItem triggerPiece_None;
     public bool isTriggerActivated;
+    public static Action<bool, int> PlayerTriggerActivation;
+    public static Action<bool, int> EnemyTriggerActivation;
+    public static Action<bool, int> TriggerActivation;
 
     public bool spinFlag = false;
     public bool isRouletteDrag;
@@ -56,6 +59,10 @@ public class RouletteManager : MonoBehaviour
             {
                 pieces *= -1;
                 TurnManager.Inst.TriggerPlayerPassive(1);
+            }
+            else
+            {
+                TurnManager.Inst.TriggerPlayerPassive(-1);
             }
             newRotation *= Quaternion.Euler(0f, 0f, 360f * pieces / rouletteNum);
             playerLookat = (playerLookat + pieces + rouletteNum) % rouletteNum;
@@ -105,6 +112,8 @@ public class RouletteManager : MonoBehaviour
     {
         roulettePieces[triggerPos].Setup(triggerPiece);
         roulettePieces[triggerPos].Trigger(true);
+        TurnManager.OnPlayerTrigger?.Invoke();
+        TriggerActivation = PlayerTriggerActivation;
         roulettePieces[triggerPos].GetComponent<Tooltip>().tooltipTitle = TurnManager.Inst.characterSO.shadowPiece.shadow.name;
         roulettePieces[triggerPos].GetComponent<Tooltip>().tooltipTxt = TurnManager.Inst.characterSO.shadowPiece.shadow.text;
         TurnManager.OnRouletteTrigger?.Invoke();
@@ -114,6 +123,8 @@ public class RouletteManager : MonoBehaviour
     {
         roulettePieces[triggerPos].Setup(enemyTriggerPiece);
         roulettePieces[triggerPos].Trigger(true);
+        TurnManager.OnEnemyTrigger?.Invoke();
+        TriggerActivation = EnemyTriggerActivation;
         roulettePieces[triggerPos].GetComponent<Tooltip>().tooltipTitle = EnemyManager.Inst.enemy.passive.name;
         roulettePieces[triggerPos].GetComponent<Tooltip>().tooltipTxt = EnemyManager.Inst.enemy.passive.text;
         TurnManager.OnRouletteTrigger?.Invoke();
@@ -142,7 +153,7 @@ public class RouletteManager : MonoBehaviour
         }
         RouletteItem rItem = new RouletteItem();
         rItem.type = rType;
-        rItem.value = rValue;
+        rItem.value.Add(rValue);
         roulettePieces[index].Setup(rItem);
         TurnManager.OnRouletteEnchant?.Invoke();
     }
@@ -185,7 +196,7 @@ public class RouletteManager : MonoBehaviour
         }
         RouletteItem tempRoulettePiece = new RouletteItem();
         tempRoulettePiece.type = ERouletteType.None;
-        tempRoulettePiece.value = 0;
+        tempRoulettePiece.value.Add(0);
         triggerPiece_None = tempRoulettePiece;
         roulettePieces[triggerPos].Setup(tempRoulettePiece);
     }
@@ -248,6 +259,9 @@ public class RouletteManager : MonoBehaviour
     private void OnDestroy()
     {
         TurnManager.OnPlayerTurnStart = null;
+        PlayerTriggerActivation = null;
+        EnemyTriggerActivation = null;
+        TriggerActivation = null;
     }
 
     private void Update()
