@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: HatData
+  m_Script: {fileID: 11500000, guid: de8d0655154885a4a954678686c2302a, type: 3}
+  m_Name: hatData
   m_EditorClassIdentifier: Assembly-CSharp::InteractableObjectData
   ID: 2
-  Name_KO: "\uB0A1\uC740 \uAC00\uC8FD \uBAA8\uC790"
+  Name_KO: "\uAC00\uC8FD \uBAA8\uC790"
   Name_EN: 
   itemIcon: {fileID: 2010073336416285277, guid: 668a0959d9b3077459d0fa48557e97a0, type: 3}
   DialogueList:

@@ -1069,6 +1069,7 @@ GameObject:
   - component: {fileID: 159417441}
   - component: {fileID: 159417440}
   - component: {fileID: 159417443}
+  - component: {fileID: 159417444}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1194,6 +1195,23 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &159417444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159417439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e45c42cf303f8a34e96548ca292589b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraController
+  target: {fileID: 1457138960}
+  smoothSpeed: 0.125
+  offset: {x: 0, y: 0, z: 0}
+  minX: -14
+  maxX: 14
 --- !u!1 &178400014
 GameObject:
   m_ObjectHideFlags: 0
@@ -2005,8 +2023,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -700, y: -20}
-  m_SizeDelta: {x: 1400, y: 1200}
+  m_AnchoredPosition: {x: -700, y: 0}
+  m_SizeDelta: {x: 1400, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &316980257
 MonoBehaviour:
@@ -4094,7 +4112,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000091552734}
+  m_AnchoredPosition: {x: 0, y: 0.00012207031}
   m_SizeDelta: {x: 0, y: 553}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &848227807
@@ -6686,6 +6704,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445979847}
   m_CullTransparentMesh: 1
+--- !u!4 &1457138960 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5001267435387145080, guid: 36713a6f74c37fa4384a96354572a903, type: 3}
+  m_PrefabInstance: {fileID: 740894540838268671}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1475059115
 GameObject:
   m_ObjectHideFlags: 0
@@ -7595,7 +7618,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 540910891}
   m_HandleRect: {fileID: 540910890}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -8553,7 +8576,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
