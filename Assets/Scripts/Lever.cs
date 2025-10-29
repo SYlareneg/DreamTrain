@@ -62,6 +62,10 @@ public class Lever : MonoBehaviour
         {
             useCost = 1;
         };
+        TurnManager.OnPlayerTurnStart += () =>
+        {
+            useCost = 1;
+        };
     }
     private void Update()
     {
