@@ -980,7 +980,7 @@ MonoBehaviour:
   resultPanel: {fileID: 656351733}
   endTurnBtn: {fileID: 62641915}
   turnNotificationTMP: {fileID: 1591758289}
-  rouletteBuffPos: {x: 287.5, y: 254}
+  rouletteBuffPos: {x: 312, y: 254}
   rouletteBuffUIView: {fileID: 1462820538}
   cardScrollView: {fileID: 735414293}
   cardListScroll: {fileID: 249217477}
@@ -997,7 +997,7 @@ MonoBehaviour:
   shieldTMP: {fileID: 51984679}
   triggerCountTMP: {fileID: 849047958}
   triggerCntImg: {fileID: 1017802920}
-  playerBuffPos: {x: -805, y: -406}
+  playerBuffPos: {x: -790, y: -426}
   playerBuffUIView: {fileID: 507497926}
   personaImg: {fileID: 1550327218}
   shadowImg: {fileID: 967740070}
@@ -1007,7 +1007,7 @@ MonoBehaviour:
   enemyShieldTMP: {fileID: 838131064}
   enemyTriggerCountTMP: {fileID: 1551428904}
   enemyTriggerCntImg: {fileID: 1884400814}
-  enemyBuffPos: {x: -785, y: 346}
+  enemyBuffPos: {x: -770, y: 336}
   enemyBuffUIView: {fileID: 1636146940}
   relicList: []
   gameOverSignal: 0
@@ -1262,6 +1262,7 @@ MonoBehaviour:
   tooltipTitle: 
   tooltipTxt: 
   tooltipPos: {x: -790, y: -346}
+  tooltipPivot: {x: 0, y: 0}
   tooltipDisable: 0
 --- !u!1 &173944127
 GameObject:
@@ -9706,6 +9707,7 @@ MonoBehaviour:
   tooltipTitle: 
   tooltipTxt: 
   tooltipPos: {x: -790, y: -346}
+  tooltipPivot: {x: 0, y: 0}
   tooltipDisable: 0
 --- !u!1 &1513554506
 GameObject:
@@ -10545,6 +10547,7 @@ MonoBehaviour:
   tooltipTitle: 
   tooltipTxt: 
   tooltipPos: {x: 87, y: 386}
+  tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
 --- !u!1 &1591758287
 GameObject:

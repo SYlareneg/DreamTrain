@@ -13,6 +13,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler
     RectTransform rect;
     public string tooltipTitle, tooltipTxt;
     public Vector2 tooltipPos;
+    public Vector2 tooltipPivot = new Vector2(0, 1);
     public bool tooltipDisable = false;
     bool objectEnter;
 
@@ -27,6 +28,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler
         tooltip.GetComponent<Image>().raycastTarget = false;
         var tooltipRect = tooltip.GetComponent<RectTransform>();
         tooltipRect.anchoredPosition = tooltipPos;
+        tooltipRect.pivot = tooltipPivot;
 
         Vector3[] corners = new Vector3[4];
         tooltipRect.GetWorldCorners(corners);

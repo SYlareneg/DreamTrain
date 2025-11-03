@@ -272,6 +272,11 @@ public class GameManager : MonoBehaviour
             Destroy(playerBuffUIView.transform.GetChild(i).gameObject);
         }
         BuffManager.Inst.BuffListToBuffUIList(BuffManager.Inst.playerShowBuffs, playerBuffUIView, playerBuffPos);
+        var tooltipList = playerBuffUIView.GetComponentsInChildren<Tooltip>();
+        foreach(var tooltip in tooltipList)
+        {
+            tooltip.tooltipPivot = new Vector2(0, 0);
+        }
     }
 
     public void SetEnemyBuffUI()
