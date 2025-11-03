@@ -12,6 +12,10 @@ public enum EBuffAffectType
 {
     Player, Enemy, Roulette
 };
+public enum EBuffEffectType
+{
+    Benefit, Demerit, Neutral
+};
 
 [System.Serializable]
 public class Buff
@@ -57,7 +61,8 @@ public class ShowBuff
     public Sprite icon;
     public EBuffType type;
     [HideInInspector] public EBuffAffectType affectType;
-    [HideInInspector] public int val;
+    public EBuffEffectType effectType;
+    public int val;
     [HideInInspector] public List<List<Buff>> targets;
     [HideInInspector] public List<Buff> affectBuffs;
 
@@ -76,6 +81,7 @@ public class ShowBuff
         text = origin.text;
         icon = origin.icon;
         type = origin.type;
+        effectType = origin.effectType;
         affectType = aType;
         val = newVal;
         targets = new List<List<Buff>>();
@@ -197,6 +203,108 @@ public class ShowBuff
                     TurnManager.OnPlayerTurnEnd += eraseFullCost;
                 }
                 break;
+            case "환영":
+                if (affectType == EBuffAffectType.Enemy)
+                {
+                    BuffManager.Inst.enemyShowBuffs.Add(this);
+                    Action<int> noDamage = null;
+                    noDamage = (value) =>
+                    {
+                        TurnManager.Inst.enemyShieldHealth += value;
+                        BuffManager.Inst.AddShowBuff("환영", affectType, -1);
+                        if(this.val == 0)
+                        {
+                            BuffManager.Inst.enemyShowBuffs.Remove(this);
+                            TurnManager.OnEnemyDamaged -= noDamage;
+                        }
+                    };
+                    TurnManager.OnEnemyDamaged += noDamage;
+                }
+                else if(affectType == EBuffAffectType.Player)
+                {
+                    BuffManager.Inst.playerShowBuffs.Add(this);
+                    Action<int> noDamage = null;
+                    noDamage = (value) =>
+                    {
+                        TurnManager.Inst.shieldHealth += value;
+                        BuffManager.Inst.AddShowBuff("환영", affectType, -1);
+                        if(this.val == 0)
+                        {
+                            BuffManager.Inst.playerShowBuffs.Remove(this);
+                            TurnManager.OnPlayerDamaged -= noDamage;
+                        }
+                    };
+                    TurnManager.OnPlayerDamaged += noDamage;
+                }
+                break;
+            case "과민함":
+                if (affectType == EBuffAffectType.Enemy)
+                {
+                    BuffManager.Inst.enemyShowBuffs.Add(this);
+                    AddAffectBuff(BuffManager.Inst.enemyBuff_Damage, 0, 1.5f, -1);
+                    Action<int> reduceCount = null;
+                    reduceCount = (damage) =>
+                    {
+                        BuffManager.Inst.AddShowBuff("과민함", affectType, -1);
+                        if (this.val == 0)
+                        {
+                            BuffManager.Inst.enemyShowBuffs.Remove(this);
+                            TurnManager.OnEnemyDamaged -= reduceCount;
+                        }
+                    };
+                    TurnManager.OnEnemyDamaged += reduceCount;
+                }
+                else if(affectType == EBuffAffectType.Player)
+                {
+                    BuffManager.Inst.playerShowBuffs.Add(this);
+                    AddAffectBuff(BuffManager.Inst.playerBuff_Damage, 0, 1.5f, -1);
+                    Action<int> reduceCount = null;
+                    reduceCount = (damage) =>
+                    {
+                        BuffManager.Inst.AddShowBuff("과민함", affectType, -1);
+                        if (this.val == 0)
+                        {
+                            BuffManager.Inst.playerShowBuffs.Remove(this);
+                            TurnManager.OnPlayerDamaged -= reduceCount;
+                        }
+                    };
+                    TurnManager.OnPlayerDamaged += reduceCount;
+                }
+                break;
+            case "불쾌함":
+                if (affectType == EBuffAffectType.Enemy)
+                {
+                    BuffManager.Inst.enemyShowBuffs.Add(this);
+                    Action<int> reduceCount = null;
+                    reduceCount = (spin) =>
+                    {
+                        TurnManager.Inst.EnemyTakeDmg(3);
+                        BuffManager.Inst.AddShowBuff("불쾌함", affectType, -1);
+                        if (this.val == 0)
+                        {
+                            BuffManager.Inst.enemyShowBuffs.Remove(this);
+                            TurnManager.OnRouletteSpin -= reduceCount;
+                        }
+                    };
+                    TurnManager.OnRouletteSpin += reduceCount;
+                }
+                else if (affectType == EBuffAffectType.Player)
+                {
+                    BuffManager.Inst.playerShowBuffs.Add(this);
+                    Action<int> reduceCount = null;
+                    reduceCount = (spin) =>
+                    {
+                        TurnManager.Inst.TakeDmg(3);
+                        BuffManager.Inst.AddShowBuff("불쾌함", affectType, -1);
+                        if (this.val == 0)
+                        {
+                            BuffManager.Inst.playerShowBuffs.Remove(this);
+                            TurnManager.OnRouletteSpin -= reduceCount;
+                        }
+                    };
+                    TurnManager.OnRouletteSpin += reduceCount;
+                }
+                break;
         }
         if(type == EBuffType.Duration)
         {
@@ -290,7 +398,8 @@ public class BuffManager : MonoBehaviour
     public List<Buff> enemyBuff_Heal;
     public List<Buff> enemyBuff_Shield;
     public List<Buff> enemyBuff_Attack;
-    public List<Buff> enemyBuff_Drain;
+    public List<Buff> enemyBuff_Special_1;
+    public List<Buff> enemyBuff_Special_2;
 
     public List<Buff> allCardValueBuff;
     public List<Buff> allCardCostBuff;
@@ -333,7 +442,7 @@ public class BuffManager : MonoBehaviour
         }
     }
 
-    public List<BuffUI> BuffListToBuffUIList(List<ShowBuff> BuffList, GameObject parent)
+    public List<BuffUI> BuffListToBuffUIList(List<ShowBuff> BuffList, GameObject parent, Vector2 tooltipBasePos)
     {
         List<BuffUI> returnList = new List<BuffUI>();
         foreach (var buff in BuffList)
@@ -343,6 +452,7 @@ public class BuffManager : MonoBehaviour
             bUIObj.transform.SetParent(parent.transform);
             BuffUI bUI = bUIObj.GetComponent<BuffUI>();
             bUI.Setup(buff);
+            bUI.tooltipBasePos = tooltipBasePos;
             returnList.Add(bUI);
         }
         return returnList;
@@ -405,13 +515,15 @@ public class BuffManager : MonoBehaviour
         enemyBuff_Damage = new List<Buff>();
         enemyBuff_Heal = new List<Buff>();
         enemyBuff_Shield = new List<Buff>();
-        enemyBuff_Drain = new List<Buff>();
+        enemyBuff_Special_1 = new List<Buff>();
+        enemyBuff_Special_2 = new List<Buff>();
 
         enemyBuffs.Add(enemyBuff_Attack);
         enemyBuffs.Add(enemyBuff_Damage);
         enemyBuffs.Add(enemyBuff_Heal);
         enemyBuffs.Add(enemyBuff_Shield);
-        enemyBuffs.Add(enemyBuff_Drain);
+        enemyBuffs.Add(enemyBuff_Special_1);
+        enemyBuffs.Add(enemyBuff_Special_2);
     }
 
     public void InitCardBuff()
@@ -497,7 +609,7 @@ public class BuffManager : MonoBehaviour
             totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_Trigger));
         }
         totalBuff.AddBuff(CalcTotalBuff(roulettePieceBuff[targetPiece]));
-        return (int)((targetPiece.roulette.value[0] + totalBuff.add) * totalBuff.mul);
+        return (int)((targetPiece.roulette.value + totalBuff.add) * totalBuff.mul);
     }
 
     public int GetBuffedCardCost(Item card)
@@ -509,10 +621,14 @@ public class BuffManager : MonoBehaviour
         {
             totalBuff.AddBuff(CalcTotalBuff(singleCardCostBuff[card]));
         }
-        /*if(card.name == "마술-예언" && RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.type == ERouletteType.MagicBox)
+        if(card.name == "마술-예언")
         {
-            totalBuff.add -= 2;
-        }*/
+            if(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == 1 && RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.type == ERouletteType.Player_Special_1
+            || TurnManager.Inst.characterSO.shadowPiece.shadow.dreamPieceNum == 1 && RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.type == ERouletteType.Player_Special_2)
+            {
+                totalBuff.add -= 2;
+            }
+        }
         return (int)((card.cost + totalBuff.add) * totalBuff.mul);
     }
 

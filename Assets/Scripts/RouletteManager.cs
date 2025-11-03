@@ -108,10 +108,21 @@ public class RouletteManager : MonoBehaviour
         roulettePieces[index].Activate(isEnemy);
     }
 
+    public bool isPlayerTrigger()
+    {
+        return roulettePieces[triggerPos].roulette == triggerPiece;
+    }
+
+    public bool isEnemyTrigger()
+    {
+        return roulettePieces[triggerPos].roulette == enemyTriggerPiece;
+    }
+
     public void TriggerRoulette()
     {
         roulettePieces[triggerPos].Setup(triggerPiece);
         roulettePieces[triggerPos].Trigger(true);
+        isTriggerActivated = true;
         TurnManager.OnPlayerTrigger?.Invoke();
         TriggerActivation = PlayerTriggerActivation;
         roulettePieces[triggerPos].GetComponent<Tooltip>().tooltipTitle = TurnManager.Inst.characterSO.shadowPiece.shadow.name;
@@ -123,6 +134,7 @@ public class RouletteManager : MonoBehaviour
     {
         roulettePieces[triggerPos].Setup(enemyTriggerPiece);
         roulettePieces[triggerPos].Trigger(true);
+        isTriggerActivated = true;
         TurnManager.OnEnemyTrigger?.Invoke();
         TriggerActivation = EnemyTriggerActivation;
         roulettePieces[triggerPos].GetComponent<Tooltip>().tooltipTitle = EnemyManager.Inst.enemy.passive.name;
@@ -153,7 +165,7 @@ public class RouletteManager : MonoBehaviour
         }
         RouletteItem rItem = new RouletteItem();
         rItem.type = rType;
-        rItem.value.Add(rValue);
+        rItem.value = rValue;
         roulettePieces[index].Setup(rItem);
         TurnManager.OnRouletteEnchant?.Invoke();
     }
@@ -196,7 +208,7 @@ public class RouletteManager : MonoBehaviour
         }
         RouletteItem tempRoulettePiece = new RouletteItem();
         tempRoulettePiece.type = ERouletteType.None;
-        tempRoulettePiece.value.Add(0);
+        tempRoulettePiece.value = 0;
         triggerPiece_None = tempRoulettePiece;
         roulettePieces[triggerPos].Setup(tempRoulettePiece);
     }

@@ -37,6 +37,7 @@ public class TurnManager : MonoBehaviour
     [Tooltip("트리거 조건 현재 카운트")] public int enemyTriggerCnt;
     [Header("SO")]
     [Tooltip("플레이어/적 정보")] public CharacterSO characterSO;
+    [Tooltip("적 리스트")] public EnemySO enemySO;
 
     // 로딩 여부. 로딩중일 경우 인터랙션 불가.
     [HideInInspector] public bool isLoading;
@@ -46,6 +47,7 @@ public class TurnManager : MonoBehaviour
     WaitForSeconds delay10 = new WaitForSeconds(1.0f);
     WaitForSeconds delay15 = new WaitForSeconds(1.5f);
 
+    [HideInInspector] public static Action BeforePlayerTurnStart;
     [HideInInspector] public static Action OnPlayerTurnStart;
     [HideInInspector] public static Action OnPlayerTurnEnd;
     [HideInInspector] public static Action OnEnemyTurnStart;
@@ -59,10 +61,14 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action<int> OnPlayerHealed;
     [HideInInspector] public static Action<int> OnPlayerShielded;
     [HideInInspector] public static Action OnPlayerTrigger;
+    [HideInInspector] public static Action<int> OnPlayerTriggerIncrease;
+    [HideInInspector] public static Action<int> OnPlayerTriggerDecrease;
     [HideInInspector] public static Action<int> OnEnemyDamaged;
     [HideInInspector] public static Action<int> OnEnemyHealed;
     [HideInInspector] public static Action<int> OnEnemyShielded;
     [HideInInspector] public static Action OnEnemyTrigger;
+    [HideInInspector] public static Action<int> OnEnemyTriggerIncrease;
+    [HideInInspector] public static Action<int> OnEnemyTriggerDecrease;
     [HideInInspector] public static Action OnEnemyAction;
     [HideInInspector] public static Action<int> OnRouletteSpin;
     [HideInInspector] public static Action<int> AfterRouletteSpin;
@@ -118,6 +124,9 @@ public class TurnManager : MonoBehaviour
     {
         InitializeGame();
         OnGameStart?.Invoke();
+        BuffManager.Inst.AddShowBuff("과민함", EBuffAffectType.Enemy, 1);
+        BuffManager.Inst.AddShowBuff("과민함", EBuffAffectType.Player, 1);
+        BuffManager.Inst.AddShowBuff("강화", EBuffAffectType.Roulette, 1);
         turnDraw = drawCardCount;
         // startCardCount만큼 카드를 뽑고, StartPlayerTurn 호출
         StartCoroutine(Draw(startCardCount, StartPlayerTurn));
@@ -126,6 +135,7 @@ public class TurnManager : MonoBehaviour
     // 플레이어 턴 시작
     public void StartPlayerTurn()
     {
+        BeforePlayerTurnStart?.Invoke();
         isLoading = true;
         turnNum++;
         nowCost = 0;
@@ -182,6 +192,7 @@ public class TurnManager : MonoBehaviour
                 damage = 0;
                 return 0;
             }
+            OnPlayerDamaged?.Invoke(damage);
         }
         else
         {
@@ -191,12 +202,12 @@ public class TurnManager : MonoBehaviour
                 damage = 0;
                 return 0;
             }
+            OnPlayerHealed?.Invoke(-damage);
         }
         if (curHealth + shieldHealth > damage)
         {
             if (damage > 0)
             {
-                OnPlayerDamaged?.Invoke(damage);
                 if (shieldHealth >= damage)
                 {
                     shieldHealth -= damage;
@@ -207,10 +218,6 @@ public class TurnManager : MonoBehaviour
                     damage -= shieldHealth;
                     shieldHealth = 0;
                 }
-            }
-            else
-            {
-                OnPlayerHealed?.Invoke(-damage);
             }
             if (curHealth - damage > maxHealth)
             {
@@ -223,7 +230,6 @@ public class TurnManager : MonoBehaviour
         else
         {
             damage = curHealth;
-            OnPlayerDamaged?.Invoke(damage);
             curHealth = 0;
             StartCoroutine(GameManager.Inst.GameOver(false));
             return damage;
@@ -241,6 +247,7 @@ public class TurnManager : MonoBehaviour
                 damage = 0;
                 return 0;
             }
+            OnEnemyDamaged?.Invoke(damage);
         }
         else
         {
@@ -250,12 +257,12 @@ public class TurnManager : MonoBehaviour
                 damage = 0;
                 return 0;
             }
+            OnEnemyHealed?.Invoke(-damage);
         }
         if (enemyCurHealth + enemyShieldHealth > damage)
         {
             if (damage > 0)
             {
-                OnEnemyDamaged?.Invoke(damage);
                 if (enemyShieldHealth >= damage)
                 {
                     enemyShieldHealth -= damage;
@@ -267,10 +274,6 @@ public class TurnManager : MonoBehaviour
                     enemyShieldHealth = 0;
                 }
             }
-            else
-            {
-                OnEnemyHealed?.Invoke(-damage);
-            }
             if (enemyCurHealth - damage > enemyMaxHealth)
             {
                 damage = enemyCurHealth - enemyMaxHealth;
@@ -281,7 +284,6 @@ public class TurnManager : MonoBehaviour
         else
         {
             damage = enemyCurHealth;
-            OnEnemyDamaged?.Invoke(damage);
             enemyCurHealth = 0;
             StartCoroutine(GameManager.Inst.GameOver(true));
             return damage;
@@ -320,6 +322,14 @@ public class TurnManager : MonoBehaviour
     // 플레이어 트리거 카운터 증가. 카운터 모두 채워졌을 시 발동
     public void TriggerPlayerPassive(int value)
     {
+        if (value > 0)
+        {
+            OnPlayerTriggerIncrease?.Invoke(value);
+        }
+        else
+        {
+            OnPlayerTriggerDecrease?.Invoke(value);
+        }
         if (playerTriggerCnt < playerTriggerMaxCnt)
         {
             playerTriggerCnt += value;
@@ -327,7 +337,7 @@ public class TurnManager : MonoBehaviour
             {
                 playerTriggerCnt = playerTriggerMaxCnt;
             }
-            if(playerTriggerCnt < 0)
+            if (playerTriggerCnt < 0)
             {
                 playerTriggerCnt = 0;
             }
@@ -341,6 +351,14 @@ public class TurnManager : MonoBehaviour
     // 적 트리거 카운터 증가. 카운터 모두 채워졌을 시 발동
     public void TriggerEnemyPassive(int value)
     {
+        if (value > 0)
+        {
+            OnEnemyTriggerIncrease?.Invoke(value);
+        }
+        else
+        {
+            OnEnemyTriggerDecrease?.Invoke(value);
+        }
         if (enemyTriggerCnt < enemyTriggerMaxCnt)
         {
             enemyTriggerCnt += value;
@@ -356,7 +374,6 @@ public class TurnManager : MonoBehaviour
         if (enemyTriggerCnt != 0 && enemyTriggerCnt == enemyTriggerMaxCnt)
         {
             EnemyManager.Inst.EnemyTriggerAction();
-            OnEnemyTrigger?.Invoke();
         }
     }
 }

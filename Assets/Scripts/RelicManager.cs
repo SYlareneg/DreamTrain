@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
@@ -67,10 +68,20 @@ public class RelicManager : MonoBehaviour
                     relicAction += () => { TurnManager.Inst.shieldHealth += localEffect.value; }; break;
                 case ERelicActivateEffectType.Player_Heal:
                     relicAction += () => { TurnManager.Inst.TakeDmg(-localEffect.value); }; break;
+                case ERelicActivateEffectType.Player_Damage:
+                    relicAction += () => { TurnManager.Inst.TakeDmg(localEffect.value); }; break;
                 case ERelicActivateEffectType.Player_Cost_Increase:
                     relicAction += () => { TurnManager.Inst.IncreaseCost(localEffect.value); }; break;
+                case ERelicActivateEffectType.Player_Cost_Decrease:
+                    relicAction += () => { TurnManager.Inst.IncreaseCost(-localEffect.value); }; break;
                 case ERelicActivateEffectType.Player_Max_Cost_Increase:
                     relicAction += () => { TurnManager.Inst.turnCost += localEffect.value; }; break;
+                case ERelicActivateEffectType.Player_Max_Hand_Change:
+                    relicAction += () => { TurnManager.Inst.drawCardCount += localEffect.value; }; break;
+                case ERelicActivateEffectType.Player_Trigger_Increase:
+                    relicAction += () => { TurnManager.Inst.TriggerPlayerPassive(localEffect.value); }; break;
+                case ERelicActivateEffectType.Player_Trigger_Decrease:
+                    relicAction += () => { TurnManager.Inst.TriggerPlayerPassive(-localEffect.value); }; break;
                 case ERelicActivateEffectType.Card_Draw:
                     relicAction += () => { StartCoroutine(TurnManager.Inst.Draw(localEffect.value, null)); }; break;
                 case ERelicActivateEffectType.Card_Cost_Change:
@@ -99,6 +110,8 @@ public class RelicManager : MonoBehaviour
                         CardManager.Inst.itemDeck.Add(localEffect.ivalue);
                         CardManager.Inst.itemDiscard.Add(localEffect.ivalue);
                     }; break;
+                case ERelicActivateEffectType.Card_Block:
+                    relicAction += () => { }; break;
                 case ERelicActivateEffectType.Roulette_Value_Change_ADD:
                     relicAction += () => {
                         List<Buff> buffTarget = null;
@@ -147,12 +160,20 @@ public class RelicManager : MonoBehaviour
                     relicAction += () => { RouletteManager.Inst.Spin(true, localEffect.value); }; break;
                 case ERelicActivateEffectType.Roulette_Spin_CCW:
                     relicAction += () => { RouletteManager.Inst.Spin(false, localEffect.value); }; break;
-                /*case ERelicActivateEffectType.Roulette_Enchant_Type:
+                case ERelicActivateEffectType.Roulette_Enchant_Type:
                     relicAction += () => { RouletteManager.Inst.EnchantRoulettePiece(localEffect.value, localEffect.rlvalue.type, RouletteManager.Inst.roulettePieces[localEffect.value].roulette.value); }; break;
                 case ERelicActivateEffectType.Roulette_Enchant_Val:
-                    relicAction += () => { RouletteManager.Inst.EnchantRoulettePiece(localEffect.value, RouletteManager.Inst.roulettePieces[localEffect.value].roulette.type, localEffect.rlvalue.value); }; break;*/
+                    relicAction += () => { RouletteManager.Inst.EnchantRoulettePiece(localEffect.value, RouletteManager.Inst.roulettePieces[localEffect.value].roulette.type, localEffect.rlvalue.value); }; break;
                 case ERelicActivateEffectType.Roulette_Trigger:
                     relicAction += () => { RouletteManager.Inst.TriggerRoulette(); }; break;
+                case ERelicActivateEffectType.Roulette_Trigger_Cancel:
+                    relicAction += () =>
+                    {
+                        RoulettePiece roulettePiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.triggerPos];
+                        roulettePiece.Trigger(false);
+                        RouletteManager.Inst.isTriggerActivated = false;
+                        roulettePiece.Setup(RouletteManager.Inst.triggerPiece_None);
+                    }; break;
                 case ERelicActivateEffectType.Enemy_Action_Hide:
                     relicAction += () => { EnemyManager.Inst.HideAction(localEffect.value); }; break;
                 case ERelicActivateEffectType.Enemy_Action_Delete:
@@ -163,6 +184,14 @@ public class RelicManager : MonoBehaviour
                     relicAction += () => { EnemyManager.Inst.RemoveAllSpin(); }; break;
                 case ERelicActivateEffectType.Enemy_Damage:
                     relicAction += () => { TurnManager.Inst.EnemyTakeDmg(localEffect.value); }; break;
+                case ERelicActivateEffectType.Enemy_Shield:
+                    relicAction += () => { TurnManager.Inst.GetShield(true, localEffect.value); }; break;
+                case ERelicActivateEffectType.Enemy_Heal:
+                    relicAction += () => { TurnManager.Inst.EnemyTakeDmg(-localEffect.value); }; break;
+                case ERelicActivateEffectType.Enemy_Trigger_Increase:
+                    relicAction += () => { TurnManager.Inst.TriggerEnemyPassive(localEffect.value); }; break;
+                case ERelicActivateEffectType.Enemy_Trigger_Decrease:
+                    relicAction += () => { TurnManager.Inst.TriggerEnemyPassive(-localEffect.value); }; break;
                 case ERelicActivateEffectType.Develop_Test:
                     relicAction += () => { Debug.LogWarning("Develop relic effect activated"); }; break;
                 default:
@@ -525,7 +554,7 @@ public class RelicManager : MonoBehaviour
                 case ERelicActivateTimingType.Game_End:
                     TurnManager.OnGameEnd += relicActivation; break;
                 case ERelicActivateTimingType.Roulette_Spin:
-                    TurnManager.OnRouletteSpin += (x) => relicActivation(); break;
+                    TurnManager.OnRouletteSpin += (x) => relicActivation?.Invoke(); break;
                 case ERelicActivateTimingType.Roulette_Trigger:
                     TurnManager.OnRouletteTrigger += relicActivation; break;
                 case ERelicActivateTimingType.Roulette_Enchant:
@@ -537,11 +566,15 @@ public class RelicManager : MonoBehaviour
                 case ERelicActivateTimingType.Card_Draw:
                     TurnManager.OnAddCard += relicActivation; break;
                 case ERelicActivateTimingType.Enemy_Damage:
-                    TurnManager.OnEnemyDamaged += (x) => relicActivation(); break;
+                    TurnManager.OnEnemyDamaged += (x) => relicActivation?.Invoke(); break;
                 case ERelicActivateTimingType.Enemy_Heal:
-                    TurnManager.OnEnemyHealed += (x) => relicActivation(); break;
+                    TurnManager.OnEnemyHealed += (x) => relicActivation?.Invoke(); break;
                 case ERelicActivateTimingType.Enemy_Trigger:
                     TurnManager.OnEnemyTrigger += relicActivation; break;
+                case ERelicActivateTimingType.Enemy_Trigger_Increase:
+                    TurnManager.OnEnemyTriggerIncrease += (x) => relicActivation?.Invoke(); break;
+                case ERelicActivateTimingType.Enemy_Trigger_Decrease:
+                    TurnManager.OnEnemyTriggerDecrease += (x) => relicActivation?.Invoke(); break;
                 case ERelicActivateTimingType.Enemy_Shield:
                     TurnManager.OnEnemyShielded += (x) => relicActivation(); break;
                 case ERelicActivateTimingType.Enemy_Action:
@@ -552,6 +585,10 @@ public class RelicManager : MonoBehaviour
                     TurnManager.OnPlayerHealed += (x) => relicActivation(); break;
                 case ERelicActivateTimingType.Player_Trigger:
                     TurnManager.OnPlayerTrigger += relicActivation; break;
+                case ERelicActivateTimingType.Player_Trigger_Increase:
+                    TurnManager.OnPlayerTriggerIncrease += (x) => relicActivation?.Invoke(); break;
+                case ERelicActivateTimingType.Player_Trigger_Decrease:
+                    TurnManager.OnPlayerTriggerDecrease += (x) => relicActivation?.Invoke(); break;
                 case ERelicActivateTimingType.Player_Shield:
                     TurnManager.OnPlayerShielded += (x) => relicActivation(); break;
                 case ERelicActivateTimingType.Cost_Change:
@@ -586,10 +623,14 @@ public class RelicManager : MonoBehaviour
         TurnManager.OnPlayerHealed = null;
         TurnManager.OnPlayerShielded = null;
         TurnManager.OnPlayerTrigger = null;
+        TurnManager.OnPlayerTriggerIncrease = null;
+        TurnManager.OnPlayerTriggerDecrease = null;
         TurnManager.OnEnemyDamaged = null;
         TurnManager.OnEnemyHealed = null;
         TurnManager.OnEnemyShielded = null;
         TurnManager.OnEnemyTrigger = null;
+        TurnManager.OnEnemyTriggerIncrease = null;
+        TurnManager.OnEnemyTriggerDecrease = null;
         TurnManager.OnEnemyAction = null;
         TurnManager.OnRouletteSpin = null;
         TurnManager.OnRouletteTrigger = null;
@@ -597,3 +638,4 @@ public class RelicManager : MonoBehaviour
         TurnManager.OnRouletteActivate = null;
     }
 }
+

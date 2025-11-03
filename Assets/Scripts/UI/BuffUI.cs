@@ -10,19 +10,30 @@ public class BuffUI : MonoBehaviour
     [SerializeField] TMP_Text BuffValue;
     [SerializeField] List<Sprite> BuffSpriteList;
     public ShowBuff buff;
+    Tooltip tooltip;
+    public Vector2 tooltipBasePos;
     public void Setup(ShowBuff b)
     {
         this.buff = b;
         BuffImg.sprite = b.icon;
         BuffValue.text = b.val.ToString();
 
-        this.GetComponent<Tooltip>().tooltipTitle = b.name;
+        tooltip = this.GetComponent<Tooltip>();
+        tooltip.tooltipTitle = b.name;
 
         string buffText = Regex.Replace(b.text, @"값", match =>
         {
             string replacement = $"{b.val}";
             return replacement;
         });
-        this.GetComponent<Tooltip>().tooltipTxt = $"{buffText}";
+        tooltip.tooltipTxt = $"{buffText}";
+    }
+
+    private void Update()
+    {
+        if(tooltip)
+        {
+            tooltip.tooltipPos = this.GetComponent<RectTransform>().anchoredPosition + tooltipBasePos;
+        }
     }
 }

@@ -8,7 +8,7 @@ public enum ERouletteType { None, Attack, Heal, Shield, Enemy_Special_1, Enemy_S
 public class RouletteItem
 {
     [Tooltip("칸 종류")] public ERouletteType type;
-    [Tooltip("칸 계수")] public List<int> value = new List<int>();
+    [Tooltip("칸 계수")] public int value;
 }
 
 [CreateAssetMenu(fileName = "RouletteSO", menuName = "Scriptable Objects/RouletteSO")]

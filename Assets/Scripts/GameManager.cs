@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using NUnit.Framework.Constraints;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField][Tooltip("게임 종료 UI")] ResultPanel resultPanel;
     [SerializeField][Tooltip("턴 종료 버튼")] GameObject endTurnBtn;
     [SerializeField][Tooltip("턴 텍스트")] TMP_Text turnNotificationTMP;
+    [SerializeField][Tooltip("룰렛 버프 위치")] Vector2 rouletteBuffPos;
     [Tooltip("룰렛 버프")] public GameObject rouletteBuffUIView;
     [Header("카드 UI")]
     [SerializeField][Tooltip("카드 목록 UI")] GameObject cardScrollView;
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviour
     [SerializeField][Tooltip("플레이어 실드 값 텍스트")] TMP_Text shieldTMP;
     [SerializeField][Tooltip("플레이어 트리거 조건 텍스트")] TMP_Text triggerCountTMP;
     [SerializeField][Tooltip("플레이어 트리거 조건 바")] Image triggerCntImg;
+    [SerializeField][Tooltip("플레이어 버프 위치")] Vector2 playerBuffPos;
     [Tooltip("플레이어 버프")] public GameObject playerBuffUIView;
     [Tooltip("플레이어 페르소나")] public Image personaImg;
     [Tooltip("플레이어 그림자")] public Image shadowImg;
@@ -45,6 +48,7 @@ public class GameManager : MonoBehaviour
     [SerializeField][Tooltip("적 실드 값 텍스트")] TMP_Text enemyShieldTMP;
     [SerializeField][Tooltip("적 트리거 조건 텍스트")] TMP_Text enemyTriggerCountTMP;
     [SerializeField][Tooltip("적 트리거 조건 바")] Image enemyTriggerCntImg;
+    [SerializeField][Tooltip("적 버프 위치")] Vector2 enemyBuffPos;
     [Tooltip("적 버프")] public GameObject enemyBuffUIView;
     [HideInInspector] public List<RelicUI> relicList;
 
@@ -156,13 +160,21 @@ public class GameManager : MonoBehaviour
         {
             personaImg.sprite = TurnManager.Inst.characterSO.personaPiece.persona.sprite;
             Tooltip tooltip = personaImg.GetComponentInParent<Tooltip>();
-            if(tooltip) tooltip.tooltipTxt = TurnManager.Inst.characterSO.personaPiece.persona.name + ": " + TurnManager.Inst.characterSO.personaPiece.persona.text;
+            if (tooltip)
+            {
+                tooltip.tooltipTitle = TurnManager.Inst.characterSO.personaPiece.persona.name;
+                tooltip.tooltipTxt = TurnManager.Inst.characterSO.personaPiece.persona.text;
+            }
         }
         if (TurnManager.Inst.characterSO.shadowPiece != null)
         {
             shadowImg.sprite = TurnManager.Inst.characterSO.shadowPiece.shadow.sprite;
             Tooltip tooltip = shadowImg.GetComponentInParent<Tooltip>();
-            if(tooltip) tooltip.tooltipTxt = TurnManager.Inst.characterSO.shadowPiece.shadow.name + ": " + TurnManager.Inst.characterSO.shadowPiece.shadow.text;
+            if (tooltip)
+            {
+                tooltip.tooltipTitle = TurnManager.Inst.characterSO.shadowPiece.shadow.name;
+                tooltip.tooltipTxt = TurnManager.Inst.characterSO.shadowPiece.shadow.text;
+            }
         }
         TurnManager.Inst.StartGameCo();
     }
@@ -259,7 +271,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(playerBuffUIView.transform.GetChild(i).gameObject);
         }
-        BuffManager.Inst.BuffListToBuffUIList(BuffManager.Inst.playerShowBuffs, playerBuffUIView);
+        BuffManager.Inst.BuffListToBuffUIList(BuffManager.Inst.playerShowBuffs, playerBuffUIView, playerBuffPos);
     }
 
     public void SetEnemyBuffUI()
@@ -268,7 +280,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(enemyBuffUIView.transform.GetChild(i).gameObject);
         }
-        BuffManager.Inst.BuffListToBuffUIList(BuffManager.Inst.enemyShowBuffs, enemyBuffUIView);
+        BuffManager.Inst.BuffListToBuffUIList(BuffManager.Inst.enemyShowBuffs, enemyBuffUIView, enemyBuffPos);
     }
 
     public void SetRouletteBuffUI()
@@ -277,6 +289,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(rouletteBuffUIView.transform.GetChild(i).gameObject);
         }
-        BuffManager.Inst.BuffListToBuffUIList(BuffManager.Inst.rouletteShowBuffs, rouletteBuffUIView);
+        BuffManager.Inst.BuffListToBuffUIList(BuffManager.Inst.rouletteShowBuffs, rouletteBuffUIView, rouletteBuffPos);
     }
 }

@@ -114,8 +114,8 @@ public class PassiveManager : MonoBehaviour
                             {
                                 if (RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.Player_Special_1)
                                 {
-                                    RouletteManager.Inst.roulettePieces[i].roulette.value[0]--;
-                                    if (RouletteManager.Inst.roulettePieces[i].roulette.value[0] == 0)
+                                    RouletteManager.Inst.roulettePieces[i].roulette.value--;
+                                    if (RouletteManager.Inst.roulettePieces[i].roulette.value == 0)
                                     {
                                         RouletteItem tempItem = new RouletteItem();
                                         RouletteManager.Inst.roulettePieces[i].roulette.type = ERouletteType.None;
@@ -160,7 +160,7 @@ public class PassiveManager : MonoBehaviour
                     }
                 };
                 rItem.type = ERouletteType.Attack;
-                rItem.value.Add(8);
+                rItem.value = 8;
                 RouletteManager.Inst.triggerPiece = rItem;
                 RouletteManager.PlayerTriggerActivation = (isEnemy, totalVal) =>
                 {
@@ -192,7 +192,7 @@ public class PassiveManager : MonoBehaviour
                     BuffManager.Inst.rouletteBuff_PlayerSpecial2.Add(new List<Buff>());
                 };
                 rItem.type = ERouletteType.Attack;
-                rItem.value.Add(0);
+                rItem.value = 0;
                 RouletteManager.Inst.triggerPiece = rItem;
                 RouletteManager.PlayerTriggerActivation = (isEnemy, totalVal) =>
                 {
@@ -262,8 +262,8 @@ public class PassiveManager : MonoBehaviour
                         {
                             if (RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.Player_Special_2)
                             {
-                                RouletteManager.Inst.roulettePieces[i].roulette.value[0]--;
-                                if (RouletteManager.Inst.roulettePieces[i].roulette.value[0] == 0)
+                                RouletteManager.Inst.roulettePieces[i].roulette.value--;
+                                if (RouletteManager.Inst.roulettePieces[i].roulette.value == 0)
                                 {
                                     RouletteItem tempItem = new RouletteItem();
                                     RouletteManager.Inst.roulettePieces[i].roulette.type = ERouletteType.None;

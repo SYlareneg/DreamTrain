@@ -65,8 +65,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tooltip
   tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
+  tooltipTitle: 
   tooltipTxt: 
-  offset: {x: 0, y: 0}
+  tooltipPos: {x: 0, y: 0}
+  tooltipDisable: 0
 --- !u!1 &5057287302192230722
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,6 +148,7 @@ MonoBehaviour:
     relicTimings: 
     relicConditions: []
     relicEffects: []
+  tooltipOffset: {x: -310, y: 40}
 --- !u!1 &5965536634310899359
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,8 +289,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tooltip
   tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
+  tooltipTitle: 
   tooltipTxt: 
-  offset: {x: 0, y: 0}
+  tooltipPos: {x: 0, y: 0}
+  tooltipDisable: 0
 --- !u!1 &8086785613065794188
 GameObject:
   m_ObjectHideFlags: 0

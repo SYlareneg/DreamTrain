@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 using System;
+using System.Text.RegularExpressions;
 using Random = UnityEngine.Random;
 
 public class EnemyAction : MonoBehaviour
@@ -17,11 +18,27 @@ public class EnemyAction : MonoBehaviour
     public int actionVal;
     public bool isIgnore = false;
     Tooltip tooltip;
+    public Vector2 tooltipPos;
 
     public void SetActionType(EEnemyActionType type)
     {
         actionType = type;
-        enemyAction.sprite = enemyActionSprites[(int)type + 1];
+        if (type == EEnemyActionType.Enchant_Random_1 || type == EEnemyActionType.Enchant_Random_2)
+        {
+            enemyAction.sprite = enemyActionSprites[5];
+        }
+        else if (type == EEnemyActionType.Special_Activate_1)
+        {
+            enemyAction.sprite = EnemyManager.Inst.EnemySpecial1Sprite;
+        }
+        else if (type == EEnemyActionType.Special_Activate_2)
+        {
+            enemyAction.sprite = EnemyManager.Inst.EnemySpecial2Sprite;
+        }
+        else
+        {
+            enemyAction.sprite = enemyActionSprites[(int)type + 1];
+        }
     }
 
     public void SetActionVal(int value)
@@ -33,9 +50,9 @@ public class EnemyAction : MonoBehaviour
     public void ShowAction()
     {
         int totalVal = actionVal;
-        if (actionType == EEnemyActionType.Drain)
+        if (actionType == EEnemyActionType.Special_Activate_1)
         {
-            totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Drain, totalVal);
+            totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Special_1, totalVal);
         }
         if(actionType == EEnemyActionType.Attack)
         {
@@ -48,7 +65,14 @@ public class EnemyAction : MonoBehaviour
         }
         else
         {
-            enemyActionTMP.text = totalVal.ToString();
+            if (actionType == EEnemyActionType.Turn && totalVal < 0)
+            {
+                enemyActionTMP.text = (-totalVal).ToString();
+            }
+            else
+            {
+                enemyActionTMP.text = totalVal.ToString();
+            }
         }
 
         if (totalVal > actionVal)
@@ -65,36 +89,46 @@ public class EnemyAction : MonoBehaviour
         }
 
         if (tooltip == null) return;
-        switch(actionType)
+        switch (actionType)
         {
             case EEnemyActionType.Attack:
                 tooltip.tooltipTitle = "공격";
-                tooltip.tooltipTxt = "피해를 " + totalVal.ToString() + "만큼 줍니다.";
+                tooltip.tooltipTxt = "피해를 값만큼 줍니다.";
                 break;
-            case EEnemyActionType.Drain:
-                tooltip.tooltipTitle = "흡혈";
-                tooltip.tooltipTxt = "피해를 " + totalVal.ToString() + "만큼 주고 입힌 피해의 1/3만큼 체력을 회복합니다.";
+            case EEnemyActionType.Special_Activate_1:
+                tooltip.tooltipTitle = EnemyManager.Inst.EnemySpecial1Title;
+                tooltip.tooltipTxt = EnemyManager.Inst.EnemySpecial1Text;
                 break;
-            case EEnemyActionType.Enchant_Random:
-                if (EnemyManager.Inst.enemy.name == "Vampire Paul")
-                {
-                    tooltip.tooltipTitle = "부여";
-                    tooltip.tooltipTxt = "무작위 빈 룰렛 칸에 흡혈을 부여합니다. 빈 칸이 없을 경우 무작위 칸에 부여합니다.";
-                }
+            case EEnemyActionType.Special_Activate_2:
+                tooltip.tooltipTitle = EnemyManager.Inst.EnemySpecial2Title;
+                tooltip.tooltipTxt = EnemyManager.Inst.EnemySpecial2Text;
+                break;
+            case EEnemyActionType.Enchant_Random_1:
+                tooltip.tooltipTitle = "부여";
+                tooltip.tooltipTxt = "무작위 빈 룰렛 칸에 " + EnemyManager.Inst.EnemySpecialRoulette1Title + "을(를) 부여합니다. 빈 칸이 없을 경우 무작위 칸에 부여합니다.";
+                break;
+            case EEnemyActionType.Enchant_Random_2:
+                tooltip.tooltipTitle = "부여";
+                tooltip.tooltipTxt = "무작위 빈 룰렛 칸에 " + EnemyManager.Inst.EnemySpecialRoulette2Title + "을(를) 부여합니다. 빈 칸이 없을 경우 무작위 칸에 부여합니다.";
                 break;
             case EEnemyActionType.Heal:
                 tooltip.tooltipTitle = "회복";
-                tooltip.tooltipTxt = "체력을 " + totalVal.ToString() + "만큼 회복합니다.";
+                tooltip.tooltipTxt = "체력을 값만큼 회복합니다.";
                 break;
             case EEnemyActionType.Shield:
                 tooltip.tooltipTitle = "실드";
-                tooltip.tooltipTxt = "실드를 " + totalVal.ToString() + "만큼 얻습니다.";
+                tooltip.tooltipTxt = "실드를 값만큼 얻습니다.";
                 break;
             case EEnemyActionType.Turn:
                 tooltip.tooltipTitle = "회전";
-                tooltip.tooltipTxt = "룰렛을 " + ((totalVal >= 0)? "시계방향으로 " : "반시계방향으로 ") + Math.Abs(totalVal).ToString() + "칸 회전시킵니다.";
+                tooltip.tooltipTxt = "룰렛을 " + ((totalVal >= 0) ? "시계방향으로 " : "반시계방향으로 ") + "<" + Math.Abs(totalVal).ToString() + ">칸 회전시킵니다.";
                 break;
         }
+        tooltip.tooltipTxt = Regex.Replace(tooltip.tooltipTxt, @"값|<\d+>", match =>
+        {
+            string replacement = $"<{totalVal}>";
+            return replacement;
+        });
     }
 
     public void SetAction(EnemyPattern p)
@@ -108,7 +142,7 @@ public class EnemyAction : MonoBehaviour
             if (baseActionVal < 0)
             {
                 enemyAction.flipX = !enemyAction.flipX;
-                actionVal = Random.Range(-baseActionVal, 0);
+                actionVal = Random.Range(baseActionVal, 0);
             }
             else
             {
@@ -154,38 +188,38 @@ public class EnemyAction : MonoBehaviour
             switch (actionType)
             {
                 case EEnemyActionType.Turn:
-                    RouletteManager.Inst.Spin(actionVal > 0, actionVal); break;
+                    RouletteManager.Inst.Spin(actionVal > 0, Math.Abs(actionVal)); break;
                 case EEnemyActionType.Attack:
                     TurnManager.Inst.TakeDmg(actionVal); break;
                 case EEnemyActionType.Heal:
                     TurnManager.Inst.EnemyTakeDmg(-actionVal); break;
                 case EEnemyActionType.Shield:
                     TurnManager.Inst.GetShield(true, actionVal); break;
-                case EEnemyActionType.Enchant_Random:
-                    if (EnemyManager.Inst.enemy.name == "Vampire Paul")
-                    {
-                        EnchantAction(ERouletteType.Enemy_Special_1);
-                    }
-                    break;
-                case EEnemyActionType.Drain:
-                    DrainAction(actionVal);
-                    break;
+                case EEnemyActionType.Enchant_Random_1:
+                    EnchantAction(ERouletteType.Enemy_Special_1, actionVal); break;
+                case EEnemyActionType.Enchant_Random_2:
+                    EnchantAction(ERouletteType.Enemy_Special_2, actionVal); break;
+                case EEnemyActionType.Special_Activate_1:
+                    SpecialAction1(actionVal); break;
+                case EEnemyActionType.Special_Activate_2:
+                    SpecialAction2(actionVal); break;
             }
         }
     }
 
-    public static void DrainAction(int x)
+    public static void SpecialAction1(int x)
     {
-        int totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Drain, x);
-        int damage = TurnManager.Inst.TakeDmg(totalVal);
-        TurnManager.Inst.EnemyTakeDmg(-damage);
-        if (damage > 0)
-        {
-            TurnManager.Inst.TriggerEnemyPassive(1);
-        }
+        int totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Special_1, x);
+        EnemyManager.EnemySpecial1Activation?.Invoke(totalVal);
     }
 
-    public static void EnchantAction(ERouletteType rType)
+    public static void SpecialAction2(int x)
+    {
+        int totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Special_2, x);
+        EnemyManager.EnemySpecial2Activation?.Invoke(totalVal);
+    }
+
+    public static void EnchantAction(ERouletteType rType, int rVal)
     {
         List<int> noneIdx = new List<int>();
         for (int i = 0; i < RouletteManager.rouletteNum; i++)
@@ -199,7 +233,7 @@ public class EnemyAction : MonoBehaviour
         if (noneIdx.Count > 0)
         {
             randIdx = noneIdx[Random.Range(0, noneIdx.Count)];
-            RouletteManager.Inst.EnchantRoulettePiece(randIdx, rType, 5);
+            RouletteManager.Inst.EnchantRoulettePiece(randIdx, rType, rVal);
         }
         else
         {
@@ -213,11 +247,24 @@ public class EnemyAction : MonoBehaviour
             if (noneIdx.Count > 0)
             {
                 randIdx = noneIdx[Random.Range(0, noneIdx.Count)];
-                RouletteManager.Inst.EnchantRoulettePiece(randIdx, rType, 5);
+                RouletteManager.Inst.EnchantRoulettePiece(randIdx, rType, rVal);
             }
             else
             {
-                DrainAction(5);
+                switch (rType)
+                {
+                    case ERouletteType.Attack:
+                        TurnManager.Inst.TakeDmg(rVal); break;
+                    case ERouletteType.Heal:
+                        TurnManager.Inst.EnemyTakeDmg(-rVal); break;
+                    case ERouletteType.Shield:
+                        TurnManager.Inst.GetShield(true, rVal); break;
+                    case ERouletteType.Enemy_Special_1:
+                        if (EnemyManager.Inst.enemy.name == "마술사") break;
+                        SpecialAction1(rVal); break;
+                    case ERouletteType.Enemy_Special_2:
+                        SpecialAction2(rVal); break;
+                }
             }
         }
     }
@@ -225,5 +272,6 @@ public class EnemyAction : MonoBehaviour
     private void Update()
     {
         ShowAction();
+        tooltip.tooltipPos = this.tooltipPos;
     }
 }

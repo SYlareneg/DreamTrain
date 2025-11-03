@@ -89,11 +89,11 @@ public class RoulettePiece : MonoBehaviour
     {
         int totalVal = BuffManager.Inst.GetBuffedRouletteValue(this);
 
-        if (totalVal > roulette.value[0])
+        if (totalVal > roulette.value)
         {
             rouletteValueTMP.color = Color.green;
         }
-        else if (totalVal == roulette.value[0])
+        else if (totalVal == roulette.value)
         {
             rouletteValueTMP.color = Color.white;
         }
@@ -117,7 +117,7 @@ public class RoulettePiece : MonoBehaviour
     public void HideTotalValue()
     {
         rouletteValueTMP.color = Color.white;
-        if (roulette.value[0] != 0)
+        if (roulette.value != 0)
         {
             rouletteValueTMP.text = roulette.value.ToString();
         }
@@ -147,6 +147,7 @@ public class RoulettePiece : MonoBehaviour
         {
             RouletteManager.TriggerActivation?.Invoke(isEnemy, totalVal);
             Trigger(false);
+            RouletteManager.Inst.isTriggerActivated = false;
             this.Setup(RouletteManager.Inst.triggerPiece_None);
             TurnManager.Inst.playerTriggerCnt = 0;
             BuffManager.Inst.rouletteBuff_Trigger.Clear();
@@ -185,10 +186,10 @@ public class RoulettePiece : MonoBehaviour
                 }
                 break;
             case ERouletteType.Enemy_Special_1:
-                EnemyManager.EnemySpecialRoulette1Activation?.Invoke(isEnemy, totalVal);
+                EnemyManager.EnemySpecialRoulette1Activation?.Invoke(this, isEnemy, totalVal);
                 break;
             case ERouletteType.Enemy_Special_2:
-                EnemyManager.EnemySpecialRoulette2Activation?.Invoke(isEnemy, totalVal);
+                EnemyManager.EnemySpecialRoulette2Activation?.Invoke(this, isEnemy, totalVal);
                 break;
             case ERouletteType.Player_Special_1:
                 PassiveManager.PlayerSpecialRoulette1Activation?.Invoke(isEnemy, totalVal);

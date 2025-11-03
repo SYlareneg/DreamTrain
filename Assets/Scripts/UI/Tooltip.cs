@@ -12,22 +12,21 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler
     GameObject tooltip;
     RectTransform rect;
     public string tooltipTitle, tooltipTxt;
-    [SerializeField] Vector2 offset;
+    public Vector2 tooltipPos;
     public bool tooltipDisable = false;
     bool objectEnter;
 
     public void SetupTooltip()
     {
         if (tooltip != null || tooltipDisable == true) return;
-        Vector3 newPos = Input.mousePosition;
-        newPos.x += offset.x;
-        newPos.y += offset.y;
+        Vector3 newPos = new Vector3(tooltipPos.x, tooltipPos.y, 0);
         tooltip = Instantiate(tooltipPrefab, newPos, Utils.QI);
-        Canvas canvas = FindAnyObjectByType<Canvas>();
+        Canvas canvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
         tooltip.transform.SetParent(canvas.transform);
         tooltip.transform.SetAsLastSibling();
         tooltip.GetComponent<Image>().raycastTarget = false;
         var tooltipRect = tooltip.GetComponent<RectTransform>();
+        tooltipRect.anchoredPosition = tooltipPos;
 
         Vector3[] corners = new Vector3[4];
         tooltipRect.GetWorldCorners(corners);

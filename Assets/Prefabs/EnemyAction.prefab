@@ -115,11 +115,11 @@ MonoBehaviour:
   - {fileID: -9072811048990575798, guid: ddae0aa653d142d4aa972d46d0908c0d, type: 3}
   - {fileID: 4760986240223711845, guid: 08f886e1f88bc6a42bfc4541c1aaf99d, type: 3}
   - {fileID: -9202054676734628973, guid: 2a52294a21365ef449b22a23d4a355a6, type: 3}
-  - {fileID: -1521565114957691944, guid: b8b8956a5637e7f49819dc7206e06c9a, type: 3}
   actionType: 0
   baseActionVal: 0
   actionVal: 0
   isIgnore: 0
+  tooltipPos: {x: 0, y: 0}
 --- !u!114 &3775244866759720529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,7 +135,8 @@ MonoBehaviour:
   tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
   tooltipTitle: 
   tooltipTxt: 
-  offset: {x: 0, y: 0}
+  tooltipPos: {x: 0, y: 0}
+  tooltipDisable: 0
 --- !u!61 &122752281651435639
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -14,6 +14,8 @@ public class RelicUI : MonoBehaviour
     [SerializeField] GameObject relicMask2;
 
     public RelicItem relicItem1, relicItem2;
+    Tooltip tooltip1, tooltip2;
+    [SerializeField] Vector2 tooltipOffset;
 
     public void Setup(RelicItem rItem1, RelicItem rItem2)
     {
@@ -26,11 +28,11 @@ public class RelicUI : MonoBehaviour
 
         this.relicItem1 = rItem1;
         if (relicImg1) relicImg1.sprite = rItem1.relicSprite;
-        Tooltip tooltip = relicMask1.GetComponent<Tooltip>();
-        if (tooltip)
+        tooltip1 = relicMask1.GetComponent<Tooltip>();
+        if (tooltip1)
         {
-            tooltip.tooltipTitle = rItem1.relicName;
-            tooltip.tooltipTxt = rItem1.relicTxt;
+            tooltip1.tooltipTitle = rItem1.relicName;
+            tooltip1.tooltipTxt = rItem1.relicTxt;
         }
 
         if (rItem2 == null)
@@ -42,12 +44,26 @@ public class RelicUI : MonoBehaviour
         else
         {
             if (relicImg2) relicImg2.sprite = rItem2.relicSprite;
-            Tooltip tooltip2 = relicMask2.GetComponent<Tooltip>();
+            tooltip2 = relicMask2.GetComponent<Tooltip>();
             if (tooltip2)
             {
                 tooltip2.tooltipTitle = rItem2.relicName;
                 tooltip2.tooltipTxt = rItem2.relicTxt;
             }
+        }
+    }
+
+    private void Update()
+    {
+        if(tooltip1 != null && relicItem1 != null)
+        {
+            tooltip1.tooltipPos = this.GetComponent<RectTransform>().position - Camera.main.WorldToScreenPoint(Vector3.zero);
+            tooltip1.tooltipPos += tooltipOffset;
+        }
+        if(tooltip2 != null && relicItem2 != null)
+        {
+            tooltip2.tooltipPos = this.GetComponent<RectTransform>().position - Camera.main.WorldToScreenPoint(Vector3.zero);
+            tooltip2.tooltipPos += tooltipOffset;
         }
     }
 }
