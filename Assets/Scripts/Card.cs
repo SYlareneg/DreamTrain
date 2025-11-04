@@ -227,7 +227,7 @@ public class Card : MonoBehaviour
                 if (checkMagic)
                 {
                     Debug.Log("duplicate mode on");
-                    CardManager.Inst.duplicateMode = true;
+                    CardManager.Inst.CardSelectModeTransit(ECardSelectMode.Duplicate, 1);
                 }
                 break;
             case "마술-절단":

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.EventSystems;
 
-public class Tooltip : MonoBehaviour, IPointerEnterHandler
+public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] GameObject tooltipPrefab;
     GameObject tooltip;
@@ -23,7 +23,8 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler
         Vector3 newPos = new Vector3(tooltipPos.x, tooltipPos.y, 0);
         tooltip = Instantiate(tooltipPrefab, newPos, Utils.QI);
         Canvas canvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
-        tooltip.transform.SetParent(canvas.transform);
+        if (canvas == null) return;
+        tooltip.transform.SetParent(canvas.transform, false);
         tooltip.transform.SetAsLastSibling();
         tooltip.GetComponent<Image>().raycastTarget = false;
         var tooltipRect = tooltip.GetComponent<RectTransform>();
@@ -61,6 +62,13 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler
     public void OnPointerEnter(PointerEventData data)
     {
         SetupTooltip();
+        objectEnter = true;
+    }
+
+    public void OnPointerExit(PointerEventData data)
+    {
+        HideTooltip();
+        objectEnter = false;
     }
 
     void OnMouseEnter()
@@ -83,7 +91,6 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler
 
     private void Update()
     {
-        if (RectTransformUtility.RectangleContainsScreenPoint(rect, Input.mousePosition, null)) return;
         if (objectEnter) return;
         if(tooltip != null) HideTooltip();
     }

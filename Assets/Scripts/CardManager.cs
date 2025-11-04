@@ -4,10 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 using TMPro;
+using DG.Tweening;
 
+public enum ECardSelectMode
+{
+    Hide, Duplicate, Discard
+};
 public class CardManager : MonoBehaviour
 {
     public static CardManager Inst { get; private set; }
@@ -17,6 +21,7 @@ public class CardManager : MonoBehaviour
     public ItemSO playerDeckSO;
     [SerializeField] GameObject cardPrefab;
     [SerializeField] GameObject cardUIPrefab;
+    [SerializeField] GameObject cardUISelectPrefab;
     public List<Card> myCards;
     [SerializeField] Transform cardSpawnPoint;
     [SerializeField] Transform cardDiscardPoint;
@@ -31,7 +36,14 @@ public class CardManager : MonoBehaviour
 
     public bool isMyCardDrag;
     bool onMyCardArea;
-    public bool duplicateMode;
+    public ECardSelectMode cardSelectMode;
+    public int cardSelectNum;
+    public List<GameObject> selectedCardList;
+    public List<Card> discardCardList;
+    [SerializeField] GameObject cardSelectScreen;
+    [SerializeField] GameObject selectedCards;
+    [SerializeField] TMP_Text selectModeText;
+    [SerializeField] Button cardSelectButton;
 
     public int useCount;
     public int useCount_Turn;
@@ -196,9 +208,93 @@ public class CardManager : MonoBehaviour
     void DiscardCard()
     {
         int cnt = myCards.Count;
-        for(int i = 0; i < cnt; i++)
+        for (int i = 0; i < cnt; i++)
         {
             StartCoroutine(DiscardSingleCard(myCards[0]));
+        }
+    }
+
+    public void CardSelectModeTransit(ECardSelectMode mode, int selectNum)
+    {
+        cardSelectMode = mode;
+        cardSelectNum = selectNum;
+        cardSelectScreen.SetActive(mode != ECardSelectMode.Hide);
+        TurnManager.Inst.isLoading = mode != ECardSelectMode.Hide;
+        cardSelectButton.interactable = false;
+
+        if (mode == ECardSelectMode.Duplicate)
+        {
+            selectModeText.text = "복제할 카드를 " + selectNum.ToString() + "장 선택하십시오.";
+        }
+        else if (mode == ECardSelectMode.Discard)
+        {
+            selectModeText.text = "버릴 카드를" + selectNum.ToString() + "장 선택하십시오.";
+        }
+        
+        if (selectNum >= myCards.Count)
+        {
+            foreach (Card card in myCards)
+            {
+                SelectCard(card);
+            }
+            SelectCardDone();
+        }
+    }
+
+    public void SelectCard(Card card)
+    {
+        if (cardSelectNum < 0) return;
+        if (cardSelectNum == 0)
+        {
+            Destroy(selectedCardList[0]);
+            selectedCardList.RemoveAt(0);
+            if (cardSelectMode == ECardSelectMode.Discard)
+            {
+                discardCardList[0].gameObject.SetActive(true);
+                EnlargeCard(false, discardCardList[0]);
+                discardCardList.RemoveAt(0);
+            }
+            cardSelectNum++;
+        }
+        GameObject selectedCardUI = Instantiate(cardUISelectPrefab, selectedCards.transform.position, Utils.QI);
+        selectedCardUI.transform.SetParent(selectedCards.transform, false);
+        CardUI_Select cUI = selectedCardUI.GetComponent<CardUI_Select>();
+        cUI.Setup(card.item);
+        selectedCardList.Add(selectedCardUI);
+        if(cardSelectMode == ECardSelectMode.Discard)
+        {
+            card.gameObject.SetActive(false);
+            discardCardList.Add(card);
+        }
+        cardSelectNum--;
+    }
+    
+    public void SelectCardDone()
+    {
+        if (cardSelectMode == ECardSelectMode.Duplicate)
+        {
+            foreach (var cardObj in selectedCardList)
+            {
+                CreateCardInHand(cardObj.GetComponent<CardUI_Select>().item);
+                Destroy(cardObj);
+            }
+            selectedCardList.Clear();
+            CardSelectModeTransit(ECardSelectMode.Hide, 0);
+        }
+        else if (cardSelectMode == ECardSelectMode.Discard)
+        {
+            for (int i = 0; i < selectedCardList.Count; i++)
+            {
+                discardCardList[i].MoveTransform(new PRS(selectedCardList[i].transform.position, Utils.QI, new Vector3(1, 1, 1)), false, 0f);
+                discardCardList[i].gameObject.SetActive(true);
+                StartCoroutine(DiscardSingleCard(discardCardList[i]));
+                Destroy(selectedCardList[i]);
+            }
+            selectedCardList.Clear();
+            discardCardList.Clear();
+            SetOriginOrder();
+            CardAlignment();
+            CardSelectModeTransit(ECardSelectMode.Hide, 0);
         }
     }
 
@@ -208,7 +304,7 @@ public class CardManager : MonoBehaviour
         for(int i = 0; i < cnt; i++)
         {
             var targetCard = myCards[i];
-            targetCard?.GetComponent<Order>().SetOriginOrder(i);
+            targetCard?.GetComponent<Order>().SetOriginOrder(i+2);
         }
     }
 
@@ -271,10 +367,6 @@ public class CardManager : MonoBehaviour
 
     public void CardMouseOver(Card card)
     {
-        if (eCardState == ECardState.Nothing)
-        {
-            return;
-        }
         if (!onMyCardArea)
         {
             return;
@@ -326,10 +418,6 @@ public class CardManager : MonoBehaviour
 
     public void CardMouseExit(Card card)
     {
-        if (eCardState == ECardState.Nothing)
-        {
-            return;
-        }
         if (isMyCardDrag)
         {
             return;
@@ -345,6 +433,12 @@ public class CardManager : MonoBehaviour
 
     public void CardMouseDown(Card card)
     {
+        if (cardSelectMode != ECardSelectMode.Hide)
+        {
+            SelectCard(card);
+            return;
+        }
+        
         if (eCardState != ECardState.CanMouseDrag)
         {
             return;
@@ -359,13 +453,6 @@ public class CardManager : MonoBehaviour
 
         if(eCardState != ECardState.CanMouseDrag)
         {
-            return;
-        }
-
-        if (duplicateMode == true)
-        {
-            CreateCardInHand(selectedCard.item);
-            duplicateMode = false;
             return;
         }
 
@@ -421,7 +508,7 @@ public class CardManager : MonoBehaviour
         onMyCardArea = Array.Exists(hits, x => x.collider.gameObject.layer == layer);
     }
 
-    void EnlargeCard(bool isEnlarge, Card card)
+    public void EnlargeCard(bool isEnlarge, Card card)
     {
         if(isEnlarge)
         {

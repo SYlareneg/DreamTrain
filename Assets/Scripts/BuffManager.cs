@@ -449,7 +449,7 @@ public class BuffManager : MonoBehaviour
         {
             if (buff.val == 0) continue;
             var bUIObj = Instantiate(buffUIPrefab, parent.transform.position, Utils.QI);
-            bUIObj.transform.SetParent(parent.transform);
+            bUIObj.transform.SetParent(parent.transform, false);
             BuffUI bUI = bUIObj.GetComponent<BuffUI>();
             bUI.Setup(buff);
             bUI.tooltipBasePos = tooltipBasePos;
