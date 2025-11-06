@@ -139,18 +139,32 @@ public class DeckBuildManager : MonoBehaviour
 
         if (newDP == null || newDP.cards == null) return;
 
-        Item[] itemList = newDP.cards;
-        foreach (Item item in itemList)
+        Item_Enhanceable[] itemList = newDP.cards;
+        foreach (Item_Enhanceable item in itemList)
         {
             if (item.element == pType || item.element == EPassiveType.Normal)
             {
-                var cardObject = Instantiate(draggableCardUIPrefab, cardListScroll.transform.position, Utils.QI);
-                cardObject.transform.SetParent(cardListScroll.transform);
-                var card = cardObject.GetComponent<CardUI_Draggable>();
+                GameObject cardObject = null;
+                CardUI_Draggable card = null;
+                if (item.num > 0)
+                {
+                    cardObject = Instantiate(draggableCardUIPrefab, cardListScroll.transform.position, Utils.QI);
+                    cardObject.transform.SetParent(cardListScroll.transform);
+                    card = cardObject.GetComponent<CardUI_Draggable>();
+                    card.Setup((Item)item);
+                    card.raycaster = canvas.GetComponent<GraphicRaycaster>();
+                    availableCardList.Add(card);
+                }
 
-                card.Setup(item);
-                card.raycaster = canvas.GetComponent<GraphicRaycaster>();
-                availableCardList.Add(card);
+                if (item.enhancedItem.num > 0)
+                {
+                    cardObject = Instantiate(draggableCardUIPrefab, cardListScroll.transform.position, Utils.QI);
+                    cardObject.transform.SetParent(cardListScroll.transform);
+                    card = cardObject.GetComponent<CardUI_Draggable>();
+                    card.Setup(item.enhancedItem);
+                    card.raycaster = canvas.GetComponent<GraphicRaycaster>();
+                    availableCardList.Add(card);
+                }
             }
         }
     }
@@ -229,9 +243,17 @@ public class DeckBuildManager : MonoBehaviour
             if (pType == EPassiveType.Persona)
             {
                 selectedPersona = dp;
-                personaButton.sprite = dp.persona.sprite;
                 personaName.text = dp.name;
-                personaText.text = dp.persona.name + ":\n" + dp.persona.text;
+                if (dp.persona.isEnhanced)
+                {
+                    personaButton.sprite = dp.persona.enhancedPassive.sprite;
+                    personaText.text = dp.persona.enhancedPassive.name + ":\n" + dp.persona.enhancedPassive.text;
+                }
+                else
+                {
+                    personaButton.sprite = dp.persona.sprite;
+                    personaText.text = dp.persona.name + ":\n" + dp.persona.text;
+                }
 
                 if (selectedShadow == dp)
                 {
@@ -244,9 +266,17 @@ public class DeckBuildManager : MonoBehaviour
             else if (pType == EPassiveType.Shadow)
             {
                 selectedShadow = dp;
-                shadowButton.sprite = dp.shadow.sprite;
                 shadowName.text = dp.name;
-                shadowText.text = dp.shadow.name + ":\n" + dp.shadow.text;
+                if (dp.shadow.isEnhanced)
+                {
+                    shadowButton.sprite = dp.shadow.enhancedPassive.sprite;
+                    shadowText.text = dp.shadow.enhancedPassive.name + ":\n" + dp.shadow.enhancedPassive.text;
+                }
+                else
+                {
+                    shadowButton.sprite = dp.shadow.sprite;
+                    shadowText.text = dp.shadow.name + ":\n" + dp.shadow.text;
+                }
 
                 if (selectedPersona == dp)
                 {
@@ -362,7 +392,7 @@ public class DeckBuildManager : MonoBehaviour
             CardManager.Inst.playerDeckSO.items.Clear();
             foreach (CardUI_DeckBuild card in deckList)
             {
-                Item existItem = CardManager.Inst.playerDeckSO.items.Find(x => x.name == card.item.name);
+                var existItem = CardManager.Inst.playerDeckSO.items.Find(x => x.name == card.item.name);
                 if (existItem == null)
                 {
                     Item tempItem = new Item();

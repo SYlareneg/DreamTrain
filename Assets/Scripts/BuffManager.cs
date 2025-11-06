@@ -212,7 +212,7 @@ public class ShowBuff
                     {
                         TurnManager.Inst.enemyShieldHealth += value;
                         BuffManager.Inst.AddShowBuff("환영", affectType, -1);
-                        if(this.val == 0)
+                        if (this.val == 0)
                         {
                             BuffManager.Inst.enemyShowBuffs.Remove(this);
                             TurnManager.OnEnemyDamaged -= noDamage;
@@ -220,7 +220,7 @@ public class ShowBuff
                     };
                     TurnManager.OnEnemyDamaged += noDamage;
                 }
-                else if(affectType == EBuffAffectType.Player)
+                else if (affectType == EBuffAffectType.Player)
                 {
                     BuffManager.Inst.playerShowBuffs.Add(this);
                     Action<int> noDamage = null;
@@ -228,7 +228,7 @@ public class ShowBuff
                     {
                         TurnManager.Inst.shieldHealth += value;
                         BuffManager.Inst.AddShowBuff("환영", affectType, -1);
-                        if(this.val == 0)
+                        if (this.val == 0)
                         {
                             BuffManager.Inst.playerShowBuffs.Remove(this);
                             TurnManager.OnPlayerDamaged -= noDamage;
@@ -254,7 +254,7 @@ public class ShowBuff
                     };
                     TurnManager.OnEnemyDamaged += reduceCount;
                 }
-                else if(affectType == EBuffAffectType.Player)
+                else if (affectType == EBuffAffectType.Player)
                 {
                     BuffManager.Inst.playerShowBuffs.Add(this);
                     AddAffectBuff(BuffManager.Inst.playerBuff_Damage, 0, 1.5f, -1);
@@ -306,35 +306,34 @@ public class ShowBuff
                 }
                 break;
         }
-        if(type == EBuffType.Duration)
+    }
+    
+    public void ReduceShowBuffCounter()
+    {
+        if (type == EBuffType.Duration)
         {
-            Action ReduceShowBuffCounter = () =>
+            this.val -= 1;
+            switch (this.affectType)
             {
-                this.val -= 1;
-                switch (this.affectType)
-                {
-                    case EBuffAffectType.Roulette:
-                        if(this.val == 0)
-                        {
-                            BuffManager.Inst.rouletteShowBuffs.Remove(this);
-                        }
-                        GameManager.Inst.SetRouletteBuffUI();
-                        break;
-                    case EBuffAffectType.Enemy:
-                        if(this.val == 0)
-                        {
-                            BuffManager.Inst.enemyShowBuffs.Remove(this);
-                        }
-                        GameManager.Inst.SetEnemyBuffUI(); break;
-                    case EBuffAffectType.Player:
-                        if(this.val == 0)
-                        {
-                            BuffManager.Inst.playerShowBuffs.Remove(this);
-                        }
-                        GameManager.Inst.SetPlayerBuffUI(); break;
-                }
-            };
-            TurnManager.OnPlayerTurnStart = ReduceShowBuffCounter + TurnManager.OnPlayerTurnStart;
+                case EBuffAffectType.Roulette:
+                    if (this.val == 0)
+                    {
+                        BuffManager.Inst.rouletteShowBuffs.Remove(this);
+                    }
+                    GameManager.Inst.SetRouletteBuffUI(); break;
+                case EBuffAffectType.Enemy:
+                    if (this.val == 0)
+                    {
+                        BuffManager.Inst.enemyShowBuffs.Remove(this);
+                    }
+                    GameManager.Inst.SetEnemyBuffUI(); break;
+                case EBuffAffectType.Player:
+                    if (this.val == 0)
+                    {
+                        BuffManager.Inst.playerShowBuffs.Remove(this);
+                    }
+                    GameManager.Inst.SetPlayerBuffUI(); break;
+            }
         }
     }
 
@@ -660,6 +659,19 @@ public class BuffManager : MonoBehaviour
         foreach (var buffList in enemyBuffs)
         {
             ReduceBuffCounter(buffList);
+        }
+
+        for (int i = rouletteShowBuffs.Count - 1; i >= 0; i--)
+        {
+            rouletteShowBuffs[i].ReduceShowBuffCounter();
+        }
+        for (int i = playerShowBuffs.Count - 1; i >= 0; i--)
+        {
+            playerShowBuffs[i].ReduceShowBuffCounter();
+        }
+        for (int i = enemyShowBuffs.Count - 1; i >= 0; i--)
+        {
+            enemyShowBuffs[i].ReduceShowBuffCounter();
         }
     }
 

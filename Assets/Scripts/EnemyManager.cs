@@ -170,8 +170,11 @@ public class EnemyManager : MonoBehaviour
                 RouletteManager.Inst.enemyTriggerPiece = rItem;
                 TurnManager.OnEnemyTrigger += () =>
                 {
-                    BuffManager.Inst.rouletteBuff_Trigger.Clear();
-                    BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, -10, 3, -1);
+                    if(phaseNum == 1)
+                    {
+                        BuffManager.Inst.rouletteBuff_Trigger.Clear();
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, -10, 3, -1);
+                    }
                 };
                 RouletteManager.EnemyTriggerActivation = (isEnemy, totalVal) =>
                 {

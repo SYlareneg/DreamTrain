@@ -451,7 +451,11 @@ public class CardManager : MonoBehaviour
     {
         isMyCardDrag = false;
 
-        if(eCardState != ECardState.CanMouseDrag)
+        if (eCardState != ECardState.CanMouseDrag)
+        {
+            return;
+        }
+        if(selectedCard == null)
         {
             return;
         }

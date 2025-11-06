@@ -4,9 +4,9 @@ using UnityEngine;
 public class DreamPiece
 {
     public string name;
-    public Passive persona;
-    public Passive shadow;
-    public Item[] cards;
+    public Passive_Enhanceable persona;
+    public Passive_Enhanceable shadow;
+    public Item_Enhanceable[] cards;
     public Sprite specialRouletteSprite;
     public string specialRouletteTitle;
     public string specialRouletteText;

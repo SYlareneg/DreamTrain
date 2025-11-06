@@ -78,6 +78,20 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action OnRouletteActivate;
     [HideInInspector] public static Action<int> OnCostChange;
 
+    void PrintAllActions(Action action)
+    {
+        if (action == null)
+        {
+            Debug.Log("아무 액션도 등록되어 있지 않습니다.");
+            return;
+        }
+
+        foreach (var d in action.GetInvocationList())
+        {
+            Debug.Log($"액션: {d.Method.Name},  소속 객체: {d.Target}");
+        }
+    }
+
     // 개발자 설정 적용
     void GameDeveloperSetup()
     {
@@ -124,9 +138,9 @@ public class TurnManager : MonoBehaviour
     {
         InitializeGame();
         OnGameStart?.Invoke();
-        BuffManager.Inst.AddShowBuff("과민함", EBuffAffectType.Enemy, 1);
+        /*BuffManager.Inst.AddShowBuff("과민함", EBuffAffectType.Enemy, 1);
         BuffManager.Inst.AddShowBuff("과민함", EBuffAffectType.Player, 1);
-        BuffManager.Inst.AddShowBuff("강화", EBuffAffectType.Roulette, 1);
+        BuffManager.Inst.AddShowBuff("강화", EBuffAffectType.Roulette, 1);*/
         turnDraw = drawCardCount;
         // startCardCount만큼 카드를 뽑고, StartPlayerTurn 호출
         StartCoroutine(Draw(startCardCount, StartPlayerTurn));
@@ -138,7 +152,7 @@ public class TurnManager : MonoBehaviour
         BeforePlayerTurnStart?.Invoke();
         isLoading = true;
         turnNum++;
-        nowCost = 0;
+        IncreaseCost(-nowCost);
         SetFullCost();
         // 플레이어 턴 시작 UI를 띄우고, StartPlayerTurn_AfterNotify 호출
         GameManager.Inst.Notification("나의 턴", "턴 " + turnNum.ToString(), StartPlayerTurn_AfterNotify);
@@ -322,6 +336,7 @@ public class TurnManager : MonoBehaviour
     // 플레이어 트리거 카운터 증가. 카운터 모두 채워졌을 시 발동
     public void TriggerPlayerPassive(int value)
     {
+        if (RouletteManager.Inst.isTriggerActivated && RouletteManager.Inst.isPlayerTrigger()) return;
         if (value > 0)
         {
             OnPlayerTriggerIncrease?.Invoke(value);
@@ -351,6 +366,7 @@ public class TurnManager : MonoBehaviour
     // 적 트리거 카운터 증가. 카운터 모두 채워졌을 시 발동
     public void TriggerEnemyPassive(int value)
     {
+        if (RouletteManager.Inst.isTriggerActivated && RouletteManager.Inst.isEnemyTrigger()) return;
         if (value > 0)
         {
             OnEnemyTriggerIncrease?.Invoke(value);

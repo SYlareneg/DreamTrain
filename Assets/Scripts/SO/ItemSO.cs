@@ -37,6 +37,12 @@ public class Item
     }
 }
 
+[System.Serializable]
+public class Item_Enhanceable : Item
+{
+    [Tooltip("강화 카드")] public Item enhancedItem;
+}
+
 [CreateAssetMenu(fileName = "ItemSO", menuName = "Scriptable Objects/ItemSO")]
 public class ItemSO : ScriptableObject
 {

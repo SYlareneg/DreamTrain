@@ -54,9 +54,21 @@ public class EnemyAction : MonoBehaviour
         {
             totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Special_1, totalVal);
         }
+        if (actionType == EEnemyActionType.Special_Activate_2)
+        {
+            totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Special_2, totalVal);
+        }
         if(actionType == EEnemyActionType.Attack)
         {
             totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Attack, totalVal);
+        }
+        if(actionType == EEnemyActionType.Heal)
+        {
+            totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Heal, totalVal);
+        }
+        if(actionType == EEnemyActionType.Shield)
+        {
+            totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Shield, totalVal);
         }
         
         if (totalVal == 0)
@@ -185,24 +197,30 @@ public class EnemyAction : MonoBehaviour
         if (isIgnore == false)
         {
             TurnManager.OnEnemyAction?.Invoke();
+            int totalVal = actionVal;
             switch (actionType)
             {
                 case EEnemyActionType.Turn:
-                    RouletteManager.Inst.Spin(actionVal > 0, Math.Abs(actionVal)); break;
+                    RouletteManager.Inst.Spin(totalVal > 0, Math.Abs(totalVal)); break;
                 case EEnemyActionType.Attack:
-                    TurnManager.Inst.TakeDmg(actionVal); break;
+                    totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Attack, totalVal);
+                    TurnManager.Inst.TakeDmg(totalVal); break;
                 case EEnemyActionType.Heal:
-                    TurnManager.Inst.EnemyTakeDmg(-actionVal); break;
+                    totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Heal, totalVal);
+                    TurnManager.Inst.EnemyTakeDmg(-totalVal); break;
                 case EEnemyActionType.Shield:
-                    TurnManager.Inst.GetShield(true, actionVal); break;
+                    totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Shield, totalVal);
+                    TurnManager.Inst.GetShield(true, totalVal); break;
                 case EEnemyActionType.Enchant_Random_1:
-                    EnchantAction(ERouletteType.Enemy_Special_1, actionVal); break;
+                    EnchantAction(ERouletteType.Enemy_Special_1, totalVal); break;
                 case EEnemyActionType.Enchant_Random_2:
-                    EnchantAction(ERouletteType.Enemy_Special_2, actionVal); break;
+                    EnchantAction(ERouletteType.Enemy_Special_2, totalVal); break;
                 case EEnemyActionType.Special_Activate_1:
-                    SpecialAction1(actionVal); break;
+                    totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Special_1, totalVal);
+                    SpecialAction1(totalVal); break;
                 case EEnemyActionType.Special_Activate_2:
-                    SpecialAction2(actionVal); break;
+                    totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Special_2, totalVal);
+                    SpecialAction2(totalVal); break;
             }
         }
     }

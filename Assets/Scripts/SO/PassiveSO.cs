@@ -12,6 +12,13 @@ public class Passive
     public int dreamPieceNum;
 }
 
+[System.Serializable]
+public class Passive_Enhanceable : Passive
+{
+    public bool isEnhanced;
+    public Passive enhancedPassive;
+}
+
 [CreateAssetMenu(fileName = "PassiveSO", menuName = "Scriptable Objects/PassiveSO")]
 public class PassiveSO : ScriptableObject
 {

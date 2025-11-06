@@ -158,22 +158,46 @@ public class GameManager : MonoBehaviour
     {
         if (TurnManager.Inst.characterSO.personaPiece != null)
         {
-            personaImg.sprite = TurnManager.Inst.characterSO.personaPiece.persona.sprite;
             Tooltip tooltip = personaImg.GetComponentInParent<Tooltip>();
-            if (tooltip)
+            if (TurnManager.Inst.characterSO.personaPiece.persona.isEnhanced)
             {
-                tooltip.tooltipTitle = TurnManager.Inst.characterSO.personaPiece.persona.name;
-                tooltip.tooltipTxt = TurnManager.Inst.characterSO.personaPiece.persona.text;
+                personaImg.sprite = TurnManager.Inst.characterSO.personaPiece.persona.enhancedPassive.sprite;
+                if (tooltip)
+                {
+                    tooltip.tooltipTitle = TurnManager.Inst.characterSO.personaPiece.persona.enhancedPassive.name;
+                    tooltip.tooltipTxt = TurnManager.Inst.characterSO.personaPiece.persona.enhancedPassive.text;
+                }
+            }
+            else
+            {
+                personaImg.sprite = TurnManager.Inst.characterSO.personaPiece.persona.sprite;
+                if (tooltip)
+                {
+                    tooltip.tooltipTitle = TurnManager.Inst.characterSO.personaPiece.persona.name;
+                    tooltip.tooltipTxt = TurnManager.Inst.characterSO.personaPiece.persona.text;
+                }
             }
         }
         if (TurnManager.Inst.characterSO.shadowPiece != null)
         {
-            shadowImg.sprite = TurnManager.Inst.characterSO.shadowPiece.shadow.sprite;
             Tooltip tooltip = shadowImg.GetComponentInParent<Tooltip>();
-            if (tooltip)
+            if (TurnManager.Inst.characterSO.personaPiece.shadow.isEnhanced)
             {
-                tooltip.tooltipTitle = TurnManager.Inst.characterSO.shadowPiece.shadow.name;
-                tooltip.tooltipTxt = TurnManager.Inst.characterSO.shadowPiece.shadow.text;
+                shadowImg.sprite = TurnManager.Inst.characterSO.shadowPiece.shadow.enhancedPassive.sprite;
+                if (tooltip)
+                {
+                    tooltip.tooltipTitle = TurnManager.Inst.characterSO.shadowPiece.shadow.enhancedPassive.name;
+                    tooltip.tooltipTxt = TurnManager.Inst.characterSO.shadowPiece.shadow.enhancedPassive.text;
+                }
+            }
+            else
+            {
+                shadowImg.sprite = TurnManager.Inst.characterSO.shadowPiece.shadow.sprite;
+                if (tooltip)
+                {
+                    tooltip.tooltipTitle = TurnManager.Inst.characterSO.shadowPiece.shadow.name;
+                    tooltip.tooltipTxt = TurnManager.Inst.characterSO.shadowPiece.shadow.text;
+                }
             }
         }
         TurnManager.Inst.StartGameCo();

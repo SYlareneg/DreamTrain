@@ -161,9 +161,16 @@ public class Card : MonoBehaviour
                 isCardUsed = RouletteManager.Inst.EnchantRoulette(false, ERouletteType.Heal, 3);
                 break;
             case "흡혈 부여":
+            case "흡혈 부여+":
                 isCardUsed = RouletteManager.Inst.EnchantRoulette(true, ERouletteType.Player_Special_1, 6);
+                if (item.name == "흡혈 부여+")
+                {
+                    RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].isEnhanced = true;
+                    RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].tooltip.tooltipTxt = "값의 데미지를 주고 입힌 피해의 <color=red>50%</color>만큼 체력을 회복합니다. 뱀파이어 페르소나를 장착하고 있다면, 회복한 체력만큼 트리거 게이지를 얻습니다.";
+                }
                 break;
             case "혈액 순환":
+            case "혈액 순환+":
                 RouletteManager.Inst.Spin(true, 1);
                 TurnManager.Inst.TakeDmg(1);
                 Item tempItem = new Item();
@@ -171,6 +178,7 @@ public class Card : MonoBehaviour
                 tempItem.name = "혈액 순환 (소멸)";
                 tempItem.isVanish = true;
                 CardManager.Inst.CreateCardInHand(tempItem);
+                if(item.name == "혈액 순환+") CardManager.Inst.CreateCardInHand(tempItem);
                 break;
             case "혈액 순환 (소멸)":
                 RouletteManager.Inst.Spin(true, 1);
@@ -180,21 +188,37 @@ public class Card : MonoBehaviour
                 TurnManager.Inst.TakeDmg(2);
                 TurnManager.Inst.IncreaseCost(1);
                 break;
+            case "피는 나의 힘+":
+                TurnManager.Inst.TakeDmg(1);
+                TurnManager.Inst.IncreaseCost(1);
+                break;
             case "긴급 수혈":
                 TurnManager.Inst.TakeDmg(-2);
+                break;
+            case "긴급 수혈+":
+                TurnManager.Inst.TakeDmg(-3);
                 break;
             case "휴머니스트":
                 BuffManager.Inst.AddShowBuff("주저함", EBuffAffectType.Enemy, 1);
                 BuffManager.Inst.AddShowBuff("주저함", EBuffAffectType.Roulette, 1);
                 break;
+            case "휴머니스트+":
+                BuffManager.Inst.AddShowBuff("주저함", EBuffAffectType.Enemy, 2);
+                BuffManager.Inst.AddShowBuff("주저함", EBuffAffectType.Roulette, 2);
+                break;
             case "블루 블러드":
+            case "블루 블러드+":
                 BuffManager.Inst.AddShowBuff("블루 블러드", EBuffAffectType.Roulette, 2);
                 break;
             case "만찬 시간":
+            case "만찬 시간+":
                 BuffManager.Inst.AddShowBuff("만찬 시간", EBuffAffectType.Roulette, 2);
                 break;
             case "핏빛 날개":
-                for (int i = 0; i < 4; i++)
+            case "핏빛 날개+":
+                int bloodwing_spinnnum = 4;
+                if(item.name == "핏빛 날개+") bloodwing_spinnnum = 5;
+                for (int i = 0; i < bloodwing_spinnnum; i++)
                 {
                     int tempIdx = (RouletteManager.Inst.enemyLookat + i) % RouletteManager.rouletteNum;
                     if (RouletteManager.Inst.roulettePieces[tempIdx].roulette.type == ERouletteType.Player_Special_2)
@@ -202,24 +226,29 @@ public class Card : MonoBehaviour
                         RouletteManager.Inst.ActivateRoulettePiece(tempIdx, true);
                     }
                 }
-                RouletteManager.Inst.Spin(false, 4);
+                RouletteManager.Inst.Spin(false, bloodwing_spinnnum);
                 break;
             case "마술 상자":
+            case "마술 상자+":
                 ERouletteType magicBox = ERouletteType.Player_Special_1;
                 if (TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum != this.item.dreamPieceNum) magicBox = ERouletteType.Player_Special_2;
-                isCardUsed = RouletteManager.Inst.EnchantRoulette(false, magicBox, 12);
+                if (item.name == "핏빛 날개") isCardUsed = RouletteManager.Inst.EnchantRoulette(false, magicBox, 12);
+                else isCardUsed = RouletteManager.Inst.EnchantRoulette(false, magicBox, 15);
                 break;
             case "마술-비둘기":
+            case "마술-비둘기+":
                 magicBox = ERouletteType.Player_Special_1;
                 if (TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum != this.item.dreamPieceNum) magicBox = ERouletteType.Player_Special_2;
                 bool checkMagic = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].roulette.type == magicBox;
-                TurnManager.Inst.EnemyTakeDmg(1);
+                if (item.name == "마술-비둘기") TurnManager.Inst.EnemyTakeDmg(1);
+                else TurnManager.Inst.EnemyTakeDmg(3);
                 if (checkMagic)
                 {
                     EnemyManager.Inst.RemoveAction(0);
                 }
                 break;
             case "마술-카드":
+            case "마술-카드+":
                 magicBox = ERouletteType.Player_Special_1;
                 if (TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum != this.item.dreamPieceNum) magicBox = ERouletteType.Player_Special_2;
                 checkMagic = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.type == magicBox;
@@ -240,29 +269,48 @@ public class Card : MonoBehaviour
                     TurnManager.Inst.enemyShieldHealth = 0;
                 }
                 break;
+            case "마술-절단+":
+                magicBox = ERouletteType.Player_Special_1;
+                if (TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum != this.item.dreamPieceNum) magicBox = ERouletteType.Player_Special_2;
+                checkMagic = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].roulette.type == magicBox;
+                if (checkMagic)
+                {
+                    TurnManager.Inst.enemyShieldHealth = 0;
+                }
+                TurnManager.Inst.EnemyTakeDmg(4);
+                break;
             case "마술-순간이동":
+            case "마술-순간이동+":
                 magicBox = ERouletteType.Player_Special_1;
                 if (TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum != this.item.dreamPieceNum) magicBox = ERouletteType.Player_Special_2;
                 checkMagic = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.type == magicBox;
                 RouletteManager.Inst.Spin(true, 2);
                 if (checkMagic)
                 {
-                    TurnManager.Inst.GetShield(false, 12);
+                    if (item.name == "마술-순간이동") TurnManager.Inst.GetShield(false, 12);
+                    else TurnManager.Inst.GetShield(false, 16);
                 }
                 break;
             case "마술-예언":
+            case "마술-예언+":
                 BuffManager.Inst.AddShowBuff("예언-준비", EBuffAffectType.Player, 1);
                 break;
             case "재빠른 손놀림":
+            case "재빠른 손놀림+":
                 StartCoroutine(TurnManager.Inst.Draw(1, null));
+                if (item.name == "재빠른 손놀림+") StartCoroutine(TurnManager.Inst.Draw(1, null));
                 break;
             case "초능력-예언":
+            case "초능력-예언+":
                 BuffManager.Inst.AddShowBuff("예언-준비", EBuffAffectType.Player, 1);
                 break;
             case "초능력-염력":
+            case "초능력-염력+":
                 RouletteManager.Inst.Spin(true, TurnManager.Inst.nowCost);
+                if (item.name == "초능력-염력+" && TurnManager.Inst.nowCost >= 3) TurnManager.Inst.GetShield(false, 5);
                 break;
             case "에이스":
+            case "에이스+":
                 RouletteManager.Inst.TriggerRoulette();
                 TurnManager.OnPlayerTrigger?.Invoke();
                 Action endTrigger = null;

@@ -13,7 +13,8 @@ public class RoulettePiece : MonoBehaviour
     
     public RouletteItem roulette;
     public bool isTriggered;
-    Tooltip tooltip;
+    public bool isEnhanced;
+    public Tooltip tooltip;
 
     public void SetRoulettePieceSprite(Sprite sprite)
     {
