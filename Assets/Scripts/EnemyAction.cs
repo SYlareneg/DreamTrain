@@ -196,6 +196,7 @@ public class EnemyAction : MonoBehaviour
     {
         if (isIgnore == false)
         {
+            Utils.AllignActions(ref TurnManager.OnEnemyAction, typeof(ShowBuff), typeof(RelicManager));
             TurnManager.OnEnemyAction?.Invoke();
             int totalVal = actionVal;
             switch (actionType)

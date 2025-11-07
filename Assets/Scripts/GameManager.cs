@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
+                Utils.AllignActions(ref TurnManager.OnAddCard, typeof(ShowBuff), typeof(RelicManager));
                 TurnManager.OnAddCard?.Invoke();
             }
             if (Input.GetKeyDown(KeyCode.E))
@@ -207,6 +208,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator GameOver(bool isMyWin)
     {
         gameOverSignal = true;
+        Utils.AllignActions(ref TurnManager.OnGameEnd, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnGameEnd?.Invoke();
         TurnManager.Inst.isLoading = true;
         endTurnBtn.SetActive(false);

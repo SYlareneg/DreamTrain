@@ -61,24 +61,28 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData data)
     {
+        if (objectEnter) return;
         SetupTooltip();
         objectEnter = true;
     }
 
     public void OnPointerExit(PointerEventData data)
     {
+        if (!objectEnter) return;
         HideTooltip();
         objectEnter = false;
     }
 
     void OnMouseEnter()
     {
+        if (objectEnter) return;
         SetupTooltip();
         objectEnter = true;
     }
 
     void OnMouseExit()
     {
+        if (!objectEnter) return;
         HideTooltip();
         objectEnter = false;
     }

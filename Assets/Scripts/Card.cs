@@ -312,15 +312,14 @@ public class Card : MonoBehaviour
             case "에이스":
             case "에이스+":
                 RouletteManager.Inst.TriggerRoulette();
-                TurnManager.OnPlayerTrigger?.Invoke();
                 Action endTrigger = null;
                 endTrigger = () =>
                 {
                     RouletteManager.Inst.roulettePieces[RouletteManager.Inst.triggerPos].Trigger(false);
                     RouletteManager.Inst.roulettePieces[RouletteManager.Inst.triggerPos].Setup(RouletteManager.Inst.triggerPiece_None);
-                    TurnManager.OnRouletteActivate -= endTrigger;
+                    TurnManager.OnPlayerTurnEnd -= endTrigger;
                 };
-                TurnManager.OnRouletteActivate += endTrigger;
+                TurnManager.OnPlayerTurnEnd += endTrigger;
                 break;
         }
         if (isCardUsed)

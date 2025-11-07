@@ -364,8 +364,6 @@ public class EnemyManager : MonoBehaviour
                 }
                 break;
         }
-        TurnManager.OnEnemyTrigger?.Invoke();
-        TurnManager.Inst.enemyTriggerCnt = 0;
     }
 
     public void RemoveAction(int index)
@@ -535,6 +533,7 @@ public class EnemyManager : MonoBehaviour
     public void StartEnemyTurn()
     {
         TurnManager.Inst.enemyShieldHealth = 0;
+        Utils.AllignActions(ref TurnManager.OnEnemyTurnStart, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnEnemyTurnStart?.Invoke();
         ExecuteBestAction();
     }
@@ -544,6 +543,7 @@ public class EnemyManager : MonoBehaviour
     {
         DestroyAllActionObjects();
         actionBox.SetActive(false);
+        Utils.AllignActions(ref TurnManager.OnEnemyTurnEnd, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnEnemyTurnEnd?.Invoke();
         RouletteManager.Inst.ActivateRoulette();
         if (GameManager.Inst.gameOverSignal == false)

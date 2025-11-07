@@ -109,27 +109,26 @@ public class PassiveManager : MonoBehaviour
                     CardManager.Inst.itemDeck.Add(ace);
                     CardManager.Inst.itemDraw.Add(ace);
                     CardManager.Inst.ShuffleDeck();
-
-                    TurnManager.OnRouletteSpin += (x) =>
+                };
+                TurnManager.OnRouletteSpin += (x) =>
+                {
+                    if (RouletteManager.Inst.spinDirection == 1)
                     {
-                        if (RouletteManager.Inst.spinDirection == 1)
+                        for (int i = 0; i < RouletteManager.rouletteNum; i++)
                         {
-                            for (int i = 0; i < RouletteManager.rouletteNum; i++)
+                            if (RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.Player_Special_1)
                             {
-                                if (RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.Player_Special_1)
+                                RouletteManager.Inst.roulettePieces[i].roulette.value--;
+                                int val = BuffManager.Inst.GetBuffedRouletteValue(RouletteManager.Inst.roulettePieces[i]);
+                                if (val == 0)
                                 {
-                                    RouletteManager.Inst.roulettePieces[i].roulette.value--;
-                                    int val = BuffManager.Inst.GetBuffedRouletteValue(RouletteManager.Inst.roulettePieces[i]);
-                                    if (val == 0)
-                                    {
-                                        RouletteItem tempItem = new RouletteItem();
-                                        RouletteManager.Inst.roulettePieces[i].roulette.type = ERouletteType.None;
-                                        RouletteManager.Inst.roulettePieces[i].Setup(RouletteManager.Inst.roulettePieces[i].roulette);
-                                    }
+                                    RouletteItem tempItem = new RouletteItem();
+                                    RouletteManager.Inst.roulettePieces[i].roulette.type = ERouletteType.None;
+                                    RouletteManager.Inst.roulettePieces[i].Setup(RouletteManager.Inst.roulettePieces[i].roulette);
                                 }
                             }
                         }
-                    };
+                    }
                 };
                 break;
         }

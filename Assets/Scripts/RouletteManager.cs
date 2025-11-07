@@ -53,6 +53,7 @@ public class RouletteManager : MonoBehaviour
             spinDistance_Turn += pieces;
             spinDirection = isClockwise ? 1 : 0;
             spinFlag = true;
+            Utils.AllignActions<int>(ref TurnManager.OnRouletteSpin, typeof(ShowBuff), typeof(RelicManager));
             TurnManager.OnRouletteSpin?.Invoke(pieces);
             var newRotation = rouletteArea.transform.rotation;
             if (isClockwise)
@@ -69,6 +70,7 @@ public class RouletteManager : MonoBehaviour
             enemyLookat = (enemyLookat + pieces + rouletteNum) % rouletteNum;
             rouletteArea.transform.parent.DORotateQuaternion(newRotation, spinDelay).OnComplete(() => {
                 spinFlag = false;
+                Utils.AllignActions(ref TurnManager.AfterRouletteSpin, typeof(ShowBuff), typeof(RelicManager));
                 TurnManager.AfterRouletteSpin?.Invoke(pieces);
             });
         }
@@ -87,6 +89,7 @@ public class RouletteManager : MonoBehaviour
 
     public void ActivateRoulette()
     {
+        Utils.AllignActions(ref TurnManager.BeforeRouletteActivate, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.BeforeRouletteActivate?.Invoke();
         int playerWeight = ActivationWeight(playerLookat);
         int enemyWeight = ActivationWeight(enemyLookat);
@@ -100,6 +103,7 @@ public class RouletteManager : MonoBehaviour
             roulettePieces[enemyLookat].Activate(true);
             roulettePieces[playerLookat].Activate(false);
         }
+        Utils.AllignActions(ref TurnManager.OnRouletteActivate, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnRouletteActivate?.Invoke();
     }
 
@@ -123,10 +127,12 @@ public class RouletteManager : MonoBehaviour
         roulettePieces[triggerPos].Setup(triggerPiece);
         roulettePieces[triggerPos].Trigger(true);
         isTriggerActivated = true;
+        Utils.AllignActions(ref TurnManager.OnPlayerTrigger, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnPlayerTrigger?.Invoke();
         TriggerActivation = PlayerTriggerActivation;
         roulettePieces[triggerPos].GetComponent<Tooltip>().tooltipTitle = TurnManager.Inst.characterSO.shadowPiece.shadow.name;
         roulettePieces[triggerPos].GetComponent<Tooltip>().tooltipTxt = TurnManager.Inst.characterSO.shadowPiece.shadow.text;
+        Utils.AllignActions(ref TurnManager.OnRouletteTrigger, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnRouletteTrigger?.Invoke();
     }
 
@@ -135,10 +141,12 @@ public class RouletteManager : MonoBehaviour
         roulettePieces[triggerPos].Setup(enemyTriggerPiece);
         roulettePieces[triggerPos].Trigger(true);
         isTriggerActivated = true;
+        Utils.AllignActions(ref TurnManager.OnEnemyTrigger, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnEnemyTrigger?.Invoke();
         TriggerActivation = EnemyTriggerActivation;
         roulettePieces[triggerPos].GetComponent<Tooltip>().tooltipTitle = EnemyManager.Inst.enemy.passive.name;
         roulettePieces[triggerPos].GetComponent<Tooltip>().tooltipTxt = EnemyManager.Inst.enemy.passive.text;
+        Utils.AllignActions(ref TurnManager.OnRouletteTrigger, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnRouletteTrigger?.Invoke();
     }
 
@@ -167,6 +175,7 @@ public class RouletteManager : MonoBehaviour
         rItem.type = rType;
         rItem.value = rValue;
         roulettePieces[index].Setup(rItem);
+        Utils.AllignActions(ref TurnManager.OnRouletteEnchant, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnRouletteEnchant?.Invoke();
     }
 

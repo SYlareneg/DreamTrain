@@ -479,6 +479,7 @@ public class CardManager : MonoBehaviour
             TurnManager.Inst.IncreaseCost(-buffedCost);
             useCount++;
             useCount_Turn++;
+            Utils.AllignActions(ref TurnManager.OnUseCard, typeof(ShowBuff), typeof(RelicManager));
             TurnManager.OnUseCard?.Invoke();
             if (selectedCard.item.isVanish == true)
             {
