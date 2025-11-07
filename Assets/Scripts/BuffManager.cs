@@ -65,6 +65,7 @@ public class ShowBuff
     public int val;
     [HideInInspector] public List<List<Buff>> targets;
     [HideInInspector] public List<Buff> affectBuffs;
+    Action removeBuff;
 
     void AddAffectBuff(List<Buff> target, int add, float mul, int time)
     {
@@ -77,6 +78,11 @@ public class ShowBuff
     public void SetShowBuff(string name, EBuffAffectType aType, int newVal)
     {
         ShowBuff origin = BuffManager.Inst.showBuffSO.showBuffs.Find(x => x.name == name);
+        if (origin == null)
+        {
+            Debug.LogWarning("미등록 버프!");
+            return;
+        }
         this.name = name;
         text = origin.text;
         icon = origin.icon;
@@ -91,86 +97,86 @@ public class ShowBuff
             case "강화":
                 if (affectType == EBuffAffectType.Enemy)
                 {
-                    AddAffectBuff(BuffManager.Inst.enemyBuff_Attack, newVal, 1, -1);
                     BuffManager.Inst.enemyShowBuffs.Add(this);
+                    AddAffectBuff(BuffManager.Inst.enemyBuff_Attack, newVal, 1, -1);
                 }
                 else if (affectType == EBuffAffectType.Roulette)
                 {
-                    AddAffectBuff(BuffManager.Inst.rouletteBuff_Attack, newVal, 1, -1);
                     BuffManager.Inst.rouletteShowBuffs.Add(this);
+                    AddAffectBuff(BuffManager.Inst.rouletteBuff_Attack, newVal, 1, -1);
                 }
                 break;
             case "보호":
                 if (affectType == EBuffAffectType.Enemy)
                 {
-                    AddAffectBuff(BuffManager.Inst.enemyBuff_Shield, newVal, 1, -1);
                     BuffManager.Inst.enemyShowBuffs.Add(this);
+                    AddAffectBuff(BuffManager.Inst.enemyBuff_Shield, newVal, 1, -1);
                 }
                 else if (affectType == EBuffAffectType.Roulette)
                 {
-                    AddAffectBuff(BuffManager.Inst.rouletteBuff_Shield, newVal, 1, -1);
                     BuffManager.Inst.rouletteShowBuffs.Add(this);
+                    AddAffectBuff(BuffManager.Inst.rouletteBuff_Shield, newVal, 1, -1);
                 }
                 else
                 {
-                    AddAffectBuff(BuffManager.Inst.playerBuff_Shield, newVal, 1, -1);
                     BuffManager.Inst.playerShowBuffs.Add(this);
+                    AddAffectBuff(BuffManager.Inst.playerBuff_Shield, newVal, 1, -1);
                 }
                 break;
             case "활력":
                 if (affectType == EBuffAffectType.Enemy)
                 {
-                    AddAffectBuff(BuffManager.Inst.enemyBuff_Heal, newVal, 1, -1);
                     BuffManager.Inst.enemyShowBuffs.Add(this);
+                    AddAffectBuff(BuffManager.Inst.enemyBuff_Heal, newVal, 1, -1);
                 }
                 else if (affectType == EBuffAffectType.Roulette)
                 {
-                    AddAffectBuff(BuffManager.Inst.rouletteBuff_Heal, newVal, 1, -1);
                     BuffManager.Inst.rouletteShowBuffs.Add(this);
+                    AddAffectBuff(BuffManager.Inst.rouletteBuff_Heal, newVal, 1, -1);
                 }
                 else
                 {
-                    AddAffectBuff(BuffManager.Inst.playerBuff_Heal, newVal, 1, -1);
                     BuffManager.Inst.playerShowBuffs.Add(this);
+                    AddAffectBuff(BuffManager.Inst.playerBuff_Heal, newVal, 1, -1);
                 }
                 break;
             case "주저함":
                 if (affectType == EBuffAffectType.Enemy)
                 {
-                    AddAffectBuff(BuffManager.Inst.enemyBuff_Attack, 0, 0.75f, newVal);
                     BuffManager.Inst.enemyShowBuffs.Add(this);
+                    AddAffectBuff(BuffManager.Inst.enemyBuff_Attack, 0, 0.75f, newVal);
                 }
                 else if (affectType == EBuffAffectType.Roulette)
                 {
-                    AddAffectBuff(BuffManager.Inst.rouletteBuff_Attack, 0, 0.75f, newVal);
                     BuffManager.Inst.rouletteShowBuffs.Add(this);
+                    AddAffectBuff(BuffManager.Inst.rouletteBuff_Attack, 0, 0.75f, newVal);
                 }
                 break;
             case "취약":
                 if (affectType == EBuffAffectType.Enemy)
                 {
-                    AddAffectBuff(BuffManager.Inst.enemyBuff_Damage, 0, 1.5f, newVal);
                     BuffManager.Inst.enemyShowBuffs.Add(this);
+                    AddAffectBuff(BuffManager.Inst.enemyBuff_Damage, 0, 1.5f, newVal);
                 }
                 else if (affectType == EBuffAffectType.Player)
                 {
-                    AddAffectBuff(BuffManager.Inst.playerBuff_Damage, 0, 1.5f, newVal);
                     BuffManager.Inst.playerShowBuffs.Add(this);
+                    AddAffectBuff(BuffManager.Inst.playerBuff_Damage, 0, 1.5f, newVal);
                 }
                 break;
             case "블루 블러드":
                 if (affectType == EBuffAffectType.Roulette)
                 {
+                    BuffManager.Inst.rouletteShowBuffs.Add(this);
                     AddAffectBuff(BuffManager.Inst.rouletteBuff_PlayerSpecial1[0], 0, 3f, newVal);
                     AddAffectBuff(BuffManager.Inst.rouletteBuff_PlayerSpecial1[1], 0, 0f, newVal);
-                    BuffManager.Inst.rouletteShowBuffs.Add(this);
                 }
                 break;
             case "만찬 시간":
                 if (affectType == EBuffAffectType.Roulette)
                 {
-                    AddAffectBuff(BuffManager.Inst.rouletteBuff_PlayerSpecial2[0], 0, 2f, newVal);
                     BuffManager.Inst.rouletteShowBuffs.Add(this);
+                    AddAffectBuff(BuffManager.Inst.rouletteBuff_PlayerSpecial2[0], 0, 2f, newVal);
                 }
                 break;
             case "예언-준비":
@@ -183,10 +189,15 @@ public class ShowBuff
                         BuffManager.Inst.AddShowBuff("예언", EBuffAffectType.Player, 1);
                         if (this.val == 0)
                         {
+                            BuffManager.Inst.playerShowBuffs.Remove(this);
                             TurnManager.OnPlayerTurnStart -= addProphecy;
                         }
                     };
                     TurnManager.OnPlayerTurnStart += addProphecy;
+                    removeBuff = () =>
+                    {
+                        TurnManager.OnPlayerTurnStart -= addProphecy;
+                    };
                 }
                 break;
             case "예언":
@@ -196,11 +207,17 @@ public class ShowBuff
                     Action eraseFullCost = null;
                     eraseFullCost = () =>
                     {
+                        BuffManager.Inst.playerShowBuffs.Remove(this);
                         TurnManager.OnPlayerTrigger -= TurnManager.Inst.SetFullCost;
                         TurnManager.OnPlayerTurnEnd -= eraseFullCost;
                     };
                     TurnManager.OnPlayerTrigger += TurnManager.Inst.SetFullCost;
                     TurnManager.OnPlayerTurnEnd += eraseFullCost;
+                    removeBuff = () =>
+                    {
+                        TurnManager.OnPlayerTrigger -= TurnManager.Inst.SetFullCost;
+                        TurnManager.OnPlayerTurnEnd -= eraseFullCost;
+                    };
                 }
                 break;
             case "환영":
@@ -219,6 +236,10 @@ public class ShowBuff
                         }
                     };
                     TurnManager.OnEnemyDamaged += noDamage;
+                    removeBuff = () =>
+                    {
+                        TurnManager.OnEnemyDamaged -= noDamage;
+                    };
                 }
                 else if (affectType == EBuffAffectType.Player)
                 {
@@ -235,6 +256,10 @@ public class ShowBuff
                         }
                     };
                     TurnManager.OnPlayerDamaged += noDamage;
+                    removeBuff = () =>
+                    {
+                        TurnManager.OnPlayerDamaged -= noDamage;
+                    };
                 }
                 break;
             case "과민함":
@@ -253,6 +278,10 @@ public class ShowBuff
                         }
                     };
                     TurnManager.OnEnemyDamaged += reduceCount;
+                    removeBuff = () =>
+                    {
+                        TurnManager.OnEnemyDamaged -= reduceCount;
+                    };
                 }
                 else if (affectType == EBuffAffectType.Player)
                 {
@@ -269,6 +298,10 @@ public class ShowBuff
                         }
                     };
                     TurnManager.OnPlayerDamaged += reduceCount;
+                    removeBuff = () =>
+                    {
+                        TurnManager.OnPlayerDamaged -= reduceCount;
+                    };
                 }
                 break;
             case "불쾌함":
@@ -287,6 +320,10 @@ public class ShowBuff
                         }
                     };
                     TurnManager.OnRouletteSpin += reduceCount;
+                    removeBuff = () =>
+                    {
+                        TurnManager.OnRouletteSpin -= reduceCount;
+                    };
                 }
                 else if (affectType == EBuffAffectType.Player)
                 {
@@ -303,8 +340,28 @@ public class ShowBuff
                         }
                     };
                     TurnManager.OnRouletteSpin += reduceCount;
+                    removeBuff = () =>
+                    {
+                        TurnManager.OnRouletteSpin -= reduceCount;
+                    };
                 }
                 break;
+        }
+    }
+
+    public void RemoveShowBuff()
+    {
+        this.val = 0;
+
+        removeBuff?.Invoke();
+
+        if (affectType == EBuffAffectType.Enemy) BuffManager.Inst.enemyShowBuffs.Remove(this);
+        else if (affectType == EBuffAffectType.Roulette) BuffManager.Inst.rouletteShowBuffs.Remove(this);
+        else BuffManager.Inst.playerShowBuffs.Remove(this);
+
+        for(int i=0;i<targets.Count;i++)
+        {
+            targets[i].Remove(affectBuffs[i]);
         }
     }
     
