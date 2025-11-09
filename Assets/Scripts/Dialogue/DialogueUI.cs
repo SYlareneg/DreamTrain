@@ -24,9 +24,18 @@ public class DialogueUI : MonoBehaviour
     private VerticalLayoutGroup playerLayoutGroup;
     
     private DialogueEntry lastShownEntry = null;
+    
+    private bool dialogueActive = false;
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogWarning("중복된 DialogueUI 인스턴스가 발견되어 하나를 파괴합니다.");
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
         Instance = this;
         input = new InputSystem_Actions();
         playerLayoutGroup = playerPanel.GetComponent<VerticalLayoutGroup>();
@@ -49,17 +58,19 @@ public class DialogueUI : MonoBehaviour
     private void OnScreenClickPerformed(InputAction.CallbackContext context)
     {
         if (isBranchActive) return;
-
+        Debug.Log($"[OnScreenClickPerformed] nextIdForNormalDialogue: {nextIdForNormalDialogue}");
+        
+        
         if (nextIdForNormalDialogue != 0)
             ShowDialogue(nextIdForNormalDialogue);
-        else EndDialogue();
+        else EndDialogue(); 
     }
 
     public void ShowDialogue(int id)
     {
+
         isBranchActive = false;
         ClearBranchButtons();
-        nextIdForNormalDialogue = 0;
 
         if (id == 0)
         {
@@ -78,10 +89,12 @@ public class DialogueUI : MonoBehaviour
             EndDialogue(); 
             return;
         }
-
+        
+        dialogueActive = true;
         DialogueEntry firstEntry = entries[0];
         lastShownEntry = firstEntry;
-
+        Debug.Log(firstEntry.NextID);
+    
         MoooText.text = "";
         PlayerText.text = "";
 
@@ -89,7 +102,6 @@ public class DialogueUI : MonoBehaviour
         {
             DialogueRelicManager.Inst.relicWeights[firstEntry.IdToGet] += firstEntry.IdPoint;
         }
-
         if (firstEntry.Type == "Normal")
         {
             playerLayoutGroup.enabled = false;
@@ -98,6 +110,7 @@ public class DialogueUI : MonoBehaviour
 
                 moooPanel.SetActive(true);
                 MoooText.text = firstEntry.Dialogue_KO;
+                Debug.Log(firstEntry.Dialogue_KO);
             }
             else
             {
@@ -105,8 +118,10 @@ public class DialogueUI : MonoBehaviour
                 PlayerText.text = firstEntry.Dialogue_KO;
                 playerPanel.SetActive(true);
             }
-
+        
             nextIdForNormalDialogue = firstEntry.NextID;
+            Debug.Log($"[ShowDialogue] nextIdForNormalDialogue set to: {nextIdForNormalDialogue}");
+
         }
         else if (firstEntry.Type == "Branch")
         { 
@@ -133,6 +148,7 @@ public class DialogueUI : MonoBehaviour
     
     private void EndDialogue()
     {
+        dialogueActive = false;
         MoooText.text = "";
         PlayerText.text = "";
         playerPanel.SetActive(false);
@@ -165,5 +181,10 @@ public class DialogueUI : MonoBehaviour
     public void HideObjectName()
     {
         objectNameText.gameObject.SetActive(false);
+    }
+    
+    public bool IsDialogueActive()
+    {
+        return dialogueActive;
     }
 }

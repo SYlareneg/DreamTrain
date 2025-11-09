@@ -1,0 +1,11 @@
+﻿ID,BoxLocation,Dialogue_KO,Dialogue_EN,Type,SFX,IdToGet,IdPoint,NextID,Fuction
+1,Guest,"안녕하세요, 전 뱀파이어입니다.",,Normal,,,,2,
+2,Player,"안녕, 난 프림이라고 해.",,Normal,,,,3,
+3,Guest,"만나서 반가워요, 프림씨. 저녁은 드셨나요?",,Normal,,,,4,
+4,Player,1. 아니. 아직.,,Branch,,,,5,
+,Player,2. 새우볶음밥을 먹었어.,,Branch,,,,6,
+5,Guest,잘됐군요. 저랑 먹으러 가시죠!,,Normal,,1,2,,EndScene
+6,Guest,이런 잔인한 사람! 가냘픈 새우를 먹다니.,,Normal,,,,7,
+7,Guest,정의의 이름으로 당신을 벌하겠습니다! 덤비세요!,,Normal,,2,3,,EndScene
+8,Guest,깨지지 않게 조심해.,,Normal,,,,,End
+9,Guest,모자 속엔 언제나 비밀이 숨어있지.,,Normal,,,,,End

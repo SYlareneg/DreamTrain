@@ -6,6 +6,7 @@ public class InteractableObject : MonoBehaviour
     public InteractableObjectData objectData;
     private bool isCollected = false; 
     public bool isInteractionEnabled = true;
+    public int objectID;
 
     private void OnMouseEnter()
     {
@@ -19,20 +20,12 @@ public class InteractableObject : MonoBehaviour
         DialogueUI.Instance.HideObjectName();
     }
 
-    private void OnMouseDown()
+    void OnMouseDown()
     {
-        //if (EventSystem.current.IsPointerOverGameObject()) return;
-        if (!isInteractionEnabled || isCollected || EventSystem.current.IsPointerOverGameObject()) return;
-        if (objectData != null && objectData.DialogueList.Count > 0)
-        {
-            DialogueManager.Instance.StartDialogueFromObject(objectData, this);
-        }
-        else
-        {
-            Debug.LogWarning($"'{gameObject.name}' No data or No dialogue");
-        }       
-        
+        //DialogueBundleSelector.Inst.ShowBundleChoices(objectID);
     }
+    
+    
     public void OnCollectionComplete()
     {
         isCollected = true;

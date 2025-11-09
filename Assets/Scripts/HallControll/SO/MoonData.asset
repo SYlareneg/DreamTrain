@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de8d0655154885a4a954678686c2302a, type: 3}
   m_Name: MoonData
   m_EditorClassIdentifier: Assembly-CSharp::InteractableObjectData
-  ID: 0
-  Name_KO: 
+  ID: 3
+  Name_KO: "\uB2EC"
   Name_EN: 
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: -664460789620158941, guid: b9b8e68e2dc699043a3640144dbc852c, type: 3}
   DialogueList: []

@@ -17,5 +17,5 @@ MonoBehaviour:
   Name_EN: 
   itemIcon: {fileID: 1206291141275286761, guid: 7dc0e3f904cb8d44a94f33ed42c77082, type: 3}
   DialogueList:
-  - dialogueIDToPlay: 8
-    prerequisiteDialogueID: -1
+  - dialogueIDToPlay: 70
+    prerequisiteDialogueID: 71

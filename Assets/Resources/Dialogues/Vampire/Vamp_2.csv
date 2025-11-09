@@ -1,0 +1,10 @@
+﻿ID,BoxLocation,Dialogue_KO,Dialogue_EN,Type,SFX,IdToGet,IdPoint,NextID,Fuction
+1,Player,저…티켓에 나이가 181세로 되어 있는데 제가 눈이 잘못된 걸까요.,,Normal,,,,2,
+2,Guest,"아, 제가 좀 동안이긴 하죠.",,Normal,,,,3,
+3,Player,(그렇게 넘어갈 수 있는 정도가 아닌 것 같은데),,Normal,,,,4,
+4,Guest,"제대로 설명을 하자면, 원래 뱀파이어는 수명이 길어서 성장이나 노화가 느립니다.",,Normal,,2,1,5,
+5,Guest,그리고 저는 잠을 조금 많이 잤어서 그런 것도 있구요.,,Normal,,,,6,
+6,Guest,뱀파이어는 잠을 자는 동안은 신체 대사가 일어나지 않거든요.,,Normal,,,,7,
+7,Player,대체 잠을 얼마나 자셨길래.,,Normal,,,,8,
+8,Guest,글쎄요?,,Normal,,,,9,
+9,Guest,어쩌면 당신이 살아온 시간 전체보다 더 오래 잤을 지도 모르죠.,,Normal,,,,,End
