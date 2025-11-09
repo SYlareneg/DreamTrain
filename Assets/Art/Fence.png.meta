@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0ca9361259b013f4c817329a7e63ad72
+guid: 3264298359dd0d445ad833d72564238e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8788981349510653808
-    second: moooo_tmp_0
+      213: -5397573168801136404
+    second: Fence_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,21 +37,21 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: moooo_tmp_0
+      name: Fence_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 2
-        width: 578
-        height: 700
+        x: 191
+        y: 127
+        width: 1154
+        height: 776
       alignment: 7
       pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 34, y: 37, z: 35, w: 40}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 077ad1ba8fbb8f970800000000000000
-      internalID: 8788981349510653808
+      spriteID: ce0cd60fcc7f715b0800000000000000
+      internalID: -5397573168801136404
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 09ab407ef18dbbb44915bb55a225ca12
+    spriteID: 2644bae5734548f4ba9cfb2a836f04ca
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      moooo_tmp_0: 8788981349510653808
+      Fence_0: -5397573168801136404
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
