@@ -129,7 +129,7 @@ public enum ERelicActivateEffectType
     Develop_Test
 }
 [System.Serializable]
-public struct RelicActivateEffect
+public class RelicActivateEffect
 {
     public ERelicActivateEffectType type;
     public int value;
@@ -148,10 +148,17 @@ public class RelicItem
     public ERelicActivateTimingType[] relicTimings;
     public RelicActivateConditionArray[] relicConditions;
     public RelicActivateEffect[] relicEffects;
+    public bool isEnhanced;
+}
+
+[System.Serializable]
+public class RelicItem_Enhanceable : RelicItem
+{
+    public RelicItem enhancedRelicItem;
 }
 
 [CreateAssetMenu(fileName = "RelicSO", menuName = "Scriptable Objects/RelicSO")]
 public class RelicSO : ScriptableObject
 {
-    public List<RelicItem> relicItems;
+    public List<RelicItem_Enhanceable> relicItems;
 }

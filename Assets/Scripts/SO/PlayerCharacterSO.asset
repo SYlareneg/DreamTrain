@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff117f36f0a56fa479d874fe35a62abf, type: 3}
-  m_Name: CharacterSO
+  m_Name: PlayerCharacterSO
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSO
   maxHealth: 20
-  curHealth: 11
+  curHealth: 5
   dreamDust: 100
   leftPassengers: 8
   personaPiece:
@@ -69,6 +69,7 @@ MonoBehaviour:
         '\uB9C8\uC220\uC0C1\uC790'\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4"
       cardValues: 
       num: 2
+      isEnhanced: 0
       enhancedItem:
         name: "\uB9C8\uC220 \uC0C1\uC790+"
         cost: 1
@@ -84,6 +85,7 @@ MonoBehaviour:
           \uBD80\uC5EC\uD569\uB2C8\uB2E4"
         cardValues: 
         num: 1
+        isEnhanced: 0
     - name: "\uB9C8\uC220-\uBE44\uB458\uAE30"
       cost: 1
       type: 2
@@ -99,6 +101,7 @@ MonoBehaviour:
         \uC220 \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74 \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4."
       cardValues: 01000000
       num: 2
+      isEnhanced: 0
       enhancedItem:
         name: "\uB9C8\uC220-\uBE44\uB458\uAE30+"
         cost: 1
@@ -116,6 +119,7 @@ MonoBehaviour:
           \uC2E4\uD328\uD569\uB2C8\uB2E4."
         cardValues: 03000000
         num: 1
+        isEnhanced: 0
     - name: "\uB9C8\uC220-\uCE74\uB4DC"
       cost: 1
       type: 0
@@ -132,6 +136,7 @@ MonoBehaviour:
         \uC5C6\uB2E4\uBA74 \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4."
       cardValues: 01000000
       num: 2
+      isEnhanced: 0
       enhancedItem:
         name: "\uB9C8\uC220-\uCE74\uB4DC+"
         cost: 0
@@ -149,6 +154,7 @@ MonoBehaviour:
           \uC5C6\uB2E4\uBA74 \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4."
         cardValues: 01000000
         num: 1
+        isEnhanced: 0
     - name: "\uB9C8\uC220-\uC808\uB2E8"
       cost: 2
       type: 2
@@ -164,6 +170,7 @@ MonoBehaviour:
         \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4."
       cardValues: 02000000
       num: 2
+      isEnhanced: 0
       enhancedItem:
         name: "\uB9C8\uC220-\uC808\uB2E8+"
         cost: 2
@@ -180,6 +187,7 @@ MonoBehaviour:
           \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74 \uC2EA\uD328\uD569\uB2C8\uB2E4."
         cardValues: 04000000
         num: 1
+        isEnhanced: 0
     - name: "\uB9C8\uC220-\uC21C\uAC04\uC774\uB3D9"
       cost: 2
       type: 0
@@ -196,6 +204,7 @@ MonoBehaviour:
         \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4. "
       cardValues: 020000000c000000
       num: 2
+      isEnhanced: 0
       enhancedItem:
         name: "\uB9C8\uC220-\uC21C\uAC04\uC774\uB3D9+"
         cost: 2
@@ -213,6 +222,7 @@ MonoBehaviour:
           \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4. "
         cardValues: 0200000010000000
         num: 1
+        isEnhanced: 0
     - name: "\uB9C8\uC220-\uC608\uC5B8"
       cost: 3
       type: 2
@@ -229,6 +239,7 @@ MonoBehaviour:
         \uC18C\uBAA8 \uCF54\uC2A4\uD2B8\uAC00 {cardValues[0]} \uAC10\uC18C\uD569\uB2C8\uB2E4."
       cardValues: 02000000
       num: 2
+      isEnhanced: 0
       enhancedItem:
         name: "\uB9C8\uC220-\uC608\uC5B8+"
         cost: 2
@@ -247,6 +258,7 @@ MonoBehaviour:
           {cardValues[0]} \uAC10\uC18C\uD569\uB2C8\uB2E4."
         cardValues: 02000000
         num: 1
+        isEnhanced: 0
     - name: "\uC7AC\uBE60\uB978 \uC190\uB180\uB9BC"
       cost: 1
       type: 2
@@ -259,6 +271,7 @@ MonoBehaviour:
       text: "\uB371\uC5D0\uC11C \uCE74\uB4DC\uB97C {cardValues[0]}\uC7A5 \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
       cardValues: 01000000
       num: 2
+      isEnhanced: 0
       enhancedItem:
         name: "\uC7AC\uBE60\uB978 \uC190\uB180\uB9BC+"
         cost: 1
@@ -273,6 +286,7 @@ MonoBehaviour:
           \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
         cardValues: 02000000
         num: 1
+        isEnhanced: 0
     - name: "\uCD08\uB2A5\uB825-\uC608\uC5B8"
       cost: 2
       type: 2
@@ -286,6 +300,7 @@ MonoBehaviour:
         \uC989\uC2DC \uD589\uB3D9\uB825\uC744 \uCD5C\uB300\uB85C \uD68C\uBCF5\uD569\uB2C8\uB2E4."
       cardValues: 0c000000
       num: 2
+      isEnhanced: 0
       enhancedItem:
         name: "\uCD08\uB2A5\uB825-\uC608\uC5B8+"
         cost: 1
@@ -301,6 +316,7 @@ MonoBehaviour:
           \uD68C\uBCF5\uD569\uB2C8\uB2E4."
         cardValues: 0c000000
         num: 1
+        isEnhanced: 0
     - name: "\uCD08\uB2A5\uB825-\uC5FC\uB825"
       cost: 1
       type: 0
@@ -314,6 +330,7 @@ MonoBehaviour:
         \uD589\uB3D9\uB825 x {cardValues[0]}\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
       cardValues: 01000000
       num: 2
+      isEnhanced: 0
       enhancedItem:
         name: "\uCD08\uB2A5\uB825-\uC5FC\uB825+"
         cost: 1
@@ -330,6 +347,7 @@ MonoBehaviour:
           \uBC29\uC5B4\uB3C4\uB97C {cardValues[2]} \uC5BB\uC2B5\uB2C8\uB2E4.</color>"
         cardValues: 010000000300000005000000
         num: 1
+        isEnhanced: 0
     specialRouletteSprite: {fileID: -1033747301121760791, guid: d70a422d594c0c64ca0e09b3852cd601, type: 3}
     specialRouletteTitle: "\uB9C8\uC220\uC0C1\uC790 \uB8F0\uB81B"
     specialRouletteText: "\uAC12\uC758 \uCE74\uC6B4\uD130\uB97C \uAC00\uC9C0\uACE0
@@ -389,6 +407,7 @@ MonoBehaviour:
         '\uB9C8\uC220\uC0C1\uC790'\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4"
       cardValues: 
       num: 2
+      isEnhanced: 0
       enhancedItem:
         name: "\uB9C8\uC220 \uC0C1\uC790+"
         cost: 1
@@ -404,6 +423,7 @@ MonoBehaviour:
           \uBD80\uC5EC\uD569\uB2C8\uB2E4"
         cardValues: 
         num: 1
+        isEnhanced: 0
     - name: "\uB9C8\uC220-\uBE44\uB458\uAE30"
       cost: 1
       type: 2
@@ -419,6 +439,7 @@ MonoBehaviour:
         \uC220 \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74 \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4."
       cardValues: 01000000
       num: 2
+      isEnhanced: 0
       enhancedItem:
         name: "\uB9C8\uC220-\uBE44\uB458\uAE30+"
         cost: 1
@@ -436,6 +457,7 @@ MonoBehaviour:
           \uC2E4\uD328\uD569\uB2C8\uB2E4."
         cardValues: 03000000
         num: 1
+        isEnhanced: 0
     - name: "\uB9C8\uC220-\uCE74\uB4DC"
       cost: 1
       type: 0
@@ -452,6 +474,7 @@ MonoBehaviour:
         \uC5C6\uB2E4\uBA74 \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4."
       cardValues: 01000000
       num: 2
+      isEnhanced: 0
       enhancedItem:
         name: "\uB9C8\uC220-\uCE74\uB4DC+"
         cost: 0
@@ -469,6 +492,7 @@ MonoBehaviour:
           \uC5C6\uB2E4\uBA74 \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4."
         cardValues: 01000000
         num: 1
+        isEnhanced: 0
     - name: "\uB9C8\uC220-\uC808\uB2E8"
       cost: 2
       type: 2
@@ -484,6 +508,7 @@ MonoBehaviour:
         \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4."
       cardValues: 02000000
       num: 2
+      isEnhanced: 0
       enhancedItem:
         name: "\uB9C8\uC220-\uC808\uB2E8+"
         cost: 2
@@ -500,6 +525,7 @@ MonoBehaviour:
           \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74 \uC2EA\uD328\uD569\uB2C8\uB2E4."
         cardValues: 04000000
         num: 1
+        isEnhanced: 0
     - name: "\uB9C8\uC220-\uC21C\uAC04\uC774\uB3D9"
       cost: 2
       type: 0
@@ -516,6 +542,7 @@ MonoBehaviour:
         \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4. "
       cardValues: 020000000c000000
       num: 2
+      isEnhanced: 0
       enhancedItem:
         name: "\uB9C8\uC220-\uC21C\uAC04\uC774\uB3D9+"
         cost: 2
@@ -533,6 +560,7 @@ MonoBehaviour:
           \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4. "
         cardValues: 0200000010000000
         num: 1
+        isEnhanced: 0
     - name: "\uB9C8\uC220-\uC608\uC5B8"
       cost: 3
       type: 2
@@ -549,6 +577,7 @@ MonoBehaviour:
         \uC18C\uBAA8 \uCF54\uC2A4\uD2B8\uAC00 {cardValues[0]} \uAC10\uC18C\uD569\uB2C8\uB2E4."
       cardValues: 02000000
       num: 2
+      isEnhanced: 0
       enhancedItem:
         name: "\uB9C8\uC220-\uC608\uC5B8+"
         cost: 2
@@ -567,6 +596,7 @@ MonoBehaviour:
           {cardValues[0]} \uAC10\uC18C\uD569\uB2C8\uB2E4."
         cardValues: 02000000
         num: 1
+        isEnhanced: 0
     - name: "\uC7AC\uBE60\uB978 \uC190\uB180\uB9BC"
       cost: 1
       type: 2
@@ -579,6 +609,7 @@ MonoBehaviour:
       text: "\uB371\uC5D0\uC11C \uCE74\uB4DC\uB97C {cardValues[0]}\uC7A5 \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
       cardValues: 01000000
       num: 2
+      isEnhanced: 0
       enhancedItem:
         name: "\uC7AC\uBE60\uB978 \uC190\uB180\uB9BC+"
         cost: 1
@@ -593,6 +624,7 @@ MonoBehaviour:
           \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
         cardValues: 02000000
         num: 1
+        isEnhanced: 0
     - name: "\uCD08\uB2A5\uB825-\uC608\uC5B8"
       cost: 2
       type: 2
@@ -606,6 +638,7 @@ MonoBehaviour:
         \uC989\uC2DC \uD589\uB3D9\uB825\uC744 \uCD5C\uB300\uB85C \uD68C\uBCF5\uD569\uB2C8\uB2E4."
       cardValues: 0c000000
       num: 2
+      isEnhanced: 0
       enhancedItem:
         name: "\uCD08\uB2A5\uB825-\uC608\uC5B8+"
         cost: 1
@@ -621,6 +654,7 @@ MonoBehaviour:
           \uD68C\uBCF5\uD569\uB2C8\uB2E4."
         cardValues: 0c000000
         num: 1
+        isEnhanced: 0
     - name: "\uCD08\uB2A5\uB825-\uC5FC\uB825"
       cost: 1
       type: 0
@@ -634,6 +668,7 @@ MonoBehaviour:
         \uD589\uB3D9\uB825 x {cardValues[0]}\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
       cardValues: 01000000
       num: 2
+      isEnhanced: 0
       enhancedItem:
         name: "\uCD08\uB2A5\uB825-\uC5FC\uB825+"
         cost: 1
@@ -650,6 +685,7 @@ MonoBehaviour:
           \uBC29\uC5B4\uB3C4\uB97C {cardValues[2]} \uC5BB\uC2B5\uB2C8\uB2E4.</color>"
         cardValues: 010000000300000005000000
         num: 1
+        isEnhanced: 0
     specialRouletteSprite: {fileID: -1033747301121760791, guid: d70a422d594c0c64ca0e09b3852cd601, type: 3}
     specialRouletteTitle: "\uB9C8\uC220\uC0C1\uC790 \uB8F0\uB81B"
     specialRouletteText: "\uAC12\uC758 \uCE74\uC6B4\uD130\uB97C \uAC00\uC9C0\uACE0

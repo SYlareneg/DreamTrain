@@ -14,29 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RelicSO
   relicItems:
   - relicOwner: 0
-    relicSprite: {fileID: 6787262553418446798, guid: 97cf6276bc58332439c15a527f8af6b2, type: 3}
-    relicName: "\uC601\uC6D0\uD55C \uC80A\uC74C"
-    relicTxt: "\uD134 \uC2DC\uC791 \uC2DC \uCCB4\uB825\uC744 1\uB9CC\uD07C \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+    relicSprite: {fileID: 21300000, guid: 97cf6276bc58332439c15a527f8af6b2, type: 3}
+    relicName: "\uBD88\uB85C\uC7A5\uC0DD"
+    relicTxt: "\uD134 \uC2DC\uC791 \uC2DC 1\uC758 \uCCB4\uB825\uC744 \uD68C\uBCF5\uD569\uB2C8\uB2E4."
     relicTimings: 00000000
-    relicConditions:
-    - conditions:
-      - type: 0
-        value: 0
-        fvalue: 0
-        ivalue:
-          name: 
-          cost: 0
-          type: 0
-          element: 0
-          dreamPieceNum: 0
-          isVolatile: 0
-          isVanish: 0
-          isRemain: 0
-          sprite: {fileID: 0}
-          text: 
-          cardValues: 
-          num: 0
-        actionType: 0
+    relicConditions: []
     relicEffects:
     - type: 1
       value: 1
@@ -54,51 +36,57 @@ MonoBehaviour:
         text: 
         cardValues: 
         num: 0
+        isEnhanced: 0
       rlvalue:
         type: 0
         value: 0
+    isEnhanced: 0
+    enhancedRelicItem:
+      relicOwner: 0
+      relicSprite: {fileID: 21300000, guid: 97cf6276bc58332439c15a527f8af6b2, type: 3}
+      relicName: "\uBD88\uB85C\uC7A5\uC0DD+"
+      relicTxt: "\uD134 \uC2DC\uC791 \uC2DC <color=red>2</color>\uC758 \uCCB4\uB825\uC744
+        \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+      relicTimings: 00000000
+      relicConditions: []
+      relicEffects:
+      - type: 1
+        value: 2
+        value2: 0
+        ivalue:
+          name: 
+          cost: 0
+          type: 0
+          element: 0
+          dreamPieceNum: 0
+          isVolatile: 0
+          isVanish: 0
+          isRemain: 0
+          sprite: {fileID: 0}
+          text: 
+          cardValues: 
+          num: 0
+          isEnhanced: 0
+        rlvalue:
+          type: 0
+          value: 0
+      isEnhanced: 1
   - relicOwner: 0
-    relicSprite: {fileID: -7710461012236393104, guid: 97cf6276bc58332439c15a527f8af6b2, type: 3}
-    relicName: "\uC601\uC6D0\uD55C \uC80A\uC74C 2"
-    relicTxt: "\uD134 \uC2DC\uC791 \uC2DC \uCCB4\uB825\uC744 1\uB9CC\uD07C \uD68C\uBCF5\uD569\uB2C8\uB2E4.
-      \uD134 \uC2DC\uC791 \uC2DC \uCCB4\uB825\uC744 1\uB9CC\uD07C \uD68C\uBCF5\uD569\uB2C8\uB2E4."
-    relicTimings: 00000000
-    relicConditions:
-    - conditions:
-      - type: 0
-        value: 0
-        fvalue: 0
-        ivalue:
-          name: 
-          cost: 0
-          type: 0
-          element: 0
-          dreamPieceNum: 0
-          isVolatile: 0
-          isVanish: 0
-          isRemain: 0
-          sprite: {fileID: 0}
-          text: 
-          cardValues: 
-          num: 0
-        actionType: 0
-    relicEffects:
-    - type: 1
-      value: 1
-      value2: 0
-      ivalue:
-        name: 
-        cost: 0
-        type: 0
-        element: 0
-        dreamPieceNum: 0
-        isVolatile: 0
-        isVanish: 0
-        isRemain: 0
-        sprite: {fileID: 0}
-        text: 
-        cardValues: 
-        num: 0
-      rlvalue:
-        type: 0
-        value: 0
+    relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
+    relicName: "\uD638\uAE30\uC2EC"
+    relicTxt: "\uC18C\uBAA8\uD488\uC744 \uC0AC\uC6A9\uD560 \uB54C\uB9C8\uB2E4 \uD589\uB3D9\uB825\uC744
+      1 \uC5BB\uC2B5\uB2C8\uB2E4"
+    relicTimings: 
+    relicConditions: []
+    relicEffects: []
+    isEnhanced: 0
+    enhancedRelicItem:
+      relicOwner: 0
+      relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
+      relicName: "\uD638\uAE30\uC2EC+"
+      relicTxt: "\uC18C\uBAA8\uD488\uC744 \uC0AC\uC6A9\uD560 \uB54C\uB9C8\uB2E4 \uD589\uB3D9\uB825\uC744
+        <color=red>2</color> \uC5BB\uC2B5\uB2C8\uB2E4"
+      relicTimings: 
+      relicConditions: []
+      relicEffects: []
+      isEnhanced: 1

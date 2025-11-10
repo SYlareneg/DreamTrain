@@ -28,6 +28,7 @@ MonoBehaviour:
       \uC190\uD328\uC5D0 \uCD94\uAC00\uD569\uB2C8\uB2E4."
     cardValues: 0100000002000000
     num: 1
+    isEnhanced: 1
   - name: "\uD53C\uB294 \uB098\uC758 \uD798+"
     cost: 0
     type: 2
@@ -41,6 +42,7 @@ MonoBehaviour:
       {cardValues[1]} \uC5BB\uC2B5\uB2C8\uB2E4."
     cardValues: 0100000001000000
     num: 1
+    isEnhanced: 1
   - name: "\uAE34\uAE09 \uC218\uD608+"
     cost: 1
     type: 2
@@ -53,6 +55,7 @@ MonoBehaviour:
     text: "\uCCB4\uB825\uC744 <color=red>{cardValues[0]}</color> \uD68C\uBCF5\uD569\uB2C8\uB2E4."
     cardValues: 03000000
     num: 1
+    isEnhanced: 1
   - name: "\uD734\uBA38\uB2C8\uC2A4\uD2B8+"
     cost: 2
     type: 2
@@ -65,7 +68,8 @@ MonoBehaviour:
     text: "<color=red>{cardValues[0]}\uD134</color> \uB3D9\uC548 \uC801\uACFC \uB8F0\uB81B\uC5D0\uAC8C
       '\uC8FC\uC800\uD568'\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
     cardValues: 02000000
-    num: 1
+    num: 0
+    isEnhanced: 1
   - name: "\uBE14\uB8E8 \uBE14\uB7EC\uB4DC+"
     cost: 2
     type: 2
@@ -80,6 +84,7 @@ MonoBehaviour:
       \uAC00\uD558\uB294 \uB370\uBBF8\uC9C0\uAC00 {cardValues[1]}\uBC30\uAC00 \uB429\uB2C8\uB2E4."
     cardValues: 0200000003000000
     num: 1
+    isEnhanced: 1
   - name: "\uB9C8\uC220 \uC0C1\uC790+"
     cost: 1
     type: 1
@@ -93,6 +98,7 @@ MonoBehaviour:
       \uAC15\uD654\uB41C '\uB9C8\uC220\uC0C1\uC790'\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4"
     cardValues: 
     num: 1
+    isEnhanced: 1
   - name: "\uB9C8\uC220-\uBE44\uB458\uAE30+"
     cost: 1
     type: 2
@@ -109,6 +115,7 @@ MonoBehaviour:
       \uC2E4\uD328\uD569\uB2C8\uB2E4."
     cardValues: 03000000
     num: 1
+    isEnhanced: 1
   - name: "\uB9C8\uC220-\uCE74\uB4DC+"
     cost: 0
     type: 0
@@ -125,6 +132,7 @@ MonoBehaviour:
       \uC5C6\uB2E4\uBA74 \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4."
     cardValues: 01000000
     num: 1
+    isEnhanced: 1
   - name: "\uB9C8\uC220-\uC808\uB2E8+"
     cost: 2
     type: 2
@@ -140,6 +148,7 @@ MonoBehaviour:
       \uC2EA\uD328\uD569\uB2C8\uB2E4."
     cardValues: 04000000
     num: 1
+    isEnhanced: 1
   - name: "\uB9C8\uC220-\uC21C\uAC04\uC774\uB3D9+"
     cost: 2
     type: 0
@@ -156,6 +165,7 @@ MonoBehaviour:
       \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4. "
     cardValues: 0200000010000000
     num: 1
+    isEnhanced: 1
   - name: "\uCD08\uB2A5\uB825-\uC608\uC5B8+"
     cost: 1
     type: 2
@@ -169,6 +179,7 @@ MonoBehaviour:
       \uC989\uC2DC \uD589\uB3D9\uB825\uC744 \uCD5C\uB300\uB85C \uD68C\uBCF5\uD569\uB2C8\uB2E4."
     cardValues: 0c000000
     num: 1
+    isEnhanced: 1
   - name: "\uCD08\uB2A5\uB825-\uC5FC\uB825+"
     cost: 1
     type: 0
@@ -184,3 +195,54 @@ MonoBehaviour:
       \uBC29\uC5B4\uB3C4\uB97C {cardValues[2]} \uC5BB\uC2B5\uB2C8\uB2E4.</color>"
     cardValues: 000000000300000005000000
     num: 1
+    isEnhanced: 1
+  - name: "\uB9C8\uC220-\uC608\uC5B8"
+    cost: 3
+    type: 2
+    element: 1
+    dreamPieceNum: 1
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    text: "\uB2E4\uC74C \uD134\uC5D0 '\uC5D0\uC774\uC2A4' \uCE74\uB4DC\uB97C \uC0AC\uC6A9\uD558\uBA74
+      \uCF54\uC2A4\uD2B8\uB97C \uC18C\uBAA8\uD558\uC9C0 \uC54A\uACE0, \uD589\uB3D9\uB825\uC744
+      \uCD5C\uB300\uB85C \uD68C\uBCF5\uD569\uB2C8\uB2E4. \uC790\uC2E0\uC758 \uD6A8\uACFC
+      \uC874\uC5D0 \uB9C8\uC220 \uC0C1\uC790\uAC00 \uC788\uB2E4\uBA74 \uC774 \uCE74\uB4DC\uC758
+      \uC18C\uBAA8 \uCF54\uC2A4\uD2B8\uAC00 {cardValues[0]} \uAC10\uC18C\uD569\uB2C8\uB2E4."
+    cardValues: 02000000
+    num: 1
+    isEnhanced: 0
+  - name: "\uB9C8\uC220-\uC608\uC5B8"
+    cost: 3
+    type: 2
+    element: 1
+    dreamPieceNum: 1
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    text: "\uB2E4\uC74C \uD134\uC5D0 '\uC5D0\uC774\uC2A4' \uCE74\uB4DC\uB97C \uC0AC\uC6A9\uD558\uBA74
+      \uCF54\uC2A4\uD2B8\uB97C \uC18C\uBAA8\uD558\uC9C0 \uC54A\uACE0, \uD589\uB3D9\uB825\uC744
+      \uCD5C\uB300\uB85C \uD68C\uBCF5\uD569\uB2C8\uB2E4. \uC790\uC2E0\uC758 \uD6A8\uACFC
+      \uC874\uC5D0 \uB9C8\uC220 \uC0C1\uC790\uAC00 \uC788\uB2E4\uBA74 \uC774 \uCE74\uB4DC\uC758
+      \uC18C\uBAA8 \uCF54\uC2A4\uD2B8\uAC00 {cardValues[0]} \uAC10\uC18C\uD569\uB2C8\uB2E4."
+    cardValues: 02000000
+    num: 1
+    isEnhanced: 0
+  - name: "\uB9C8\uC220-\uBE44\uB458\uAE30"
+    cost: 1
+    type: 2
+    element: 0
+    dreamPieceNum: 1
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    text: "{cardValues[0]}\uB370\uBBF8\uC9C0\uB97C \uC8FC\uACE0, \uB9C8\uC220\uC744
+      \uD3BC\uCCD0 \uC801\uC758 \uB2E4\uC74C \uD134 \uCCAB\uBC88\uC9F8 \uD589\uB3D9\uC744
+      \uBC29\uD574\uD569\uB2C8\uB2E4. \uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uB9C8
+      \uC220 \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74 \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4."
+    cardValues: 01000000
+    num: 1
+    isEnhanced: 0

@@ -139,7 +139,7 @@ public class DeckBuildManager : MonoBehaviour
 
         if (newDP == null || newDP.cards == null) return;
 
-        Item_Enhanceable[] itemList = newDP.cards;
+        List<Item_Enhanceable> itemList = newDP.cards;
         foreach (Item_Enhanceable item in itemList)
         {
             if (item.element == pType || item.element == EPassiveType.Normal)

@@ -3921,11 +3921,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a8abff2804e11d4c99048e80918e0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  playerHealth: {fileID: 29952577}
-  playerHealthBar: {fileID: 445503663}
-  playerDreamDust: {fileID: 783727912}
-  passengerNum: {fileID: 1491681557}
-  characterSO: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
   speed: 7
   moveTowards: {x: 0, y: 0}
 --- !u!50 &1111232230
@@ -3944,7 +3939,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e909e97e325a2a14bb1972c1e88e0adc, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -4063,7 +4058,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealNPC
   isInteractable: 0
-  characterSO: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
   healPercent: 0.3
   loadingScreen: {fileID: 1419798460}
 --- !u!61 &1129583062
@@ -4245,7 +4239,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c585472154025874484ed42ababc0ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPCPassiveManager
-  isLoading: 0
   npcPassiveScreen: {fileID: 481775413}
   npcType: 0
   curPassiveTMP: {fileID: 252043994}
@@ -5028,6 +5021,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1419798458}
   m_CullTransparentMesh: 1
+--- !u!1 &1426149090
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1426149092}
+  - component: {fileID: 1426149091}
+  m_Layer: 0
+  m_Name: PlayerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1426149091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426149090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4583001dc8b444fa00c6c4c077f396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
+  isLoading: 0
+  playerHealth: {fileID: 29952577}
+  playerHealthBar: {fileID: 445503663}
+  playerDreamDust: {fileID: 783727912}
+  passengerNum: {fileID: 1491681557}
+  characterSO: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
+--- !u!4 &1426149092
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426149090}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1452525642
 GameObject:
   m_ObjectHideFlags: 0
@@ -7755,6 +7798,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 653278396}
+  - {fileID: 1426149092}
   - {fileID: 1136951158}
   - {fileID: 1320485263}
   - {fileID: 911351972}

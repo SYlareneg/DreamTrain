@@ -77,6 +77,7 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action BeforeRouletteActivate;
     [HideInInspector] public static Action OnRouletteActivate;
     [HideInInspector] public static Action<int> OnCostChange;
+    [HideInInspector] public static Action OnUseableItemUse;
 
     public static void PrintAllActions(Action<int> action)
     {
@@ -332,6 +333,7 @@ public class TurnManager : MonoBehaviour
         {
             value = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Shield, value);
             enemyShieldHealth += value;
+            if (enemyShieldHealth < 0) enemyShieldHealth = 0;
             Utils.AllignActions(ref OnEnemyShielded, typeof(ShowBuff), typeof(RelicManager));
             OnEnemyShielded?.Invoke(value);
         }
@@ -339,6 +341,7 @@ public class TurnManager : MonoBehaviour
         {
             value = BuffManager.GetTargetBuffedValue(BuffManager.Inst.playerBuff_Shield, value);
             shieldHealth += value;
+            if (shieldHealth < 0) shieldHealth = 0;
             Utils.AllignActions(ref OnPlayerShielded, typeof(ShowBuff), typeof(RelicManager));
             OnPlayerShielded?.Invoke(value);
         }
