@@ -10,7 +10,6 @@ public class DialogueManager : MonoBehaviour
 
     public TextAsset dialogueCSV;
     public List<DialogueEntry> dialogueList = new List<DialogueEntry>();
-    public DialogueUI dialogueUI;
 
     public List<DialogueBundle> dialogueBundles = new List<DialogueBundle>();
 
@@ -18,11 +17,8 @@ public class DialogueManager : MonoBehaviour
     public Button[] dialogueButtons;
     public GameObject dialogueBundle;
     public GameObject rerollButton;
-    public GameObject background_default; 
-    
     private int rerollCost = 1;
     private bool isRerollActive = true;
-    private DreamDustManager dreamDustManager;
     
     private HashSet<int> completedDialogueIDs = new HashSet<int>();
     private InteractableObject currentInteractableObject;

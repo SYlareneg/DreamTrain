@@ -130,7 +130,6 @@ GameObject:
   - component: {fileID: 254389063}
   - component: {fileID: 254389065}
   - component: {fileID: 254389064}
-  - component: {fileID: 254389066}
   m_Layer: 5
   m_Name: PlayerInfo
   m_TagString: Untagged
@@ -197,20 +196,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254389062}
   m_CullTransparentMesh: 1
---- !u!114 &254389066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 254389062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a38274f2faa5c1488262d78d1761f1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicDustControll
-  dreamDust: 5
-  dustCountText: {fileID: 1433667203}
 --- !u!1 &395646383
 GameObject:
   m_ObjectHideFlags: 0
@@ -3099,7 +3084,6 @@ MonoBehaviour:
     IdPoint: 0
     NextID: 0
     Function: 
-  dialogueUI: {fileID: 864091103}
   dialogueBundles:
   - {fileID: 11400000, guid: 38b8e77011fb3584fb16c6fd96b81627, type: 2}
   - {fileID: 11400000, guid: d89edd966e7e030438b79538badeb72e, type: 2}
@@ -3113,7 +3097,6 @@ MonoBehaviour:
   - {fileID: 504704690}
   dialogueBundle: {fileID: 496025016}
   rerollButton: {fileID: 1414399131}
-  background_default: {fileID: 1450696437}
 --- !u!4 &1759279982
 Transform:
   m_ObjectHideFlags: 0
@@ -3184,9 +3167,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RerollManager
   rerollButton: {fileID: 1414399133}
   dustNeededText: {fileID: 799384541}
+  currentDustText: {fileID: 1433667203}
   dialogueManager: {fileID: 1759279981}
-  dreamDustManager: {fileID: 254389066}
   backgroundDefault: {fileID: 1450696437}
+  characterSO: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
   rerollCost: 1
 --- !u!114 &1759279986
 MonoBehaviour:

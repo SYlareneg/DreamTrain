@@ -4,43 +4,63 @@ using UnityEngine.UI;
 
 public class RerollManager : MonoBehaviour
 {
+    [Header("필수 참조")]
     [SerializeField] private Button rerollButton;
-    [SerializeField] private TMP_Text dustNeededText; 
+    [SerializeField] private TMP_Text dustNeededText;
+    [SerializeField] private TMP_Text currentDustText;
     [SerializeField] private DialogueManager dialogueManager;
-    [SerializeField] private DreamDustManager dreamDustManager;
     [SerializeField] private GameObject backgroundDefault;
-    [SerializeField] private int rerollCost = 1;
 
+    [Header("플레이어 상태 데이터")]
+    [SerializeField] private CharacterSO characterSO;
+
+    [Header("리롤 설정")]
+    [SerializeField] private int rerollCost = 1;
     private bool isRerollActive = true;
+    private int lastDreamDust = -1;
 
     void Start()
     {
         if (rerollButton != null)
             rerollButton.onClick.AddListener(OnRerollClicked);
+
         UpdateDustNeededUI();
+    }
+    void Update()
+    {
+        if (characterSO != null && characterSO.dreamDust != lastDreamDust)
+        {
+            UpdateCurrentDustUI();
+        }
     }
 
     private void OnRerollClicked()
     {
-        if (dreamDustManager == null || dialogueManager == null)
+        if (characterSO == null || dialogueManager == null)
         {
-            Debug.LogError("[RerollManager] 필수 참조가 없습니다.");
+            Debug.LogError("[RerollManager] CharacterSO 또는 DialogueManager 참조가 없습니다.");
             return;
         }
 
-        int currentDust = dreamDustManager.GetDreamDust();
+        int currentDust = characterSO.dreamDust;
 
         if (currentDust >= rerollCost)
         {
-            dreamDustManager.UseDust(rerollCost);
-            Debug.Log($"[Reroll] DreamDust {rerollCost}개 사용. 남은 수: {dreamDustManager.GetDreamDust()}");
-            
+            // 꿈 가루 차감
+            characterSO.dreamDust -= rerollCost;
+            Debug.Log($"[Reroll] DreamDust {rerollCost}개 사용. 남은 수: {characterSO.dreamDust}");
+
+            // 다음 리롤 비용 증가
             rerollCost++;
             UpdateDustNeededUI();
+
             isRerollActive = true;
+
+            // 대화 리롤 요청
             dialogueManager.OnRerollRequested();
         }
-        currentDust = dreamDustManager.GetDreamDust();
+
+        currentDust = characterSO.dreamDust;
         if (currentDust < rerollCost)
         {
             if (backgroundDefault != null)
@@ -49,9 +69,8 @@ public class RerollManager : MonoBehaviour
             isRerollActive = false;
             Debug.Log($"[Reroll] DreamDust 부족: {currentDust}/{rerollCost}");
         }
-        
-
     }
+
     private void UpdateDustNeededUI()
     {
         if (dustNeededText != null)
@@ -59,9 +78,13 @@ public class RerollManager : MonoBehaviour
             dustNeededText.text = $"{rerollCost}";
         }
     }
-    public void ResetRerollCost(int newCost = 1)
+
+    private void UpdateCurrentDustUI()
     {
-        rerollCost = newCost;
-        UpdateDustNeededUI();
+        if (characterSO == null || currentDustText == null)
+            return;
+
+        currentDustText.text = characterSO.dreamDust.ToString();
+        lastDreamDust = characterSO.dreamDust;
     }
 }
