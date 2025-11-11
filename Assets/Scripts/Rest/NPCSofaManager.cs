@@ -45,7 +45,7 @@ public class NPCSofaManager : MonoBehaviour
             PlayerManager.Inst.characterSO.curHealth += (int)(PlayerManager.Inst.characterSO.maxHealth * healPercent);
             if (PlayerManager.Inst.characterSO.curHealth > PlayerManager.Inst.characterSO.maxHealth) PlayerManager.Inst.characterSO.curHealth = PlayerManager.Inst.characterSO.maxHealth;
 
-            PlayerManager.Inst.SetPlayerSpeech("다음 정거장에 도착하기 전까지는 쉴 수 없겠어.");
+            sofa.alreadyInteractedSpeech = "다음 정거장에 도착하기 전까지는 쉴 수 없겠어.(소파)";
             sofa.alreadyInteracted = true;
             sofaUI.SetActive(false);
         }));

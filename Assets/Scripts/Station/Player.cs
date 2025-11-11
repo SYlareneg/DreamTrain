@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
                 {
                     if (interactable.alreadyInteracted)
                     {
+                        PlayerManager.Inst.SetPlayerSpeech(interactable.alreadyInteractedSpeech);
                         StartCoroutine(PlayerManager.Inst.ShowPlayerSpeech());
                         return;
                     }

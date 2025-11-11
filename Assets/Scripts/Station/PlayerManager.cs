@@ -48,12 +48,14 @@ public class PlayerManager : MonoBehaviour
     public IEnumerator ShowPlayerSpeech()
     {
         Vector3 screenPos = Camera.main.WorldToScreenPoint(player.transform.position);
+        Debug.Log(screenPos);
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             playerCanvas.transform as RectTransform,
             screenPos,
-            Camera.main,
+            null,
             out Vector2 localPos
         );
+        Debug.Log(localPos);
         localPos += playerSpeechOffset;
         playerSpeechBubble.GetComponent<RectTransform>().anchoredPosition = localPos;
         playerSpeechBubble.SetActive(true);

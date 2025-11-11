@@ -22,6 +22,8 @@ public class HealNPC : PlayerInteractableObject
         healSeq.Append(loadingScreen.DOFillAmount(0f, 1f).OnComplete(() =>
         {
             loadingScreen.gameObject.SetActive(false);
+            alreadyInteractedSpeech = "다음 정거장에 도착하기 전까지는 쉴 수 없겠어.(NPC)";
+            alreadyInteracted = true;
         }));
     }
 }

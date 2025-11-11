@@ -103,7 +103,7 @@ public class NPCPassiveManager : MonoBehaviour
 
     public void ShowConfirmScreen(bool isChange)
     {
-        HideScreen();
+        npcPassiveScreen.SetActive(false);
         npcPassiveChangeScreen.SetActive(true);
 
         if (isChange)
