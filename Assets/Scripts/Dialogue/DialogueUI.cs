@@ -23,6 +23,13 @@ public class DialogueUI : MonoBehaviour
     private bool isBranchActive = false;
     private VerticalLayoutGroup playerLayoutGroup;
     
+    // --- 새로 추가된 필드
+    private RectTransform playerPanelRT;
+    private RectTransform playerTextRT;
+    private Vector2 originalPlayerPanelSize;
+    private Vector2 originalPlayerTextSize;
+    private ContentSizeFitter playerTextFitter;
+
     private DialogueEntry lastShownEntry = null;
     
     private bool dialogueActive = false;
@@ -31,16 +38,27 @@ public class DialogueUI : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Debug.LogWarning("중복된 DialogueUI 인스턴스가 발견되어 하나를 파괴합니다.");
             Destroy(gameObject);
             return;
         }
         Instance = this;
-        Instance = this;
+
         input = new InputSystem_Actions();
+
         playerLayoutGroup = playerPanel.GetComponent<VerticalLayoutGroup>();
         if (playerLayoutGroup != null) playerLayoutGroup.enabled = false;
         if (objectNameText != null) objectNameText.gameObject.SetActive(false);
+
+        // RectTransform / original size 저장
+        playerPanelRT = playerPanel.GetComponent<RectTransform>();
+        playerTextRT = PlayerText.GetComponent<RectTransform>();
+        // rect.size 는 런타임에서 레이아웃 적용 상태에 따라 값이 달라질 수 있지만
+        // Awake 시점의 "현재" 값을 원래값으로 저장해 둡니다.
+        originalPlayerPanelSize = playerPanelRT.rect.size;
+        originalPlayerTextSize = playerTextRT.rect.size;
+
+        // ContentSizeFitter가 붙어있다면 참조
+        playerTextFitter = PlayerText.GetComponent<ContentSizeFitter>();
     }
 
     private void OnEnable()
@@ -58,7 +76,6 @@ public class DialogueUI : MonoBehaviour
     private void OnScreenClickPerformed(InputAction.CallbackContext context)
     {
         if (isBranchActive) return;
-        Debug.Log($"[OnScreenClickPerformed] nextIdForNormalDialogue: {nextIdForNormalDialogue}");
         
         
         if (nextIdForNormalDialogue != 0)
@@ -68,7 +85,6 @@ public class DialogueUI : MonoBehaviour
 
     public void ShowDialogue(int id)
     {
-
         isBranchActive = false;
         ClearBranchButtons();
 
@@ -85,7 +101,6 @@ public class DialogueUI : MonoBehaviour
         List<DialogueEntry> entries = dialogueManager.GetDialogueOptionsByID(id);
         if (entries.Count == 0)
         {
-            Debug.LogWarning($"No dialogue entry found for ID {id}");
             EndDialogue(); 
             return;
         }
@@ -93,55 +108,73 @@ public class DialogueUI : MonoBehaviour
         dialogueActive = true;
         DialogueEntry firstEntry = entries[0];
         lastShownEntry = firstEntry;
-        Debug.Log(firstEntry.NextID);
     
         MoooText.text = "";
         PlayerText.text = "";
 
         if (firstEntry.IdToGet != 0)
         {
-            DialogueRelicManager.Inst.relicWeights[firstEntry.IdToGet] += firstEntry.IdPoint;
+            DialogueRelicManager.Inst.AddPlayerRelic(firstEntry.IdToGet);
+            Debug.Log($"[DialogueUI] Relic ID {firstEntry.IdToGet} 획득 (from normal line)");
         }
         if (firstEntry.Type == "Normal")
         {
             playerLayoutGroup.enabled = false;
+            if (playerTextFitter != null) playerTextFitter.enabled = false;
+            RestorePlayerSizes();
+            LayoutRebuilder.ForceRebuildLayoutImmediate(playerPanelRT);
+            Canvas.ForceUpdateCanvases();
+
             if (firstEntry.BoxLocation == "Guest")
             {
-
                 moooPanel.SetActive(true);
                 MoooText.text = firstEntry.Dialogue_KO;
-                Debug.Log(firstEntry.Dialogue_KO);
             }
             else
             {
-
                 PlayerText.text = firstEntry.Dialogue_KO;
                 playerPanel.SetActive(true);
             }
         
             nextIdForNormalDialogue = firstEntry.NextID;
-            Debug.Log($"[ShowDialogue] nextIdForNormalDialogue set to: {nextIdForNormalDialogue}");
 
         }
         else if (firstEntry.Type == "Branch")
         { 
-
             playerLayoutGroup.enabled = true;
+            if (playerTextFitter != null) playerTextFitter.enabled = false;
+
             isBranchActive = true;
+            PlayerText.gameObject.SetActive(false);
 
             foreach (var option in entries)
             {
                 Button btn = Instantiate(branchButtonPrefab, playerPanel.transform);
                 btn.GetComponentInChildren<TextMeshProUGUI>().text = option.Dialogue_KO;
-
+                int relicIdToGet = option.IdToGet;
                 int nextId = option.NextID;
                 btn.onClick.AddListener(() => {
                     isBranchActive = false;
                     playerLayoutGroup.enabled = false;
+                    
+                    if (playerTextFitter != null) playerTextFitter.enabled = false;
+                    PlayerText.gameObject.SetActive(true);
+                    RestorePlayerSizes();
+                    LayoutRebuilder.ForceRebuildLayoutImmediate(playerPanelRT);
+                    Canvas.ForceUpdateCanvases();
+                    if (relicIdToGet != 0)
+                    {
+                        DialogueRelicManager.Inst.AddPlayerRelic(relicIdToGet);
+                        Debug.Log($"[DialogueUI] Relic ID {relicIdToGet} 획득 (from branch)");
+                    }
                     ClearBranchButtons();
                     ShowDialogue(nextId);
                 });
             }
+
+            // 새로 생성된 버튼들에 대해 즉시 레이아웃 계산하여 크기랑 위치 확정
+            LayoutRebuilder.ForceRebuildLayoutImmediate(playerPanelRT);
+            Canvas.ForceUpdateCanvases();
         }
 
     }
@@ -156,19 +189,31 @@ public class DialogueUI : MonoBehaviour
         DialogueManager.Instance.OnDialogueEnded();
 
         Debug.Log("Dialogue Ended");
-        if (lastShownEntry != null && lastShownEntry.Function == "EndScene")
-        {
-            lastShownEntry = null; 
-            SceneManager.LoadScene("BattleScene");
-        }
     }
 
     void ClearBranchButtons()
     {
-        foreach (Transform t in playerPanel.transform)
+        // 기존 버튼들 삭제
+        for (int i = playerPanel.transform.childCount - 1; i >= 0; i--)
         {
+            Transform t = playerPanel.transform.GetChild(i);
             if (t.GetComponent<Button>() != null)
                 Destroy(t.gameObject);
+        }
+    }
+
+    private void RestorePlayerSizes()
+    {
+        if (playerPanelRT != null)
+        {
+            playerPanelRT.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalPlayerPanelSize.x);
+            playerPanelRT.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, originalPlayerPanelSize.y);
+        }
+
+        if (playerTextRT != null)
+        {
+            playerTextRT.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalPlayerTextSize.x);
+            playerTextRT.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, originalPlayerTextSize.y);
         }
     }
     

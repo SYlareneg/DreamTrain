@@ -51,6 +51,7 @@ public class DialogueOpening : MonoBehaviour
 
         DialogueUI.Instance.ShowDialogue(1);
         
+        DialogueManager.Instance.StartDialogue(DialogueManager.DialogueMode.Opening, selected.fileName, selected.characterName);        
     }
 
     private class DialogueMeta

@@ -8,22 +8,35 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance { get; private set; }
 
-    [Header("Dialogue Settings")]
     public TextAsset dialogueCSV;
     public List<DialogueEntry> dialogueList = new List<DialogueEntry>();
     public DialogueUI dialogueUI;
 
     public List<DialogueBundle> dialogueBundles = new List<DialogueBundle>();
 
-    [Header("Dialogue Panel 관련")]
     public GameObject dialoguePanel;
     public Button[] dialogueButtons;
     public GameObject dialogueBundle;
+    public GameObject rerollButton;
+    public GameObject background_default; 
     
-
+    private int rerollCost = 1;
+    private bool isRerollActive = true;
+    private DreamDustManager dreamDustManager;
+    
     private HashSet<int> completedDialogueIDs = new HashSet<int>();
     private InteractableObject currentInteractableObject;
     private InteractableObjectData itemToCollectAfterDialogue;
+
+    private int idNumber=0;
+    
+    public enum DialogueMode
+    {
+        Opening,
+        Main
+    }
+
+    private DialogueMode currentMode = DialogueMode.Main;
 
     void Awake()
     {
@@ -57,7 +70,7 @@ public class DialogueManager : MonoBehaviour
     void ParseCSV(TextAsset csvAsset)
     {
         dialogueList.Clear();
-
+        idNumber = 0;
         string[] lines = csvAsset.text.Split(new string[] { "\r\n", "\n" }, System.StringSplitOptions.None);
         if (lines.Length <= 1)
         {
@@ -113,10 +126,7 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        Debug.Log($"[DialogueManager] Parsed {dialogueList.Count} entries from CSV.");
     }
-
-    // 대화 종료 시 처리
     public void OnDialogueEnded()
     {
         // 아이템 처리
@@ -134,8 +144,14 @@ public class DialogueManager : MonoBehaviour
             currentInteractableObject = null;
         }
         dialoguePanel.SetActive(false);
-        // 메인 대화 선택 패널 띄우기
-        ShowDialogueSelectionPanel();
+        if (currentMode == DialogueMode.Opening)
+        {
+            ShowDialogueSelectionPanel();
+        }
+        else if (currentMode == DialogueMode.Main)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("BattleScene");
+        }
     }
 
     // 메인 대화 선택 패널 표시
@@ -143,7 +159,7 @@ public class DialogueManager : MonoBehaviour
     {
         dialoguePanel.SetActive(false);
         dialogueBundle.SetActive(true);
-
+        
         // 사용 가능한 번들 중 banned=false 인 것만 필터링
         List<DialogueBundle> available = dialogueBundles.FindAll(b => !b.isBanned);
 
@@ -163,6 +179,7 @@ public class DialogueManager : MonoBehaviour
             {
                 DialogueBundle bundle = selected[i];
                 dialogueButtons[i].gameObject.SetActive(true);
+                rerollButton.gameObject.SetActive(true);
                 dialogueButtons[i].GetComponentInChildren<TMPro.TextMeshProUGUI>().text = bundle.bundleName;
 
                 // 클릭 시 해당 대화 시작
@@ -176,19 +193,77 @@ public class DialogueManager : MonoBehaviour
             else
             {
                 dialogueButtons[i].gameObject.SetActive(false);
+                rerollButton.gameObject.SetActive(false);
             }
+        }
+        
+    }
+    private void StartDialogueByBundle(HallControll.SO.DialogueBundle selected)
+    {
+        
+        Debug.Log($"[BundleManager] Selected dialogue: {selected.bundleName} (FileID: {selected.connectedFileID})");
+        dialogueBundle.SetActive(false);
+        rerollButton.SetActive(false);
+
+        // DialogueData.csv 로드
+        TextAsset csvData = Resources.Load<TextAsset>("Dialogues/DialogueData");
+        if (csvData == null)
+        {
+            Debug.LogError("[BundleManager] Failed to load DialogueData.csv from Resources/Dialogues/");
+            return;
+        }
+
+        // connectedFileID에 맞는 Character와 FileName 찾기
+        (string character, string fileName) = FindCharacterAndFileName(csvData.text, selected.connectedFileID.ToString());
+
+        if (!string.IsNullOrEmpty(fileName))
+        {
+            Debug.Log($"[BundleManager] Found -> Character: {character}, FileName: {fileName}");
+            DialogueManager.Instance.StartDialogue(DialogueMode.Main, fileName, character);
+        }
+        else
+        {
+            Debug.LogError($"[BundleManager] FileID {selected.connectedFileID} not found in DialogueData.csv!");
         }
     }
 
-    // 선택된 번들의 connectedFileID로 대화 시작
-    void StartDialogueByBundle(DialogueBundle bundle)
+    private (string character, string fileName) FindCharacterAndFileName(string csvText, string targetID)
     {
-        string characterName = "Vampire";
-        string fileName = $"CupOP_{bundle.connectedFileID}"; 
+        try
+        {
+            string[] lines = csvText.Split(new string[] { "\r\n", "\n" }, System.StringSplitOptions.None);
 
-        LoadDialogueCSV(fileName, characterName);
-        dialogueUI.ShowDialogue(1);
+            for (int i = 1; i < lines.Length; i++)
+            {
+                string line = lines[i].Trim();
+                if (string.IsNullOrEmpty(line)) continue;
+
+                string[] parts = Regex.Split(line, ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+                if (parts.Length < 3) continue;
+
+                string id = parts[0].Trim().Trim('"');
+                string character = parts[1].Trim().Trim('"');
+                string fileName = parts[2].Trim().Trim('"');
+
+                if (id == targetID)
+                {
+                    if (fileName.EndsWith(".csv"))
+                        fileName = fileName.Substring(0, fileName.Length - 4);
+
+                    return (character, fileName);
+                }
+            }
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"[BundleManager] Error parsing DialogueData.csv: {ex.Message}");
+        }
+
+        return (null, null);
     }
+
+
+
 
     public void MarkDialogueAsCompleted(int dialogueId)
     {
@@ -203,4 +278,18 @@ public class DialogueManager : MonoBehaviour
     {
         return dialogueList.FindAll(d => d.ID == id);
     }
+    
+    public void StartDialogue(DialogueMode mode, string fileName, string character)
+    {
+        currentMode = mode;
+        LoadDialogueCSV(fileName, character);
+        DialogueUI.Instance.ShowDialogue(1);
+    }
+    
+    public void OnRerollRequested()
+    {
+        ShowDialogueSelectionPanel();
+    }
+    
+    
 }

@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 254389063}
   - component: {fileID: 254389065}
   - component: {fileID: 254389064}
+  - component: {fileID: 254389066}
   m_Layer: 5
   m_Name: PlayerInfo
   m_TagString: Untagged
@@ -196,6 +197,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254389062}
   m_CullTransparentMesh: 1
+--- !u!114 &254389066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254389062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a38274f2faa5c1488262d78d1761f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicDustControll
+  dreamDust: 5
+  dustCountText: {fileID: 1433667203}
 --- !u!1 &395646383
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,7 +1018,7 @@ GameObject:
   - component: {fileID: 799384542}
   - component: {fileID: 799384541}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: DustNeeded
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2046,6 +2061,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1574780346}
   - {fileID: 1450696438}
   - {fileID: 1623945484}
   - {fileID: 1844679730}
@@ -2121,8 +2137,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 6294523126520371168, guid: 2d89242b431058e45acd19ccbf3fc738, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2287,7 +2303,7 @@ GameObject:
   - component: {fileID: 1450696440}
   - component: {fileID: 1450696439}
   m_Layer: 5
-  m_Name: backgroun
+  m_Name: background_default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2300,7 +2316,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450696437}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2332,7 +2348,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 8776601464295078787, guid: a53b6d2890c97f44a8d22638f1e0d0e9, type: 3}
+  m_Sprite: {fileID: 6294523126520371168, guid: 2d89242b431058e45acd19ccbf3fc738, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2429,10 +2445,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1878684179}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -40, y: -40}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 257.5, y: -106.5}
+  m_SizeDelta: {x: 475, y: 173}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1527888659
 MonoBehaviour:
@@ -2670,6 +2686,81 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1 &1574780345
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1574780346}
+  - component: {fileID: 1574780348}
+  - component: {fileID: 1574780347}
+  m_Layer: 5
+  m_Name: background_dark
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1574780346
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574780345}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1414399132}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 150, y: 150}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1574780347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574780345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 8776601464295078787, guid: a53b6d2890c97f44a8d22638f1e0d0e9, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1574780348
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574780345}
+  m_CullTransparentMesh: 1
 --- !u!1 &1613195341
 GameObject:
   m_ObjectHideFlags: 0
@@ -2975,6 +3066,7 @@ GameObject:
   - component: {fileID: 1759279981}
   - component: {fileID: 1759279983}
   - component: {fileID: 1759279984}
+  - component: {fileID: 1759279985}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -3019,6 +3111,8 @@ MonoBehaviour:
   - {fileID: 1387488107}
   - {fileID: 504704690}
   dialogueBundle: {fileID: 496025016}
+  rerollButton: {fileID: 1414399131}
+  background_default: {fileID: 1450696437}
 --- !u!4 &1759279982
 Transform:
   m_ObjectHideFlags: 0
@@ -3075,6 +3169,24 @@ MonoBehaviour:
   - {fileID: 984692765}
   - {fileID: 1996348403}
   - {fileID: 627916865}
+--- !u!114 &1759279985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759279980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a079b6da3b74f240b4a8ec48c9a429d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RerollManager
+  rerollButton: {fileID: 1414399133}
+  dustNeededText: {fileID: 799384541}
+  dialogueManager: {fileID: 1759279981}
+  dreamDustManager: {fileID: 254389066}
+  backgroundDefault: {fileID: 1450696437}
+  rerollCost: 1
 --- !u!1 &1844679729
 GameObject:
   m_ObjectHideFlags: 0
