@@ -7,7 +7,5 @@ public class PassiveNPC : PlayerInteractableObject
     {
         if (npcType == EPassiveType.Persona) NPCPassiveManager.Inst.ShowPersonaScreen();
         else if (npcType == EPassiveType.Shadow) NPCPassiveManager.Inst.ShowShadowScreen();
-
-        Destroy(this);
     }
 }

@@ -77,6 +77,7 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action BeforeRouletteActivate;
     [HideInInspector] public static Action OnRouletteActivate;
     [HideInInspector] public static Action<int> OnCostChange;
+    [HideInInspector] public static Action OnUseableItemUse;
 
     public static void PrintAllActions(Action<int> action)
     {
@@ -140,7 +141,7 @@ public class TurnManager : MonoBehaviour
         Utils.AllignActions(ref OnGameStart, typeof(ShowBuff), typeof(RelicManager));
         OnGameStart?.Invoke();
         //BuffManager.Inst.AddShowBuff("과민함", EBuffAffectType.Enemy, 1);
-        BuffManager.Inst.AddShowBuff("불쾌함", EBuffAffectType.Player, 1);
+        //BuffManager.Inst.AddShowBuff("불쾌함", EBuffAffectType.Player, 1);
         //BuffManager.Inst.AddShowBuff("강화", EBuffAffectType.Roulette, 1);
         turnDraw = drawCardCount;
         // startCardCount만큼 카드를 뽑고, StartPlayerTurn 호출
@@ -332,6 +333,7 @@ public class TurnManager : MonoBehaviour
         {
             value = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Shield, value);
             enemyShieldHealth += value;
+            if (enemyShieldHealth < 0) enemyShieldHealth = 0;
             Utils.AllignActions(ref OnEnemyShielded, typeof(ShowBuff), typeof(RelicManager));
             OnEnemyShielded?.Invoke(value);
         }
@@ -339,6 +341,7 @@ public class TurnManager : MonoBehaviour
         {
             value = BuffManager.GetTargetBuffedValue(BuffManager.Inst.playerBuff_Shield, value);
             shieldHealth += value;
+            if (shieldHealth < 0) shieldHealth = 0;
             Utils.AllignActions(ref OnPlayerShielded, typeof(ShowBuff), typeof(RelicManager));
             OnPlayerShielded?.Invoke(value);
         }
@@ -373,6 +376,7 @@ public class TurnManager : MonoBehaviour
         if (playerTriggerCnt != 0 && playerTriggerCnt == playerTriggerMaxCnt)
         {
             RouletteManager.Inst.TriggerRoulette();
+            playerTriggerCnt = 0;
         }
     }
 
@@ -405,6 +409,7 @@ public class TurnManager : MonoBehaviour
         if (enemyTriggerCnt != 0 && enemyTriggerCnt == enemyTriggerMaxCnt)
         {
             EnemyManager.Inst.EnemyTriggerAction();
+            enemyTriggerCnt = 0;
         }
     }
 }

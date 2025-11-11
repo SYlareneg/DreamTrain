@@ -463,7 +463,7 @@ public class BuffManager : MonoBehaviour
 
     public static Action InitSpecialRouletteBuffs;
 
-    public void AddShowBuff(string name, EBuffAffectType aType, int val)
+    public ShowBuff GetShowBuff(string name, EBuffAffectType aType)
     {
         ShowBuff findBuff = null;
         switch (aType)
@@ -478,6 +478,11 @@ public class BuffManager : MonoBehaviour
                 findBuff = playerShowBuffs.Find(x => x.name == name);
                 break;
         }
+        return findBuff;
+    }
+    public void AddShowBuff(string name, EBuffAffectType aType, int val)
+    {
+        ShowBuff findBuff = GetShowBuff(name, aType);
         if (findBuff == null)
         {
             findBuff = new ShowBuff();
@@ -487,6 +492,22 @@ public class BuffManager : MonoBehaviour
         {
             findBuff.AddShowBuff(val);
         }
+        switch (aType)
+        {
+            case EBuffAffectType.Roulette:
+                GameManager.Inst.SetRouletteBuffUI(); break;
+            case EBuffAffectType.Enemy:
+                GameManager.Inst.SetEnemyBuffUI(); break;
+            case EBuffAffectType.Player:
+                GameManager.Inst.SetPlayerBuffUI(); break;
+        }
+    }
+
+    public void RemoveShowBuff(string name, EBuffAffectType aType)
+    {
+        ShowBuff findBuff = GetShowBuff(name, aType);
+        if (findBuff == null) return;
+        findBuff.RemoveShowBuff();
         switch (aType)
         {
             case EBuffAffectType.Roulette:

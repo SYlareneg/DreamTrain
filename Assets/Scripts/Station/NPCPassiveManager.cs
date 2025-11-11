@@ -7,8 +7,6 @@ public class NPCPassiveManager : MonoBehaviour
     public static NPCPassiveManager Inst { get; private set; }
     void Awake() => Inst = this;
 
-    public bool isLoading;
-
     [Header("패시브 목록 제시")]
     [SerializeField] GameObject npcPassiveScreen;
     public EPassiveType npcType;
@@ -105,7 +103,7 @@ public class NPCPassiveManager : MonoBehaviour
 
     public void ShowConfirmScreen(bool isChange)
     {
-        HideScreen();
+        npcPassiveScreen.SetActive(false);
         npcPassiveChangeScreen.SetActive(true);
 
         if (isChange)
@@ -207,7 +205,7 @@ public class NPCPassiveManager : MonoBehaviour
 
     public void ShowPersonaScreen()
     {
-        isLoading = true;
+        PlayerManager.Inst.isLoading = true;
         Setup(EPassiveType.Persona);
         curPassiveTMP.text = "현재 페르소나";
         npcPassiveListTMP.text = "보유 페르소나";
@@ -218,7 +216,7 @@ public class NPCPassiveManager : MonoBehaviour
 
     public void ShowShadowScreen()
     {
-        isLoading = true;
+        PlayerManager.Inst.isLoading = true;
         Setup(EPassiveType.Shadow);
         curPassiveTMP.text = "현재 그림자";
         npcPassiveListTMP.text = "보유 그림자";
@@ -230,7 +228,7 @@ public class NPCPassiveManager : MonoBehaviour
     public void HideScreen()
     {
         npcPassiveScreen.SetActive(false);
-        isLoading = false;
+        PlayerManager.Inst.isLoading = false;
     }
 
     private void Start()

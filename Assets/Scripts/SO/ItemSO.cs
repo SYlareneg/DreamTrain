@@ -19,6 +19,7 @@ public class Item
     [Tooltip("카드 설명")] public string text;
     [Tooltip("카드 계수")] public List<int> cardValues;
     [Tooltip("덱 내 카드 장수")] public int num;
+    [Tooltip("")] public bool isEnhanced;
 
     public void SetItem(Item item)
     {

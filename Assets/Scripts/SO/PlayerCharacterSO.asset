@@ -1,0 +1,646 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff117f36f0a56fa479d874fe35a62abf, type: 3}
+  m_Name: PlayerCharacterSO
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterSO
+  maxHealth: 20
+  curHealth: 5
+  dreamDust: 98
+  leftPassengers: 8
+  personaPiece:
+    name: "\uBC40\uD30C\uC774\uC5B4\uC758 \uAFC8"
+    persona:
+      type: 1
+      sprite: {fileID: 1599388452501240626, guid: f2660930dd1408c43b1357f97f2fdf1e, type: 3}
+      name: "\uBB3C\uBCF4\uB2E4 \uC9C4\uD55C \uD53C"
+      text: "\uACF5\uACA9 \uB8F0\uB81B\uC73C\uB85C \uC785\uD78C \uD53C\uD574\uC758
+        33%\uB9CC\uD07C \uCCB4\uB825\uC744 \uD68C\uBCF5\uD558\uACE0, \uD68C\uBCF5\uD55C
+        \uCCB4\uB825 \uB9CC\uD07C \uD2B8\uB9AC\uAC70 \uAC8C\uC774\uC9C0\uB97C \uC5BB\uC2B5\uB2C8\uB2E4."
+      dreamPieceNum: 0
+      isEnhanced: 0
+      enhancedPassive:
+        type: 1
+        sprite: {fileID: 0}
+        name: "\uBB3C\uBCF4\uB2E4 \uC9C4\uD55C \uD53C+"
+        text: "\uACF5\uACA9 \uB8F0\uB81B\uC73C\uB85C \uC785\uD78C \uD53C\uD574\uC758
+          <color=red>50%</color>\uB9CC\uD07C \uCCB4\uB825\uC744 \uD68C\uBCF5\uD558\uACE0,
+          \uD68C\uBCF5\uD55C \uCCB4\uB825 \uB9CC\uD07C \uD2B8\uB9AC\uAC70 \uAC8C\uC774\uC9C0\uB97C
+          \uC5BB\uC2B5\uB2C8\uB2E4."
+        dreamPieceNum: 0
+    shadow:
+      type: 2
+      sprite: {fileID: 1599388452501240626, guid: f2660930dd1408c43b1357f97f2fdf1e, type: 3}
+      name: "\uD574\uBC29\uB41C \uBCF8\uB2A5"
+      text: "8\uC758 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4. \uD134 \uC885\uB8CC\uC2DC
+        \uB0A8\uC544\uC788\uB358 \uD589\uB3D9\uB825 1\uB2F9 8\uC758 \uCD94\uAC00
+        \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
+      dreamPieceNum: 0
+      isEnhanced: 1
+      enhancedPassive:
+        type: 2
+        sprite: {fileID: 0}
+        name: "\uD574\uBC29\uB41C \uBCF8\uB2A5+"
+        text: "8\uC758 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4. \uD134 \uC885\uB8CC\uC2DC
+          \uB0A8\uC544\uC788\uB358 \uD589\uB3D9\uB825 1\uB2F9 <color=red>12</color>\uC758
+          \uCD94\uAC00 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
+        dreamPieceNum: 0
+    cards:
+    - name: "\uD761\uD608 \uBD80\uC5EC"
+      cost: 2
+      type: 1
+      element: 0
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
+        '\uD761\uD608' \uD6A8\uACFC\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+      cardValues: 
+      num: 2
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uD761\uD608 \uBD80\uC5EC+"
+        cost: 2
+        type: 1
+        element: 0
+        dreamPieceNum: 0
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
+          <color=red>\uAC15\uD654\uB41C</color> '\uD761\uD608' \uD6A8\uACFC\uB97C
+          \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+        cardValues: 
+        num: 1
+        isEnhanced: 0
+    - name: "\uD608\uC561 \uC21C\uD658"
+      cost: 0
+      type: 0
+      element: 0
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C \uD55C \uCE78
+        \uD68C\uC804\uC2DC\uD0A4\uACE0, \uCCB4\uB825\uC744 {cardValues[0]} \uC783\uC2B5\uB2C8\uB2E4.
+        \uC989\uC2DC \uCE74\uB4DC\uB97C \uBCF5\uC81C\uD574 \uC190\uD328\uC5D0 \uCD94\uAC00\uD569\uB2C8\uB2E4."
+      cardValues: 01000000
+      num: 2
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uD608\uC561 \uC21C\uD658+"
+        cost: 0
+        type: 0
+        element: 0
+        dreamPieceNum: 0
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C \uD55C \uCE78
+          \uD68C\uC804\uC2DC\uD0A4\uACE0, \uCCB4\uB825\uC744 {cardValues[0]} \uC783\uC2B5\uB2C8\uB2E4.
+          \uC989\uC2DC \uCE74\uB4DC\uB97C <color=red>{cardValues[1]}\uC7A5</color>
+          \uBCF5\uC81C\uD574 \uC190\uD328\uC5D0 \uCD94\uAC00\uD569\uB2C8\uB2E4."
+        cardValues: 0100000002000000
+        num: 1
+        isEnhanced: 0
+    - name: "\uD53C\uB294 \uB098\uC758 \uD798"
+      cost: 0
+      type: 2
+      element: 0
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uCCB4\uB825\uC744 {cardValues[0]} \uC783\uACE0, \uD589\uB3D9\uB825\uC744
+        {cardValues[1]} \uC5BB\uC2B5\uB2C8\uB2E4."
+      cardValues: 0200000001000000
+      num: 2
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uD53C\uB294 \uB098\uC758 \uD798+"
+        cost: 0
+        type: 2
+        element: 0
+        dreamPieceNum: 0
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uCCB4\uB825\uC744 <color=red>{cardValues[0]}</color> \uC783\uACE0,
+          \uD589\uB3D9\uB825\uC744 {cardValues[1]} \uC5BB\uC2B5\uB2C8\uB2E4."
+        cardValues: 0100000001000000
+        num: 1
+        isEnhanced: 0
+    - name: "\uAE34\uAE09 \uC218\uD608"
+      cost: 1
+      type: 2
+      element: 0
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uCCB4\uB825\uC744 {cardValues[0]} \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+      cardValues: 02000000
+      num: 2
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uAE34\uAE09 \uC218\uD608+"
+        cost: 1
+        type: 2
+        element: 0
+        dreamPieceNum: 0
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uCCB4\uB825\uC744 <color=red>{cardValues[0]}</color> \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+        cardValues: 03000000
+        num: 1
+        isEnhanced: 0
+    - name: "\uD734\uBA38\uB2C8\uC2A4\uD2B8"
+      cost: 2
+      type: 2
+      element: 1
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "{cardValues[0]}\uD134 \uB3D9\uC548 \uC801\uACFC \uB8F0\uB81B\uC5D0\uAC8C
+        '\uC8FC\uC800\uD568'\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+      cardValues: 01000000
+      num: 2
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uD734\uBA38\uB2C8\uC2A4\uD2B8+"
+        cost: 2
+        type: 2
+        element: 1
+        dreamPieceNum: 0
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "<color=red>{cardValues[0]}\uD134</color> \uB3D9\uC548 \uC801\uACFC
+          \uB8F0\uB81B\uC5D0\uAC8C '\uC8FC\uC800\uD568'\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+        cardValues: 02000000
+        num: 1
+        isEnhanced: 0
+    - name: "\uBE14\uB8E8 \uBE14\uB7EC\uB4DC"
+      cost: 3
+      type: 2
+      element: 1
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "{cardValues[0]}\uD134 \uB3D9\uC548 '\uD761\uD608' \uB8F0\uB81B\uC73C\uB85C
+        \uCCB4\uB825\uC744 \uD68C\uBCF5\uD560 \uC218 \uC5C6\uAC8C \uB418\uB294 \uB300\uC2E0,
+        \uAC00\uD558\uB294 \uB370\uBBF8\uC9C0\uAC00 {cardValues[1]}\uBC30\uAC00 \uB429\uB2C8\uB2E4."
+      cardValues: 0200000003000000
+      num: 2
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uBE14\uB8E8 \uBE14\uB7EC\uB4DC+"
+        cost: 2
+        type: 2
+        element: 1
+        dreamPieceNum: 0
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "{cardValues[0]}\uD134 \uB3D9\uC548 '\uD761\uD608' \uB8F0\uB81B\uC73C\uB85C
+          \uCCB4\uB825\uC744 \uD68C\uBCF5\uD560 \uC218 \uC5C6\uAC8C \uB418\uB294
+          \uB300\uC2E0, \uAC00\uD558\uB294 \uB370\uBBF8\uC9C0\uAC00 {cardValues[1]}\uBC30\uAC00
+          \uB429\uB2C8\uB2E4."
+        cardValues: 0200000003000000
+        num: 1
+        isEnhanced: 0
+    - name: "\uB9CC\uCC2C \uC2DC\uAC04"
+      cost: 3
+      type: 2
+      element: 2
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "{cardValues[0]}\uD134 \uB3D9\uC548 '\uD761\uD608' \uB8F0\uB81B\uC73C\uB85C
+        \uAC00\uD558\uB294 \uB370\uBBF8\uC9C0\uAC00 {cardValues[1]}\uBC30\uAC00 \uB429\uB2C8\uB2E4."
+      cardValues: 0200000002000000
+      num: 2
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uB9CC\uCC2C \uC2DC\uAC04+"
+        cost: 2
+        type: 2
+        element: 2
+        dreamPieceNum: 0
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "{cardValues[0]}\uD134 \uB3D9\uC548 '\uD761\uD608' \uB8F0\uB81B\uC73C\uB85C
+          \uAC00\uD558\uB294 \uB370\uBBF8\uC9C0\uAC00 {cardValues[1]}\uBC30\uAC00
+          \uB429\uB2C8\uB2E4."
+        cardValues: 0200000002000000
+        num: 1
+        isEnhanced: 0
+    - name: "\uD54F\uBE5B \uB0A0\uAC1C"
+      cost: 2
+      type: 0
+      element: 2
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uB8F0\uB81B\uC744 \uBC18\uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 4\uCE78
+        \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4. \uC2A4\uD0AC\uC758 \uD68C\uC804\uC73C\uB85C
+        \uD761\uD608 \uB8F0\uB81B\uC774 \uC801\uC758 \uD6A8 \uACFC \uC874\uC744 \uC9C0\uB098\uAC00\uB294
+        \uACBD\uC6B0 \uB8F0\uB81B\uC758 \uD6A8\uACFC\uB97C \uC989\uC2DC \uC801\uC6A9\uD569\uB2C8\uB2E4."
+      cardValues: 0400000004000000
+      num: 2
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uD54F\uBE5B \uB0A0\uAC1C+"
+        cost: 2
+        type: 0
+        element: 2
+        dreamPieceNum: 0
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uB8F0\uB81B\uC744 \uBC18\uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C <color=red>{cardValues[0]}\uCE78</color>
+          \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4. \uC2A4\uD0AC\uC758 \uD68C\uC804\uC73C\uB85C
+          \uD761\uD608 \uB8F0\uB81B\uC774 \uC801\uC758 \uD6A8 \uACFC \uC874\uC744
+          \uC9C0\uB098\uAC00\uB294 \uACBD\uC6B0 \uB8F0\uB81B\uC758 \uD6A8\uACFC\uB97C
+          \uC989\uC2DC \uC801\uC6A9\uD569\uB2C8\uB2E4."
+        cardValues: 05000000
+        num: 1
+        isEnhanced: 0
+    specialRouletteSprite: {fileID: 3372071434943392156, guid: a83e06a63255ee2408beb1f880295f2c, type: 3}
+    specialRouletteTitle: "\uC0DD\uBA85\uB825 \uD761\uC218 \uB8F0\uB81B"
+    specialRouletteText: "\uD53C\uD574\uB97C \uAC12\uB9CC\uD07C \uC90D\uB2C8\uB2E4.
+      \uC785\uD78C \uD53C\uD574\uC758 1/3\uB9CC\uD07C \uD50C\uB808\uC774\uC5B4\uC758
+      \uCCB4\uB825\uC744 \uD68C\uBCF5\uD569\uB2C8\uB2E4. \uBC40\uD30C\uC774\uC5B4
+      \uD398\uB974\uC18C\uB098\uB97C \uC7A5\uCC29\uD558\uACE0 \uC788\uB2E4\uBA74,
+      \uD68C\uBCF5\uD55C \uCCB4\uB825\uB9CC\uD07C \uD2B8\uB9AC\uAC70 \uAC8C\uC774\uC9C0\uB97C
+      \uC5BB\uC2B5\uB2C8\uB2E4."
+  shadowPiece:
+    name: "\uB9C8\uC220\uC0AC\uC758 \uAFC8"
+    persona:
+      type: 1
+      sprite: {fileID: 1599388452501240626, guid: f2660930dd1408c43b1357f97f2fdf1e, type: 3}
+      name: "\uCE74\uB4DC \uC228\uAE30\uAE30"
+      text: "\uAC8C\uC784 \uC2DC\uC791 \uC2DC \uB371\uC5D0 \uC5D0\uC774\uC2A4 \uCE74\uB4DC\uB97C
+        \uD55C \uC7A5 \uCD94\uAC00\uD569\uB2C8\uB2E4. \uC5D0\uC774\uC2A4 \uCE74\uB4DC\uB97C
+        \uC0AC\uC6A9\uD558\uC5EC \uD2B8\uB9AC\uAC70\uD569\uB2C8\uB2E4. "
+      dreamPieceNum: 1
+      isEnhanced: 1
+      enhancedPassive:
+        type: 1
+        sprite: {fileID: 0}
+        name: "\uCE74\uB4DC \uC228\uAE30\uAE30+"
+        text: "\uAC8C\uC784 \uC2DC\uC791 \uC2DC \uB371\uC5D0 \uC5D0\uC774\uC2A4+
+          \uCE74\uB4DC\uB97C \uD55C \uC7A5 \uCD94\uAC00\uD569\uB2C8\uB2E4. \uC5D0\uC774\uC2A4+
+          \uCE74\uB4DC\uB97C \uC0AC\uC6A9\uD558\uC5EC \uD2B8\uB9AC\uAC70\uD569\uB2C8\uB2E4. "
+        dreamPieceNum: 1
+    shadow:
+      type: 2
+      sprite: {fileID: 1599388452501240626, guid: f2660930dd1408c43b1357f97f2fdf1e, type: 3}
+      name: "\uB9C8\uC220 \uD574\uCCB4"
+      text: "\uACF5\uACA9\uACFC \uC218\uBE44\uB97C \uC81C\uC678\uD558\uACE0 \uB8F0\uB81B\uC5D0
+        \uBD80\uC5EC\uB41C \uBAA8\uB4E0 \uD6A8\uACFC\uB97C \uC81C\uAC70\uD569\uB2C8\uB2E4.
+        \uC81C\uAC70\uD55C \uBD80\uC5EC \uD6A8\uACFC \uAC1C\uC218 x 7\uC758 \uB370\uBBF8\uC9C0\uB97C
+        \uC90D\uB2C8\uB2E4."
+      dreamPieceNum: 1
+      isEnhanced: 1
+      enhancedPassive:
+        type: 2
+        sprite: {fileID: 0}
+        name: "\uB9C8\uC220 \uD574\uCCB4+"
+        text: "\uACF5\uACA9\uACFC \uC218\uBE44\uB97C \uC81C\uC678\uD558\uACE0 \uB8F0\uB81B\uC5D0
+          \uBD80\uC5EC\uB41C \uBAA8\uB4E0 \uD6A8\uACFC\uB97C \uC81C\uAC70\uD569\uB2C8\uB2E4.
+          \uC81C\uAC70\uD55C \uBD80\uC5EC \uD6A8\uACFC \uAC1C\uC218 x 7\uC758 \uB370\uBBF8\uC9C0\uB97C
+          \uC90D\uB2C8\uB2E4. <color=red>6\uAC1C \uC774\uC0C1\uC758 \uD6A8\uACFC\uB97C
+          \uC81C\uAC70\uD55C \uACBD\uC6B0 50% \uCD94\uAC00 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.</color>"
+        dreamPieceNum: 1
+    cards:
+    - name: "\uB9C8\uC220 \uC0C1\uC790"
+      cost: 1
+      type: 1
+      element: 0
+      dreamPieceNum: 1
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
+        '\uB9C8\uC220\uC0C1\uC790'\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4"
+      cardValues: 
+      num: 2
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uB9C8\uC220 \uC0C1\uC790+"
+        cost: 1
+        type: 1
+        element: 0
+        dreamPieceNum: 1
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
+          <color=red>\uAC15\uD654\uB41C</color> '\uB9C8\uC220\uC0C1\uC790'\uB97C
+          \uBD80\uC5EC\uD569\uB2C8\uB2E4"
+        cardValues: 
+        num: 1
+        isEnhanced: 0
+    - name: "\uB9C8\uC220-\uBE44\uB458\uAE30"
+      cost: 1
+      type: 2
+      element: 0
+      dreamPieceNum: 1
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "{cardValues[0]}\uB370\uBBF8\uC9C0\uB97C \uC8FC\uACE0, \uB9C8\uC220\uC744
+        \uD3BC\uCCD0 \uC801\uC758 \uB2E4\uC74C \uD134 \uCCAB\uBC88\uC9F8 \uD589\uB3D9\uC744
+        \uBC29\uD574\uD569\uB2C8\uB2E4. \uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uB9C8
+        \uC220 \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74 \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4."
+      cardValues: 01000000
+      num: 2
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uB9C8\uC220-\uBE44\uB458\uAE30+"
+        cost: 1
+        type: 2
+        element: 0
+        dreamPieceNum: 1
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "<color=red>{cardValues[0]}</color>\uB370\uBBF8\uC9C0\uB97C \uC8FC\uACE0,
+          \uB9C8\uC220\uC744 \uD3BC\uCCD0 \uC801\uC758 \uB2E4\uC74C \uD134 \uCCAB\uBC88\uC9F8
+          \uD589\uB3D9\uC744 \uBC29\uD574\uD569\uB2C8\uB2E4. \uC801\uC758 \uD6A8\uACFC
+          \uC874\uC5D0 \uB9C8 \uC220 \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74 \uB9C8\uC220\uC740
+          \uC2E4\uD328\uD569\uB2C8\uB2E4."
+        cardValues: 03000000
+        num: 1
+        isEnhanced: 0
+    - name: "\uB9C8\uC220-\uCE74\uB4DC"
+      cost: 1
+      type: 0
+      element: 0
+      dreamPieceNum: 1
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C {cardValues[0]}\uCE78
+        \uD68C\uC804\uC2DC\uD0A4\uACE0, \uB9C8\uC220\uC744 \uD3BC\uCCD0 \uD328\uC758
+        \uCE74\uB4DC \uD55C \uC7A5\uC744 \uC120\uD0DD\uD574 \uBCF5\uC81C\uD569\uB2C8\uB2E4.
+        \uD50C\uB808\uC774\uC5B4\uC758 \uD6A8\uACFC \uC874\uC5D0 \uB9C8\uC220 \uC0C1\uC790\uAC00
+        \uC5C6\uB2E4\uBA74 \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4."
+      cardValues: 01000000
+      num: 2
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uB9C8\uC220-\uCE74\uB4DC+"
+        cost: 0
+        type: 0
+        element: 0
+        dreamPieceNum: 1
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C {cardValues[0]}\uCE78
+          \uD68C\uC804\uC2DC\uD0A4\uACE0, \uB9C8\uC220\uC744 \uD3BC\uCCD0 \uD328\uC758
+          \uCE74\uB4DC \uD55C \uC7A5\uC744 \uC120\uD0DD\uD574 \uBCF5\uC81C\uD569\uB2C8\uB2E4.
+          \uD50C\uB808\uC774\uC5B4\uC758 \uD6A8\uACFC \uC874\uC5D0 \uB9C8\uC220 \uC0C1\uC790\uAC00
+          \uC5C6\uB2E4\uBA74 \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4."
+        cardValues: 01000000
+        num: 1
+        isEnhanced: 0
+    - name: "\uB9C8\uC220-\uC808\uB2E8"
+      cost: 2
+      type: 2
+      element: 0
+      dreamPieceNum: 1
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uC801\uC5D0\uAC8C {cardValues[0]} \uB370\uBBF8\uC9C0\uB97C \uC8FC\uACE0,
+        \uB9C8\uC220\uC744 \uD3BC\uCCD0 \uBC29\uC5B4\uB3C4\uB97C \uBAA8\uB450 \uD30C\uAD34\uD569\uB2C8\uB2E4.
+        \uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uB9C8\uC220 \uC0C1 \uC790\uAC00 \uC5C6\uB2E4\uBA74
+        \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4."
+      cardValues: 02000000
+      num: 2
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uB9C8\uC220-\uC808\uB2E8+"
+        cost: 2
+        type: 2
+        element: 0
+        dreamPieceNum: 1
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "<color=red>\uB9C8\uC220\uC744 \uD3BC\uCCD0 \uBC29\uC5B4\uB3C4\uB97C
+          \uBAA8\uB450 \uD30C\uAD34\uD558\uACE0, {cardValues[0]}\uB370\uBBF8\uC9C0\uB97C
+          \uC90D\uB2C8\uB2E4.</color> \uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uB9C8\uC220
+          \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74 \uC2EA\uD328\uD569\uB2C8\uB2E4."
+        cardValues: 04000000
+        num: 1
+        isEnhanced: 0
+    - name: "\uB9C8\uC220-\uC21C\uAC04\uC774\uB3D9"
+      cost: 2
+      type: 0
+      element: 0
+      dreamPieceNum: 1
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C {cardValues[0]}\uCE78
+        \uD68C\uC804\uC2DC\uD0A4\uACE0, \uB9C8\uC220\uC744 \uD3BC\uCCD0 \uBC29\uC5B4\uB3C4\uB97C
+        {cardValues[1]} \uBD80\uC5EC\uD569\uB2C8\uB2E4. \uD50C\uB808\uC774\uC5B4\uC758
+        \uD6A8\uACFC \uC874\uC5D0 \uB9C8\uC220 \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74
+        \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4. "
+      cardValues: 020000000c000000
+      num: 2
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uB9C8\uC220-\uC21C\uAC04\uC774\uB3D9+"
+        cost: 2
+        type: 0
+        element: 0
+        dreamPieceNum: 1
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C {cardValues[0]}\uCE78
+          \uD68C\uC804\uC2DC\uD0A4\uACE0, \uB9C8\uC220\uC744 \uD3BC\uCCD0 \uBC29\uC5B4\uB3C4\uB97C
+          <color=red>{cardValues[1]}</color> \uBD80\uC5EC\uD569\uB2C8\uB2E4. \uD50C\uB808\uC774\uC5B4\uC758
+          \uD6A8\uACFC \uC874\uC5D0 \uB9C8\uC220 \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74
+          \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4. "
+        cardValues: 0200000010000000
+        num: 1
+        isEnhanced: 0
+    - name: "\uB9C8\uC220-\uC608\uC5B8"
+      cost: 3
+      type: 2
+      element: 1
+      dreamPieceNum: 1
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uB2E4\uC74C \uD134\uC5D0 '\uC5D0\uC774\uC2A4' \uCE74\uB4DC\uB97C \uC0AC\uC6A9\uD558\uBA74
+        \uCF54\uC2A4\uD2B8\uB97C \uC18C\uBAA8\uD558\uC9C0 \uC54A\uACE0, \uD589\uB3D9\uB825\uC744
+        \uCD5C\uB300\uB85C \uD68C\uBCF5\uD569\uB2C8\uB2E4. \uC790\uC2E0\uC758 \uD6A8\uACFC
+        \uC874\uC5D0 \uB9C8\uC220 \uC0C1\uC790\uAC00 \uC788\uB2E4\uBA74 \uC774 \uCE74\uB4DC\uC758
+        \uC18C\uBAA8 \uCF54\uC2A4\uD2B8\uAC00 {cardValues[0]} \uAC10\uC18C\uD569\uB2C8\uB2E4."
+      cardValues: 02000000
+      num: 2
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uB9C8\uC220-\uC608\uC5B8+"
+        cost: 2
+        type: 2
+        element: 1
+        dreamPieceNum: 1
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uB2E4\uC74C \uD134\uC5D0 '\uC5D0\uC774\uC2A4' \uCE74\uB4DC\uB97C
+          \uC0AC\uC6A9\uD558\uBA74 \uCF54\uC2A4\uD2B8\uB97C \uC18C\uBAA8\uD558\uC9C0
+          \uC54A\uACE0, \uD589\uB3D9\uB825\uC744 \uCD5C\uB300\uB85C \uD68C\uBCF5\uD569\uB2C8\uB2E4.
+          \uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uB9C8\uC220 \uC0C1\uC790\uAC00
+          \uC788\uB2E4\uBA74 \uC774 \uCE74\uB4DC\uC758 \uC18C\uBAA8 \uCF54\uC2A4\uD2B8\uAC00
+          {cardValues[0]} \uAC10\uC18C\uD569\uB2C8\uB2E4."
+        cardValues: 02000000
+        num: 1
+        isEnhanced: 0
+    - name: "\uC7AC\uBE60\uB978 \uC190\uB180\uB9BC"
+      cost: 1
+      type: 2
+      element: 1
+      dreamPieceNum: 1
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uB371\uC5D0\uC11C \uCE74\uB4DC\uB97C {cardValues[0]}\uC7A5 \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
+      cardValues: 01000000
+      num: 2
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uC7AC\uBE60\uB978 \uC190\uB180\uB9BC+"
+        cost: 1
+        type: 2
+        element: 1
+        dreamPieceNum: 1
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uB371\uC5D0\uC11C \uCE74\uB4DC\uB97C <color=red>{cardValues[0]}\uC7A5</color>
+          \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
+        cardValues: 02000000
+        num: 1
+        isEnhanced: 0
+    - name: "\uCD08\uB2A5\uB825-\uC608\uC5B8"
+      cost: 2
+      type: 2
+      element: 2
+      dreamPieceNum: 1
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uB2E4\uC74C \uD134\uC5D0 {cardValues[0]}\uBC88 \uC2AC\uB86F\uC774 \uD2B8\uB9AC\uAC70\uB418\uBA74,
+        \uC989\uC2DC \uD589\uB3D9\uB825\uC744 \uCD5C\uB300\uB85C \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+      cardValues: 0c000000
+      num: 2
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uCD08\uB2A5\uB825-\uC608\uC5B8+"
+        cost: 1
+        type: 2
+        element: 2
+        dreamPieceNum: 1
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uB2E4\uC74C \uD134\uC5D0 {cardValues[0]}\uBC88 \uC2AC\uB86F\uC774
+          \uD2B8\uB9AC\uAC70\uB418\uBA74, \uC989\uC2DC \uD589\uB3D9\uB825\uC744 \uCD5C\uB300\uB85C
+          \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+        cardValues: 0c000000
+        num: 1
+        isEnhanced: 0
+    - name: "\uCD08\uB2A5\uB825-\uC5FC\uB825"
+      cost: 1
+      type: 0
+      element: 2
+      dreamPieceNum: 1
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C \uD604\uC7AC
+        \uD589\uB3D9\uB825 x {cardValues[0]}\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
+      cardValues: 01000000
+      num: 2
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uCD08\uB2A5\uB825-\uC5FC\uB825+"
+        cost: 1
+        type: 0
+        element: 2
+        dreamPieceNum: 1
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C \uD604\uC7AC
+          \uD589\uB3D9\uB825 x {cardValues[0]}\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4.
+          <color=red> {cardValues[1]}\uCE78 \uC774\uC0C1 \uD68C\uC804\uD55C \uACBD\uC6B0
+          \uBC29\uC5B4\uB3C4\uB97C {cardValues[2]} \uC5BB\uC2B5\uB2C8\uB2E4.</color>"
+        cardValues: 010000000300000005000000
+        num: 1
+        isEnhanced: 0
+    specialRouletteSprite: {fileID: -1033747301121760791, guid: d70a422d594c0c64ca0e09b3852cd601, type: 3}
+    specialRouletteTitle: "\uB9C8\uC220\uC0C1\uC790 \uB8F0\uB81B"
+    specialRouletteText: "\uAC12\uC758 \uCE74\uC6B4\uD130\uB97C \uAC00\uC9C0\uACE0
+      \uC788\uC2B5\uB2C8\uB2E4. \uB8F0\uB81B\uC774 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C
+      \uD68C\uC804\uD560 \uB54C\uB9C8\uB2E4 \uCE74\uC6B4\uD2B8\uAC00 1 \uAC10\uC18C\uD558\uACE0,
+      0\uC774 \uB418\uBA74 \uD6A8\uACFC\uAC00 \uC81C\uAC70\uB429\uB2C8\uB2E4."
+  enemyName: "\uBC15\uC950"

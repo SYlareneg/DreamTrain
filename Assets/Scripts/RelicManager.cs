@@ -16,12 +16,12 @@ public class RelicManager : MonoBehaviour
 
     public RelicSO relicSO;
     public GameObject relicUIPrefab;
-    public List<RelicItem> relicList;
+    public List<RelicItem_Enhanceable> relicList;
 
-    public List<RelicUI> RelicItemListToRelicUIList(List<RelicItem> rItemList, Transform attachUI)
+    public List<RelicUI> RelicItemListToRelicUIList(List<RelicItem_Enhanceable> rItemList, Transform attachUI)
     {
         List<RelicUI> rUIList = new List<RelicUI>();
-        List<RelicItem> sortedRelicList = rItemList.OrderBy(x => x.relicOwner).ToList();
+        List<RelicItem_Enhanceable> sortedRelicList = rItemList.OrderBy(x => x.relicOwner).ToList();
 
         for(int i = 0; i < sortedRelicList.Count; i++)
         {
@@ -31,13 +31,16 @@ public class RelicManager : MonoBehaviour
 
             if (i < sortedRelicList.Count - 1 && sortedRelicList[i + 1].relicOwner == sortedRelicList[i].relicOwner)
             {
-                relic.Setup(sortedRelicList[i], sortedRelicList[i + 1]);
+                var relic1 = sortedRelicList[i].isEnhanced ? sortedRelicList[i].enhancedRelicItem : sortedRelicList[i];
+                var relic2 = sortedRelicList[i].isEnhanced ? sortedRelicList[i + 1].enhancedRelicItem : sortedRelicList[i + 1];
+                relic.Setup(relic1, relic2);
                 rUIList.Add(relic);
                 i++;
             }
             else
             {
-                relic.Setup(sortedRelicList[i], null);
+                var relic1 = sortedRelicList[i].isEnhanced ? sortedRelicList[i].enhancedRelicItem : sortedRelicList[i];
+                relic.Setup(relic1, null);
                 rUIList.Add(relic);
             }
         }
@@ -46,7 +49,7 @@ public class RelicManager : MonoBehaviour
     public void InitRelicList()
     {
         relicList.Clear();
-        foreach (RelicItem rItem in relicSO.relicItems)
+        foreach (RelicItem_Enhanceable rItem in relicSO.relicItems)
         {
             relicList.Add(rItem);
         }
@@ -58,6 +61,92 @@ public class RelicManager : MonoBehaviour
     
     public void ActivateRelic(RelicItem relicItem)
     {
+        // 특수 이드
+        switch(relicItem.relicName)
+        {
+            case "흔적":
+            case "흔적+":
+                TurnManager.BeforePlayerTurnStart += () =>
+                {
+                    int leftShield = TurnManager.Inst.shieldHealth;
+                    if (relicItem.relicName == "흔적") leftShield = (int)(leftShield * 0.25f);
+                    else leftShield = (int)(leftShield * 0.4f);
+                };
+                return;
+            case "갈증":
+            case "갈증+":
+                int threshold = (int)(TurnManager.Inst.maxHealth * 0.5f);
+                if (relicItem.relicName == "갈증+") threshold = (int)(TurnManager.Inst.maxHealth * 0.75f);
+                Action<int> buffAction = (x) =>
+                {
+                    if (TurnManager.Inst.curHealth <= threshold)
+                    {
+                        if (BuffManager.Inst.GetShowBuff("활력", EBuffAffectType.Player) != null) BuffManager.Inst.AddShowBuff("활력", EBuffAffectType.Player, 1);
+                    }
+                    else
+                    {
+                        BuffManager.Inst.RemoveShowBuff("활력", EBuffAffectType.Player);
+                    }
+                };
+                TurnManager.OnPlayerDamaged += buffAction;
+                TurnManager.OnPlayerHealed += buffAction;
+                return;
+            case "호기심":
+            case "호기심+":
+                TurnManager.OnUseableItemUse += () =>
+                {
+                    if (relicItem.relicName == "호기심") TurnManager.Inst.IncreaseCost(1);
+                    else TurnManager.Inst.IncreaseCost(2);
+                };
+                return;
+            case "송곳니":
+            case "송곳니+":
+                int addVal = 3;
+                if (relicItem.relicName == "송곳니+") addVal = 5;
+                TurnManager.OnGameStart += () =>
+                {
+                    if (TurnManager.Inst.characterSO.personaPiece.name == "뱀파이어 폴")
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_PlayerSpecial1[0], addVal, 1, -1);
+                    }
+                    else if(TurnManager.Inst.characterSO.shadowPiece.name == "뱀파이어 폴")
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_PlayerSpecial2[0], addVal, 1, -1);
+                    }
+                };
+                return;
+            case "작은 날개":
+            case "작은 날개+":
+                int mulVal = 3;
+                if (relicItem.relicName == "작은 날개+") mulVal = 4;
+                TurnManager.OnPlayerTurnEnd += () =>
+                {
+                    TurnManager.Inst.GetShield(false, TurnManager.Inst.nowCost * mulVal);
+                };
+                return;
+            case "평화주의":
+            case "평화주의+":
+                int shieldVal = 8;
+                if (relicItem.relicName == "평화주의+") shieldVal = 10;
+                bool chkEnemyDamaged = false;
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    chkEnemyDamaged = false;
+                };
+                TurnManager.OnEnemyDamaged += (x) =>
+                {
+                    chkEnemyDamaged = true;
+                };
+                TurnManager.OnPlayerTurnEnd += () =>
+                {
+                    if (chkEnemyDamaged == false)
+                    {
+                        TurnManager.Inst.GetShield(false, shieldVal);
+                    }
+                };
+                return;
+        }
+        // 일반적인 이드
         Action relicAction = null;
         foreach (var effect in relicItem.relicEffects)
         {
@@ -86,11 +175,11 @@ public class RelicManager : MonoBehaviour
                     relicAction += () => { StartCoroutine(TurnManager.Inst.Draw(localEffect.value, null)); }; break;
                 case ERelicActivateEffectType.Card_Cost_Change:
                     relicAction += () => { BuffManager.AddBuffToTarget(BuffManager.Inst.allCardCostBuff, localEffect.value, 1, localEffect.value2); }; break;
-                case ERelicActivateEffectType.Card_Value_Change:
+                case ERelicActivateEffectType.Card_Value_Change: // 구현필요
                     relicAction += () => { }; break;
                 case ERelicActivateEffectType.Card_Duplicate_Hand:
-                    relicAction += () => { }; break;
-                case ERelicActivateEffectType.Card_Duplicate_Deck:
+                    relicAction += () => { CardManager.Inst.CardSelectModeTransit(ECardSelectMode.Duplicate, localEffect.value); }; break;
+                case ERelicActivateEffectType.Card_Duplicate_Deck:  // 구현필요
                     relicAction += () => { }; break;
                 case ERelicActivateEffectType.Card_Add_Hand:
                     relicAction += () =>
@@ -110,12 +199,11 @@ public class RelicManager : MonoBehaviour
                         CardManager.Inst.itemDeck.Add(localEffect.ivalue);
                         CardManager.Inst.itemDiscard.Add(localEffect.ivalue);
                     }; break;
-                case ERelicActivateEffectType.Card_Block:
+                case ERelicActivateEffectType.Card_Block: // 구현필요
                     relicAction += () => { }; break;
                 case ERelicActivateEffectType.Roulette_Value_Change_ADD:
                     relicAction += () => {
                         List<Buff> buffTarget = null;
-                        List<Buff> buffTarget2 = null;
                         switch (localEffect.rlvalue.type)
                         {
                             case ERouletteType.Attack:
@@ -129,15 +217,10 @@ public class RelicManager : MonoBehaviour
                         {
                             BuffManager.AddBuffToTarget(buffTarget, localEffect.value, 1, localEffect.value2);
                         }
-                        if(buffTarget2 != null)
-                        {
-                            BuffManager.AddBuffToTarget(buffTarget2, localEffect.value, 1, localEffect.value2);
-                        }
                     }; break;
                 case ERelicActivateEffectType.Roulette_Value_Change_MUL:
                     relicAction += () => {
                         List<Buff> buffTarget = null;
-                        List<Buff> buffTarget2 = null;
                         switch (localEffect.rlvalue.type)
                         {
                             case ERouletteType.Attack:
@@ -150,10 +233,6 @@ public class RelicManager : MonoBehaviour
                         if (buffTarget != null)
                         {
                             BuffManager.AddBuffToTarget(buffTarget, 0, localEffect.value, localEffect.value2);
-                        }
-                        if(buffTarget2 != null)
-                        {
-                            BuffManager.AddBuffToTarget(buffTarget2, 0, localEffect.value, localEffect.value2);
                         }
                     }; break;
                 case ERelicActivateEffectType.Roulette_Spin_CW:
@@ -199,6 +278,10 @@ public class RelicManager : MonoBehaviour
             }
         }
         Action relicActivation = null;
+        if(relicItem.relicConditions.Length == 0)
+        {
+            relicActivation = relicAction;
+        }
         foreach (var conditionAND in relicItem.relicConditions)
         {
             Action totalCondition = relicAction;
@@ -604,7 +687,8 @@ public class RelicManager : MonoBehaviour
         InitRelicList();
         for (int i = 0; i < relicList.Count; i++)
         {
-            ActivateRelic(relicList[i]);
+            if (relicList[i].isEnhanced) ActivateRelic(relicList[i].enhancedRelicItem);
+            else ActivateRelic(relicList[i]);
         }
     }
 

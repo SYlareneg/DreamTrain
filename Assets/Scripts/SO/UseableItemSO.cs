@@ -16,6 +16,14 @@ public class UseItem
         this.sprite = sprite;
         this.rarity = rarity;
     }
+
+    public void Setup(UseItem useItem)
+    {
+        this.name = useItem.name;
+        this.text = useItem.text;
+        this.sprite = useItem.sprite;
+        this.rarity = useItem.rarity;
+    }
 }
 
 [CreateAssetMenu(fileName = "UseableItemSO", menuName = "Scriptable Objects/UseableItemSO")]

@@ -257,6 +257,107 @@ public class EnemyManager : MonoBehaviour
                 rItem.value = 20;
                 RouletteManager.Inst.enemyTriggerPiece = rItem;
                 break;
+            case "망령 1":
+                BuffManager.InitSpecialRouletteBuffs += () =>
+                {
+                    BuffManager.Inst.rouletteBuff_EnemySpecial1.Add(new List<Buff>());
+                };
+                EnemySpecialRoulette1Activation = (rPiece, isEnemy, value) =>
+                {
+                    if (isEnemy)
+                    {
+                        TurnManager.Inst.EnemyTakeDmg(value);
+                    }
+                    else
+                    {
+                        TurnManager.Inst.TakeDmg(value);
+                    }
+                };
+                rItem = new RouletteItem();
+                rItem.type = ERouletteType.None;
+                rItem.value = 0;
+                RouletteManager.Inst.enemyTriggerPiece = rItem;
+                TurnManager.OnEnemyDamaged += (x) =>
+                {
+                    TurnManager.Inst.TriggerEnemyPassive(1);
+                };
+                TurnManager.OnEnemyTurnStart += () =>
+                {
+                    if (RouletteManager.Inst.isEnemyTrigger())
+                    {
+                        TurnManager.Inst.EnemyTakeDmg(-7);
+                    }
+                };
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    if (patternNum == 3)
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack, TurnManager.Inst.turnNum, 1, 1);
+                    }
+                };
+                break;
+            case "박쥐":
+                BuffManager.InitSpecialRouletteBuffs += () =>
+                {
+                    BuffManager.Inst.rouletteBuff_EnemySpecial1.Add(new List<Buff>());
+                    BuffManager.Inst.rouletteBuff_EnemySpecial1.Add(new List<Buff>());
+                };
+                EnemySpecial1Activation = (value) =>
+                {
+                    Debug.Log(value);
+                    int trueDamage = TurnManager.Inst.TakeDmg(value);
+                    int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_EnemySpecial1[1], trueDamage);
+                    TurnManager.Inst.EnemyTakeDmg(-totalVal_Heal);
+                    if (totalVal_Heal > 0)
+                    {
+                        TurnManager.Inst.TriggerEnemyPassive(1);
+                    }
+                };
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    if (TurnManager.Inst.turnNum % 2 == 0)
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special_1, TurnManager.Inst.turnNum / 2, 1, 2);
+                    }
+                };
+
+                rItem = new RouletteItem();
+                rItem.type = ERouletteType.Attack;
+                rItem.value = 10;
+                RouletteManager.Inst.enemyTriggerPiece = rItem;
+                bool isDouble = false;
+                RouletteManager.EnemyTriggerActivation = (isEnemy, totalVal) =>
+                {
+                    TurnManager.Inst.TakeDmg(totalVal);
+                    TurnManager.Inst.EnemyTakeDmg(-30);
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special_1, 0, 0.5f, -1);
+                    isDouble = false;
+                };
+                TurnManager.OnEnemyTrigger += () =>
+                {
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special_1, 0, 2, -1);
+                    isDouble = true;
+                };
+                TurnManager.OnPlayerTrigger += () =>
+                {
+                    if (isDouble)
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special_1, 0, 0.5f, -1);
+                    }
+                };
+
+                bool wasDamaged = false;
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    TurnManager.Inst.TriggerEnemyPassive(1);
+                    if (wasDamaged) TurnManager.Inst.TriggerEnemyPassive(3);
+                    wasDamaged = false;
+                };
+                TurnManager.OnEnemyDamaged += (x) =>
+                {
+                    wasDamaged = true;
+                };
+                break;
         }
     }
 
@@ -363,6 +464,12 @@ public class EnemyManager : MonoBehaviour
                     TurnManager.OnRouletteEnchant += changePhase;
                 }
                 break;
+            case "망령 1":
+                RouletteManager.Inst.EnemyTriggerRoulette();
+                break;
+            case "박쥐":
+                RouletteManager.Inst.EnemyTriggerRoulette();
+                break;
         }
     }
 
@@ -439,7 +546,7 @@ public class EnemyManager : MonoBehaviour
             }
         }
         List<int> bestTurnSequence = new List<int>();
-        bool selectedFlag = false;
+        List<(int priority, List<int> list)> prioritizedTurnActionList = new List<(int, List<int>)>();
         foreach (var turnAction in turnActionSet)
         {
             int turnNum = turnAction.Key;
@@ -447,47 +554,41 @@ public class EnemyManager : MonoBehaviour
             RoulettePiece playerSlot_afterTurn = RouletteManager.Inst.roulettePieces[(RouletteManager.Inst.playerLookat - turnNum + RouletteManager.rouletteNum) % RouletteManager.rouletteNum];
             RoulettePiece enemySlot_afterTurn = RouletteManager.Inst.roulettePieces[(RouletteManager.Inst.enemyLookat - turnNum + RouletteManager.rouletteNum) % RouletteManager.rouletteNum];
 
-            // 우선순위 정책
-            if (enemy.name == "뱀파이어 폴")
-            {
-                if (playerSlot_afterTurn.isTriggered == true)
-                {
-                    bestTurnSequence = turnSequence;
-                    selectedFlag = true;
-                    break;
-                }
-                if (playerSlot_afterTurn.roulette.type == ERouletteType.Enemy_Special_1)
-                {
-                    bestTurnSequence = turnSequence;
-                    selectedFlag = true;
-                    break;
-                }
-                if (enemySlot_afterTurn.roulette.type == ERouletteType.Shield)
-                {
-                    bestTurnSequence = turnSequence;
-                    selectedFlag = true;
-                    break;
-                }
-                if (playerSlot_afterTurn.roulette.type == ERouletteType.Attack)
-                {
-                    bestTurnSequence = turnSequence;
-                    selectedFlag = true;
-                    break;
-                }
-            }
+            prioritizedTurnActionList.Add(GetTurnActionPriority(playerSlot_afterTurn, enemySlot_afterTurn, turnSequence));
         }
-        if (selectedFlag == false)
-        {
-            List<int> keys = new List<int>(turnActionSet.Keys);
-            int randKey = keys[Random.Range(0, keys.Count)];
-            bestTurnSequence = turnActionSet[randKey];
-        }
+        List<(int priority, List<int> list)> sortedTurnActionList = prioritizedTurnActionList.OrderBy(x => x.priority).ToList();
+        bestTurnSequence = sortedTurnActionList[0].list;
         executeIdx.AddRange(bestTurnSequence);
         executeIdx.Sort();
 
         foreach (int idx in executeIdx)
         {
             executeActionList.Add(actionList[idx]);
+        }
+    }
+
+    (int priority, List<int> list) GetTurnActionPriority(RoulettePiece playerSlot, RoulettePiece enemySlot, List<int> turnSequence)
+    {
+        switch(enemy.name)
+        {
+            case "뱀파이어 폴":
+                if (playerSlot.isTriggered == true) return (0, turnSequence);
+                if (playerSlot.roulette.type == ERouletteType.Enemy_Special_1) return (1, turnSequence);
+                if (enemySlot.roulette.type == ERouletteType.Shield) return (2, turnSequence);
+                if (playerSlot.roulette.type == ERouletteType.Attack) return (3, turnSequence);
+                return (4, turnSequence);
+            case "망령 1":
+                if (playerSlot.roulette.type == ERouletteType.Attack || playerSlot.roulette.type == ERouletteType.Enemy_Special_1) return (0, turnSequence);
+                if (enemySlot.roulette.type == ERouletteType.Shield) return (1, turnSequence);
+                if (enemySlot.roulette.type == ERouletteType.Heal) return (2, turnSequence);
+                return (3, turnSequence);
+            default:
+                if (playerSlot.isTriggered == true) return (0, turnSequence);
+                if (playerSlot.roulette.type == ERouletteType.Enemy_Special_1) return (1, turnSequence);
+                if (playerSlot.roulette.type == ERouletteType.Attack) return (2, turnSequence);
+                if (enemySlot.roulette.type == ERouletteType.Shield) return (3, turnSequence);
+                if (enemySlot.isTriggered == true || enemySlot.roulette.type == ERouletteType.Attack) return (5, turnSequence);
+                return (4, turnSequence);
         }
     }
 

@@ -34,6 +34,11 @@ public class RelicUI : MonoBehaviour
             tooltip1.tooltipTitle = rItem1.relicName;
             tooltip1.tooltipTxt = rItem1.relicTxt;
         }
+        var relicHalf1 = relicMask1.GetComponent<RelicHalfUI>();
+        if(relicHalf1 != null)
+        {
+            relicHalf1.SetRelicHalf(relicItem1);
+        }
 
         if (rItem2 == null)
         {
@@ -43,12 +48,18 @@ public class RelicUI : MonoBehaviour
         }
         else
         {
+            relicItem2 = rItem2;
             if (relicImg2) relicImg2.sprite = rItem2.relicSprite;
             tooltip2 = relicMask2.GetComponent<Tooltip>();
             if (tooltip2)
             {
                 tooltip2.tooltipTitle = rItem2.relicName;
                 tooltip2.tooltipTxt = rItem2.relicTxt;
+            }
+            var relicHalf2 = relicMask2.GetComponent<RelicHalfUI>();
+            if(relicHalf2 != null)
+            {
+                relicHalf2.SetRelicHalf(relicItem2);
             }
         }
     }

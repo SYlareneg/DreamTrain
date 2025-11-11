@@ -45,6 +45,7 @@ public class UseableItem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 Debug.LogWarning("등록되지 않은 아이템 사용!");
                 break;
         }
+        TurnManager.OnUseableItemUse?.Invoke();
     }
 
     void DetectItemArea()
