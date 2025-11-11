@@ -228,14 +228,12 @@ public class EnemyAction : MonoBehaviour
 
     public static void SpecialAction1(int x)
     {
-        int totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Special_1, x);
-        EnemyManager.EnemySpecial1Activation?.Invoke(totalVal);
+        EnemyManager.EnemySpecial1Activation?.Invoke(x);
     }
 
     public static void SpecialAction2(int x)
     {
-        int totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Special_2, x);
-        EnemyManager.EnemySpecial2Activation?.Invoke(totalVal);
+        EnemyManager.EnemySpecial2Activation?.Invoke(x);
     }
 
     public static void EnchantAction(ERouletteType rType, int rVal)

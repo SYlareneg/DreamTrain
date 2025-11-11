@@ -150,7 +150,6 @@ public class RoulettePiece : MonoBehaviour
             Trigger(false);
             RouletteManager.Inst.isTriggerActivated = false;
             this.Setup(RouletteManager.Inst.triggerPiece_None);
-            TurnManager.Inst.playerTriggerCnt = 0;
             BuffManager.Inst.rouletteBuff_Trigger.Clear();
             return;
         }
