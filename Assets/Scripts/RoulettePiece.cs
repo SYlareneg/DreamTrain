@@ -158,31 +158,31 @@ public class RoulettePiece : MonoBehaviour
             case ERouletteType.Attack:
                 if (isEnemy)
                 {
-                    TurnManager.Inst.EnemyTakeDmg(totalVal);
+                    TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette);
                 }
                 else
                 {
-                    TurnManager.Inst.TakeDmg(totalVal);
+                    TurnManager.Inst.TakeDmg(totalVal, EDamageSource.Roulette);
                 }
                 break;
             case ERouletteType.Heal:
                 if (isEnemy)
                 {
-                    TurnManager.Inst.EnemyTakeDmg(-totalVal);
+                    TurnManager.Inst.EnemyTakeDmg(-totalVal, EDamageSource.Roulette);
                 }
                 else
                 {
-                    TurnManager.Inst.TakeDmg(-totalVal);
+                    TurnManager.Inst.TakeDmg(-totalVal, EDamageSource.Roulette);
                 }
                 break;
             case ERouletteType.Shield:
                 if (isEnemy)
                 {
-                    TurnManager.Inst.GetShield(true, totalVal);
+                    TurnManager.Inst.GetShield(true, totalVal, EDamageSource.Roulette);
                 }
                 else
                 {
-                    TurnManager.Inst.GetShield(false, totalVal);
+                    TurnManager.Inst.GetShield(false, totalVal, EDamageSource.Roulette);
                 }
                 break;
             case ERouletteType.Enemy_Special_1:

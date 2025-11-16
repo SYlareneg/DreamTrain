@@ -205,13 +205,13 @@ public class EnemyAction : MonoBehaviour
                     RouletteManager.Inst.Spin(totalVal > 0, Math.Abs(totalVal)); break;
                 case EEnemyActionType.Attack:
                     totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Attack, totalVal);
-                    TurnManager.Inst.TakeDmg(totalVal); break;
+                    TurnManager.Inst.TakeDmg(totalVal, EDamageSource.Enemy); break;
                 case EEnemyActionType.Heal:
                     totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Heal, totalVal);
-                    TurnManager.Inst.EnemyTakeDmg(-totalVal); break;
+                    TurnManager.Inst.EnemyTakeDmg(-totalVal, EDamageSource.Enemy); break;
                 case EEnemyActionType.Shield:
                     totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Shield, totalVal);
-                    TurnManager.Inst.GetShield(true, totalVal); break;
+                    TurnManager.Inst.GetShield(true, totalVal, EDamageSource.Enemy); break;
                 case EEnemyActionType.Enchant_Random_1:
                     for(int i = 0; i < totalVal; i++)
                     {
@@ -279,11 +279,11 @@ public class EnemyAction : MonoBehaviour
                 switch (rType)
                 {
                     case ERouletteType.Attack:
-                        TurnManager.Inst.TakeDmg(rVal); break;
+                        TurnManager.Inst.TakeDmg(rVal, EDamageSource.Enemy); break;
                     case ERouletteType.Heal:
-                        TurnManager.Inst.EnemyTakeDmg(-rVal); break;
+                        TurnManager.Inst.EnemyTakeDmg(-rVal, EDamageSource.Enemy); break;
                     case ERouletteType.Shield:
-                        TurnManager.Inst.GetShield(true, rVal); break;
+                        TurnManager.Inst.GetShield(true, rVal, EDamageSource.Enemy); break;
                     case ERouletteType.Enemy_Special_1:
                         if (EnemyManager.Inst.enemy.name == "마술사") break;
                         SpecialAction1(rVal); break;

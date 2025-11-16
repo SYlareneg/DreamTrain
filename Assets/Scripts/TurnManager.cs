@@ -5,6 +5,10 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
+public enum EDamageSource
+{
+    Enemy, Roulette, UseableItem, Buff, Relic, Card, Passive
+};
 public class TurnManager : MonoBehaviour
 {
     public static TurnManager Inst { get; private set; }
@@ -57,15 +61,15 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action OnUseCard;
     [HideInInspector] public static Action OnAddCard;
     [HideInInspector] public static Action OnDiscardCard;
-    [HideInInspector] public static Action<int> OnPlayerDamaged;
-    [HideInInspector] public static Action<int> OnPlayerHealed;
-    [HideInInspector] public static Action<int> OnPlayerShielded;
+    [HideInInspector] public static Action<int, EDamageSource> OnPlayerDamaged;
+    [HideInInspector] public static Action<int, EDamageSource> OnPlayerHealed;
+    [HideInInspector] public static Action<int, EDamageSource> OnPlayerShielded;
     [HideInInspector] public static Action OnPlayerTrigger;
     [HideInInspector] public static Action<int> OnPlayerTriggerIncrease;
     [HideInInspector] public static Action<int> OnPlayerTriggerDecrease;
-    [HideInInspector] public static Action<int> OnEnemyDamaged;
-    [HideInInspector] public static Action<int> OnEnemyHealed;
-    [HideInInspector] public static Action<int> OnEnemyShielded;
+    [HideInInspector] public static Action<int, EDamageSource> OnEnemyDamaged;
+    [HideInInspector] public static Action<int, EDamageSource> OnEnemyHealed;
+    [HideInInspector] public static Action<int, EDamageSource> OnEnemyShielded;
     [HideInInspector] public static Action OnEnemyTrigger;
     [HideInInspector] public static Action<int> OnEnemyTriggerIncrease;
     [HideInInspector] public static Action<int> OnEnemyTriggerDecrease;
@@ -204,29 +208,29 @@ public class TurnManager : MonoBehaviour
     }
 
     // 플레이어 체력 변동 (데미지 or 힐, 실드 고려). 플레이어 생존 여부 반환
-    public int TakeDmg(int damage)
+    public int TakeDmg(int damage, EDamageSource damageSource)
     {
         if (damage > 0)
         {
-            damage = BuffManager.GetTargetBuffedValue(BuffManager.Inst.playerBuff_Damage, damage);
+            damage = BuffManager.Inst.GetBuffedPlayerDamage(damageSource, damage);
             if (damage < 0)
             {
                 damage = 0;
                 return 0;
             }
             Utils.AllignActions(ref OnPlayerDamaged, typeof(ShowBuff), typeof(RelicManager));
-            OnPlayerDamaged?.Invoke(damage);
+            OnPlayerDamaged?.Invoke(damage, damageSource);
         }
         else
         {
-            damage = -BuffManager.GetTargetBuffedValue(BuffManager.Inst.playerBuff_Heal, -damage);
+            damage = -BuffManager.Inst.GetBuffedPlayerHeal(damageSource, -damage);
             if (damage > 0)
             {
                 damage = 0;
                 return 0;
             }
             Utils.AllignActions(ref OnPlayerHealed, typeof(ShowBuff), typeof(RelicManager));
-            OnPlayerHealed?.Invoke(-damage);
+            OnPlayerHealed?.Invoke(-damage, damageSource);
         }
         if (curHealth + shieldHealth > damage)
         {
@@ -261,29 +265,29 @@ public class TurnManager : MonoBehaviour
     }
 
     // 적 체력 변동 (데미지 or 힐, 실드 고려). 적 생존 여부 반환
-    public int EnemyTakeDmg(int damage)
+    public int EnemyTakeDmg(int damage, EDamageSource damageSource)
     {
         if (damage > 0)
         {
-            damage = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Damage, damage);
+            damage = BuffManager.Inst.GetBuffedEnemyDamage(damageSource, damage);
             if (damage < 0)
             {
                 damage = 0;
                 return 0;
             }
             Utils.AllignActions(ref OnEnemyDamaged, typeof(ShowBuff), typeof(RelicManager));
-            OnEnemyDamaged?.Invoke(damage);
+            OnEnemyDamaged?.Invoke(damage, damageSource);
         }
         else
         {
-            damage = -BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Heal, -damage);
+            damage = -BuffManager.Inst.GetBuffedPlayerHeal(damageSource, -damage);
             if (damage > 0)
             {
                 damage = 0;
                 return 0;
             }
             Utils.AllignActions(ref OnEnemyHealed, typeof(ShowBuff), typeof(RelicManager));
-            OnEnemyHealed?.Invoke(-damage);
+            OnEnemyHealed?.Invoke(-damage, damageSource);
         }
         if (enemyCurHealth + enemyShieldHealth > damage)
         {
@@ -328,23 +332,23 @@ public class TurnManager : MonoBehaviour
         IncreaseCost(turnCost - nowCost);
     }
 
-    public void GetShield(bool isEnemy, int value)
+    public void GetShield(bool isEnemy, int value, EDamageSource source)
     {
         if (isEnemy)
         {
-            value = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Shield, value);
+            value = BuffManager.Inst.GetBuffedEnemyShield(source, value);
             enemyShieldHealth += value;
             if (enemyShieldHealth < 0) enemyShieldHealth = 0;
             Utils.AllignActions(ref OnEnemyShielded, typeof(ShowBuff), typeof(RelicManager));
-            OnEnemyShielded?.Invoke(value);
+            OnEnemyShielded?.Invoke(value, source);
         }
         else
         {
-            value = BuffManager.GetTargetBuffedValue(BuffManager.Inst.playerBuff_Shield, value);
+            value = BuffManager.Inst.GetBuffedPlayerShield(source, value);
             shieldHealth += value;
             if (shieldHealth < 0) shieldHealth = 0;
             Utils.AllignActions(ref OnPlayerShielded, typeof(ShowBuff), typeof(RelicManager));
-            OnPlayerShielded?.Invoke(value);
+            OnPlayerShielded?.Invoke(value, source);
         }
     }
 

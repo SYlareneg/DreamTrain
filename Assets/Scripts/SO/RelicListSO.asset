@@ -347,3 +347,24 @@ MonoBehaviour:
       relicConditions: []
       relicEffects: []
       isEnhanced: 1
+  - relicOwner: 0
+    relicSprite: {fileID: 7660517227772562288, guid: 1e7f3e874d21fa74ebdb0c05791af4c5, type: 3}
+    relicName: "\uC21C\uC9C4\uBB34\uAD6C"
+    relicTxt: "\uC774\uBC88 \uD134\uC5D0 \uCE74\uB4DC\uB97C \uC0AC\uC6A9\uD558\uC9C0
+      \uC54A\uC558\uB2E4\uBA74, \uB8F0\uB81B\uC73C\uB85C \uC785\uD788\uB294 \uBAA8\uB4E0
+      \uD53C\uD574\uAC00 1.5\uBC30\uAC00 \uB429\uB2C8\uB2E4."
+    relicTimings: 
+    relicConditions: []
+    relicEffects: []
+    isEnhanced: 0
+    enhancedRelicItem:
+      relicOwner: 0
+      relicSprite: {fileID: 7660517227772562288, guid: 1e7f3e874d21fa74ebdb0c05791af4c5, type: 3}
+      relicName: "\uC21C\uC9C4\uBB34\uAD6C+"
+      relicTxt: "\uC774\uBC88 \uD134\uC5D0 \uCE74\uB4DC\uB97C \uC0AC\uC6A9\uD558\uC9C0
+        \uC54A\uC558\uB2E4\uBA74, \uB8F0\uB81B\uC73C\uB85C \uC785\uD788\uB294 \uBAA8\uB4E0
+        \uD53C\uD574\uAC00 <color=red>2</color>\uBC30\uAC00 \uB429\uB2C8\uB2E4."
+      relicTimings: 
+      relicConditions: []
+      relicEffects: []
+      isEnhanced: 1

@@ -77,7 +77,7 @@ public class RelicManager : MonoBehaviour
             case "갈증+":
                 int threshold = (int)(TurnManager.Inst.maxHealth * 0.5f);
                 if (relicItem.relicName == "갈증+") threshold = (int)(TurnManager.Inst.maxHealth * 0.75f);
-                Action<int> buffAction = (x) =>
+                Action<int, EDamageSource> buffAction = (x, s) =>
                 {
                     if (TurnManager.Inst.curHealth <= threshold)
                     {
@@ -99,6 +99,27 @@ public class RelicManager : MonoBehaviour
                     else TurnManager.Inst.IncreaseCost(2);
                 };
                 return;
+            case "순진무구":
+            case "순진무구+":
+                float damageMul = 1.5f;
+                if(relicItem.relicName == "순진무구+") damageMul = 2f;
+                bool cardUsed = false;
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    cardUsed = false;
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.playerBuff_Damage_Type[(int)EDamageSource.Roulette], 0, damageMul, -1);
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Damage_Type[(int)EDamageSource.Roulette], 0, damageMul, -1);
+                };
+                TurnManager.OnUseCard += () =>
+                {
+                    if(cardUsed == false)
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.playerBuff_Damage_Type[(int)EDamageSource.Roulette], 0, 1f / damageMul, -1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Damage_Type[(int)EDamageSource.Roulette], 0, 1f / damageMul, -1);
+                        cardUsed = true;
+                    }
+                };
+                break;
             case "송곳니":
             case "송곳니+":
                 int addVal = 3;
@@ -121,7 +142,7 @@ public class RelicManager : MonoBehaviour
                 if (relicItem.relicName == "작은 날개+") mulVal = 4;
                 TurnManager.OnPlayerTurnEnd += () =>
                 {
-                    TurnManager.Inst.GetShield(false, TurnManager.Inst.nowCost * mulVal);
+                    TurnManager.Inst.GetShield(false, TurnManager.Inst.nowCost * mulVal, EDamageSource.Relic);
                 };
                 return;
             case "평화주의":
@@ -133,7 +154,7 @@ public class RelicManager : MonoBehaviour
                 {
                     chkEnemyDamaged = false;
                 };
-                TurnManager.OnEnemyDamaged += (x) =>
+                TurnManager.OnEnemyDamaged += (x, s) =>
                 {
                     chkEnemyDamaged = true;
                 };
@@ -141,7 +162,7 @@ public class RelicManager : MonoBehaviour
                 {
                     if (chkEnemyDamaged == false)
                     {
-                        TurnManager.Inst.GetShield(false, shieldVal);
+                        TurnManager.Inst.GetShield(false, shieldVal, EDamageSource.Relic);
                     }
                 };
                 return;
@@ -156,9 +177,9 @@ public class RelicManager : MonoBehaviour
                 case ERelicActivateEffectType.Player_Shield:
                     relicAction += () => { TurnManager.Inst.shieldHealth += localEffect.value; }; break;
                 case ERelicActivateEffectType.Player_Heal:
-                    relicAction += () => { TurnManager.Inst.TakeDmg(-localEffect.value); }; break;
+                    relicAction += () => { TurnManager.Inst.TakeDmg(-localEffect.value, EDamageSource.Relic); }; break;
                 case ERelicActivateEffectType.Player_Damage:
-                    relicAction += () => { TurnManager.Inst.TakeDmg(localEffect.value); }; break;
+                    relicAction += () => { TurnManager.Inst.TakeDmg(localEffect.value, EDamageSource.Relic); }; break;
                 case ERelicActivateEffectType.Player_Cost_Increase:
                     relicAction += () => { TurnManager.Inst.IncreaseCost(localEffect.value); }; break;
                 case ERelicActivateEffectType.Player_Cost_Decrease:
@@ -262,11 +283,11 @@ public class RelicManager : MonoBehaviour
                 case ERelicActivateEffectType.Enemy_Spin_Ignore:
                     relicAction += () => { EnemyManager.Inst.RemoveAllSpin(); }; break;
                 case ERelicActivateEffectType.Enemy_Damage:
-                    relicAction += () => { TurnManager.Inst.EnemyTakeDmg(localEffect.value); }; break;
+                    relicAction += () => { TurnManager.Inst.EnemyTakeDmg(localEffect.value, EDamageSource.Relic); }; break;
                 case ERelicActivateEffectType.Enemy_Shield:
-                    relicAction += () => { TurnManager.Inst.GetShield(true, localEffect.value); }; break;
+                    relicAction += () => { TurnManager.Inst.GetShield(true, localEffect.value, EDamageSource.Relic); }; break;
                 case ERelicActivateEffectType.Enemy_Heal:
-                    relicAction += () => { TurnManager.Inst.EnemyTakeDmg(-localEffect.value); }; break;
+                    relicAction += () => { TurnManager.Inst.EnemyTakeDmg(-localEffect.value, EDamageSource.Relic); }; break;
                 case ERelicActivateEffectType.Enemy_Trigger_Increase:
                     relicAction += () => { TurnManager.Inst.TriggerEnemyPassive(localEffect.value); }; break;
                 case ERelicActivateEffectType.Enemy_Trigger_Decrease:
@@ -649,9 +670,9 @@ public class RelicManager : MonoBehaviour
                 case ERelicActivateTimingType.Card_Draw:
                     TurnManager.OnAddCard += relicActivation; break;
                 case ERelicActivateTimingType.Enemy_Damage:
-                    TurnManager.OnEnemyDamaged += (x) => relicActivation?.Invoke(); break;
+                    TurnManager.OnEnemyDamaged += (x, s) => relicActivation?.Invoke(); break;
                 case ERelicActivateTimingType.Enemy_Heal:
-                    TurnManager.OnEnemyHealed += (x) => relicActivation?.Invoke(); break;
+                    TurnManager.OnEnemyHealed += (x, s) => relicActivation?.Invoke(); break;
                 case ERelicActivateTimingType.Enemy_Trigger:
                     TurnManager.OnEnemyTrigger += relicActivation; break;
                 case ERelicActivateTimingType.Enemy_Trigger_Increase:
@@ -659,13 +680,13 @@ public class RelicManager : MonoBehaviour
                 case ERelicActivateTimingType.Enemy_Trigger_Decrease:
                     TurnManager.OnEnemyTriggerDecrease += (x) => relicActivation?.Invoke(); break;
                 case ERelicActivateTimingType.Enemy_Shield:
-                    TurnManager.OnEnemyShielded += (x) => relicActivation(); break;
+                    TurnManager.OnEnemyShielded += (x, s) => relicActivation(); break;
                 case ERelicActivateTimingType.Enemy_Action:
                     TurnManager.OnEnemyAction += relicActivation; break;
                 case ERelicActivateTimingType.Player_Damage:
-                    TurnManager.OnPlayerDamaged += (x) => relicActivation(); break;
+                    TurnManager.OnPlayerDamaged += (x, s) => relicActivation(); break;
                 case ERelicActivateTimingType.Player_Heal:
-                    TurnManager.OnPlayerHealed += (x) => relicActivation(); break;
+                    TurnManager.OnPlayerHealed += (x, s) => relicActivation(); break;
                 case ERelicActivateTimingType.Player_Trigger:
                     TurnManager.OnPlayerTrigger += relicActivation; break;
                 case ERelicActivateTimingType.Player_Trigger_Increase:
@@ -673,7 +694,7 @@ public class RelicManager : MonoBehaviour
                 case ERelicActivateTimingType.Player_Trigger_Decrease:
                     TurnManager.OnPlayerTriggerDecrease += (x) => relicActivation?.Invoke(); break;
                 case ERelicActivateTimingType.Player_Shield:
-                    TurnManager.OnPlayerShielded += (x) => relicActivation(); break;
+                    TurnManager.OnPlayerShielded += (x, s) => relicActivation(); break;
                 case ERelicActivateTimingType.Cost_Change:
                     TurnManager.OnCostChange += (x) => relicActivation(); break;
                 default:

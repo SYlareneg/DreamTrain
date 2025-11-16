@@ -75,6 +75,26 @@ public class Utils
 		return targetAction;
 	}
 
+	public static Action<T1, T2> AllignActions<T1, T2>(ref Action<T1, T2> targetAction, Type pHighClass, Type pLowClass)
+	{
+		if (targetAction == null) return null;
+		var list = targetAction.GetInvocationList().ToList();
+		int pHighIndex = list.FindIndex(d => d.Target != null && GetOwningType(d) == pHighClass);
+		int pLowIndex = list.FindIndex(d => d.Target != null && GetOwningType(d) == pLowClass);
+
+		if (pHighIndex < 0 || pLowIndex < 0 || pHighIndex < pLowIndex) return targetAction;
+
+		var pHighAction = list[pHighIndex];
+		list.RemoveAt(pHighIndex);
+		list.Insert(pLowIndex, pHighAction);
+		targetAction = null;
+		foreach (var a in list)
+		{
+			targetAction += (Action<T1, T2>)a;
+		}
+		return targetAction;
+	}
+
 	public static Action SwitchActions(ref Action targetAction, Type pHighClass, Type pLowClass)
 	{
 		if (targetAction == null) return null;

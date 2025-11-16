@@ -135,14 +135,14 @@ public class EnemyManager : MonoBehaviour
                     int trueDamage = 0;
                     if (isEnemy)
                     {
-                        trueDamage = TurnManager.Inst.EnemyTakeDmg(value);
+                        trueDamage = TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette);
                     }
                     else
                     {
-                        trueDamage = TurnManager.Inst.TakeDmg(value);
+                        trueDamage = TurnManager.Inst.TakeDmg(value, EDamageSource.Roulette);
                     }
                     int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_EnemySpecial1[1], trueDamage);
-                    TurnManager.Inst.EnemyTakeDmg(-totalVal_Heal);
+                    TurnManager.Inst.EnemyTakeDmg(-totalVal_Heal, EDamageSource.Roulette);
                     if (totalVal_Heal > 0)
                     {
                         TurnManager.Inst.TriggerEnemyPassive(1);
@@ -150,9 +150,9 @@ public class EnemyManager : MonoBehaviour
                 };
                 EnemySpecial1Activation = (value) =>
                 {
-                    int trueDamage = TurnManager.Inst.TakeDmg(value);
+                    int trueDamage = TurnManager.Inst.TakeDmg(value, EDamageSource.Enemy);
                     int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_EnemySpecial1[1], trueDamage);
-                    TurnManager.Inst.EnemyTakeDmg(-totalVal_Heal);
+                    TurnManager.Inst.EnemyTakeDmg(-totalVal_Heal, EDamageSource.Enemy);
                     if (totalVal_Heal > 0)
                     {
                         TurnManager.Inst.TriggerEnemyPassive(1);
@@ -220,7 +220,7 @@ public class EnemyManager : MonoBehaviour
                     }
                     else
                     {
-                        TurnManager.Inst.TakeDmg(magicHat * value);
+                        TurnManager.Inst.TakeDmg(magicHat * value, EDamageSource.Enemy);
                     }
                 };
                 EnemySpecial2Activation = (value) =>
@@ -268,18 +268,18 @@ public class EnemyManager : MonoBehaviour
                 {
                     if (isEnemy)
                     {
-                        TurnManager.Inst.EnemyTakeDmg(value);
+                        TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette);
                     }
                     else
                     {
-                        TurnManager.Inst.TakeDmg(value);
+                        TurnManager.Inst.TakeDmg(value, EDamageSource.Roulette);
                     }
                 };
                 rItem = new RouletteItem();
                 rItem.type = ERouletteType.None;
                 rItem.value = 0;
                 RouletteManager.Inst.enemyTriggerPiece = rItem;
-                TurnManager.OnEnemyDamaged += (x) =>
+                TurnManager.OnEnemyDamaged += (x, s) =>
                 {
                     TurnManager.Inst.TriggerEnemyPassive(1);
                 };
@@ -287,7 +287,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     if (RouletteManager.Inst.isEnemyTrigger())
                     {
-                        TurnManager.Inst.EnemyTakeDmg(-7);
+                        TurnManager.Inst.EnemyTakeDmg(-7, EDamageSource.Enemy);
                     }
                 };
                 TurnManager.OnPlayerTurnStart += () =>
@@ -307,9 +307,9 @@ public class EnemyManager : MonoBehaviour
                 EnemySpecial1Activation = (value) =>
                 {
                     Debug.Log(value);
-                    int trueDamage = TurnManager.Inst.TakeDmg(value);
+                    int trueDamage = TurnManager.Inst.TakeDmg(value, EDamageSource.Enemy);
                     int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_EnemySpecial1[1], trueDamage);
-                    TurnManager.Inst.EnemyTakeDmg(-totalVal_Heal);
+                    TurnManager.Inst.EnemyTakeDmg(-totalVal_Heal, EDamageSource.Enemy);
                     if (totalVal_Heal > 0)
                     {
                         TurnManager.Inst.TriggerEnemyPassive(1);
@@ -330,8 +330,8 @@ public class EnemyManager : MonoBehaviour
                 bool isDouble = false;
                 RouletteManager.EnemyTriggerActivation = (isEnemy, totalVal) =>
                 {
-                    TurnManager.Inst.TakeDmg(totalVal);
-                    TurnManager.Inst.EnemyTakeDmg(-30);
+                    TurnManager.Inst.TakeDmg(totalVal, EDamageSource.Roulette);
+                    TurnManager.Inst.EnemyTakeDmg(-30, EDamageSource.Roulette);
                     BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special_1, 0, 0.5f, -1);
                     isDouble = false;
                 };
@@ -355,9 +355,12 @@ public class EnemyManager : MonoBehaviour
                     if (wasDamaged) TurnManager.Inst.TriggerEnemyPassive(3);
                     wasDamaged = false;
                 };
-                TurnManager.OnEnemyDamaged += (x) =>
+                TurnManager.OnEnemyDamaged += (x, s) =>
                 {
-                    wasDamaged = true;
+                    if(s == EDamageSource.Roulette)
+                    {
+                        wasDamaged = true;
+                    }
                 };
                 break;
         }

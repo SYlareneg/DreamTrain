@@ -25,10 +25,10 @@ public class UseableItem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         switch (uItem.name)
         {
             case "화살":
-                TurnManager.Inst.EnemyTakeDmg(10);
+                TurnManager.Inst.EnemyTakeDmg(10, EDamageSource.UseableItem);
                 break;
             case "나무 방패":
-                TurnManager.Inst.GetShield(false, 10);
+                TurnManager.Inst.GetShield(false, 10, EDamageSource.UseableItem);
                 break;
             case "레테의 눈물":
                 for (int i = BuffManager.Inst.playerShowBuffs.Count - 1; i >= 0; i--)
@@ -38,7 +38,7 @@ public class UseableItem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 GameManager.Inst.SetPlayerBuffUI();
                 break;
             case "오염된 주사바늘":
-                TurnManager.Inst.TakeDmg(-12);
+                TurnManager.Inst.TakeDmg(-12, EDamageSource.UseableItem);
                 BuffManager.Inst.AddShowBuff("취약", EBuffAffectType.Player, 2);
                 break;
             default:

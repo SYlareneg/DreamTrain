@@ -44,19 +44,19 @@ public class PassiveManager : MonoBehaviour
                     bool isEnhanced = false;
                     if (isEnemy)
                     {
-                        trueDamage = TurnManager.Inst.EnemyTakeDmg(value);
+                        trueDamage = TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette);
                         isEnhanced = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].isEnhanced;
                     }
                     else
                     {
-                        trueDamage = TurnManager.Inst.TakeDmg(value);
+                        trueDamage = TurnManager.Inst.TakeDmg(value, EDamageSource.Roulette);
                         isEnhanced = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].isEnhanced;
                     }
                     int healVal = 0;
                     if (isEnhanced) healVal = trueDamage / 2;
                     else healVal = trueDamage / 3;
                     int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_PlayerSpecial1[1], healVal);
-                    TurnManager.Inst.TakeDmg(-totalVal_Heal);
+                    TurnManager.Inst.TakeDmg(-totalVal_Heal, EDamageSource.Roulette);
                     TurnManager.Inst.TriggerPlayerPassive(totalVal_Heal);
                 };
                 TurnManager.OnRouletteActivate += () =>
@@ -69,7 +69,7 @@ public class PassiveManager : MonoBehaviour
                         int heal = 0;
                         if (personaName == "물보다 진한 피") heal = damage / 3;
                         else if (personaName == "물보다 진한 피+") heal = damage / 2;
-                        TurnManager.Inst.TakeDmg(-heal);
+                        TurnManager.Inst.TakeDmg(-heal, EDamageSource.Passive);
                         TurnManager.Inst.TriggerPlayerPassive(heal);
                     }
                     if (playerPiece.roulette.type == ERouletteType.Attack)
@@ -79,7 +79,7 @@ public class PassiveManager : MonoBehaviour
                         if (personaName == "물보다 진한 피") heal = damage / 3;
                         else if (personaName == "물보다 진한 피+") heal = damage / 2;
                         Debug.Log(heal);
-                        TurnManager.Inst.TakeDmg(-heal);
+                        TurnManager.Inst.TakeDmg(-heal, EDamageSource.Passive);
                         TurnManager.Inst.TriggerPlayerPassive(heal);
                     }
                 };
@@ -235,15 +235,15 @@ public class PassiveManager : MonoBehaviour
                 {
                     if (isEnemy)
                     {
-                        int trueDamage = TurnManager.Inst.EnemyTakeDmg(value);
+                        int trueDamage = TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette);
                         int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_PlayerSpecial2[1], trueDamage);
-                        TurnManager.Inst.EnemyTakeDmg(-totalVal_Heal);
+                        TurnManager.Inst.EnemyTakeDmg(-totalVal_Heal, EDamageSource.Roulette);
                     }
                     else
                     {
-                        int trueDamage = TurnManager.Inst.TakeDmg(value);
+                        int trueDamage = TurnManager.Inst.TakeDmg(value, EDamageSource.Roulette);
                         int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_PlayerSpecial2[1], trueDamage);
-                        TurnManager.Inst.EnemyTakeDmg(-totalVal_Heal);
+                        TurnManager.Inst.EnemyTakeDmg(-totalVal_Heal, EDamageSource.Roulette);
                     }
                 };
                 rItem.type = ERouletteType.Attack;
@@ -253,11 +253,11 @@ public class PassiveManager : MonoBehaviour
                 {
                     if (isEnemy)
                     {
-                        TurnManager.Inst.EnemyTakeDmg(totalVal);
+                        TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette);
                     }
                     else
                     {
-                        TurnManager.Inst.TakeDmg(totalVal);
+                        TurnManager.Inst.TakeDmg(totalVal, EDamageSource.Roulette);
                     }
                 };
                 TurnManager.OnPlayerTrigger += () =>
@@ -288,11 +288,11 @@ public class PassiveManager : MonoBehaviour
                 {
                     if (isEnemy)
                     {
-                        TurnManager.Inst.EnemyTakeDmg(totalVal);
+                        TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette);
                     }
                     else
                     {
-                        TurnManager.Inst.TakeDmg(totalVal);
+                        TurnManager.Inst.TakeDmg(totalVal, EDamageSource.Roulette);
                     }
                 };
                 int counter = 0;
@@ -393,11 +393,11 @@ public class PassiveManager : MonoBehaviour
                     {
                         if (isEnemy)
                         {
-                            TurnManager.Inst.EnemyTakeDmg(totalVal);
+                            TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette);
                         }
                         else
                         {
-                            TurnManager.Inst.TakeDmg(totalVal);
+                            TurnManager.Inst.TakeDmg(totalVal, EDamageSource.Roulette);
                         }
                     }
                 };
