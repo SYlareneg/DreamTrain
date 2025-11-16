@@ -47,10 +47,12 @@ public class EnemyManager : MonoBehaviour
     public Sprite EnemySpecialRoulette1Sprite;
     public string EnemySpecialRoulette1Title;
     public string EnemySpecialRoulette1Text;
+    public int EnemySpecialRoulette1BaseVal;
     [Header("적 특수룰렛 2")]
     public Sprite EnemySpecialRoulette2Sprite;
     public string EnemySpecialRoulette2Title;
     public string EnemySpecialRoulette2Text;
+    public int EnemySpecialRoulette2BaseVal;
     [Header("적 특수행동 1")]
     public Sprite EnemySpecial1Sprite;
     public string EnemySpecial1Title;
@@ -127,6 +129,7 @@ public class EnemyManager : MonoBehaviour
                     BuffManager.Inst.rouletteBuff_EnemySpecial1.Add(new List<Buff>());
                     BuffManager.Inst.rouletteBuff_EnemySpecial1.Add(new List<Buff>());
                 };
+                EnemySpecialRoulette1BaseVal = 5;
                 EnemySpecialRoulette1Activation = (rPiece, isEnemy, value) =>
                 {
                     int trueDamage = 0;
@@ -186,6 +189,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     BuffManager.Inst.rouletteBuff_EnemySpecial1.Add(new List<Buff>());
                 };
+                EnemySpecialRoulette1BaseVal = 1;
                 EnemySpecialRoulette1Activation = (rPiece, isEnemy, value) =>
                 {
                     if (!isEnemy)
@@ -203,8 +207,7 @@ public class EnemyManager : MonoBehaviour
                     {
                         if (RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.Enemy_Special_1)
                         {
-                            int val = BuffManager.Inst.GetBuffedRouletteValue(RouletteManager.Inst.roulettePieces[i]);
-                            magicHat += val;
+                            magicHat++;
                             RouletteItem rItem = new RouletteItem();
                             rItem.type = ERouletteType.None;
                             rItem.value = 0;
@@ -227,8 +230,7 @@ public class EnemyManager : MonoBehaviour
                     {
                         if (RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.Enemy_Special_1)
                         {
-                            int val = BuffManager.Inst.GetBuffedRouletteValue(RouletteManager.Inst.roulettePieces[i]);
-                            magicHat += val;
+                            magicHat++;
                             RouletteItem rItem = new RouletteItem();
                             rItem.type = ERouletteType.None;
                             rItem.value = 0;

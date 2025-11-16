@@ -213,9 +213,17 @@ public class EnemyAction : MonoBehaviour
                     totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Shield, totalVal);
                     TurnManager.Inst.GetShield(true, totalVal); break;
                 case EEnemyActionType.Enchant_Random_1:
-                    EnchantAction(ERouletteType.Enemy_Special_1, totalVal); break;
+                    for(int i = 0; i < totalVal; i++)
+                    {
+                        EnchantAction(ERouletteType.Enemy_Special_1, EnemyManager.Inst.EnemySpecialRoulette1BaseVal);
+                    }
+                    break;
                 case EEnemyActionType.Enchant_Random_2:
-                    EnchantAction(ERouletteType.Enemy_Special_2, totalVal); break;
+                    for(int i = 0; i < totalVal; i++)
+                    {
+                        EnchantAction(ERouletteType.Enemy_Special_2, EnemyManager.Inst.EnemySpecialRoulette2BaseVal);
+                    }
+                    break;
                 case EEnemyActionType.Special_Activate_1:
                     totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Special_1, totalVal);
                     SpecialAction1(totalVal); break;
