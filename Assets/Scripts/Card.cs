@@ -55,23 +55,53 @@ public class Card : MonoBehaviour
         nameTMP.text = this.item.name;
         ShowBuffedCost();
 
+        string showText = this.item.text;
+        int index = 0;
         if (this.item.cardValues.Count == 0)
         {
-            int index = 0;
-            string itemText = Regex.Replace(this.item.text, @"\d+", match =>
+            string itemText = Regex.Replace(this.item.text, @"(\d+)<(피해|수비|회복|특수)>", match =>
             {
-                this.item.cardValues.Add(int.Parse(match.Value));
-                string replacement = $"{{cardValues[{index}]}}";
+                ECardValueType tempType = ECardValueType.Default;
+                switch(match.Groups[2].Value)
+                {
+                    case "피해":
+                        tempType = ECardValueType.Damage; break;
+                    case "수비":
+                        tempType = ECardValueType.Shield; break;
+                    case "회복":
+                        tempType = ECardValueType.Heal; break;
+                    case "특수":
+                        tempType = ECardValueType.Special; break;
+                }
+                this.item.cardValues.Add((int.Parse(match.Groups[1].Value), tempType));
                 index++;
-                return replacement;
+                return match.Value;
             });
-            this.item.text = $"{itemText}";
+            showText = $"{itemText}";
         }
-        string showText = this.item.text;
-        for (int i = 0; i < this.item.cardValues.Count; i++)
+        index = 0;
+        showText = Regex.Replace(showText, @"(\d+)<(피해|수비|회복|특수)>", match => 
         {
-            showText = Regex.Replace(showText, @"\{cardValues\[" + i + @"\]\}", this.item.cardValues[i].ToString());
-        }
+            int buffedVal = this.item.cardValues[index].val;
+            switch (this.item.cardValues[index].valType)
+            {
+                case ECardValueType.Damage:
+                    buffedVal = BuffManager.Inst.GetBuffedEnemyDamage(EDamageSource.Card, buffedVal);
+                    break;
+                case ECardValueType.Heal:
+                    buffedVal = BuffManager.Inst.GetBuffedPlayerHeal(EDamageSource.Card, buffedVal);
+                    break;
+                case ECardValueType.Shield:
+                    buffedVal = BuffManager.Inst.GetBuffedPlayerShield(EDamageSource.Card, buffedVal);
+                    break;
+            }
+            string returnString = "";
+            if(buffedVal > this.item.cardValues[index].val) returnString = "<color=green>" + buffedVal.ToString() + "</color>";
+            else if(buffedVal < this.item.cardValues[index].val) returnString = "<color=red>" + buffedVal.ToString() + "</color>";
+            else returnString = "<color=black>" + buffedVal.ToString() + "</color>";
+            index++;
+            return returnString;
+        });
         textTMP.text = $"{showText}";
     }
 

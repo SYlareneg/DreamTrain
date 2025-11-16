@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum CardType { Turn, Enchant, Effect };
+public enum ECardValueType { Damage, Heal, Shield, Special, Default };
 
 [System.Serializable]
 public class Item
@@ -17,7 +18,7 @@ public class Item
     [Tooltip("잔류")] public bool isRemain;
     [Tooltip("카드 이미지")] public Sprite sprite;
     [Tooltip("카드 설명")] public string text;
-    [Tooltip("카드 계수")] public List<int> cardValues;
+    [Tooltip("카드 계수")] public List<(int val, ECardValueType valType)> cardValues = new List<(int val, ECardValueType valType)>();
     [Tooltip("덱 내 카드 장수")] public int num;
     [Tooltip("")] public bool isEnhanced;
 

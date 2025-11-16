@@ -74,7 +74,6 @@ public class DeckBuildManager : MonoBehaviour
 
     public void DeckListInit()
     {
-        Debug.Log("Deck list init");
         CardManager.Inst.InitializeItemBuffer();
         foreach (CardUI_DeckBuild deckCard in deckList)
         {

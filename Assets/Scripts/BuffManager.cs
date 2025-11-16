@@ -833,12 +833,16 @@ public class BuffManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void InitAllBuffs()
     {
         InitRouletteBuff();
         InitPlayerBuff();
         InitEnemyBuff();
         InitCardBuff();
+    }
+
+    private void Start()
+    {
         TurnManager.OnPlayerTurnStart = ReduceAllBuffCounters + TurnManager.OnPlayerTurnStart;
     }
 

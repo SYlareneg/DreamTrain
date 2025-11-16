@@ -125,6 +125,7 @@ public class TurnManager : MonoBehaviour
         RouletteManager.Inst.InitRoulette();
         CardManager.Inst.InitializeItemBuffer();
         CardManager.Inst.ShuffleDeck();
+        BuffManager.Inst.InitAllBuffs();
     }
 
     // 게임 시작 전 초기화
@@ -148,6 +149,7 @@ public class TurnManager : MonoBehaviour
         //BuffManager.Inst.AddShowBuff("과민함", EBuffAffectType.Enemy, 1);
         //BuffManager.Inst.AddShowBuff("불쾌함", EBuffAffectType.Player, 1);
         //BuffManager.Inst.AddShowBuff("강화", EBuffAffectType.Roulette, 1);
+        //BuffManager.AddBuffToTarget(BuffManager.Inst.playerBuff_Shield_Type[(int)EDamageSource.Card], 3, 1, -1);
         turnDraw = drawCardCount;
         // startCardCount만큼 카드를 뽑고, StartPlayerTurn 호출
         StartCoroutine(Draw(startCardCount, StartPlayerTurn));
