@@ -74,6 +74,7 @@ public class DeckBuildManager : MonoBehaviour
 
     public void DeckListInit()
     {
+        Debug.Log("Deck list init");
         CardManager.Inst.InitializeItemBuffer();
         foreach (CardUI_DeckBuild deckCard in deckList)
         {
@@ -146,25 +147,21 @@ public class DeckBuildManager : MonoBehaviour
             {
                 GameObject cardObject = null;
                 CardUI_Draggable card = null;
-                if (item.num > 0)
-                {
-                    cardObject = Instantiate(draggableCardUIPrefab, cardListScroll.transform.position, Utils.QI);
-                    cardObject.transform.SetParent(cardListScroll.transform);
-                    card = cardObject.GetComponent<CardUI_Draggable>();
-                    card.Setup((Item)item);
-                    card.raycaster = canvas.GetComponent<GraphicRaycaster>();
-                    availableCardList.Add(card);
-                }
+                cardObject = Instantiate(draggableCardUIPrefab, cardListScroll.transform.position, Utils.QI);
+                cardObject.transform.SetParent(cardListScroll.transform);
+                card = cardObject.GetComponent<CardUI_Draggable>();
+                card.Setup((Item)item);
+                card.item.num = 2;
+                card.raycaster = canvas.GetComponent<GraphicRaycaster>();
+                availableCardList.Add(card);
 
-                if (item.enhancedItem.num > 0)
-                {
-                    cardObject = Instantiate(draggableCardUIPrefab, cardListScroll.transform.position, Utils.QI);
-                    cardObject.transform.SetParent(cardListScroll.transform);
-                    card = cardObject.GetComponent<CardUI_Draggable>();
-                    card.Setup(item.enhancedItem);
-                    card.raycaster = canvas.GetComponent<GraphicRaycaster>();
-                    availableCardList.Add(card);
-                }
+                cardObject = Instantiate(draggableCardUIPrefab, cardListScroll.transform.position, Utils.QI);
+                cardObject.transform.SetParent(cardListScroll.transform);
+                card = cardObject.GetComponent<CardUI_Draggable>();
+                card.Setup(item.enhancedItem);
+                card.item.num = 2;
+                card.raycaster = canvas.GetComponent<GraphicRaycaster>();
+                availableCardList.Add(card);
             }
         }
     }

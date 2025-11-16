@@ -182,7 +182,7 @@ public class GameManager : MonoBehaviour
         if (TurnManager.Inst.characterSO.shadowPiece != null)
         {
             Tooltip tooltip = shadowImg.GetComponentInParent<Tooltip>();
-            if (TurnManager.Inst.characterSO.personaPiece.shadow.isEnhanced)
+            if (TurnManager.Inst.characterSO.shadowPiece.shadow.isEnhanced)
             {
                 shadowImg.sprite = TurnManager.Inst.characterSO.shadowPiece.shadow.enhancedPassive.sprite;
                 if (tooltip)

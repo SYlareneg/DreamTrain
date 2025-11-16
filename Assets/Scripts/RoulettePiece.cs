@@ -7,7 +7,7 @@ using System;
 
 public class RoulettePiece : MonoBehaviour
 {
-    [SerializeField] SpriteRenderer roulettePiece;
+    public SpriteRenderer roulettePiece;
     [SerializeField] TMP_Text rouletteValueTMP;
     [SerializeField] Sprite[] rouletteTypeSprites;
     

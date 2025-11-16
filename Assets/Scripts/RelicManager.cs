@@ -641,7 +641,7 @@ public class RelicManager : MonoBehaviour
                 case ERelicActivateTimingType.Roulette_Trigger:
                     TurnManager.OnRouletteTrigger += relicActivation; break;
                 case ERelicActivateTimingType.Roulette_Enchant:
-                    TurnManager.OnRouletteEnchant += relicActivation; break;
+                    TurnManager.OnRouletteEnchant += (x) => relicActivation?.Invoke(); break;
                 case ERelicActivateTimingType.Roulette_Activate:
                     TurnManager.OnRouletteActivate += relicActivation; break;
                 case ERelicActivateTimingType.Card_Use:

@@ -171,12 +171,13 @@ public class RouletteManager : MonoBehaviour
         {
             return;
         }
+        TurnManager.BeforeRouletteEnchant?.Invoke(index, rType);
         RouletteItem rItem = new RouletteItem();
         rItem.type = rType;
         rItem.value = rValue;
         roulettePieces[index].Setup(rItem);
         Utils.AllignActions(ref TurnManager.OnRouletteEnchant, typeof(ShowBuff), typeof(RelicManager));
-        TurnManager.OnRouletteEnchant?.Invoke();
+        TurnManager.OnRouletteEnchant?.Invoke(index);
     }
 
     public int CountRouletteType(ERouletteType rType)

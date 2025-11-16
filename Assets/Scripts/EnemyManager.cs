@@ -456,12 +456,10 @@ public class EnemyManager : MonoBehaviour
                             phaseNum = 2;
                             TurnManager.OnRouletteActivate -= changePhase;
                             TurnManager.OnRouletteTrigger -= changePhase;
-                            TurnManager.OnRouletteEnchant -= changePhase;
                         }
                     };
                     TurnManager.OnRouletteActivate += changePhase;
                     TurnManager.OnRouletteTrigger += changePhase;
-                    TurnManager.OnRouletteEnchant += changePhase;
                 }
                 break;
             case "망령 1":

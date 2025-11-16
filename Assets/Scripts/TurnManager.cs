@@ -73,7 +73,8 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action<int> OnRouletteSpin;
     [HideInInspector] public static Action<int> AfterRouletteSpin;
     [HideInInspector] public static Action OnRouletteTrigger;
-    [HideInInspector] public static Action OnRouletteEnchant;
+    [HideInInspector] public static Action<int, ERouletteType> BeforeRouletteEnchant;
+    [HideInInspector] public static Action<int> OnRouletteEnchant;
     [HideInInspector] public static Action BeforeRouletteActivate;
     [HideInInspector] public static Action OnRouletteActivate;
     [HideInInspector] public static Action<int> OnCostChange;

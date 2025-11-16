@@ -163,7 +163,7 @@ public class Card : MonoBehaviour
             case "흡혈 부여":
             case "흡혈 부여+":
                 isCardUsed = RouletteManager.Inst.EnchantRoulette(true, ERouletteType.Player_Special_1, 6);
-                if (item.name == "흡혈 부여+")
+                if (item.name == "흡혈 부여+" && isCardUsed)
                 {
                     RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].isEnhanced = true;
                     RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].tooltip.tooltipTxt = "값의 데미지를 주고 입힌 피해의 <color=red>50%</color>만큼 체력을 회복합니다. 뱀파이어 페르소나를 장착하고 있다면, 회복한 체력만큼 트리거 게이지를 얻습니다.";
@@ -218,7 +218,7 @@ public class Card : MonoBehaviour
             case "핏빛 날개+":
                 int bloodwing_spinnnum = 4;
                 if(item.name == "핏빛 날개+") bloodwing_spinnnum = 5;
-                for (int i = 0; i < bloodwing_spinnnum; i++)
+                for (int i = 0; i <= bloodwing_spinnnum; i++)
                 {
                     int tempIdx = (RouletteManager.Inst.enemyLookat + i) % RouletteManager.rouletteNum;
                     if (RouletteManager.Inst.roulettePieces[tempIdx].roulette.type == ERouletteType.Player_Special_2)
@@ -232,7 +232,7 @@ public class Card : MonoBehaviour
             case "마술 상자+":
                 ERouletteType magicBox = ERouletteType.Player_Special_1;
                 if (TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum != this.item.dreamPieceNum) magicBox = ERouletteType.Player_Special_2;
-                if (item.name == "핏빛 날개") isCardUsed = RouletteManager.Inst.EnchantRoulette(false, magicBox, 12);
+                if (item.name == "마술 상자") isCardUsed = RouletteManager.Inst.EnchantRoulette(false, magicBox, 12);
                 else isCardUsed = RouletteManager.Inst.EnchantRoulette(false, magicBox, 15);
                 break;
             case "마술-비둘기":
@@ -320,6 +320,131 @@ public class Card : MonoBehaviour
                     TurnManager.OnPlayerTurnEnd -= endTrigger;
                 };
                 TurnManager.OnPlayerTurnEnd += endTrigger;
+                break;
+            case "꽁꽁 얼리기":
+            case "꽁꽁 얼리기+":
+                ERouletteType frozen = ERouletteType.Player_Special_1;
+                if (TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum != this.item.dreamPieceNum) frozen = ERouletteType.Player_Special_2;
+                if (item.name == "꽁꽁 얼리기") isCardUsed = RouletteManager.Inst.EnchantRoulette(false, frozen, 2);
+                else isCardUsed = RouletteManager.Inst.EnchantRoulette(false, frozen, 3);
+                break;
+            case "얼음 방패":
+            case "얼음 방패+":
+                frozen = ERouletteType.Player_Special_1;
+                if (TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum != this.item.dreamPieceNum) frozen = ERouletteType.Player_Special_2;
+                TurnManager.Inst.GetShield(false, 2);
+                bool checkFrozen = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.type == frozen;
+                if (checkFrozen)
+                {
+                    if (item.name == "얼음 방패") TurnManager.Inst.GetShield(false, 4);
+                    else TurnManager.Inst.GetShield(false, 7);
+                }
+                break;
+            case "나뭇가지 손":
+            case "나뭇가지 손+":
+                StartCoroutine(TurnManager.Inst.Draw(2, null));
+                TurnManager.Inst.TriggerPlayerPassive(-1);
+                break;
+            case "데굴데굴":
+            case "데굴데굴+":
+                RouletteManager.Inst.Spin(true, 2);
+                if (item.name == "데굴데굴+") TurnManager.Inst.EnemyTakeDmg(2);
+                Action<int> repeatCard = null;
+                repeatCard = (x) =>
+                {
+                    if(TurnManager.Inst.nowCost > 0)
+                    {
+                        RouletteManager.Inst.Spin(true, 2);
+                        if (item.name == "데굴데굴+") TurnManager.Inst.EnemyTakeDmg(2);
+                    }
+                    TurnManager.AfterRouletteSpin -= repeatCard;
+                };
+                TurnManager.AfterRouletteSpin += repeatCard;
+                break;
+            case "차가운 악수":
+            case "차가운 악수+":
+                frozen = ERouletteType.Player_Special_1;
+                if (TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum != this.item.dreamPieceNum) frozen = ERouletteType.Player_Special_2;
+                isCardUsed = RouletteManager.Inst.EnchantRoulette(true, frozen, 3);
+                if (isCardUsed)
+                {
+                    BuffManager.Inst.AddShowBuff("과민함", EBuffAffectType.Enemy, 1);
+                }
+                break;
+            case "스노우볼링":
+            case "스노우볼링+":
+                RouletteManager.Inst.Spin(true, 3);
+                TurnManager.Inst.GetShield(false, TurnManager.Inst.shieldHealth);
+                break;
+            case "녹아내리기":
+            case "녹아내리기+":
+                if (item.name == "녹아내리기") TurnManager.Inst.TriggerPlayerPassive(-2);
+                else TurnManager.Inst.TriggerPlayerPassive(-1);
+                TurnManager.Inst.GetShield(false, 6);
+                break;
+            case "목도리":
+            case "목도리+":
+                for (int i = 0; i <= 5; i++)
+                {
+                    int tempIdx = (RouletteManager.Inst.playerLookat + RouletteManager.rouletteNum - i) % RouletteManager.rouletteNum;
+                    Debug.Log(RouletteManager.Inst.roulettePieces[tempIdx].roulette.type);
+                    if (RouletteManager.Inst.roulettePieces[tempIdx].roulette.type == ERouletteType.Player_Special_1)
+                    {
+                        if (item.name == "목도리") TurnManager.Inst.GetShield(false, 2);
+                        else TurnManager.Inst.GetShield(false, 3);
+                    }
+                }
+                RouletteManager.Inst.Spin(true, 5);
+                break;
+            case "얼음 깨기":
+            case "얼음 깨기+":
+                if (RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].roulette.type == ERouletteType.Player_Special_1)
+                {
+                    if (item.name == "얼음 깨기") TurnManager.Inst.EnemyTakeDmg(8);
+                    else TurnManager.Inst.EnemyTakeDmg(12);
+                }
+                for (int i = 0; i < RouletteManager.rouletteNum; i++)
+                {
+                    if (RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.Player_Special_1)
+                    {
+                        PassiveManager.PlayerSpecialRoulette1Clear?.Invoke(i);
+                    }
+                }
+                break;
+            case "눈싸움":
+            case "눈싸움+":
+                int frozenCnt = 0;
+                for (int i = 0; i < RouletteManager.rouletteNum; i++)
+                {
+                    if (RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.Player_Special_2)
+                    {
+                        frozenCnt++;
+                    }
+                }
+                if(item.name == "눈싸움") TurnManager.Inst.EnemyTakeDmg(frozenCnt * 4);
+                else TurnManager.Inst.EnemyTakeDmg(frozenCnt * 6);
+                break;
+            case "폭설":
+            case "폭설+":
+                for (int i = 0; i < RouletteManager.rouletteNum; i++)
+                {
+                    if (RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.None)
+                    {
+                        RouletteManager.Inst.EnchantRoulettePiece(i, ERouletteType.Player_Special_2, 3);
+                    }
+                }
+                break;
+            case "끝나지 않는 겨울":
+            case "끝나지 않는 겨울+":
+                int frozenTimeInc = 1;
+                if(item.name == "끝나지 않는 겨울+") frozenTimeInc = 2;
+                for (int i = 0; i < RouletteManager.rouletteNum; i++)
+                {
+                    if (RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.Player_Special_2)
+                    {
+                        RouletteManager.Inst.roulettePieces[i].roulette.value += frozenTimeInc;
+                    }
+                }
                 break;
         }
         if (isCardUsed)

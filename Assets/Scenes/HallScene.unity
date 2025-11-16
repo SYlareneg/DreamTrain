@@ -2639,7 +2639,7 @@ RectTransform:
   m_Father: {fileID: 314604840}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 0.99998975}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3216,7 +3216,7 @@ MonoBehaviour:
   m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 47cca83c53488344680ff6471d8b9082, type: 2}
-  m_sharedMaterial: {fileID: -7959174977532065633, guid: 366155e3dbfcce3409668f4821da9ade, type: 2}
+  m_sharedMaterial: {fileID: 2511819687917346823, guid: 47cca83c53488344680ff6471d8b9082, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3592,7 +3592,7 @@ MonoBehaviour:
   m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 47cca83c53488344680ff6471d8b9082, type: 2}
-  m_sharedMaterial: {fileID: -7959174977532065633, guid: 366155e3dbfcce3409668f4821da9ade, type: 2}
+  m_sharedMaterial: {fileID: 2511819687917346823, guid: 47cca83c53488344680ff6471d8b9082, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4112,7 +4112,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00012207031}
+  m_AnchoredPosition: {x: 0, y: 0.0002746582}
   m_SizeDelta: {x: 0, y: 553}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &848227807
@@ -5042,7 +5042,7 @@ RectTransform:
   m_Father: {fileID: 1475059116}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 0.99998975}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5244,7 +5244,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 411028538}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99998975
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6280,12 +6280,26 @@ MonoBehaviour:
       name: 
       text: 
       dreamPieceNum: 0
+      isEnhanced: 0
+      enhancedPassive:
+        type: 0
+        sprite: {fileID: 0}
+        name: 
+        text: 
+        dreamPieceNum: 0
     shadow:
       type: 0
       sprite: {fileID: 0}
       name: 
       text: 
       dreamPieceNum: 0
+      isEnhanced: 0
+      enhancedPassive:
+        type: 0
+        sprite: {fileID: 0}
+        name: 
+        text: 
+        dreamPieceNum: 0
     cards: []
     specialRouletteSprite: {fileID: 0}
     specialRouletteTitle: 
@@ -6302,12 +6316,26 @@ MonoBehaviour:
       name: 
       text: 
       dreamPieceNum: 0
+      isEnhanced: 0
+      enhancedPassive:
+        type: 0
+        sprite: {fileID: 0}
+        name: 
+        text: 
+        dreamPieceNum: 0
     shadow:
       type: 0
       sprite: {fileID: 0}
       name: 
       text: 
       dreamPieceNum: 0
+      isEnhanced: 0
+      enhancedPassive:
+        type: 0
+        sprite: {fileID: 0}
+        name: 
+        text: 
+        dreamPieceNum: 0
     cards: []
     specialRouletteSprite: {fileID: 0}
     specialRouletteTitle: 
@@ -6321,7 +6349,7 @@ MonoBehaviour:
   passiveList: []
   passivePrefab: {fileID: 5665352611089148646, guid: 064ad9c7d0e96be45baf578501d83183, type: 3}
   passiveSO: {fileID: 11400000, guid: 24b56f859cdb1944dad9549b90aa3ee3, type: 2}
-  dreamPieceSO: {fileID: 11400000, guid: 5216e38d02d27364ab4ec73aa032e6f7, type: 2}
+  dreamPieceSO: {fileID: 11400000, guid: fa145bd86cf8d8a47b1d9e3683cef771, type: 2}
   characterSO: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
   isLoading: 0
 --- !u!114 &1297206120
@@ -6340,6 +6368,7 @@ MonoBehaviour:
   playerDeckSO: {fileID: 11400000, guid: 149a57459b8b407488f3bf0d8485c273, type: 2}
   cardPrefab: {fileID: 3101435894562736061, guid: 00faca8f8365c654ba92e1bca964104a, type: 3}
   cardUIPrefab: {fileID: 5217781338463960961, guid: ab526733d7fd92a4f91f227d5a5c8cb8, type: 3}
+  cardUISelectPrefab: {fileID: 0}
   myCards: []
   cardSpawnPoint: {fileID: 0}
   cardDiscardPoint: {fileID: 0}
@@ -6352,6 +6381,13 @@ MonoBehaviour:
   selectedCard: {fileID: 0}
   isMyCardDrag: 0
   cardSelectMode: 0
+  cardSelectNum: 0
+  selectedCardList: []
+  discardCardList: []
+  cardSelectScreen: {fileID: 0}
+  selectedCards: {fileID: 0}
+  selectModeText: {fileID: 0}
+  cardSelectButton: {fileID: 0}
   useCount: 0
   useCount_Turn: 0
   uiCanvas: {fileID: 1513197931}
@@ -6974,7 +7010,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1018504704}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99998975
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8625,8 +8661,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000046902685}
-  m_SizeDelta: {x: 0, y: 553}
+  m_AnchoredPosition: {x: 0, y: 0.0002871611}
+  m_SizeDelta: {x: 0, y: 1500}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1968043044
 MonoBehaviour:

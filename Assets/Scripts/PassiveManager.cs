@@ -9,7 +9,9 @@ public class PassiveManager : MonoBehaviour
     private void Awake() => Inst = this;
     
     public static Action<bool, int> PlayerSpecialRoulette1Activation;
+    public static Action<int> PlayerSpecialRoulette1Clear;
     public static Action<bool, int> PlayerSpecialRoulette2Activation;
+    public static Action<int> PlayerSpecialRoulette2Clear;
     public Sprite PlayerSpecialRoulette1Sprite;
     public string PlayerSpecialRoulette1Title;
     public string PlayerSpecialRoulette1Text;
@@ -122,12 +124,89 @@ public class PassiveManager : MonoBehaviour
                                 int val = BuffManager.Inst.GetBuffedRouletteValue(RouletteManager.Inst.roulettePieces[i]);
                                 if (val == 0)
                                 {
-                                    RouletteItem tempItem = new RouletteItem();
-                                    RouletteManager.Inst.roulettePieces[i].roulette.type = ERouletteType.None;
-                                    RouletteManager.Inst.roulettePieces[i].Setup(RouletteManager.Inst.roulettePieces[i].roulette);
+                                    PlayerSpecialRoulette1Clear?.Invoke(i);
                                 }
                             }
                         }
+                    }
+                };
+                PlayerSpecialRoulette1Clear = (index) =>
+                {
+                    RouletteItem tempItem = new RouletteItem();
+                    tempItem.type = ERouletteType.None;
+                    tempItem.value = 0;
+                    RouletteManager.Inst.roulettePieces[index].Setup(tempItem);
+                };
+                break;
+            case "순환하는 계절":
+            case "순환하는 계절+":
+                TurnManager.Inst.playerTriggerMaxCnt = 12;
+                BuffManager.InitSpecialRouletteBuffs += () =>
+                {
+                    BuffManager.Inst.rouletteBuff_PlayerSpecial1.Add(new List<Buff>());
+                };
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    if (TurnManager.Inst.turnNum % 4 == 0)
+                    {
+                        if (personaName == "순환하는 계절") TurnManager.Inst.TriggerPlayerPassive(6);
+                        else TurnManager.Inst.TriggerPlayerPassive(8);
+                    }
+                };
+                List<(int rIdx, RouletteItem rItem)> frozenRoulettes = new List<(int, RouletteItem)>();
+                TurnManager.BeforeRouletteEnchant += (index, type) =>
+                {
+                    var frozenChk = frozenRoulettes.Find(x => x.rIdx == index);
+                    if (frozenChk == (0, null) && type == ERouletteType.Player_Special_1)
+                    {
+                        frozenRoulettes.Add((index, RouletteManager.Inst.roulettePieces[index].roulette));
+                        GameObject frozenSprite = new GameObject("FrozenIcon");
+                        frozenSprite.transform.SetParent(RouletteManager.Inst.roulettePieces[index].transform);
+                        frozenSprite.transform.localPosition = Vector3.zero;
+                        frozenSprite.transform.localRotation = Quaternion.Euler(0f, 0f, -15f);
+                        SpriteRenderer frozenSpriteRenderer = frozenSprite.AddComponent<SpriteRenderer>();
+                        frozenSpriteRenderer.sprite = TurnManager.Inst.characterSO.personaPiece.specialRouletteSprite;
+                        PlayerSpecialRoulette1Sprite = RouletteManager.Inst.roulettePieces[index].roulettePiece.sprite;
+                    }
+                };
+                TurnManager.OnRouletteEnchant += (index) =>
+                {
+                    var frozenChk = frozenRoulettes.Find(x => x.rIdx == index);
+                    if (frozenChk != (0, null) && RouletteManager.Inst.roulettePieces[index].roulette.type != ERouletteType.Player_Special_1)
+                    {
+                        RouletteManager.Inst.EnchantRoulettePiece(index, ERouletteType.Player_Special_1, frozenChk.rItem.value);
+                    }
+                };
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    for (int i = 0; i < RouletteManager.rouletteNum; i++)
+                    {
+                        if (RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.Player_Special_1)
+                        {
+                            RouletteManager.Inst.roulettePieces[i].roulette.value--;
+                            int val = BuffManager.Inst.GetBuffedRouletteValue(RouletteManager.Inst.roulettePieces[i]);
+                            if (val == 0)
+                            {
+                                PlayerSpecialRoulette1Clear?.Invoke(i);
+                            }
+                        }
+                    }
+                };
+                PlayerSpecialRoulette1Clear = (index) =>
+                {
+                    var frozenChk = frozenRoulettes.Find(x => x.rIdx == index);
+                    if (frozenChk.rItem != null)
+                    {
+                        RouletteManager.Inst.roulettePieces[index].Setup(frozenChk.rItem);
+                        Destroy(RouletteManager.Inst.roulettePieces[index].transform.Find("FrozenIcon").gameObject);
+                        frozenRoulettes.Remove(frozenChk);
+                    }
+                    else
+                    {
+                        RouletteItem tempItem = new RouletteItem();
+                        tempItem.type = ERouletteType.None;
+                        tempItem.value = 0;
+                        RouletteManager.Inst.roulettePieces[index].Setup(tempItem);
                     }
                 };
                 break;
@@ -157,13 +236,13 @@ public class PassiveManager : MonoBehaviour
                     if (isEnemy)
                     {
                         int trueDamage = TurnManager.Inst.EnemyTakeDmg(value);
-                        int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_PlayerSpecial1[1], trueDamage);
+                        int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_PlayerSpecial2[1], trueDamage);
                         TurnManager.Inst.EnemyTakeDmg(-totalVal_Heal);
                     }
                     else
                     {
                         int trueDamage = TurnManager.Inst.TakeDmg(value);
-                        int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_PlayerSpecial1[1], trueDamage);
+                        int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_PlayerSpecial2[1], trueDamage);
                         TurnManager.Inst.EnemyTakeDmg(-totalVal_Heal);
                     }
                 };
@@ -227,7 +306,7 @@ public class PassiveManager : MonoBehaviour
                     if (shadowName == "마술 해체+" && counter >= 6) BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, counter * 7, 1.5f, -1);
                     else BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, counter * 7, 1, -1);
                 };
-                TurnManager.OnRouletteEnchant += () =>
+                TurnManager.OnRouletteEnchant += (x) =>
                 {
                     if (RouletteManager.Inst.isTriggerActivated && RouletteManager.Inst.isPlayerTrigger())
                     {
@@ -274,11 +353,108 @@ public class PassiveManager : MonoBehaviour
                                 if (val == 0)
                                 {
                                     RouletteItem tempItem = new RouletteItem();
-                                    RouletteManager.Inst.roulettePieces[i].roulette.type = ERouletteType.None;
-                                    RouletteManager.Inst.roulettePieces[i].Setup(RouletteManager.Inst.roulettePieces[i].roulette);
+                                    tempItem.type = ERouletteType.None;
+                                    tempItem.value = 0;
+                                    RouletteManager.Inst.roulettePieces[i].Setup(tempItem);
                                 }
                             }
                         }
+                    }
+                };
+                break;
+            case "겨울 바람":
+            case "겨울 바람+":
+                BuffManager.InitSpecialRouletteBuffs += () =>
+                {
+                    BuffManager.Inst.rouletteBuff_PlayerSpecial2.Add(new List<Buff>());
+                };
+                rItem.type = ERouletteType.None;
+                rItem.value = 0;
+                if(shadowName == "겨울 바람+") 
+                {
+                    rItem.type = ERouletteType.Attack;
+                    rItem.value = 12;
+                }
+                RouletteManager.Inst.triggerPiece = rItem;
+                RouletteManager.PlayerTriggerActivation = (isEnemy, totalVal) =>
+                {
+                    for(int i = 0; i < RouletteManager.rouletteNum; i++)
+                    {
+                        if(RouletteManager.Inst.roulettePieces[i].roulette.type != ERouletteType.None)
+                        {
+                            RouletteManager.Inst.EnchantRoulettePiece(i, ERouletteType.Player_Special_2, 2);
+                        }
+                    }
+                    for(int i = 0; i < EnemyManager.Inst.actionList.Count; i++)
+                    {
+                        EnemyManager.Inst.RemoveAction(i);
+                    }
+                    if(shadowName == "겨울 바람+")
+                    {
+                        if (isEnemy)
+                        {
+                            TurnManager.Inst.EnemyTakeDmg(totalVal);
+                        }
+                        else
+                        {
+                            TurnManager.Inst.TakeDmg(totalVal);
+                        }
+                    }
+                };
+                List<(int rIdx, RouletteItem rItem)> frozenRoulettes = new List<(int, RouletteItem)>();
+                TurnManager.BeforeRouletteEnchant += (index, type) =>
+                {
+                    var frozenChk = frozenRoulettes.Find(x => x.rIdx == index);
+                    if (frozenChk == (0, null) && type == ERouletteType.Player_Special_2)
+                    {
+                        frozenRoulettes.Add((index, RouletteManager.Inst.roulettePieces[index].roulette));
+                        GameObject frozenSprite = new GameObject("FrozenIcon");
+                        frozenSprite.transform.SetParent(RouletteManager.Inst.roulettePieces[index].transform);
+                        frozenSprite.transform.localPosition = Vector3.zero;
+                        frozenSprite.transform.localRotation = Quaternion.Euler(0f, 0f, -15f);
+                        SpriteRenderer frozenSpriteRenderer = frozenSprite.AddComponent<SpriteRenderer>();
+                        frozenSpriteRenderer.sprite = TurnManager.Inst.characterSO.shadowPiece.specialRouletteSprite;
+                        PlayerSpecialRoulette2Sprite = RouletteManager.Inst.roulettePieces[index].roulettePiece.sprite;
+                    }
+                };
+                TurnManager.OnRouletteEnchant += (index) =>
+                {
+                    var frozenChk = frozenRoulettes.Find(x => x.rIdx == index);
+                    if (frozenChk != (0, null) && RouletteManager.Inst.roulettePieces[index].roulette.type != ERouletteType.Player_Special_2)
+                    {
+                        RouletteManager.Inst.EnchantRoulettePiece(index, ERouletteType.Player_Special_2, frozenChk.rItem.value);
+                    }
+                };
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    for (int i = 0; i < RouletteManager.rouletteNum; i++)
+                    {
+                        if (RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.Player_Special_2)
+                        {
+                            RouletteManager.Inst.roulettePieces[i].roulette.value--;
+                            int val = BuffManager.Inst.GetBuffedRouletteValue(RouletteManager.Inst.roulettePieces[i]);
+                            if (val == 0)
+                            {
+                                PlayerSpecialRoulette2Clear?.Invoke(i);
+                            }
+                        }
+                    }
+                };
+                PlayerSpecialRoulette2Clear = (index) =>
+                {
+                    var frozenChk = frozenRoulettes.Find(x => x.rIdx == index);
+                    if (frozenChk.rItem != null)
+                    {
+                        RouletteManager.Inst.roulettePieces[index].Setup(frozenChk.rItem);
+                        Destroy(RouletteManager.Inst.roulettePieces[index].transform.Find("FrozenIcon").gameObject);
+                        frozenRoulettes.Remove(frozenChk);
+                    }
+                    else
+                    {
+                        RouletteItem tempItem = new RouletteItem();
+                        tempItem.type = ERouletteType.None;
+                        tempItem.value = 0;
+                        RouletteManager.Inst.roulettePieces[index].Setup(tempItem);
                     }
                 };
                 break;
