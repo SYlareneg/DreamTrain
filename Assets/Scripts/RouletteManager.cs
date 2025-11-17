@@ -152,32 +152,33 @@ public class RouletteManager : MonoBehaviour
 
     public bool EnchantRoulette(bool isEnemy, ERouletteType rType, int rValue)
     {
+        bool ret = false;
         if (isEnemy)
         {
-            if (enemyLookat == triggerPos) return false;
-            EnchantRoulettePiece(enemyLookat, rType, rValue);
+            ret = EnchantRoulettePiece(enemyLookat, rType, rValue);
         }
         else
         {
-            if (playerLookat == triggerPos) return false;
-            EnchantRoulettePiece(playerLookat, rType, rValue);
+            ret = EnchantRoulettePiece(playerLookat, rType, rValue);
         }
-        return true;
+        return ret;
     }
 
-    public void EnchantRoulettePiece(int index, ERouletteType rType, int rValue)
+    public bool EnchantRoulettePiece(int index, ERouletteType rType, int rValue)
     {
-        if (index == triggerPos)
+        bool ret = true;
+        foreach (Func<int, ERouletteType, bool> func in TurnManager.CheckRouletteEnchantable.GetInvocationList())
         {
-            return;
+            ret = ret && func.Invoke(index, rType);
         }
-        TurnManager.BeforeRouletteEnchant?.Invoke(index, rType);
+        if (ret == false) return false;
         RouletteItem rItem = new RouletteItem();
         rItem.type = rType;
         rItem.value = rValue;
         roulettePieces[index].Setup(rItem);
         Utils.AllignActions(ref TurnManager.OnRouletteEnchant, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnRouletteEnchant?.Invoke(index);
+        return true;
     }
 
     public int CountRouletteType(ERouletteType rType)
@@ -276,6 +277,11 @@ public class RouletteManager : MonoBehaviour
     private void Start()
     {
         TurnManager.OnPlayerTurnStart += () => { spinCount_Turn = 0; spinDistance_Turn = 0; };
+        TurnManager.CheckRouletteEnchantable += (idx, type) =>
+        {
+            if (idx == triggerPos) return false;
+            return true;
+        };
     }
 
     private void OnDestroy()

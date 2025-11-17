@@ -12,8 +12,9 @@ public class CharacterSO : ScriptableObject
     public int dreamDust;
     public int leftPassengers;
 
-    public DreamPiece personaPiece;
-    public DreamPiece shadowPiece;
+    public DreamPiece_Player personaPiece;
+    public DreamPiece_Player shadowPiece;
+    public List<Item> normalCards;
 
     public string enemyName;
 }

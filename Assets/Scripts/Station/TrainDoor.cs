@@ -5,6 +5,6 @@ public class TrainDoor : PlayerInteractableObject
 {
     public override void Interact()
     {
-        SceneManager.LoadScene("HallScene");
+        SceneChangeManager.Inst.SceneFadeOut("NewHallScene");
     }
 }

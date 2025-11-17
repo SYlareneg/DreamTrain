@@ -162,6 +162,11 @@ public class Card : MonoBehaviour
 
     public bool UseCard(bool isMine)
     {
+        int buffedCost = BuffManager.Inst.GetBuffedCardCost(item);
+        if (buffedCost > TurnManager.Inst.nowCost)
+        {
+            return false;
+        }
         bool isCardUsed = true;
         switch (item.name)
         {
@@ -192,7 +197,9 @@ public class Card : MonoBehaviour
                 break;
             case "흡혈 부여":
             case "흡혈 부여+":
-                isCardUsed = RouletteManager.Inst.EnchantRoulette(true, ERouletteType.Player_Special_1, 6);
+                ERouletteType bloodSteal = ERouletteType.Player_Special_1;
+                if (TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum != this.item.dreamPieceNum) bloodSteal = ERouletteType.Player_Special_2;
+                isCardUsed = RouletteManager.Inst.EnchantRoulette(true, bloodSteal, 6);
                 if (item.name == "흡혈 부여+" && isCardUsed)
                 {
                     RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].isEnhanced = true;
@@ -382,12 +389,16 @@ public class Card : MonoBehaviour
                 Action<int> repeatCard = null;
                 repeatCard = (x) =>
                 {
-                    if(TurnManager.Inst.nowCost > 0)
+                    if (TurnManager.Inst.nowCost >= buffedCost)
                     {
+                        TurnManager.Inst.IncreaseCost(-buffedCost);
                         RouletteManager.Inst.Spin(true, 2);
                         if (item.name == "데굴데굴+") TurnManager.Inst.EnemyTakeDmg(2, EDamageSource.Card);
                     }
-                    TurnManager.AfterRouletteSpin -= repeatCard;
+                    else
+                    {
+                        TurnManager.AfterRouletteSpin -= repeatCard;
+                    }
                 };
                 TurnManager.AfterRouletteSpin += repeatCard;
                 break;
@@ -480,6 +491,9 @@ public class Card : MonoBehaviour
         if (isCardUsed)
         {
             Debug.Log(item.name + " 카드 사용!");
+            TurnManager.Inst.IncreaseCost(-buffedCost);
+            Utils.AllignActions(ref TurnManager.OnUseCard, typeof(ShowBuff), typeof(RelicManager));
+            TurnManager.OnUseCard?.Invoke();
         }
         return isCardUsed;
     }

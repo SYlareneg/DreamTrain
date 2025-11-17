@@ -9,11 +9,11 @@ public class PassiveUI : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] Image passiveImage;
     [SerializeField] TMP_Text passiveNameTMP;
-    public DreamPiece dreamPiece;
+    public DreamPiece_Reference dreamPiece;
     public EPassiveType pType;
     public bool isSelected;
 
-    public void Setup(DreamPiece dp, EPassiveType p)
+    public void Setup(DreamPiece_Reference dp, EPassiveType p)
     {
         dreamPiece = dp;
         pType = p;
