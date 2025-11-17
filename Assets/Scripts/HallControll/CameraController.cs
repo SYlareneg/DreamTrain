@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Transform target;  // 따라갈 캐릭터
-    public float smoothSpeed = 0.125f;  // 부드럽게 이동하는 속도
-    public Vector3 offset;    // 카메라 위치 보정 (필요시)
+    public Transform target;  
+    public float smoothSpeed = 0.125f; 
+    public Vector3 offset; 
 
-    // 배경 끝 좌표 (카메라의 이동 한계)
-    public float minX;
-    public float maxX;
+    public float minX = 0;
+    public float maxX = 10;
 
     void LateUpdate()
     {
