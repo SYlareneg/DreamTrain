@@ -17,8 +17,7 @@ public class CardManager : MonoBehaviour
     public static CardManager Inst { get; private set; }
     void Awake() => Inst = this;
 
-    public ItemSO itemSO;
-    public ItemSO playerDeckSO;
+    public CharacterSO characterSO;
     [SerializeField] GameObject cardPrefab;
     [SerializeField] GameObject cardUIPrefab;
     [SerializeField] GameObject cardUISelectPrefab;
@@ -104,7 +103,23 @@ public class CardManager : MonoBehaviour
         itemDraw = new List<Item>();
         itemDiscard = new List<Item>();
         
-        foreach(Item itemInDeck in playerDeckSO.items)
+        foreach(Item itemInDeck in characterSO.normalCards)
+        {
+            for(int j = 0; j < itemInDeck.num; j++)
+            {
+                itemDeck.Add(itemInDeck);
+                itemDraw.Add(itemInDeck);
+            }
+        }
+        foreach(Item itemInDeck in characterSO.personaPiece.cards)
+        {
+            for(int j = 0; j < itemInDeck.num; j++)
+            {
+                itemDeck.Add(itemInDeck);
+                itemDraw.Add(itemInDeck);
+            }
+        }
+        foreach(Item itemInDeck in characterSO.shadowPiece.cards)
         {
             for(int j = 0; j < itemInDeck.num; j++)
             {
@@ -463,25 +478,14 @@ public class CardManager : MonoBehaviour
 
         if (!onMyCardArea)
         {
-            int buffedCost = BuffManager.Inst.GetBuffedCardCost(selectedCard.item);
-            if (buffedCost > TurnManager.Inst.nowCost)
-            {
-                EnlargeCard(false, selectedCard);
-                selectedCard = null;
-                return;
-            }
             if (selectedCard.UseCard(true) == false)
             {
                 EnlargeCard(false, selectedCard);
                 selectedCard = null;
                 return;
             }
-            myCards.Remove(selectedCard);
-            TurnManager.Inst.IncreaseCost(-buffedCost);
             useCount++;
             useCount_Turn++;
-            Utils.AllignActions(ref TurnManager.OnUseCard, typeof(ShowBuff), typeof(RelicManager));
-            TurnManager.OnUseCard?.Invoke();
             bool flag = selectedCard.item.isRemain;
             selectedCard.item.isRemain = false;
             if (selectedCard.item.isVanish == true)

@@ -13,7 +13,6 @@ public class NPCMerchantManager : MonoBehaviour
     [SerializeField] GameObject merchantUI;
     public Merchant merchant;
     [SerializeField] CharacterSO characterSO;
-    [SerializeField] ItemSO playerDeckSO;
     [SerializeField] RelicSO playerRelicSO;
     [Header("카드 구매")]
     [SerializeField] CardUI_Sell[] sellCards;
@@ -84,7 +83,9 @@ public class NPCMerchantManager : MonoBehaviour
         List<Item> normalCards_enhanced = new List<Item>();
         List<Item> personaCards_enhanced = new List<Item>();
         List<Item> shadowCards_enhanced = new List<Item>();
-        foreach (Item_Enhanceable item in characterSO.personaPiece.cards)
+        DreamPiece_Reference persona_ref = dreamPieceListSO.dreamPieces.Find(x => x.name == characterSO.personaPiece.name);
+        DreamPiece_Reference shadow_ref = dreamPieceListSO.dreamPieces.Find(x => x.name == characterSO.shadowPiece.name);
+        foreach (Item_Enhanceable item in persona_ref.cards)
         {
             if (item.element == EPassiveType.Normal)
             {
@@ -97,7 +98,7 @@ public class NPCMerchantManager : MonoBehaviour
                 personaCards_enhanced.Add(item.enhancedItem);
             }
         }
-        foreach (Item_Enhanceable item in characterSO.shadowPiece.cards)
+        foreach (Item_Enhanceable item in shadow_ref.cards)
         {
             if (item.element == EPassiveType.Normal)
             {
@@ -171,7 +172,28 @@ public class NPCMerchantManager : MonoBehaviour
         Item newItem = new Item();
         newItem.SetItem(item);
         newItem.num = 1;
-        playerDeckSO.items.Add(newItem);
+        if(item.dreamPieceNum < 0)
+        {
+            var existItem = characterSO.normalCards.Find(x => x.name == item.name);
+            if(existItem == null) characterSO.normalCards.Add(newItem);
+            else existItem.num++;
+        }
+        else if(dreamPieceListSO.dreamPieces[item.dreamPieceNum].name == characterSO.personaPiece.name)
+        {
+            var existItem = characterSO.personaPiece.cards.Find(x => x.name == item.name);
+            if(existItem == null) characterSO.personaPiece.cards.Add(newItem);
+            else existItem.num++;
+        }
+        else if(dreamPieceListSO.dreamPieces[item.dreamPieceNum].name == characterSO.shadowPiece.name)
+        {
+            var existItem = characterSO.shadowPiece.cards.Find(x => x.name == item.name);
+            if(existItem == null) characterSO.shadowPiece.cards.Add(newItem);
+            else existItem.num++;
+        }
+        else
+        {
+            Debug.LogError("undefined card added!");
+        }
     }
 
     // 카드 강화
@@ -182,14 +204,18 @@ public class NPCMerchantManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        foreach (Item item in playerDeckSO.items)
+        List<Item> allCardItemList = characterSO.normalCards.Concat(characterSO.personaPiece.cards).Concat(characterSO.shadowPiece.cards).ToList();
+        foreach (Item item in allCardItemList)
         {
             if (item.isEnhanced == false && item.dreamPieceNum >= 0)
             {
-                var cardObj = Instantiate(enhanceCardPrefab, cardEnhanceList.transform, false);
-                cardObj.transform.SetParent(cardEnhanceList.transform);
-                CardUI_Enhance cardUI_Enhance = cardObj.GetComponent<CardUI_Enhance>();
-                cardUI_Enhance.Setup(item);
+                for(int i = 0; i < item.num; i++)
+                {
+                    var cardObj = Instantiate(enhanceCardPrefab, cardEnhanceList.transform, false);
+                    cardObj.transform.SetParent(cardEnhanceList.transform);
+                    CardUI_Enhance cardUI_Enhance = cardObj.GetComponent<CardUI_Enhance>();
+                    cardUI_Enhance.Setup(item);
+                }
             }
         }
         cardEnhanceScreen.SetActive(true);
@@ -210,8 +236,27 @@ public class NPCMerchantManager : MonoBehaviour
     public void EnhanceCardConfirm()
     {
         characterSO.dreamDust -= cardEnhanceCost;
-        playerDeckSO.items.Remove(beforeEnhance_C.item);
-        playerDeckSO.items.Add(afterEnhance_C.item);
+        beforeEnhance_C.item.num--;
+        if(beforeEnhance_C.item.num == 0)
+        {
+            if(beforeEnhance_C.item.dreamPieceNum < 0)
+            {
+                characterSO.normalCards.Remove(beforeEnhance_C.item);
+            }
+            else if(dreamPieceListSO.dreamPieces[beforeEnhance_C.item.dreamPieceNum].name == characterSO.personaPiece.name)
+            {
+                characterSO.personaPiece.cards.Remove(beforeEnhance_C.item);
+            }
+            else if(dreamPieceListSO.dreamPieces[beforeEnhance_C.item.dreamPieceNum].name == characterSO.shadowPiece.name)
+            {
+                characterSO.shadowPiece.cards.Remove(beforeEnhance_C.item);
+            }
+            else
+            {
+                Debug.LogError("unknown card enhanced!");
+            }
+        }
+        AddCard(afterEnhance_C.item);
         Destroy(enhanceCard.gameObject);
         cardEnhanceConfirmScreen.SetActive(false);
     }

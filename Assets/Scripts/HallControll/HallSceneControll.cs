@@ -44,11 +44,7 @@ public class HallSceneControll : MonoBehaviour
     {
         if (currentDoor != null)
         {
-            int deckCount = 0;
-            foreach(var item in CardManager.Inst.playerDeckSO.items)
-            {
-                deckCount += item.num;
-            }
+            int deckCount = DeckBuildManager.Inst.GetDeckCardNum();
             if (deckCount == DeckBuildManager.deckCardNum)
             {
                 Debug.Log($"Entering room: {currentDoor.roomSceneName}");

@@ -49,6 +49,14 @@ MonoBehaviour:
           \uB0A8\uC544\uC788\uB358 \uD589\uB3D9\uB825 1\uB2F9 <color=red>12</color>\uC758
           \uCD94\uAC00 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
         dreamPieceNum: 0
+    specialRouletteSprite: {fileID: 3372071434943392156, guid: a83e06a63255ee2408beb1f880295f2c, type: 3}
+    specialRouletteTitle: "\uC0DD\uBA85\uB825 \uD761\uC218 \uB8F0\uB81B"
+    specialRouletteText: "\uD53C\uD574\uB97C \uAC12\uB9CC\uD07C \uC90D\uB2C8\uB2E4.
+      \uC785\uD78C \uD53C\uD574\uC758 1/3\uB9CC\uD07C \uD50C\uB808\uC774\uC5B4\uC758
+      \uCCB4\uB825\uC744 \uD68C\uBCF5\uD569\uB2C8\uB2E4. \uBC40\uD30C\uC774\uC5B4
+      \uD398\uB974\uC18C\uB098\uB97C \uC7A5\uCC29\uD558\uACE0 \uC788\uB2E4\uBA74,
+      \uD68C\uBCF5\uD55C \uCCB4\uB825\uB9CC\uD07C \uD2B8\uB9AC\uAC70 \uAC8C\uC774\uC9C0\uB97C
+      \uC5BB\uC2B5\uB2C8\uB2E4."
     cards:
     - name: "\uD761\uD608 \uBD80\uC5EC"
       cost: 2
@@ -274,14 +282,172 @@ MonoBehaviour:
           \uC989\uC2DC \uC801\uC6A9\uD569\uB2C8\uB2E4."
         num: 0
         isEnhanced: 1
-    specialRouletteSprite: {fileID: 3372071434943392156, guid: a83e06a63255ee2408beb1f880295f2c, type: 3}
-    specialRouletteTitle: "\uC0DD\uBA85\uB825 \uD761\uC218 \uB8F0\uB81B"
-    specialRouletteText: "\uD53C\uD574\uB97C \uAC12\uB9CC\uD07C \uC90D\uB2C8\uB2E4.
-      \uC785\uD78C \uD53C\uD574\uC758 1/3\uB9CC\uD07C \uD50C\uB808\uC774\uC5B4\uC758
-      \uCCB4\uB825\uC744 \uD68C\uBCF5\uD569\uB2C8\uB2E4. \uBC40\uD30C\uC774\uC5B4
-      \uD398\uB974\uC18C\uB098\uB97C \uC7A5\uCC29\uD558\uACE0 \uC788\uB2E4\uBA74,
-      \uD68C\uBCF5\uD55C \uCCB4\uB825\uB9CC\uD07C \uD2B8\uB9AC\uAC70 \uAC8C\uC774\uC9C0\uB97C
-      \uC5BB\uC2B5\uB2C8\uB2E4."
+    baseCards_persona:
+    - name: "\uD761\uD608 \uBD80\uC5EC"
+      cost: 2
+      type: 1
+      element: 0
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
+        '\uD761\uD608' \uD6A8\uACFC\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+      num: 1
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uD761\uD608 \uBD80\uC5EC+"
+        cost: 2
+        type: 1
+        element: 0
+        dreamPieceNum: 0
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
+          <color=red>\uAC15\uD654\uB41C</color> '\uD761\uD608' \uD6A8\uACFC\uB97C
+          \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+        num: 0
+        isEnhanced: 1
+    - name: "\uD53C\uB294 \uB098\uC758 \uD798"
+      cost: 0
+      type: 2
+      element: 0
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uCCB4\uB825\uC744 2 \uC783\uACE0, \uD589\uB3D9\uB825\uC744 1 \uC5BB\uC2B5\uB2C8\uB2E4."
+      num: 1
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uD53C\uB294 \uB098\uC758 \uD798+"
+        cost: 0
+        type: 2
+        element: 0
+        dreamPieceNum: 0
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uCCB4\uB825\uC744 <color=red>1</color> \uC783\uACE0, \uD589\uB3D9\uB825\uC744
+          1 \uC5BB\uC2B5\uB2C8\uB2E4."
+        num: 0
+        isEnhanced: 1
+    - name: "\uBE14\uB8E8 \uBE14\uB7EC\uB4DC"
+      cost: 3
+      type: 2
+      element: 1
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "2\uD134 \uB3D9\uC548 '\uD761\uD608' \uB8F0\uB81B\uC73C\uB85C \uCCB4\uB825\uC744
+        \uD68C\uBCF5\uD560 \uC218 \uC5C6\uAC8C \uB418\uB294 \uB300\uC2E0, \uAC00\uD558\uB294
+        \uB370\uBBF8\uC9C0\uAC00 3\uBC30\uAC00 \uB429\uB2C8\uB2E4."
+      num: 1
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uBE14\uB8E8 \uBE14\uB7EC\uB4DC+"
+        cost: 2
+        type: 2
+        element: 1
+        dreamPieceNum: 0
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "2\uD134 \uB3D9\uC548 '\uD761\uD608' \uB8F0\uB81B\uC73C\uB85C \uCCB4\uB825\uC744
+          \uD68C\uBCF5\uD560 \uC218 \uC5C6\uAC8C \uB418\uB294 \uB300\uC2E0, \uAC00\uD558\uB294
+          \uB370\uBBF8\uC9C0\uAC00 3\uBC30\uAC00 \uB429\uB2C8\uB2E4."
+        num: 0
+        isEnhanced: 1
+    baseCards_shadow:
+    - name: "\uD761\uD608 \uBD80\uC5EC"
+      cost: 2
+      type: 1
+      element: 0
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
+        '\uD761\uD608' \uD6A8\uACFC\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+      num: 1
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uD761\uD608 \uBD80\uC5EC+"
+        cost: 2
+        type: 1
+        element: 0
+        dreamPieceNum: 0
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
+          <color=red>\uAC15\uD654\uB41C</color> '\uD761\uD608' \uD6A8\uACFC\uB97C
+          \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+        num: 0
+        isEnhanced: 1
+    - name: "\uD53C\uB294 \uB098\uC758 \uD798"
+      cost: 0
+      type: 2
+      element: 0
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uCCB4\uB825\uC744 2 \uC783\uACE0, \uD589\uB3D9\uB825\uC744 1 \uC5BB\uC2B5\uB2C8\uB2E4."
+      num: 1
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uD53C\uB294 \uB098\uC758 \uD798+"
+        cost: 0
+        type: 2
+        element: 0
+        dreamPieceNum: 0
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uCCB4\uB825\uC744 <color=red>1</color> \uC783\uACE0, \uD589\uB3D9\uB825\uC744
+          1 \uC5BB\uC2B5\uB2C8\uB2E4."
+        num: 0
+        isEnhanced: 1
+    - name: "\uB9CC\uCC2C \uC2DC\uAC04"
+      cost: 3
+      type: 2
+      element: 2
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "2\uD134 \uB3D9\uC548 '\uD761\uD608' \uB8F0\uB81B\uC73C\uB85C \uAC00\uD558\uB294
+        \uB370\uBBF8\uC9C0\uAC00 2\uBC30\uAC00 \uB429\uB2C8\uB2E4."
+      num: 1
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uB9CC\uCC2C \uC2DC\uAC04+"
+        cost: 2
+        type: 2
+        element: 2
+        dreamPieceNum: 0
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "2\uD134 \uB3D9\uC548 '\uD761\uD608' \uB8F0\uB81B\uC73C\uB85C \uAC00\uD558\uB294
+          \uB370\uBBF8\uC9C0\uAC00 2\uBC30\uAC00 \uB429\uB2C8\uB2E4."
+        num: 0
+        isEnhanced: 1
   - name: "\uB9C8\uC220\uC0AC\uC758 \uAFC8"
     persona:
       type: 1
@@ -320,6 +486,12 @@ MonoBehaviour:
           \uC90D\uB2C8\uB2E4. <color=red>6\uAC1C \uC774\uC0C1\uC758 \uD6A8\uACFC\uB97C
           \uC81C\uAC70\uD55C \uACBD\uC6B0 50% \uCD94\uAC00 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.</color>"
         dreamPieceNum: 1
+    specialRouletteSprite: {fileID: -1033747301121760791, guid: d70a422d594c0c64ca0e09b3852cd601, type: 3}
+    specialRouletteTitle: "\uB9C8\uC220\uC0C1\uC790 \uB8F0\uB81B"
+    specialRouletteText: "\uAC12\uC758 \uCE74\uC6B4\uD130\uB97C \uAC00\uC9C0\uACE0
+      \uC788\uC2B5\uB2C8\uB2E4. \uB8F0\uB81B\uC774 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C
+      \uD68C\uC804\uD560 \uB54C\uB9C8\uB2E4 \uCE74\uC6B4\uD2B8\uAC00 1 \uAC10\uC18C\uD558\uACE0,
+      0\uC774 \uB418\uBA74 \uD6A8\uACFC\uAC00 \uC81C\uAC70\uB429\uB2C8\uB2E4."
     cards:
     - name: "\uB9C8\uC220 \uC0C1\uC790"
       cost: 1
@@ -442,7 +614,7 @@ MonoBehaviour:
         text: "<color=red>\uB9C8\uC220\uC744 \uD3BC\uCCD0 \uBC29\uC5B4\uB3C4\uB97C
           \uBAA8\uB450 \uD30C\uAD34\uD558\uACE0, 4<\uD53C\uD574>\uB370\uBBF8\uC9C0\uB97C
           \uC90D\uB2C8\uB2E4.</color> \uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uB9C8\uC220
-          \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74 \uC2EA\uD328\uD569\uB2C8\uB2E4."
+          \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74 \uC2E4\uD328\uD569\uB2C8\uB2E4."
         num: 2
         isEnhanced: 1
     - name: "\uB9C8\uC220-\uC21C\uAC04\uC774\uB3D9"
@@ -593,12 +765,182 @@ MonoBehaviour:
           5<\uC218\uBE44> \uC5BB\uC2B5\uB2C8\uB2E4.</color>"
         num: 0
         isEnhanced: 1
-    specialRouletteSprite: {fileID: -1033747301121760791, guid: d70a422d594c0c64ca0e09b3852cd601, type: 3}
-    specialRouletteTitle: "\uB9C8\uC220\uC0C1\uC790 \uB8F0\uB81B"
-    specialRouletteText: "\uAC12\uC758 \uCE74\uC6B4\uD130\uB97C \uAC00\uC9C0\uACE0
-      \uC788\uC2B5\uB2C8\uB2E4. \uB8F0\uB81B\uC774 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C
-      \uD68C\uC804\uD560 \uB54C\uB9C8\uB2E4 \uCE74\uC6B4\uD2B8\uAC00 1 \uAC10\uC18C\uD558\uACE0,
-      0\uC774 \uB418\uBA74 \uD6A8\uACFC\uAC00 \uC81C\uAC70\uB429\uB2C8\uB2E4."
+    baseCards_persona:
+    - name: "\uB9C8\uC220 \uC0C1\uC790"
+      cost: 1
+      type: 1
+      element: 0
+      dreamPieceNum: 1
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
+        '\uB9C8\uC220\uC0C1\uC790'\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4"
+      num: 1
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uB9C8\uC220 \uC0C1\uC790+"
+        cost: 1
+        type: 1
+        element: 0
+        dreamPieceNum: 1
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
+          <color=red>\uAC15\uD654\uB41C</color> '\uB9C8\uC220\uC0C1\uC790'\uB97C
+          \uBD80\uC5EC\uD569\uB2C8\uB2E4"
+        num: 0
+        isEnhanced: 1
+    - name: "\uB9C8\uC220-\uC21C\uAC04\uC774\uB3D9"
+      cost: 2
+      type: 0
+      element: 0
+      dreamPieceNum: 1
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 2\uCE78 \uD68C\uC804\uC2DC\uD0A4\uACE0,
+        \uB9C8\uC220\uC744 \uD3BC\uCCD0 \uBC29\uC5B4\uB3C4\uB97C 12<\uC218\uBE44>
+        \uBD80\uC5EC\uD569\uB2C8\uB2E4. \uD50C\uB808\uC774\uC5B4\uC758 \uD6A8\uACFC
+        \uC874\uC5D0 \uB9C8\uC220 \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74 \uB9C8\uC220\uC740
+        \uC2E4\uD328\uD569\uB2C8\uB2E4. "
+      num: 1
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uB9C8\uC220-\uC21C\uAC04\uC774\uB3D9+"
+        cost: 2
+        type: 0
+        element: 0
+        dreamPieceNum: 1
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 2\uCE78 \uD68C\uC804\uC2DC\uD0A4\uACE0,
+          \uB9C8\uC220\uC744 \uD3BC\uCCD0 \uBC29\uC5B4\uB3C4\uB97C <color=red>16<\uC218\uBE44></color>
+          \uBD80\uC5EC\uD569\uB2C8\uB2E4. \uD50C\uB808\uC774\uC5B4\uC758 \uD6A8\uACFC
+          \uC874\uC5D0 \uB9C8\uC220 \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74 \uB9C8\uC220\uC740
+          \uC2E4\uD328\uD569\uB2C8\uB2E4. "
+        num: 0
+        isEnhanced: 1
+    - name: "\uC7AC\uBE60\uB978 \uC190\uB180\uB9BC"
+      cost: 1
+      type: 2
+      element: 1
+      dreamPieceNum: 1
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uB371\uC5D0\uC11C \uCE74\uB4DC\uB97C 1\uC7A5 \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
+      num: 1
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uC7AC\uBE60\uB978 \uC190\uB180\uB9BC+"
+        cost: 1
+        type: 1
+        element: 0
+        dreamPieceNum: 1
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uB371\uC5D0\uC11C \uCE74\uB4DC\uB97C <color=red>2\uC7A5</color> \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
+        num: 0
+        isEnhanced: 1
+    baseCards_shadow:
+    - name: "\uB9C8\uC220 \uC0C1\uC790"
+      cost: 1
+      type: 1
+      element: 0
+      dreamPieceNum: 1
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
+        '\uB9C8\uC220\uC0C1\uC790'\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4"
+      num: 1
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uB9C8\uC220 \uC0C1\uC790+"
+        cost: 1
+        type: 1
+        element: 0
+        dreamPieceNum: 1
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
+          <color=red>\uAC15\uD654\uB41C</color> '\uB9C8\uC220\uC0C1\uC790'\uB97C
+          \uBD80\uC5EC\uD569\uB2C8\uB2E4"
+        num: 0
+        isEnhanced: 1
+    - name: "\uB9C8\uC220-\uC808\uB2E8"
+      cost: 2
+      type: 2
+      element: 0
+      dreamPieceNum: 1
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uC801\uC5D0\uAC8C 2<\uD53C\uD574> \uB370\uBBF8\uC9C0\uB97C \uC8FC\uACE0,
+        \uB9C8\uC220\uC744 \uD3BC\uCCD0 \uBC29\uC5B4\uB3C4\uB97C \uBAA8\uB450 \uD30C\uAD34\uD569\uB2C8\uB2E4.
+        \uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uB9C8\uC220 \uC0C1 \uC790\uAC00 \uC5C6\uB2E4\uBA74
+        \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4."
+      num: 1
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uB9C8\uC220-\uC808\uB2E8+"
+        cost: 2
+        type: 2
+        element: 0
+        dreamPieceNum: 1
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "<color=red>\uB9C8\uC220\uC744 \uD3BC\uCCD0 \uBC29\uC5B4\uB3C4\uB97C
+          \uBAA8\uB450 \uD30C\uAD34\uD558\uACE0, 4<\uD53C\uD574>\uB370\uBBF8\uC9C0\uB97C
+          \uC90D\uB2C8\uB2E4.</color> \uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uB9C8\uC220
+          \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74 \uC2E4\uD328\uD569\uB2C8\uB2E4."
+        num: 0
+        isEnhanced: 1
+    - name: "\uCD08\uB2A5\uB825-\uC5FC\uB825"
+      cost: 1
+      type: 0
+      element: 2
+      dreamPieceNum: 1
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C \uD604\uC7AC
+        \uD589\uB3D9\uB825 x 1\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
+      num: 1
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uCD08\uB2A5\uB825-\uC5FC\uB825+"
+        cost: 1
+        type: 0
+        element: 2
+        dreamPieceNum: 1
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C \uD604\uC7AC
+          \uD589\uB3D9\uB825 x 1\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4. <color=red>
+          3\uCE78 \uC774\uC0C1 \uD68C\uC804\uD55C \uACBD\uC6B0 \uBC29\uC5B4\uB3C4\uB97C
+          5<\uC218\uBE44> \uC5BB\uC2B5\uB2C8\uB2E4.</color>"
+        num: 0
+        isEnhanced: 1
   - name: "\uB208\uC0AC\uB78C\uC758 \uAFC8"
     persona:
       type: 1
@@ -633,6 +975,10 @@ MonoBehaviour:
           \uB2E4\uC74C \uBAA8\uB4E0 \uD589\uB3D9\uC744 \uBC29\uD574\uD569\uB2C8\uB2E4.
           <color=red>12 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.</color>"
         dreamPieceNum: 2
+    specialRouletteSprite: {fileID: 21300000, guid: e36d8997c6273e048ac290f27e79a1d7, type: 3}
+    specialRouletteTitle: "\uAF41\uAF41"
+    specialRouletteText: "\uAC12\uD134 \uC5BC\uC5B4 \uC788\uC2B5\uB2C8\uB2E4. \uC5BC\uC5B4\uC788\uB294
+      \uB3D9\uC548 \uB8F0\uB81B\uC758 \uD6A8\uACFC\uAC00 \uBE44\uD65C\uC131\uD654\uB429\uB2C8\uB2E4."
     cards:
     - name: "\uAF41\uAF41 \uC5BC\uB9AC\uAE30"
       cost: 2
@@ -920,7 +1266,7 @@ MonoBehaviour:
         isVanish: 0
         isRemain: 0
         sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-        text: "\uC801\uC5D0\uAC8C \uAF41\uAF41 \uB8F0\uB81B\uC758 \uAC1C\uC218 *
+        text: "\uC801\uC5D0\uAC8C \uAF41\uAF41 \uB8F0\uB81B\uC758 \uAC1C\uC218 x
           <color=red>6<\uD53C\uD574></color>\uC758 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
         num: 0
         isEnhanced: 1
@@ -978,7 +1324,171 @@ MonoBehaviour:
           <color=red>2</color>\uD134 \uC99D\uAC00\uC2DC\uD0B5\uB2C8\uB2E4."
         num: 0
         isEnhanced: 1
-    specialRouletteSprite: {fileID: 21300000, guid: e36d8997c6273e048ac290f27e79a1d7, type: 3}
-    specialRouletteTitle: "\uAF41\uAF41"
-    specialRouletteText: "\uAC12\uD134 \uC5BC\uC5B4 \uC788\uC2B5\uB2C8\uB2E4. \uC5BC\uC5B4\uC788\uB294
-      \uB3D9\uC548 \uB8F0\uB81B\uC758 \uD6A8\uACFC\uAC00 \uBE44\uD65C\uC131\uD654\uB429\uB2C8\uB2E4."
+    baseCards_persona:
+    - name: "\uAF41\uAF41 \uC5BC\uB9AC\uAE30"
+      cost: 2
+      type: 1
+      element: 0
+      dreamPieceNum: 2
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC744
+        2\uD134\uAC04 \uAF41\uAF41 \uC5BC\uB9BD\uB2C8\uB2E4."
+      num: 1
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uAF41\uAF41 \uC5BC\uB9AC\uAE30+"
+        cost: 2
+        type: 1
+        element: 0
+        dreamPieceNum: 2
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC744
+          <color=red>3</color>\uD134\uAC04 \uAF41\uAF41 \uC5BC\uB9BD\uB2C8\uB2E4."
+        num: 0
+        isEnhanced: 1
+    - name: "\uC2A4\uB178\uC6B0\uBCFC\uB9C1"
+      cost: 2
+      type: 0
+      element: 0
+      dreamPieceNum: 2
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 3\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4.
+        \uC790\uC2E0\uC5D0\uAC8C \uBD99\uC740 \uBC29\uC5B4\uB3C4\uB97C 2\uBC30\uB85C
+        \uB9CC\uB4ED\uB2C8\uB2E4."
+      num: 1
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uC2A4\uB178\uC6B0\uBCFC\uB9C1+"
+        cost: 2
+        type: 1
+        element: 0
+        dreamPieceNum: 2
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 1
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 3\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4.
+          \uC790\uC2E0\uC5D0\uAC8C \uBD99\uC740 \uBC29\uC5B4\uB3C4\uB97C 2\uBC30\uB85C
+          \uB9CC\uB4ED\uB2C8\uB2E4. <color=red>\uC794\uB958</color>"
+        num: 0
+        isEnhanced: 1
+    - name: "\uB179\uC544\uB0B4\uB9AC\uAE30"
+      cost: 1
+      type: 2
+      element: 1
+      dreamPieceNum: 2
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uD2B8\uB9AC\uAC70 \uAC8C\uC774\uC9C0\uB97C 2 \uC783\uC2B5\uB2C8\uB2E4.
+        \uBC29\uC5B4\uB3C4\uB97C 6<\uC218\uBE44> \uC5BB\uC2B5\uB2C8\uB2E4."
+      num: 1
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uB179\uC544\uB0B4\uB9AC\uAE30+"
+        cost: 1
+        type: 2
+        element: 1
+        dreamPieceNum: 2
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uD2B8\uB9AC\uAC70 \uAC8C\uC774\uC9C0\uB97C 1 \uC783\uC2B5\uB2C8\uB2E4.
+          \uBC29\uC5B4\uB3C4\uB97C 6<\uC218\uBE44> \uC5BB\uC2B5\uB2C8\uB2E4."
+        num: 0
+        isEnhanced: 1
+    baseCards_shadow:
+    - name: "\uAF41\uAF41 \uC5BC\uB9AC\uAE30"
+      cost: 2
+      type: 1
+      element: 0
+      dreamPieceNum: 2
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC744
+        2\uD134\uAC04 \uAF41\uAF41 \uC5BC\uB9BD\uB2C8\uB2E4."
+      num: 1
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uAF41\uAF41 \uC5BC\uB9AC\uAE30+"
+        cost: 2
+        type: 1
+        element: 0
+        dreamPieceNum: 2
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC744
+          <color=red>3</color>\uD134\uAC04 \uAF41\uAF41 \uC5BC\uB9BD\uB2C8\uB2E4."
+        num: 0
+        isEnhanced: 1
+    - name: "\uCC28\uAC00\uC6B4 \uC545\uC218"
+      cost: 3
+      type: 1
+      element: 0
+      dreamPieceNum: 2
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC744
+        3\uD134\uAC04 \uAF41\uAF41 \uC5BC\uB9AC\uACE0, \uC801\uC5D0\uAC8C '\uACFC\uBBFC\uD568'
+        \uD6A8\uACFC\uB97C 1 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+      num: 1
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uCC28\uAC00\uC6B4 \uC545\uC218+"
+        cost: 2
+        type: 1
+        element: 0
+        dreamPieceNum: 2
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC744
+          3\uD134\uAC04 \uAF41\uAF41 \uC5BC\uB9AC\uACE0, \uC801\uC5D0\uAC8C '\uACFC\uBBFC\uD568'
+          \uD6A8\uACFC\uB97C 1 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+        num: 0
+        isEnhanced: 1
+    - name: "\uB208\uC2F8\uC6C0"
+      cost: 3
+      type: 2
+      element: 1
+      dreamPieceNum: 2
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      text: "\uC801\uC5D0\uAC8C \uAF41\uAF41 \uB8F0\uB81B\uC758 \uAC1C\uC218 x 4<\uD53C\uD574>\uC758
+        \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
+      num: 1
+      isEnhanced: 0
+      enhancedItem:
+        name: "\uB208\uC2F8\uC6C0+"
+        cost: 3
+        type: 2
+        element: 2
+        dreamPieceNum: 2
+        isVolatile: 0
+        isVanish: 0
+        isRemain: 0
+        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        text: "\uC801\uC5D0\uAC8C \uAF41\uAF41 \uB8F0\uB81B\uC758 \uAC1C\uC218 x
+          <color=red>6<\uD53C\uD574></color>\uC758 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
+        num: 0
+        isEnhanced: 1

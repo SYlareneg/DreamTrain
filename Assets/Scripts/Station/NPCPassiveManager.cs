@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class NPCPassiveManager : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class NPCPassiveManager : MonoBehaviour
     [SerializeField] TMP_Text npcPassiveListTMP;
     [SerializeField] CharacterSO characterSO;
     [SerializeField] DreamPieceSO dreamPieceSO;
+    public PassiveUI_Select selectedPersona;
+    public PassiveUI_Select selectedShadow;
     public PassiveUI_Select selectedPassive;
     public PassiveUI_Select curPassive;
     [SerializeField] Button npcPassiveEnhanceButton;
@@ -46,37 +49,30 @@ public class NPCPassiveManager : MonoBehaviour
         {
             Destroy(t.gameObject);
         }
-        if (pType == EPassiveType.Persona)
+        foreach (var dp in dreamPieceSO.dreamPieces)
         {
-            foreach (var dp in dreamPieceSO.dreamPieces)
+            var npcPassiveObj = Instantiate(npcPassivePrefab, npcPassiveListScroll.transform, false);
+            npcPassiveObj.transform.SetParent(npcPassiveListScroll.transform);
+            var npcPassive = npcPassiveObj.GetComponent<PassiveUI_Select>();
+
+            npcPassive.Setup(dp.persona);
+
+            if (dp.name == characterSO.personaPiece.name)
             {
-                var npcPassiveObj = Instantiate(npcPassivePrefab, npcPassiveListScroll.transform, false);
-                npcPassiveObj.transform.SetParent(npcPassiveListScroll.transform);
-                var npcPassive = npcPassiveObj.GetComponent<PassiveUI_Select>();
-
-                npcPassive.Setup(dp.persona);
-
-                if (dp.name == characterSO.personaPiece.name)
+                npcPassive.Select(true, Color.blue);
+                selectedPersona = npcPassive;
+                if (pType == EPassiveType.Persona) 
                 {
-                    npcPassive.Select(true, Color.blue);
                     selectedPassive = npcPassive;
                     SetPassive(npcPassive);
                 }
             }
-        }
-        else if(pType == EPassiveType.Shadow)
-        {
-            foreach(var dp in dreamPieceSO.dreamPieces)
+            else if (dp.name == characterSO.shadowPiece.name)
             {
-                var npcPassiveObj = Instantiate(npcPassivePrefab, npcPassiveListScroll.transform, false);
-                npcPassiveObj.transform.SetParent(npcPassiveListScroll.transform);
-                var npcPassive = npcPassiveObj.GetComponent<PassiveUI_Select>();
-
-                npcPassive.Setup(dp.shadow);
-
-                if (dp.name == characterSO.shadowPiece.name)
+                npcPassive.Select(true, Color.red);
+                selectedShadow = npcPassive;
+                if(pType == EPassiveType.Shadow)
                 {
-                    npcPassive.Select(true, Color.red);
                     selectedPassive = npcPassive;
                     SetPassive(npcPassive);
                 }
@@ -193,12 +189,24 @@ public class NPCPassiveManager : MonoBehaviour
         if (npcType == EPassiveType.Persona)
         {
             curPassive.Select(true, Color.blue);
-            characterSO.personaPiece = dreamPieceSO.dreamPieces[curPassive.passive.dreamPieceNum];
+            characterSO.personaPiece = new DreamPiece_Player();
+            characterSO.personaPiece.Setup(dreamPieceSO.dreamPieces[curPassive.passive.dreamPieceNum]);
+            characterSO.personaPiece.cards = new List<Item>();
+            foreach(var card in dreamPieceSO.dreamPieces[curPassive.passive.dreamPieceNum].baseCards_persona)
+            {
+                characterSO.personaPiece.cards.Add(card);
+            }
         }
         else if (npcType == EPassiveType.Shadow)
         {
             curPassive.Select(true, Color.red);
-            characterSO.shadowPiece = dreamPieceSO.dreamPieces[curPassive.passive.dreamPieceNum];
+            characterSO.shadowPiece = new DreamPiece_Player();
+            characterSO.shadowPiece.Setup(dreamPieceSO.dreamPieces[curPassive.passive.dreamPieceNum]);
+            characterSO.shadowPiece.cards = new List<Item>();
+            foreach(var card in dreamPieceSO.dreamPieces[curPassive.passive.dreamPieceNum].baseCards_shadow)
+            {
+                characterSO.shadowPiece.cards.Add(card);
+            }
         }
         HideConfirmScreen();
     }
@@ -243,7 +251,7 @@ public class NPCPassiveManager : MonoBehaviour
         if (curPassive.passive.isEnhanced) npcPassiveEnhanceButton.gameObject.SetActive(false);
         else  npcPassiveEnhanceButton.gameObject.SetActive(true);
 
-        if (curPassive == selectedPassive) npcPassiveChangeButton.gameObject.SetActive(false);
+        if (curPassive == selectedPersona || curPassive == selectedShadow) npcPassiveChangeButton.gameObject.SetActive(false);
         else npcPassiveChangeButton.gameObject.SetActive(true);
     }
 }

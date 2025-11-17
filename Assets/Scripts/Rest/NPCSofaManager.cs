@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class NPCSofaManager : MonoBehaviour
@@ -14,6 +17,7 @@ public class NPCSofaManager : MonoBehaviour
     [Header("회복 기능")]
     [SerializeField] float healPercent;
     [SerializeField] CharacterSO characterSO;
+    public StageSO stageSO;
     [Header("카드 제거 기능")]
     [SerializeField] ItemSO playerDeckSO;
     [SerializeField] GameObject cardDeleteScreen;
@@ -47,6 +51,7 @@ public class NPCSofaManager : MonoBehaviour
 
             sofa.alreadyInteractedSpeech = "다음 정거장에 도착하기 전까지는 쉴 수 없겠어.(소파)";
             sofa.alreadyInteracted = true;
+            stageSO.restUsed = true;
             sofaUI.SetActive(false);
         }));
         healSeq.Append(fadeoutScreen.DOFade(0f, 1f).OnComplete(() =>
@@ -69,7 +74,8 @@ public class NPCSofaManager : MonoBehaviour
             {
                 Destroy(child.gameObject);
             }
-            foreach (Item item in playerDeckSO.items)
+            List<Item> allCardItems = characterSO.normalCards.Concat(characterSO.personaPiece.cards).Concat(characterSO.shadowPiece.cards).ToList();
+            foreach (Item item in allCardItems)
             {
                 for (int i = 0; i < item.num; i++)
                 {
@@ -95,7 +101,8 @@ public class NPCSofaManager : MonoBehaviour
     public void DeleteCard()
     {
         bool deleteFlag = false;
-        foreach (Item item in playerDeckSO.items)
+        List<Item> allCardItems = characterSO.normalCards.Concat(characterSO.personaPiece.cards).Concat(characterSO.shadowPiece.cards).ToList();
+        foreach (Item item in allCardItems)
         {
             if (item == selectedCard.item)
             {
@@ -104,12 +111,25 @@ public class NPCSofaManager : MonoBehaviour
                 break;
             }
         }
-        for(int i = playerDeckSO.items.Count - 1; i >= 0; i--)
+        for(int i = characterSO.normalCards.Count - 1; i >= 0; i--)
         {
-            if(playerDeckSO.items[i].num == 0)
+            if(characterSO.normalCards[i].num == 0)
             {
-                // 테스트 목적으로 주석처리
-                //playerDeckSO.items.RemoveAt(i);
+                characterSO.normalCards.RemoveAt(i);
+            }
+        }
+        for(int i = characterSO.personaPiece.cards.Count - 1; i >= 0; i--)
+        {
+            if(characterSO.personaPiece.cards[i].num == 0)
+            {
+                characterSO.personaPiece.cards.RemoveAt(i);
+            }
+        }
+        for(int i = characterSO.shadowPiece.cards.Count - 1; i >= 0; i--)
+        {
+            if(characterSO.shadowPiece.cards[i].num == 0)
+            {
+                characterSO.shadowPiece.cards.RemoveAt(i);
             }
         }
         if (deleteFlag == false)

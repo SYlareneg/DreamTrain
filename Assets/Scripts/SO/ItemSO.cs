@@ -20,7 +20,7 @@ public class Item
     [Tooltip("카드 설명")] public string text;
     [Tooltip("카드 계수")] public List<(int val, ECardValueType valType)> cardValues = new List<(int val, ECardValueType valType)>();
     [Tooltip("덱 내 카드 장수")] public int num;
-    [Tooltip("")] public bool isEnhanced;
+    [Tooltip("강화 여부")] public bool isEnhanced;
 
     public void SetItem(Item item)
     {
@@ -36,6 +36,7 @@ public class Item
         text = item.text;
         cardValues = item.cardValues;
         num = item.num;
+        isEnhanced = item.isEnhanced;
     }
 }
 
