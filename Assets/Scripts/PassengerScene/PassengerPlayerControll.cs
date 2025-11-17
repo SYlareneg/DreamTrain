@@ -16,9 +16,6 @@ namespace PassengerScene
         private bool movingToClick = false;
         private SpriteRenderer spriteRenderer;
 
-        [SerializeField] private GameObject bat;
-        [SerializeField] private GameObject ghost;
-
         private DoorControll currentDoor;
         private bool clickTriggered = false;
         
@@ -127,7 +124,6 @@ namespace PassengerScene
                 return;
 
             Vector2 mousePos = input.Player.Point.ReadValue<Vector2>();
-            Debug.Log(mousePos);
             Vector3 worldPos = mainCamera.ScreenToWorldPoint(mousePos);
 
             // === 2D Raycast로 변경 (핵심) ===
@@ -138,7 +134,7 @@ namespace PassengerScene
             {
                 Debug.Log(hit.collider.name);
 
-                if (hit.collider.gameObject == bat || hit.collider.gameObject == ghost)
+                if (hit.collider.CompareTag("Unwelcomed"))
                 {
                     SceneManager.LoadScene("BattleScene");
                     return;
