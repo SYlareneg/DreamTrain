@@ -26,6 +26,11 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] float playerSpeechTime;
     [SerializeField] Vector2 playerSpeechOffset;
 
+    void Start()
+    {
+        isLoading = true;
+        SceneChangeManager.Inst.SceneFadeIn(() => isLoading = false);
+    }
     void UpdateUIState()
     {
         playerHealth.text = characterSO.curHealth.ToString() + "/" + characterSO.maxHealth.ToString();

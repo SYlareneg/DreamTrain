@@ -38,12 +38,12 @@ public class DeckBuildManager : MonoBehaviour
     [SerializeField] GameObject playerRelicListScroll;
     public List<RelicUI> playerRelicList;
 
-    public DreamPiece selectedPersona;
+    public DreamPiece_Reference selectedPersona;
     [SerializeField] GameObject personaShow;
     [SerializeField] Image personaButton;
     [SerializeField] TMP_Text personaName;
     [SerializeField] TMP_Text personaText;
-    public DreamPiece selectedShadow;
+    public DreamPiece_Reference selectedShadow;
     [SerializeField] GameObject shadowShow;
     [SerializeField] Image shadowButton;
     [SerializeField] TMP_Text shadowName;
@@ -74,14 +74,11 @@ public class DeckBuildManager : MonoBehaviour
 
     public void DeckListInit()
     {
-        CardManager.Inst.InitializeItemBuffer();
         foreach (CardUI_DeckBuild deckCard in deckList)
         {
             Destroy(deckCard.gameObject);
         }
         deckList.Clear();
-        
-        CardManager.Inst.playerDeckSO.items.Clear();
 
         for (int i = 0; i < deckCardNum; i++)
         {
@@ -117,7 +114,7 @@ public class DeckBuildManager : MonoBehaviour
         return null;
     }
 
-    public void CardListSet(DreamPiece newDP, EPassiveType pType)
+    public void CardListSet(DreamPiece_Reference newDP, EPassiveType pType)
     {
         foreach (CardUI_Draggable card in availableCardList)
         {
@@ -185,6 +182,7 @@ public class DeckBuildManager : MonoBehaviour
             card.Setup(item);
             card.raycaster = canvas.GetComponent<GraphicRaycaster>();
             availableCardList.Add(card);
+            card.item.num = 2;
         }
 
         cardListTitleTMP.text = "공용 카드 풀";
@@ -192,7 +190,7 @@ public class DeckBuildManager : MonoBehaviour
 
     public void PassiveList(EPassiveType pType)
     {
-        foreach (DreamPiece dp in dreamPieceSO.dreamPieces)
+        foreach (DreamPiece_Reference dp in dreamPieceSO.dreamPieces)
         {
             var pObject = Instantiate(passivePrefab, passiveListScroll.transform.position, Utils.QI);
             pObject.transform.SetParent(passiveListScroll.transform);
@@ -218,7 +216,7 @@ public class DeckBuildManager : MonoBehaviour
         }
     }
 
-    public void SelectPassive(DreamPiece dp, EPassiveType pType)
+    public void SelectPassive(DreamPiece_Reference dp, EPassiveType pType)
     {
         foreach (PassiveUI pUI in passiveList)
         {
@@ -385,25 +383,65 @@ public class DeckBuildManager : MonoBehaviour
         }
         if (isReady == true)
         {
-            CardManager.Inst.playerDeckSO.items.Clear();
+            characterSO.personaPiece = new DreamPiece_Player();
+            characterSO.personaPiece.Setup(selectedPersona);
+            characterSO.personaPiece.cards = new List<Item>();
+            characterSO.shadowPiece = new DreamPiece_Player();
+            characterSO.shadowPiece.Setup(selectedShadow);
+            characterSO.shadowPiece.cards = new List<Item>();
             foreach (CardUI_DeckBuild card in deckList)
             {
-                var existItem = CardManager.Inst.playerDeckSO.items.Find(x => x.name == card.item.name);
-                if (existItem == null)
+                if(card.item.dreamPieceNum < 0)
                 {
-                    Item tempItem = new Item();
-                    tempItem.SetItem(card.item);
-                    tempItem.num = 1;
-                    CardManager.Inst.playerDeckSO.items.Add(tempItem);
+                    var existItem = characterSO.normalCards.Find(x => x.name == card.item.name);
+                    if (existItem == null)
+                    {
+                        Item tempItem = new Item();
+                        tempItem.SetItem(card.item);
+                        tempItem.num = 1;
+                        characterSO.normalCards.Add(tempItem);
+                    }
+                    else
+                    {
+                        existItem.num++;
+                    }
+                }
+                else if(selectedPersona == dreamPieceSO.dreamPieces[card.item.dreamPieceNum])
+                {
+                    var existItem = characterSO.personaPiece.cards.Find(x => x.name == card.item.name);
+                    if (existItem == null)
+                    {
+                        Item tempItem = new Item();
+                        tempItem.SetItem(card.item);
+                        tempItem.num = 1;
+                        characterSO.personaPiece.cards.Add(tempItem);
+                    }
+                    else
+                    {
+                        existItem.num++;
+                    }
+                }
+                else if(selectedShadow == dreamPieceSO.dreamPieces[card.item.dreamPieceNum])
+                {
+                    var existItem = characterSO.shadowPiece.cards.Find(x => x.name == card.item.name);
+                    if (existItem == null)
+                    {
+                        Item tempItem = new Item();
+                        tempItem.SetItem(card.item);
+                        tempItem.num = 1;
+                        characterSO.shadowPiece.cards.Add(tempItem);
+                    }
+                    else
+                    {
+                        existItem.num++;
+                    }
                 }
                 else
                 {
-                    existItem.num++;
+                    Debug.LogError("unknown card added to deck!");
                 }
                 card.item.num++;
             }
-            characterSO.personaPiece = selectedPersona;
-            characterSO.shadowPiece = selectedShadow;
             EndDeckBuildUI();
         }
     }
@@ -418,7 +456,8 @@ public class DeckBuildManager : MonoBehaviour
             }
 
             playerDeckList = new List<CardUI>();
-            List<Item> sortedItemList = CardManager.Inst.playerDeckSO.items.OrderBy(x => x.name).ToList();
+            List<Item> allCardItemList = characterSO.personaPiece.cards.Concat(characterSO.shadowPiece.cards).ToList();
+            List<Item> sortedItemList = allCardItemList.OrderBy(x => x.name).ToList();
             Vector3 standardListPosition = playerDeckListScroll.transform.position;
 
             foreach (Item item in sortedItemList)
@@ -483,6 +522,24 @@ public class DeckBuildManager : MonoBehaviour
         IsDeckBuildOpen = false;
     }
 
+    public int GetDeckCardNum()
+    {
+        int num = 0;
+        foreach(var item in characterSO.personaPiece.cards)
+        {
+            num += item.num;
+        }
+        foreach(var item in characterSO.shadowPiece.cards)
+        {
+            num += item.num;
+        }
+        foreach(var item in characterSO.normalCards)
+        {
+            num += item.num;
+        }
+        return num;
+    }
+
     void Start()
     {
         RelicList();
@@ -490,11 +547,7 @@ public class DeckBuildManager : MonoBehaviour
 
     private void Update()
     {
-        int num = 0;
-        foreach(var item in CardManager.Inst.playerDeckSO.items)
-        {
-            num += item.num;
-        }
+        int num = GetDeckCardNum();
         playerDeckNum.text = num.ToString();
         playerDeckNum.color = Color.white;
     }

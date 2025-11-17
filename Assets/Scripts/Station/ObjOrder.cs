@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class ObjOrder : MonoBehaviour
 {
-    [SerializeField] SpriteRenderer playerSR;
     SpriteRenderer sr;
     void Awake()
     {
@@ -11,7 +10,6 @@ public class ObjOrder : MonoBehaviour
 
     void Update()
     {
-        if (playerSR.transform.position.y > sr.transform.position.y) sr.sortingOrder = playerSR.sortingOrder + 1;
-        else sr.sortingOrder = playerSR.sortingOrder - 1;
+        sr.sortingOrder = Mathf.RoundToInt(-transform.position.y * 100);
     }
 }

@@ -77,7 +77,7 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action<int> OnRouletteSpin;
     [HideInInspector] public static Action<int> AfterRouletteSpin;
     [HideInInspector] public static Action OnRouletteTrigger;
-    [HideInInspector] public static Action<int, ERouletteType> BeforeRouletteEnchant;
+    [HideInInspector] public static Func<int, ERouletteType, bool> CheckRouletteEnchantable;
     [HideInInspector] public static Action<int> OnRouletteEnchant;
     [HideInInspector] public static Action BeforeRouletteActivate;
     [HideInInspector] public static Action OnRouletteActivate;
@@ -129,7 +129,7 @@ public class TurnManager : MonoBehaviour
     }
 
     // 게임 시작 전 초기화
-    void InitializeGame()
+    public void InitializeGame()
     {
         GameDeveloperSetup();
         isLoading = true;
@@ -143,7 +143,6 @@ public class TurnManager : MonoBehaviour
     // 게임 시작
     public void StartGameCo()
     {
-        InitializeGame();
         Utils.AllignActions(ref OnGameStart, typeof(ShowBuff), typeof(RelicManager));
         OnGameStart?.Invoke();
         //BuffManager.Inst.AddShowBuff("과민함", EBuffAffectType.Enemy, 1);

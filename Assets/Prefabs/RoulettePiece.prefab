@@ -121,6 +121,8 @@ MonoBehaviour:
     type: 0
     value: 0
   isTriggered: 0
+  isEnhanced: 0
+  tooltip: {fileID: 0}
 --- !u!60 &4611826967908162120
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -194,7 +196,8 @@ MonoBehaviour:
   tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
   tooltipTitle: 
   tooltipTxt: 
-  offset: {x: 0, y: 0}
+  tooltipPos: {x: 0, y: 0}
+  tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
 --- !u!1 &7079689124317470329
 GameObject:
@@ -279,7 +282,7 @@ MeshRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &7409682080955745942
 MonoBehaviour:

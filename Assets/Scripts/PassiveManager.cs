@@ -154,7 +154,7 @@ public class PassiveManager : MonoBehaviour
                     }
                 };
                 List<(int rIdx, RouletteItem rItem)> frozenRoulettes = new List<(int, RouletteItem)>();
-                TurnManager.BeforeRouletteEnchant += (index, type) =>
+                TurnManager.CheckRouletteEnchantable += (index, type) =>
                 {
                     var frozenChk = frozenRoulettes.Find(x => x.rIdx == index);
                     if (frozenChk == (0, null) && type == ERouletteType.Player_Special_1)
@@ -165,17 +165,15 @@ public class PassiveManager : MonoBehaviour
                         frozenSprite.transform.localPosition = Vector3.zero;
                         frozenSprite.transform.localRotation = Quaternion.Euler(0f, 0f, -15f);
                         SpriteRenderer frozenSpriteRenderer = frozenSprite.AddComponent<SpriteRenderer>();
+                        frozenSpriteRenderer.sortingOrder = RouletteManager.Inst.roulettePieces[index].GetComponent<SpriteRenderer>().sortingOrder + 1;
                         frozenSpriteRenderer.sprite = TurnManager.Inst.characterSO.personaPiece.specialRouletteSprite;
                         PlayerSpecialRoulette1Sprite = RouletteManager.Inst.roulettePieces[index].roulettePiece.sprite;
                     }
-                };
-                TurnManager.OnRouletteEnchant += (index) =>
-                {
-                    var frozenChk = frozenRoulettes.Find(x => x.rIdx == index);
-                    if (frozenChk != (0, null) && RouletteManager.Inst.roulettePieces[index].roulette.type != ERouletteType.Player_Special_1)
+                    else if (frozenChk != (0, null) && RouletteManager.Inst.roulettePieces[index].roulette.type == ERouletteType.Player_Special_1)
                     {
-                        RouletteManager.Inst.EnchantRoulettePiece(index, ERouletteType.Player_Special_1, frozenChk.rItem.value);
+                        return false;
                     }
+                    return true;
                 };
                 TurnManager.OnPlayerTurnStart += () =>
                 {
@@ -402,7 +400,7 @@ public class PassiveManager : MonoBehaviour
                     }
                 };
                 List<(int rIdx, RouletteItem rItem)> frozenRoulettes = new List<(int, RouletteItem)>();
-                TurnManager.BeforeRouletteEnchant += (index, type) =>
+                TurnManager.CheckRouletteEnchantable += (index, type) =>
                 {
                     var frozenChk = frozenRoulettes.Find(x => x.rIdx == index);
                     if (frozenChk == (0, null) && type == ERouletteType.Player_Special_2)
@@ -413,17 +411,15 @@ public class PassiveManager : MonoBehaviour
                         frozenSprite.transform.localPosition = Vector3.zero;
                         frozenSprite.transform.localRotation = Quaternion.Euler(0f, 0f, -15f);
                         SpriteRenderer frozenSpriteRenderer = frozenSprite.AddComponent<SpriteRenderer>();
+                        frozenSpriteRenderer.sortingOrder = RouletteManager.Inst.roulettePieces[index].GetComponent<SpriteRenderer>().sortingOrder + 1;
                         frozenSpriteRenderer.sprite = TurnManager.Inst.characterSO.shadowPiece.specialRouletteSprite;
                         PlayerSpecialRoulette2Sprite = RouletteManager.Inst.roulettePieces[index].roulettePiece.sprite;
                     }
-                };
-                TurnManager.OnRouletteEnchant += (index) =>
-                {
-                    var frozenChk = frozenRoulettes.Find(x => x.rIdx == index);
-                    if (frozenChk != (0, null) && RouletteManager.Inst.roulettePieces[index].roulette.type != ERouletteType.Player_Special_2)
+                    else if (frozenChk != (0, null) && RouletteManager.Inst.roulettePieces[index].roulette.type == ERouletteType.Player_Special_2)
                     {
-                        RouletteManager.Inst.EnchantRoulettePiece(index, ERouletteType.Player_Special_2, frozenChk.rItem.value);
+                        return false;
                     }
+                    return true;
                 };
                 TurnManager.OnPlayerTurnStart += () =>
                 {

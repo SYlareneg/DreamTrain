@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using NUnit.Framework.Constraints;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -51,7 +51,16 @@ public class GameManager : MonoBehaviour
     [SerializeField][Tooltip("적 버프 위치")] Vector2 enemyBuffPos;
     [Tooltip("적 버프")] public GameObject enemyBuffUIView;
     [HideInInspector] public List<RelicUI> relicList;
-
+    [Header("카드 획득 UI")]
+    [SerializeField][Tooltip("카드 획득 화면")] GameObject rewardCardView;
+    [SerializeField][Tooltip("획득 카드 목록")] CardUI_Reward[] rewardCards;
+    [SerializeField][Tooltip("플레이어 정보")] CharacterSO characterSO;
+    [SerializeField][Tooltip("카드풀 정보(공용)")] ItemSO normalItemListSO;
+    [SerializeField][Tooltip("카드풀 정보(페르소나/그림자)")] DreamPieceSO dreamPieceListSO;
+    [SerializeField][Tooltip("카드 등장 확률(가중치)\n{0: 공용, 1: 일반, 2: 페르소나-전용, 3: 그림자-전용}")] float[] rewardCardWeights = new float[4];
+    [SerializeField][Tooltip("카드 강화 확률")] float enhanceProbability;
+    [Header("기타")]
+    [SerializeField][Tooltip("스테이지 적 정보")] StageSO stageSO;
     [HideInInspector] public bool gameOverSignal;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -201,7 +210,8 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        TurnManager.Inst.StartGameCo();
+        TurnManager.Inst.InitializeGame();
+        SceneChangeManager.Inst.SceneFadeIn(TurnManager.Inst.StartGameCo);
     }
 
     // 게임 종료
@@ -214,7 +224,17 @@ public class GameManager : MonoBehaviour
         endTurnBtn.SetActive(false);
         yield return new WaitForSeconds(0.5f);
 
-        resultPanel.Show(isMyWin ? "승리" : "패배");
+        if(isMyWin == false)
+        {
+            resultPanel.Show("패배");
+        }
+        else
+        {
+            Notification("승리", "", () =>
+            {
+                ShowCardReward();
+            });
+        }
     }
     
     // 화면 중심 안내 UI 호출
@@ -321,5 +341,139 @@ public class GameManager : MonoBehaviour
             Destroy(rouletteBuffUIView.transform.GetChild(i).gameObject);
         }
         BuffManager.Inst.BuffListToBuffUIList(BuffManager.Inst.rouletteShowBuffs, rouletteBuffUIView, rouletteBuffPos);
+    }
+
+    public void ShowCardReward()
+    {
+        SetCardReward();
+        rewardCardView.SetActive(true);
+    }
+
+    public void EndCardReward()
+    {
+        rewardCardView.SetActive(false);
+        if(characterSO.enemyName == stageSO.stageList[stageSO.currentStage].bossName)
+        {
+            stageSO.stageList[stageSO.currentStage].stageClear = true;
+        }
+        StageEnemy stageEnemy = stageSO.stageList[stageSO.currentStage].stageEnemies.Find(x => x.enemyName == characterSO.enemyName);
+        if(stageEnemy != null)
+        {
+            stageEnemy.isClear = true;
+        }
+        SceneChangeManager.Inst.SceneFadeOut("PassengerScene");
+    }
+
+    public void SetCardReward()
+    {
+        List<Item> shareCards = normalItemListSO.items;
+        List<Item> normalCards = new List<Item>();
+        List<Item> personaCards = new List<Item>();
+        List<Item> shadowCards = new List<Item>();
+        List<Item> normalCards_enhanced = new List<Item>();
+        List<Item> personaCards_enhanced = new List<Item>();
+        List<Item> shadowCards_enhanced = new List<Item>();
+        DreamPiece_Reference persona_ref = dreamPieceListSO.dreamPieces.Find(x => x.name == characterSO.personaPiece.name);
+        DreamPiece_Reference shadow_ref = dreamPieceListSO.dreamPieces.Find(x => x.name == characterSO.shadowPiece.name);
+        foreach (Item_Enhanceable item in persona_ref.cards)
+        {
+            if (item.element == EPassiveType.Normal)
+            {
+                normalCards.Add((Item)item);
+                normalCards_enhanced.Add(item.enhancedItem);
+            }
+            else if (item.element == EPassiveType.Persona)
+            {
+                personaCards.Add((Item)item);
+                personaCards_enhanced.Add(item.enhancedItem);
+            }
+        }
+        foreach (Item_Enhanceable item in shadow_ref.cards)
+        {
+            if (item.element == EPassiveType.Normal)
+            {
+                normalCards.Add((Item)item);
+                normalCards_enhanced.Add(item.enhancedItem);
+            }
+            else if (item.element == EPassiveType.Shadow)
+            {
+                shadowCards.Add((Item)item);
+                shadowCards_enhanced.Add(item.enhancedItem);
+            }
+        }
+        foreach (CardUI_Reward rc in rewardCards)
+        {
+            bool isE = Random.value < enhanceProbability;
+            float totalW = 0f;
+            for (int i = isE ? 1 : 0; i < rewardCardWeights.Length; i++)
+            {
+                totalW += rewardCardWeights[i];
+            }
+            float rPoint = Random.value * totalW;
+            int chooseCardPool = isE ? 1 : 0;
+            for (int i = isE ? 1 : 0; i < rewardCardWeights.Length; i++)
+            {
+                if (rPoint < rewardCardWeights[i])
+                {
+                    chooseCardPool = i;
+                    break;
+                }
+                rPoint -= rewardCardWeights[i];
+            }
+            List<Item> lookat;
+            switch (chooseCardPool)
+            {
+                case 0:
+                    lookat = shareCards;
+                    break;
+                case 1:
+                    if (isE) lookat = normalCards_enhanced;
+                    else lookat = normalCards;
+                    break;
+                case 2:
+                    if (isE) lookat = personaCards_enhanced;
+                    else lookat = personaCards;
+                    break;
+                case 3:
+                    if (isE) lookat = shadowCards_enhanced;
+                    else lookat = shadowCards;
+                    break;
+                default:
+                    lookat = new List<Item>();
+                    break;
+            }
+            int cardIdx = Random.Range(0, lookat.Count);
+            rc.Setup(lookat[cardIdx]);
+            rc.gameObject.SetActive(true);
+        }
+    }
+
+    public void AddCardReward(Item item)
+    {
+        Item newItem = new Item();
+        newItem.SetItem(item);
+        newItem.num = 1;
+        if(item.dreamPieceNum < 0)
+        {
+            var existItem = characterSO.normalCards.Find(x => x.name == item.name);
+            if(existItem == null) characterSO.normalCards.Add(newItem);
+            else existItem.num++;
+        }
+        else if(dreamPieceListSO.dreamPieces[item.dreamPieceNum].name == characterSO.personaPiece.name)
+        {
+            var existItem = characterSO.personaPiece.cards.Find(x => x.name == item.name);
+            if(existItem == null) characterSO.personaPiece.cards.Add(newItem);
+            else existItem.num++;
+        }
+        else if(dreamPieceListSO.dreamPieces[item.dreamPieceNum].name == characterSO.shadowPiece.name)
+        {
+            var existItem = characterSO.shadowPiece.cards.Find(x => x.name == item.name);
+            if(existItem == null) characterSO.shadowPiece.cards.Add(newItem);
+            else existItem.num++;
+        }
+        else
+        {
+            Debug.LogError("undefined card added!");
+        }
     }
 }
