@@ -6987,8 +6987,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 747f1c02e3daa134da43f9458ad2575f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardManager
-  itemSO: {fileID: 11400000, guid: bd268a67003469242809dbd20a8498df, type: 2}
-  playerDeckSO: {fileID: 11400000, guid: 149a57459b8b407488f3bf0d8485c273, type: 2}
+  itemSO: {fileID: 0}
+  playerDeckSO: {fileID: 0}
   cardPrefab: {fileID: 3101435894562736061, guid: 00faca8f8365c654ba92e1bca964104a, type: 3}
   cardUIPrefab: {fileID: 5217781338463960961, guid: ab526733d7fd92a4f91f227d5a5c8cb8, type: 3}
   cardUISelectPrefab: {fileID: 0}
