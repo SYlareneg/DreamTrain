@@ -12,6 +12,7 @@ public class StartCanvasController : MonoBehaviour
 
     private bool menuActivated = false;
     private bool isLoading  = false;
+    private CanvasGroup pabCanvasGroup;
 
     void Start()
     {
@@ -26,6 +27,14 @@ public class StartCanvasController : MonoBehaviour
             c.a = 0f;
             blackPanel.color = c;
         }
+        pabCanvasGroup = pabText.GetComponent<CanvasGroup>();
+        if (pabCanvasGroup == null)
+            pabCanvasGroup = pabText.AddComponent<CanvasGroup>();
+
+        pabCanvasGroup.alpha = 1f;
+
+        // 깜빡이는 코루틴 시작
+        StartCoroutine(FadePabTextRoutine());
     }
 
     void Update()
@@ -52,28 +61,106 @@ public class StartCanvasController : MonoBehaviour
         }
     }
 
-    public void OnNewGameClicked()
+    public void OnNewGameClicked(Button btn)
     {
+        StartCoroutine(ClickScaleRoutine(btn.transform));
         if (!isLoading)
-            StartCoroutine(BlackAndLoad("PassengerScene"));
+            StartCoroutine(BlackAndLoad("NewHallScene"));
     }
 
-    public void OnLoadGameClicked()
-    {
+    public void OnLoadGameClicked(Button btn)
+    {        
+        StartCoroutine(ClickScaleRoutine(btn.transform));
         if (!isLoading)
-            StartCoroutine(BlackAndLoad("PassengerScene"));
+            StartCoroutine(BlackAndLoad("NewHallScene"));
     }
+    public void OnOptionClicked(Button btn)
+    {
+        StartCoroutine(ClickScaleRoutine(btn.transform));
+    }
+    public void OnExitClicked(Button btn)
+    {
+        StartCoroutine(ClickScaleRoutine(btn.transform));
+        Debug.Log("Exit Game");
+        Application.Quit();
+    }
+    
+    private IEnumerator ClickScaleRoutine(Transform target)
+    {
+        Vector3 original = target.localScale;
+        Vector3 smaller = original * 0.9f;
+
+        float duration = 0.08f;
+        float t = 0f;
+
+        // 눌림 (작아짐)
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            target.localScale = Vector3.Lerp(original, smaller, t / duration);
+            yield return null;
+        }
+
+        // 복귀
+        t = 0f;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            target.localScale = Vector3.Lerp(smaller, original, t / duration);
+            yield return null;
+        }
+    }
+
     
     private IEnumerator BlackAndLoad(string sceneName)
     {
         isLoading = true;
-        var c = blackPanel.color;
-        c.a = 1f;
-        blackPanel.color = c;
+
         blackPanel.gameObject.SetActive(true);
+        Color c = blackPanel.color;
+        c.a = 0f;
+        blackPanel.color = c;
+
+        float duration = 1f; 
+        float t = 0f;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float alpha = Mathf.Lerp(0f, 1f, t / duration);
+            c.a = alpha;
+            blackPanel.color = c;
+            yield return null;
+        }
 
         yield return new WaitForSeconds(1f);
-
         SceneManager.LoadScene(sceneName);
+    }
+    private IEnumerator FadePabTextRoutine()
+    {
+        float duration = 1f;
+
+        while (!menuActivated)
+        {
+            float t = 0f;
+            while (t < duration && !menuActivated)
+            {
+                t += Time.deltaTime;
+                pabCanvasGroup.alpha = Mathf.Lerp(0f, 1f, t / duration);
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(0.5f);
+            
+            t = 0f;
+            while (t < duration && !menuActivated)
+            {
+                t += Time.deltaTime;
+                pabCanvasGroup.alpha = Mathf.Lerp(1f, 0f, t / duration);
+                yield return null;
+            }
+
+            yield return null;
+        }
     }
 }

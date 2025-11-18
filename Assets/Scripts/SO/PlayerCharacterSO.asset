@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSO
   maxHealth: 60
   curHealth: 60
-  dreamDust: 0
+  dreamDust: 1000
   leftPassengers: 2
   personaPiece:
     name: "\uBC40\uD30C\uC774\uC5B4\uC758 \uAFC8"

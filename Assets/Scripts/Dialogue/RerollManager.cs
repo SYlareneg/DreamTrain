@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class RerollManager : MonoBehaviour
 {
-    [Header("필수 참조")]
     [SerializeField] private Button rerollButton;
     [SerializeField] private TMP_Text dustNeededText;
     [SerializeField] private TMP_Text currentDustText;
@@ -13,6 +12,9 @@ public class RerollManager : MonoBehaviour
 
     [Header("플레이어 상태 데이터")]
     [SerializeField] private CharacterSO characterSO;
+    [SerializeField] private TMP_Text playerHealthText;
+    [SerializeField] private Image playerHealthBar;
+    [SerializeField] private TMP_Text passengerNumText;
 
     [Header("리롤 설정")]
     [SerializeField] private int rerollCost = 1;
@@ -23,7 +25,7 @@ public class RerollManager : MonoBehaviour
     {
         if (rerollButton != null)
             rerollButton.onClick.AddListener(OnRerollClicked);
-
+        UpdateStaticPlayerUI();
         UpdateDustNeededUI();
     }
     void Update()
@@ -32,6 +34,23 @@ public class RerollManager : MonoBehaviour
         {
             UpdateCurrentDustUI();
         }
+    }
+    private void UpdateStaticPlayerUI()
+    {
+        if (characterSO == null) return;
+
+        // Health 표시
+        if (playerHealthText != null)
+            playerHealthText.text = $"{characterSO.curHealth}/{characterSO.maxHealth}";
+        
+        if (playerHealthBar != null)
+            playerHealthBar.fillAmount = (float)characterSO.curHealth / characterSO.maxHealth;
+
+        // Passenger 표시
+        if (passengerNumText != null)
+            passengerNumText.text = $"남은 승객: {characterSO.leftPassengers}명";
+        
+        
     }
 
     private void OnRerollClicked()
@@ -84,7 +103,7 @@ public class RerollManager : MonoBehaviour
         if (characterSO == null || currentDustText == null)
             return;
 
-        currentDustText.text = characterSO.dreamDust.ToString();
+        currentDustText.text = $"꿈 가루: {characterSO.dreamDust}개";
         lastDreamDust = characterSO.dreamDust;
     }
 }
