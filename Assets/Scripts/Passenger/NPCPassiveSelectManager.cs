@@ -118,11 +118,12 @@ public class NPCPassiveSelectManager : MonoBehaviour
             characterSO.shadowPiece = new DreamPiece_Player();
             characterSO.shadowPiece.Setup(curPassive_Shadow.dreamPiece);
             characterSO.shadowPiece.cards = new List<Item>();
-            foreach(var card in curPassive_Persona.dreamPiece.baseCards_shadow)
+            foreach(var card in curPassive_Shadow.dreamPiece.baseCards_shadow)
             {
                 characterSO.shadowPiece.cards.Add(card);
             }
 
+            characterSO.normalCards = new List<Item>();
             foreach(var card in normalItemSO.items)
             {
                 characterSO.normalCards.Add(card);
