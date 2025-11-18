@@ -55,7 +55,8 @@ public class NPCPassiveManager : MonoBehaviour
             npcPassiveObj.transform.SetParent(npcPassiveListScroll.transform);
             var npcPassive = npcPassiveObj.GetComponent<PassiveUI_Select>();
 
-            npcPassive.Setup(dp.persona);
+            if(pType == EPassiveType.Persona) npcPassive.Setup(dp.persona);
+            else npcPassive.Setup(dp.shadow);
 
             if (dp.name == characterSO.personaPiece.name)
             {
