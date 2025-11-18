@@ -19,44 +19,72 @@ MonoBehaviour:
       enemySprite: {fileID: 21300000, guid: 6d54aeaf15f157442bf23c62953474be, type: 3}
       enemyPos: {x: 0, y: 0, z: 0}
       isClear: 0
+      dreamDustReward: 1
     - enemyName: "\uBC15\uC950"
       enemySprite: {fileID: 21300000, guid: d7d787f92ff3a5a4da78ccc5afebc932, type: 3}
       enemyPos: {x: 5, y: 0, z: 0}
       isClear: 0
-    bossName: "\uBC40\uD30C\uC774\uC5B4 \uD3F4"
+      dreamDustReward: 1
+    bossEnemy:
+      enemyName: "\uBC40\uD30C\uC774\uC5B4 \uD3F4"
+      enemySprite: {fileID: 0}
+      enemyPos: {x: 0, y: 0, z: 0}
+      isClear: 0
+      dreamDustReward: 1
     stageClear: 0
   - stageEnemies:
     - enemyName: "\uB9DD\uB839 1"
       enemySprite: {fileID: 21300000, guid: 6d54aeaf15f157442bf23c62953474be, type: 3}
       enemyPos: {x: 0, y: 0, z: 0}
       isClear: 0
+      dreamDustReward: 1
     - enemyName: "\uBC15\uC950"
       enemySprite: {fileID: 21300000, guid: d7d787f92ff3a5a4da78ccc5afebc932, type: 3}
       enemyPos: {x: 5, y: 0, z: 0}
       isClear: 0
-    bossName: 
+      dreamDustReward: 1
+    bossEnemy:
+      enemyName: "\uB9C8\uC220\uC0AC"
+      enemySprite: {fileID: 0}
+      enemyPos: {x: 0, y: 0, z: 0}
+      isClear: 0
+      dreamDustReward: 1
     stageClear: 0
   - stageEnemies:
     - enemyName: "\uB9DD\uB839 1"
       enemySprite: {fileID: 21300000, guid: 6d54aeaf15f157442bf23c62953474be, type: 3}
       enemyPos: {x: 0, y: 0, z: 0}
       isClear: 0
+      dreamDustReward: 1
     - enemyName: "\uBC15\uC950"
       enemySprite: {fileID: 21300000, guid: d7d787f92ff3a5a4da78ccc5afebc932, type: 3}
       enemyPos: {x: 5, y: 0, z: 0}
       isClear: 0
-    bossName: 
+      dreamDustReward: 1
+    bossEnemy:
+      enemyName: 
+      enemySprite: {fileID: 0}
+      enemyPos: {x: 0, y: 0, z: 0}
+      isClear: 0
+      dreamDustReward: 0
     stageClear: 0
   - stageEnemies:
     - enemyName: "\uB9DD\uB839 1"
       enemySprite: {fileID: 21300000, guid: 6d54aeaf15f157442bf23c62953474be, type: 3}
       enemyPos: {x: 0, y: 0, z: 0}
       isClear: 0
+      dreamDustReward: 1
     - enemyName: "\uBC15\uC950"
       enemySprite: {fileID: 21300000, guid: d7d787f92ff3a5a4da78ccc5afebc932, type: 3}
       enemyPos: {x: 5, y: 0, z: 0}
       isClear: 0
-    bossName: 
+      dreamDustReward: 1
+    bossEnemy:
+      enemyName: 
+      enemySprite: {fileID: 0}
+      enemyPos: {x: 0, y: 0, z: 0}
+      isClear: 0
+      dreamDustReward: 0
     stageClear: 0
   playerSpawn: 0
   restUsed: 0

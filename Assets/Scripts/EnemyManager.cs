@@ -264,6 +264,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     BuffManager.Inst.rouletteBuff_EnemySpecial1.Add(new List<Buff>());
                 };
+                EnemySpecialRoulette1BaseVal = 5;
                 EnemySpecialRoulette1Activation = (rPiece, isEnemy, value) =>
                 {
                     if (isEnemy)

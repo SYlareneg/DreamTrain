@@ -8,13 +8,14 @@ public class StageEnemy
     public Sprite enemySprite;
     public Vector3 enemyPos;
     public bool isClear;
+    public int dreamDustReward;
 }
 
 [System.Serializable]
 public class Stage
 {
     public List<StageEnemy> stageEnemies = new List<StageEnemy>();
-    public string bossName;
+    public StageEnemy bossEnemy;
     public bool stageClear;
 }
 

@@ -153,14 +153,14 @@ public class PassiveManager : MonoBehaviour
                         else TurnManager.Inst.TriggerPlayerPassive(8);
                     }
                 };
-                List<(int rIdx, RouletteItem rItem)> frozenRoulettes = new List<(int, RouletteItem)>();
+                List<(int rIdx, RouletteItem rItem, GameObject frozenIcon)> frozenRoulettes = new List<(int, RouletteItem, GameObject)>();
                 TurnManager.CheckRouletteEnchantable += (index, type) =>
                 {
                     var frozenChk = frozenRoulettes.Find(x => x.rIdx == index);
-                    if (frozenChk == (0, null) && type == ERouletteType.Player_Special_1)
+                    if (frozenChk.rItem == null && type == ERouletteType.Player_Special_1)
                     {
-                        frozenRoulettes.Add((index, RouletteManager.Inst.roulettePieces[index].roulette));
                         GameObject frozenSprite = new GameObject("FrozenIcon");
+                        frozenRoulettes.Add((index, RouletteManager.Inst.roulettePieces[index].roulette, frozenSprite));
                         frozenSprite.transform.SetParent(RouletteManager.Inst.roulettePieces[index].transform);
                         frozenSprite.transform.localPosition = Vector3.zero;
                         frozenSprite.transform.localRotation = Quaternion.Euler(0f, 0f, -15f);
@@ -169,7 +169,7 @@ public class PassiveManager : MonoBehaviour
                         frozenSpriteRenderer.sprite = TurnManager.Inst.characterSO.personaPiece.specialRouletteSprite;
                         PlayerSpecialRoulette1Sprite = RouletteManager.Inst.roulettePieces[index].roulettePiece.sprite;
                     }
-                    else if (frozenChk != (0, null) && RouletteManager.Inst.roulettePieces[index].roulette.type == ERouletteType.Player_Special_1)
+                    else if (frozenChk.rItem != null && RouletteManager.Inst.roulettePieces[index].roulette.type == ERouletteType.Player_Special_1)
                     {
                         return false;
                     }
@@ -196,7 +196,7 @@ public class PassiveManager : MonoBehaviour
                     if (frozenChk.rItem != null)
                     {
                         RouletteManager.Inst.roulettePieces[index].Setup(frozenChk.rItem);
-                        Destroy(RouletteManager.Inst.roulettePieces[index].transform.Find("FrozenIcon").gameObject);
+                        Destroy(frozenChk.frozenIcon);
                         frozenRoulettes.Remove(frozenChk);
                     }
                     else
@@ -399,14 +399,14 @@ public class PassiveManager : MonoBehaviour
                         }
                     }
                 };
-                List<(int rIdx, RouletteItem rItem)> frozenRoulettes = new List<(int, RouletteItem)>();
+                List<(int rIdx, RouletteItem rItem, GameObject frozenIcon)> frozenRoulettes = new List<(int, RouletteItem, GameObject)>();
                 TurnManager.CheckRouletteEnchantable += (index, type) =>
                 {
                     var frozenChk = frozenRoulettes.Find(x => x.rIdx == index);
-                    if (frozenChk == (0, null) && type == ERouletteType.Player_Special_2)
+                    if (frozenChk.rItem == null && type == ERouletteType.Player_Special_2)
                     {
-                        frozenRoulettes.Add((index, RouletteManager.Inst.roulettePieces[index].roulette));
                         GameObject frozenSprite = new GameObject("FrozenIcon");
+                        frozenRoulettes.Add((index, RouletteManager.Inst.roulettePieces[index].roulette, frozenSprite));
                         frozenSprite.transform.SetParent(RouletteManager.Inst.roulettePieces[index].transform);
                         frozenSprite.transform.localPosition = Vector3.zero;
                         frozenSprite.transform.localRotation = Quaternion.Euler(0f, 0f, -15f);
@@ -415,7 +415,7 @@ public class PassiveManager : MonoBehaviour
                         frozenSpriteRenderer.sprite = TurnManager.Inst.characterSO.shadowPiece.specialRouletteSprite;
                         PlayerSpecialRoulette2Sprite = RouletteManager.Inst.roulettePieces[index].roulettePiece.sprite;
                     }
-                    else if (frozenChk != (0, null) && RouletteManager.Inst.roulettePieces[index].roulette.type == ERouletteType.Player_Special_2)
+                    else if (frozenChk.rItem != null && RouletteManager.Inst.roulettePieces[index].roulette.type == ERouletteType.Player_Special_2)
                     {
                         return false;
                     }
@@ -442,7 +442,7 @@ public class PassiveManager : MonoBehaviour
                     if (frozenChk.rItem != null)
                     {
                         RouletteManager.Inst.roulettePieces[index].Setup(frozenChk.rItem);
-                        Destroy(RouletteManager.Inst.roulettePieces[index].transform.Find("FrozenIcon").gameObject);
+                        Destroy(frozenChk.frozenIcon);
                         frozenRoulettes.Remove(frozenChk);
                     }
                     else

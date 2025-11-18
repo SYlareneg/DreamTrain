@@ -352,14 +352,19 @@ public class GameManager : MonoBehaviour
     public void EndCardReward()
     {
         rewardCardView.SetActive(false);
-        if(characterSO.enemyName == stageSO.stageList[stageSO.currentStage].bossName)
+        characterSO.maxHealth = TurnManager.Inst.maxHealth;
+        characterSO.curHealth = TurnManager.Inst.curHealth;
+        if(characterSO.enemyName == stageSO.stageList[stageSO.currentStage].bossEnemy.enemyName)
         {
+            stageSO.stageList[stageSO.currentStage].bossEnemy.isClear = true;
+            characterSO.dreamDust += stageSO.stageList[stageSO.currentStage].bossEnemy.dreamDustReward;
             stageSO.stageList[stageSO.currentStage].stageClear = true;
         }
         StageEnemy stageEnemy = stageSO.stageList[stageSO.currentStage].stageEnemies.Find(x => x.enemyName == characterSO.enemyName);
         if(stageEnemy != null)
         {
             stageEnemy.isClear = true;
+            characterSO.dreamDust += stageEnemy.dreamDustReward;
         }
         SceneChangeManager.Inst.SceneFadeOut("NewHallScene");
     }

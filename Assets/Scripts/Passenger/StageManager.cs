@@ -40,7 +40,7 @@ public class StageManager : MonoBehaviour
         for(int i = 0; i < stageNum; i++)
         {
             roomDoors[i].roomNum = roomDoorNum[i];
-            roomDoors[i].passengerName = stageSO.stageList[curStageNum].bossName;
+            roomDoors[i].passengerName = stageSO.stageList[curStageNum].bossEnemy.enemyName;
             roomDoors[i].alreadyInteracted = true;
             if(i == curStageNum)
             {
@@ -97,7 +97,7 @@ public class StageManager : MonoBehaviour
 
     void Update()
     {
-        if(characterSO.leftPassengers == 0)
+        if(characterSO.leftPassengers == 0 && stageSO.stageList[curStageNum].stageClear == false)
         {
             roomDoors[curStageNum].alreadyInteracted = false;
         }
