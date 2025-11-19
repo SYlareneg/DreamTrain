@@ -12,19 +12,7 @@ public class InteractableObject : MonoBehaviour
     {
         //if (EventSystem.current.IsPointerOverGameObject()) return;
         if (!isInteractionEnabled || isCollected || EventSystem.current.IsPointerOverGameObject()) return;
-        DialogueUI.Instance.ShowObjectName(objectData.Name_KO);
     }
-
-    private void OnMouseExit()
-    {
-        DialogueUI.Instance.HideObjectName();
-    }
-
-    void OnMouseDown()
-    {
-        //DialogueBundleSelector.Inst.ShowBundleChoices(objectID);
-    }
-    
     
     public void OnCollectionComplete()
     {

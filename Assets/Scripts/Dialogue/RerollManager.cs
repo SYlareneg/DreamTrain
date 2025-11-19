@@ -23,8 +23,6 @@ public class RerollManager : MonoBehaviour
 
     void Start()
     {
-        if (rerollButton != null)
-            rerollButton.onClick.AddListener(OnRerollClicked);
         UpdateStaticPlayerUI();
         UpdateDustNeededUI();
     }
@@ -53,7 +51,7 @@ public class RerollManager : MonoBehaviour
         
     }
 
-    private void OnRerollClicked()
+    public void OnRerollClicked()
     {
         if (characterSO == null || dialogueManager == null)
         {
@@ -105,5 +103,10 @@ public class RerollManager : MonoBehaviour
 
         currentDustText.text = $"꿈 가루: {characterSO.dreamDust}개";
         lastDreamDust = characterSO.dreamDust;
+    }
+    
+    public bool IsRerollUIActive()
+    {
+        return rerollButton != null && rerollButton.gameObject.activeInHierarchy;
     }
 }
