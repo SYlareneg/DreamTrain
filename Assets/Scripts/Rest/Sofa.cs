@@ -35,7 +35,7 @@ public class Sofa : PlayerInteractableObject
 
     void Start()
     {
-        if (NPCSofaManager.Inst.stageSO.restUsed)
+        if (NPCSofaManager.Inst.stageSO.sofaUsed)
         {
             alreadyInteracted = true;
             alreadyInteractedSpeech = "다음 정거장에 도착하기 전까지는 쉴 수 없겠어.(소파)";

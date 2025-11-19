@@ -19,7 +19,6 @@ public class NPCSofaManager : MonoBehaviour
     [SerializeField] CharacterSO characterSO;
     public StageSO stageSO;
     [Header("카드 제거 기능")]
-    [SerializeField] ItemSO playerDeckSO;
     [SerializeField] GameObject cardDeleteScreen;
     [SerializeField] GameObject cardDeleteList;
     [SerializeField] GameObject deleteCardPrefab;
@@ -51,7 +50,7 @@ public class NPCSofaManager : MonoBehaviour
 
             sofa.alreadyInteractedSpeech = "다음 정거장에 도착하기 전까지는 쉴 수 없겠어.(소파)";
             sofa.alreadyInteracted = true;
-            stageSO.restUsed = true;
+            stageSO.sofaUsed = true;
             sofaUI.SetActive(false);
         }));
         healSeq.Append(fadeoutScreen.DOFade(0f, 1f).OnComplete(() =>
@@ -142,6 +141,7 @@ public class NPCSofaManager : MonoBehaviour
         SofaCardDelete();
         PlayerManager.Inst.SetPlayerSpeech("다음 정거장에 도착하기 전까지는 쉴 수 없겠어.");
         sofa.alreadyInteracted = true;
+        stageSO.sofaUsed = true;
         HideSofaUI();
     }
     

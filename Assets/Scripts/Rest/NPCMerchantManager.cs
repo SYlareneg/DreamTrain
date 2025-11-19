@@ -14,6 +14,7 @@ public class NPCMerchantManager : MonoBehaviour
     public Merchant merchant;
     [SerializeField] CharacterSO characterSO;
     [SerializeField] RelicSO playerRelicSO;
+    [SerializeField] StageSO stageSO;
     [Header("카드 구매")]
     [SerializeField] CardUI_Sell[] sellCards;
     [SerializeField] DreamPieceSO dreamPieceListSO;
@@ -63,8 +64,28 @@ public class NPCMerchantManager : MonoBehaviour
     public void ShowMerchantUI()
     {
         PlayerManager.Inst.isLoading = true;
-        SetSellCards();
-        SetSellUItems();
+        if(stageSO.merchantSellCards.Count == 0)
+        {
+            SetSellCards();
+        }
+        else
+        {
+            for(int i = 0; i < sellCards.Length; i++)
+            {
+                sellCards[i].Setup(stageSO.merchantSellCards[i].cardItem, stageSO.merchantSellCards[i].cost, stageSO.merchantSellCards[i].isValid);
+            }
+        }
+        if(stageSO.merchantSellUItems.Count == 0)
+        {
+            SetSellUItems();
+        }
+        else
+        {
+            for(int i = 0; i < useableItems.Length; i++)
+            {
+                useableItems[i].Setup(stageSO.merchantSellUItems[i].useItem, stageSO.merchantSellUItems[i].cost, stageSO.merchantSellUItems[i].isValid);
+            }
+        }
         merchantUI.SetActive(true);
     }
     public void HideMerchantUI()
@@ -76,6 +97,8 @@ public class NPCMerchantManager : MonoBehaviour
     // 카드 구매
     public void SetSellCards()
     {
+        stageSO.merchantSellCards.Clear();
+
         List<Item> shareCards = normalItemListSO.items;
         List<Item> normalCards = new List<Item>();
         List<Item> personaCards = new List<Item>();
@@ -155,9 +178,9 @@ public class NPCMerchantManager : MonoBehaviour
                     break;
             }
             int cardIdx = Random.Range(0, lookat.Count);
-            sc.Setup(lookat[cardIdx]);
-            sc.SetSellCost(sellCost);
-            sc.gameObject.SetActive(true);
+
+            sc.Setup(lookat[cardIdx], sellCost, true);
+            stageSO.merchantSellCards.Add(sc.sellCard);
         }
     }
 
@@ -323,13 +346,14 @@ public class NPCMerchantManager : MonoBehaviour
 
     public void SetSellUItems()
     {
+        stageSO.merchantSellUItems.Clear();
+
         foreach(UseableItemUI_Sell uI_Sell in useableItems)
         {
-            int uItemIdx = Random.Range(0, playerUseableItemSO.useableItems.Count);
+            int uItemIdx = Random.Range(0, useableItemListSO.useableItems.Count);
             var setUItem = useableItemListSO.useableItems[uItemIdx];
-            uI_Sell.Setup(setUItem);
-            uI_Sell.SetCost(sellCardCosts[setUItem.rarity]);
-            uI_Sell.gameObject.SetActive(true);
+            uI_Sell.Setup(setUItem, sellCardCosts[setUItem.rarity], true);
+            stageSO.merchantSellUItems.Add(uI_Sell.uItem);
         }
     }
     

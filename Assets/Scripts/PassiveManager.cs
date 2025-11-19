@@ -157,7 +157,11 @@ public class PassiveManager : MonoBehaviour
                 TurnManager.CheckRouletteEnchantable += (index, type) =>
                 {
                     var frozenChk = frozenRoulettes.Find(x => x.rIdx == index);
-                    if (frozenChk.rItem == null && type == ERouletteType.Player_Special_1)
+                    if (frozenChk.rItem != null && RouletteManager.Inst.roulettePieces[index].roulette.type == ERouletteType.Player_Special_1)
+                    {
+                        return false;
+                    }
+                    if(frozenChk.rItem == null && type == ERouletteType.Player_Special_1)
                     {
                         GameObject frozenSprite = new GameObject("FrozenIcon");
                         frozenRoulettes.Add((index, RouletteManager.Inst.roulettePieces[index].roulette, frozenSprite));
@@ -168,10 +172,6 @@ public class PassiveManager : MonoBehaviour
                         frozenSpriteRenderer.sortingOrder = RouletteManager.Inst.roulettePieces[index].GetComponent<SpriteRenderer>().sortingOrder + 1;
                         frozenSpriteRenderer.sprite = TurnManager.Inst.characterSO.personaPiece.specialRouletteSprite;
                         PlayerSpecialRoulette1Sprite = RouletteManager.Inst.roulettePieces[index].roulettePiece.sprite;
-                    }
-                    else if (frozenChk.rItem != null && RouletteManager.Inst.roulettePieces[index].roulette.type == ERouletteType.Player_Special_1)
-                    {
-                        return false;
                     }
                     return true;
                 };
@@ -231,18 +231,23 @@ public class PassiveManager : MonoBehaviour
                 };
                 PlayerSpecialRoulette2Activation = (isEnemy, value) =>
                 {
+                    int trueDamage = 0;
+                    bool isEnhanced = false;
                     if (isEnemy)
                     {
-                        int trueDamage = TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette);
-                        int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_PlayerSpecial2[1], trueDamage);
-                        TurnManager.Inst.EnemyTakeDmg(-totalVal_Heal, EDamageSource.Roulette);
+                        trueDamage = TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette);
+                        isEnhanced = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].isEnhanced;
                     }
                     else
                     {
-                        int trueDamage = TurnManager.Inst.TakeDmg(value, EDamageSource.Roulette);
-                        int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_PlayerSpecial2[1], trueDamage);
-                        TurnManager.Inst.EnemyTakeDmg(-totalVal_Heal, EDamageSource.Roulette);
+                        trueDamage = TurnManager.Inst.TakeDmg(value, EDamageSource.Roulette);
+                        isEnhanced = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].isEnhanced;
                     }
+                    int healVal = 0;
+                    if (isEnhanced) healVal = trueDamage / 2;
+                    else healVal = trueDamage / 3;
+                    int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_PlayerSpecial2[1], healVal);
+                    TurnManager.Inst.TakeDmg(-totalVal_Heal, EDamageSource.Roulette);
                 };
                 rItem.type = ERouletteType.Attack;
                 rItem.value = 8;
@@ -403,7 +408,11 @@ public class PassiveManager : MonoBehaviour
                 TurnManager.CheckRouletteEnchantable += (index, type) =>
                 {
                     var frozenChk = frozenRoulettes.Find(x => x.rIdx == index);
-                    if (frozenChk.rItem == null && type == ERouletteType.Player_Special_2)
+                    if (frozenChk.rItem != null && RouletteManager.Inst.roulettePieces[index].roulette.type == ERouletteType.Player_Special_2)
+                    {
+                        return false;
+                    }
+                    if(frozenChk.rItem == null && type == ERouletteType.Player_Special_2)
                     {
                         GameObject frozenSprite = new GameObject("FrozenIcon");
                         frozenRoulettes.Add((index, RouletteManager.Inst.roulettePieces[index].roulette, frozenSprite));
@@ -414,10 +423,6 @@ public class PassiveManager : MonoBehaviour
                         frozenSpriteRenderer.sortingOrder = RouletteManager.Inst.roulettePieces[index].GetComponent<SpriteRenderer>().sortingOrder + 1;
                         frozenSpriteRenderer.sprite = TurnManager.Inst.characterSO.shadowPiece.specialRouletteSprite;
                         PlayerSpecialRoulette2Sprite = RouletteManager.Inst.roulettePieces[index].roulettePiece.sprite;
-                    }
-                    else if (frozenChk.rItem != null && RouletteManager.Inst.roulettePieces[index].roulette.type == ERouletteType.Player_Special_2)
-                    {
-                        return false;
                     }
                     return true;
                 };

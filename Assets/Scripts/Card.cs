@@ -171,19 +171,19 @@ public class Card : MonoBehaviour
         switch (item.name)
         {
             case "회전 카드 1":
-                RouletteManager.Inst.Spin(true, 3);
+                RouletteManager.Inst.Spin(true, 1);
                 break;
             case "회전 카드 2":
                 RouletteManager.Inst.Spin(true, 2);
                 break;
             case "회전 카드 3":
-                RouletteManager.Inst.Spin(false, 3);
+                RouletteManager.Inst.Spin(true, 3);
                 break;
             case "회전 카드 4":
                 RouletteManager.Inst.Spin(false, 2);
                 break;
             case "회전 카드 5":
-                RouletteManager.Inst.Spin(true, 1);
+                RouletteManager.Inst.Spin(false, 3);
                 break;
             case "구원":
                 TurnManager.Inst.TakeDmg(-TurnManager.Inst.maxHealth / 2, EDamageSource.Card);
@@ -236,20 +236,20 @@ public class Card : MonoBehaviour
                 TurnManager.Inst.TakeDmg(-3, EDamageSource.Card);
                 break;
             case "휴머니스트":
-                BuffManager.Inst.AddShowBuff("주저함", EBuffAffectType.Enemy, 1);
-                BuffManager.Inst.AddShowBuff("주저함", EBuffAffectType.Roulette, 1);
+                BuffManager.Inst.AddShowBuff("주저함", EBuffAffectType.Enemy, 1, false);
+                BuffManager.Inst.AddShowBuff("주저함", EBuffAffectType.Roulette, 1, false);
                 break;
             case "휴머니스트+":
-                BuffManager.Inst.AddShowBuff("주저함", EBuffAffectType.Enemy, 2);
-                BuffManager.Inst.AddShowBuff("주저함", EBuffAffectType.Roulette, 2);
+                BuffManager.Inst.AddShowBuff("주저함", EBuffAffectType.Enemy, 2, false);
+                BuffManager.Inst.AddShowBuff("주저함", EBuffAffectType.Roulette, 2, false);
                 break;
             case "블루 블러드":
             case "블루 블러드+":
-                BuffManager.Inst.AddShowBuff("블루 블러드", EBuffAffectType.Roulette, 2);
+                BuffManager.Inst.AddShowBuff("블루 블러드", EBuffAffectType.Roulette, 2, false);
                 break;
             case "만찬 시간":
             case "만찬 시간+":
-                BuffManager.Inst.AddShowBuff("만찬 시간", EBuffAffectType.Roulette, 2);
+                BuffManager.Inst.AddShowBuff("만찬 시간", EBuffAffectType.Roulette, 2, false);
                 break;
             case "핏빛 날개":
             case "핏빛 날개+":
@@ -330,7 +330,7 @@ public class Card : MonoBehaviour
                 break;
             case "마술-예언":
             case "마술-예언+":
-                BuffManager.Inst.AddShowBuff("예언-준비", EBuffAffectType.Player, 1);
+                BuffManager.Inst.AddShowBuff("예언-준비", EBuffAffectType.Player, 1, false);
                 break;
             case "재빠른 손놀림":
             case "재빠른 손놀림+":
@@ -339,7 +339,7 @@ public class Card : MonoBehaviour
                 break;
             case "초능력-예언":
             case "초능력-예언+":
-                BuffManager.Inst.AddShowBuff("예언-준비", EBuffAffectType.Player, 1);
+                BuffManager.Inst.AddShowBuff("예언-준비", EBuffAffectType.Player, 1, false);
                 break;
             case "초능력-염력":
             case "초능력-염력+":
@@ -389,16 +389,17 @@ public class Card : MonoBehaviour
                 Action<int> repeatCard = null;
                 repeatCard = (x) =>
                 {
-                    if (TurnManager.Inst.nowCost >= buffedCost)
+                    Sequence wait = DOTween.Sequence();
+                    wait.AppendInterval(0.5f).OnComplete(() =>
                     {
-                        TurnManager.Inst.IncreaseCost(-buffedCost);
-                        RouletteManager.Inst.Spin(true, 2);
-                        if (item.name == "데굴데굴+") TurnManager.Inst.EnemyTakeDmg(2, EDamageSource.Card);
-                    }
-                    else
-                    {
+                        if (TurnManager.Inst.nowCost >= buffedCost)
+                        {
+                            TurnManager.Inst.IncreaseCost(-buffedCost);
+                            RouletteManager.Inst.Spin(true, 2);
+                            if (item.name == "데굴데굴+") TurnManager.Inst.EnemyTakeDmg(2, EDamageSource.Card);
+                        }
                         TurnManager.AfterRouletteSpin -= repeatCard;
-                    }
+                    });
                 };
                 TurnManager.AfterRouletteSpin += repeatCard;
                 break;
@@ -409,7 +410,7 @@ public class Card : MonoBehaviour
                 isCardUsed = RouletteManager.Inst.EnchantRoulette(true, frozen, 3);
                 if (isCardUsed)
                 {
-                    BuffManager.Inst.AddShowBuff("과민함", EBuffAffectType.Enemy, 1);
+                    BuffManager.Inst.AddShowBuff("과민함", EBuffAffectType.Enemy, 1, false);
                 }
                 break;
             case "스노우볼링":

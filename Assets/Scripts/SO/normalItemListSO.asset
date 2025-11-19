@@ -22,7 +22,7 @@ MonoBehaviour:
     isVanish: 0
     isRemain: 0
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-    text: Spin roulette clockwise 3 slots.
+    text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 1\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
     num: 0
     isEnhanced: 0
   - name: "\uD68C\uC804 \uCE74\uB4DC 2"
@@ -46,8 +46,7 @@ MonoBehaviour:
     isVanish: 0
     isRemain: 0
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-    text: "\uB8F0\uB81B\uC744 \uBC18\uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 3\uCE78
-      \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
+    text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 3\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
     num: 0
     isEnhanced: 0
   - name: "\uD68C\uC804 \uCE74\uB4DC 4"
@@ -72,6 +71,7 @@ MonoBehaviour:
     isVanish: 0
     isRemain: 0
     sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-    text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 1\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
+    text: "\uB8F0\uB81B\uC744 \uBC18\uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 3\uCE78
+      \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
     num: 0
     isEnhanced: 0

@@ -604,7 +604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.5330188, b: 0.5330188, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -815,8 +815,8 @@ MonoBehaviour:
     isRemain: 0
     sprite: {fileID: 0}
     text: 
-    cardValues: 
     num: 0
+    isEnhanced: 0
   cardUIPrefab: {fileID: 5217781338463960961, guid: ab526733d7fd92a4f91f227d5a5c8cb8, type: 3}
   raycaster: {fileID: 0}
   availableNumTMP: {fileID: 6123164367117680155}

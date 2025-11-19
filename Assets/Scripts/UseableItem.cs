@@ -39,7 +39,7 @@ public class UseableItem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 break;
             case "오염된 주사바늘":
                 TurnManager.Inst.TakeDmg(-12, EDamageSource.UseableItem);
-                BuffManager.Inst.AddShowBuff("취약", EBuffAffectType.Player, 2);
+                BuffManager.Inst.AddShowBuff("취약", EBuffAffectType.Player, 2, false);
                 break;
             default:
                 Debug.LogWarning("등록되지 않은 아이템 사용!");

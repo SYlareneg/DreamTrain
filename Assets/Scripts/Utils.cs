@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using System;
 using System.Linq;
@@ -155,5 +156,18 @@ public class Utils
         if (t.IsDefined(typeof(CompilerGeneratedAttribute), inherit: false)) return true;
         string n = t.FullName ?? t.Name ?? "";
         return n.Contains("<>c") || n.Contains("DisplayClass");
+    }
+}
+
+public class ReadOnlyAttribute : PropertyAttribute { }
+
+[CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
+public class ReadOnlyDrawer : PropertyDrawer
+{
+    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    {
+        GUI.enabled = false;  // 비활성화 (읽기 전용)
+        EditorGUI.PropertyField(position, property, label, true);
+        GUI.enabled = true;   // 다시 활성화
     }
 }

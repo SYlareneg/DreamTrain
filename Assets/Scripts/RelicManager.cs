@@ -81,7 +81,7 @@ public class RelicManager : MonoBehaviour
                 {
                     if (TurnManager.Inst.curHealth <= threshold)
                     {
-                        if (BuffManager.Inst.GetShowBuff("활력", EBuffAffectType.Player) != null) BuffManager.Inst.AddShowBuff("활력", EBuffAffectType.Player, 1);
+                        if (BuffManager.Inst.GetShowBuff("활력", EBuffAffectType.Player) != null) BuffManager.Inst.AddShowBuff("활력", EBuffAffectType.Player, 1, false);
                     }
                     else
                     {

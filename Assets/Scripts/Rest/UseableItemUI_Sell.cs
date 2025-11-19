@@ -5,35 +5,32 @@ using TMPro;
 
 public class UseableItemUI_Sell : MonoBehaviour, IPointerClickHandler
 {
-    UseItem uItem;
+    public SellUItem uItem;
     [SerializeField] Image image;
     [SerializeField] TMP_Text useableItemCostTMP;
-    [SerializeField] int sellCost;
 
-    public void Setup(UseItem item)
+    public void Setup(UseItem item, int cost, bool isValid)
     {
-        uItem = item;
+        uItem.useItem = item;
         image.sprite = item.sprite;
-        useableItemCostTMP.text = "<sprite=0>" + sellCost.ToString();
-    }
-
-    public void SetCost(int c)
-    {
-        sellCost = c;
-        useableItemCostTMP.text = "<sprite=0>" + sellCost.ToString();
+        uItem.cost = cost;
+        useableItemCostTMP.text = "<sprite=0>" + cost.ToString();
+        uItem.isValid = isValid;
+        gameObject.SetActive(isValid);
     }
 
     public void OnPointerClick(PointerEventData data)
     {
-        if (PlayerManager.Inst.characterSO.dreamDust < sellCost) return;
-        PlayerManager.Inst.characterSO.dreamDust -= sellCost;
-        NPCMerchantManager.Inst.AddUseableItem(uItem);
+        if (PlayerManager.Inst.characterSO.dreamDust < uItem.cost) return;
+        PlayerManager.Inst.characterSO.dreamDust -= uItem.cost;
+        NPCMerchantManager.Inst.AddUseableItem(uItem.useItem);
         gameObject.SetActive(false);
+        uItem.isValid = false;
     }
 
     private void Update()
     {
-        if (PlayerManager.Inst.characterSO.dreamDust < sellCost)
+        if (PlayerManager.Inst.characterSO.dreamDust < uItem.cost)
         {
             useableItemCostTMP.color = Color.red;
         }

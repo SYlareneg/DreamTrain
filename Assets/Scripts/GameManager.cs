@@ -260,13 +260,13 @@ public class GameManager : MonoBehaviour
             switch (listType)
             {
                 case ListType.Deck:
-                    cardList = CardManager.Inst.ItemBufferToCardUIList(CardManager.Inst.itemDeck);
+                    cardList = CardManager.ItemBufferToCardUIList(CardManager.Inst.itemDeck, cardListScroll.transform);
                     break;
                 case ListType.Draw:
-                    cardList = CardManager.Inst.ItemBufferToCardUIList(CardManager.Inst.itemDraw);
+                    cardList = CardManager.ItemBufferToCardUIList(CardManager.Inst.itemDraw, cardListScroll.transform);
                     break;
                 case ListType.Discard:
-                    cardList = CardManager.Inst.ItemBufferToCardUIList(CardManager.Inst.itemDiscard);
+                    cardList = CardManager.ItemBufferToCardUIList(CardManager.Inst.itemDiscard, cardListScroll.transform);
                     break;
             }
             Canvas.ForceUpdateCanvases();

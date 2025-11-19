@@ -24,11 +24,29 @@ public enum EPlayerSpawn
     Station, Rest, Room
 };
 
+[System.Serializable]
+public class SellCard
+{
+    public Item cardItem;
+    public int cost;
+    public bool isValid;
+}
+
+[System.Serializable]
+public class SellUItem
+{
+    public UseItem useItem;
+    public int cost;
+    public bool isValid;
+}
+
 [CreateAssetMenu(fileName = "StageSO", menuName = "Scriptable Objects/StageSO")]
 public class StageSO : ScriptableObject
 {
     public int currentStage;
     public Stage[] stageList;
     public EPlayerSpawn playerSpawn;
-    public bool restUsed;
+    public bool sofaUsed;
+    public List<SellCard> merchantSellCards = new List<SellCard>();
+    public List<SellUItem> merchantSellUItems = new List<SellUItem>();
 }

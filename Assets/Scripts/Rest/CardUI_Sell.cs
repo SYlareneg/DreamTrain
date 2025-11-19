@@ -6,27 +6,34 @@ using TMPro;
 public class CardUI_Sell : CardUI, IPointerClickHandler
 {
     [SerializeField] TMP_Text sellCostTMP;
-    int sellCost;
+    public SellCard sellCard;
     private void Awake()
     {
-        sellCost = 1;
+        sellCard.cost = 1;
     }
-    public void SetSellCost(int c)
+
+    public void Setup(Item item, int cost, bool isValid)
     {
-        sellCost = c;
-        sellCostTMP.text = "<sprite=0>" + sellCost.ToString();
+        base.Setup(item);
+        sellCard = new SellCard();
+        sellCard.cardItem = item;
+        sellCard.cost = cost;
+        sellCard.isValid = isValid;
+        sellCostTMP.text = "<sprite=0>" + sellCard.cost.ToString();
+        gameObject.SetActive(isValid);
     }
     public void OnPointerClick(PointerEventData data)
     {
-        if (PlayerManager.Inst.characterSO.dreamDust < sellCost) return;
-        PlayerManager.Inst.characterSO.dreamDust -= sellCost;
+        if (PlayerManager.Inst.characterSO.dreamDust < sellCard.cost) return;
+        PlayerManager.Inst.characterSO.dreamDust -= sellCard.cost;
         NPCMerchantManager.Inst.AddCard(this.item);
         gameObject.SetActive(false);
+        sellCard.isValid = false;
     }
 
     private void Update()
     {
-        if (PlayerManager.Inst.characterSO.dreamDust < sellCost)
+        if (PlayerManager.Inst.characterSO.dreamDust < sellCard.cost)
         {
             sellCostTMP.color = Color.red;
         }

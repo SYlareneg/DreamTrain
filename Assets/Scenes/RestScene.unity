@@ -1268,6 +1268,22 @@ MonoBehaviour:
     num: 0
     isEnhanced: 0
   sellCostTMP: {fileID: 820220786}
+  sellCard:
+    cardItem:
+      name: 
+      cost: 0
+      type: 0
+      element: 0
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 0}
+      text: 
+      num: 0
+      isEnhanced: 0
+    cost: 0
+    isValid: 0
 --- !u!114 &117495155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2055,7 +2071,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.5330188, b: 0.5330188, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2931,7 +2947,6 @@ MonoBehaviour:
   healPercent: 0.3
   characterSO: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
   stageSO: {fileID: 11400000, guid: 2de9de6b9f0fbea46b0149e204bb7b11, type: 2}
-  playerDeckSO: {fileID: 11400000, guid: 149a57459b8b407488f3bf0d8485c273, type: 2}
   cardDeleteScreen: {fileID: 197593914}
   cardDeleteList: {fileID: 1270577208}
   deleteCardPrefab: {fileID: 5562591304075427566, guid: 30d1be37a030d5b45b17e8d372733ba6, type: 3}
@@ -5483,6 +5498,22 @@ MonoBehaviour:
     num: 0
     isEnhanced: 0
   sellCostTMP: {fileID: 879769583}
+  sellCard:
+    cardItem:
+      name: 
+      cost: 0
+      type: 0
+      element: 0
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 0}
+      text: 
+      num: 0
+      isEnhanced: 0
+    cost: 0
+    isValid: 0
 --- !u!114 &618974504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7113,7 +7144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.5330188, b: 0.5330188, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10037,7 +10068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.5330188, b: 0.5330188, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10761,6 +10792,7 @@ MonoBehaviour:
   merchant: {fileID: 0}
   characterSO: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
   playerRelicSO: {fileID: 11400000, guid: f261c4fa2c6606c4ea86c879ed3f631d, type: 2}
+  stageSO: {fileID: 11400000, guid: 2de9de6b9f0fbea46b0149e204bb7b11, type: 2}
   sellCards:
   - {fileID: 4259671546702245765}
   - {fileID: 117495154}
@@ -15227,9 +15259,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d87e496f47fac6c4b9f27c4bf4aa0ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UseableItemUI_Sell
+  uItem:
+    useItem:
+      name: 
+      text: 
+      sprite: {fileID: 0}
+      rarity: 0
+    cost: 0
+    isValid: 0
   image: {fileID: 1862855874}
   useableItemCostTMP: {fileID: 1147859708}
-  sellCost: 0
 --- !u!114 &1862855874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15527,9 +15566,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d87e496f47fac6c4b9f27c4bf4aa0ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UseableItemUI_Sell
+  uItem:
+    useItem:
+      name: 
+      text: 
+      sprite: {fileID: 0}
+      rarity: 0
+    cost: 0
+    isValid: 0
   image: {fileID: 1885333950}
   useableItemCostTMP: {fileID: 1207603376}
-  sellCost: 0
 --- !u!114 &1885333950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17084,6 +17130,22 @@ MonoBehaviour:
     num: 0
     isEnhanced: 0
   sellCostTMP: {fileID: 1752953235}
+  sellCard:
+    cardItem:
+      name: 
+      cost: 0
+      type: 0
+      element: 0
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 0}
+      text: 
+      num: 0
+      isEnhanced: 0
+    cost: 0
+    isValid: 0
 --- !u!114 &2136132384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17870,6 +17932,22 @@ MonoBehaviour:
     num: 0
     isEnhanced: 0
   sellCostTMP: {fileID: 1807049271}
+  sellCard:
+    cardItem:
+      name: 
+      cost: 0
+      type: 0
+      element: 0
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      sprite: {fileID: 0}
+      text: 
+      num: 0
+      isEnhanced: 0
+    cost: 0
+    isValid: 0
 --- !u!1 &4396643890742150009
 GameObject:
   m_ObjectHideFlags: 0
@@ -18625,9 +18703,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d87e496f47fac6c4b9f27c4bf4aa0ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UseableItemUI_Sell
+  uItem:
+    useItem:
+      name: 
+      text: 
+      sprite: {fileID: 0}
+      rarity: 0
+    cost: 0
+    isValid: 0
   image: {fileID: 4396969012905170190}
   useableItemCostTMP: {fileID: 123057443}
-  sellCost: 0
 --- !u!1 &6844900591005548709
 GameObject:
   m_ObjectHideFlags: 0
@@ -18863,7 +18948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.5330188, b: 0.5330188, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

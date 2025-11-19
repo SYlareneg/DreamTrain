@@ -243,7 +243,7 @@ public class EnemyManager : MonoBehaviour
                     }
                     else
                     {
-                        BuffManager.Inst.AddShowBuff("환영", EBuffAffectType.Enemy, magicHat * value);
+                        BuffManager.Inst.AddShowBuff("환영", EBuffAffectType.Enemy, magicHat * value, true);
                     }
                 };
                 TurnManager.BeforePlayerTurnStart += () =>
@@ -351,7 +351,7 @@ public class EnemyManager : MonoBehaviour
                 };
 
                 bool wasDamaged = false;
-                TurnManager.OnPlayerTurnStart += () =>
+                TurnManager.OnEnemyTurnStart += () =>
                 {
                     TurnManager.Inst.TriggerEnemyPassive(1);
                     if (wasDamaged) TurnManager.Inst.TriggerEnemyPassive(3);
