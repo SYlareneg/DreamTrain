@@ -1455,7 +1455,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 864091102}
-  - component: {fileID: 864091103}
   m_Layer: 5
   m_Name: DialoguePanel
   m_TagString: Untagged
@@ -1484,25 +1483,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &864091103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 864091101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74ee7c633b53dc94a92e87cd2f228c66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueUI
-  dialogueManager: {fileID: 1759279981}
-  MoooText: {fileID: 955643045}
-  PlayerText: {fileID: 1527888659}
-  objectNameText: {fileID: 1399781948}
-  branchButtonPrefab: {fileID: 5918051453125809281, guid: 823eb8fe23eb99f4aa4f2103d89d6abf, type: 3}
-  playerPanel: {fileID: 1878684176}
-  moooPanel: {fileID: 1407737596}
 --- !u!1 &869143082
 GameObject:
   m_ObjectHideFlags: 0
@@ -2590,7 +2570,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1414399134}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1759279985}
+        m_TargetAssemblyTypeName: RerollManager, Assembly-CSharp
+        m_MethodName: OnRerollClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1414399134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2840,53 +2832,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450696437}
   m_CullTransparentMesh: 1
---- !u!1 &1484212666
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1484212668}
-  - component: {fileID: 1484212667}
-  m_Layer: 0
-  m_Name: DialogueRelicManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1484212667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1484212666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df5aa2c5d4abffc499d07a514ce3c57c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueRelicManager
-  relicSO: {fileID: 11400000, guid: 0e7223e1226b56241819d7fb7d0eca1d, type: 2}
-  playerRelicSO: {fileID: 11400000, guid: f261c4fa2c6606c4ea86c879ed3f631d, type: 2}
-  relicWeights: 
---- !u!4 &1484212668
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1484212666}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1527201077
 GameObject:
   m_ObjectHideFlags: 0
@@ -3957,12 +3902,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1759279980}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df5aa2c5d4abffc499d07a514ce3c57c, type: 3}
+  m_Script: {fileID: 11500000, guid: 74ee7c633b53dc94a92e87cd2f228c66, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueRelicManager
-  relicSO: {fileID: 11400000, guid: 0e7223e1226b56241819d7fb7d0eca1d, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueUI
+  dialogueManager: {fileID: 1759279981}
+  MoooText: {fileID: 955643045}
+  PlayerText: {fileID: 1527888659}
+  branchButtonPrefab: {fileID: 5918051453125809281, guid: 823eb8fe23eb99f4aa4f2103d89d6abf, type: 3}
+  playerPanel: {fileID: 1878684176}
+  moooPanel: {fileID: 1407737596}
+  relicListSO: {fileID: 11400000, guid: 0e7223e1226b56241819d7fb7d0eca1d, type: 2}
   playerRelicSO: {fileID: 11400000, guid: f261c4fa2c6606c4ea86c879ed3f631d, type: 2}
-  relicWeights: 
+  rerollManager: {fileID: 1759279985}
 --- !u!1 &1844679729
 GameObject:
   m_ObjectHideFlags: 0
@@ -4401,7 +4352,6 @@ SceneRoots:
   - {fileID: 747923391}
   - {fileID: 2095816966}
   - {fileID: 1759279982}
-  - {fileID: 1484212668}
   - {fileID: 1055268837}
   - {fileID: 597941998}
   - {fileID: 863633357}

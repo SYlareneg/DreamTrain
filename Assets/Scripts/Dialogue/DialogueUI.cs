@@ -12,7 +12,6 @@ public class DialogueUI : MonoBehaviour
 
     public TextMeshProUGUI MoooText;
     public TextMeshProUGUI PlayerText;
-    public TextMeshProUGUI objectNameText;
 
     public Button branchButtonPrefab;
     public GameObject playerPanel;
@@ -34,6 +33,11 @@ public class DialogueUI : MonoBehaviour
     
     private bool dialogueActive = false;
 
+    public RelicSO relicListSO;
+    public RelicSO playerRelicSO;
+
+    public RerollManager rerollManager;
+    
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -47,17 +51,11 @@ public class DialogueUI : MonoBehaviour
 
         playerLayoutGroup = playerPanel.GetComponent<VerticalLayoutGroup>();
         if (playerLayoutGroup != null) playerLayoutGroup.enabled = false;
-        if (objectNameText != null) objectNameText.gameObject.SetActive(false);
 
-        // RectTransform / original size 저장
         playerPanelRT = playerPanel.GetComponent<RectTransform>();
         playerTextRT = PlayerText.GetComponent<RectTransform>();
-        // rect.size 는 런타임에서 레이아웃 적용 상태에 따라 값이 달라질 수 있지만
-        // Awake 시점의 "현재" 값을 원래값으로 저장해 둡니다.
         originalPlayerPanelSize = playerPanelRT.rect.size;
         originalPlayerTextSize = playerTextRT.rect.size;
-
-        // ContentSizeFitter가 붙어있다면 참조
         playerTextFitter = PlayerText.GetComponent<ContentSizeFitter>();
     }
 
@@ -76,7 +74,8 @@ public class DialogueUI : MonoBehaviour
     private void OnScreenClickPerformed(InputAction.CallbackContext context)
     {
         if (isBranchActive) return;
-        
+        if (rerollManager != null && rerollManager.IsRerollUIActive())
+            return;
         
         if (nextIdForNormalDialogue != 0)
             ShowDialogue(nextIdForNormalDialogue);
@@ -114,7 +113,7 @@ public class DialogueUI : MonoBehaviour
 
         if (firstEntry.IdToGet != 0)
         {
-            DialogueRelicManager.Inst.AddPlayerRelic(firstEntry.IdToGet);
+            AddPlayerRelic(firstEntry.IdToGet);
             Debug.Log($"[DialogueUI] Relic ID {firstEntry.IdToGet} 획득 (from normal line)");
         }
         if (firstEntry.Type == "Normal")
@@ -217,19 +216,65 @@ public class DialogueUI : MonoBehaviour
         }
     }
     
-    public void ShowObjectName(string name)
-    {
-        objectNameText.text = name;
-        objectNameText.gameObject.SetActive(true);
-    }
-    
-    public void HideObjectName()
-    {
-        objectNameText.gameObject.SetActive(false);
-    }
     
     public bool IsDialogueActive()
     {
         return dialogueActive;
     }
+    private void AddPlayerRelic(int relicId)
+    {
+        // 1-based 인덱스만 유효
+        if (relicId <= 0)
+        {
+            Debug.LogWarning($"[DialogueUI] relicId {relicId} is invalid (must be >= 1)");
+            return;
+        }
+
+        if (relicListSO == null || relicListSO.relicItems == null || relicListSO.relicItems.Count == 0)
+        {
+            Debug.LogWarning("[DialogueUI] relicListSO or relicListSO.relicItems is null/empty");
+            return;
+        }
+
+        int index = relicId - 1; // 1-based → 0-based 변환
+
+        if (index < 0 || index >= relicListSO.relicItems.Count)
+        {
+            Debug.LogWarning($"[DialogueUI] relicId {relicId} is out of range. relicItems count = {relicListSO.relicItems.Count}");
+            return;
+        }
+
+        // 바로 인덱스로 찾기
+        RelicItem_Enhanceable found = relicListSO.relicItems[index];
+        Debug.Log($"[DialogueUI] Found relic '{found.relicName}' at index {index}");
+
+        if (found == null)
+        {
+            Debug.LogWarning($"[DialogueUI] relicItems[{index}] is null!");
+            return;
+        }
+
+        if (playerRelicSO == null)
+        {
+            Debug.LogWarning("[DialogueUI] playerRelicSO is null!");
+            return;
+        }
+
+        // 리스트 초기화 방어
+        if (playerRelicSO.relicItems == null)
+            playerRelicSO.relicItems = new List<RelicItem_Enhanceable>();
+
+        // 중복 방지
+        bool alreadyHas = playerRelicSO.relicItems.Exists(r => r == found);
+        if (alreadyHas)
+        {
+            Debug.Log($"[DialogueUI] Player already has relic '{found.relicName}' → 획득 무시");
+            return;
+        }
+
+        // 추가
+        playerRelicSO.relicItems.Add(found);
+        Debug.Log($"[DialogueUI] Player withdrew relic '{found.relicName}' (1-based Id = {relicId})");
+    }
+
 }
