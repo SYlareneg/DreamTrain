@@ -87,4 +87,6 @@ MonoBehaviour:
       dreamDustReward: 0
     stageClear: 0
   playerSpawn: 1
-  restUsed: 0
+  sofaUsed: 0
+  merchantSellCards: []
+  merchantSellUItems: []
