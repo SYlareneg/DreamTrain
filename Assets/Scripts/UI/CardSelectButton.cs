@@ -12,7 +12,7 @@ public class CardSelectButton : MonoBehaviour
 
     void Update()
     {
-        if(CardManager.Inst.cardSelectNum == 0)
+        if(CardManager.Inst.IsSelectable())
         {
             button.interactable = true;
         }

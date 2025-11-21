@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/StartScene.unity
+    guid: 108428089cbc6c54db175abaea851661
+  - enabled: 1
     path: Assets/Scenes/BattleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
@@ -23,9 +26,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RestScene.unity
     guid: 62e96e4a5612bdf4b97da7d8f37ef999
-  - enabled: 1
-    path: Assets/Scenes/StartScene.unity
-    guid: 108428089cbc6c54db175abaea851661
   - enabled: 1
     path: Assets/Scenes/NewHallScene.unity
     guid: 6fb7535f11ccb984c88d42bc5a172dd9

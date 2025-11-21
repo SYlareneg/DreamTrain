@@ -458,14 +458,6 @@ public class RelicManager : MonoBehaviour
                                 temp?.Invoke();
                             }
                         }; break;
-                    case ERelicActivateConditionType.Card_Cost:
-                        totalCondition = () =>
-                        {
-                            if (CardManager.Inst.selectedCard.item.cost == localCondition.value)
-                            {
-                                temp?.Invoke();
-                            }
-                        }; break;
                     case ERelicActivateConditionType.Card_Count:
                         totalCondition = () =>
                         {
@@ -530,22 +522,6 @@ public class RelicManager : MonoBehaviour
                                 temp?.Invoke();
                             }
                         }; break;
-                    case ERelicActivateConditionType.Card_Type:
-                        totalCondition = () =>
-                        {
-                            if (CardManager.Inst.selectedCard.item.type == localCondition.ivalue.type)
-                            {
-                                temp?.Invoke();
-                            }
-                        }; break;
-                    case ERelicActivateConditionType.Card_Element:
-                        totalCondition = () =>
-                        {
-                            if (CardManager.Inst.selectedCard.item.element == localCondition.ivalue.element)
-                            {
-                                temp?.Invoke();
-                            }
-                        }; break;
                     case ERelicActivateConditionType.Enemy_Health_GE:
                         totalCondition = () =>
                         {
@@ -605,7 +581,7 @@ public class RelicManager : MonoBehaviour
                     case ERelicActivateConditionType.Player_Card_Num_GE:
                         totalCondition = () =>
                         {
-                            if (CardManager.Inst.myCards.Count >= localCondition.value)
+                            if (CardManager.Inst.myCardNum() >= localCondition.value)
                             {
                                 temp?.Invoke();
                             }
@@ -613,7 +589,7 @@ public class RelicManager : MonoBehaviour
                     case ERelicActivateConditionType.Player_Card_Num_EQ:
                         totalCondition = () =>
                         {
-                            if (CardManager.Inst.myCards.Count == localCondition.value)
+                            if (CardManager.Inst.myCardNum() == localCondition.value)
                             {
                                 temp?.Invoke();
                             }
@@ -621,7 +597,7 @@ public class RelicManager : MonoBehaviour
                     case ERelicActivateConditionType.Player_Card_Num_LE:
                         totalCondition = () =>
                         {
-                            if (CardManager.Inst.myCards.Count <= localCondition.value)
+                            if (CardManager.Inst.myCardNum() <= localCondition.value)
                             {
                                 temp?.Invoke();
                             }

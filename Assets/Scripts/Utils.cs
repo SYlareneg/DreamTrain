@@ -159,8 +159,10 @@ public class Utils
     }
 }
 
+
 public class ReadOnlyAttribute : PropertyAttribute { }
 
+#if UNITY_EDITOR
 [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
 public class ReadOnlyDrawer : PropertyDrawer
 {
@@ -171,3 +173,4 @@ public class ReadOnlyDrawer : PropertyDrawer
         GUI.enabled = true;   // 다시 활성화
     }
 }
+#endif

@@ -2945,29 +2945,30 @@ MonoBehaviour:
   characterSO: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
   cardPrefab: {fileID: 3101435894562736061, guid: 00faca8f8365c654ba92e1bca964104a, type: 3}
   cardUIPrefab: {fileID: 2874763482636186485, guid: 8165cd5009ea959418b5ae143b538cab, type: 3}
-  cardUISelectPrefab: {fileID: 2874763482636186485, guid: 923f2058c3f996e4db1271655946d59a, type: 3}
+  eCardState: 0
+  isMyCardDrag: 0
+  onMyCardArea: 0
   myCards: []
-  cardSpawnPoint: {fileID: 1256935022}
-  cardDiscardPoint: {fileID: 1612700682}
   myCardLeft: {fileID: 206208247}
   myCardRight: {fileID: 482525478}
-  eCardState: 0
   itemDeck: []
   itemDraw: []
   itemDiscard: []
+  cardSpawnPoint: {fileID: 1256935022}
+  cardDiscardPoint: {fileID: 1612700682}
   selectedCard: {fileID: 0}
-  isMyCardDrag: 0
+  cardSelectScreen: {fileID: 2021225775}
+  cardUISelectPrefab: {fileID: 2874763482636186485, guid: 923f2058c3f996e4db1271655946d59a, type: 3}
   cardSelectMode: 0
   cardSelectNum: 0
   selectedCardList: []
   discardCardList: []
-  cardSelectScreen: {fileID: 2021225775}
   selectedCards: {fileID: 308202753}
   selectModeText: {fileID: 1336118160}
   cardSelectButton: {fileID: 1024289487}
   useCount: 0
   useCount_Turn: 0
-  uiCanvas: {fileID: 1869697166}
+  uiCanvas: {fileID: 243048737}
   tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
   keywordSO: {fileID: 11400000, guid: abbf7fb3f8e35e34fb1ce08de70d7715, type: 2}
 --- !u!1 &464756121
@@ -13633,7 +13634,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &1869697167
 RectTransform:

@@ -172,6 +172,7 @@ public class Card : MonoBehaviour
         {
             case "회전 카드 1":
                 RouletteManager.Inst.Spin(true, 1);
+                CardManager.Inst.CardSelectModeTransit(ECardSelectMode.Duplicate, 1);
                 break;
             case "회전 카드 2":
                 RouletteManager.Inst.Spin(true, 2);

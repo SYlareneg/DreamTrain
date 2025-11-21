@@ -21,17 +21,17 @@ public class CardManager : MonoBehaviour
 
     [Header("카드 매니저")]
     [Tooltip("플레이어 덱 정보")] public CharacterSO characterSO;
-    [Tooltip("카드 프리팹")][SerializeField] static GameObject cardPrefab;
-    [Tooltip("카드 UI 프리팹")][SerializeField] static GameObject cardUIPrefab;
+    [Tooltip("카드 프리팹")][SerializeField] GameObject cardPrefab;
+    [Tooltip("카드 UI 프리팹")][SerializeField] GameObject cardUIPrefab;
     [Tooltip("현재 카드 매니저 상태(카드를 드래그 할 수 있는지)")][ReadOnly, SerializeField] ECardState eCardState;
-    bool isMyCardDrag; // 카드 드래그 여부
-    bool onMyCardArea; // 현재 드래그 중인 카드가 나의 핸드 범위에 위치하는지 확인. false일 경우 카드 사용, true일 경우 카드 핸드로 복귀
+    [Tooltip("카드 드래그 여부")][ReadOnly, SerializeField] bool isMyCardDrag;
+    [Tooltip("현재 드래그 중인 카드가 나의 핸드 범위에 위치하는지 확인")][ReadOnly, SerializeField] bool onMyCardArea; // false일 경우 카드 사용, true일 경우 카드 핸드로 복귀
 
     // 카드 매니저 상태 (카드 상호작용 불가, 카드 마우스 호버 가능/사용 불가, 카드 사용 가능)
     enum ECardState { Nothing, CanMouseOver, CanMouseDrag }
 
     [Header("핸드, 덱, 드로우, 무덤")]
-    [Tooltip("플레이어 핸드")] public List<Card> myCards;
+    [Tooltip("플레이어 핸드")][ReadOnly, SerializeField] List<Card> myCards;
     [Tooltip("핸드 맨 왼쪽 카드 위치")][SerializeField] Transform myCardLeft;
     [Tooltip("핸드 맨 오른쪽 카드 위치")][SerializeField] Transform myCardRight;
     [Tooltip("덱에 있는 카드 목록")] public List<Item> itemDeck;
@@ -39,34 +39,35 @@ public class CardManager : MonoBehaviour
     [Tooltip("버린 카드 더미")] public List<Item> itemDiscard;
     [Tooltip("카드 뽑는 위치")][SerializeField] Transform cardSpawnPoint;
     [Tooltip("카드 버리는 위치")][SerializeField] Transform cardDiscardPoint;
-    [Tooltip("현재 선택 중인 카드(마우스와 닿아 있는 카드)")] public Card selectedCard;
+    [Tooltip("현재 선택 중인 카드(마우스와 닿아 있는 카드)")][ReadOnly, SerializeField] Card selectedCard;
 
     [Header("카드 선택")]
     [Tooltip("카드 선택 화면")][SerializeField] GameObject cardSelectScreen;
     [Tooltip("카드 선택 화면(버리기, 복제) UI 프리팹")][SerializeField] GameObject cardUISelectPrefab;
-    public ECardSelectMode cardSelectMode; // 현재 카드 선택 화면 모드 (숨김, 카드 복제, 카드 버리기)
-    public int cardSelectNum; // 카드 선택 화면에서 선택해야 하는 카드 개수
-    public List<GameObject> selectedCardList; // 카드 선택 화면에서 선택한 카드 목록
-    public List<Card> discardCardList; // 카드 선택 화면 모드가 '카드 버리기'일 시, 버릴 카드 목록
+    [Tooltip("현재 카드 선택 화면 모드 (숨김, 카드 복제, 카드 버리기)")][ReadOnly, SerializeField] ECardSelectMode cardSelectMode;
+    [Tooltip("선택해야 하는 카드 개수")][ReadOnly, SerializeField] int cardSelectNum;
+    [Tooltip("선택한 카드 목록")][ReadOnly, SerializeField] List<GameObject> selectedCardList;
+    [Tooltip("모드가 '카드 버리기'일 시, 버릴 카드 목록")][ReadOnly, SerializeField] List<Card> discardCardList;
     [Tooltip("선택된 카드 배치 레이아웃")][SerializeField] GameObject selectedCards;
     [Tooltip("카드 선택 화면 모드 텍스트")][SerializeField] TMP_Text selectModeText;
     [Tooltip("카드 선택 버튼")][SerializeField] Button cardSelectButton;
 
-    // 이드 전달 정보
-    public int useCount; // 총 사용한 카드 개수
-    public int useCount_Turn; // 이번 턴 사용한 카드 개수
+    [Header("이드")]
+    [Tooltip("총 사용한 카드 개수")] public int useCount; 
+    [Tooltip("이번 턴 사용한 카드 개수")] public int useCount_Turn;
     
     [Header("툴팁")]
     [Tooltip("툴팁 배치 캔버스")][SerializeField] Canvas uiCanvas;
     [Tooltip("툴팁 프리팹")][SerializeField] GameObject tooltipPrefab;
-    [Tooltip("툴팁 키워드 목록")]public KeywordSO keywordSO;
+    [Tooltip("툴팁 키워드 목록")][SerializeField] KeywordSO keywordSO;
     private Camera mainCam; // 메인 카메라
     private GameObject tooltip; // 툴팁
     private RectTransform canvasRect; // 툴팁 배치 캔버스 위치
 
+    #region Item Management
     // items로 주어진 카드 item들에 대해 attachTransform에 CardUI 오브젝트를 생성하고, 생성한 CardUI 리스트를 반환한다.
     // GameManager에서 덱, 드로우, 무덤의 카드 목록을 UI로 제시하기 위해 사용
-    public static List<CardUI> ItemBufferToCardUIList(List<Item> items, Transform attachTransform)
+    public List<CardUI> ItemBufferToCardUIList(List<Item> items, Transform attachTransform)
     {
         List<CardUI> cardList = new List<CardUI>(); // 반환할 CardUI 리스트
         List<Item> sortedItemList = items.OrderBy(x => x.name).ToList(); // 이름 순 정렬
@@ -84,33 +85,6 @@ public class CardManager : MonoBehaviour
 
         // CardUI 리스트 반환
         return cardList;
-    }
-
-    // 드로우 카드 목록에서 맨 앞의 item을 뽑는다. 만약 드로우 카드 목록이 비어 있을 경우 무덤의 카드를 드로우 카드 목록에 넣고 섞는다.
-    // 카드를 뽑을 때 사용
-    private Item PopItem()
-    {
-        // 드로우 카드 목록이 비어 있을 경우
-        if(itemDraw.Count == 0)
-        {
-            // 무덤의 모든 카드를 드로우 카드 목록에 넣는다.
-            while(itemDiscard.Count > 0)
-            {
-                itemDraw.Add(itemDiscard[0]);
-                itemDiscard.RemoveAt(0);
-            }
-            // 드로우 카드 목록을 섞는다.
-            ShuffleDeck();
-        }
-        // 여전히 드로우 카드 목록이 비어 있다면 null 반환 (덱에 카드가 없음)
-        if(itemDraw.Count == 0)
-        {
-            return null;
-        }
-        // 드로우 카드 목록 맨 앞의 카드를 목록에서 제거하고 반환한다.
-        Item item = itemDraw[0];
-        itemDraw.RemoveAt(0);
-        return item;
     }
 
     // characterSO로 주어진 플레이어 덱 정보에 따라 덱, 드로우, 무덤을 초기화한다.
@@ -162,43 +136,36 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    // Start
-    // 메인 카메라, 툴팁 캔버스 설정
-    // 카드 드로우, 카드 버리기 함수 설정
-    // 플레이어 턴 시작 시 '이번 턴 사용한 카드 개수(useCount_Turn)' 초기화
-    private void Start()
+    // 드로우 카드 목록에서 맨 앞의 item을 뽑는다. 만약 드로우 카드 목록이 비어 있을 경우 무덤의 카드를 드로우 카드 목록에 넣고 섞는다.
+    // 카드를 뽑을 때 사용
+    private Item PopItem()
     {
-        mainCam = Camera.main;
-        canvasRect = uiCanvas.GetComponent<RectTransform>();
-
-        TurnManager.OnAddCard += AddCard;
-        TurnManager.OnDiscardCard += DiscardCard;
-        TurnManager.OnPlayerTurnStart += () => { useCount_Turn = 0; };
-    }
-
-    // OnDestroy
-    // 변화시킨 action 초기화 (오류 방지)
-    private void OnDestroy()
-    {
-        TurnManager.OnAddCard = null;
-        TurnManager.OnDiscardCard = null;
-        TurnManager.OnPlayerTurnStart = null;
-    }
-
-    // Update
-    // 카드 드래그 중일 경우 선택한 카드가 마우스 커서 따라가도록 함
-    // onMyCardArea, eCardState 갱신
-    private void Update()
-    {
-        if(isMyCardDrag)
+        // 드로우 카드 목록이 비어 있을 경우
+        if(itemDraw.Count == 0)
         {
-            CardDrag();
+            // 무덤의 모든 카드를 드로우 카드 목록에 넣는다.
+            while(itemDiscard.Count > 0)
+            {
+                itemDraw.Add(itemDiscard[0]);
+                itemDiscard.RemoveAt(0);
+            }
+            // 드로우 카드 목록을 섞는다.
+            ShuffleDeck();
         }
-
-        DetectCardArea();
-        SetECardState();
+        // 여전히 드로우 카드 목록이 비어 있다면 null 반환 (덱에 카드가 없음)
+        if(itemDraw.Count == 0)
+        {
+            return null;
+        }
+        // 드로우 카드 목록 맨 앞의 카드를 목록에서 제거하고 반환한다.
+        Item item = itemDraw[0];
+        itemDraw.RemoveAt(0);
+        return item;
     }
 
+    #endregion
+
+    #region Card Managenent
     // 핸드에 item을 카드 아이템으로 갖는 카드 생성
     public void CreateCardInHand(Item item)
     {
@@ -226,7 +193,7 @@ public class CardManager : MonoBehaviour
             StartCoroutine(DiscardSingleCard(card));
         }
     }
-
+    
     // 카드 드로우
     // 드로우 카드 목록의 맨 앞 원소를 카드 아이템으로 갖는 카드 생성
     void AddCard()
@@ -262,6 +229,7 @@ public class CardManager : MonoBehaviour
         }
     }
 
+    // 핸드의 모든 카드 버림
     void DiscardCard()
     {
         int cnt = myCards.Count;
@@ -270,93 +238,11 @@ public class CardManager : MonoBehaviour
             StartCoroutine(DiscardSingleCard(myCards[0]));
         }
     }
-
-    public void CardSelectModeTransit(ECardSelectMode mode, int selectNum)
-    {
-        cardSelectMode = mode;
-        cardSelectNum = selectNum;
-        cardSelectScreen.SetActive(mode != ECardSelectMode.Hide);
-        TurnManager.Inst.isLoading = mode != ECardSelectMode.Hide;
-        cardSelectButton.interactable = false;
-
-        if (mode == ECardSelectMode.Duplicate)
-        {
-            selectModeText.text = "복제할 카드를 " + selectNum.ToString() + "장 선택하십시오.";
-        }
-        else if (mode == ECardSelectMode.Discard)
-        {
-            selectModeText.text = "버릴 카드를" + selectNum.ToString() + "장 선택하십시오.";
-        }
-        
-        if (selectNum >= myCards.Count)
-        {
-            foreach (Card card in myCards)
-            {
-                SelectCard(card);
-            }
-            SelectCardDone();
-        }
-    }
-
-    public void SelectCard(Card card)
-    {
-        if (cardSelectNum < 0) return;
-        if (cardSelectNum == 0)
-        {
-            Destroy(selectedCardList[0]);
-            selectedCardList.RemoveAt(0);
-            if (cardSelectMode == ECardSelectMode.Discard)
-            {
-                discardCardList[0].gameObject.SetActive(true);
-                EnlargeCard(false, discardCardList[0]);
-                discardCardList.RemoveAt(0);
-            }
-            cardSelectNum++;
-        }
-        GameObject selectedCardUI = Instantiate(cardUISelectPrefab, selectedCards.transform.position, Utils.QI);
-        selectedCardUI.transform.SetParent(selectedCards.transform, false);
-        CardUI_Select cUI = selectedCardUI.GetComponent<CardUI_Select>();
-        cUI.Setup(card.item);
-        selectedCardList.Add(selectedCardUI);
-        if(cardSelectMode == ECardSelectMode.Discard)
-        {
-            card.gameObject.SetActive(false);
-            discardCardList.Add(card);
-        }
-        cardSelectNum--;
-    }
     
-    public void SelectCardDone()
-    {
-        if (cardSelectMode == ECardSelectMode.Duplicate)
-        {
-            foreach (var cardObj in selectedCardList)
-            {
-                CreateCardInHand(cardObj.GetComponent<CardUI_Select>().item);
-                Destroy(cardObj);
-            }
-            selectedCardList.Clear();
-            CardSelectModeTransit(ECardSelectMode.Hide, 0);
-        }
-        else if (cardSelectMode == ECardSelectMode.Discard)
-        {
-            for (int i = 0; i < selectedCardList.Count; i++)
-            {
-                discardCardList[i].MoveTransform(new PRS(selectedCardList[i].transform.position, Utils.QI, new Vector3(1, 1, 1)), false, 0f);
-                discardCardList[i].gameObject.SetActive(true);
-                StartCoroutine(DiscardSingleCard(discardCardList[i]));
-                Destroy(selectedCardList[i]);
-            }
-            selectedCardList.Clear();
-            discardCardList.Clear();
-            SetOriginOrder();
-            CardAlignment();
-            CardSelectModeTransit(ECardSelectMode.Hide, 0);
-        }
-    }
-
+    // 카드 order 정렬 (오른쪽 카드가 가장 위에 오게끔 정렬)
     void SetOriginOrder()
     {
+        // myCards는 핸드의 카드를 왼쪽에서 오른쪽 순으로 나열해 놓은 리스트. index가 작을 경우 낮은 order, index가 높을 경우 높은 order를 갖는다.
         int cnt = myCards.Count;
         for(int i = 0; i < cnt; i++)
         {
@@ -365,27 +251,38 @@ public class CardManager : MonoBehaviour
         }
     }
 
+    // 카드 PRS 정렬 (myCardLeft, myCardRight 기준 정렬)
     void CardAlignment()
     {
+        // 정렬된 카드 PRS(position, rotation, scale)
         List<PRS> originCardPRSs = new List<PRS>();
         originCardPRSs = RoundAlignment(myCardLeft, myCardRight, myCards.Count, 0.5f, cardPrefab.transform.localScale);
 
+        // 카드를 정렬된 카드 PRS로 이동
         var targetCards = myCards;
         for(int i = 0; i < targetCards.Count; i++)
         {
             var targetCard = targetCards[i];
-
+            // 카드의 base PRS 설정
             targetCard.originPRS = originCardPRSs[i];
+            // 카드 이동
             targetCard.MoveTransform(targetCard.originPRS, true, 0.7f);
         }
     }
 
+    // 정렬된 카드 PRS 리스트 생성
+    // leftTr: 맨 왼쪽 카드의 transform, rightTr: 맨 오른쪽 카드의 transform
+    // objCount: 총 카드 개수, height: 카드 곡률 높이 (카드가 호 형태로 배치될텐데, 이때 호의 높이), scale: 카드 크기
     List<PRS> RoundAlignment(Transform leftTr, Transform rightTr, int objCount, float height, Vector3 scale)
     {
         float[] objLerps = new float[objCount];
         List<PRS> results = new List<PRS>(objCount);
         float interval;
 
+        // 카드 개수에 따라 배치를 변경
+        // 카드 1장: 가운데 배치
+        // 카드 2~5장: leftTr, rightTr 기준 0.2~0.8 지점에 카드 배치
+        // 카드 6장 이상: leftTr, rightTr 기준 0~1 지점에 카드 배치
         switch (objCount)
         {
             case 1: objLerps = new float[] { 0.5f }; break;
@@ -412,9 +309,12 @@ public class CardManager : MonoBehaviour
         {
             var targetPos = Vector3.Lerp(leftTr.position, rightTr.position, objLerps[i]);
             var targetRot = Utils.QI;
+            // 곡률에 따른 카드 position, rotation 보정
             float curve = Mathf.Sqrt(Mathf.Pow(height, 2) - Mathf.Pow(objLerps[i] - 0.5f, 2));
             curve = height >= 0 ? curve : -curve;
+            // 카드 position 설정
             targetPos.y += curve;
+            // 카드 rotation 설정
             targetRot = Quaternion.Slerp(leftTr.rotation, rightTr.rotation, objLerps[i]);
             results.Add(new PRS(targetPos, targetRot, scale));
         }
@@ -422,34 +322,45 @@ public class CardManager : MonoBehaviour
         return results;
     }
 
+    // 카드에 마우스가 올라갔을 때 호출
+    // 카드 확대, selectCard 설정, 키워드에 따른 툴팁 설정
     public void CardMouseOver(Card card)
     {
+        // 카드가 핸드 영역을 벗어나 있을 경우 오류 발생, 즉시 종료
         if (!onMyCardArea)
         {
             return;
         }
+        // 카드가 드래그 중일 경우 확대 및 selectedCard 설정 안함
         if (isMyCardDrag)
         {
             return;
         }
 
+        // selectedCard = 마우스를 올려놓은 카드
         selectedCard = card;
+        // 카드 확대
         EnlargeCard(true, card);
 
+        // 카드 텍스트에 따라 tooltip 설정
         int wordIndex = TMP_TextUtilities.FindIntersectingWord(card.textTMP, Input.mousePosition, mainCam);
 
         if (wordIndex != -1)
         {
+            // 현재 마우스를 올려놓은 카드 텍스트
             TMP_WordInfo wordInfo = card.textTMP.textInfo.wordInfo[wordIndex];
             string hoveredWord = wordInfo.GetWord();
             Keyword keyword = Array.Find(keywordSO.keywords, x => x.word == hoveredWord);
+            // 해당 텍스트가 키워드 목록에 있을 경우
             if (keyword != null)
             {
+                // 툴팁을 생성하지 않았을 경우 새로운 툴팁 생성
                 if (tooltip == null)
                 {
                     tooltip = Instantiate(tooltipPrefab, uiCanvas.transform);
                 }
 
+                // 텍스트 위치에 툴팁 생성
                 Vector2 localPos;
                 RectTransformUtility.ScreenPointToLocalPointInRectangle(
                     canvasRect,
@@ -458,8 +369,9 @@ public class CardManager : MonoBehaviour
                     out localPos);
 
                 RectTransform tooltipRect = tooltip.GetComponent<RectTransform>();
+                // 툴팁 offset 적용
                 tooltipRect.anchoredPosition = localPos + new Vector2(20f, 20f);
-
+                // 툴팁 제목, 텍스트 설정
                 TMP_Text[] tooltipTMP = tooltip.GetComponentsInChildren<TMP_Text>();
                 tooltipTMP[0].text = hoveredWord;
                 tooltipTMP[1].text = keyword.explanation;
@@ -467,47 +379,59 @@ public class CardManager : MonoBehaviour
             }
         }
         
+        // 마우스가 텍스트 위에 올라가있지 않은데 툴팁이 여전히 띄워져 있을 경우, 툴팁 제거
         if (tooltip != null)
         {
             Destroy(tooltip);
         }
     }
 
+    // 카드에 마우스가 빠져나갔을 때 호출
+    // 카드 축소, 툴팁 제거
     public void CardMouseExit(Card card)
     {
+        // 카드가 드래그 중일 경우 축소 설정 안함
         if (isMyCardDrag)
         {
             return;
         }
 
+        // 확대했던 카드 축소
         EnlargeCard(false, card);
-        
+        // 마우스가 카드를 벗어났는데 툴팁이 여전히 띄워져 있을 경우, 툴팁 제거
         if (tooltip != null)
         {
             Destroy(tooltip);
         }
     }
 
+    // 카드에 마우스를 놓고 눌렀을 때 호출
+    // 카드 선택, 카드 드래그
     public void CardMouseDown(Card card)
     {
+        // 현재 카드 선택 모드에 진입했을 경우
         if (cardSelectMode != ECardSelectMode.Hide)
         {
+            // 누른 카드 선택
             SelectCard(card);
             return;
         }
-        
+        // 카드를 드래그할 수 없는 경우, 종료
         if (eCardState != ECardState.CanMouseDrag)
         {
             return;
         }
-
+        // 카드 드래그 시작
         isMyCardDrag = true;
     }
 
+    // 카드에 마우스를 놓고 누른 후 뗐을 때 호출
+    // 카드 사용
     public void CardMouseUp(Card card)
     {
+        // 카드 드래그 종료
         isMyCardDrag = false;
-
+        // 카드가 드래그 불가한 상황, 드래그한 카드가 없는 상황일 경우 오류 발생, 즉시 종료
         if (eCardState != ECardState.CanMouseDrag)
         {
             return;
@@ -516,37 +440,47 @@ public class CardManager : MonoBehaviour
         {
             return;
         }
-
+        // 카드를 놓은 지점이 MyCardArea 외부일 경우, 카드 사용
         if (!onMyCardArea)
         {
+            // 카드 사용
             if (selectedCard.UseCard(true) == false)
             {
+                // 카드 사용이 불가능할 경우, 카드 축소 및 selectCard 초기화
                 EnlargeCard(false, selectedCard);
                 selectedCard = null;
                 return;
             }
+            // 카드 사용 이후
+            // 카드 사용 횟수 증가
             useCount++;
             useCount_Turn++;
+            // 만약 현재 카드가 '잔류' 카드일 경우, '잔류' 효과에 의해 카드가 버려지지 않는다.
+            // 이를 해결하기 위해 '잔류' 여부를 flag에 저장해 놓고, 잠시 카드의 '잔류' 효과를 해제한 후, 버려진 다음 카드의 '잔류' 여부를 재설정한다.
             bool flag = selectedCard.item.isRemain;
             selectedCard.item.isRemain = false;
+            // 만약 현재 카드가 '소멸' 카드일 경우, 카드를 파괴한다.
             if (selectedCard.item.isVanish == true)
             {
                 myCards.Remove(card);
                 Destroy(card.gameObject);
             }
+            // '소멸' 카드가 아닐 경우, 카드를 버린다.
             else
             {
                 StartCoroutine(DiscardSingleCard(selectedCard));
             }
+            // 카드를 버린 후 저장해 놓은 '잔류' 여부에 따라 카드의 '잔류' 여부를 재설정한다.
             selectedCard.item.isRemain = flag;
-            isMyCardDrag = false;
+            // selectCard 초기화
             selectedCard = null;
-
+            // 카드 재정렬
             SetOriginOrder();
             CardAlignment();
         }
     }
 
+    // 카드 드래그. 카드 위치를 마우스 위치로 이동
     void CardDrag()
     {
         if(selectedCard != null)
@@ -555,6 +489,7 @@ public class CardManager : MonoBehaviour
         }
     }
 
+    // 현재 카드가 MyCardArea에 올라와 있는지 확인, 이에 따라 onMyCardArea 설정
     void DetectCardArea()
     {
         RaycastHit2D[] hits = Physics2D.RaycastAll(Utils.MousePos, Vector3.forward);
@@ -562,6 +497,9 @@ public class CardManager : MonoBehaviour
         onMyCardArea = Array.Exists(hits, x => x.collider.gameObject.layer == layer);
     }
 
+    // 카드 확대/축소
+    // isEnlarge=true: 확대
+    // isEnlarge=false: 원래대로 축소
     public void EnlargeCard(bool isEnlarge, Card card)
     {
         if(isEnlarge)
@@ -574,9 +512,11 @@ public class CardManager : MonoBehaviour
             card.MoveTransform(card.originPRS, false);
         }
 
+        // 확대했을 경우 카드의 order를 핸드에서 맨 앞에 오도록 설정
         card.GetComponent<Order>().SetMostFrontOrder(isEnlarge);
     }
 
+    // 카드 매니저 state 설정. TurnManager.Inst.isLoading일 경우 카드 상호작용 불가, 이외의 경우 카드 드래그 가능
     void SetECardState()
     {
         if (!TurnManager.Inst)
@@ -592,4 +532,178 @@ public class CardManager : MonoBehaviour
             eCardState = ECardState.CanMouseDrag;
         }
     }
+
+    // 핸드 개수 반환
+    public int myCardNum()
+    {
+        return myCards.Count;
+    }
+
+    #endregion
+    
+    #region Card Select Management
+    // 카드 선택 모드 변경(Hide: 카드 선택 화면 숨김, Duplicate: 복제할 카드 선택, Discard: 버릴 카드 선택), selectNum: 선택할 카드 개수
+    public void CardSelectModeTransit(ECardSelectMode mode, int selectNum)
+    {
+        // 카드 선택 모드 설정
+        cardSelectMode = mode;
+        cardSelectNum = selectNum;
+        // Hide일 경우 카드 선택 화면 숨김, 아닐 경우 카드 선택 화면 보임
+        cardSelectScreen.SetActive(mode != ECardSelectMode.Hide);
+        // 카드 선택 화면을 띄울 경우 플레이어의 UI 이외 상호작용 막음(카드 드래그, 룰렛 등)
+        TurnManager.Inst.isLoading = mode != ECardSelectMode.Hide;
+        cardSelectButton.interactable = false;
+
+        // 카드 선택 화면 설명
+        if (mode == ECardSelectMode.Duplicate)
+        {
+            selectModeText.text = "복제할 카드를 " + selectNum.ToString() + "장 선택하십시오.";
+        }
+        else if (mode == ECardSelectMode.Discard)
+        {
+            selectModeText.text = "버릴 카드를" + selectNum.ToString() + "장 선택하십시오.";
+        }
+        
+        // 만약 선택해야 하는 카드 개수가 핸드 카드 개수 이상일 경우, 어짜피 핸드의 모든 카드를 선택해야 하므로 바로 모든 카드를 선택하고, 선택 완료 함수 SelectCardDone을 호출한다.
+        if (selectNum >= myCards.Count)
+        {
+            foreach (Card card in myCards)
+            {
+                SelectCard(card);
+            }
+            SelectCardDone();
+        }
+    }
+
+    // 카드 card 선택 
+    public void SelectCard(Card card)
+    {
+        // 선택한 카드 개수가 선택해야 하는 총 카드 개수보다 크면 오류 발생
+        if (cardSelectNum < 0) return;
+        // 선택한 카드 개수가 선택해야 하는 총 카드 개수와 같으면
+        // 가장 먼저 선택한 카드를 제거하고, 이후 새로운 카드 card를 선택한다.
+        if (cardSelectNum == 0)
+        {
+            UnSelectCard(selectedCardList[0]);
+        }
+        // 선택한 카드 개수가 선택해야 하는 총 카드 개수보다 작으면
+        // 바로 새로운 카드 card를 선택한다.
+
+        // 새로운 카드 card 생성 후 선택
+        GameObject selectedCardUI = Instantiate(cardUISelectPrefab, selectedCards.transform.position, Utils.QI);
+        selectedCardUI.transform.SetParent(selectedCards.transform, false);
+        CardUI_Select cUI = selectedCardUI.GetComponent<CardUI_Select>();
+        cUI.Setup(card.item);
+        selectedCardList.Add(selectedCardUI);
+        // Discard 모드일 경우 카드를 숨긴다. (버리기 모드에서는 선택 완료 시 핸드에서 카드가 버려지는 연출을 수행해야 하므로)
+        if(cardSelectMode == ECardSelectMode.Discard)
+        {
+            card.gameObject.SetActive(false);
+            discardCardList.Add(card);
+        }
+        cardSelectNum--;
+    }
+
+    // 카드 오브젝트 cUI_gameObject 선택 해제
+    public void UnSelectCard(GameObject cUI_gameObject)
+    {
+        // 선택 해제할 카드의 selectedCardList 내 index
+        int idx = selectedCardList.IndexOf(cUI_gameObject);
+        // 주어진 카드를 제거
+        selectedCardList.Remove(cUI_gameObject);
+        Destroy(cUI_gameObject);
+        // 버리기 모드일 경우 제거한 카드가 다시 핸드에서 보이게끔 설정한다.
+        if (cardSelectMode == ECardSelectMode.Discard)
+        {
+            discardCardList[idx].gameObject.SetActive(true);
+            EnlargeCard(false, discardCardList[idx]);
+            discardCardList.RemoveAt(idx);
+        }
+        // 선택 가능한 카드 개수 증가
+        cardSelectNum++;
+    }
+
+    // 카드 선택 종료 가능 여부 반환
+    public bool IsSelectable()
+    {
+        return cardSelectNum == 0;
+    }
+    
+    // 카드 선택 완료
+    void SelectCardDone()
+    {
+        // 카드 복제 모드
+        if (cardSelectMode == ECardSelectMode.Duplicate)
+        {
+            foreach (var cardObj in selectedCardList)
+            {
+                // 선택한 카드의 item을 갖는 새로운 카드 핸드에 생성
+                CreateCardInHand(cardObj.GetComponent<CardUI_Select>().item);
+                // 선택 카드 UI 오브젝트 파괴
+                Destroy(cardObj);
+            }
+            selectedCardList.Clear();
+            SetOriginOrder();
+            CardAlignment();
+            // 카드 선택 모드 Hide로 변경(카드 선택 화면 숨김)
+            CardSelectModeTransit(ECardSelectMode.Hide, 0);
+        }
+        // 카드 버리기 모드
+        else if (cardSelectMode == ECardSelectMode.Discard)
+        {
+            for (int i = 0; i < selectedCardList.Count; i++)
+            {
+                // 선택한 카드 버림
+                discardCardList[i].MoveTransform(new PRS(selectedCardList[i].transform.position, Utils.QI, new Vector3(1, 1, 1)), false, 0f);
+                discardCardList[i].gameObject.SetActive(true);
+                StartCoroutine(DiscardSingleCard(discardCardList[i]));
+                // 선택 카드 UI 오브젝트 파괴
+                Destroy(selectedCardList[i]);
+            }
+            selectedCardList.Clear();
+            discardCardList.Clear();
+            SetOriginOrder();
+            CardAlignment();
+            // 카드 선택 모드 Hide로 변경(카드 선택 화면 숨김)
+            CardSelectModeTransit(ECardSelectMode.Hide, 0);
+        }
+    }
+
+    #endregion
+    // Start
+    // 메인 카메라, 툴팁 캔버스 설정
+    // 카드 드로우, 카드 버리기 함수 설정
+    // 플레이어 턴 시작 시 '이번 턴 사용한 카드 개수(useCount_Turn)' 초기화
+    private void Start()
+    {
+        mainCam = Camera.main;
+        canvasRect = uiCanvas.GetComponent<RectTransform>();
+
+        TurnManager.OnAddCard += AddCard;
+        TurnManager.OnDiscardCard += DiscardCard;
+        TurnManager.OnPlayerTurnStart += () => { useCount_Turn = 0; };
+    }
+
+    // OnDestroy
+    // 변화시킨 action 초기화 (오류 방지)
+    private void OnDestroy()
+    {
+        TurnManager.OnAddCard = null;
+        TurnManager.OnDiscardCard = null;
+        TurnManager.OnPlayerTurnStart = null;
+    }
+
+    // Update
+    // 카드 드래그 중일 경우 선택한 카드가 마우스 커서 따라가도록 함
+    // onMyCardArea, eCardState 갱신
+    private void Update()
+    {
+        if(isMyCardDrag)
+        {
+            CardDrag();
+        }
+
+        DetectCardArea();
+        SetECardState();
+    }  
 }
