@@ -75,23 +75,6 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
-        player.transform.position = Vector3.zero;
-        player.moveTowards = Vector3.zero;
-        switch(stageSO.playerSpawn)
-        {
-            case EPlayerSpawn.Station:
-                player.transform.position = stationDoor.transform.position;
-                player.moveTowards = stationDoor.transform.position;
-                break;
-            case EPlayerSpawn.Rest:
-                player.transform.position = restDoor.transform.position;
-                player.moveTowards = restDoor.transform.position;
-                break;
-            case EPlayerSpawn.Room:
-                player.transform.position = roomDoors[curStageNum].transform.position;
-                player.moveTowards = roomDoors[curStageNum].transform.position;
-                break;
-        }
         SetStage();
     }
 

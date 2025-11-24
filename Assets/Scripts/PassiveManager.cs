@@ -112,7 +112,7 @@ public class PassiveManager : MonoBehaviour
                     CardManager.Inst.itemDraw.Add(ace);
                     CardManager.Inst.ShuffleDeck();
                 };
-                TurnManager.OnRouletteSpin += (x) =>
+                TurnManager.OnRouletteSpin += (x, y) =>
                 {
                     if (RouletteManager.Inst.spinDirection == 1)
                     {
@@ -347,7 +347,7 @@ public class PassiveManager : MonoBehaviour
                         }
                     }
                 };
-                TurnManager.OnRouletteSpin += (x) =>
+                TurnManager.OnRouletteSpin += (x, y) =>
                 {
                     if (RouletteManager.Inst.spinDirection == 1)
                     {

@@ -311,8 +311,8 @@ public class ShowBuff
                 if (affectType == EBuffAffectType.Enemy)
                 {
                     BuffManager.Inst.enemyShowBuffs.Add(this);
-                    Action<int> reduceCount = null;
-                    reduceCount = (spin) =>
+                    Action<bool, int> reduceCount = null;
+                    reduceCount = (b, spin) =>
                     {
                         TurnManager.Inst.EnemyTakeDmg(3, EDamageSource.Buff);
                         BuffManager.Inst.AddShowBuff("불쾌함", affectType, -1, isSetOnEnemyTurn);
@@ -331,8 +331,8 @@ public class ShowBuff
                 else if (affectType == EBuffAffectType.Player)
                 {
                     BuffManager.Inst.playerShowBuffs.Add(this);
-                    Action<int> reduceCount = null;
-                    reduceCount = (spin) =>
+                    Action<bool, int> reduceCount = null;
+                    reduceCount = (b, spin) =>
                     {
                         TurnManager.Inst.TakeDmg(3, EDamageSource.Buff);
                         BuffManager.Inst.AddShowBuff("불쾌함", affectType, -1, isSetOnEnemyTurn);

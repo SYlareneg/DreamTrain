@@ -258,6 +258,17 @@ public class EnemyManager : MonoBehaviour
                 rItem.type = ERouletteType.Attack;
                 rItem.value = 20;
                 RouletteManager.Inst.enemyTriggerPiece = rItem;
+                RouletteManager.EnemyTriggerActivation = (isEnemy, totalVal) =>
+                {
+                    if (isEnemy)
+                    {
+                        TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette);
+                    }
+                    else
+                    {
+                        TurnManager.Inst.TakeDmg(totalVal, EDamageSource.Roulette);
+                    }
+                };
                 break;
             case "망령 1":
                 BuffManager.InitSpecialRouletteBuffs += () =>
@@ -365,6 +376,113 @@ public class EnemyManager : MonoBehaviour
                     }
                 };
                 break;
+            case "망령 2":
+                BuffManager.InitSpecialRouletteBuffs += () =>
+                {
+                    BuffManager.Inst.rouletteBuff_EnemySpecial1.Add(new List<Buff>());
+                };
+                EnemySpecialRoulette1BaseVal = 5;
+                EnemySpecialRoulette1Activation = (rPiece, isEnemy, value) =>
+                {
+                    if (isEnemy)
+                    {
+                        TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette);
+                    }
+                    else
+                    {
+                        TurnManager.Inst.TakeDmg(value, EDamageSource.Roulette);
+                    }
+                };
+                rItem = new RouletteItem();
+                rItem.type = ERouletteType.None;
+                rItem.value = 0;
+                RouletteManager.Inst.enemyTriggerPiece = rItem;
+                TurnManager.OnEnemyDamaged += (x, s) =>
+                {
+                    TurnManager.Inst.TriggerEnemyPassive(1);
+                };
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    if (RouletteManager.Inst.isEnemyTrigger())
+                    {
+                        int randSpin = Random.Range(1, 13);
+                        RouletteManager.Inst.Spin(true, randSpin);
+                    }
+                };
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    if (patternNum == 3)
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack, TurnManager.Inst.turnNum * 2, 1, 1);
+                    }
+                };
+                break;
+            case "비둘기":
+                BuffManager.InitSpecialRouletteBuffs += () =>
+                {
+                    BuffManager.Inst.rouletteBuff_EnemySpecial1.Add(new List<Buff>());
+                };
+                EnemySpecialRoulette1BaseVal = 1;
+                EnemySpecialRoulette1Activation = (rPiece, isEnemy, value) =>
+                {
+                    if (!isEnemy)
+                    {
+                        RouletteItem rItem = new RouletteItem();
+                        rItem.type = ERouletteType.None;
+                        rItem.value = 0;
+                        rPiece.Setup(rItem);
+                    }
+                };
+                rItem = new RouletteItem();
+                rItem.type = ERouletteType.Attack;
+                rItem.value = 5;
+                RouletteManager.Inst.enemyTriggerPiece = rItem;
+                RouletteManager.EnemyTriggerActivation = (isEnemy, totalVal) =>
+                {
+                    if (isEnemy)
+                    {
+                        TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette);
+                    }
+                    else
+                    {
+                        TurnManager.Inst.TakeDmg(totalVal, EDamageSource.Roulette);
+                    }
+                    for(int i = 0; i < RouletteManager.rouletteNum; i++)
+                    {
+                        if(RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.Enemy_Special_1)
+                        {
+                            RouletteItem rItem = new RouletteItem();
+                            rItem.type = ERouletteType.None;
+                            rItem.value = 0;
+                            RouletteManager.Inst.roulettePieces[i].Setup(rItem);
+                        }
+                    }
+                };
+                TurnManager.OnRouletteSpin += (isClockwise, spin) =>
+                {
+                    for (int i = 0; i <= spin; i++)
+                    {
+                        int tempIdx = (RouletteManager.Inst.enemyLookat + RouletteManager.rouletteNum + (isClockwise? -1 : 1) * i) % RouletteManager.rouletteNum;
+                        if (RouletteManager.Inst.roulettePieces[tempIdx].roulette.type == ERouletteType.Enemy_Special_1)
+                        {
+                            TurnManager.Inst.TriggerEnemyPassive(5);
+                            TurnManager.Inst.GetShield(true, 5, EDamageSource.Enemy);
+                        }
+                        tempIdx = (RouletteManager.Inst.playerLookat + RouletteManager.rouletteNum + (isClockwise? -1 : 1) * i) % RouletteManager.rouletteNum;
+                        if (RouletteManager.Inst.isEnemyTrigger() && RouletteManager.Inst.roulettePieces[tempIdx].roulette.type == ERouletteType.Enemy_Special_1)
+                        {
+                            TurnManager.Inst.TakeDmg(5, EDamageSource.Enemy);
+                        }
+                    }
+                };
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    if (patternNum == 3)
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack, TurnManager.Inst.turnNum * 3 / 2, 1, 1);
+                    }
+                };
+                break;
         }
     }
 
@@ -469,10 +587,26 @@ public class EnemyManager : MonoBehaviour
                     TurnManager.OnRouletteTrigger += changePhase;
                 }
                 break;
-            case "망령 1":
-                RouletteManager.Inst.EnemyTriggerRoulette();
+            case "비둘기":
+                if(phaseNum == 0)
+                {
+                    RouletteManager.Inst.EnemyTriggerRoulette();
+                    phaseNum = 1;
+                    Action changePhase = null;
+                    changePhase = () =>
+                    {
+                        if (phaseNum == 1 && RouletteManager.Inst.isEnemyTrigger() == false)
+                        {
+                            phaseNum = 0;
+                            TurnManager.OnRouletteActivate -= changePhase;
+                            TurnManager.OnRouletteTrigger -= changePhase;
+                        }
+                    };
+                    TurnManager.OnRouletteActivate += changePhase;
+                    TurnManager.OnRouletteTrigger += changePhase;
+                }
                 break;
-            case "박쥐":
+            default:
                 RouletteManager.Inst.EnemyTriggerRoulette();
                 break;
         }

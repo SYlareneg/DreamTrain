@@ -400,3 +400,194 @@ MonoBehaviour:
     specialAction2Sprite: {fileID: 0}
     specialAction2Title: 
     specialAction2Text: 
+  - name: "\uB9DD\uB839 2"
+    health: 52
+    actionNum: 2
+    passive:
+      type: 2
+      sprite: {fileID: 0}
+      name: "\uC7A5\uB09C\uAFB8\uB7EC\uAE30"
+      text: "\uD6A8\uACFC\uAC00 \uD65C\uC131\uD654\uB418\uC5B4 \uC788\uB294 \uB3D9\uC548
+        \uB9E4 \uD134 \uC2DC\uC791 \uC2DC \uB8F0\uB81B\uC744 1~12\uCE78 \uB79C\uB364\uD558\uAC8C
+        \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
+      dreamPieceNum: 0
+    relics: []
+    triggerNum: 2
+    phase:
+    - name: "\uC7A5\uB09C\uAFB8\uB7EC\uAE30"
+      text: "\uCCB4\uB825\uC744 \uC783\uC744 \uB54C\uB9C8\uB2E4 \uD2B8\uB9AC\uAC70
+        \uAC8C\uC774\uC9C0\uB97C 1 \uC5BB\uC2B5\uB2C8\uB2E4."
+      patterns:
+      - pattern:
+        - type: 1
+          val: 4
+        - type: 0
+          val: -3
+      - pattern:
+        - type: 4
+          val: 1
+        - type: 2
+          val: 2
+      - pattern:
+        - type: 1
+          val: 4
+        - type: 0
+          val: -3
+      - pattern:
+        - type: 1
+          val: 4
+      phaseClear: 0
+      phaseRepeat: 1
+    roulettePattern:
+    - type: 3
+      value: 5
+    - type: 0
+      value: 0
+    - type: 3
+      value: 5
+    - type: 1
+      value: 5
+    - type: 0
+      value: 0
+    - type: 2
+      value: 2
+    - type: 0
+      value: 0
+    - type: 0
+      value: 0
+    - type: 1
+      value: 5
+    - type: 0
+      value: 0
+    - type: 0
+      value: 0
+    - type: 0
+      value: 0
+    specialRoulette1Sprite: {fileID: 5301150221465536405, guid: c53e46bb395a59c42a367fa17a77f66b, type: 3}
+    specialRoulette1Title: "\uACF5\uACA9 \uB8F0\uB81B"
+    specialRoulette1Text: "\uD53C\uD574\uB97C \uAC12\uB9CC\uD07C \uC90D\uB2C8\uB2E4."
+    specialRoulette2Sprite: {fileID: 0}
+    specialRoulette2Title: 
+    specialRoulette2Text: 
+    specialAction1Sprite: {fileID: 0}
+    specialAction1Title: 
+    specialAction1Text: 
+    specialAction2Sprite: {fileID: 0}
+    specialAction2Title: 
+    specialAction2Text: 
+  - name: "\uBE44\uB458\uAE30"
+    health: 49
+    actionNum: 2
+    passive:
+      type: 2
+      sprite: {fileID: 0}
+      name: "\uAE5C\uC9DD \uB9C8\uC220"
+      text: "\uC801\uC911\uD558\uBA74 5 \uD53C\uD574\uB97C \uC8FC\uACE0 \uBAA8\uB4E0
+        \uB9C8\uC220 \uBAA8\uC790\uB97C \uC18C\uBA78\uC2DC\uD0B5\uB2C8\uB2E4. \uD65C\uC131\uD654\uB418\uC5B4
+        \uC788\uB294 \uB3D9\uC548 \uB9C8\uC220 \uBAA8\uC790 \uB8F0\uB81B\uC774 \uD50C\uB808\uC774\uC5B4
+        \uD6A8\uACFC \uC874\uC744 \uC9C0\uB0A0 \uB54C\uB9C8\uB2E4 \uD53C\uD574\uB97C
+        5 \uC90D\uB2C8\uB2E4."
+      dreamPieceNum: 0
+    relics: []
+    triggerNum: 10
+    phase:
+    - name: "\uB9C8\uC220 \uC900\uBE44"
+      text: "\uB9C8\uC220 \uBAA8\uC790\uAC00 \uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC744
+        \uC9C0\uB098\uAC08 \uB54C\uB9C8\uB2E4 \uD2B8\uB9AC\uAC70 \uAC8C\uC774\uC9C0\uC640
+        \uBC29\uC5B4\uB3C4\uB97C 5 \uC5BB\uC2B5\uB2C8\uB2E4."
+      patterns:
+      - pattern:
+        - type: 3
+          val: 5
+        - type: 4
+          val: 1
+      - pattern:
+        - type: 1
+          val: 5
+        - type: 4
+          val: 1
+      - pattern:
+        - type: 3
+          val: 7
+        - type: 0
+          val: -7
+      - pattern:
+        - type: 1
+          val: 6
+      phaseClear: 0
+      phaseRepeat: 1
+    - name: "\uD2B9\uC218 \uD328\uD134"
+      text: "\uB9C8\uC220 \uBAA8\uC790\uAC00 \uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC744
+        \uC9C0\uB098\uAC08 \uB54C\uB9C8\uB2E4 \uD2B8\uB9AC\uAC70 \uAC8C\uC774\uC9C0\uC640
+        \uBC29\uC5B4\uB3C4\uB97C 5 \uC5BB\uC2B5\uB2C8\uB2E4."
+      patterns:
+      - pattern:
+        - type: 4
+          val: 1
+        - type: 3
+          val: 5
+        - type: 4
+          val: 1
+      - pattern:
+        - type: 4
+          val: 1
+        - type: 1
+          val: 5
+        - type: 4
+          val: 1
+      - pattern:
+        - type: 4
+          val: 1
+        - type: 3
+          val: 7
+        - type: 0
+          val: -7
+      - pattern:
+        - type: 4
+          val: 1
+        - type: 1
+          val: 6
+      phaseClear: 0
+      phaseRepeat: 1
+    roulettePattern:
+    - type: 3
+      value: 5
+    - type: 0
+      value: 0
+    - type: 3
+      value: 5
+    - type: 1
+      value: 5
+    - type: 0
+      value: 0
+    - type: 2
+      value: 2
+    - type: 0
+      value: 0
+    - type: 0
+      value: 0
+    - type: 1
+      value: 5
+    - type: 0
+      value: 0
+    - type: 0
+      value: 0
+    - type: 0
+      value: 0
+    specialRoulette1Sprite: {fileID: -1033747301121760791, guid: d70a422d594c0c64ca0e09b3852cd601, type: 3}
+    specialRoulette1Title: "\uB9C8\uC220 \uBAA8\uC790"
+    specialRoulette1Text: "\uB9C8\uC220\uC5D0 \uC4F0\uC774\uB294 \uBE44\uBC00\uC2A4\uB7EC\uC6B4
+      \uBAA8\uC790\uC785\uB2C8\uB2E4. \uD50C\uB808\uC774\uC5B4 \uC874\uC5D0\uC11C
+      \uB8F0\uB81B\uC758 \uD6A8\uACFC\uAC00 \uBC1C\uB3D9\uD558\uBA74 \uC18C\uBA78\uD569\uB2C8\uB2E4.\uB9C8\uC220\uC5D0
+      \uC4F0\uC774\uB294 \uBE44\uBC00\uC2A4\uB7EC\uC6B4 \uBAA8\uC790\uC785\uB2C8\uB2E4.
+      \uD50C\uB808\uC774\uC5B4 \uC874\uC5D0\uC11C \uB8F0\uB81B\uC758 \uD6A8\uACFC\uAC00
+      \uBC1C\uB3D9\uD558\uBA74 \uC18C\uBA78\uD569\uB2C8\uB2E4."
+    specialRoulette2Sprite: {fileID: 0}
+    specialRoulette2Title: 
+    specialRoulette2Text: 
+    specialAction1Sprite: {fileID: 0}
+    specialAction1Title: 
+    specialAction1Text: 
+    specialAction2Sprite: {fileID: 0}
+    specialAction2Title: 
+    specialAction2Text: 

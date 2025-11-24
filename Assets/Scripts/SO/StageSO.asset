@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3472e4287c6d7047b03ee6defa168be, type: 3}
   m_Name: StageSO
   m_EditorClassIdentifier: Assembly-CSharp::StageSO
-  currentStage: 0
+  currentStage: 1
   stageList:
   - stageEnemies:
     - enemyName: "\uB9DD\uB839 1"
       enemySprite: {fileID: 21300000, guid: 6d54aeaf15f157442bf23c62953474be, type: 3}
       enemyPos: {x: 0, y: 0, z: 0}
-      isClear: 0
+      isClear: 1
       dreamDustReward: 1
     - enemyName: "\uBC15\uC950"
       enemySprite: {fileID: 21300000, guid: d7d787f92ff3a5a4da78ccc5afebc932, type: 3}
       enemyPos: {x: 5, y: 0, z: 0}
-      isClear: 0
+      isClear: 1
       dreamDustReward: 1
     bossEnemy:
       enemyName: "\uBC40\uD30C\uC774\uC5B4 \uD3F4"
@@ -31,15 +31,15 @@ MonoBehaviour:
       enemyPos: {x: 0, y: 0, z: 0}
       isClear: 0
       dreamDustReward: 1
-    stageClear: 0
+    stageClear: 1
   - stageEnemies:
-    - enemyName: "\uB9DD\uB839 1"
+    - enemyName: "\uB9DD\uB839 2"
       enemySprite: {fileID: 21300000, guid: 6d54aeaf15f157442bf23c62953474be, type: 3}
       enemyPos: {x: 0, y: 0, z: 0}
       isClear: 0
       dreamDustReward: 1
-    - enemyName: "\uBC15\uC950"
-      enemySprite: {fileID: 21300000, guid: d7d787f92ff3a5a4da78ccc5afebc932, type: 3}
+    - enemyName: "\uBE44\uB458\uAE30"
+      enemySprite: {fileID: 21300000, guid: 6d54aeaf15f157442bf23c62953474be, type: 3}
       enemyPos: {x: 5, y: 0, z: 0}
       isClear: 0
       dreamDustReward: 1
@@ -86,7 +86,6 @@ MonoBehaviour:
       isClear: 0
       dreamDustReward: 0
     stageClear: 0
-  playerSpawn: 1
   sofaUsed: 0
   merchantSellCards: []
   merchantSellUItems: []

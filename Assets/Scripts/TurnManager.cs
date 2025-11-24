@@ -74,7 +74,7 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action<int> OnEnemyTriggerIncrease;
     [HideInInspector] public static Action<int> OnEnemyTriggerDecrease;
     [HideInInspector] public static Action OnEnemyAction;
-    [HideInInspector] public static Action<int> OnRouletteSpin;
+    [HideInInspector] public static Action<bool, int> OnRouletteSpin;
     [HideInInspector] public static Action<int> AfterRouletteSpin;
     [HideInInspector] public static Action OnRouletteTrigger;
     [HideInInspector] public static Func<int, ERouletteType, bool> CheckRouletteEnchantable;
