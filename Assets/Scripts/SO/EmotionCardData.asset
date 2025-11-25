@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f4d7476849ffc4881fb48070a65272, type: 3}
+  m_Name: EmotionCardData
+  m_EditorClassIdentifier: Assembly-CSharp::EmotionCardSO
+  emotionCards:
+  - type: 1
+    cardName: "\uAE30\uC068"
+    cardSprite: {fileID: 0}
+  - type: 2
+    cardName: "\uC2AC\uD514"
+    cardSprite: {fileID: 0}
+  - type: 3
+    cardName: "\uD3B8\uC548\uD568"
+    cardSprite: {fileID: 0}
+  - type: 4
+    cardName: "\uBD84\uB178"
+    cardSprite: {fileID: 0}
+  - type: 5
+    cardName: "\uB450\uB824\uC6C0"
+    cardSprite: {fileID: 0}
+  - type: 6
+    cardName: "\uD6C4\uD68C"
+    cardSprite: {fileID: 0}
+  - type: 7
+    cardName: "\uAC08\uB9DD"
+    cardSprite: {fileID: 0}
+  - type: 8
+    cardName: "\uADF8\uB9AC\uC6C0"
+    cardSprite: {fileID: 0}
+  - type: 9
+    cardName: "\uAE30\uB300"
+    cardSprite: {fileID: 0}
+  - type: 10
+    cardName: "\uBB34\uAD00\uC2EC"
+    cardSprite: {fileID: 0}

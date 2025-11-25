@@ -19,9 +19,13 @@ public class Card : MonoBehaviour
 
     public Item item;
     public PRS originPRS;
+    
+    public Action OnCardClicked; 
+    public bool isDialogueCard = false;
 
     public void Setup(Item item)
     {
+        isDialogueCard = false;
         if (item == null)
         {
             this.item = null;
@@ -53,7 +57,7 @@ public class Card : MonoBehaviour
         }
 
         nameTMP.text = this.item.name;
-        ShowBuffedCost();
+        if (!isDialogueCard) ShowBuffedCost();
 
         string showText = this.item.text;
         int index = 0;
@@ -107,6 +111,7 @@ public class Card : MonoBehaviour
 
     public void ShowBuffedCost()
     {
+        if (isDialogueCard) return;
         int buffedCost = BuffManager.Inst.GetBuffedCardCost(this.item);
         costTMP.text = buffedCost.ToString();
 
@@ -124,23 +129,62 @@ public class Card : MonoBehaviour
         }
     }
 
+    
+    public void SetupDialogue(string title, string description, Sprite charSprite, Action onClick)
+    {
+        isDialogueCard = true; 
+        OnCardClicked = onClick;
+
+        nameTMP.text = title;
+        textTMP.text = description;
+        if (charSprite != null) character.sprite = charSprite;
+        
+        costTMP.text = "";
+        if (element != null) element.color = Color.clear;
+    }
+    
     private void OnMouseOver()
     {
+        if (isDialogueCard)
+        {
+            if (originPRS != null) 
+                transform.localScale = originPRS.scale * 1.2f;
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                Debug.Log($"[Card] Click Detected via OnMouseOver! (Title: {nameTMP.text})");
+                OnCardClicked?.Invoke();
+            }
+
+            return;
+        }
         CardManager.Inst.CardMouseOver(this);
     }
 
     private void OnMouseExit()
     {
+        if (isDialogueCard)
+        {
+            transform.localScale = originPRS.scale; 
+            return;
+        }
         CardManager.Inst.CardMouseExit(this);
     }
 
     private void OnMouseDown()
     {
+        Debug.Log($"[Card] OnMouseDown Detected! isDialogueCard: {isDialogueCard}");
+        if (isDialogueCard)
+        {
+            //OnCardClicked?.Invoke();
+            return;
+        }
         CardManager.Inst.CardMouseDown(this);
     }
 
     private void OnMouseUp()
     {
+        if (isDialogueCard) return;
         CardManager.Inst.CardMouseUp(this);
     }
 
@@ -502,6 +546,6 @@ public class Card : MonoBehaviour
 
     private void Update()
     {
-        ShowBuffedCost();
+        if (!isDialogueCard)ShowBuffedCost();
     }
 }

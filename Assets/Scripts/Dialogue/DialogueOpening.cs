@@ -5,11 +5,18 @@ using System.Text.RegularExpressions;
 public class DialogueOpening : MonoBehaviour
 {
     [SerializeField] private TextAsset dialogueData;
-    [SerializeField] private DialogueManager dialogueManager;
+    [SerializeField] private DialogueManagerBase dialogueManager;
 
     void Start()
     {
         LoadOpeningDialogue();
+    }
+    private void Awake()
+    {
+        if (dialogueManager == null)
+        {
+            dialogueManager = FindObjectOfType<DialogueManagerBase>();
+        }
     }
 
     void LoadOpeningDialogue()

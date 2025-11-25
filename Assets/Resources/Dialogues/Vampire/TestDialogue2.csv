@@ -1,0 +1,21 @@
+﻿ID,BoxLocation,Dialogue_KO,Dialogue_EN,Type,SFX,IdToGet,IdPoint,NextID,Fuction,feelingType
+1,Guest,"안녕하세요, 전 뱀파이어입니다.",,Normal,,,,2,,
+2,Player,"안녕, 난 프림이라고 해.",,Normal,,,,3,,
+3,Guest,"만나서 반가워요, 프림씨. 저녁은 드셨나요?",,Normal,,,,4,,
+4,Player,"응, 새우볶음밥을먹었어.",,Normal,,,,5,,
+5,Guest,저도 한 때 새우볶음밥으로 주린 배를 채우던 시기가 있었죠…,,Normal,,,,6,,
+6,Player,잘됐네! 나랑 같이 먹으러 가자.,,Feeling,,,,9,,joy
+,Player,그렇게 얘기하니까 뭔가 슬프게 들리는걸.,,Feeling,,,,10,,sad
+,Player,새우볶음밥은 좋은 음식이지…,,Feeling,,,,11,,relax
+,Player,이런 잔인한! 어떻게 그렇게 가냘픈 새우를 잡아먹을 수가 있어!,,Feeling,,,,8,,anger
+,Player,생각만 해도 끔찍하군. 새우볶음밥은 최악이야.,,Feeling,,,,11,,fear
+,Player,난 새우볶음밥이 아니라 파인애플 볶음밥을 먹었으면 더 좋았을 것 같아.,,Feeling,,,,11,,regret
+,Player,난 이제 새우볶음밥은 질렸어. 갑오징어볶음밥을 먹고 싶다고,,Feeling,,,,9,,craving
+,Player,그 시절로 돌아가고 싶어?,,Feeling,,,,10,,longing
+,Player,앞으로는 더 맛있는 것들만 먹고 살게 될 거야. 기대하라고.,,Feeling,,,,9,,expect
+,Player,지금은 삼시세끼 잘 챙겨먹고 살잖아? 그럼 됐지.,,Feeling,,,,11,,indiff
+7,Guest,지금은 그럴 기분이 아니야.,,,,,,,End,
+8,Guest,네가 할 소리는 아니지 않아?,,,,,,,End,
+9,Guest,그것 참 듣기 좋은 얘기구만!,,,,,,,End,
+10,Guest,이젠 다 지날 일일 뿐이야.,,,,,,,End,
+11,Guest,뭘 좀 아는구만.,,,,,,,End,

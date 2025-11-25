@@ -320,6 +320,7 @@ MonoBehaviour:
     pos: {x: 0, y: 0, z: 0}
     rot: {x: 0, y: 0, z: 0, w: 0}
     scale: {x: 0, y: 0, z: 0}
+  isDialogueCard: 0
 --- !u!114 &5004873512213805021
 MonoBehaviour:
   m_ObjectHideFlags: 0
