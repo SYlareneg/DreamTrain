@@ -75,14 +75,13 @@ public class EmotionCardManager : MonoBehaviour
         Card cardComp = go.GetComponent<Card>();
         if (cardComp != null)
         {
-            cardComp.SetupDialogue(
+            cardComp.SetupEmotion(
                 data.cardName, 
                 "", 
                 data.cardSprite, 
                 () => OnCardClick(data.type) 
             );
             
-            cardComp.isDialogueCard = true; 
         }
 
         spawnedCards.Add(go);

@@ -32,33 +32,18 @@ public class DialogueCardManager : DialogueManagerBase
         base.Awake(); 
         DontDestroyOnLoad(this.gameObject);
         if (usedFeelings == null) usedFeelings = new List<FeelingType>();
-        RemoveInputSystemModule();
+        EnsureCameraRaycaster();
     }
-
-    private void RemoveInputSystemModule()
+    private void EnsureCameraRaycaster()
     {
-        EventSystem es = FindObjectOfType<EventSystem>();
-        if (es != null)
+        Camera mainCam = Camera.main;
+        if (mainCam != null)
         {
-            // InputSystemUIInputModule 컴포넌트를 찾아서 제거
-            // (네임스페이스 의존성을 없애기 위해 문자열로 찾거나 MonoBehaviour로 가져와서 타입 이름 확인)
-            MonoBehaviour[] modules = es.GetComponents<MonoBehaviour>();
-            foreach (var module in modules)
+            // Physics 2D Raycaster가 없으면 추가 (이게 있어야 콜라이더 클릭 감지됨)
+            if (mainCam.GetComponent<Physics2DRaycaster>() == null)
             {
-                if (module != null && module.GetType().FullName.Contains("InputSystemUIInputModule"))
-                {
-                    Destroy(module);
-                    Debug.Log("[DialogueCardManager] InputSystemUIInputModule을 감지하여 제거했습니다.");
-
-                    // 기본 StandaloneInputModule이 없으면 추가
-                    if (es.GetComponent<StandaloneInputModule>() == null)
-                    {
-                        es.gameObject.AddComponent<StandaloneInputModule>();
-                        Debug.Log("[DialogueCardManager] StandaloneInputModule을 추가했습니다.");
-                    }
-
-                    break;
-                }
+                mainCam.gameObject.AddComponent<Physics2DRaycaster>();
+                Debug.Log("[DialogueCardManager] Physics 2D Raycaster added to Main Camera.");
             }
         }
     }
@@ -176,7 +161,7 @@ public class DialogueCardManager : DialogueManagerBase
         Card cardComp = go.GetComponent<Card>();
         if (cardComp != null)
         {
-            cardComp.SetupDialogue(
+            cardComp.SetupEmotion(
                 data.cardName, 
                 "",
                 data.cardSprite, 
@@ -250,7 +235,6 @@ public class DialogueCardManager : DialogueManagerBase
             {
                 cardComp.originPRS = new PRS(targetPos, targetRot, Vector3.one * cardScale);
 
-                cardComp.isDialogueCard = true;
             }
         }
     }

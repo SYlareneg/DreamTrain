@@ -107,6 +107,19 @@ public class DialogueUI : MonoBehaviour
         dialogueActive = true;
         DialogueEntry firstEntry = entries[0];
         
+        
+        
+        lastShownEntry = firstEntry;
+    
+        MoooText.text = "";
+        PlayerText.text = "";
+
+        if (firstEntry.IdToGet != 0)
+        {
+            AddPlayerRelic(firstEntry.IdToGet);
+            Debug.Log($"[DialogueUI] Relic ID {firstEntry.IdToGet} 획득 (from normal line)");
+        }
+        
         if (firstEntry.Type.Equals("Feeling", System.StringComparison.OrdinalIgnoreCase))
         {
             if(dialogueManager.dialoguePanel != null) 
@@ -124,7 +137,6 @@ public class DialogueUI : MonoBehaviour
                 
                 if (selectedEntry != null)
                 {
-                    Debug.Log($"[DialogueUI] 감정 선택됨: {selectedFeeling}. 대사 검색 시작...");
                     dialogueManager.EvokeFeeling(selectedFeeling);
                     DisplayFeelingDialogue(selectedEntry);
                 }
@@ -134,21 +146,10 @@ public class DialogueUI : MonoBehaviour
                     EndDialogue();
                 }
             });
-            return; 
+            nextIdForNormalDialogue = firstEntry.NextID;
         
         }
-        
-        lastShownEntry = firstEntry;
-    
-        MoooText.text = "";
-        PlayerText.text = "";
-
-        if (firstEntry.IdToGet != 0)
-        {
-            AddPlayerRelic(firstEntry.IdToGet);
-            Debug.Log($"[DialogueUI] Relic ID {firstEntry.IdToGet} 획득 (from normal line)");
-        }
-        if (firstEntry.Type == "Normal")
+        else if (firstEntry.Type == "Normal")
         {
             playerLayoutGroup.enabled = false;
             if (playerTextFitter != null) playerTextFitter.enabled = false;
@@ -307,12 +308,10 @@ public class DialogueUI : MonoBehaviour
     {
         lastShownEntry = entry;
         
-        // 레이아웃 리셋
         playerLayoutGroup.enabled = false;
         if (playerTextFitter != null) playerTextFitter.enabled = false;
         RestorePlayerSizes();
 
-        // 대사 출력 및 UI 켜기
         if (entry.BoxLocation == "Guest")
         {
             moooPanel.SetActive(true);
@@ -328,7 +327,6 @@ public class DialogueUI : MonoBehaviour
 
         nextIdForNormalDialogue = entry.NextID;
 
-        // 레이아웃 갱신
         LayoutRebuilder.ForceRebuildLayoutImmediate(playerPanelRT);
         Canvas.ForceUpdateCanvases();
     }

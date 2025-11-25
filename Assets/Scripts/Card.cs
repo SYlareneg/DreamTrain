@@ -21,11 +21,12 @@ public class Card : MonoBehaviour
     public PRS originPRS;
     
     public Action OnCardClicked; 
-    public bool isDialogueCard = false;
-
+    public enum SceneType { Dialogue, Emotion, General};
+    
+    SceneType currType = SceneType.General;
     public void Setup(Item item)
     {
-        isDialogueCard = false;
+        SceneType currType = SceneType.General;
         if (item == null)
         {
             this.item = null;
@@ -57,7 +58,7 @@ public class Card : MonoBehaviour
         }
 
         nameTMP.text = this.item.name;
-        if (!isDialogueCard) ShowBuffedCost();
+        ShowBuffedCost();
 
         string showText = this.item.text;
         int index = 0;
@@ -111,7 +112,7 @@ public class Card : MonoBehaviour
 
     public void ShowBuffedCost()
     {
-        if (isDialogueCard) return;
+        if (currType == SceneType.General) return;
         int buffedCost = BuffManager.Inst.GetBuffedCardCost(this.item);
         costTMP.text = buffedCost.ToString();
 
@@ -132,12 +133,27 @@ public class Card : MonoBehaviour
     
     public void SetupDialogue(string title, string description, Sprite charSprite, Action onClick)
     {
-        isDialogueCard = true; 
+        currType = SceneType.Dialogue;
         OnCardClicked = onClick;
 
         nameTMP.text = title;
         textTMP.text = description;
         if (charSprite != null) character.sprite = charSprite;
+        else character.color = Color.clear;
+        
+        costTMP.text = "";
+        if (element != null) element.color = Color.clear;
+    }
+    
+    public void SetupEmotion(string title, string description, Sprite charSprite, Action onClick)
+    {
+        currType = SceneType.Emotion;
+        OnCardClicked = onClick;
+
+        nameTMP.text = title;
+        textTMP.text = description;
+        if (charSprite != null) character.sprite = charSprite;
+        else character.color = Color.clear;
         
         costTMP.text = "";
         if (element != null) element.color = Color.clear;
@@ -145,47 +161,66 @@ public class Card : MonoBehaviour
     
     private void OnMouseOver()
     {
-        if (isDialogueCard)
+        switch (currType)
         {
-            if (originPRS != null) 
-                transform.localScale = originPRS.scale * 1.2f;
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                Debug.Log($"[Card] Click Detected via OnMouseOver! (Title: {nameTMP.text})");
-                OnCardClicked?.Invoke();
-            }
-
-            return;
+            case SceneType.Dialogue:
+                if (originPRS != null) 
+                    transform.localScale = originPRS.scale * 1.2f;
+                break;
+            case  SceneType.Emotion:
+                if (originPRS != null) 
+                    transform.localScale = originPRS.scale * 1.2f;
+                break;
+            case  SceneType.General:
+                CardManager.Inst.CardMouseOver(this);
+                break;
         }
-        CardManager.Inst.CardMouseOver(this);
     }
 
     private void OnMouseExit()
     {
-        if (isDialogueCard)
+        switch (currType)
         {
-            transform.localScale = originPRS.scale; 
-            return;
+            case SceneType.Dialogue:
+                transform.localScale = originPRS.scale; 
+                break;
+            case  SceneType.Emotion:
+                transform.localScale = originPRS.scale; 
+                OnCardClicked?.Invoke();
+                break;
+            case  SceneType.General:
+                CardManager.Inst.CardMouseExit(this);
+                break;
         }
-        CardManager.Inst.CardMouseExit(this);
     }
 
     private void OnMouseDown()
     {
-        Debug.Log($"[Card] OnMouseDown Detected! isDialogueCard: {isDialogueCard}");
-        if (isDialogueCard)
+        switch (currType)
         {
-            //OnCardClicked?.Invoke();
-            return;
+            case SceneType.Dialogue:
+                OnCardClicked?.Invoke();
+                break;
+            case  SceneType.Emotion:
+                break;
+            case  SceneType.General:
+                CardManager.Inst.CardMouseDown(this);
+                break;
         }
-        CardManager.Inst.CardMouseDown(this);
     }
 
     private void OnMouseUp()
     {
-        if (isDialogueCard) return;
-        CardManager.Inst.CardMouseUp(this);
+        switch (currType)
+        {
+            case SceneType.Dialogue:
+                break;
+            case  SceneType.Emotion:
+                break;
+            case  SceneType.General:
+                CardManager.Inst.CardMouseUp(this);
+                break;
+        }
     }
 
     public void MoveTransform(PRS prs, bool useDotween, float dotweenTime = 0)
@@ -546,6 +581,6 @@ public class Card : MonoBehaviour
 
     private void Update()
     {
-        if (!isDialogueCard)ShowBuffedCost();
+        if (currType == SceneType.General)ShowBuffedCost();
     }
 }
