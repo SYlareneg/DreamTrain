@@ -53,9 +53,8 @@ public class RouletteManager : MonoBehaviour
             spinDistance_Turn += pieces;
             spinDirection = isClockwise ? 1 : 0;
             spinFlag = true;
-            Utils.AllignActions<int>(ref TurnManager.OnRouletteSpin, typeof(ShowBuff), typeof(RelicManager));
-            TurnManager.OnRouletteSpin?.Invoke(pieces);
-            var newRotation = rouletteArea.transform.rotation;
+            Utils.AllignActions<bool, int>(ref TurnManager.OnRouletteSpin, typeof(ShowBuff), typeof(RelicManager));
+            TurnManager.OnRouletteSpin?.Invoke(isClockwise, pieces);
             if (isClockwise)
             {
                 pieces *= -1;
@@ -65,10 +64,10 @@ public class RouletteManager : MonoBehaviour
             {
                 TurnManager.Inst.TriggerPlayerPassive(-1);
             }
-            newRotation *= Quaternion.Euler(0f, 0f, 360f * pieces / rouletteNum);
+            Vector3 newRotation = new Vector3(0f, 0f, rouletteArea.transform.eulerAngles.z + 360f * pieces / rouletteNum);
             playerLookat = (playerLookat + pieces + rouletteNum) % rouletteNum;
             enemyLookat = (enemyLookat + pieces + rouletteNum) % rouletteNum;
-            rouletteArea.transform.parent.DORotateQuaternion(newRotation, spinDelay).OnComplete(() => {
+            rouletteArea.transform.parent.DORotate(newRotation, spinDelay, RotateMode.FastBeyond360).OnComplete(() => {
                 spinFlag = false;
                 Utils.AllignActions(ref TurnManager.AfterRouletteSpin, typeof(ShowBuff), typeof(RelicManager));
                 TurnManager.AfterRouletteSpin?.Invoke(pieces);
@@ -125,6 +124,7 @@ public class RouletteManager : MonoBehaviour
     public void TriggerRoulette()
     {
         roulettePieces[triggerPos].Setup(triggerPiece);
+        BuffManager.Inst.rouletteBuff_Trigger.Clear();
         roulettePieces[triggerPos].Trigger(true);
         isTriggerActivated = true;
         Utils.AllignActions(ref TurnManager.OnPlayerTrigger, typeof(ShowBuff), typeof(RelicManager));
@@ -139,6 +139,7 @@ public class RouletteManager : MonoBehaviour
     public void EnemyTriggerRoulette()
     {
         roulettePieces[triggerPos].Setup(enemyTriggerPiece);
+        BuffManager.Inst.rouletteBuff_Trigger.Clear();
         roulettePieces[triggerPos].Trigger(true);
         isTriggerActivated = true;
         Utils.AllignActions(ref TurnManager.OnEnemyTrigger, typeof(ShowBuff), typeof(RelicManager));

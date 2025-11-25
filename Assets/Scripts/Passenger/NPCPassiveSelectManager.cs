@@ -35,11 +35,11 @@ public class NPCPassiveSelectManager : MonoBehaviour
     {
         curPassiveName_Persona.text = "";
         curPassiveText_Persona.text = "";
-        curPassive_Persona = new DreamPieceUI_Select();
+        curPassive_Persona = null;
         curPassiveSelectButton_Persona.gameObject.SetActive(false);
         curPassiveName_Shadow.text = "";
         curPassiveText_Shadow.text = "";
-        curPassive_Shadow = new DreamPieceUI_Select();
+        curPassive_Shadow = null;
         curPassiveSelectButton_Shadow.gameObject.SetActive(false);
 
         foreach(Transform t in npcPassiveListScroll.transform)
@@ -129,6 +129,7 @@ public class NPCPassiveSelectManager : MonoBehaviour
                 characterSO.normalCards.Add(card);
             }
             HideScreen();
+            SceneChangeManager.Inst.SceneFadeOut("RunScene_Dream");
         }
     }
 

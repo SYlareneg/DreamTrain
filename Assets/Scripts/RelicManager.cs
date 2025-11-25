@@ -119,6 +119,15 @@ public class RelicManager : MonoBehaviour
                         cardUsed = true;
                     }
                 };
+                TurnManager.OnPlayerTurnEnd += () =>
+                {
+                    if(cardUsed == false)
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.playerBuff_Damage_Type[(int)EDamageSource.Roulette], 0, 1f / damageMul, -1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Damage_Type[(int)EDamageSource.Roulette], 0, 1f / damageMul, -1);
+                        cardUsed = true;
+                    }
+                };
                 break;
             case "송곳니":
             case "송곳니+":
@@ -634,7 +643,7 @@ public class RelicManager : MonoBehaviour
                 case ERelicActivateTimingType.Game_End:
                     TurnManager.OnGameEnd += relicActivation; break;
                 case ERelicActivateTimingType.Roulette_Spin:
-                    TurnManager.OnRouletteSpin += (x) => relicActivation?.Invoke(); break;
+                    TurnManager.OnRouletteSpin += (x, y) => relicActivation?.Invoke(); break;
                 case ERelicActivateTimingType.Roulette_Trigger:
                     TurnManager.OnRouletteTrigger += relicActivation; break;
                 case ERelicActivateTimingType.Roulette_Enchant:

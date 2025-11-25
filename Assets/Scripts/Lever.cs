@@ -58,7 +58,7 @@ public class Lever : MonoBehaviour
     {
         this.transform.SetPositionAndRotation(leverUp.position, leverUp.rotation);
         useCost = 1;
-        TurnManager.OnRouletteSpin += (x) =>
+        TurnManager.OnRouletteSpin += (x, y) =>
         {
             useCost = 1;
         };

@@ -45,7 +45,6 @@ public class StageSO : ScriptableObject
 {
     public int currentStage;
     public Stage[] stageList;
-    public EPlayerSpawn playerSpawn;
     public bool sofaUsed;
     public List<SellCard> merchantSellCards = new List<SellCard>();
     public List<SellUItem> merchantSellUItems = new List<SellUItem>();

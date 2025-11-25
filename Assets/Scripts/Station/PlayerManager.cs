@@ -3,7 +3,12 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 using System.Collections;
+using System.Collections.Generic;
 
+public static class PlayerPositionData
+{
+    public static Dictionary<string, Vector3> scenePlayerPos = new Dictionary<string, Vector3>();
+}
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Inst { get; private set; }
@@ -33,10 +38,22 @@ public class PlayerManager : MonoBehaviour
     }
     void UpdateUIState()
     {
-        playerHealth.text = characterSO.curHealth.ToString() + "/" + characterSO.maxHealth.ToString();
-        playerHealthBar.fillAmount = (float)characterSO.curHealth / characterSO.maxHealth;
-        playerDreamDust.text = "꿈 가루: " + characterSO.dreamDust.ToString();
-        passengerNum.text = "남은 승객: " + characterSO.leftPassengers.ToString() + "명";
+        if(playerHealth != null)
+        {
+            playerHealth.text = characterSO.curHealth.ToString() + "/" + characterSO.maxHealth.ToString();
+        }
+        if(playerHealthBar != null)
+        {
+            playerHealthBar.fillAmount = (float)characterSO.curHealth / characterSO.maxHealth;
+        }
+        if(playerDreamDust != null)
+        {
+            playerDreamDust.text = "꿈 가루: " + characterSO.dreamDust.ToString();
+        }
+        if(passengerNum != null)
+        {
+            passengerNum.text = "남은 승객: " + characterSO.leftPassengers.ToString() + "명";
+        }
     }
 
     void Update()

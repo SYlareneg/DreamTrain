@@ -32,6 +32,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Room/Room3.unity
     guid: 94d42f870fae1f141a692a35839c8594
+  - enabled: 1
+    path: Assets/Scenes/RunScene_Real.unity
+    guid: 44d8991f016983246befc6b5942cfb34
+  - enabled: 1
+    path: Assets/Scenes/RealTrainScene.unity
+    guid: ab678e0d8c3c91e488da905e76cce1bf
+  - enabled: 1
+    path: Assets/Scenes/RunScene_Dream.unity
+    guid: f8dc49a8c1320b446a401a03310d574e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

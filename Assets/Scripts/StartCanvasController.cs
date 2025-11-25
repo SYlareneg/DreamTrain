@@ -65,14 +65,14 @@ public class StartCanvasController : MonoBehaviour
     {
         StartCoroutine(ClickScaleRoutine(btn.transform));
         if (!isLoading)
-            StartCoroutine(BlackAndLoad("NewHallScene"));
+            StartCoroutine(BlackAndLoad("RealTrainScene"));
     }
 
     public void OnLoadGameClicked(Button btn)
     {        
         StartCoroutine(ClickScaleRoutine(btn.transform));
         if (!isLoading)
-            StartCoroutine(BlackAndLoad("NewHallScene"));
+            StartCoroutine(BlackAndLoad("RealTrainScene"));
     }
     public void OnOptionClicked(Button btn)
     {
