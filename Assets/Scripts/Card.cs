@@ -92,7 +92,7 @@ public class Card : MonoBehaviour
 
     public void ShowBuffedCost()
     {
-        if (currType == SceneType.General) return;
+        if (currType != SceneType.General) return;
         int buffedCost = BuffManager.Inst.GetBuffedCardCost(this.item);
         costTMP.text = buffedCost.ToString();
 
@@ -581,8 +581,7 @@ public class Card : MonoBehaviour
 
     private void Update()
     {
-        ShowBuffedCost();
+        if (currType == SceneType.General) ShowBuffedCost();
         ShowBuffedVal();
-        if (currType == SceneType.General)ShowBuffedCost();
     }
 }
