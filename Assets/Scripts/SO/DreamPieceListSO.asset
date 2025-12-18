@@ -66,9 +66,11 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "\uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
         '\uD761\uD608' \uD6A8\uACFC\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 1
       isEnhanced: 0
       enhancedItem:
@@ -80,10 +82,12 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "\uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
           <color=red>\uAC15\uD654\uB41C</color> '\uD761\uD608' \uD6A8\uACFC\uB97C
           \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 2
         isEnhanced: 1
     - name: "\uD608\uC561 \uC21C\uD658"
@@ -94,10 +98,12 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C \uD55C \uCE78
         \uD68C\uC804\uC2DC\uD0A4\uACE0, \uCCB4\uB825\uC744 1 \uC783\uC2B5\uB2C8\uB2E4.
         \uC989\uC2DC \uCE74\uB4DC\uB97C \uBCF5\uC81C\uD574 \uC190\uD328\uC5D0 \uCD94\uAC00\uD569\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 1
       isEnhanced: 0
       enhancedItem:
@@ -109,11 +115,13 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C \uD55C \uCE78
           \uD68C\uC804\uC2DC\uD0A4\uACE0, \uCCB4\uB825\uC744 1 \uC783\uC2B5\uB2C8\uB2E4.
           \uC989\uC2DC \uCE74\uB4DC\uB97C <color=red>2\uC7A5</color> \uBCF5\uC81C\uD574
           \uC190\uD328\uC5D0 \uCD94\uAC00\uD569\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 2
         isEnhanced: 1
     - name: "\uD53C\uB294 \uB098\uC758 \uD798"
@@ -124,8 +132,10 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "\uCCB4\uB825\uC744 2 \uC783\uACE0, \uD589\uB3D9\uB825\uC744 1 \uC5BB\uC2B5\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 1
       isEnhanced: 0
       enhancedItem:
@@ -137,9 +147,11 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "\uCCB4\uB825\uC744 <color=red>1</color> \uC783\uACE0, \uD589\uB3D9\uB825\uC744
           1 \uC5BB\uC2B5\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 2
         isEnhanced: 1
     - name: "\uAE34\uAE09 \uC218\uD608"
@@ -150,8 +162,10 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "\uCCB4\uB825\uC744 2<\uD68C\uBCF5> \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 1
       isEnhanced: 0
       enhancedItem:
@@ -163,8 +177,10 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "\uCCB4\uB825\uC744 <color=red>3<\uD68C\uBCF5></color> \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 2
         isEnhanced: 1
     - name: "\uD734\uBA38\uB2C8\uC2A4\uD2B8"
@@ -175,9 +191,11 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "1\uD134 \uB3D9\uC548 \uC801\uACFC \uB8F0\uB81B\uC5D0\uAC8C '\uC8FC\uC800\uD568'\uC744
         \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 2
       isEnhanced: 0
       enhancedItem:
@@ -189,9 +207,11 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "<color=red>2\uD134</color> \uB3D9\uC548 \uC801\uACFC \uB8F0\uB81B\uC5D0\uAC8C
           '\uC8FC\uC800\uD568'\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 2
         isEnhanced: 1
     - name: "\uBE14\uB8E8 \uBE14\uB7EC\uB4DC"
@@ -202,10 +222,12 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "2\uD134 \uB3D9\uC548 '\uD761\uD608' \uB8F0\uB81B\uC73C\uB85C \uCCB4\uB825\uC744
         \uD68C\uBCF5\uD560 \uC218 \uC5C6\uAC8C \uB418\uB294 \uB300\uC2E0, \uAC00\uD558\uB294
         \uB370\uBBF8\uC9C0\uAC00 3\uBC30\uAC00 \uB429\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 2
       isEnhanced: 0
       enhancedItem:
@@ -217,10 +239,12 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "2\uD134 \uB3D9\uC548 '\uD761\uD608' \uB8F0\uB81B\uC73C\uB85C \uCCB4\uB825\uC744
           \uD68C\uBCF5\uD560 \uC218 \uC5C6\uAC8C \uB418\uB294 \uB300\uC2E0, \uAC00\uD558\uB294
           \uB370\uBBF8\uC9C0\uAC00 3\uBC30\uAC00 \uB429\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 2
         isEnhanced: 1
     - name: "\uB9CC\uCC2C \uC2DC\uAC04"
@@ -231,9 +255,11 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "2\uD134 \uB3D9\uC548 '\uD761\uD608' \uB8F0\uB81B\uC73C\uB85C \uAC00\uD558\uB294
         \uB370\uBBF8\uC9C0\uAC00 2\uBC30\uAC00 \uB429\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 0
       isEnhanced: 0
       enhancedItem:
@@ -245,9 +271,11 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "2\uD134 \uB3D9\uC548 '\uD761\uD608' \uB8F0\uB81B\uC73C\uB85C \uAC00\uD558\uB294
           \uB370\uBBF8\uC9C0\uAC00 2\uBC30\uAC00 \uB429\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 0
         isEnhanced: 1
     - name: "\uD54F\uBE5B \uB0A0\uAC1C"
@@ -258,11 +286,13 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "\uB8F0\uB81B\uC744 \uBC18\uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 4\uCE78
         \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4. \uC2A4\uD0AC\uC758 \uD68C\uC804\uC73C\uB85C
         \uD761\uD608 \uB8F0\uB81B\uC774 \uC801\uC758 \uD6A8 \uACFC \uC874\uC744 \uC9C0\uB098\uAC00\uB294
         \uACBD\uC6B0 \uB8F0\uB81B\uC758 \uD6A8\uACFC\uB97C \uC989\uC2DC \uC801\uC6A9\uD569\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 0
       isEnhanced: 0
       enhancedItem:
@@ -274,12 +304,14 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "\uB8F0\uB81B\uC744 \uBC18\uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C <color=red>5\uCE78</color>
           \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4. \uC2A4\uD0AC\uC758 \uD68C\uC804\uC73C\uB85C
           \uD761\uD608 \uB8F0\uB81B\uC774 \uC801\uC758 \uD6A8 \uACFC \uC874\uC744
           \uC9C0\uB098\uAC00\uB294 \uACBD\uC6B0 \uB8F0\uB81B\uC758 \uD6A8\uACFC\uB97C
           \uC989\uC2DC \uC801\uC6A9\uD569\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 0
         isEnhanced: 1
     baseCards_persona:
@@ -291,9 +323,11 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "\uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
         '\uD761\uD608' \uD6A8\uACFC\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 1
       isEnhanced: 0
       enhancedItem:
@@ -305,10 +339,12 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "\uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
           <color=red>\uAC15\uD654\uB41C</color> '\uD761\uD608' \uD6A8\uACFC\uB97C
           \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 0
         isEnhanced: 1
     - name: "\uD53C\uB294 \uB098\uC758 \uD798"
@@ -319,8 +355,10 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "\uCCB4\uB825\uC744 2 \uC783\uACE0, \uD589\uB3D9\uB825\uC744 1 \uC5BB\uC2B5\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 1
       isEnhanced: 0
       enhancedItem:
@@ -332,9 +370,11 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "\uCCB4\uB825\uC744 <color=red>1</color> \uC783\uACE0, \uD589\uB3D9\uB825\uC744
           1 \uC5BB\uC2B5\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 0
         isEnhanced: 1
     - name: "\uBE14\uB8E8 \uBE14\uB7EC\uB4DC"
@@ -345,10 +385,12 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "2\uD134 \uB3D9\uC548 '\uD761\uD608' \uB8F0\uB81B\uC73C\uB85C \uCCB4\uB825\uC744
         \uD68C\uBCF5\uD560 \uC218 \uC5C6\uAC8C \uB418\uB294 \uB300\uC2E0, \uAC00\uD558\uB294
         \uB370\uBBF8\uC9C0\uAC00 3\uBC30\uAC00 \uB429\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 1
       isEnhanced: 0
       enhancedItem:
@@ -360,10 +402,12 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "2\uD134 \uB3D9\uC548 '\uD761\uD608' \uB8F0\uB81B\uC73C\uB85C \uCCB4\uB825\uC744
           \uD68C\uBCF5\uD560 \uC218 \uC5C6\uAC8C \uB418\uB294 \uB300\uC2E0, \uAC00\uD558\uB294
           \uB370\uBBF8\uC9C0\uAC00 3\uBC30\uAC00 \uB429\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 0
         isEnhanced: 1
     baseCards_shadow:
@@ -375,9 +419,11 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "\uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
         '\uD761\uD608' \uD6A8\uACFC\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 1
       isEnhanced: 0
       enhancedItem:
@@ -389,10 +435,12 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "\uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
           <color=red>\uAC15\uD654\uB41C</color> '\uD761\uD608' \uD6A8\uACFC\uB97C
           \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 0
         isEnhanced: 1
     - name: "\uD53C\uB294 \uB098\uC758 \uD798"
@@ -403,8 +451,10 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "\uCCB4\uB825\uC744 2 \uC783\uACE0, \uD589\uB3D9\uB825\uC744 1 \uC5BB\uC2B5\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 1
       isEnhanced: 0
       enhancedItem:
@@ -416,9 +466,11 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "\uCCB4\uB825\uC744 <color=red>1</color> \uC783\uACE0, \uD589\uB3D9\uB825\uC744
           1 \uC5BB\uC2B5\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 0
         isEnhanced: 1
     - name: "\uB9CC\uCC2C \uC2DC\uAC04"
@@ -429,9 +481,11 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "2\uD134 \uB3D9\uC548 '\uD761\uD608' \uB8F0\uB81B\uC73C\uB85C \uAC00\uD558\uB294
         \uB370\uBBF8\uC9C0\uAC00 2\uBC30\uAC00 \uB429\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 1
       isEnhanced: 0
       enhancedItem:
@@ -443,9 +497,11 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "2\uD134 \uB3D9\uC548 '\uD761\uD608' \uB8F0\uB81B\uC73C\uB85C \uAC00\uD558\uB294
           \uB370\uBBF8\uC9C0\uAC00 2\uBC30\uAC00 \uB429\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 0
         isEnhanced: 1
   - name: "\uB9C8\uC220\uC0AC\uC758 \uAFC8"
@@ -501,9 +557,11 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
         '\uB9C8\uC220\uC0C1\uC790'\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4"
+      cardValues: 
+      cardValueTypes: 
       num: 2
       isEnhanced: 0
       enhancedItem:
@@ -515,10 +573,12 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
           <color=red>\uAC15\uD654\uB41C</color> '\uB9C8\uC220\uC0C1\uC790'\uB97C
           \uBD80\uC5EC\uD569\uB2C8\uB2E4"
+        cardValues: 
+        cardValueTypes: 
         num: 2
         isEnhanced: 1
     - name: "\uB9C8\uC220-\uBE44\uB458\uAE30"
@@ -529,11 +589,13 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "1<\uD53C\uD574>\uB370\uBBF8\uC9C0\uB97C \uC8FC\uACE0, \uB9C8\uC220\uC744
         \uD3BC\uCCD0 \uC801\uC758 \uB2E4\uC74C \uD134 \uCCAB\uBC88\uC9F8 \uD589\uB3D9\uC744
         \uBC29\uD574\uD569\uB2C8\uB2E4. \uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uB9C8
         \uC220 \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74 \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 2
       isEnhanced: 0
       enhancedItem:
@@ -545,12 +607,14 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "<color=red>3<\uD53C\uD574></color>\uB370\uBBF8\uC9C0\uB97C \uC8FC\uACE0,
           \uB9C8\uC220\uC744 \uD3BC\uCCD0 \uC801\uC758 \uB2E4\uC74C \uD134 \uCCAB\uBC88\uC9F8
           \uD589\uB3D9\uC744 \uBC29\uD574\uD569\uB2C8\uB2E4. \uC801\uC758 \uD6A8\uACFC
           \uC874\uC5D0 \uB9C8\uC220 \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74 \uB9C8\uC220\uC740
           \uC2E4\uD328\uD569\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 2
         isEnhanced: 1
     - name: "\uB9C8\uC220-\uCE74\uB4DC"
@@ -561,12 +625,14 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 1\uCE78 \uD68C\uC804\uC2DC\uD0A4\uACE0,
         \uB9C8\uC220\uC744 \uD3BC\uCCD0 \uD328\uC758 \uCE74\uB4DC \uD55C \uC7A5\uC744
         \uC120\uD0DD\uD574 \uBCF5\uC81C\uD569\uB2C8\uB2E4. \uD50C\uB808\uC774\uC5B4\uC758
         \uD6A8\uACFC \uC874\uC5D0 \uB9C8\uC220 \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74
         \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 2
       isEnhanced: 0
       enhancedItem:
@@ -578,12 +644,14 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 1\uCE78 \uD68C\uC804\uC2DC\uD0A4\uACE0,
           \uB9C8\uC220\uC744 \uD3BC\uCCD0 \uD328\uC758 \uCE74\uB4DC \uD55C \uC7A5\uC744
           \uC120\uD0DD\uD574 \uBCF5\uC81C\uD569\uB2C8\uB2E4. \uD50C\uB808\uC774\uC5B4\uC758
           \uD6A8\uACFC \uC874\uC5D0 \uB9C8\uC220 \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74
           \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 2
         isEnhanced: 1
     - name: "\uB9C8\uC220-\uC808\uB2E8"
@@ -594,11 +662,13 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "\uC801\uC5D0\uAC8C 2<\uD53C\uD574> \uB370\uBBF8\uC9C0\uB97C \uC8FC\uACE0,
         \uB9C8\uC220\uC744 \uD3BC\uCCD0 \uBC29\uC5B4\uB3C4\uB97C \uBAA8\uB450 \uD30C\uAD34\uD569\uB2C8\uB2E4.
         \uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uB9C8\uC220 \uC0C1 \uC790\uAC00 \uC5C6\uB2E4\uBA74
         \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 2
       isEnhanced: 0
       enhancedItem:
@@ -610,11 +680,13 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "<color=red>\uB9C8\uC220\uC744 \uD3BC\uCCD0 \uBC29\uC5B4\uB3C4\uB97C
           \uBAA8\uB450 \uD30C\uAD34\uD558\uACE0, 4<\uD53C\uD574>\uB370\uBBF8\uC9C0\uB97C
           \uC90D\uB2C8\uB2E4.</color> \uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uB9C8\uC220
           \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74 \uC2E4\uD328\uD569\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 2
         isEnhanced: 1
     - name: "\uB9C8\uC220-\uC21C\uAC04\uC774\uB3D9"
@@ -625,12 +697,14 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 2\uCE78 \uD68C\uC804\uC2DC\uD0A4\uACE0,
         \uB9C8\uC220\uC744 \uD3BC\uCCD0 \uBC29\uC5B4\uB3C4\uB97C 12<\uC218\uBE44>
         \uBD80\uC5EC\uD569\uB2C8\uB2E4. \uD50C\uB808\uC774\uC5B4\uC758 \uD6A8\uACFC
         \uC874\uC5D0 \uB9C8\uC220 \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74 \uB9C8\uC220\uC740
         \uC2E4\uD328\uD569\uB2C8\uB2E4. "
+      cardValues: 
+      cardValueTypes: 
       num: 2
       isEnhanced: 0
       enhancedItem:
@@ -642,12 +716,14 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 2\uCE78 \uD68C\uC804\uC2DC\uD0A4\uACE0,
           \uB9C8\uC220\uC744 \uD3BC\uCCD0 \uBC29\uC5B4\uB3C4\uB97C <color=red>16<\uC218\uBE44></color>
           \uBD80\uC5EC\uD569\uB2C8\uB2E4. \uD50C\uB808\uC774\uC5B4\uC758 \uD6A8\uACFC
           \uC874\uC5D0 \uB9C8\uC220 \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74 \uB9C8\uC220\uC740
           \uC2E4\uD328\uD569\uB2C8\uB2E4. "
+        cardValues: 
+        cardValueTypes: 
         num: 2
         isEnhanced: 1
     - name: "\uB9C8\uC220-\uC608\uC5B8"
@@ -658,12 +734,14 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "\uB2E4\uC74C \uD134\uC5D0 '\uC5D0\uC774\uC2A4' \uCE74\uB4DC\uB97C \uC0AC\uC6A9\uD558\uBA74
         \uCF54\uC2A4\uD2B8\uB97C \uC18C\uBAA8\uD558\uC9C0 \uC54A\uACE0, \uD589\uB3D9\uB825\uC744
         \uCD5C\uB300\uB85C \uD68C\uBCF5\uD569\uB2C8\uB2E4. \uC790\uC2E0\uC758 \uD6A8\uACFC
         \uC874\uC5D0 \uB9C8\uC220 \uC0C1\uC790\uAC00 \uC788\uB2E4\uBA74 \uC774 \uCE74\uB4DC\uC758
         \uC18C\uBAA8 \uCF54\uC2A4\uD2B8\uAC00 2 \uAC10\uC18C\uD569\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 2
       isEnhanced: 0
       enhancedItem:
@@ -675,13 +753,15 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "\uB2E4\uC74C \uD134\uC5D0 '\uC5D0\uC774\uC2A4' \uCE74\uB4DC\uB97C
           \uC0AC\uC6A9\uD558\uBA74 \uCF54\uC2A4\uD2B8\uB97C \uC18C\uBAA8\uD558\uC9C0
           \uC54A\uACE0, \uD589\uB3D9\uB825\uC744 \uCD5C\uB300\uB85C \uD68C\uBCF5\uD569\uB2C8\uB2E4.
           \uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uB9C8\uC220 \uC0C1\uC790\uAC00
           \uC788\uB2E4\uBA74 \uC774 \uCE74\uB4DC\uC758 \uC18C\uBAA8 \uCF54\uC2A4\uD2B8\uAC00
           2 \uAC10\uC18C\uD569\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 2
         isEnhanced: 1
     - name: "\uC7AC\uBE60\uB978 \uC190\uB180\uB9BC"
@@ -692,8 +772,10 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "\uB371\uC5D0\uC11C \uCE74\uB4DC\uB97C 1\uC7A5 \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 2
       isEnhanced: 0
       enhancedItem:
@@ -705,8 +787,10 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "\uB371\uC5D0\uC11C \uCE74\uB4DC\uB97C <color=red>2\uC7A5</color> \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 2
         isEnhanced: 1
     - name: "\uCD08\uB2A5\uB825-\uC608\uC5B8"
@@ -717,9 +801,11 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "\uB2E4\uC74C \uD134\uC5D0 12\uBC88 \uC2AC\uB86F\uC774 \uD2B8\uB9AC\uAC70\uB418\uBA74,
         \uC989\uC2DC \uD589\uB3D9\uB825\uC744 \uCD5C\uB300\uB85C \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 2
       isEnhanced: 0
       enhancedItem:
@@ -731,9 +817,11 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "\uB2E4\uC74C \uD134\uC5D0 12\uBC88 \uC2AC\uB86F\uC774 \uD2B8\uB9AC\uAC70\uB418\uBA74,
           \uC989\uC2DC \uD589\uB3D9\uB825\uC744 \uCD5C\uB300\uB85C \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 2
         isEnhanced: 1
     - name: "\uCD08\uB2A5\uB825-\uC5FC\uB825"
@@ -744,9 +832,11 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C \uD604\uC7AC
         \uD589\uB3D9\uB825 x 1\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 2
       isEnhanced: 0
       enhancedItem:
@@ -758,11 +848,13 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C \uD604\uC7AC
           \uD589\uB3D9\uB825 x 1\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4. <color=red>
           3\uCE78 \uC774\uC0C1 \uD68C\uC804\uD55C \uACBD\uC6B0 \uBC29\uC5B4\uB3C4\uB97C
           5<\uC218\uBE44> \uC5BB\uC2B5\uB2C8\uB2E4.</color>"
+        cardValues: 
+        cardValueTypes: 
         num: 2
         isEnhanced: 1
     baseCards_persona:
@@ -774,9 +866,11 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
         '\uB9C8\uC220\uC0C1\uC790'\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4"
+      cardValues: 
+      cardValueTypes: 
       num: 1
       isEnhanced: 0
       enhancedItem:
@@ -788,10 +882,12 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
           <color=red>\uAC15\uD654\uB41C</color> '\uB9C8\uC220\uC0C1\uC790'\uB97C
           \uBD80\uC5EC\uD569\uB2C8\uB2E4"
+        cardValues: 
+        cardValueTypes: 
         num: 0
         isEnhanced: 1
     - name: "\uB9C8\uC220-\uC21C\uAC04\uC774\uB3D9"
@@ -802,12 +898,14 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 2\uCE78 \uD68C\uC804\uC2DC\uD0A4\uACE0,
         \uB9C8\uC220\uC744 \uD3BC\uCCD0 \uBC29\uC5B4\uB3C4\uB97C 12<\uC218\uBE44>
         \uBD80\uC5EC\uD569\uB2C8\uB2E4. \uD50C\uB808\uC774\uC5B4\uC758 \uD6A8\uACFC
         \uC874\uC5D0 \uB9C8\uC220 \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74 \uB9C8\uC220\uC740
         \uC2E4\uD328\uD569\uB2C8\uB2E4. "
+      cardValues: 
+      cardValueTypes: 
       num: 1
       isEnhanced: 0
       enhancedItem:
@@ -819,12 +917,14 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 2\uCE78 \uD68C\uC804\uC2DC\uD0A4\uACE0,
           \uB9C8\uC220\uC744 \uD3BC\uCCD0 \uBC29\uC5B4\uB3C4\uB97C <color=red>16<\uC218\uBE44></color>
           \uBD80\uC5EC\uD569\uB2C8\uB2E4. \uD50C\uB808\uC774\uC5B4\uC758 \uD6A8\uACFC
           \uC874\uC5D0 \uB9C8\uC220 \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74 \uB9C8\uC220\uC740
           \uC2E4\uD328\uD569\uB2C8\uB2E4. "
+        cardValues: 
+        cardValueTypes: 
         num: 0
         isEnhanced: 1
     - name: "\uC7AC\uBE60\uB978 \uC190\uB180\uB9BC"
@@ -835,8 +935,10 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "\uB371\uC5D0\uC11C \uCE74\uB4DC\uB97C 1\uC7A5 \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 1
       isEnhanced: 0
       enhancedItem:
@@ -848,8 +950,10 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "\uB371\uC5D0\uC11C \uCE74\uB4DC\uB97C <color=red>2\uC7A5</color> \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 0
         isEnhanced: 1
     baseCards_shadow:
@@ -861,9 +965,11 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
         '\uB9C8\uC220\uC0C1\uC790'\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4"
+      cardValues: 
+      cardValueTypes: 
       num: 1
       isEnhanced: 0
       enhancedItem:
@@ -875,10 +981,12 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
           <color=red>\uAC15\uD654\uB41C</color> '\uB9C8\uC220\uC0C1\uC790'\uB97C
           \uBD80\uC5EC\uD569\uB2C8\uB2E4"
+        cardValues: 
+        cardValueTypes: 
         num: 0
         isEnhanced: 1
     - name: "\uB9C8\uC220-\uC808\uB2E8"
@@ -889,11 +997,13 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "\uC801\uC5D0\uAC8C 2<\uD53C\uD574> \uB370\uBBF8\uC9C0\uB97C \uC8FC\uACE0,
         \uB9C8\uC220\uC744 \uD3BC\uCCD0 \uBC29\uC5B4\uB3C4\uB97C \uBAA8\uB450 \uD30C\uAD34\uD569\uB2C8\uB2E4.
         \uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uB9C8\uC220 \uC0C1 \uC790\uAC00 \uC5C6\uB2E4\uBA74
         \uB9C8\uC220\uC740 \uC2E4\uD328\uD569\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 1
       isEnhanced: 0
       enhancedItem:
@@ -905,11 +1015,13 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "<color=red>\uB9C8\uC220\uC744 \uD3BC\uCCD0 \uBC29\uC5B4\uB3C4\uB97C
           \uBAA8\uB450 \uD30C\uAD34\uD558\uACE0, 4<\uD53C\uD574>\uB370\uBBF8\uC9C0\uB97C
           \uC90D\uB2C8\uB2E4.</color> \uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uB9C8\uC220
           \uC0C1\uC790\uAC00 \uC5C6\uB2E4\uBA74 \uC2E4\uD328\uD569\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 0
         isEnhanced: 1
     - name: "\uCD08\uB2A5\uB825-\uC5FC\uB825"
@@ -920,9 +1032,11 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      sprite: 
       text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C \uD604\uC7AC
         \uD589\uB3D9\uB825 x 1\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 1
       isEnhanced: 0
       enhancedItem:
@@ -934,11 +1048,13 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+        sprite: 
         text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C \uD604\uC7AC
           \uD589\uB3D9\uB825 x 1\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4. <color=red>
           3\uCE78 \uC774\uC0C1 \uD68C\uC804\uD55C \uACBD\uC6B0 \uBC29\uC5B4\uB3C4\uB97C
           5<\uC218\uBE44> \uC5BB\uC2B5\uB2C8\uB2E4.</color>"
+        cardValues: 
+        cardValueTypes: 
         num: 0
         isEnhanced: 1
   - name: "\uB208\uC0AC\uB78C\uC758 \uAFC8"
@@ -988,9 +1104,11 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 21300000, guid: e5ae473ce983f6c4f8f9d28c9beef3ad, type: 3}
+      sprite: 
       text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC744
         2\uD134\uAC04 \uAF41\uAF41 \uC5BC\uB9BD\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 2
       isEnhanced: 0
       enhancedItem:
@@ -1002,9 +1120,11 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 21300000, guid: e5ae473ce983f6c4f8f9d28c9beef3ad, type: 3}
+        sprite: 
         text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC744
           <color=red>3</color>\uD134\uAC04 \uAF41\uAF41 \uC5BC\uB9BD\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 2
         isEnhanced: 1
     - name: "\uC5BC\uC74C \uBC29\uD328"
@@ -1015,11 +1135,13 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 21300000, guid: 1bc99a13b7216c747a16b757ffde3c74, type: 3}
+      sprite: 
       text: "2<\uC218\uBE44>\uC758 \uBC29\uC5B4\uB3C4\uB97C \uC5BB\uC2B5\uB2C8\uB2E4.
         \uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uAF41\uAF41 \uB8F0\uB81B\uC774
         \uC788\uB2E4\uBA74 4<\uC218\uBE44>\uC758 \uCD94\uAC00 \uBC29\uC5B4\uB3C4\uB97C
         \uC5BB\uC2B5\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 2
       isEnhanced: 0
       enhancedItem:
@@ -1031,11 +1153,13 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 21300000, guid: 1bc99a13b7216c747a16b757ffde3c74, type: 3}
+        sprite: 
         text: "2<\uC218\uBE44>\uC758 \uBC29\uC5B4\uB3C4\uB97C \uC5BB\uC2B5\uB2C8\uB2E4.
           \uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uAF41\uAF41 \uB8F0\uB81B\uC774
           \uC788\uB2E4\uBA74 <color=red>7<\uC218\uBE44></color>\uC758 \uCD94\uAC00
           \uBC29\uC5B4\uB3C4\uB97C \uC5BB\uC2B5\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 2
         isEnhanced: 1
     - name: "\uB098\uBB47\uAC00\uC9C0 \uC190"
@@ -1046,9 +1170,11 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 21300000, guid: f4b4932c543cd2041ad1ce41d105cf78, type: 3}
+      sprite: 
       text: "\uCE74\uB4DC\uB97C 2\uC7A5 \uB4DC\uB85C\uC6B0\uD558\uACE0, \uD2B8\uB9AC\uAC70
         \uAC8C\uC774\uC9C0\uB97C 1 \uC783\uC2B5\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 2
       isEnhanced: 0
       enhancedItem:
@@ -1060,9 +1186,11 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 21300000, guid: f4b4932c543cd2041ad1ce41d105cf78, type: 3}
+        sprite: 
         text: "\uCE74\uB4DC\uB97C 2\uC7A5 \uB4DC\uB85C\uC6B0\uD558\uACE0, \uD2B8\uB9AC\uAC70
           \uAC8C\uC774\uC9C0\uB97C 1 \uC783\uC2B5\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 2
         isEnhanced: 1
     - name: "\uB370\uAD74\uB370\uAD74"
@@ -1073,10 +1201,12 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 21300000, guid: 1277e414dd813724ba901bd3962420e4, type: 3}
+      sprite: 
       text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 2\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4.
         \uD589\uB3D9\uB825\uC774 \uB0A8\uC544 \uC788\uB2E4\uBA74 \uCE74\uB4DC\uB97C
         \uD55C \uBC88 \uB354 \uC0AC\uC6A9\uD569\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 2
       isEnhanced: 0
       enhancedItem:
@@ -1088,7 +1218,7 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 21300000, guid: 1277e414dd813724ba901bd3962420e4, type: 3}
+        sprite: 
         text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 2\uCE78 <color=red>\uD68C\uC804\uC2DC\uD0A4\uACE0,
           \uD53C\uD574\uB97C 2<\uD53C\uD574> \uC90D\uB2C8\uB2E4.</color> \uD589\uB3D9\uB825\uC774
           \uB0A8\uC544 \uC788\uB2E4\uBA74 \uCE74\uB4DC\uB97C \uD55C \uBC88 \uB354
@@ -1096,6 +1226,8 @@ MonoBehaviour:
           2\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4. \uD589\uB3D9\uB825\uC774
           \uB0A8\uC544 \uC788\uB2E4\uBA74 \uCE74\uB4DC\uB97C \uD55C \uBC88 \uB354
           \uC0AC\uC6A9\uD569\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 2
         isEnhanced: 1
     - name: "\uCC28\uAC00\uC6B4 \uC545\uC218"
@@ -1106,10 +1238,12 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 21300000, guid: 4f1cd2c6e0385264a901c9e59e285602, type: 3}
+      sprite: 
       text: "\uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC744
         3\uD134\uAC04 \uAF41\uAF41 \uC5BC\uB9AC\uACE0, \uC801\uC5D0\uAC8C '\uACFC\uBBFC\uD568'
         \uD6A8\uACFC\uB97C 1 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 2
       isEnhanced: 0
       enhancedItem:
@@ -1121,10 +1255,12 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 21300000, guid: 4f1cd2c6e0385264a901c9e59e285602, type: 3}
+        sprite: 
         text: "\uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC744
           3\uD134\uAC04 \uAF41\uAF41 \uC5BC\uB9AC\uACE0, \uC801\uC5D0\uAC8C '\uACFC\uBBFC\uD568'
           \uD6A8\uACFC\uB97C 1 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 2
         isEnhanced: 1
     - name: "\uC2A4\uB178\uC6B0\uBCFC\uB9C1"
@@ -1135,10 +1271,12 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 21300000, guid: 4fda52c51668dcf4d9edead7d79f39c5, type: 3}
+      sprite: 
       text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 3\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4.
         \uC790\uC2E0\uC5D0\uAC8C \uBD99\uC740 \uBC29\uC5B4\uB3C4\uB97C 2\uBC30\uB85C
         \uB9CC\uB4ED\uB2C8\uB2E4."
+      cardValues: 0300000002000000
+      cardValueTypes: 0400000004000000
       num: 2
       isEnhanced: 0
       enhancedItem:
@@ -1150,10 +1288,12 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 1
-        sprite: {fileID: 21300000, guid: 4fda52c51668dcf4d9edead7d79f39c5, type: 3}
+        sprite: 
         text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 3\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4.
           \uC790\uC2E0\uC5D0\uAC8C \uBD99\uC740 \uBC29\uC5B4\uB3C4\uB97C 2\uBC30\uB85C
           \uB9CC\uB4ED\uB2C8\uB2E4. <color=red>\uC794\uB958</color>"
+        cardValues: 
+        cardValueTypes: 
         num: 2
         isEnhanced: 1
     - name: "\uB179\uC544\uB0B4\uB9AC\uAE30"
@@ -1164,9 +1304,11 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 21300000, guid: a170a84316094e94288332af6444041d, type: 3}
+      sprite: 
       text: "\uD2B8\uB9AC\uAC70 \uAC8C\uC774\uC9C0\uB97C 2 \uC783\uC2B5\uB2C8\uB2E4.
         \uBC29\uC5B4\uB3C4\uB97C 6<\uC218\uBE44> \uC5BB\uC2B5\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 2
       isEnhanced: 0
       enhancedItem:
@@ -1178,9 +1320,11 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 21300000, guid: a170a84316094e94288332af6444041d, type: 3}
+        sprite: 
         text: "\uD2B8\uB9AC\uAC70 \uAC8C\uC774\uC9C0\uB97C 1 \uC783\uC2B5\uB2C8\uB2E4.
           \uBC29\uC5B4\uB3C4\uB97C 6<\uC218\uBE44> \uC5BB\uC2B5\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 2
         isEnhanced: 1
     - name: "\uBAA9\uB3C4\uB9AC"
@@ -1191,11 +1335,13 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 21300000, guid: c7799707787ea6c44b33a2c2e3a13fc8, type: 3}
+      sprite: 
       text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 5\uCE78 \uD68C\uC804\uC2DC\uD0A4\uACE0,
         \uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC744 \uC2A4\uCCD0\uC9C0\uB098\uAC04
         \uAF41\uAF41 \uB8F0\uB81B \uD558\uB098 \uB2F9 2<\uC218\uBE44>\uC758 \uBC29\uC5B4\uB3C4\uB97C
         \uC5BB\uC2B5\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 2
       isEnhanced: 0
       enhancedItem:
@@ -1207,11 +1353,13 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 21300000, guid: c7799707787ea6c44b33a2c2e3a13fc8, type: 3}
+        sprite: 
         text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 5\uCE78 \uD68C\uC804\uC2DC\uD0A4\uACE0,
           \uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC744 \uC2A4\uCCD0\uC9C0\uB098\uAC04
           \uAF41\uAF41 \uB8F0\uB81B \uD558\uB098 \uB2F9 <color=red>3<\uC218\uBE44></color>\uC758
           \uBC29\uC5B4\uB3C4\uB97C \uC5BB\uC2B5\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 2
         isEnhanced: 1
     - name: "\uC5BC\uC74C \uAE68\uAE30"
@@ -1222,10 +1370,12 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 21300000, guid: ff003798e4809df4a8d358ae4847a3ae, type: 3}
+      sprite: 
       text: "\uBAA8\uB4E0 \uAF41\uAF41 \uB8F0\uB81B\uC758 \uD6A8\uACFC\uB97C \uD574\uC81C\uD569\uB2C8\uB2E4.
         \uC801\uC758 \uD6A8\uACFC \uC874 \uB8F0\uB81B\uC774 \uAF41\uAF41 \uB8F0\uB81B\uC774\uC5C8\uB2E4\uBA74
         \uD53C\uD574\uB97C 8<\uD53C\uD574> \uC90D\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 2
       isEnhanced: 0
       enhancedItem:
@@ -1237,10 +1387,12 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 21300000, guid: ff003798e4809df4a8d358ae4847a3ae, type: 3}
+        sprite: 
         text: "\uBAA8\uB4E0 \uAF41\uAF41 \uB8F0\uB81B\uC758 \uD6A8\uACFC\uB97C \uD574\uC81C\uD569\uB2C8\uB2E4.
           \uC801\uC758 \uD6A8\uACFC \uC874 \uB8F0\uB81B\uC774 \uAF41\uAF41 \uB8F0\uB81B\uC774\uC5C8\uB2E4\uBA74
           \uD53C\uD574\uB97C <color=red>12<\uD53C\uD574></color> \uC90D\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 2
         isEnhanced: 1
     - name: "\uB208\uC2F8\uC6C0"
@@ -1251,9 +1403,11 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 21300000, guid: 1397702ac6024ed42992041a3acbdc15, type: 3}
+      sprite: 
       text: "\uC801\uC5D0\uAC8C \uAF41\uAF41 \uB8F0\uB81B\uC758 \uAC1C\uC218 x 4<\uD53C\uD574>\uC758
         \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 0
       isEnhanced: 0
       enhancedItem:
@@ -1265,9 +1419,11 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 21300000, guid: 1397702ac6024ed42992041a3acbdc15, type: 3}
+        sprite: 
         text: "\uC801\uC5D0\uAC8C \uAF41\uAF41 \uB8F0\uB81B\uC758 \uAC1C\uC218 x
           <color=red>6<\uD53C\uD574></color>\uC758 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 0
         isEnhanced: 1
     - name: "\uD3ED\uC124"
@@ -1278,9 +1434,11 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 21300000, guid: 1ab3e07dd9cacb14283517b4c26ae598, type: 3}
+      sprite: 
       text: "\uBAA8\uB4E0 \uBE48 \uB8F0\uB81B\uC5D0 \uAF41\uAF41 \uD6A8\uACFC\uB97C
         3\uD134\uAC04 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 0
       isEnhanced: 0
       enhancedItem:
@@ -1292,9 +1450,11 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 21300000, guid: 1ab3e07dd9cacb14283517b4c26ae598, type: 3}
+        sprite: 
         text: "\uBAA8\uB4E0 \uBE48 \uB8F0\uB81B\uC5D0 \uAF41\uAF41 \uD6A8\uACFC\uB97C
           3\uD134\uAC04 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 0
         isEnhanced: 1
     - name: "\uB05D\uB098\uC9C0 \uC54A\uB294 \uACA8\uC6B8"
@@ -1305,9 +1465,11 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 21300000, guid: 672ebde3230e17748b6f3b4550a28c24, type: 3}
+      sprite: 
       text: "\uBAA8\uB4E0 \uB8F0\uB81B\uC758 \uAF41\uAF41 \uD6A8\uACFC \uC9C0\uC18D\uC2DC\uAC04\uC744
         1\uD134 \uC99D\uAC00\uC2DC\uD0B5\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 0
       isEnhanced: 0
       enhancedItem:
@@ -1319,9 +1481,11 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 21300000, guid: 672ebde3230e17748b6f3b4550a28c24, type: 3}
+        sprite: 
         text: "\uBAA8\uB4E0 \uB8F0\uB81B\uC758 \uAF41\uAF41 \uD6A8\uACFC \uC9C0\uC18D\uC2DC\uAC04\uC744
           <color=red>2</color>\uD134 \uC99D\uAC00\uC2DC\uD0B5\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 0
         isEnhanced: 1
     baseCards_persona:
@@ -1333,9 +1497,11 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 21300000, guid: e5ae473ce983f6c4f8f9d28c9beef3ad, type: 3}
+      sprite: 
       text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC744
         2\uD134\uAC04 \uAF41\uAF41 \uC5BC\uB9BD\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 1
       isEnhanced: 0
       enhancedItem:
@@ -1347,9 +1513,11 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 21300000, guid: e5ae473ce983f6c4f8f9d28c9beef3ad, type: 3}
+        sprite: 
         text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC744
           <color=red>3</color>\uD134\uAC04 \uAF41\uAF41 \uC5BC\uB9BD\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 0
         isEnhanced: 1
     - name: "\uC2A4\uB178\uC6B0\uBCFC\uB9C1"
@@ -1360,10 +1528,12 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 21300000, guid: 4fda52c51668dcf4d9edead7d79f39c5, type: 3}
+      sprite: 
       text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 3\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4.
         \uC790\uC2E0\uC5D0\uAC8C \uBD99\uC740 \uBC29\uC5B4\uB3C4\uB97C 2\uBC30\uB85C
         \uB9CC\uB4ED\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 1
       isEnhanced: 0
       enhancedItem:
@@ -1375,10 +1545,12 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 1
-        sprite: {fileID: 21300000, guid: 4fda52c51668dcf4d9edead7d79f39c5, type: 3}
+        sprite: 
         text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 3\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4.
           \uC790\uC2E0\uC5D0\uAC8C \uBD99\uC740 \uBC29\uC5B4\uB3C4\uB97C 2\uBC30\uB85C
           \uB9CC\uB4ED\uB2C8\uB2E4. <color=red>\uC794\uB958</color>"
+        cardValues: 
+        cardValueTypes: 
         num: 0
         isEnhanced: 1
     - name: "\uB179\uC544\uB0B4\uB9AC\uAE30"
@@ -1389,9 +1561,11 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 21300000, guid: a170a84316094e94288332af6444041d, type: 3}
+      sprite: 
       text: "\uD2B8\uB9AC\uAC70 \uAC8C\uC774\uC9C0\uB97C 2 \uC783\uC2B5\uB2C8\uB2E4.
         \uBC29\uC5B4\uB3C4\uB97C 6<\uC218\uBE44> \uC5BB\uC2B5\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 1
       isEnhanced: 0
       enhancedItem:
@@ -1403,9 +1577,11 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 21300000, guid: a170a84316094e94288332af6444041d, type: 3}
+        sprite: 
         text: "\uD2B8\uB9AC\uAC70 \uAC8C\uC774\uC9C0\uB97C 1 \uC783\uC2B5\uB2C8\uB2E4.
           \uBC29\uC5B4\uB3C4\uB97C 6<\uC218\uBE44> \uC5BB\uC2B5\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 0
         isEnhanced: 1
     baseCards_shadow:
@@ -1417,9 +1593,11 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 21300000, guid: e5ae473ce983f6c4f8f9d28c9beef3ad, type: 3}
+      sprite: 
       text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC744
         2\uD134\uAC04 \uAF41\uAF41 \uC5BC\uB9BD\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 1
       isEnhanced: 0
       enhancedItem:
@@ -1431,9 +1609,11 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 21300000, guid: e5ae473ce983f6c4f8f9d28c9beef3ad, type: 3}
+        sprite: 
         text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC744
           <color=red>3</color>\uD134\uAC04 \uAF41\uAF41 \uC5BC\uB9BD\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 0
         isEnhanced: 1
     - name: "\uCC28\uAC00\uC6B4 \uC545\uC218"
@@ -1444,10 +1624,12 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 21300000, guid: 4f1cd2c6e0385264a901c9e59e285602, type: 3}
+      sprite: 
       text: "\uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC744
         3\uD134\uAC04 \uAF41\uAF41 \uC5BC\uB9AC\uACE0, \uC801\uC5D0\uAC8C '\uACFC\uBBFC\uD568'
         \uD6A8\uACFC\uB97C 1 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 1
       isEnhanced: 0
       enhancedItem:
@@ -1459,10 +1641,12 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 21300000, guid: 4f1cd2c6e0385264a901c9e59e285602, type: 3}
+        sprite: 
         text: "\uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC744
           3\uD134\uAC04 \uAF41\uAF41 \uC5BC\uB9AC\uACE0, \uC801\uC5D0\uAC8C '\uACFC\uBBFC\uD568'
           \uD6A8\uACFC\uB97C 1 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 0
         isEnhanced: 1
     - name: "\uB208\uC2F8\uC6C0"
@@ -1473,9 +1657,11 @@ MonoBehaviour:
       isVolatile: 0
       isVanish: 0
       isRemain: 0
-      sprite: {fileID: 21300000, guid: 1397702ac6024ed42992041a3acbdc15, type: 3}
+      sprite: 
       text: "\uC801\uC5D0\uAC8C \uAF41\uAF41 \uB8F0\uB81B\uC758 \uAC1C\uC218 x 4<\uD53C\uD574>\uC758
         \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
+      cardValues: 
+      cardValueTypes: 
       num: 1
       isEnhanced: 0
       enhancedItem:
@@ -1487,8 +1673,10 @@ MonoBehaviour:
         isVolatile: 0
         isVanish: 0
         isRemain: 0
-        sprite: {fileID: 21300000, guid: 1397702ac6024ed42992041a3acbdc15, type: 3}
+        sprite: 
         text: "\uC801\uC5D0\uAC8C \uAF41\uAF41 \uB8F0\uB81B\uC758 \uAC1C\uC218 x
           <color=red>6<\uD53C\uD574></color>\uC758 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
+        cardValues: 
+        cardValueTypes: 
         num: 0
         isEnhanced: 1

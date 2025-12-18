@@ -21,6 +21,9 @@ MonoBehaviour:
     affectType: 0
     effectType: 2
     val: 0
+    defaultVal:
+    - 1
+    isSetOnEnemyTurn: 0
     affectBuffs: []
   - name: "\uBCF4\uD638"
     text: "\uD68D\uB4DD\uD558\uB294 \uBC29\uC5B4\uB3C4\uAC00 \uAC12\uB9CC\uD07C \uC99D\uAC00\uD569\uB2C8\uB2E4."
@@ -29,6 +32,9 @@ MonoBehaviour:
     affectType: 0
     effectType: 2
     val: 0
+    defaultVal:
+    - 1
+    isSetOnEnemyTurn: 0
     affectBuffs: []
   - name: "\uD65C\uB825"
     text: "\uCCB4\uB825 \uD68C\uBCF5\uB7C9\uC774 \uAC12\uB9CC\uD07C \uC99D\uAC00\uD569\uB2C8\uB2E4."
@@ -37,6 +43,9 @@ MonoBehaviour:
     affectType: 0
     effectType: 2
     val: 0
+    defaultVal:
+    - 1
+    isSetOnEnemyTurn: 0
     affectBuffs: []
   - name: "\uC8FC\uC800\uD568"
     text: "\uACF5\uACA9\uC758 \uD53C\uD574\uB7C9\uC774 25% \uAC10\uC18C\uD569\uB2C8\uB2E4.
@@ -46,6 +55,9 @@ MonoBehaviour:
     affectType: 0
     effectType: 1
     val: 0
+    defaultVal:
+    - 0.75
+    isSetOnEnemyTurn: 0
     affectBuffs: []
   - name: "\uCDE8\uC57D"
     text: "\uBC1B\uB294 \uBAA8\uB4E0 \uD53C\uD574\uB7C9\uC774 50% \uC99D\uAC00\uD569\uB2C8\uB2E4.
@@ -55,6 +67,9 @@ MonoBehaviour:
     affectType: 0
     effectType: 1
     val: 0
+    defaultVal:
+    - 1.5
+    isSetOnEnemyTurn: 0
     affectBuffs: []
   - name: "\uBE14\uB8E8 \uBE14\uB7EC\uB4DC"
     text: "\uD50C\uB808\uC774\uC5B4\uAC00 \uBD80\uC5EC\uD55C \uD761\uD608 \uB8F0\uB81B\uC774
@@ -65,6 +80,10 @@ MonoBehaviour:
     affectType: 0
     effectType: 0
     val: 0
+    defaultVal:
+    - 3
+    - 0
+    isSetOnEnemyTurn: 0
     affectBuffs: []
   - name: "\uB9CC\uCC2C \uC2DC\uAC04"
     text: "\uD50C\uB808\uC774\uC5B4\uAC00 \uBD80\uC5EC\uD55C \uD761\uD608 \uB8F0\uB81B\uC774
@@ -75,6 +94,9 @@ MonoBehaviour:
     affectType: 0
     effectType: 0
     val: 0
+    defaultVal:
+    - 2
+    isSetOnEnemyTurn: 0
     affectBuffs: []
   - name: "\uC608\uC5B8-\uC900\uBE44"
     text: "\uB2E4\uC74C \uD134\uC5D0 \uC608\uC5B8 \uBC84\uD504\uB97C \uC5BB\uC2B5\uB2C8\uB2E4.
@@ -84,6 +106,9 @@ MonoBehaviour:
     affectType: 0
     effectType: 0
     val: 0
+    defaultVal:
+    - 1
+    isSetOnEnemyTurn: 0
     affectBuffs: []
   - name: "\uC608\uC5B8"
     text: "\uD2B8\uB9AC\uAC70\uD558\uBA74 \uD589\uB3D9\uB825\uC744 \uC989\uC2DC \uCD5C\uB300\uB85C
@@ -93,6 +118,9 @@ MonoBehaviour:
     affectType: 0
     effectType: 0
     val: 0
+    defaultVal:
+    - 1
+    isSetOnEnemyTurn: 0
     affectBuffs: []
   - name: "\uD658\uC601"
     text: "\uBC1B\uB294 \uD53C\uD574\uB97C 0\uC73C\uB85C \uB9CC\uB4ED\uB2C8\uB2E4.
@@ -103,6 +131,9 @@ MonoBehaviour:
     affectType: 0
     effectType: 0
     val: 0
+    defaultVal:
+    - 1
+    isSetOnEnemyTurn: 0
     affectBuffs: []
   - name: "\uACFC\uBBFC\uD568"
     text: "\uBC1B\uB294 \uD53C\uD574\uAC00 50% \uC99D\uAC00\uD569\uB2C8\uB2E4. \uD6A8\uACFC
@@ -113,6 +144,9 @@ MonoBehaviour:
     affectType: 0
     effectType: 1
     val: 0
+    defaultVal:
+    - 1.5
+    isSetOnEnemyTurn: 0
     affectBuffs: []
   - name: "\uBD88\uCF8C\uD568"
     text: "\uB8F0\uB81B \uD68C\uC804 \uC2DC 3\uC758 \uD53C\uD574\uB97C \uC785\uC2B5\uB2C8\uB2E4.
@@ -123,4 +157,7 @@ MonoBehaviour:
     affectType: 0
     effectType: 1
     val: 0
+    defaultVal:
+    - 1
+    isSetOnEnemyTurn: 0
     affectBuffs: []

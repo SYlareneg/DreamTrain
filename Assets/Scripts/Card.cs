@@ -40,7 +40,7 @@ public class Card : MonoBehaviour
                 card.sprite = cardTypes[2]; break;
         }
 
-        character.sprite = this.item.sprite;
+        character.sprite = Utils.LoadSpriteByName("Cards", this.item.sprite);
 
         switch (this.item.element)
         {
@@ -59,7 +59,7 @@ public class Card : MonoBehaviour
         int index = 0;
         if (this.item.cardValues.Count == 0)
         {
-            string itemText = Regex.Replace(this.item.text, @"(\d+)<(피해|수비|회복|특수)>", match =>
+            string itemText = Regex.Replace(this.item.text, @"(\d+)(<(피해|수비|회복|특수)>)?", match =>
             {
                 ECardValueType tempType = ECardValueType.Default;
                 switch(match.Groups[2].Value)
@@ -72,37 +72,17 @@ public class Card : MonoBehaviour
                         tempType = ECardValueType.Heal; break;
                     case "특수":
                         tempType = ECardValueType.Special; break;
+                    default:
+                        tempType = ECardValueType.Default; break;
                 }
-                this.item.cardValues.Add((int.Parse(match.Groups[1].Value), tempType));
+                this.item.cardValues.Add(int.Parse(match.Groups[1].Value));
+                this.item.cardValueTypes.Add(tempType);
                 index++;
                 return match.Value;
             });
             showText = $"{itemText}";
         }
-        index = 0;
-        showText = Regex.Replace(showText, @"(\d+)<(피해|수비|회복|특수)>", match => 
-        {
-            int buffedVal = this.item.cardValues[index].val;
-            switch (this.item.cardValues[index].valType)
-            {
-                case ECardValueType.Damage:
-                    buffedVal = BuffManager.Inst.GetBuffedEnemyDamage(EDamageSource.Card, buffedVal);
-                    break;
-                case ECardValueType.Heal:
-                    buffedVal = BuffManager.Inst.GetBuffedPlayerHeal(EDamageSource.Card, buffedVal);
-                    break;
-                case ECardValueType.Shield:
-                    buffedVal = BuffManager.Inst.GetBuffedPlayerShield(EDamageSource.Card, buffedVal);
-                    break;
-            }
-            string returnString = "";
-            if(buffedVal > this.item.cardValues[index].val) returnString = "<color=green>" + buffedVal.ToString() + "</color>";
-            else if(buffedVal < this.item.cardValues[index].val) returnString = "<color=red>" + buffedVal.ToString() + "</color>";
-            else returnString = "<color=black>" + buffedVal.ToString() + "</color>";
-            index++;
-            return returnString;
-        });
-        textTMP.text = $"{showText}";
+        ShowBuffedVal();
     }
 
     public void ShowBuffedCost()
@@ -122,6 +102,43 @@ public class Card : MonoBehaviour
         {
             costTMP.color = Color.green;
         }
+    }
+
+    public void ShowBuffedVal()
+    {
+        if (this.item.cardValues.Count == 0) return;
+        string showText = this.item.text;
+        int index = 0;
+        showText = Regex.Replace(showText, @"(\d+)(<(피해|수비|회복|특수)>)?", match => 
+        {
+            ECardValueType tempType = this.item.cardValueTypes[index];
+            int buffedVal = GetBuffedVal(this.item.cardValues[index], tempType);
+            string returnString = "NaN";
+            if(buffedVal > this.item.cardValues[index]) returnString = "<color=green>" + buffedVal.ToString() + "</color>";
+            else if(buffedVal < this.item.cardValues[index]) returnString = "<color=red>" + buffedVal.ToString() + "</color>";
+            else returnString = "<color=black>" + buffedVal.ToString() + "</color>";
+            index++;
+            return returnString;
+        });
+        textTMP.text = $"{showText}";
+    }
+
+    public int GetBuffedVal(int originVal, ECardValueType valType = ECardValueType.Default)
+    {
+        int retVal = originVal;
+        switch (valType)
+        {
+            case ECardValueType.Damage:
+                retVal = BuffManager.Inst.GetBuffedEnemyDamage(EDamageSource.Card, originVal);
+                break;
+            case ECardValueType.Heal:
+                retVal = BuffManager.Inst.GetBuffedPlayerHeal(EDamageSource.Card, originVal);
+                break;
+            case ECardValueType.Shield:
+                retVal = BuffManager.Inst.GetBuffedPlayerShield(EDamageSource.Card, originVal);
+                break;
+        }
+        return retVal;
     }
 
     private void OnMouseOver()
@@ -209,53 +226,46 @@ public class Card : MonoBehaviour
                 break;
             case "혈액 순환":
             case "혈액 순환+":
-                RouletteManager.Inst.Spin(true, 1);
-                TurnManager.Inst.TakeDmg(1, EDamageSource.Card);
+                RouletteManager.Inst.Spin(true, item.cardValues[0]);
+                TurnManager.Inst.TakeDmg(item.cardValues[1], EDamageSource.Card);
                 Item tempItem = new Item();
                 tempItem.SetItem(item);
                 tempItem.name = "혈액 순환 (소멸)";
                 tempItem.isVanish = true;
-                CardManager.Inst.CreateCardInHand(tempItem);
-                if(item.name == "혈액 순환+") CardManager.Inst.CreateCardInHand(tempItem);
+                for(int i = 0; i < item.cardValues[2]; i++)
+                {
+                    CardManager.Inst.CreateCardInHand(tempItem);
+                }
                 break;
             case "혈액 순환 (소멸)":
-                RouletteManager.Inst.Spin(true, 1);
-                TurnManager.Inst.TakeDmg(1, EDamageSource.Card);
+                RouletteManager.Inst.Spin(true, item.cardValues[0]);
+                TurnManager.Inst.TakeDmg(item.cardValues[1], EDamageSource.Card);
                 break;
             case "피는 나의 힘":
-                TurnManager.Inst.TakeDmg(2, EDamageSource.Card);
-                TurnManager.Inst.IncreaseCost(1);
-                break;
             case "피는 나의 힘+":
-                TurnManager.Inst.TakeDmg(1, EDamageSource.Card);
-                TurnManager.Inst.IncreaseCost(1);
+                TurnManager.Inst.TakeDmg(item.cardValues[0], EDamageSource.Card);
+                TurnManager.Inst.IncreaseCost(item.cardValues[1]);
                 break;
             case "긴급 수혈":
-                TurnManager.Inst.TakeDmg(-2, EDamageSource.Card);
-                break;
             case "긴급 수혈+":
-                TurnManager.Inst.TakeDmg(-3, EDamageSource.Card);
+                TurnManager.Inst.TakeDmg(-GetBuffedVal(item.cardValues[0], ECardValueType.Heal), EDamageSource.Card);
                 break;
             case "휴머니스트":
-                BuffManager.Inst.AddShowBuff("주저함", EBuffAffectType.Enemy, 1, false);
-                BuffManager.Inst.AddShowBuff("주저함", EBuffAffectType.Roulette, 1, false);
-                break;
             case "휴머니스트+":
-                BuffManager.Inst.AddShowBuff("주저함", EBuffAffectType.Enemy, 2, false);
-                BuffManager.Inst.AddShowBuff("주저함", EBuffAffectType.Roulette, 2, false);
+                BuffManager.Inst.AddShowBuff("주저함", EBuffAffectType.Enemy, item.cardValues[0], false);
+                BuffManager.Inst.AddShowBuff("주저함", EBuffAffectType.Roulette, item.cardValues[0], false);
                 break;
             case "블루 블러드":
             case "블루 블러드+":
-                BuffManager.Inst.AddShowBuff("블루 블러드", EBuffAffectType.Roulette, 2, false);
+                BuffManager.Inst.AddShowBuff("블루 블러드", EBuffAffectType.Roulette, item.cardValues[0], false, new List<float>{(float)item.cardValues[1], 0f});
                 break;
             case "만찬 시간":
             case "만찬 시간+":
-                BuffManager.Inst.AddShowBuff("만찬 시간", EBuffAffectType.Roulette, 2, false);
+                BuffManager.Inst.AddShowBuff("만찬 시간", EBuffAffectType.Roulette, item.cardValues[0], false, new List<float>{(float)item.cardValues[1]});
                 break;
             case "핏빛 날개":
             case "핏빛 날개+":
-                int bloodwing_spinnnum = 4;
-                if(item.name == "핏빛 날개+") bloodwing_spinnnum = 5;
+                int bloodwing_spinnnum = item.cardValues[0];
                 for (int i = 0; i <= bloodwing_spinnnum; i++)
                 {
                     int tempIdx = (RouletteManager.Inst.enemyLookat + i) % RouletteManager.rouletteNum;
@@ -278,8 +288,7 @@ public class Card : MonoBehaviour
                 magicBox = ERouletteType.Player_Special_1;
                 if (TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum != this.item.dreamPieceNum) magicBox = ERouletteType.Player_Special_2;
                 bool checkMagic = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].roulette.type == magicBox;
-                if (item.name == "마술-비둘기") TurnManager.Inst.EnemyTakeDmg(1, EDamageSource.Card);
-                else TurnManager.Inst.EnemyTakeDmg(3, EDamageSource.Card);
+                TurnManager.Inst.EnemyTakeDmg(GetBuffedVal(item.cardValues[0], ECardValueType.Damage), EDamageSource.Card);
                 if (checkMagic)
                 {
                     EnemyManager.Inst.RemoveAction(0);
@@ -290,18 +299,18 @@ public class Card : MonoBehaviour
                 magicBox = ERouletteType.Player_Special_1;
                 if (TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum != this.item.dreamPieceNum) magicBox = ERouletteType.Player_Special_2;
                 checkMagic = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.type == magicBox;
-                RouletteManager.Inst.Spin(true, 1);
+                RouletteManager.Inst.Spin(true, item.cardValues[0]);
                 if (checkMagic)
                 {
                     Debug.Log("duplicate mode on");
-                    CardManager.Inst.CardSelectModeTransit(ECardSelectMode.Duplicate, 1);
+                    CardManager.Inst.CardSelectModeTransit(ECardSelectMode.Duplicate, item.cardValues[1]);
                 }
                 break;
             case "마술-절단":
                 magicBox = ERouletteType.Player_Special_1;
                 if (TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum != this.item.dreamPieceNum) magicBox = ERouletteType.Player_Special_2;
                 checkMagic = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].roulette.type == magicBox;
-                TurnManager.Inst.EnemyTakeDmg(2, EDamageSource.Card);
+                TurnManager.Inst.EnemyTakeDmg(GetBuffedVal(item.cardValues[0], ECardValueType.Damage), EDamageSource.Card);
                 if (checkMagic)
                 {
                     TurnManager.Inst.enemyShieldHealth = 0;
@@ -315,18 +324,17 @@ public class Card : MonoBehaviour
                 {
                     TurnManager.Inst.enemyShieldHealth = 0;
                 }
-                TurnManager.Inst.EnemyTakeDmg(4, EDamageSource.Card);
+                TurnManager.Inst.EnemyTakeDmg(GetBuffedVal(item.cardValues[0], ECardValueType.Damage), EDamageSource.Card);
                 break;
             case "마술-순간이동":
             case "마술-순간이동+":
                 magicBox = ERouletteType.Player_Special_1;
                 if (TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum != this.item.dreamPieceNum) magicBox = ERouletteType.Player_Special_2;
                 checkMagic = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.type == magicBox;
-                RouletteManager.Inst.Spin(true, 2);
+                RouletteManager.Inst.Spin(true, item.cardValues[0]);
                 if (checkMagic)
                 {
-                    if (item.name == "마술-순간이동") TurnManager.Inst.GetShield(false, 12, EDamageSource.Card);
-                    else TurnManager.Inst.GetShield(false, 16, EDamageSource.Card);
+                    TurnManager.Inst.GetShield(false, GetBuffedVal(item.cardValues[1], ECardValueType.Shield), EDamageSource.Card);
                 }
                 break;
             case "마술-예언":
@@ -335,8 +343,7 @@ public class Card : MonoBehaviour
                 break;
             case "재빠른 손놀림":
             case "재빠른 손놀림+":
-                StartCoroutine(TurnManager.Inst.Draw(1, null));
-                if (item.name == "재빠른 손놀림+") StartCoroutine(TurnManager.Inst.Draw(1, null));
+                StartCoroutine(TurnManager.Inst.Draw(item.cardValues[0], null));
                 break;
             case "초능력-예언":
             case "초능력-예언+":
@@ -344,8 +351,8 @@ public class Card : MonoBehaviour
                 break;
             case "초능력-염력":
             case "초능력-염력+":
-                RouletteManager.Inst.Spin(true, TurnManager.Inst.nowCost);
-                if (item.name == "초능력-염력+" && TurnManager.Inst.nowCost >= 3) TurnManager.Inst.GetShield(false, 5, EDamageSource.Card);
+                RouletteManager.Inst.Spin(true, TurnManager.Inst.nowCost * item.cardValues[0]);
+                if (item.name == "초능력-염력+" && TurnManager.Inst.nowCost >= item.cardValues[1]) TurnManager.Inst.GetShield(false, GetBuffedVal(item.cardValues[2], ECardValueType.Shield), EDamageSource.Card);
                 break;
             case "에이스":
             case "에이스+":
@@ -363,30 +370,28 @@ public class Card : MonoBehaviour
             case "꽁꽁 얼리기+":
                 ERouletteType frozen = ERouletteType.Player_Special_1;
                 if (TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum != this.item.dreamPieceNum) frozen = ERouletteType.Player_Special_2;
-                if (item.name == "꽁꽁 얼리기") isCardUsed = RouletteManager.Inst.EnchantRoulette(false, frozen, 2);
-                else isCardUsed = RouletteManager.Inst.EnchantRoulette(false, frozen, 3);
+                isCardUsed = RouletteManager.Inst.EnchantRoulette(false, frozen, item.cardValues[0]);
                 break;
             case "얼음 방패":
             case "얼음 방패+":
                 frozen = ERouletteType.Player_Special_1;
                 if (TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum != this.item.dreamPieceNum) frozen = ERouletteType.Player_Special_2;
-                TurnManager.Inst.GetShield(false, 2, EDamageSource.Card);
+                TurnManager.Inst.GetShield(false, GetBuffedVal(item.cardValues[0], ECardValueType.Shield), EDamageSource.Card);
                 bool checkFrozen = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.type == frozen;
                 if (checkFrozen)
                 {
-                    if (item.name == "얼음 방패") TurnManager.Inst.GetShield(false, 4, EDamageSource.Card);
-                    else TurnManager.Inst.GetShield(false, 7, EDamageSource.Card);
+                    TurnManager.Inst.GetShield(false, GetBuffedVal(item.cardValues[1], ECardValueType.Shield), EDamageSource.Card);
                 }
                 break;
             case "나뭇가지 손":
             case "나뭇가지 손+":
-                StartCoroutine(TurnManager.Inst.Draw(2, null));
-                TurnManager.Inst.TriggerPlayerPassive(-1);
+                StartCoroutine(TurnManager.Inst.Draw(item.cardValues[0], null));
+                TurnManager.Inst.TriggerPlayerPassive(-item.cardValues[1]);
                 break;
             case "데굴데굴":
             case "데굴데굴+":
-                RouletteManager.Inst.Spin(true, 2);
-                if (item.name == "데굴데굴+") TurnManager.Inst.EnemyTakeDmg(2, EDamageSource.Card);
+                RouletteManager.Inst.Spin(true, item.cardValues[0]);
+                if (item.name == "데굴데굴+") TurnManager.Inst.EnemyTakeDmg(GetBuffedVal(item.cardValues[1], ECardValueType.Damage), EDamageSource.Card);
                 Action<int> repeatCard = null;
                 repeatCard = (x) =>
                 {
@@ -396,8 +401,8 @@ public class Card : MonoBehaviour
                         if (TurnManager.Inst.nowCost >= buffedCost)
                         {
                             TurnManager.Inst.IncreaseCost(-buffedCost);
-                            RouletteManager.Inst.Spin(true, 2);
-                            if (item.name == "데굴데굴+") TurnManager.Inst.EnemyTakeDmg(2, EDamageSource.Card);
+                            RouletteManager.Inst.Spin(true, item.cardValues[0]);
+                            if (item.name == "데굴데굴+") TurnManager.Inst.EnemyTakeDmg(GetBuffedVal(item.cardValues[1], ECardValueType.Damage), EDamageSource.Card);
                         }
                         TurnManager.AfterRouletteSpin -= repeatCard;
                     });
@@ -408,43 +413,40 @@ public class Card : MonoBehaviour
             case "차가운 악수+":
                 frozen = ERouletteType.Player_Special_1;
                 if (TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum != this.item.dreamPieceNum) frozen = ERouletteType.Player_Special_2;
-                isCardUsed = RouletteManager.Inst.EnchantRoulette(true, frozen, 3);
+                isCardUsed = RouletteManager.Inst.EnchantRoulette(true, frozen, item.cardValues[0]);
                 if (isCardUsed)
                 {
-                    BuffManager.Inst.AddShowBuff("과민함", EBuffAffectType.Enemy, 1, false);
+                    BuffManager.Inst.AddShowBuff("과민함", EBuffAffectType.Enemy, item.cardValues[1], false);
                 }
                 break;
             case "스노우볼링":
             case "스노우볼링+":
-                RouletteManager.Inst.Spin(true, 3);
-                TurnManager.Inst.GetShield(false, TurnManager.Inst.shieldHealth, EDamageSource.Card);
+                RouletteManager.Inst.Spin(true, item.cardValues[0]);
+                TurnManager.Inst.GetShield(false, TurnManager.Inst.shieldHealth * (item.cardValues[1] - 1), EDamageSource.Card);
                 break;
             case "녹아내리기":
             case "녹아내리기+":
-                if (item.name == "녹아내리기") TurnManager.Inst.TriggerPlayerPassive(-2);
-                else TurnManager.Inst.TriggerPlayerPassive(-1);
-                TurnManager.Inst.GetShield(false, 6, EDamageSource.Card);
+                TurnManager.Inst.TriggerPlayerPassive(-item.cardValues[0]);
+                TurnManager.Inst.GetShield(false, GetBuffedVal(item.cardValues[1], ECardValueType.Shield), EDamageSource.Card);
                 break;
             case "목도리":
             case "목도리+":
-                for (int i = 0; i <= 5; i++)
+                for (int i = 0; i <= item.cardValues[0]; i++)
                 {
                     int tempIdx = (RouletteManager.Inst.playerLookat + RouletteManager.rouletteNum - i) % RouletteManager.rouletteNum;
                     Debug.Log(RouletteManager.Inst.roulettePieces[tempIdx].roulette.type);
                     if (RouletteManager.Inst.roulettePieces[tempIdx].roulette.type == ERouletteType.Player_Special_1)
                     {
-                        if (item.name == "목도리") TurnManager.Inst.GetShield(false, 2, EDamageSource.Card);
-                        else TurnManager.Inst.GetShield(false, 3, EDamageSource.Card);
+                        TurnManager.Inst.GetShield(false, GetBuffedVal(item.cardValues[1], ECardValueType.Shield), EDamageSource.Card);
                     }
                 }
-                RouletteManager.Inst.Spin(true, 5);
+                RouletteManager.Inst.Spin(true, item.cardValues[0]);
                 break;
             case "얼음 깨기":
             case "얼음 깨기+":
                 if (RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].roulette.type == ERouletteType.Player_Special_1)
                 {
-                    if (item.name == "얼음 깨기") TurnManager.Inst.EnemyTakeDmg(8, EDamageSource.Card);
-                    else TurnManager.Inst.EnemyTakeDmg(12, EDamageSource.Card);
+                    TurnManager.Inst.EnemyTakeDmg(GetBuffedVal(item.cardValues[0], ECardValueType.Damage), EDamageSource.Card);
                 }
                 for (int i = 0; i < RouletteManager.rouletteNum; i++)
                 {
@@ -464,8 +466,7 @@ public class Card : MonoBehaviour
                         frozenCnt++;
                     }
                 }
-                if(item.name == "눈싸움") TurnManager.Inst.EnemyTakeDmg(frozenCnt * 4, EDamageSource.Card);
-                else TurnManager.Inst.EnemyTakeDmg(frozenCnt * 6, EDamageSource.Card);
+                TurnManager.Inst.EnemyTakeDmg(frozenCnt * item.cardValues[0], EDamageSource.Card);
                 break;
             case "폭설":
             case "폭설+":
@@ -473,14 +474,13 @@ public class Card : MonoBehaviour
                 {
                     if (RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.None)
                     {
-                        RouletteManager.Inst.EnchantRoulettePiece(i, ERouletteType.Player_Special_2, 3);
+                        RouletteManager.Inst.EnchantRoulettePiece(i, ERouletteType.Player_Special_2, item.cardValues[0]);
                     }
                 }
                 break;
             case "끝나지 않는 겨울":
             case "끝나지 않는 겨울+":
-                int frozenTimeInc = 1;
-                if(item.name == "끝나지 않는 겨울+") frozenTimeInc = 2;
+                int frozenTimeInc = item.cardValues[0];
                 for (int i = 0; i < RouletteManager.rouletteNum; i++)
                 {
                     if (RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.Player_Special_2)
@@ -503,5 +503,6 @@ public class Card : MonoBehaviour
     private void Update()
     {
         ShowBuffedCost();
+        ShowBuffedVal();
     }
 }

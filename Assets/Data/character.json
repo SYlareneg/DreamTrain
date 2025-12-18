@@ -1,0 +1,249 @@
+{
+    "maxHealth": 60,
+    "curHealth": 38,
+    "dreamDust": 1000,
+    "leftPassengers": 2,
+    "personaPiece": {
+        "name": "눈사람의 꿈",
+        "persona": {
+            "type": 1,
+            "sprite": {
+                "instanceID": 47604
+            },
+            "name": "순환하는 계절",
+            "text": "매 4번째 턴마다 6의 트리거 게이지를 얻습니다.",
+            "dreamPieceNum": 2,
+            "isEnhanced": false,
+            "enhancedPassive": {
+                "type": 1,
+                "sprite": {
+                    "instanceID": 0
+                },
+                "name": "순환하는 계절+",
+                "text": "매 4번째 턴마다 <color=red>8</color>의 트리거 게이지를 얻습니다.",
+                "dreamPieceNum": 2
+            }
+        },
+        "shadow": {
+            "type": 2,
+            "sprite": {
+                "instanceID": 47604
+            },
+            "name": "겨울 바람",
+            "text": "효과가 부여된 모든 룰렛에 꽁꽁 효과를 2턴 부여하고, 적의 다음 모든 행동을 방해합니다.",
+            "dreamPieceNum": 2,
+            "isEnhanced": false,
+            "enhancedPassive": {
+                "type": 2,
+                "sprite": {
+                    "instanceID": 0
+                },
+                "name": "겨울 바람+",
+                "text": "효과가 부여된 모든 룰렛에 꽁꽁 효과를 2턴 부여하고, 적의 다음 모든 행동을 방해합니다. <color=red>12 피해를 줍니다.</color>",
+                "dreamPieceNum": 2
+            }
+        },
+        "specialRouletteSprite": {
+            "instanceID": 47606
+        },
+        "specialRouletteTitle": "꽁꽁",
+        "specialRouletteText": "값턴 얼어 있습니다. 얼어있는 동안 룰렛의 효과가 비활성화됩니다.",
+        "cards": [
+            {
+                "name": "꽁꽁 얼리기",
+                "cost": 2,
+                "type": 1,
+                "element": 0,
+                "dreamPieceNum": 2,
+                "isVolatile": false,
+                "isVanish": false,
+                "isRemain": false,
+                "sprite": {
+                    "instanceID": 47608
+                },
+                "text": "자신의 효과 존에 위치한 룰렛을 2턴간 꽁꽁 얼립니다.",
+                "num": 1,
+                "isEnhanced": false
+            },
+            {
+                "name": "스노우볼링",
+                "cost": 2,
+                "type": 0,
+                "element": 0,
+                "dreamPieceNum": 2,
+                "isVolatile": false,
+                "isVanish": false,
+                "isRemain": false,
+                "sprite": {
+                    "instanceID": 47610
+                },
+                "text": "룰렛을 시계방향으로 3칸 회전시킵니다. 자신에게 붙은 방어도를 2배로 만듭니다.",
+                "num": 1,
+                "isEnhanced": false
+            },
+            {
+                "name": "녹아내리기",
+                "cost": 1,
+                "type": 2,
+                "element": 1,
+                "dreamPieceNum": 2,
+                "isVolatile": false,
+                "isVanish": false,
+                "isRemain": false,
+                "sprite": {
+                    "instanceID": 47612
+                },
+                "text": "트리거 게이지를 2 잃습니다. 방어도를 6<수비> 얻습니다.",
+                "num": 1,
+                "isEnhanced": false
+            }
+        ]
+    },
+    "shadowPiece": {
+        "name": "뱀파이어의 꿈",
+        "persona": {
+            "type": 1,
+            "sprite": {
+                "instanceID": 47604
+            },
+            "name": "물보다 진한 피",
+            "text": "공격 룰렛으로 입힌 피해의 33%만큼 체력을 회복하고, 회복한 체력 만큼 트리거 게이지를 얻습니다.",
+            "dreamPieceNum": 0,
+            "isEnhanced": false,
+            "enhancedPassive": {
+                "type": 1,
+                "sprite": {
+                    "instanceID": 0
+                },
+                "name": "물보다 진한 피+",
+                "text": "공격 룰렛으로 입힌 피해의 <color=red>50%</color>만큼 체력을 회복하고, 회복한 체력 만큼 트리거 게이지를 얻습니다.",
+                "dreamPieceNum": 0
+            }
+        },
+        "shadow": {
+            "type": 2,
+            "sprite": {
+                "instanceID": 47604
+            },
+            "name": "해방된 본능",
+            "text": "8의 피해를 줍니다. 턴 종료시 남아있던 행동력 1당 8의 추가 피해를 줍니다.",
+            "dreamPieceNum": 0,
+            "isEnhanced": false,
+            "enhancedPassive": {
+                "type": 2,
+                "sprite": {
+                    "instanceID": 0
+                },
+                "name": "해방된 본능+",
+                "text": "8의 피해를 줍니다. 턴 종료시 남아있던 행동력 1당 <color=red>12</color>의 추가 피해를 줍니다.",
+                "dreamPieceNum": 0
+            }
+        },
+        "specialRouletteSprite": {
+            "instanceID": 47614
+        },
+        "specialRouletteTitle": "생명력 흡수 룰렛",
+        "specialRouletteText": "피해를 값만큼 줍니다. 입힌 피해의 1/3만큼 플레이어의 체력을 회복합니다. 뱀파이어 페르소나를 장착하고 있다면, 회복한 체력만큼 트리거 게이지를 얻습니다.",
+        "cards": [
+            {
+                "name": "흡혈 부여",
+                "cost": 2,
+                "type": 1,
+                "element": 0,
+                "dreamPieceNum": 0,
+                "isVolatile": false,
+                "isVanish": false,
+                "isRemain": false,
+                "sprite": {
+                    "instanceID": 934
+                },
+                "text": "적의 효과 존에 위치한 룰렛에 '흡혈' 효과를 부여합니다.",
+                "num": 1,
+                "isEnhanced": false
+            },
+            {
+                "name": "피는 나의 힘",
+                "cost": 0,
+                "type": 2,
+                "element": 0,
+                "dreamPieceNum": 0,
+                "isVolatile": false,
+                "isVanish": false,
+                "isRemain": false,
+                "sprite": {
+                    "instanceID": 934
+                },
+                "text": "체력을 2 잃고, 행동력을 1 얻습니다.",
+                "num": 1,
+                "isEnhanced": false
+            },
+            {
+                "name": "만찬 시간",
+                "cost": 3,
+                "type": 2,
+                "element": 2,
+                "dreamPieceNum": 0,
+                "isVolatile": false,
+                "isVanish": false,
+                "isRemain": false,
+                "sprite": {
+                    "instanceID": 934
+                },
+                "text": "2턴 동안 '흡혈' 룰렛으로 가하는 데미지가 2배가 됩니다.",
+                "num": 1,
+                "isEnhanced": false
+            }
+        ]
+    },
+    "normalCards": [
+        {
+            "name": "회전 카드 1",
+            "cost": 1,
+            "type": 0,
+            "element": 0,
+            "dreamPieceNum": -1,
+            "isVolatile": false,
+            "isVanish": false,
+            "isRemain": false,
+            "sprite": {
+                "instanceID": 934
+            },
+            "text": "룰렛을 시계방향으로 1칸 회전시킵니다.",
+            "num": 2,
+            "isEnhanced": false
+        },
+        {
+            "name": "회전 카드 2",
+            "cost": 1,
+            "type": 0,
+            "element": 0,
+            "dreamPieceNum": -1,
+            "isVolatile": false,
+            "isVanish": false,
+            "isRemain": false,
+            "sprite": {
+                "instanceID": 934
+            },
+            "text": "룰렛을 시계방향으로 2칸 회전시킵니다.",
+            "num": 2,
+            "isEnhanced": false
+        },
+        {
+            "name": "회전 카드 3",
+            "cost": 1,
+            "type": 0,
+            "element": 0,
+            "dreamPieceNum": -1,
+            "isVolatile": false,
+            "isVanish": false,
+            "isRemain": false,
+            "sprite": {
+                "instanceID": 934
+            },
+            "text": "룰렛을 시계방향으로 3칸 회전시킵니다.",
+            "num": 2,
+            "isEnhanced": false
+        }
+    ],
+    "enemyName": "망령 1"
+}

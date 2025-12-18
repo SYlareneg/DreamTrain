@@ -6,6 +6,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.IO;
 
 [System.Serializable]
 public class PRS
@@ -156,6 +157,43 @@ public class Utils
         if (t.IsDefined(typeof(CompilerGeneratedAttribute), inherit: false)) return true;
         string n = t.FullName ?? t.Name ?? "";
         return n.Contains("<>c") || n.Contains("DisplayClass");
+    }
+
+	public static void SaveData(ScriptableObject so, string fileName)
+    {
+        string json = JsonUtility.ToJson(so, true);   // pretty print
+        string path = Path.Combine(Application.dataPath, "Data");
+		path = Path.Combine(path, fileName);
+
+        File.WriteAllText(path, json);
+        Debug.Log($"Exported to: {path}");
+    }
+
+	public static void LoadData(ScriptableObject target, string filePath)
+    {
+		string path = Path.Combine(Application.dataPath, "Data");
+		filePath = Path.Combine(path, filePath);
+        if (!File.Exists(filePath))
+        {
+            Debug.LogError("JSON file not found: " + filePath);
+            return;
+        }
+
+        string json = File.ReadAllText(filePath);
+
+        JsonUtility.FromJsonOverwrite(json, target);
+
+        Debug.Log("Imported JSON to SO: " + filePath);
+    }
+
+	static Dictionary<string, Sprite> spriteCache = new Dictionary<string, Sprite>();
+	public static Sprite LoadSpriteByName(string path, string spriteName)
+    {
+		spriteName = Path.Combine(path, spriteName);
+        if (!spriteCache.ContainsKey(spriteName)) {
+			spriteCache[spriteName] = Resources.Load<Sprite>(spriteName);
+		}
+		return spriteCache[spriteName];
     }
 }
 

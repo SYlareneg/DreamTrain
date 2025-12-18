@@ -41,7 +41,7 @@ public class CardUI : MonoBehaviour
                 cardImg.sprite = cardTypes[2]; break;
         }
 
-        character.sprite = this.item.sprite;
+        character.sprite = Utils.LoadSpriteByName("Cards", this.item.sprite);
 
         switch (this.item.element)
         {
@@ -60,7 +60,7 @@ public class CardUI : MonoBehaviour
         int index = 0;
         if (this.item.cardValues.Count == 0)
         {
-            string itemText = Regex.Replace(this.item.text, @"(\d+)<(피해|수비|회복|특수)>", match =>
+            string itemText = Regex.Replace(this.item.text, @"(\d+)(<(피해|수비|회복|특수)>)?", match =>
             {
                 ECardValueType tempType = ECardValueType.Default;
                 switch(match.Groups[2].Value)
@@ -73,17 +73,20 @@ public class CardUI : MonoBehaviour
                         tempType = ECardValueType.Heal; break;
                     case "특수":
                         tempType = ECardValueType.Special; break;
+                    default:
+                        tempType = ECardValueType.Default; break;
                 }
-                this.item.cardValues.Add((int.Parse(match.Groups[1].Value), tempType));
+                this.item.cardValues.Add(int.Parse(match.Groups[1].Value));
+                this.item.cardValueTypes.Add(tempType);
                 index++;
                 return match.Value;
             });
             showText = $"{itemText}";
         }
         index = 0;
-        showText = Regex.Replace(showText, @"(\d+)<(피해|수비|회복|특수)>", match => 
+        showText = Regex.Replace(showText, @"(\d+)(<(피해|수비|회복|특수)>)?", match => 
         {
-            return this.item.cardValues[index++].val.ToString();
+            return this.item.cardValues[index++].ToString();
         });
         textTMP.text = $"{showText}";
     }

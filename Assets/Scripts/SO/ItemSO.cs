@@ -16,9 +16,10 @@ public class Item
     [Tooltip("휘발성")] public bool isVolatile;
     [Tooltip("소멸")] public bool isVanish;
     [Tooltip("잔류")] public bool isRemain;
-    [Tooltip("카드 이미지")] public Sprite sprite;
+    [Tooltip("카드 이미지")] public string sprite;
     [Tooltip("카드 설명")] public string text;
-    [Tooltip("카드 계수")] public List<(int val, ECardValueType valType)> cardValues = new List<(int val, ECardValueType valType)>();
+    [Tooltip("카드 계수")] public List<int> cardValues = new List<int>();
+    [Tooltip("카드 계수 타입")] public List<ECardValueType> cardValueTypes = new List<ECardValueType>();
     [Tooltip("덱 내 카드 장수")] public int num;
     [Tooltip("강화 여부")] public bool isEnhanced;
 
@@ -34,7 +35,10 @@ public class Item
         isRemain = item.isRemain;
         sprite = item.sprite;
         text = item.text;
-        cardValues = item.cardValues;
+        cardValues.Clear();
+        foreach(var v in item.cardValues) cardValues.Add(v);
+        cardValueTypes.Clear();
+        foreach(var v in item.cardValueTypes) cardValueTypes.Add(v);
         num = item.num;
         isEnhanced = item.isEnhanced;
     }

@@ -4,6 +4,7 @@ using TMPro;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 public static class PlayerPositionData
 {
@@ -16,6 +17,7 @@ public class PlayerManager : MonoBehaviour
 
     public bool isLoading;
     public CharacterSO characterSO;
+    public DreamPieceSO dreamPieceSO;
     public Player player;
     public Canvas playerCanvas;
 

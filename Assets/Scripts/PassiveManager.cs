@@ -106,7 +106,8 @@ public class PassiveManager : MonoBehaviour
                     else if (personaName == "카드 숨기기") ace.isRemain = false;
                     ace.text = "트리거 게이지를 최대로 얻습니다. 이번 턴이 종료될 때 12번 슬롯을 비활성화합니다.";
                     if (personaName == "카드 숨기기+") ace.text += " <color=red>잔류</color>";
-                    ace.cardValues = new List<(int, ECardValueType)>();
+                    ace.cardValues = new List<int>();
+                    ace.cardValueTypes = new List<ECardValueType>();
                     ace.num = 1;
                     CardManager.Inst.itemDeck.Add(ace);
                     CardManager.Inst.itemDraw.Add(ace);
