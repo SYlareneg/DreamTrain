@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class DialogueUI : MonoBehaviour
 {
-    public static DialogueUI Instance { get; private set; } 
-    public DialogueManager dialogueManager;
+    public static DialogueUI Instance { get; private set; }
+    public DialogueManagerBase dialogueManager;
 
     public TextMeshProUGUI MoooText;
     public TextMeshProUGUI PlayerText;
@@ -22,7 +22,6 @@ public class DialogueUI : MonoBehaviour
     private bool isBranchActive = false;
     private VerticalLayoutGroup playerLayoutGroup;
     
-    // --- 새로 추가된 필드
     private RectTransform playerPanelRT;
     private RectTransform playerTextRT;
     private Vector2 originalPlayerPanelSize;
@@ -45,8 +44,12 @@ public class DialogueUI : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        
         Instance = this;
-
+        if (dialogueManager == null)
+        {
+            dialogueManager = FindObjectOfType<DialogueManagerBase>();
+        }
         input = new InputSystem_Actions();
 
         playerLayoutGroup = playerPanel.GetComponent<VerticalLayoutGroup>();
@@ -92,11 +95,8 @@ public class DialogueUI : MonoBehaviour
             EndDialogue();
             return;
         }
-        if (dialogueManager == null)
-        {
-            return;
-        }
-
+        if (dialogueManager == null) return;
+        
         List<DialogueEntry> entries = dialogueManager.GetDialogueOptionsByID(id);
         if (entries.Count == 0)
         {
@@ -106,6 +106,9 @@ public class DialogueUI : MonoBehaviour
         
         dialogueActive = true;
         DialogueEntry firstEntry = entries[0];
+        
+        
+        
         lastShownEntry = firstEntry;
     
         MoooText.text = "";
@@ -116,7 +119,37 @@ public class DialogueUI : MonoBehaviour
             AddPlayerRelic(firstEntry.IdToGet);
             Debug.Log($"[DialogueUI] Relic ID {firstEntry.IdToGet} 획득 (from normal line)");
         }
-        if (firstEntry.Type == "Normal")
+        
+        if (firstEntry.Type.Equals("Feeling", System.StringComparison.OrdinalIgnoreCase))
+        {
+            if(dialogueManager.dialoguePanel != null) 
+                dialogueManager.dialoguePanel.SetActive(false);
+            
+            playerPanel.SetActive(false);
+            moooPanel.SetActive(false);
+
+            dialogueManager.ShowEmotionSelection((selectedFeeling) => 
+            {
+                if(dialogueManager.dialoguePanel != null) 
+                    dialogueManager.dialoguePanel.SetActive(true);
+                    
+                DialogueEntry selectedEntry = entries.Find(x => x.feelingType == selectedFeeling);
+                
+                if (selectedEntry != null)
+                {
+                    dialogueManager.EvokeFeeling(selectedFeeling);
+                    DisplayFeelingDialogue(selectedEntry);
+                }
+                else
+                {
+                    Debug.LogError($"No dialogue found for feeling: {selectedFeeling}");
+                    EndDialogue();
+                }
+            });
+            nextIdForNormalDialogue = firstEntry.NextID;
+        
+        }
+        else if (firstEntry.Type == "Normal")
         {
             playerLayoutGroup.enabled = false;
             if (playerTextFitter != null) playerTextFitter.enabled = false;
@@ -161,17 +194,11 @@ public class DialogueUI : MonoBehaviour
                     RestorePlayerSizes();
                     LayoutRebuilder.ForceRebuildLayoutImmediate(playerPanelRT);
                     Canvas.ForceUpdateCanvases();
-                    if (relicIdToGet != 0)
-                    {
-                        DialogueRelicManager.Inst.AddPlayerRelic(relicIdToGet);
-                        Debug.Log($"[DialogueUI] Relic ID {relicIdToGet} 획득 (from branch)");
-                    }
                     ClearBranchButtons();
                     ShowDialogue(nextId);
                 });
             }
 
-            // 새로 생성된 버튼들에 대해 즉시 레이아웃 계산하여 크기랑 위치 확정
             LayoutRebuilder.ForceRebuildLayoutImmediate(playerPanelRT);
             Canvas.ForceUpdateCanvases();
         }
@@ -183,9 +210,9 @@ public class DialogueUI : MonoBehaviour
         dialogueActive = false;
         MoooText.text = "";
         PlayerText.text = "";
-        playerPanel.SetActive(false);
-        moooPanel.SetActive(false);
-        DialogueManager.Instance.OnDialogueEnded();
+        if (playerPanel != null) playerPanel.SetActive(false);
+        if (moooPanel != null) moooPanel.SetActive(false);
+        if(dialogueManager != null) dialogueManager.OnDialogueEnded();
 
         Debug.Log("Dialogue Ended");
     }
@@ -275,6 +302,33 @@ public class DialogueUI : MonoBehaviour
         // 추가
         playerRelicSO.relicItems.Add(found);
         Debug.Log($"[DialogueUI] Player withdrew relic '{found.relicName}' (1-based Id = {relicId})");
+    }
+    
+    private void DisplayFeelingDialogue(DialogueEntry entry)
+    {
+        lastShownEntry = entry;
+        
+        playerLayoutGroup.enabled = false;
+        if (playerTextFitter != null) playerTextFitter.enabled = false;
+        RestorePlayerSizes();
+
+        if (entry.BoxLocation == "Guest")
+        {
+            moooPanel.SetActive(true);
+            MoooText.text = entry.Dialogue_KO;
+            playerPanel.SetActive(false);
+        }
+        else
+        {
+            moooPanel.SetActive(false);
+            playerPanel.SetActive(true); 
+            PlayerText.text = entry.Dialogue_KO;
+        }
+
+        nextIdForNormalDialogue = entry.NextID;
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(playerPanelRT);
+        Canvas.ForceUpdateCanvases();
     }
 
 }

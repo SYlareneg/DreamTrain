@@ -13,4 +13,5 @@ public class DialogueEntry
     public int IdPoint;
     public int NextID;
     public string Function; 
+    public FeelingType feelingType = FeelingType.None;
 }

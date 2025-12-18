@@ -54,31 +54,7 @@ public class DialogueBundleManager : MonoBehaviour
         }
     }
     private void OnDialogueSelected(HallControll.SO.DialogueBundle selected)
-    {/*
-        Debug.Log($"[BundleManager] Selected dialogue: {selected.bundleName} (FileID: {selected.connectedFileID})");
-        dialogueBundle.SetActive(false);
-
-        // CSV 파일을 Resources에서 불러오기
-        TextAsset csvData = Resources.Load<TextAsset>("Dialogues/DialogueData");
-        if (csvData == null)
-        {
-            Debug.LogError("[BundleManager] Failed to load DialogueData.csv from Resources/Dialogues/");
-            return;
-        }
-
-        // connectedFileID에 해당하는 FileName 찾기
-        string targetFileName = FindFileNameByID(csvData.text, selected.connectedFileID.ToString());
-
-        if (!string.IsNullOrEmpty(targetFileName))
-        {
-            Debug.Log($"[BundleManager] Found FileName '{targetFileName}' for FileID {selected.connectedFileID}");
-            DialogueManager.Instance.LoadDialogueCSV(targetFileName, "Vampire");
-            DialogueUI.Instance.ShowDialogue(1);
-        }
-        else
-        {
-            Debug.LogError($"[BundleManager] FileID {selected.connectedFileID} not found in DialogueData.csv!");
-        }*/
+    {
     }
 
 // CSV 문자열에서 FileID로 FileName을 찾는 함수

@@ -7,7 +7,7 @@ public class RerollManager : MonoBehaviour
     [SerializeField] private Button rerollButton;
     [SerializeField] private TMP_Text dustNeededText;
     [SerializeField] private TMP_Text currentDustText;
-    [SerializeField] private DialogueManager dialogueManager;
+    public DialogueManagerBase dialogueManager;
     [SerializeField] private GameObject backgroundDefault;
 
     [Header("플레이어 상태 데이터")]
@@ -25,6 +25,13 @@ public class RerollManager : MonoBehaviour
     {
         UpdateStaticPlayerUI();
         UpdateDustNeededUI();
+    }
+    private void Awake()
+    {
+        if (dialogueManager == null)
+        {
+            dialogueManager = FindObjectOfType<DialogueManagerBase>();
+        }
     }
     void Update()
     {
@@ -73,7 +80,6 @@ public class RerollManager : MonoBehaviour
 
             isRerollActive = true;
 
-            // 대화 리롤 요청
             dialogueManager.OnRerollRequested();
         }
 

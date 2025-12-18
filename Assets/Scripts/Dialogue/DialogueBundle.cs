@@ -7,7 +7,7 @@ namespace HallControll.SO
     {
         public string bundleName;
         public int connectedFileID;
-
         public bool isBanned = false;
+        public Sprite cardSprite; 
     }
 }
