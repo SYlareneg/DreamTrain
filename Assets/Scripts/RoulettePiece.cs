@@ -33,6 +33,11 @@ public class RoulettePiece : MonoBehaviour
 
     public void Setup(RouletteItem rlt)
     {
+        roulette = rlt;
+        if (RouletteManager.Inst.isTriggerActivated)
+        {
+            return;
+        }
         tooltip = GetComponent<Tooltip>();
         switch(rlt.type)
         {
@@ -73,7 +78,6 @@ public class RoulettePiece : MonoBehaviour
                 break;
         }
 
-        roulette = rlt;
         HideTotalValue();
         isTriggered = false;
     }
