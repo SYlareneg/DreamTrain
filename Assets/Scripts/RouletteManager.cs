@@ -148,12 +148,12 @@ public class RouletteManager : MonoBehaviour
 
     public void DeTriggerRoulette()
     {
+        isTriggerActivated = false;
         for (int i = 0; i < rouletteNum; i++)
         {
             roulettePieces[i].Trigger(false);
         }
         triggerSprite.gameObject.SetActive(false);
-        isTriggerActivated = false;
         BuffManager.Inst.rouletteBuff_Trigger.Clear();
     }
 

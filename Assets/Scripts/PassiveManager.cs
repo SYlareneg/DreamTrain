@@ -60,6 +60,10 @@ public class PassiveManager : MonoBehaviour
                     int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_PlayerSpecial1[1], healVal);
                     TurnManager.Inst.TakeDmg(-totalVal_Heal, EDamageSource.Roulette);
                 };
+                PlayerSpecialRoulette1Clear = (index) =>
+                {
+                    RouletteManager.Inst.EnchantRoulettePiece(index, ERouletteType.None, 0);
+                };
                 // 트리거 게이지 최대치 설정
                 TurnManager.Inst.playerTriggerMaxCnt = 15;
                 // 트리거 조각 설정
@@ -165,7 +169,7 @@ public class PassiveManager : MonoBehaviour
                     {
                         if(RouletteManager.Inst.roulettePieces[i].roulette.type != ERouletteType.None && RouletteManager.Inst.roulettePieces[i].roulette.type != ERouletteType.Attack && RouletteManager.Inst.roulettePieces[i].roulette.type != ERouletteType.Shield)
                         {
-                            RouletteManager.Inst.EnchantRoulettePiece(i, ERouletteType.None, 0);
+                            RouletteManager.Inst.roulettePieces[i].RouletteClear();
                         }
                     }
                     TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette);
@@ -184,9 +188,9 @@ public class PassiveManager : MonoBehaviour
                 };
                 TurnManager.OnRouletteEnchant += (x) =>
                 {
-                    if (RouletteManager.Inst.isTriggerActivated && RouletteManager.Inst.isPlayerTrigger())
+                    if (RouletteManager.Inst.isTriggerActivated)
                     {
-                        int newCnt = RouletteManager.rouletteNum - 1;
+                        int newCnt = RouletteManager.rouletteNum;
                         newCnt -= RouletteManager.Inst.CountRouletteType(ERouletteType.None);
                         newCnt -= RouletteManager.Inst.CountRouletteType(ERouletteType.Attack);
                         newCnt -= RouletteManager.Inst.CountRouletteType(ERouletteType.Shield);
@@ -229,7 +233,16 @@ public class PassiveManager : MonoBehaviour
                         SpriteRenderer frozenSpriteRenderer = frozenSprite.AddComponent<SpriteRenderer>();
                         frozenSpriteRenderer.sortingOrder = RouletteManager.Inst.roulettePieces[index].GetComponent<SpriteRenderer>().sortingOrder + 1;
                         frozenSpriteRenderer.sprite = TurnManager.Inst.characterSO.personaPiece.specialRouletteSprite;
-                        PlayerSpecialRoulette1Sprite = RouletteManager.Inst.roulettePieces[index].roulettePiece.sprite;
+                        frozenSpriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+                        PlayerSpecialRoulette1Sprite = RouletteManager.Inst.roulettePieces[index].originalSprite;
+                        if(RouletteManager.Inst.isTriggerActivated)
+                        {
+                            frozenSprite.SetActive(false);
+                        }
+                        else
+                        {
+                            frozenSprite.SetActive(true);
+                        }
                     }
                     return true;
                 };
@@ -334,6 +347,10 @@ public class PassiveManager : MonoBehaviour
                     int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_PlayerSpecial2[1], healVal);
                     TurnManager.Inst.TakeDmg(-totalVal_Heal, EDamageSource.Roulette);
                 };
+                PlayerSpecialRoulette2Clear = (index) =>
+                {
+                    RouletteManager.Inst.EnchantRoulettePiece(index, ERouletteType.None, 0);
+                };
                 // 패시브 효과 설정
                 TurnManager.OnRouletteActivate += () =>
                 {
@@ -431,7 +448,16 @@ public class PassiveManager : MonoBehaviour
                         SpriteRenderer frozenSpriteRenderer = frozenSprite.AddComponent<SpriteRenderer>();
                         frozenSpriteRenderer.sortingOrder = RouletteManager.Inst.roulettePieces[index].GetComponent<SpriteRenderer>().sortingOrder + 1;
                         frozenSpriteRenderer.sprite = TurnManager.Inst.characterSO.shadowPiece.specialRouletteSprite;
-                        PlayerSpecialRoulette2Sprite = RouletteManager.Inst.roulettePieces[index].roulettePiece.sprite;
+                        frozenSpriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+                        PlayerSpecialRoulette2Sprite = RouletteManager.Inst.roulettePieces[index].originalSprite;
+                        if(RouletteManager.Inst.isTriggerActivated)
+                        {
+                            frozenSprite.SetActive(false);
+                        }
+                        else
+                        {
+                            frozenSprite.SetActive(true);
+                        }
                     }
                     return true;
                 };

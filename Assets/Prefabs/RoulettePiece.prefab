@@ -117,9 +117,6 @@ MonoBehaviour:
   roulette:
     type: 0
     value: 0
-  origin_roulette:
-    type: 0
-    value: 0
   isTriggered: 0
   isEnhanced: 0
   tooltip: {fileID: 0}

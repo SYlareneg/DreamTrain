@@ -698,23 +698,21 @@ public class EnemyManager : MonoBehaviour
         switch(enemy.name)
         {
             case "뱀파이어 폴":
-                if (playerSlot.isTriggered == true) return (0, turnSequence);
-                if (playerSlot.roulette.type == ERouletteType.Enemy_Special_1) return (1, turnSequence);
-                if (enemySlot.roulette.type == ERouletteType.Shield) return (2, turnSequence);
-                if (playerSlot.roulette.type == ERouletteType.Attack) return (3, turnSequence);
-                return (4, turnSequence);
+                if (playerSlot.roulette.type == ERouletteType.Enemy_Special_1) return (0, turnSequence);
+                if (enemySlot.roulette.type == ERouletteType.Shield) return (1, turnSequence);
+                if (playerSlot.roulette.type == ERouletteType.Attack) return (2, turnSequence);
+                return (3, turnSequence);
             case "망령 1":
                 if (playerSlot.roulette.type == ERouletteType.Attack || playerSlot.roulette.type == ERouletteType.Enemy_Special_1) return (0, turnSequence);
                 if (enemySlot.roulette.type == ERouletteType.Shield) return (1, turnSequence);
                 if (enemySlot.roulette.type == ERouletteType.Heal) return (2, turnSequence);
                 return (3, turnSequence);
             default:
-                if (playerSlot.isTriggered == true) return (0, turnSequence);
-                if (playerSlot.roulette.type == ERouletteType.Enemy_Special_1) return (1, turnSequence);
-                if (playerSlot.roulette.type == ERouletteType.Attack) return (2, turnSequence);
-                if (enemySlot.roulette.type == ERouletteType.Shield) return (3, turnSequence);
-                if (enemySlot.isTriggered == true || enemySlot.roulette.type == ERouletteType.Attack) return (5, turnSequence);
-                return (4, turnSequence);
+                if (playerSlot.roulette.type == ERouletteType.Enemy_Special_1) return (0, turnSequence);
+                if (playerSlot.roulette.type == ERouletteType.Attack) return (1, turnSequence);
+                if (enemySlot.roulette.type == ERouletteType.Shield) return (2, turnSequence);
+                if (enemySlot.roulette.type == ERouletteType.Attack) return (4, turnSequence);
+                return (3, turnSequence);
         }
     }
 

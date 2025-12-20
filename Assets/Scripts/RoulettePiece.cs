@@ -9,10 +9,13 @@ public class RoulettePiece : MonoBehaviour
 {
     public SpriteRenderer roulettePiece;
     [SerializeField] TMP_Text rouletteValueTMP;
-    [SerializeField] Sprite[] rouletteTypeSprites;
+    [SerializeField] public Sprite[] rouletteTypeSprites;
+
+    public Sprite originalSprite;
+    public string originalTooltipTitle;
+    public string originalTooltipText;
     
     public RouletteItem roulette;
-    public bool isTriggered;
     public bool isEnhanced;
     public Tooltip tooltip;
 
@@ -25,6 +28,11 @@ public class RoulettePiece : MonoBehaviour
     {
         if (tooltip)
         {
+            if(title == null || title == "" || text == null || text == "")
+            {
+                tooltip.tooltipDisable = true;
+                return;
+            }
             tooltip.tooltipTitle = title;
             tooltip.tooltipTxt = text;
             tooltip.tooltipDisable = false;
@@ -34,52 +42,75 @@ public class RoulettePiece : MonoBehaviour
     public void Setup(RouletteItem rlt)
     {
         roulette = rlt;
-        if (RouletteManager.Inst.isTriggerActivated)
-        {
-            return;
-        }
         tooltip = GetComponent<Tooltip>();
         switch(rlt.type)
         {
             case ERouletteType.Attack:
-                SetRoulettePieceSprite(rouletteTypeSprites[1]);
-                SetRoulettePieceTooltip("공격 룰렛", "피해를 값만큼 줍니다.");
+                originalSprite = rouletteTypeSprites[1];
+                originalTooltipTitle = "공격 룰렛";
+                originalTooltipText = "피해를 값만큼 줍니다.";
                 break;
             case ERouletteType.Heal:
-                SetRoulettePieceSprite(rouletteTypeSprites[2]);
-                SetRoulettePieceTooltip("회복 룰렛", "체력을 값만큼 회복합니다.");
+                originalSprite = rouletteTypeSprites[2];
+                originalTooltipTitle = "회복 룰렛";
+                originalTooltipText = "체력을 값만큼 회복합니다.";
                 break;
             case ERouletteType.Shield:
-                SetRoulettePieceSprite(rouletteTypeSprites[3]);
-                SetRoulettePieceTooltip("실드 룰렛", "실드를 값만큼 획득합니다.");
+                originalSprite = rouletteTypeSprites[3];
+                originalTooltipTitle = "실드 룰렛";
+                originalTooltipText = "실드를 값만큼 획득합니다.";
                 break;
             case ERouletteType.Enemy_Special_1:
-                SetRoulettePieceSprite(EnemyManager.Inst.EnemySpecialRoulette1Sprite);
-                SetRoulettePieceTooltip(EnemyManager.Inst.EnemySpecialRoulette1Title, EnemyManager.Inst.EnemySpecialRoulette1Text);
+                originalSprite = EnemyManager.Inst.EnemySpecialRoulette1Sprite;
+                originalTooltipTitle = EnemyManager.Inst.EnemySpecialRoulette1Title;
+                originalTooltipText = EnemyManager.Inst.EnemySpecialRoulette1Text;
                 break;
             case ERouletteType.Enemy_Special_2:
-                SetRoulettePieceSprite(EnemyManager.Inst.EnemySpecialRoulette2Sprite);
-                SetRoulettePieceTooltip(EnemyManager.Inst.EnemySpecialRoulette2Title, EnemyManager.Inst.EnemySpecialRoulette2Text);
+                originalSprite = EnemyManager.Inst.EnemySpecialRoulette2Sprite;
+                originalTooltipTitle = EnemyManager.Inst.EnemySpecialRoulette2Title;
+                originalTooltipText = EnemyManager.Inst.EnemySpecialRoulette2Text;
                 break;
             case ERouletteType.Player_Special_1:
-                SetRoulettePieceSprite(PassiveManager.Inst.PlayerSpecialRoulette1Sprite);
-                SetRoulettePieceTooltip(PassiveManager.Inst.PlayerSpecialRoulette1Title, PassiveManager.Inst.PlayerSpecialRoulette1Text);
+                originalSprite = PassiveManager.Inst.PlayerSpecialRoulette1Sprite;
+                originalTooltipTitle = PassiveManager.Inst.PlayerSpecialRoulette1Title;
+                originalTooltipText = PassiveManager.Inst.PlayerSpecialRoulette1Text;
                 break;
             case ERouletteType.Player_Special_2:
-                SetRoulettePieceSprite(PassiveManager.Inst.PlayerSpecialRoulette2Sprite);
-                SetRoulettePieceTooltip(PassiveManager.Inst.PlayerSpecialRoulette2Title, PassiveManager.Inst.PlayerSpecialRoulette2Text);
+                originalSprite = PassiveManager.Inst.PlayerSpecialRoulette2Sprite;
+                originalTooltipTitle = PassiveManager.Inst.PlayerSpecialRoulette2Title;
+                originalTooltipText = PassiveManager.Inst.PlayerSpecialRoulette2Text;
                 break;
             default:
-                SetRoulettePieceSprite(rouletteTypeSprites[0]);
-                if (tooltip)
-                {
-                    tooltip.tooltipDisable = true;
-                }
+                originalSprite = rouletteTypeSprites[0];
+                originalTooltipTitle = null;
+                originalTooltipText = null;
                 break;
         }
 
         HideTotalValue();
-        isTriggered = false;
+
+        if (RouletteManager.Inst.isTriggerActivated == false)
+        {
+            SetRoulettePieceSprite(originalSprite);
+            SetRoulettePieceTooltip(originalTooltipTitle, originalTooltipText);
+        }
+    }
+
+    public void RouletteClear()
+    {
+        int index = Array.IndexOf(RouletteManager.Inst.roulettePieces, this);
+        switch (roulette.type)
+        {
+            case ERouletteType.Player_Special_1:
+                PassiveManager.PlayerSpecialRoulette1Clear?.Invoke(index);
+                break;
+            case ERouletteType.Player_Special_2:
+                PassiveManager.PlayerSpecialRoulette2Clear?.Invoke(index);
+                break;
+            default:
+                RouletteManager.Inst.EnchantRoulettePiece(index, ERouletteType.None, 0);
+                break;
+        }
     }
 
     public void ShowTotalValue()
@@ -135,15 +166,31 @@ public class RoulettePiece : MonoBehaviour
 
     public void Trigger(bool triggerState)
     {
-        isTriggered = triggerState;
-        if (isTriggered)
+        if (triggerState)
         {
+            originalSprite = roulettePiece.sprite;
+            if (tooltip)
+            {
+                originalTooltipTitle = tooltip.tooltipTitle;
+                originalTooltipText = tooltip.tooltipTxt;
+            }
             SetRoulettePieceSprite(rouletteTypeSprites[4]);
             SetRoulettePieceTooltip(TurnManager.Inst.characterSO.personaPiece.persona.name, TurnManager.Inst.characterSO.personaPiece.persona.text);
+            Transform frozenIcon = transform.Find("FrozenIcon");
+            if(frozenIcon != null)
+            {
+                frozenIcon.gameObject.SetActive(false);
+            }
         }
         else
         {
-            Setup(roulette);
+            SetRoulettePieceSprite(originalSprite);
+            SetRoulettePieceTooltip(originalTooltipTitle, originalTooltipText);
+            Transform frozenIcon = transform.Find("FrozenIcon");
+            if(frozenIcon != null)
+            {
+                frozenIcon.gameObject.SetActive(true);
+            }
             roulettePiece.color = Color.white;
         }
     }
