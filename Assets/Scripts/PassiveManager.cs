@@ -22,17 +22,19 @@ public class PassiveManager : MonoBehaviour
     public void SetPersona()
     {
         if (TurnManager.Inst.characterSO.personaPiece == null) return;
+        RouletteManager.Inst.playerTriggerSprite = TurnManager.Inst.characterSO.personaPiece.triggerSprite;
         PlayerSpecialRoulette1Sprite = TurnManager.Inst.characterSO.personaPiece.specialRouletteSprite;
         PlayerSpecialRoulette1Title = TurnManager.Inst.characterSO.personaPiece.specialRouletteTitle;
         PlayerSpecialRoulette1Text = TurnManager.Inst.characterSO.personaPiece.specialRouletteText;
+        RouletteItem rItem = new RouletteItem();
         string personaName = "";
         if (TurnManager.Inst.characterSO.personaPiece.persona.isEnhanced) personaName = TurnManager.Inst.characterSO.personaPiece.persona.enhancedPassive.name;
         else personaName = TurnManager.Inst.characterSO.personaPiece.persona.name;
         switch (personaName)
         {
-            case "물보다 진한 피":
-            case "물보다 진한 피+":
-                TurnManager.Inst.playerTriggerMaxCnt = 12;
+            case "붉은 달":
+            case "붉은 달+":
+                // 특수 룰렛 설정
                 BuffManager.InitSpecialRouletteBuffs += () =>
                 {
                     BuffManager.Inst.rouletteBuff_PlayerSpecial1.Add(new List<Buff>());
@@ -57,61 +59,53 @@ public class PassiveManager : MonoBehaviour
                     else healVal = trueDamage / 3;
                     int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_PlayerSpecial1[1], healVal);
                     TurnManager.Inst.TakeDmg(-totalVal_Heal, EDamageSource.Roulette);
-                    TurnManager.Inst.TriggerPlayerPassive(totalVal_Heal);
                 };
-                TurnManager.OnRouletteActivate += () =>
+                // 트리거 게이지 최대치 설정
+                TurnManager.Inst.playerTriggerMaxCnt = 15;
+                // 트리거 조각 설정
+                rItem.type = ERouletteType.Attack;
+                rItem.value = 0;
+                RouletteManager.Inst.playerTriggerPiece = rItem;
+                // 트리거 조건 설정
+                TurnManager.OnPlayerHealed += (healamount, healsource) =>
                 {
-                    var playerPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat];
-                    var enemyPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat];
-                    if (enemyPiece.roulette.type == ERouletteType.Attack)
+                    TurnManager.Inst.TriggerPlayerPassive(healamount);
+                };
+                // 트리거 효과 설정
+                RouletteManager.PlayerTriggerActivation = (isEnemy, totalVal) =>
+                {
+                    TurnManager.Inst.TakeDmg(TurnManager.Inst.curHealth / 10, EDamageSource.Passive);
+                    TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette);
+                };
+                // 트리거 데미지 계산
+                int useHealth = 0;
+                TurnManager.OnPlayerTrigger += () =>
+                {
+                    BuffManager.Inst.rouletteBuff_Trigger.Clear();
+                    useHealth = TurnManager.Inst.curHealth / 10;
+                    if (personaName == "붉은 달") BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, useHealth * 3, 1, -1);
+                    else if (personaName == "붉은 달+")  BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, useHealth * 4, 1, -1);
+                };
+                TurnManager.OnPlayerHealthChange += (damage) =>
+                {
+                    if (RouletteManager.Inst.isTriggerActivated && RouletteManager.Inst.isPlayerTrigger())
                     {
-                        int damage = BuffManager.Inst.GetBuffedRouletteValue(enemyPiece);
-                        int heal = 0;
-                        if (personaName == "물보다 진한 피") heal = damage / 3;
-                        else if (personaName == "물보다 진한 피+") heal = damage / 2;
-                        TurnManager.Inst.TakeDmg(-heal, EDamageSource.Passive);
-                        TurnManager.Inst.TriggerPlayerPassive(heal);
-                    }
-                    if (playerPiece.roulette.type == ERouletteType.Attack)
-                    {
-                        int damage = BuffManager.Inst.GetBuffedRouletteValue(playerPiece);
-                        int heal = 0;
-                        if (personaName == "물보다 진한 피") heal = damage / 3;
-                        else if (personaName == "물보다 진한 피+") heal = damage / 2;
-                        Debug.Log(heal);
-                        TurnManager.Inst.TakeDmg(-heal, EDamageSource.Passive);
-                        TurnManager.Inst.TriggerPlayerPassive(heal);
+                        int healthDiff = TurnManager.Inst.curHealth / 10 - useHealth;
+                        if(healthDiff != 0)
+                        {
+                            if (personaName == "붉은 달") BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, healthDiff * 3, 1, -1);
+                            else if (personaName == "붉은 달+")  BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, healthDiff * 4, 1, -1);
+                        }
+                        useHealth = TurnManager.Inst.curHealth / 10;
                     }
                 };
                 break;
-            case "카드 숨기기":
-            case "카드 숨기기+":
-                TurnManager.Inst.playerTriggerMaxCnt = 99;
+            case "마술 해체":
+            case "마술 해체+":
+                // 특수 룰렛 설정
                 BuffManager.InitSpecialRouletteBuffs += () =>
                 {
                     BuffManager.Inst.rouletteBuff_PlayerSpecial1.Add(new List<Buff>());
-                };
-                TurnManager.OnGameStart += () =>
-                {
-                    Item ace = new Item();
-                    ace.name = "에이스";
-                    if (personaName == "카드 숨기기+") ace.name += "+";
-                    ace.cost = 1;
-                    ace.type = CardType.Effect;
-                    ace.element = EPassiveType.Normal;
-                    ace.dreamPieceNum = -1;
-                    ace.isVolatile = false;
-                    ace.isVanish = false;
-                    if (personaName == "카드 숨기기+") ace.isRemain = true;
-                    else if (personaName == "카드 숨기기") ace.isRemain = false;
-                    ace.text = "트리거 게이지를 최대로 얻습니다. 이번 턴이 종료될 때 12번 슬롯을 비활성화합니다.";
-                    if (personaName == "카드 숨기기+") ace.text += " <color=red>잔류</color>";
-                    ace.cardValues = new List<int>();
-                    ace.cardValueTypes = new List<ECardValueType>();
-                    ace.num = 1;
-                    CardManager.Inst.itemDeck.Add(ace);
-                    CardManager.Inst.itemDraw.Add(ace);
-                    CardManager.Inst.ShuffleDeck();
                 };
                 TurnManager.OnRouletteSpin += (x, y) =>
                 {
@@ -133,26 +127,85 @@ public class PassiveManager : MonoBehaviour
                 };
                 PlayerSpecialRoulette1Clear = (index) =>
                 {
-                    RouletteItem tempItem = new RouletteItem();
-                    tempItem.type = ERouletteType.None;
-                    tempItem.value = 0;
-                    RouletteManager.Inst.roulettePieces[index].Setup(tempItem);
+                    RouletteManager.Inst.EnchantRoulettePiece(index, ERouletteType.None, 0);
+                };
+                // 트리거 게이지 최대치 설정
+                TurnManager.Inst.playerTriggerMaxCnt = 2;
+                // 트리거 조각 설정
+                rItem.type = ERouletteType.Attack;
+                rItem.value = 0;
+                RouletteManager.Inst.playerTriggerPiece = rItem;
+                // 트리거 조건 설정
+                TurnManager.OnGameStart += () =>
+                {
+                    Item ace = new Item();
+                    ace.name = "에이스";
+                    if (personaName == "카드 숨기기+") ace.name += "+";
+                    ace.cost = 1;
+                    ace.type = CardType.Effect;
+                    ace.element = EPassiveType.Normal;
+                    ace.dreamPieceNum = -1;
+                    ace.isVolatile = false;
+                    ace.isVanish = false;
+                    if (personaName == "카드 숨기기+") ace.isRemain = true;
+                    else if (personaName == "카드 숨기기") ace.isRemain = false;
+                    ace.text = "트리거 게이지를 1 얻습니다.";
+                    if (personaName == "카드 숨기기+") ace.text += " <color=red>잔류</color>";
+                    ace.cardValues = new List<int>();
+                    ace.cardValueTypes = new List<ECardValueType>();
+                    ace.num = 1;
+                    CardManager.Inst.itemDeck.Add(ace);
+                    CardManager.Inst.itemDraw.Add(ace);
+                    CardManager.Inst.ShuffleDeck();
+                };
+                // 트리거 효과 설정
+                RouletteManager.PlayerTriggerActivation = (isEnemy, totalVal) =>
+                {
+                    for (int i = 0; i < RouletteManager.rouletteNum; i++)
+                    {
+                        if(RouletteManager.Inst.roulettePieces[i].roulette.type != ERouletteType.None && RouletteManager.Inst.roulettePieces[i].roulette.type != ERouletteType.Attack && RouletteManager.Inst.roulettePieces[i].roulette.type != ERouletteType.Shield)
+                        {
+                            RouletteManager.Inst.EnchantRoulettePiece(i, ERouletteType.None, 0);
+                        }
+                    }
+                    TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette);
+                };
+                // 트리거 데미지 계산
+                int counter = 0;
+                TurnManager.OnPlayerTrigger += () =>
+                {
+                    BuffManager.Inst.rouletteBuff_Trigger.Clear();
+                    counter = RouletteManager.rouletteNum;
+                    counter -= RouletteManager.Inst.CountRouletteType(ERouletteType.None);
+                    counter -= RouletteManager.Inst.CountRouletteType(ERouletteType.Attack);
+                    counter -= RouletteManager.Inst.CountRouletteType(ERouletteType.Shield);
+                    if (personaName == "마술 해체+" && counter >= 6) BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, counter * 7, 1.5f, -1);
+                    else BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, counter * 7, 1, -1);
+                };
+                TurnManager.OnRouletteEnchant += (x) =>
+                {
+                    if (RouletteManager.Inst.isTriggerActivated && RouletteManager.Inst.isPlayerTrigger())
+                    {
+                        int newCnt = RouletteManager.rouletteNum - 1;
+                        newCnt -= RouletteManager.Inst.CountRouletteType(ERouletteType.None);
+                        newCnt -= RouletteManager.Inst.CountRouletteType(ERouletteType.Attack);
+                        newCnt -= RouletteManager.Inst.CountRouletteType(ERouletteType.Shield);
+                        if (newCnt != counter)
+                        {
+                            if (personaName == "마술 해체+" && counter >= 6 && newCnt < 6) BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, (newCnt - counter) * 7, 2.0f / 3, -1);
+                            else if (personaName == "마술 해체+" && counter < 6 && newCnt >= 6) BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, (newCnt - counter) * 7, 1.5f, -1);
+                            else BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, (newCnt - counter) * 7, 1, -1);
+                            counter = newCnt;
+                        }
+                    }
                 };
                 break;
-            case "순환하는 계절":
-            case "순환하는 계절+":
-                TurnManager.Inst.playerTriggerMaxCnt = 12;
+            case "겨울 바람":
+            case "겨울 바람+":
+                // 특수 룰렛 설정
                 BuffManager.InitSpecialRouletteBuffs += () =>
                 {
                     BuffManager.Inst.rouletteBuff_PlayerSpecial1.Add(new List<Buff>());
-                };
-                TurnManager.OnPlayerTurnStart += () =>
-                {
-                    if (TurnManager.Inst.turnNum % 4 == 0)
-                    {
-                        if (personaName == "순환하는 계절") TurnManager.Inst.TriggerPlayerPassive(6);
-                        else TurnManager.Inst.TriggerPlayerPassive(8);
-                    }
                 };
                 List<FrozenRoulette> frozenRoulettes = new List<FrozenRoulette>();
                 TurnManager.CheckRouletteEnchantable += (index, type) =>
@@ -206,10 +259,36 @@ public class PassiveManager : MonoBehaviour
                     }
                     else
                     {
-                        RouletteItem tempItem = new RouletteItem();
-                        tempItem.type = ERouletteType.None;
-                        tempItem.value = 0;
-                        RouletteManager.Inst.roulettePieces[index].Setup(tempItem);
+                        RouletteManager.Inst.EnchantRoulettePiece(index, ERouletteType.None, 0);
+                    }
+                };
+                // 트리거 게이지 최대치 설정
+                TurnManager.Inst.playerTriggerMaxCnt = 12;
+                // 트리거 조각 설정
+                rItem.type = ERouletteType.None;
+                rItem.value = 0;
+                if(personaName == "겨울 바람+") 
+                {
+                    rItem.type = ERouletteType.Attack;
+                    rItem.value = 12;
+                }
+                RouletteManager.Inst.playerTriggerPiece = rItem;
+                // 트리거 조건 설정
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    if (personaName == "겨울 바람") TurnManager.Inst.TriggerPlayerPassive(3);
+                    else if (personaName == "겨울 바람+") TurnManager.Inst.TriggerPlayerPassive(4);
+                };
+                // 트리거 효과 설정
+                RouletteManager.PlayerTriggerActivation = (isEnemy, totalVal) =>
+                {
+                    for(int i = 0; i < RouletteManager.rouletteNum; i++)
+                    {
+                        RouletteManager.Inst.EnchantRoulettePiece(i, ERouletteType.Player_Special_1, 2);
+                    }
+                    for(int i = 0; i < EnemyManager.Inst.actionList.Count; i++)
+                    {
+                        EnemyManager.Inst.RemoveAction(i);
                     }
                 };
                 break;
@@ -227,8 +306,9 @@ public class PassiveManager : MonoBehaviour
         else shadowName = TurnManager.Inst.characterSO.shadowPiece.shadow.name;
         switch (shadowName)
         {
-            case "해방된 본능":
-            case "해방된 본능+":
+            case "붉은 송곳니":
+            case "붉은 송곳니+":
+                // 특수 룰렛 설정
                 BuffManager.InitSpecialRouletteBuffs += () =>
                 {
                     BuffManager.Inst.rouletteBuff_PlayerSpecial2.Add(new List<Buff>());
@@ -254,99 +334,36 @@ public class PassiveManager : MonoBehaviour
                     int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_PlayerSpecial2[1], healVal);
                     TurnManager.Inst.TakeDmg(-totalVal_Heal, EDamageSource.Roulette);
                 };
-                rItem.type = ERouletteType.Attack;
-                rItem.value = 8;
-                RouletteManager.Inst.triggerPiece = rItem;
-                RouletteManager.PlayerTriggerActivation = (isEnemy, totalVal) =>
+                // 패시브 효과 설정
+                TurnManager.OnRouletteActivate += () =>
                 {
-                    if (isEnemy)
+                    var playerPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat];
+                    var enemyPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat];
+                    if (enemyPiece.roulette.type == ERouletteType.Attack)
                     {
-                        TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette);
+                        int damage = BuffManager.Inst.GetBuffedRouletteValue(enemyPiece);
+                        int heal = 0;
+                        if (shadowName == "붉은 송곳니") heal = damage / 3;
+                        else if (shadowName == "붉은 송곳니+") heal = damage / 2;
+                        TurnManager.Inst.TakeDmg(-heal, EDamageSource.Passive);
                     }
-                    else
+                    if (playerPiece.roulette.type == ERouletteType.Attack)
                     {
-                        TurnManager.Inst.TakeDmg(totalVal, EDamageSource.Roulette);
-                    }
-                };
-                TurnManager.OnPlayerTrigger += () =>
-                {
-                    BuffManager.Inst.rouletteBuff_Trigger.Clear();
-                    if (shadowName == "해방된 본능") BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, TurnManager.Inst.nowCost * 8, 1, -1);
-                    else if (shadowName == "해방된 본능+")  BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, TurnManager.Inst.nowCost * 12, 1, -1);
-                };
-                TurnManager.OnCostChange += (x) =>
-                {
-                    if (RouletteManager.Inst.isTriggerActivated && RouletteManager.Inst.isPlayerTrigger())
-                    {
-                        if (shadowName == "해방된 본능") BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, TurnManager.Inst.nowCost * 8, 1, -1);
-                        else if (shadowName == "해방된 본능+")  BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, TurnManager.Inst.nowCost * 12, 1, -1);
+                        int damage = BuffManager.Inst.GetBuffedRouletteValue(playerPiece);
+                        int heal = 0;
+                        if (shadowName == "붉은 송곳니") heal = damage / 3;
+                        else if (shadowName == "붉은 송곳니+") heal = damage / 2;
+                        Debug.Log(heal);
+                        TurnManager.Inst.TakeDmg(-heal, EDamageSource.Passive);
                     }
                 };
                 break;
-            case "마술 해체":
-            case "마술 해체+":
+            case "손기술":
+            case "손기술+":
+                // 특수 룰렛 설정
                 BuffManager.InitSpecialRouletteBuffs += () =>
                 {
                     BuffManager.Inst.rouletteBuff_PlayerSpecial2.Add(new List<Buff>());
-                };
-                rItem.type = ERouletteType.Attack;
-                rItem.value = 0;
-                RouletteManager.Inst.triggerPiece = rItem;
-                RouletteManager.PlayerTriggerActivation = (isEnemy, totalVal) =>
-                {
-                    if (isEnemy)
-                    {
-                        TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette);
-                    }
-                    else
-                    {
-                        TurnManager.Inst.TakeDmg(totalVal, EDamageSource.Roulette);
-                    }
-                };
-                int counter = 0;
-                TurnManager.OnPlayerTrigger += () =>
-                {
-                    BuffManager.Inst.rouletteBuff_Trigger.Clear();
-                    counter = RouletteManager.rouletteNum - 1;
-                    counter -= RouletteManager.Inst.CountRouletteType(ERouletteType.None);
-                    counter -= RouletteManager.Inst.CountRouletteType(ERouletteType.Attack);
-                    counter -= RouletteManager.Inst.CountRouletteType(ERouletteType.Shield);
-                    if (shadowName == "마술 해체+" && counter >= 6) BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, counter * 7, 1.5f, -1);
-                    else BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, counter * 7, 1, -1);
-                };
-                TurnManager.OnRouletteEnchant += (x) =>
-                {
-                    if (RouletteManager.Inst.isTriggerActivated && RouletteManager.Inst.isPlayerTrigger())
-                    {
-                        int newCnt = RouletteManager.rouletteNum - 1;
-                        newCnt -= RouletteManager.Inst.CountRouletteType(ERouletteType.None);
-                        newCnt -= RouletteManager.Inst.CountRouletteType(ERouletteType.Attack);
-                        newCnt -= RouletteManager.Inst.CountRouletteType(ERouletteType.Shield);
-                        if (newCnt != counter)
-                        {
-                            if (shadowName == "마술 해체+" && counter >= 6 && newCnt < 6) BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, (newCnt - counter) * 7, 2.0f / 3, -1);
-                            else if (shadowName == "마술 해체+" && counter < 6 && newCnt >= 6) BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, (newCnt - counter) * 7, 1.5f, -1);
-                            else BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, (newCnt - counter) * 7, 1, -1);
-                            counter = newCnt;
-                        }
-                    }
-                };
-                TurnManager.BeforeRouletteActivate += () =>
-                {
-                    if (RouletteManager.Inst.isTriggerActivated && RouletteManager.Inst.isPlayerTrigger())
-                    {
-                        if (RouletteManager.Inst.playerLookat == RouletteManager.Inst.triggerPos || RouletteManager.Inst.enemyLookat == RouletteManager.Inst.triggerPos)
-                        {
-                            for (int i = 0; i < RouletteManager.rouletteNum; i++)
-                            {
-                                if(i != RouletteManager.Inst.triggerPos && RouletteManager.Inst.roulettePieces[i].roulette.type != ERouletteType.None && RouletteManager.Inst.roulettePieces[i].roulette.type != ERouletteType.Attack && RouletteManager.Inst.roulettePieces[i].roulette.type != ERouletteType.Shield)
-                                {
-                                    RouletteManager.Inst.EnchantRoulettePiece(i, ERouletteType.None, 0);
-                                    BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, 7, 1, -1);
-                                }
-                            }
-                        }
-                    }
                 };
                 TurnManager.OnRouletteSpin += (x, y) =>
                 {
@@ -360,54 +377,37 @@ public class PassiveManager : MonoBehaviour
                                 int val = BuffManager.Inst.GetBuffedRouletteValue(RouletteManager.Inst.roulettePieces[i]);
                                 if (val == 0)
                                 {
-                                    RouletteItem tempItem = new RouletteItem();
-                                    tempItem.type = ERouletteType.None;
-                                    tempItem.value = 0;
-                                    RouletteManager.Inst.roulettePieces[i].Setup(tempItem);
+                                    PlayerSpecialRoulette2Clear?.Invoke(i);
                                 }
                             }
                         }
                     }
                 };
+                PlayerSpecialRoulette2Clear = (index) =>
+                {
+                    RouletteManager.Inst.EnchantRoulettePiece(index, ERouletteType.None, 0);
+                };
+                // 패시브 효과 설정
+                int cardCnt = 0;
+                int maxCardCnt = 0;
+                if (shadowName == "손기술") maxCardCnt = 3;
+                else if (shadowName == "손기술+") maxCardCnt = 2;
+                TurnManager.OnUseCard += () =>
+                {
+                    cardCnt++;
+                    if(cardCnt >= maxCardCnt)
+                    {
+                        StartCoroutine(TurnManager.Inst.Draw(1, null));
+                        cardCnt = 0;
+                    }
+                };
                 break;
-            case "겨울 바람":
-            case "겨울 바람+":
+            case "순환하는 계절":
+            case "순환하는 계절+":
+                // 특수 룰렛 설정
                 BuffManager.InitSpecialRouletteBuffs += () =>
                 {
                     BuffManager.Inst.rouletteBuff_PlayerSpecial2.Add(new List<Buff>());
-                };
-                rItem.type = ERouletteType.None;
-                rItem.value = 0;
-                if(shadowName == "겨울 바람+") 
-                {
-                    rItem.type = ERouletteType.Attack;
-                    rItem.value = 12;
-                }
-                RouletteManager.Inst.triggerPiece = rItem;
-                RouletteManager.PlayerTriggerActivation = (isEnemy, totalVal) =>
-                {
-                    for(int i = 0; i < RouletteManager.rouletteNum; i++)
-                    {
-                        if(RouletteManager.Inst.roulettePieces[i].roulette.type != ERouletteType.None)
-                        {
-                            RouletteManager.Inst.EnchantRoulettePiece(i, ERouletteType.Player_Special_2, 2);
-                        }
-                    }
-                    for(int i = 0; i < EnemyManager.Inst.actionList.Count; i++)
-                    {
-                        EnemyManager.Inst.RemoveAction(i);
-                    }
-                    if(shadowName == "겨울 바람+")
-                    {
-                        if (isEnemy)
-                        {
-                            TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette);
-                        }
-                        else
-                        {
-                            TurnManager.Inst.TakeDmg(totalVal, EDamageSource.Roulette);
-                        }
-                    }
                 };
                 List<FrozenRoulette> frozenRoulettes = new List<FrozenRoulette>();
                 TurnManager.CheckRouletteEnchantable += (index, type) =>
@@ -461,10 +461,21 @@ public class PassiveManager : MonoBehaviour
                     }
                     else
                     {
-                        RouletteItem tempItem = new RouletteItem();
-                        tempItem.type = ERouletteType.None;
-                        tempItem.value = 0;
-                        RouletteManager.Inst.roulettePieces[index].Setup(tempItem);
+                        RouletteManager.Inst.EnchantRoulettePiece(index, ERouletteType.None, 0);
+                    }
+                };
+                // 패시브 효과 설정
+                int turnCnt = 0;
+                int shieldVal = 0;
+                if (shadowName == "순환하는 계절") shieldVal = 4;
+                else if (shadowName == "순환하는 계절+") shieldVal = 8;
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    turnCnt++;
+                    if (turnCnt >= 2)
+                    {
+                        TurnManager.Inst.GetShield(false, shieldVal, EDamageSource.Passive);
+                        turnCnt = 0;
                     }
                 };
                 break;

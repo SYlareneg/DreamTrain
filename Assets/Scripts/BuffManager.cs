@@ -93,7 +93,7 @@ public class ShowBuff
         affectType = aType;
         val = newVal;
         defaultVal.Clear();
-        foreach(float v in origin.defaultVal) origin.defaultVal.Add(v);
+        foreach(float v in origin.defaultVal) defaultVal.Add(v);
         if(baseVal == null) baseVal = defaultVal;
         this.isSetOnEnemyTurn = isSetOnEnemyTurn;
         if(isSetOnEnemyTurn) newVal++;
@@ -725,12 +725,40 @@ public class BuffManager : MonoBehaviour
             case ERouletteType.Player_Special_2:
                 totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_PlayerSpecial2[0])); break;
         }
-        if (targetPiece.isTriggered)
+        if (RouletteManager.Inst.isTriggerActivated)
         {
             totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_Trigger));
         }
         totalBuff.AddBuff(CalcTotalBuff(roulettePieceBuff[targetPiece]));
         return (int)((targetPiece.roulette.value + totalBuff.add) * totalBuff.mul);
+    }
+
+    public int GetBuffedRouletteValue(RouletteItem rouletteItem)
+    {
+        Buff totalBuff = new Buff();
+        totalBuff.InitBuff();
+        switch (rouletteItem.type)
+        {
+            case ERouletteType.Attack:
+                totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_Attack)); break;
+            case ERouletteType.Heal:
+                totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_Heal)); break;
+            case ERouletteType.Shield:
+                totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_Shield)); break;
+            case ERouletteType.Enemy_Special_1:
+                totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_EnemySpecial1[0])); break;
+            case ERouletteType.Enemy_Special_2:
+                totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_EnemySpecial2[0])); break;
+            case ERouletteType.Player_Special_1:
+                totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_PlayerSpecial1[0])); break;
+            case ERouletteType.Player_Special_2:
+                totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_PlayerSpecial2[0])); break;
+        }
+        if (RouletteManager.Inst.isTriggerActivated)
+        {
+            totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_Trigger));
+        }
+        return (int)((rouletteItem.value + totalBuff.add) * totalBuff.mul);
     }
 
     public int GetBuffedCardCost(Item card)

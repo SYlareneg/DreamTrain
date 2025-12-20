@@ -64,6 +64,7 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action<int, EDamageSource> OnPlayerDamaged;
     [HideInInspector] public static Action<int, EDamageSource> OnPlayerHealed;
     [HideInInspector] public static Action<int, EDamageSource> OnPlayerShielded;
+    [HideInInspector] public static Action<int> OnPlayerHealthChange;
     [HideInInspector] public static Action OnPlayerTrigger;
     [HideInInspector] public static Action<int> OnPlayerTriggerIncrease;
     [HideInInspector] public static Action<int> OnPlayerTriggerDecrease;
@@ -79,7 +80,6 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action OnRouletteTrigger;
     [HideInInspector] public static Func<int, ERouletteType, bool> CheckRouletteEnchantable;
     [HideInInspector] public static Action<int> OnRouletteEnchant;
-    [HideInInspector] public static Action BeforeRouletteActivate;
     [HideInInspector] public static Action OnRouletteActivate;
     [HideInInspector] public static Action<int> OnCostChange;
     [HideInInspector] public static Action OnUseableItemUse;
@@ -254,6 +254,8 @@ public class TurnManager : MonoBehaviour
             }
             
             curHealth -= damage;
+            Utils.AllignActions(ref OnPlayerHealthChange, typeof(ShowBuff), typeof(RelicManager));
+            OnPlayerHealthChange?.Invoke(damage);
             return damage;
         }
         else
@@ -261,6 +263,8 @@ public class TurnManager : MonoBehaviour
             damage = curHealth;
             curHealth = 0;
             StartCoroutine(GameManager.Inst.GameOver(false));
+            Utils.AllignActions(ref OnPlayerHealthChange, typeof(ShowBuff), typeof(RelicManager));
+            OnPlayerHealthChange?.Invoke(damage);
             return damage;
         }
     }

@@ -107,6 +107,8 @@ public class EnemyManager : MonoBehaviour
         enemyImg.GetComponent<Tooltip>().tooltipTitle = enemy.phase[0].name;
         enemyImg.GetComponent<Tooltip>().tooltipTxt = enemy.phase[0].text;
 
+        RouletteManager.Inst.enemyTriggerSprite = enemy.triggerSprite;
+
         EnemySpecialRoulette1Sprite = enemy.specialRoulette1Sprite;
         EnemySpecialRoulette1Title = enemy.specialRoulette1Title;
         EnemySpecialRoulette1Text = enemy.specialRoulette1Text;
@@ -194,10 +196,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     if (!isEnemy)
                     {
-                        RouletteItem rItem = new RouletteItem();
-                        rItem.type = ERouletteType.None;
-                        rItem.value = 0;
-                        rPiece.Setup(rItem);
+                        RouletteManager.Inst.EnchantRoulettePiece(rPiece, ERouletteType.None, 0);
                     }
                 };
                 EnemySpecial1Activation = (value) =>
@@ -208,10 +207,7 @@ public class EnemyManager : MonoBehaviour
                         if (RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.Enemy_Special_1)
                         {
                             magicHat++;
-                            RouletteItem rItem = new RouletteItem();
-                            rItem.type = ERouletteType.None;
-                            rItem.value = 0;
-                            RouletteManager.Inst.roulettePieces[i].Setup(rItem);
+                            RouletteManager.Inst.EnchantRoulettePiece(i, ERouletteType.None, 0);
                         }
                     }
                     if (magicHat == 0)
@@ -231,10 +227,7 @@ public class EnemyManager : MonoBehaviour
                         if (RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.Enemy_Special_1)
                         {
                             magicHat++;
-                            RouletteItem rItem = new RouletteItem();
-                            rItem.type = ERouletteType.None;
-                            rItem.value = 0;
-                            RouletteManager.Inst.roulettePieces[i].Setup(rItem);
+                            RouletteManager.Inst.EnchantRoulettePiece(i, ERouletteType.None, 0);
                         }
                     }
                     if (magicHat == 0)
@@ -427,10 +420,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     if (!isEnemy)
                     {
-                        RouletteItem rItem = new RouletteItem();
-                        rItem.type = ERouletteType.None;
-                        rItem.value = 0;
-                        rPiece.Setup(rItem);
+                        RouletteManager.Inst.EnchantRoulettePiece(rPiece, ERouletteType.None, 0);
                     }
                 };
                 rItem = new RouletteItem();
@@ -451,10 +441,7 @@ public class EnemyManager : MonoBehaviour
                     {
                         if(RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.Enemy_Special_1)
                         {
-                            RouletteItem rItem = new RouletteItem();
-                            rItem.type = ERouletteType.None;
-                            rItem.value = 0;
-                            RouletteManager.Inst.roulettePieces[i].Setup(rItem);
+                            RouletteManager.Inst.EnchantRoulettePiece(i, ERouletteType.None, 0);
                         }
                     }
                 };

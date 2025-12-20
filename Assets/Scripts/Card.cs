@@ -26,7 +26,7 @@ public class Card : MonoBehaviour
     SceneType currType = SceneType.General;
     public void Setup(Item item)
     {
-        SceneType currType = SceneType.General;
+        currType = SceneType.General;
         if (item == null)
         {
             this.item = null;
@@ -112,7 +112,11 @@ public class Card : MonoBehaviour
 
     public void ShowBuffedVal()
     {
-        if (this.item.cardValues.Count == 0) return;
+        if (this.item.cardValues.Count == 0)
+        {
+            textTMP.text = this.item.text;
+            return;
+        }
         string showText = this.item.text;
         int index = 0;
         showText = Regex.Replace(showText, @"(\d+)(<(피해|수비|회복|특수)>)?", match => 
@@ -435,15 +439,7 @@ public class Card : MonoBehaviour
                 break;
             case "에이스":
             case "에이스+":
-                RouletteManager.Inst.TriggerRoulette();
-                Action endTrigger = null;
-                endTrigger = () =>
-                {
-                    RouletteManager.Inst.roulettePieces[RouletteManager.Inst.triggerPos].Trigger(false);
-                    RouletteManager.Inst.roulettePieces[RouletteManager.Inst.triggerPos].Setup(RouletteManager.Inst.triggerPiece_None);
-                    TurnManager.OnPlayerTurnEnd -= endTrigger;
-                };
-                TurnManager.OnPlayerTurnEnd += endTrigger;
+                TurnManager.Inst.TriggerPlayerPassive(1);
                 break;
             case "꽁꽁 얼리기":
             case "꽁꽁 얼리기+":

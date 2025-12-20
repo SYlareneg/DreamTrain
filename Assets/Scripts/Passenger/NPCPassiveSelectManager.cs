@@ -148,15 +148,15 @@ public class NPCPassiveSelectManager : MonoBehaviour
 
     private void Start()
     {
-        DreamPieceDataSO dreamPieceDataSO = new DreamPieceDataSO();
-        Utils.LoadData(dreamPieceDataSO, "dreampiece.json");
-        dreamPieceSO.dreamPieces.Clear();
-        foreach(var data in dreamPieceDataSO.dreamPieces)
-        {
-            DreamPiece_Reference dp_ref = new DreamPiece_Reference();
-            dp_ref.Setup(data);
-            dreamPieceSO.dreamPieces.Add(dp_ref);
-        }
+        // DreamPieceDataSO dreamPieceDataSO = new DreamPieceDataSO();
+        // Utils.LoadData(dreamPieceDataSO, "dreampiece.json");
+        // dreamPieceSO.dreamPieces.Clear();
+        // foreach(var data in dreamPieceDataSO.dreamPieces)
+        // {
+        //     DreamPiece_Reference dp_ref = new DreamPiece_Reference();
+        //     dp_ref.Setup(data);
+        //     dreamPieceSO.dreamPieces.Add(dp_ref);
+        // }
 
         // Utils.SaveData(dreamPieceSO, "dreampiece.json");
     }

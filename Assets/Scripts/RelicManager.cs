@@ -276,13 +276,7 @@ public class RelicManager : MonoBehaviour
                 case ERelicActivateEffectType.Roulette_Trigger:
                     relicAction += () => { RouletteManager.Inst.TriggerRoulette(); }; break;
                 case ERelicActivateEffectType.Roulette_Trigger_Cancel:
-                    relicAction += () =>
-                    {
-                        RoulettePiece roulettePiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.triggerPos];
-                        roulettePiece.Trigger(false);
-                        RouletteManager.Inst.isTriggerActivated = false;
-                        roulettePiece.Setup(RouletteManager.Inst.triggerPiece_None);
-                    }; break;
+                    relicAction += () => { RouletteManager.Inst.DeTriggerRoulette(); }; break;
                 case ERelicActivateEffectType.Enemy_Action_Hide:
                     relicAction += () => { EnemyManager.Inst.HideAction(localEffect.value); }; break;
                 case ERelicActivateEffectType.Enemy_Action_Delete:
@@ -614,7 +608,7 @@ public class RelicManager : MonoBehaviour
                     case ERelicActivateConditionType.Activate_Trigger:
                         totalCondition = () =>
                         {
-                            if (RouletteManager.Inst.playerLookat == RouletteManager.Inst.triggerPos || RouletteManager.Inst.enemyLookat == RouletteManager.Inst.triggerPos)
+                            if (RouletteManager.Inst.isTriggerActivated)
                             {
                                 temp?.Invoke();
                             }

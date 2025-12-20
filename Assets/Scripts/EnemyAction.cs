@@ -249,7 +249,7 @@ public class EnemyAction : MonoBehaviour
         List<int> noneIdx = new List<int>();
         for (int i = 0; i < RouletteManager.rouletteNum; i++)
         {
-            if (i != RouletteManager.Inst.triggerPos && RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.None)
+            if (RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.None)
             {
                 noneIdx.Add(i);
             }
@@ -264,7 +264,7 @@ public class EnemyAction : MonoBehaviour
         {
             for (int i = 0; i < RouletteManager.rouletteNum; i++)
             {
-                if (i != RouletteManager.Inst.triggerPos && RouletteManager.Inst.roulettePieces[i].roulette.type != rType)
+                if (RouletteManager.Inst.roulettePieces[i].roulette.type != rType)
                 {
                     noneIdx.Add(i);
                 }

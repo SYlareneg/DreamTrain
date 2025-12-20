@@ -16,6 +16,9 @@ public class RouletteManager : MonoBehaviour
     [SerializeField] GameObject roulettePiecePrefab;
     [SerializeField] RouletteSO rouletteSO;
     [SerializeField] GameObject rouletteArea;
+    public SpriteRenderer triggerSprite;
+    public Sprite playerTriggerSprite;
+    public Sprite enemyTriggerSprite;
 
     public static int rouletteNum = 12;
 
@@ -24,6 +27,7 @@ public class RouletteManager : MonoBehaviour
     public int enemyLookat;
     public int triggerPos;
     public RouletteItem triggerPiece;
+    public RouletteItem playerTriggerPiece;
     public RouletteItem enemyTriggerPiece;
     public RouletteItem triggerPiece_None;
     public bool isTriggerActivated;
@@ -58,11 +62,6 @@ public class RouletteManager : MonoBehaviour
             if (isClockwise)
             {
                 pieces *= -1;
-                TurnManager.Inst.TriggerPlayerPassive(1);
-            }
-            else
-            {
-                TurnManager.Inst.TriggerPlayerPassive(-1);
             }
             Vector3 newRotation = new Vector3(0f, 0f, rouletteArea.transform.eulerAngles.z + 360f * pieces / rouletteNum);
             playerLookat = (playerLookat + pieces + rouletteNum) % rouletteNum;
@@ -78,30 +77,38 @@ public class RouletteManager : MonoBehaviour
 
     private int ActivationWeight(int index)
     {
-        if (roulettePieces[index].isTriggered == true) return 2;
         if (roulettePieces[index].roulette.type == ERouletteType.Shield) return 0;
         if (roulettePieces[index].roulette.type == ERouletteType.Heal) return 1;
-        if (roulettePieces[index].roulette.type == ERouletteType.Attack) return 4;
-        if (roulettePieces[index].roulette.type == ERouletteType.None) return 5;
-        return 3;
+        if (roulettePieces[index].roulette.type == ERouletteType.Attack) return 3;
+        if (roulettePieces[index].roulette.type == ERouletteType.None) return 4;
+        return 2;
     }
 
     public void ActivateRoulette()
     {
-        Utils.AllignActions(ref TurnManager.BeforeRouletteActivate, typeof(ShowBuff), typeof(RelicManager));
-        TurnManager.BeforeRouletteActivate?.Invoke();
-        int playerWeight = ActivationWeight(playerLookat);
-        int enemyWeight = ActivationWeight(enemyLookat);
-        if (playerWeight < enemyWeight)
+        if (isTriggerActivated)
         {
-            roulettePieces[playerLookat].Activate(false);
-            roulettePieces[enemyLookat].Activate(true);
+            int totalVal = BuffManager.Inst.GetBuffedRouletteValue(triggerPiece);
+            Debug.Log("trigger value: " + totalVal.ToString());
+            DeTriggerRoulette();
+            TriggerActivation?.Invoke(isEnemyTrigger(), totalVal);
         }
         else
         {
-            roulettePieces[enemyLookat].Activate(true);
-            roulettePieces[playerLookat].Activate(false);
+            int playerWeight = ActivationWeight(playerLookat);
+            int enemyWeight = ActivationWeight(enemyLookat);
+            if (playerWeight < enemyWeight)
+            {
+                roulettePieces[playerLookat].Activate(false);
+                roulettePieces[enemyLookat].Activate(true);
+            }
+            else
+            {
+                roulettePieces[enemyLookat].Activate(true);
+                roulettePieces[playerLookat].Activate(false);
+            }
         }
+
         Utils.AllignActions(ref TurnManager.OnRouletteActivate, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnRouletteActivate?.Invoke();
     }
@@ -113,31 +120,46 @@ public class RouletteManager : MonoBehaviour
 
     public bool isPlayerTrigger()
     {
-        return roulettePieces[triggerPos].roulette == triggerPiece;
+        return triggerPiece == playerTriggerPiece;
     }
 
     public bool isEnemyTrigger()
     {
-        return roulettePieces[triggerPos].roulette == enemyTriggerPiece;
+        return triggerPiece == enemyTriggerPiece;
     }
 
     public void TriggerRoulette()
     {
-        roulettePieces[triggerPos].Setup(triggerPiece);
+        triggerPiece = playerTriggerPiece;
         BuffManager.Inst.rouletteBuff_Trigger.Clear();
-        roulettePieces[triggerPos].Trigger(true);
         isTriggerActivated = true;
+        triggerSprite.sprite = playerTriggerSprite;
+        triggerSprite.gameObject.SetActive(true);
+        for(int i = 0; i < rouletteNum; i++)
+        {
+            roulettePieces[i].Trigger(true);
+        }
         Utils.AllignActions(ref TurnManager.OnPlayerTrigger, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnPlayerTrigger?.Invoke();
         TriggerActivation = PlayerTriggerActivation;
-        roulettePieces[triggerPos].GetComponent<Tooltip>().tooltipTitle = TurnManager.Inst.characterSO.shadowPiece.shadow.name;
-        roulettePieces[triggerPos].GetComponent<Tooltip>().tooltipTxt = TurnManager.Inst.characterSO.shadowPiece.shadow.text;
         Utils.AllignActions(ref TurnManager.OnRouletteTrigger, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnRouletteTrigger?.Invoke();
     }
 
+    public void DeTriggerRoulette()
+    {
+        for (int i = 0; i < rouletteNum; i++)
+        {
+            roulettePieces[i].Trigger(false);
+        }
+        triggerSprite.gameObject.SetActive(false);
+        isTriggerActivated = false;
+        BuffManager.Inst.rouletteBuff_Trigger.Clear();
+    }
+
     public void EnemyTriggerRoulette()
     {
+        triggerPiece = enemyTriggerPiece;
         roulettePieces[triggerPos].Setup(enemyTriggerPiece);
         BuffManager.Inst.rouletteBuff_Trigger.Clear();
         roulettePieces[triggerPos].Trigger(true);
@@ -168,11 +190,14 @@ public class RouletteManager : MonoBehaviour
     public bool EnchantRoulettePiece(int index, ERouletteType rType, int rValue)
     {
         bool ret = true;
-        foreach (Func<int, ERouletteType, bool> func in TurnManager.CheckRouletteEnchantable.GetInvocationList())
+        if(TurnManager.CheckRouletteEnchantable != null)
         {
-            ret = ret && func.Invoke(index, rType);
+            foreach (Func<int, ERouletteType, bool> func in TurnManager.CheckRouletteEnchantable.GetInvocationList())
+            {
+                ret = ret && func.Invoke(index, rType);
+            }
+            if (ret == false) return false;
         }
-        if (ret == false) return false;
         RouletteItem rItem = new RouletteItem();
         rItem.type = rType;
         rItem.value = rValue;
@@ -182,15 +207,17 @@ public class RouletteManager : MonoBehaviour
         return true;
     }
 
+    public bool EnchantRoulettePiece(RoulettePiece piece, ERouletteType rType, int rValue)
+    {
+        int index = Array.IndexOf(roulettePieces, piece);
+        return EnchantRoulettePiece(index, rType, rValue);
+    }
+
     public int CountRouletteType(ERouletteType rType)
     {
         int counter = 0;
         for (int i = 0; i < rouletteNum; i++)
         {
-            if (i == triggerPos)
-            {
-                continue;
-            }
             if (roulettePieces[i].roulette.type == rType)
             {
                 counter++;
@@ -203,7 +230,6 @@ public class RouletteManager : MonoBehaviour
     {
         playerLookat = (rouletteNum - 1) / 2;
         enemyLookat = rouletteNum - 1;
-        triggerPos = rouletteNum - 2;
         spinCount = 0;
         spinCount_Turn = 0;
         spinDistance = 0;
@@ -222,7 +248,7 @@ public class RouletteManager : MonoBehaviour
         tempRoulettePiece.type = ERouletteType.None;
         tempRoulettePiece.value = 0;
         triggerPiece_None = tempRoulettePiece;
-        roulettePieces[triggerPos].Setup(tempRoulettePiece);
+        // roulettePieces[triggerPos].Setup(tempRoulettePiece);
     }
 
     public void RouletteMouseDown()
@@ -278,11 +304,6 @@ public class RouletteManager : MonoBehaviour
     private void Start()
     {
         TurnManager.OnPlayerTurnStart += () => { spinCount_Turn = 0; spinDistance_Turn = 0; };
-        TurnManager.CheckRouletteEnchantable += (idx, type) =>
-        {
-            if (idx == triggerPos) return false;
-            return true;
-        };
     }
 
     private void OnDestroy()

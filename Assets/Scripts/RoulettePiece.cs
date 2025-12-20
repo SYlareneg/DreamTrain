@@ -65,36 +65,37 @@ public class RoulettePiece : MonoBehaviour
                 SetRoulettePieceTooltip(PassiveManager.Inst.PlayerSpecialRoulette2Title, PassiveManager.Inst.PlayerSpecialRoulette2Text);
                 break;
             default:
-                roulettePiece.sprite = rouletteTypeSprites[0];
+                SetRoulettePieceSprite(rouletteTypeSprites[0]);
                 if (tooltip)
                 {
-                    if (this == RouletteManager.Inst.roulettePieces[RouletteManager.Inst.triggerPos])
-                    {
-                        tooltip.tooltipTitle = "트리거 룰렛";
-                        tooltip.tooltipTxt = "현재 활성화되어 있지 않습니다.";
-                    }
-                    else
-                    {
-                        tooltip.tooltipDisable = true;
-                    }
+                    tooltip.tooltipDisable = true;
                 }
                 break;
         }
 
         roulette = rlt;
         HideTotalValue();
-        Trigger(false);
+        isTriggered = false;
     }
 
     public void ShowTotalValue()
     {
         int totalVal = BuffManager.Inst.GetBuffedRouletteValue(this);
+        ERouletteType curType = roulette.type;
+        int curVal = roulette.value;
 
-        if (totalVal > roulette.value)
+        if (RouletteManager.Inst.isTriggerActivated)
+        {
+            totalVal = BuffManager.Inst.GetBuffedRouletteValue(RouletteManager.Inst.triggerPiece);
+            curType = RouletteManager.Inst.triggerPiece.type;
+            curVal = RouletteManager.Inst.triggerPiece.value;
+        }
+
+        if (totalVal > curVal)
         {
             rouletteValueTMP.color = Color.green;
         }
-        else if (totalVal == roulette.value)
+        else if (totalVal == curVal)
         {
             rouletteValueTMP.color = Color.white;
         }
@@ -103,7 +104,7 @@ public class RoulettePiece : MonoBehaviour
             rouletteValueTMP.color = Color.red;
         }
         rouletteValueTMP.text = totalVal.ToString();
-        if (roulette.type == ERouletteType.None && totalVal == 0)
+        if (curType == ERouletteType.None && totalVal == 0)
         {
             rouletteValueTMP.text = "";
         }
@@ -133,10 +134,12 @@ public class RoulettePiece : MonoBehaviour
         isTriggered = triggerState;
         if (isTriggered)
         {
-            roulettePiece.color = Color.green;
+            SetRoulettePieceSprite(rouletteTypeSprites[4]);
+            SetRoulettePieceTooltip(TurnManager.Inst.characterSO.personaPiece.persona.name, TurnManager.Inst.characterSO.personaPiece.persona.text);
         }
         else
         {
+            Setup(roulette);
             roulettePiece.color = Color.white;
         }
     }
@@ -144,15 +147,6 @@ public class RoulettePiece : MonoBehaviour
     public void Activate(bool isEnemy)
     {
         int totalVal = BuffManager.Inst.GetBuffedRouletteValue(this);
-        if (isTriggered == true)
-        {
-            RouletteManager.TriggerActivation?.Invoke(isEnemy, totalVal);
-            Trigger(false);
-            RouletteManager.Inst.isTriggerActivated = false;
-            this.Setup(RouletteManager.Inst.triggerPiece_None);
-            BuffManager.Inst.rouletteBuff_Trigger.Clear();
-            return;
-        }
         switch (roulette.type)
         {
             case ERouletteType.Attack:

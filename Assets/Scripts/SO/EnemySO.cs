@@ -53,6 +53,7 @@ public class Enemy
     public int triggerNum;
     public List<EnemyPhase> phase;
     public RouletteItem[] roulettePattern;
+    public Sprite triggerSprite;
     public Sprite specialRoulette1Sprite;
     public string specialRoulette1Title;
     public string specialRoulette1Text;

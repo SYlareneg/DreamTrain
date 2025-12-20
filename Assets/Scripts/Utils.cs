@@ -189,6 +189,8 @@ public class Utils
 	static Dictionary<string, Sprite> spriteCache = new Dictionary<string, Sprite>();
 	public static Sprite LoadSpriteByName(string path, string spriteName)
     {
+		if(spriteName == null || spriteName == "") return null;
+
 		spriteName = Path.Combine(path, spriteName);
         if (!spriteCache.ContainsKey(spriteName)) {
 			spriteCache[spriteName] = Resources.Load<Sprite>(spriteName);

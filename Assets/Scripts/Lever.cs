@@ -37,8 +37,8 @@ public class Lever : MonoBehaviour
     {
         if (TurnManager.Inst.nowCost >= useCost)
         {
-            TurnManager.Inst.IncreaseCost(-useCost);
             RouletteManager.Inst.ActivateRoulette();
+            TurnManager.Inst.IncreaseCost(-useCost);
             useCost += 1;
         }
     }
