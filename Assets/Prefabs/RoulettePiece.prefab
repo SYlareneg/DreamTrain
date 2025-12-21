@@ -114,10 +114,12 @@ MonoBehaviour:
   - {fileID: 3375822314222703638, guid: a041ada8be0eb6d499c201160f5fa148, type: 3}
   - {fileID: -1603803061443464624, guid: 73435535910bf8244a026492dc76623c, type: 3}
   - {fileID: -4545485791306845479, guid: 4680280636d46ce49aa113784c38893e, type: 3}
+  originalSprite: {fileID: 0}
+  originalTooltipTitle: 
+  originalTooltipText: 
   roulette:
     type: 0
     value: 0
-  isTriggered: 0
   isEnhanced: 0
   tooltip: {fileID: 0}
 --- !u!60 &4611826967908162120
@@ -172,9 +174,9 @@ PolygonCollider2D:
       - {x: 0.71, y: 2.8799999}
       - {x: 0.44, y: 2.9299998}
       - {x: 0, y: 2.9299998}
-      - {x: 0, y: 0}
-      - {x: 0.04, y: 0}
-      - {x: 0.28, y: 0.42999998}
+      - {x: 0, y: 1.1064503}
+      - {x: 0.002172649, y: 0.8132883}
+      - {x: 0.4218525, y: 0.68533474}
       - {x: 0.9, y: 1.64}
       - {x: 1.16, y: 2.1399999}
   m_UseDelaunayMesh: 0

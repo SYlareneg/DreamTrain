@@ -451,10 +451,6 @@ public class EnemyManager : MonoBehaviour
     // 액션 리스트 초기화. 랜덤한 액션을 actionNum 개수만큼 생성
     public void InitActionList()
     {
-        if(TurnManager.Inst.enemyTriggerCnt == TurnManager.Inst.enemyTriggerMaxCnt && TurnManager.Inst.enemyTriggerCnt != 0)
-        {
-            EnemyTriggerAction();
-        }
         if (!isTriggerActivated)
         {
             currentPattern = enemy.phase[phaseNum].patterns[patternNum++].pattern;

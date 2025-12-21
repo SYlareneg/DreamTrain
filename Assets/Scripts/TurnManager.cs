@@ -401,15 +401,22 @@ public class TurnManager : MonoBehaviour
             Utils.AllignActions(ref OnEnemyTriggerDecrease, typeof(ShowBuff), typeof(RelicManager));
             OnEnemyTriggerDecrease?.Invoke(value);
         }
+        if (enemyTriggerCnt < enemyTriggerMaxCnt)
+        {
+            enemyTriggerCnt += value;
+            if (enemyTriggerCnt > enemyTriggerMaxCnt)
+            {
+                enemyTriggerCnt = enemyTriggerMaxCnt;
+            }
+            if(enemyTriggerCnt < 0)
+            {
+                enemyTriggerCnt = 0;
+            }
 
-        enemyTriggerCnt += value;
-        if (enemyTriggerCnt > enemyTriggerMaxCnt)
-        {
-            enemyTriggerCnt = enemyTriggerMaxCnt;
-        }
-        if(enemyTriggerCnt < 0)
-        {
-            enemyTriggerCnt = 0;
+            if (enemyTriggerCnt != 0 && enemyTriggerCnt == enemyTriggerMaxCnt)
+            {
+                EnemyManager.Inst.EnemyTriggerAction();
+            }
         }
     }
 }
