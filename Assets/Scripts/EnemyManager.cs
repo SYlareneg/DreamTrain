@@ -53,6 +53,7 @@ public class EnemyManager : MonoBehaviour
     public void InitEnemy()
     {
         enemy = TurnManager.Inst.enemySO.enemies.Find(x => x.name == TurnManager.Inst.characterSO.enemyName);
+        if(enemy == null) return;
         TurnManager.Inst.enemyMaxHealth = enemy.health;
         TurnManager.Inst.enemyCurHealth = enemy.health;
         actionNum = enemy.actionNum;

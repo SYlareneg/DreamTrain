@@ -266,12 +266,14 @@ public class PassiveManager : MonoBehaviour
                     var frozenChk = frozenRoulettes.Find(x => x.rIdx == index);
                     if (frozenChk != null)
                     {
+                        RouletteManager.Inst.roulettePieces[index].roulette.type = ERouletteType.None;
                         RouletteManager.Inst.EnchantRoulettePiece(index, frozenChk.rItem.type, frozenChk.rItem.value);
                         Destroy(frozenChk.frozenIcon);
                         frozenRoulettes.Remove(frozenChk);
                     }
                     else
                     {
+                        RouletteManager.Inst.roulettePieces[index].roulette.type = ERouletteType.None;
                         RouletteManager.Inst.EnchantRoulettePiece(index, ERouletteType.None, 0);
                     }
                 };
