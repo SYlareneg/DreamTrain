@@ -5321,6 +5321,7 @@ GameObject:
   - component: {fileID: 739191380}
   - component: {fileID: 739191381}
   - component: {fileID: 739191382}
+  - component: {fileID: 739191383}
   m_Layer: 0
   m_Name: ActivateButton
   m_TagString: Untagged
@@ -5417,6 +5418,42 @@ MonoBehaviour:
   useClickEffect: 1
   buttonCostText: {fileID: 1605247908}
   useCost: 0
+--- !u!58 &739191383
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739191379}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -0.000000029802322}
+  m_Radius: 0.5
 --- !u!1 &751630469
 GameObject:
   m_ObjectHideFlags: 0
