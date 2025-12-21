@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum EEnemyActionType { Turn, Attack, Heal, Shield, Enchant_Random_1, Enchant_Random_2, Special_Activate_1, Special_Activate_2 };
+public enum EEnemyActionType { Turn, Attack, Heal, Shield, Enchant_Random_1, Enchant_Random_2, Special_Activate };
 
 [System.Serializable]
 public struct EnemyPattern
 {
     public EEnemyActionType type;
+    public int typeNum;
     public int val;
+    public bool isTrigger;
 
     public EnemyPattern(EEnemyActionType t, int v)
     {
         type = t;
+        typeNum = 0;
         val = v;
+        isTrigger = false;
     }
 }
 
@@ -43,6 +47,53 @@ public class EnemyPhase
 }
 
 [System.Serializable]
+public class EnemySpecialRoulette
+{
+    public Sprite sprite;
+    public string title;
+    public string text;
+    public int baseVal;
+
+    public EnemySpecialRoulette(Sprite sprite, string title, string text, int baseVal)
+    {
+        this.sprite = sprite;
+        this.title = title;
+        this.text = text;
+        this.baseVal = baseVal;
+    }
+
+    public EnemySpecialRoulette(EnemySpecialRoulette esr)
+    {
+        this.sprite = esr.sprite;
+        this.title = esr.title;
+        this.text = esr.text;
+        this.baseVal = esr.baseVal;
+    }
+}
+
+[System.Serializable]
+public class EnemySpecialAction
+{
+    public Sprite sprite;
+    public string title;
+    public string text;
+
+    public EnemySpecialAction(Sprite sprite, string title, string text)
+    {
+        this.sprite = sprite;
+        this.title = title;
+        this.text = text;
+    }
+
+    public EnemySpecialAction(EnemySpecialAction esa)
+    {
+        this.sprite = esa.sprite;
+        this.title = esa.title;
+        this.text = esa.text;
+    }
+}
+
+[System.Serializable]
 public class Enemy
 {
     public string name;
@@ -52,20 +103,13 @@ public class Enemy
     public List<RelicItem> relics;
     public int triggerNum;
     public List<EnemyPhase> phase;
+    public List<EnemyPhase> triggerPhase;
     public RouletteItem[] roulettePattern;
-    public Sprite triggerSprite;
-    public Sprite specialRoulette1Sprite;
-    public string specialRoulette1Title;
-    public string specialRoulette1Text;
-    public Sprite specialRoulette2Sprite;
-    public string specialRoulette2Title;
-    public string specialRoulette2Text;
-    public Sprite specialAction1Sprite;
-    public string specialAction1Title;
-    public string specialAction1Text;
-    public Sprite specialAction2Sprite;
-    public string specialAction2Title;
-    public string specialAction2Text;
+    
+    public static int enemySpecialRouletteNum = 2;
+    public EnemySpecialRoulette[] enemySpecialRoulettes = new EnemySpecialRoulette[enemySpecialRouletteNum];
+    public static int enemySpecialActionNum = 4;
+    public EnemySpecialAction[] enemySpecialActions = new EnemySpecialAction[enemySpecialActionNum];
 }
 
 [CreateAssetMenu(fileName = "EnemySO", menuName = "Scriptable Objects/EnemySO")]

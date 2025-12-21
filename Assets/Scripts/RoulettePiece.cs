@@ -61,14 +61,14 @@ public class RoulettePiece : MonoBehaviour
                 originalTooltipText = "실드를 값만큼 획득합니다.";
                 break;
             case ERouletteType.Enemy_Special_1:
-                originalSprite = EnemyManager.Inst.EnemySpecialRoulette1Sprite;
-                originalTooltipTitle = EnemyManager.Inst.EnemySpecialRoulette1Title;
-                originalTooltipText = EnemyManager.Inst.EnemySpecialRoulette1Text;
+                originalSprite = EnemyManager.Inst.enemySpecialRoulettes[0].sprite;
+                originalTooltipTitle = EnemyManager.Inst.enemySpecialRoulettes[0].title;
+                originalTooltipText = EnemyManager.Inst.enemySpecialRoulettes[0].text;
                 break;
             case ERouletteType.Enemy_Special_2:
-                originalSprite = EnemyManager.Inst.EnemySpecialRoulette2Sprite;
-                originalTooltipTitle = EnemyManager.Inst.EnemySpecialRoulette2Title;
-                originalTooltipText = EnemyManager.Inst.EnemySpecialRoulette2Text;
+                originalSprite = EnemyManager.Inst.enemySpecialRoulettes[1].sprite;
+                originalTooltipTitle = EnemyManager.Inst.enemySpecialRoulettes[1].title;
+                originalTooltipText = EnemyManager.Inst.enemySpecialRoulettes[1].text;
                 break;
             case ERouletteType.Player_Special_1:
                 originalSprite = PassiveManager.Inst.PlayerSpecialRoulette1Sprite;

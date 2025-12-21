@@ -161,3 +161,14 @@ MonoBehaviour:
     - 1
     isSetOnEnemyTurn: 0
     affectBuffs: []
+  - name: "\uD68C\uC804 \uBD09\uC778"
+    text: "\uB8F0\uB81B\uC744 \uD68C\uC804\uC2DC\uD0AC \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.\\n\uC9C0\uC18D\uD134\uC218:
+      \uAC12\uD134"
+    icon: {fileID: 0}
+    type: 1
+    affectType: 0
+    effectType: 1
+    val: 0
+    defaultVal: []
+    isSetOnEnemyTurn: 0
+    affectBuffs: []

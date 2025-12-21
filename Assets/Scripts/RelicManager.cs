@@ -284,7 +284,7 @@ public class RelicManager : MonoBehaviour
                 case ERelicActivateEffectType.Enemy_Spin_Reverse:
                     relicAction += () => { EnemyManager.Inst.ReverseSpin(); }; break;
                 case ERelicActivateEffectType.Enemy_Spin_Ignore:
-                    relicAction += () => { EnemyManager.Inst.RemoveAllSpin(); }; break;
+                    relicAction += () => { EnemyManager.Inst.RemoveActionType(EEnemyActionType.Turn); }; break;
                 case ERelicActivateEffectType.Enemy_Damage:
                     relicAction += () => { TurnManager.Inst.EnemyTakeDmg(localEffect.value, EDamageSource.Relic); }; break;
                 case ERelicActivateEffectType.Enemy_Shield:

@@ -267,6 +267,11 @@ public class Card : MonoBehaviour
         {
             return false;
         }
+        if(BuffManager.Inst.allCardTypeBlockBuff[item.type] == true)
+        {
+            Debug.Log(item.type + " 카드 사용이 차단되었습니다!");
+            return false;
+        }
         bool isCardUsed = true;
         switch (item.name)
         {

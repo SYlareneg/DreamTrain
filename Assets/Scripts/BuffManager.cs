@@ -359,6 +359,49 @@ public class ShowBuff
                     };
                 }
                 break;
+            case "회전 봉인":
+                if(affectType == EBuffAffectType.Enemy)
+                {
+                    BuffManager.Inst.enemyShowBuffs.Add(this);
+                    BuffManager.Inst.enemyBuff_ActionBlock[EEnemyActionType.Turn] = true;
+                    Action endSpinBlock = null;
+                    endSpinBlock = () =>
+                    {
+                        if (this.val == 0)
+                        {
+                            BuffManager.Inst.enemyBuff_ActionBlock[EEnemyActionType.Turn] = false;
+                            BuffManager.Inst.enemyShowBuffs.Remove(this);
+                            TurnManager.OnPlayerTurnStart -= endSpinBlock;
+                        }
+                    };
+                    TurnManager.OnPlayerTurnStart += endSpinBlock;
+                    removeBuff = () =>
+                    {
+                        TurnManager.OnPlayerTurnStart -= endSpinBlock;
+                    };
+                }
+                else if(affectType == EBuffAffectType.Player)
+                {
+                    BuffManager.Inst.playerShowBuffs.Add(this);
+                    BuffManager.Inst.allCardTypeBlockBuff[CardType.Turn] = true;
+                    Action endSpinBlock = null;
+                    endSpinBlock = () =>
+                    {
+                        if (this.val == 0)
+                        {
+                            BuffManager.Inst.allCardTypeBlockBuff[CardType.Turn] = false;
+                            BuffManager.Inst.playerShowBuffs.Remove(this);
+                            TurnManager.OnPlayerTurnStart -= endSpinBlock;
+                        }
+                    };
+                    TurnManager.OnPlayerTurnStart += endSpinBlock;
+                    removeBuff = () =>
+                    {
+                        BuffManager.Inst.allCardTypeBlockBuff[CardType.Turn] = false;
+                        TurnManager.OnPlayerTurnStart -= endSpinBlock;
+                    };
+                }
+                break;
         }
     }
 
@@ -478,11 +521,12 @@ public class BuffManager : MonoBehaviour
     public List<Buff> enemyBuff_Shield;
     public List<Buff>[] enemyBuff_Shield_Type = new List<Buff>[Enum.GetNames(typeof(EDamageSource)).Length];
     public List<Buff> enemyBuff_Attack;
-    public List<Buff> enemyBuff_Special_1;
-    public List<Buff> enemyBuff_Special_2;
+    public List<Buff>[] enemyBuff_Special = new List<Buff>[Enemy.enemySpecialActionNum];
+    public Dictionary<EEnemyActionType, bool> enemyBuff_ActionBlock = new Dictionary<EEnemyActionType, bool>();
 
     public List<Buff> allCardValueBuff;
     public List<Buff> allCardCostBuff;
+    public Dictionary<CardType, bool> allCardTypeBlockBuff = new Dictionary<CardType, bool>();
     public Dictionary<Item, List<Buff>> singleCardCostBuff = new Dictionary<Item, List<Buff>>();
 
     public static Action InitSpecialRouletteBuffs;
@@ -626,8 +670,11 @@ public class BuffManager : MonoBehaviour
         enemyBuff_Damage = new List<Buff>();
         enemyBuff_Heal = new List<Buff>();
         enemyBuff_Shield = new List<Buff>();
-        enemyBuff_Special_1 = new List<Buff>();
-        enemyBuff_Special_2 = new List<Buff>();
+        for(int i = 0; i < Enemy.enemySpecialActionNum; i++)
+        {
+            enemyBuff_Special[i] = new List<Buff>();
+            enemyBuffs.Add(enemyBuff_Special[i]);
+        }
         for(int i = 0; i < Enum.GetNames(typeof(EDamageSource)).Length; i++)
         {
             enemyBuff_Damage_Type[i] = new List<Buff>();
@@ -643,14 +690,23 @@ public class BuffManager : MonoBehaviour
         enemyBuffs.Add(enemyBuff_Damage);
         enemyBuffs.Add(enemyBuff_Heal);
         enemyBuffs.Add(enemyBuff_Shield);
-        enemyBuffs.Add(enemyBuff_Special_1);
-        enemyBuffs.Add(enemyBuff_Special_2);
+
+        enemyBuff_ActionBlock = new Dictionary<EEnemyActionType, bool>();
+        foreach(EEnemyActionType eat in Enum.GetValues(typeof(EEnemyActionType)))
+        {
+            enemyBuff_ActionBlock.Add(eat, false);
+        }
     }
 
     public void InitCardBuff()
     {
         allCardValueBuff = new List<Buff>();
         allCardCostBuff = new List<Buff>();
+        allCardTypeBlockBuff = new Dictionary<CardType, bool>();
+        foreach (CardType ct in Enum.GetValues(typeof(CardType)))
+        {
+            allCardTypeBlockBuff.Add(ct, false);
+        }
 
         playerBuffs.Add(allCardValueBuff);
         playerBuffs.Add(allCardCostBuff);

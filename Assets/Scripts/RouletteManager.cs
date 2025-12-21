@@ -157,22 +157,6 @@ public class RouletteManager : MonoBehaviour
         BuffManager.Inst.rouletteBuff_Trigger.Clear();
     }
 
-    public void EnemyTriggerRoulette()
-    {
-        triggerPiece = enemyTriggerPiece;
-        roulettePieces[triggerPos].Setup(enemyTriggerPiece);
-        BuffManager.Inst.rouletteBuff_Trigger.Clear();
-        roulettePieces[triggerPos].Trigger(true);
-        isTriggerActivated = true;
-        Utils.AllignActions(ref TurnManager.OnEnemyTrigger, typeof(ShowBuff), typeof(RelicManager));
-        TurnManager.OnEnemyTrigger?.Invoke();
-        TriggerActivation = EnemyTriggerActivation;
-        roulettePieces[triggerPos].GetComponent<Tooltip>().tooltipTitle = EnemyManager.Inst.enemy.passive.name;
-        roulettePieces[triggerPos].GetComponent<Tooltip>().tooltipTxt = EnemyManager.Inst.enemy.passive.text;
-        Utils.AllignActions(ref TurnManager.OnRouletteTrigger, typeof(ShowBuff), typeof(RelicManager));
-        TurnManager.OnRouletteTrigger?.Invoke();
-    }
-
     public bool EnchantRoulette(bool isEnemy, ERouletteType rType, int rValue)
     {
         bool ret = false;

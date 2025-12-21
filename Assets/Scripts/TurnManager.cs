@@ -145,10 +145,7 @@ public class TurnManager : MonoBehaviour
     {
         Utils.AllignActions(ref OnGameStart, typeof(ShowBuff), typeof(RelicManager));
         OnGameStart?.Invoke();
-        //BuffManager.Inst.AddShowBuff("과민함", EBuffAffectType.Enemy, 1);
-        //BuffManager.Inst.AddShowBuff("불쾌함", EBuffAffectType.Player, 1);
-        //BuffManager.Inst.AddShowBuff("강화", EBuffAffectType.Roulette, 1);
-        //BuffManager.AddBuffToTarget(BuffManager.Inst.playerBuff_Shield_Type[(int)EDamageSource.Card], 3, 1, -1);
+        //BuffManager.Inst.AddShowBuff("회전 봉인", EBuffAffectType.Enemy, 2, false);
         turnDraw = drawCardCount;
         // startCardCount만큼 카드를 뽑고, StartPlayerTurn 호출
         StartCoroutine(Draw(startCardCount, StartPlayerTurn));
@@ -404,21 +401,14 @@ public class TurnManager : MonoBehaviour
             Utils.AllignActions(ref OnEnemyTriggerDecrease, typeof(ShowBuff), typeof(RelicManager));
             OnEnemyTriggerDecrease?.Invoke(value);
         }
-        if (enemyTriggerCnt < enemyTriggerMaxCnt)
+
+        enemyTriggerCnt += value;
+        if (enemyTriggerCnt > enemyTriggerMaxCnt)
         {
-            enemyTriggerCnt += value;
-            if (enemyTriggerCnt > enemyTriggerMaxCnt)
-            {
-                enemyTriggerCnt = enemyTriggerMaxCnt;
-            }
-            if(enemyTriggerCnt < 0)
-            {
-                enemyTriggerCnt = 0;
-            }
+            enemyTriggerCnt = enemyTriggerMaxCnt;
         }
-        if (enemyTriggerCnt != 0 && enemyTriggerCnt == enemyTriggerMaxCnt)
+        if(enemyTriggerCnt < 0)
         {
-            EnemyManager.Inst.EnemyTriggerAction();
             enemyTriggerCnt = 0;
         }
     }
