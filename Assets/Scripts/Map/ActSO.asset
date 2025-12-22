@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: ActSO
+  m_EditorClassIdentifier: Assembly-CSharp::ActSO
+  normalNodes:
+  - nodeImg: {fileID: 0}
+    title: 
+    text: 
+    encounterNum: 0
+    difficulty: 0
+    level: 0
+    pos: 0
+    childNodes: []
+  acts:
+  - essentialNodes:
+    - nodeImg: {fileID: 0}
+      title: 
+      text: 
+      encounterNum: 0
+      difficulty: 0
+      level: 0
+      pos: 0
+      childNodes: []
+    - nodeImg: {fileID: 0}
+      title: 
+      text: 
+      encounterNum: 0
+      difficulty: 1
+      level: 0
+      pos: 0
+      childNodes: []
+    - nodeImg: {fileID: 0}
+      title: 
+      text: 
+      encounterNum: 0
+      difficulty: 2
+      level: 0
+      pos: 0
+      childNodes: []
+    specialNodes:
+    - nodeImg: {fileID: 0}
+      title: 
+      text: 
+      encounterNum: 0
+      difficulty: 1
+      level: 0
+      pos: 0
+      childNodes: []
+    - nodeImg: {fileID: 0}
+      title: 
+      text: 
+      encounterNum: 0
+      difficulty: 1
+      level: 0
+      pos: 0
+      childNodes: []
+    - nodeImg: {fileID: 0}
+      title: 
+      text: 
+      encounterNum: 0
+      difficulty: 1
+      level: 0
+      pos: 0
+      childNodes: []
+    - nodeImg: {fileID: 0}
+      title: 
+      text: 
+      encounterNum: 0
+      difficulty: 0
+      level: 0
+      pos: 0
+      childNodes: []
+    - nodeImg: {fileID: 0}
+      title: 
+      text: 
+      encounterNum: 0
+      difficulty: 0
+      level: 0
+      pos: 0
+      childNodes: []
