@@ -208,10 +208,17 @@ public class DialogueUI : MonoBehaviour
     private void EndDialogue()
     {
         dialogueActive = false;
-        MoooText.text = "";
-        PlayerText.text = "";
-        if (playerPanel != null) playerPanel.SetActive(false);
-        if (moooPanel != null) moooPanel.SetActive(false);
+        if (playerPanel != null)
+        {
+            playerPanel.SetActive(false);
+            PlayerText.text = "";
+        }
+
+        if (moooPanel != null)
+        {
+            MoooText.text = "";
+            moooPanel.SetActive(false);
+        }
         if(dialogueManager != null) dialogueManager.OnDialogueEnded();
 
         Debug.Log("Dialogue Ended");
