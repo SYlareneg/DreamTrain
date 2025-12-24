@@ -43,7 +43,7 @@ public class RoulettePiece : MonoBehaviour
     {
         roulette = rlt;
         tooltip = GetComponent<Tooltip>();
-        switch(rlt.type)
+        switch(rlt.rtype.type)
         {
             case ERouletteType.Attack:
                 originalSprite = rouletteTypeSprites[1];
@@ -60,25 +60,15 @@ public class RoulettePiece : MonoBehaviour
                 originalTooltipTitle = "실드 룰렛";
                 originalTooltipText = "실드를 값만큼 획득합니다.";
                 break;
-            case ERouletteType.Enemy_Special_1:
-                originalSprite = EnemyManager.Inst.enemySpecialRoulettes[0].sprite;
-                originalTooltipTitle = EnemyManager.Inst.enemySpecialRoulettes[0].title;
-                originalTooltipText = EnemyManager.Inst.enemySpecialRoulettes[0].text;
+            case ERouletteType.Enemy_Special:
+                originalSprite = EnemyManager.Inst.enemySpecialRoulettes[rlt.rtype.specialTypeIdx].sprite;
+                originalTooltipTitle = EnemyManager.Inst.enemySpecialRoulettes[rlt.rtype.specialTypeIdx].title;
+                originalTooltipText = EnemyManager.Inst.enemySpecialRoulettes[rlt.rtype.specialTypeIdx].text;
                 break;
-            case ERouletteType.Enemy_Special_2:
-                originalSprite = EnemyManager.Inst.enemySpecialRoulettes[1].sprite;
-                originalTooltipTitle = EnemyManager.Inst.enemySpecialRoulettes[1].title;
-                originalTooltipText = EnemyManager.Inst.enemySpecialRoulettes[1].text;
-                break;
-            case ERouletteType.Player_Special_1:
-                originalSprite = PassiveManager.Inst.PlayerSpecialRoulette1Sprite;
-                originalTooltipTitle = PassiveManager.Inst.PlayerSpecialRoulette1Title;
-                originalTooltipText = PassiveManager.Inst.PlayerSpecialRoulette1Text;
-                break;
-            case ERouletteType.Player_Special_2:
-                originalSprite = PassiveManager.Inst.PlayerSpecialRoulette2Sprite;
-                originalTooltipTitle = PassiveManager.Inst.PlayerSpecialRoulette2Title;
-                originalTooltipText = PassiveManager.Inst.PlayerSpecialRoulette2Text;
+            case ERouletteType.Player_Special:
+                originalSprite = PassiveManager.Inst.playerSpecialRoulettes[rlt.rtype.specialTypeIdx].sprite;
+                originalTooltipTitle = PassiveManager.Inst.playerSpecialRoulettes[rlt.rtype.specialTypeIdx].title;
+                originalTooltipText = PassiveManager.Inst.playerSpecialRoulettes[rlt.rtype.specialTypeIdx].text;
                 break;
             default:
                 originalSprite = rouletteTypeSprites[0];
@@ -99,16 +89,13 @@ public class RoulettePiece : MonoBehaviour
     public void RouletteClear()
     {
         int index = Array.IndexOf(RouletteManager.Inst.roulettePieces, this);
-        switch (roulette.type)
+        switch (roulette.rtype.type)
         {
-            case ERouletteType.Player_Special_1:
-                PassiveManager.PlayerSpecialRoulette1Clear?.Invoke(index);
-                break;
-            case ERouletteType.Player_Special_2:
-                PassiveManager.PlayerSpecialRoulette2Clear?.Invoke(index);
+            case ERouletteType.Player_Special:
+                PassiveManager.playerSpecialRouletteClear[roulette.rtype.specialTypeIdx]?.Invoke(index);
                 break;
             default:
-                RouletteManager.Inst.EnchantRoulettePiece(index, ERouletteType.None, 0);
+                RouletteManager.Inst.EnchantRoulettePiece(index, new RouletteType(ERouletteType.None), 0);
                 break;
         }
     }
@@ -116,13 +103,13 @@ public class RoulettePiece : MonoBehaviour
     public void ShowTotalValue()
     {
         int totalVal = BuffManager.Inst.GetBuffedRouletteValue(this);
-        ERouletteType curType = roulette.type;
+        ERouletteType curType = roulette.rtype.type;
         int curVal = roulette.value;
 
         if (RouletteManager.Inst.isTriggerActivated)
         {
             totalVal = BuffManager.Inst.GetBuffedRouletteValue(RouletteManager.Inst.triggerPiece);
-            curType = RouletteManager.Inst.triggerPiece.type;
+            curType = RouletteManager.Inst.triggerPiece.rtype.type;
             curVal = RouletteManager.Inst.triggerPiece.value;
         }
 
@@ -198,7 +185,7 @@ public class RoulettePiece : MonoBehaviour
     public void Activate(bool isEnemy)
     {
         int totalVal = BuffManager.Inst.GetBuffedRouletteValue(this);
-        switch (roulette.type)
+        switch (roulette.rtype.type)
         {
             case ERouletteType.Attack:
                 if (isEnemy)
@@ -230,17 +217,11 @@ public class RoulettePiece : MonoBehaviour
                     TurnManager.Inst.GetShield(false, totalVal, EDamageSource.Roulette);
                 }
                 break;
-            case ERouletteType.Enemy_Special_1:
-                EnemyManager.EnemySpecialRoulette1Activation?.Invoke(this, isEnemy, totalVal);
+            case ERouletteType.Enemy_Special:
+                EnemyManager.enemySpecialRouletteActivation[roulette.rtype.specialTypeIdx]?.Invoke(this, isEnemy, totalVal);
                 break;
-            case ERouletteType.Enemy_Special_2:
-                EnemyManager.EnemySpecialRoulette2Activation?.Invoke(this, isEnemy, totalVal);
-                break;
-            case ERouletteType.Player_Special_1:
-                PassiveManager.PlayerSpecialRoulette1Activation?.Invoke(isEnemy, totalVal);
-                break;
-            case ERouletteType.Player_Special_2:
-                PassiveManager.PlayerSpecialRoulette2Activation?.Invoke(isEnemy, totalVal);
+            case ERouletteType.Player_Special:
+                PassiveManager.playerSpecialRouletteActivation[roulette.rtype.specialTypeIdx]?.Invoke(isEnemy, totalVal);
                 break;
         }
     }

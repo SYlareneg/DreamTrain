@@ -177,8 +177,8 @@ public class ShowBuff
                 if (affectType == EBuffAffectType.Roulette)
                 {
                     BuffManager.Inst.rouletteShowBuffs.Add(this);
-                    AddAffectBuff(BuffManager.Inst.rouletteBuff_PlayerSpecial1[0], 0, baseVal[0], newVal);
-                    AddAffectBuff(BuffManager.Inst.rouletteBuff_PlayerSpecial1[1], 0, baseVal[1], newVal);
+                    AddAffectBuff(BuffManager.Inst.rouletteBuff_PlayerSpecial[PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == 0, 0)][0], 0, baseVal[0], newVal);
+                    AddAffectBuff(BuffManager.Inst.rouletteBuff_PlayerSpecial[PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == 0, 0)][1], 0, baseVal[1], newVal);
                     // 3f, 1f
                 }
                 break;
@@ -186,7 +186,7 @@ public class ShowBuff
                 if (affectType == EBuffAffectType.Roulette)
                 {
                     BuffManager.Inst.rouletteShowBuffs.Add(this);
-                    AddAffectBuff(BuffManager.Inst.rouletteBuff_PlayerSpecial2[0], 0, baseVal[0], newVal);
+                    AddAffectBuff(BuffManager.Inst.rouletteBuff_PlayerSpecial[PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == 0, 0)][0], 0, baseVal[0], newVal);
                     // 2f
                 }
                 break;
@@ -402,6 +402,25 @@ public class ShowBuff
                     };
                 }
                 break;
+            case "놀이 시간":
+                if (affectType == EBuffAffectType.Player)
+                {
+                    BuffManager.Inst.playerShowBuffs.Add(this);
+                    Action<Card> earnCost = null;
+                    earnCost = (card) =>
+                    {
+                        if(card.item.type == CardType.Turn)
+                        {
+                            TurnManager.Inst.IncreaseCost(1);
+                        }
+                    };
+                    TurnManager.OnUseCard += earnCost;
+                    removeBuff = () =>
+                    {
+                        TurnManager.OnUseCard -= earnCost;
+                    };
+                }
+                break;
         }
     }
 
@@ -494,10 +513,8 @@ public class BuffManager : MonoBehaviour
     public List<Buff> rouletteBuff_Attack;
     public List<Buff> rouletteBuff_Heal;
     public List<Buff> rouletteBuff_Shield;
-    public List<List<Buff>> rouletteBuff_EnemySpecial1;
-    public List<List<Buff>> rouletteBuff_EnemySpecial2;
-    public List<List<Buff>> rouletteBuff_PlayerSpecial1;
-    public List<List<Buff>> rouletteBuff_PlayerSpecial2;
+    public List<List<Buff>>[] rouletteBuff_EnemySpecial = new List<List<Buff>>[Enemy.enemySpecialRouletteNum];
+    public List<List<Buff>>[] rouletteBuff_PlayerSpecial = new List<List<Buff>>[DreamPiece_Base.playerSpecialRouletteNum * 2];
     public List<Buff> rouletteBuff_Trigger;
     public Dictionary<RoulettePiece, List<Buff>> roulettePieceBuff = new Dictionary<RoulettePiece, List<Buff>>();
 
@@ -613,10 +630,14 @@ public class BuffManager : MonoBehaviour
         rouletteBuff_Attack = new List<Buff>();
         rouletteBuff_Heal = new List<Buff>();
         rouletteBuff_Shield = new List<Buff>();
-        rouletteBuff_EnemySpecial1 = new List<List<Buff>>();
-        rouletteBuff_EnemySpecial2 = new List<List<Buff>>();
-        rouletteBuff_PlayerSpecial1 = new List<List<Buff>>();
-        rouletteBuff_PlayerSpecial2 = new List<List<Buff>>();
+        for(int i = 0; i < Enemy.enemySpecialRouletteNum; i++)
+        {
+            rouletteBuff_EnemySpecial[i] = new List<List<Buff>>();
+        }
+        for(int i = 0; i < DreamPiece_Base.playerSpecialRouletteNum * 2; i++)
+        {
+            rouletteBuff_PlayerSpecial[i] = new List<List<Buff>>();
+        }
         rouletteBuff_Trigger = new List<Buff>();
 
         InitSpecialRouletteBuffs?.Invoke();
@@ -624,10 +645,14 @@ public class BuffManager : MonoBehaviour
         rouletteBuffs.Add(rouletteBuff_Attack);
         rouletteBuffs.Add(rouletteBuff_Heal);
         rouletteBuffs.Add(rouletteBuff_Shield);
-        foreach (var bl in rouletteBuff_EnemySpecial1) rouletteBuffs.Add(bl);
-        foreach (var bl in rouletteBuff_EnemySpecial2) rouletteBuffs.Add(bl);
-        foreach (var bl in rouletteBuff_PlayerSpecial1) rouletteBuffs.Add(bl);
-        foreach (var bl in rouletteBuff_PlayerSpecial2) rouletteBuffs.Add(bl);
+        for(int i = 0; i < Enemy.enemySpecialRouletteNum; i++)
+        {
+            foreach(var bl in rouletteBuff_EnemySpecial[i]) rouletteBuffs.Add(bl);
+        }
+        for(int i = 0; i < DreamPiece_Base.playerSpecialRouletteNum; i++)
+        {
+            foreach(var bl in rouletteBuff_PlayerSpecial[i]) rouletteBuffs.Add(bl);
+        }
         rouletteBuffs.Add(rouletteBuff_Trigger);
 
         roulettePieceBuff = new Dictionary<RoulettePiece, List<Buff>>();
@@ -764,7 +789,7 @@ public class BuffManager : MonoBehaviour
     {
         Buff totalBuff = new Buff();
         totalBuff.InitBuff();
-        switch (targetPiece.roulette.type)
+        switch (targetPiece.roulette.rtype.type)
         {
             case ERouletteType.Attack:
                 totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_Attack)); break;
@@ -772,14 +797,10 @@ public class BuffManager : MonoBehaviour
                 totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_Heal)); break;
             case ERouletteType.Shield:
                 totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_Shield)); break;
-            case ERouletteType.Enemy_Special_1:
-                totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_EnemySpecial1[0])); break;
-            case ERouletteType.Enemy_Special_2:
-                totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_EnemySpecial2[0])); break;
-            case ERouletteType.Player_Special_1:
-                totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_PlayerSpecial1[0])); break;
-            case ERouletteType.Player_Special_2:
-                totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_PlayerSpecial2[0])); break;
+            case ERouletteType.Enemy_Special:
+                totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_EnemySpecial[targetPiece.roulette.rtype.specialTypeIdx][0])); break;
+            case ERouletteType.Player_Special:
+                totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_PlayerSpecial[targetPiece.roulette.rtype.specialTypeIdx][0])); break;
         }
         if (RouletteManager.Inst.isTriggerActivated)
         {
@@ -793,7 +814,7 @@ public class BuffManager : MonoBehaviour
     {
         Buff totalBuff = new Buff();
         totalBuff.InitBuff();
-        switch (rouletteItem.type)
+        switch (rouletteItem.rtype.type)
         {
             case ERouletteType.Attack:
                 totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_Attack)); break;
@@ -801,14 +822,10 @@ public class BuffManager : MonoBehaviour
                 totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_Heal)); break;
             case ERouletteType.Shield:
                 totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_Shield)); break;
-            case ERouletteType.Enemy_Special_1:
-                totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_EnemySpecial1[0])); break;
-            case ERouletteType.Enemy_Special_2:
-                totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_EnemySpecial2[0])); break;
-            case ERouletteType.Player_Special_1:
-                totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_PlayerSpecial1[0])); break;
-            case ERouletteType.Player_Special_2:
-                totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_PlayerSpecial2[0])); break;
+            case ERouletteType.Enemy_Special:
+                totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_EnemySpecial[rouletteItem.rtype.specialTypeIdx][0])); break;
+            case ERouletteType.Player_Special:
+                totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_PlayerSpecial[rouletteItem.rtype.specialTypeIdx][0])); break;
         }
         if (RouletteManager.Inst.isTriggerActivated)
         {
@@ -828,8 +845,8 @@ public class BuffManager : MonoBehaviour
         }
         if(card.name == "마술-예언")
         {
-            if(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == 1 && RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.type == ERouletteType.Player_Special_1
-            || TurnManager.Inst.characterSO.shadowPiece.shadow.dreamPieceNum == 1 && RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.type == ERouletteType.Player_Special_2)
+            if(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == 1 && RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.rtype == new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(true, 0))
+            || TurnManager.Inst.characterSO.shadowPiece.shadow.dreamPieceNum == 1 && RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.rtype == new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(false, 0)))
             {
                 totalBuff.add -= card.cardValues[1];
             }

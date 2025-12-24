@@ -47,31 +47,6 @@ public class EnemyPhase
 }
 
 [System.Serializable]
-public class EnemySpecialRoulette
-{
-    public Sprite sprite;
-    public string title;
-    public string text;
-    public int baseVal;
-
-    public EnemySpecialRoulette(Sprite sprite, string title, string text, int baseVal)
-    {
-        this.sprite = sprite;
-        this.title = title;
-        this.text = text;
-        this.baseVal = baseVal;
-    }
-
-    public EnemySpecialRoulette(EnemySpecialRoulette esr)
-    {
-        this.sprite = esr.sprite;
-        this.title = esr.title;
-        this.text = esr.text;
-        this.baseVal = esr.baseVal;
-    }
-}
-
-[System.Serializable]
 public class EnemySpecialAction
 {
     public Sprite sprite;
@@ -107,7 +82,7 @@ public class Enemy
     public RouletteItem[] roulettePattern;
     
     public static int enemySpecialRouletteNum = 2;
-    public EnemySpecialRoulette[] enemySpecialRoulettes = new EnemySpecialRoulette[enemySpecialRouletteNum];
+    public SpecialRoulette[] enemySpecialRoulettes = new SpecialRoulette[enemySpecialRouletteNum];
     public static int enemySpecialActionNum = 4;
     public EnemySpecialAction[] enemySpecialActions = new EnemySpecialAction[enemySpecialActionNum];
 }

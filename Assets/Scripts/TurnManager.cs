@@ -58,7 +58,7 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action OnEnemyTurnEnd;
     [HideInInspector] public static Action OnGameStart;
     [HideInInspector] public static Action OnGameEnd;
-    [HideInInspector] public static Action OnUseCard;
+    [HideInInspector] public static Action<Card> OnUseCard;
     [HideInInspector] public static Action OnAddCard;
     [HideInInspector] public static Action OnDiscardCard;
     [HideInInspector] public static Action<int, EDamageSource> OnPlayerDamaged;
@@ -78,7 +78,7 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action<bool, int> OnRouletteSpin;
     [HideInInspector] public static Action<int> AfterRouletteSpin;
     [HideInInspector] public static Action OnRouletteTrigger;
-    [HideInInspector] public static Func<int, ERouletteType, bool> CheckRouletteEnchantable;
+    [HideInInspector] public static Func<int, RouletteType, bool> CheckRouletteEnchantable;
     [HideInInspector] public static Action<int> OnRouletteEnchant;
     [HideInInspector] public static Action OnRouletteActivate;
     [HideInInspector] public static Action<int> OnCostChange;

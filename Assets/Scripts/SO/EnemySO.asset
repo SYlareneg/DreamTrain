@@ -117,29 +117,53 @@ MonoBehaviour:
       phaseClear: 0
       phaseRepeat: 0
     roulettePattern:
-    - type: 1
+    - rtype:
+        type: 1
+        specialTypeIdx: 0
       value: 5
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 3
+    - rtype:
+        type: 3
+        specialTypeIdx: 0
       value: 5
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 3
+    - rtype:
+        type: 3
+        specialTypeIdx: 0
       value: 5
-    - type: 1
+    - rtype:
+        type: 1
+        specialTypeIdx: 0
       value: 5
-    - type: 2
+    - rtype:
+        type: 2
+        specialTypeIdx: 0
       value: 2
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
     enemySpecialRoulettes:
     - sprite: {fileID: 2548602056424267579, guid: d9684565a5c77ee4084b7c729e932a89, type: 3}
@@ -275,29 +299,53 @@ MonoBehaviour:
       phaseClear: 0
       phaseRepeat: 1
     roulettePattern:
-    - type: 3
+    - rtype:
+        type: 3
+        specialTypeIdx: 0
       value: 5
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 1
+    - rtype:
+        type: 1
+        specialTypeIdx: 0
       value: 4
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 1
+    - rtype:
+        type: 1
+        specialTypeIdx: 0
       value: 4
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 3
+    - rtype:
+        type: 3
+        specialTypeIdx: 0
       value: 5
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
     enemySpecialRoulettes: []
     enemySpecialActions:
@@ -377,30 +425,54 @@ MonoBehaviour:
       phaseClear: 0
       phaseRepeat: 0
     roulettePattern:
-    - type: 3
+    - rtype:
+        type: 3
+        specialTypeIdx: 0
       value: 5
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 3
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
+      value: 0
+    - rtype:
+        type: 1
+        specialTypeIdx: 0
       value: 5
-    - type: 1
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
+      value: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
+      value: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
+      value: 0
+    - rtype:
+        type: 1
+        specialTypeIdx: 0
       value: 5
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 2
-      value: 2
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 1
-      value: 5
-    - type: 0
-      value: 0
-    - type: 0
-      value: 0
-    - type: 0
-      value: 0
+    - rtype:
+        type: 2
+        specialTypeIdx: 0
+      value: 3
     enemySpecialRoulettes:
     - sprite: {fileID: -1033747301121760791, guid: d70a422d594c0c64ca0e09b3852cd601, type: 3}
       title: "\uB9C8\uC220 \uBAA8\uC790"
@@ -486,29 +558,53 @@ MonoBehaviour:
       phaseClear: 0
       phaseRepeat: 0
     roulettePattern:
-    - type: 3
+    - rtype:
+        type: 3
+        specialTypeIdx: 0
       value: 5
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 3
+    - rtype:
+        type: 3
+        specialTypeIdx: 0
       value: 5
-    - type: 1
+    - rtype:
+        type: 1
+        specialTypeIdx: 0
       value: 5
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 2
+    - rtype:
+        type: 2
+        specialTypeIdx: 0
       value: 2
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 3
+    - rtype:
+        type: 3
+        specialTypeIdx: 0
       value: 5
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
     enemySpecialRoulettes:
     - sprite: {fileID: 5301150221465536405, guid: c53e46bb395a59c42a367fa17a77f66b, type: 3}
@@ -580,29 +676,53 @@ MonoBehaviour:
       phaseClear: 0
       phaseRepeat: 0
     roulettePattern:
-    - type: 3
+    - rtype:
+        type: 3
+        specialTypeIdx: 0
       value: 5
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 3
+    - rtype:
+        type: 3
+        specialTypeIdx: 0
       value: 5
-    - type: 1
+    - rtype:
+        type: 1
+        specialTypeIdx: 0
       value: 5
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 2
+    - rtype:
+        type: 2
+        specialTypeIdx: 0
       value: 2
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 1
+    - rtype:
+        type: 1
+        specialTypeIdx: 0
       value: 5
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
     enemySpecialRoulettes:
     - sprite: {fileID: 5301150221465536405, guid: c53e46bb395a59c42a367fa17a77f66b, type: 3}
@@ -701,29 +821,53 @@ MonoBehaviour:
       phaseClear: 0
       phaseRepeat: 0
     roulettePattern:
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 1
+    - rtype:
+        type: 1
+        specialTypeIdx: 0
       value: 5
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 3
+    - rtype:
+        type: 3
+        specialTypeIdx: 0
       value: 5
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 1
+    - rtype:
+        type: 1
+        specialTypeIdx: 0
       value: 5
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 3
+    - rtype:
+        type: 3
+        specialTypeIdx: 0
       value: 5
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
-    - type: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
       value: 0
     enemySpecialRoulettes:
     - sprite: {fileID: -1033747301121760791, guid: d70a422d594c0c64ca0e09b3852cd601, type: 3}

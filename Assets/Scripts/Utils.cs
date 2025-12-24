@@ -31,7 +31,9 @@ public class Utils
 	{
 		get
 		{
-			Vector3 result = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			Vector3 mouseScreenPos = Input.mousePosition;
+			mouseScreenPos.z = -Camera.main.transform.position.z;
+			Vector3 result = Camera.main.ScreenToWorldPoint(mouseScreenPos);
 			result.z = -10;
 			return result;
 		}

@@ -8,21 +8,23 @@ public class DreamPiece_Base
     public Passive_Enhanceable persona;
     public Passive_Enhanceable shadow;
     public Sprite triggerSprite;
-    public Sprite specialRouletteSprite;
-    public string specialRouletteTitle;
-    public string specialRouletteText;
+    public static int playerSpecialRouletteNum = 3;
+    public SpecialRoulette[] playerSpecialRoulettes = new SpecialRoulette[playerSpecialRouletteNum];
 
     public void Setup(DreamPiece_Base dp)
     {
+        if(dp == null) return;
         name = dp.name;
         persona = new Passive_Enhanceable();
         persona.Setup(dp.persona);
         shadow = new Passive_Enhanceable();
         shadow.Setup(dp.shadow);
         triggerSprite = dp.triggerSprite;
-        specialRouletteSprite = dp.specialRouletteSprite;
-        specialRouletteTitle = dp.specialRouletteTitle;
-        specialRouletteText = dp.specialRouletteText;
+        playerSpecialRoulettes = new SpecialRoulette[playerSpecialRouletteNum];
+        for(int i = 0; i < dp.playerSpecialRoulettes.Length; i++)
+        {
+            playerSpecialRoulettes[i] = new SpecialRoulette(dp.playerSpecialRoulettes[i]);
+        }
     }
 }
 

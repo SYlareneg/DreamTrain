@@ -205,13 +205,13 @@ public class EnemyAction : MonoBehaviour
                 case EEnemyActionType.Enchant_Random_1:
                     for(int i = 0; i < totalVal; i++)
                     {
-                        EnchantAction(ERouletteType.Enemy_Special_1, EnemyManager.Inst.enemySpecialRoulettes[0].baseVal);
+                        EnchantAction(new RouletteType(ERouletteType.Enemy_Special, 0), EnemyManager.Inst.enemySpecialRoulettes[0].baseVal);
                     }
                     break;
                 case EEnemyActionType.Enchant_Random_2:
                     for(int i = 0; i < totalVal; i++)
                     {
-                        EnchantAction(ERouletteType.Enemy_Special_2, EnemyManager.Inst.enemySpecialRoulettes[1].baseVal);
+                        EnchantAction(new RouletteType(ERouletteType.Enemy_Special, 1), EnemyManager.Inst.enemySpecialRoulettes[1].baseVal);
                     }
                     break;
                 case EEnemyActionType.Special_Activate:
@@ -226,12 +226,12 @@ public class EnemyAction : MonoBehaviour
         EnemyManager.enemySpecialActivation[num]?.Invoke(val);
     }
 
-    public static void EnchantAction(ERouletteType rType, int rVal)
+    public static void EnchantAction(RouletteType rType, int rVal)
     {
         List<int> noneIdx = new List<int>();
         for (int i = 0; i < RouletteManager.rouletteNum; i++)
         {
-            if (RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.None)
+            if (RouletteManager.Inst.roulettePieces[i].roulette.rtype.type == ERouletteType.None)
             {
                 noneIdx.Add(i);
             }
@@ -246,7 +246,7 @@ public class EnemyAction : MonoBehaviour
         {
             for (int i = 0; i < RouletteManager.rouletteNum; i++)
             {
-                if (RouletteManager.Inst.roulettePieces[i].roulette.type != rType)
+                if (RouletteManager.Inst.roulettePieces[i].roulette.rtype != rType)
                 {
                     noneIdx.Add(i);
                 }
@@ -258,7 +258,7 @@ public class EnemyAction : MonoBehaviour
             }
             else
             {
-                switch (rType)
+                switch (rType.type)
                 {
                     case ERouletteType.Attack:
                         TurnManager.Inst.TakeDmg(rVal, EDamageSource.Enemy); break;
@@ -266,11 +266,11 @@ public class EnemyAction : MonoBehaviour
                         TurnManager.Inst.EnemyTakeDmg(-rVal, EDamageSource.Enemy); break;
                     case ERouletteType.Shield:
                         TurnManager.Inst.GetShield(true, rVal, EDamageSource.Enemy); break;
-                    case ERouletteType.Enemy_Special_1:
-                        if (EnemyManager.Inst.enemy.name == "마술사") break;
-                        SpecialAction(0, rVal); break;
-                    case ERouletteType.Enemy_Special_2:
-                        SpecialAction(1, rVal); break;
+                    case ERouletteType.Enemy_Special:
+                        if (rType.specialTypeIdx == 0 && EnemyManager.Inst.enemy.name == "마술사") break;
+                        SpecialAction(rType.specialTypeIdx, rVal); break;
+                    default:
+                        break;
                 }
             }
         }

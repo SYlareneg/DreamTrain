@@ -110,7 +110,7 @@ public class RelicManager : MonoBehaviour
                     BuffManager.AddBuffToTarget(BuffManager.Inst.playerBuff_Damage_Type[(int)EDamageSource.Roulette], 0, damageMul, -1);
                     BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Damage_Type[(int)EDamageSource.Roulette], 0, damageMul, -1);
                 };
-                TurnManager.OnUseCard += () =>
+                TurnManager.OnUseCard += (x) =>
                 {
                     if(cardUsed == false)
                     {
@@ -137,11 +137,11 @@ public class RelicManager : MonoBehaviour
                 {
                     if (TurnManager.Inst.characterSO.personaPiece.name == "뱀파이어 폴")
                     {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_PlayerSpecial1[0], addVal, 1, -1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_PlayerSpecial[PassiveManager.GetSpecialRouletteIdx(true, 0)][0], addVal, 1, -1);
                     }
                     else if(TurnManager.Inst.characterSO.shadowPiece.name == "뱀파이어 폴")
                     {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_PlayerSpecial2[0], addVal, 1, -1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_PlayerSpecial[PassiveManager.GetSpecialRouletteIdx(false, 0)][0], addVal, 1, -1);
                     }
                 };
                 return;
@@ -234,7 +234,7 @@ public class RelicManager : MonoBehaviour
                 case ERelicActivateEffectType.Roulette_Value_Change_ADD:
                     relicAction += () => {
                         List<Buff> buffTarget = null;
-                        switch (localEffect.rlvalue.type)
+                        switch (localEffect.rlvalue.rtype.type)
                         {
                             case ERouletteType.Attack:
                                 buffTarget = BuffManager.Inst.rouletteBuff_Attack; break;
@@ -251,7 +251,7 @@ public class RelicManager : MonoBehaviour
                 case ERelicActivateEffectType.Roulette_Value_Change_MUL:
                     relicAction += () => {
                         List<Buff> buffTarget = null;
-                        switch (localEffect.rlvalue.type)
+                        switch (localEffect.rlvalue.rtype.type)
                         {
                             case ERouletteType.Attack:
                                 buffTarget = BuffManager.Inst.rouletteBuff_Attack; break;
@@ -270,9 +270,9 @@ public class RelicManager : MonoBehaviour
                 case ERelicActivateEffectType.Roulette_Spin_CCW:
                     relicAction += () => { RouletteManager.Inst.Spin(false, localEffect.value); }; break;
                 case ERelicActivateEffectType.Roulette_Enchant_Type:
-                    relicAction += () => { RouletteManager.Inst.EnchantRoulettePiece(localEffect.value, localEffect.rlvalue.type, RouletteManager.Inst.roulettePieces[localEffect.value].roulette.value); }; break;
+                    relicAction += () => { RouletteManager.Inst.EnchantRoulettePiece(localEffect.value, localEffect.rlvalue.rtype, RouletteManager.Inst.roulettePieces[localEffect.value].roulette.value); }; break;
                 case ERelicActivateEffectType.Roulette_Enchant_Val:
-                    relicAction += () => { RouletteManager.Inst.EnchantRoulettePiece(localEffect.value, RouletteManager.Inst.roulettePieces[localEffect.value].roulette.type, localEffect.rlvalue.value); }; break;
+                    relicAction += () => { RouletteManager.Inst.EnchantRoulettePiece(localEffect.value, RouletteManager.Inst.roulettePieces[localEffect.value].roulette.rtype, localEffect.rlvalue.value); }; break;
                 case ERelicActivateEffectType.Roulette_Trigger:
                     relicAction += () => { RouletteManager.Inst.TriggerRoulette(); }; break;
                 case ERelicActivateEffectType.Roulette_Trigger_Cancel:
@@ -645,7 +645,7 @@ public class RelicManager : MonoBehaviour
                 case ERelicActivateTimingType.Roulette_Activate:
                     TurnManager.OnRouletteActivate += relicActivation; break;
                 case ERelicActivateTimingType.Card_Use:
-                    TurnManager.OnUseCard += relicActivation; break;
+                    TurnManager.OnUseCard += (x) => relicActivation?.Invoke(); break;
                 case ERelicActivateTimingType.Card_Draw:
                     TurnManager.OnAddCard += relicActivation; break;
                 case ERelicActivateTimingType.Enemy_Damage:

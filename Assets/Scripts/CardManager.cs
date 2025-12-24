@@ -492,8 +492,10 @@ public class CardManager : MonoBehaviour
     // 현재 카드가 MyCardArea에 올라와 있는지 확인, 이에 따라 onMyCardArea 설정
     void DetectCardArea()
     {
-        RaycastHit2D[] hits = Physics2D.RaycastAll(Utils.MousePos, Vector3.forward);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         int layer = LayerMask.NameToLayer("MyCardArea");
+        int layerMask = LayerMask.GetMask("MyCardArea");
+        RaycastHit2D[] hits = Physics2D.GetRayIntersectionAll(ray, Mathf.Infinity, layerMask);
         onMyCardArea = Array.Exists(hits, x => x.collider.gameObject.layer == layer);
     }
 

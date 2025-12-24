@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CardType { Turn, Enchant, Effect };
+public enum CardType { Turn, Enchant, Skill, Dream };
 public enum ECardValueType { Damage, Heal, Shield, Special, Default };
 
 [System.Serializable]

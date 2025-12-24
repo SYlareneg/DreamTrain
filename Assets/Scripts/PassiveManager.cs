@@ -7,25 +7,33 @@ public class PassiveManager : MonoBehaviour
 {
     public static PassiveManager Inst { get; private set; }
     private void Awake() => Inst = this;
-    
-    public static Action<bool, int> PlayerSpecialRoulette1Activation;
-    public static Action<int> PlayerSpecialRoulette1Clear;
-    public static Action<bool, int> PlayerSpecialRoulette2Activation;
-    public static Action<int> PlayerSpecialRoulette2Clear;
-    public Sprite PlayerSpecialRoulette1Sprite;
-    public string PlayerSpecialRoulette1Title;
-    public string PlayerSpecialRoulette1Text;
-    public Sprite PlayerSpecialRoulette2Sprite;
-    public string PlayerSpecialRoulette2Title;
-    public string PlayerSpecialRoulette2Text;
+
+    public SpecialRoulette[] playerSpecialRoulettes = new SpecialRoulette[DreamPiece_Base.playerSpecialRouletteNum * 2];
+    public static Action<bool, int>[] playerSpecialRouletteActivation = new Action<bool, int>[DreamPiece_Base.playerSpecialRouletteNum * 2];
+    public static Action<int>[] playerSpecialRouletteClear = new Action<int>[DreamPiece_Base.playerSpecialRouletteNum * 2];
+
+    public static int GetSpecialRouletteIdx(bool isDP1, int idx)
+    {
+        if(idx >= DreamPiece_Base.playerSpecialRouletteNum) return -1;
+        if (isDP1)
+        {
+            return idx;
+        }
+        else
+        {
+            return idx + DreamPiece_Base.playerSpecialRouletteNum;
+        }
+    }
 
     public void SetPersona()
     {
         if (TurnManager.Inst.characterSO.personaPiece == null) return;
         RouletteManager.Inst.playerTriggerSprite = TurnManager.Inst.characterSO.personaPiece.triggerSprite;
-        PlayerSpecialRoulette1Sprite = TurnManager.Inst.characterSO.personaPiece.specialRouletteSprite;
-        PlayerSpecialRoulette1Title = TurnManager.Inst.characterSO.personaPiece.specialRouletteTitle;
-        PlayerSpecialRoulette1Text = TurnManager.Inst.characterSO.personaPiece.specialRouletteText;
+        playerSpecialRoulettes = new SpecialRoulette[DreamPiece_Base.playerSpecialRouletteNum * 2];
+        for(int i = 0; i < TurnManager.Inst.characterSO.personaPiece.playerSpecialRoulettes.Length; i++)
+        {
+            playerSpecialRoulettes[GetSpecialRouletteIdx(true, i)] = new SpecialRoulette(TurnManager.Inst.characterSO.personaPiece.playerSpecialRoulettes[i]);
+        }
         RouletteItem rItem = new RouletteItem();
         string personaName = "";
         if (TurnManager.Inst.characterSO.personaPiece.persona.isEnhanced) personaName = TurnManager.Inst.characterSO.personaPiece.persona.enhancedPassive.name;
@@ -37,37 +45,55 @@ public class PassiveManager : MonoBehaviour
                 // 특수 룰렛 설정
                 BuffManager.InitSpecialRouletteBuffs += () =>
                 {
-                    BuffManager.Inst.rouletteBuff_PlayerSpecial1.Add(new List<Buff>());
-                    BuffManager.Inst.rouletteBuff_PlayerSpecial1.Add(new List<Buff>());
+                    BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(true, 0)].Add(new List<Buff>());
+                    BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(true, 0)].Add(new List<Buff>());
+                    BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(true, 1)].Add(new List<Buff>());
+                    BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(true, 1)].Add(new List<Buff>());
                 };
-                PlayerSpecialRoulette1Activation = (isEnemy, value) =>
+                playerSpecialRouletteActivation[GetSpecialRouletteIdx(true, 0)] = (isEnemy, value) =>
                 {
                     int trueDamage = 0;
-                    bool isEnhanced = false;
                     if (isEnemy)
                     {
                         trueDamage = TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette);
-                        isEnhanced = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].isEnhanced;
                     }
                     else
                     {
                         trueDamage = TurnManager.Inst.TakeDmg(value, EDamageSource.Roulette);
-                        isEnhanced = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].isEnhanced;
                     }
                     int healVal = 0;
-                    if (isEnhanced) healVal = trueDamage / 2;
-                    else healVal = trueDamage / 3;
-                    int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_PlayerSpecial1[1], healVal);
+                    healVal = trueDamage / 3;
+                    int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(true, 0)][1], healVal);
                     TurnManager.Inst.TakeDmg(-totalVal_Heal, EDamageSource.Roulette);
                 };
-                PlayerSpecialRoulette1Clear = (index) =>
+                playerSpecialRouletteClear[GetSpecialRouletteIdx(true, 0)] = (index) =>
                 {
-                    RouletteManager.Inst.EnchantRoulettePiece(index, ERouletteType.None, 0);
+                    RouletteManager.Inst.EnchantRoulettePiece(index, new RouletteType(ERouletteType.None), 0);
+                };
+                playerSpecialRouletteActivation[GetSpecialRouletteIdx(true, 1)] = (isEnemy, value) =>
+                {
+                    int trueDamage = 0;
+                    if (isEnemy)
+                    {
+                        trueDamage = TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette);
+                    }
+                    else
+                    {
+                        trueDamage = TurnManager.Inst.TakeDmg(value, EDamageSource.Roulette);
+                    }
+                    int healVal = 0;
+                    healVal = trueDamage / 2;
+                    int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(true, 0)][1], healVal);
+                    TurnManager.Inst.TakeDmg(-totalVal_Heal, EDamageSource.Roulette);
+                };
+                playerSpecialRouletteClear[GetSpecialRouletteIdx(true, 1)] = (index) =>
+                {
+                    RouletteManager.Inst.EnchantRoulettePiece(index, new RouletteType(ERouletteType.None), 0);
                 };
                 // 트리거 게이지 최대치 설정
                 TurnManager.Inst.playerTriggerMaxCnt = 15;
                 // 트리거 조각 설정
-                rItem.type = ERouletteType.Attack;
+                rItem.rtype = new RouletteType(ERouletteType.Attack);
                 rItem.value = 0;
                 RouletteManager.Inst.playerTriggerPiece = rItem;
                 // 트리거 조건 설정
@@ -109,7 +135,7 @@ public class PassiveManager : MonoBehaviour
                 // 특수 룰렛 설정
                 BuffManager.InitSpecialRouletteBuffs += () =>
                 {
-                    BuffManager.Inst.rouletteBuff_PlayerSpecial1.Add(new List<Buff>());
+                    BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(true, 0)].Add(new List<Buff>());
                 };
                 TurnManager.OnRouletteSpin += (x, y) =>
                 {
@@ -117,26 +143,26 @@ public class PassiveManager : MonoBehaviour
                     {
                         for (int i = 0; i < RouletteManager.rouletteNum; i++)
                         {
-                            if (RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.Player_Special_1)
+                            if (RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 0)))
                             {
                                 RouletteManager.Inst.roulettePieces[i].roulette.value--;
                                 int val = BuffManager.Inst.GetBuffedRouletteValue(RouletteManager.Inst.roulettePieces[i]);
                                 if (val == 0)
                                 {
-                                    PlayerSpecialRoulette1Clear?.Invoke(i);
+                                    playerSpecialRouletteClear[GetSpecialRouletteIdx(true, 0)]?.Invoke(i);
                                 }
                             }
                         }
                     }
                 };
-                PlayerSpecialRoulette1Clear = (index) =>
+                playerSpecialRouletteClear[GetSpecialRouletteIdx(true, 0)] = (index) =>
                 {
-                    RouletteManager.Inst.EnchantRoulettePiece(index, ERouletteType.None, 0);
+                    RouletteManager.Inst.EnchantRoulettePiece(index, new RouletteType(ERouletteType.None), 0);
                 };
                 // 트리거 게이지 최대치 설정
                 TurnManager.Inst.playerTriggerMaxCnt = 2;
                 // 트리거 조각 설정
-                rItem.type = ERouletteType.Attack;
+                rItem.rtype = new RouletteType(ERouletteType.Attack);
                 rItem.value = 0;
                 RouletteManager.Inst.playerTriggerPiece = rItem;
                 // 트리거 조건 설정
@@ -146,7 +172,7 @@ public class PassiveManager : MonoBehaviour
                     ace.name = "에이스";
                     if (personaName == "카드 숨기기+") ace.name += "+";
                     ace.cost = 1;
-                    ace.type = CardType.Effect;
+                    ace.type = CardType.Skill;
                     ace.element = EPassiveType.Normal;
                     ace.dreamPieceNum = -1;
                     ace.isVolatile = false;
@@ -167,7 +193,7 @@ public class PassiveManager : MonoBehaviour
                 {
                     for (int i = 0; i < RouletteManager.rouletteNum; i++)
                     {
-                        if(RouletteManager.Inst.roulettePieces[i].roulette.type != ERouletteType.None && RouletteManager.Inst.roulettePieces[i].roulette.type != ERouletteType.Attack && RouletteManager.Inst.roulettePieces[i].roulette.type != ERouletteType.Shield)
+                        if(RouletteManager.Inst.roulettePieces[i].roulette.rtype.type != ERouletteType.None && RouletteManager.Inst.roulettePieces[i].roulette.rtype.type != ERouletteType.Attack && RouletteManager.Inst.roulettePieces[i].roulette.rtype.type != ERouletteType.Shield)
                         {
                             RouletteManager.Inst.roulettePieces[i].RouletteClear();
                         }
@@ -180,9 +206,9 @@ public class PassiveManager : MonoBehaviour
                 {
                     BuffManager.Inst.rouletteBuff_Trigger.Clear();
                     counter = RouletteManager.rouletteNum;
-                    counter -= RouletteManager.Inst.CountRouletteType(ERouletteType.None);
-                    counter -= RouletteManager.Inst.CountRouletteType(ERouletteType.Attack);
-                    counter -= RouletteManager.Inst.CountRouletteType(ERouletteType.Shield);
+                    counter -= RouletteManager.Inst.CountRouletteType(new RouletteType(ERouletteType.None));
+                    counter -= RouletteManager.Inst.CountRouletteType(new RouletteType(ERouletteType.Attack));
+                    counter -= RouletteManager.Inst.CountRouletteType(new RouletteType(ERouletteType.Shield));
                     if (personaName == "마술 해체+" && counter >= 6) BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, counter * 7, 1.5f, -1);
                     else BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, counter * 7, 1, -1);
                 };
@@ -191,9 +217,9 @@ public class PassiveManager : MonoBehaviour
                     if (RouletteManager.Inst.isTriggerActivated)
                     {
                         int newCnt = RouletteManager.rouletteNum;
-                        newCnt -= RouletteManager.Inst.CountRouletteType(ERouletteType.None);
-                        newCnt -= RouletteManager.Inst.CountRouletteType(ERouletteType.Attack);
-                        newCnt -= RouletteManager.Inst.CountRouletteType(ERouletteType.Shield);
+                        newCnt -= RouletteManager.Inst.CountRouletteType(new RouletteType(ERouletteType.None));
+                        newCnt -= RouletteManager.Inst.CountRouletteType(new RouletteType(ERouletteType.Attack));
+                        newCnt -= RouletteManager.Inst.CountRouletteType(new RouletteType(ERouletteType.Shield));
                         if (newCnt != counter)
                         {
                             if (personaName == "마술 해체+" && counter >= 6 && newCnt < 6) BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, (newCnt - counter) * 7, 2.0f / 3, -1);
@@ -209,17 +235,17 @@ public class PassiveManager : MonoBehaviour
                 // 특수 룰렛 설정
                 BuffManager.InitSpecialRouletteBuffs += () =>
                 {
-                    BuffManager.Inst.rouletteBuff_PlayerSpecial1.Add(new List<Buff>());
+                    BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(true, 0)].Add(new List<Buff>());
                 };
                 List<FrozenRoulette> frozenRoulettes = new List<FrozenRoulette>();
                 TurnManager.CheckRouletteEnchantable += (index, type) =>
                 {
                     var frozenChk = frozenRoulettes.Find(x => x.rIdx == index);
-                    if (frozenChk != null && RouletteManager.Inst.roulettePieces[index].roulette.type == ERouletteType.Player_Special_1)
+                    if (frozenChk != null && RouletteManager.Inst.roulettePieces[index].roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 0)))
                     {
                         return false;
                     }
-                    if(frozenChk == null && type == ERouletteType.Player_Special_1)
+                    if(frozenChk == null && type == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 0)))
                     {
                         GameObject frozenSprite = new GameObject("FrozenIcon");
                         FrozenRoulette frzRlt = new FrozenRoulette();
@@ -232,9 +258,9 @@ public class PassiveManager : MonoBehaviour
                         frozenSprite.transform.localRotation = Quaternion.Euler(0f, 0f, -15f);
                         SpriteRenderer frozenSpriteRenderer = frozenSprite.AddComponent<SpriteRenderer>();
                         frozenSpriteRenderer.sortingOrder = RouletteManager.Inst.roulettePieces[index].GetComponent<SpriteRenderer>().sortingOrder + 1;
-                        frozenSpriteRenderer.sprite = TurnManager.Inst.characterSO.personaPiece.specialRouletteSprite;
+                        frozenSpriteRenderer.sprite = TurnManager.Inst.characterSO.personaPiece.playerSpecialRoulettes[0].sprite;
                         frozenSpriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
-                        PlayerSpecialRoulette1Sprite = RouletteManager.Inst.roulettePieces[index].originalSprite;
+                        playerSpecialRoulettes[GetSpecialRouletteIdx(true, 0)].sprite = RouletteManager.Inst.roulettePieces[index].originalSprite;
                         if(RouletteManager.Inst.isTriggerActivated)
                         {
                             frozenSprite.SetActive(false);
@@ -250,41 +276,41 @@ public class PassiveManager : MonoBehaviour
                 {
                     for (int i = 0; i < RouletteManager.rouletteNum; i++)
                     {
-                        if (RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.Player_Special_1)
+                        if (RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 0)))
                         {
                             RouletteManager.Inst.roulettePieces[i].roulette.value--;
                             int val = BuffManager.Inst.GetBuffedRouletteValue(RouletteManager.Inst.roulettePieces[i]);
                             if (val == 0)
                             {
-                                PlayerSpecialRoulette1Clear?.Invoke(i);
+                                playerSpecialRouletteClear[GetSpecialRouletteIdx(true, 0)]?.Invoke(i);
                             }
                         }
                     }
                 };
-                PlayerSpecialRoulette1Clear = (index) =>
+                playerSpecialRouletteClear[GetSpecialRouletteIdx(true, 0)] = (index) =>
                 {
                     var frozenChk = frozenRoulettes.Find(x => x.rIdx == index);
                     if (frozenChk != null)
                     {
-                        RouletteManager.Inst.roulettePieces[index].roulette.type = ERouletteType.None;
-                        RouletteManager.Inst.EnchantRoulettePiece(index, frozenChk.rItem.type, frozenChk.rItem.value);
+                        RouletteManager.Inst.roulettePieces[index].roulette.rtype = new RouletteType(ERouletteType.None);
+                        RouletteManager.Inst.EnchantRoulettePiece(index, frozenChk.rItem.rtype, frozenChk.rItem.value);
                         Destroy(frozenChk.frozenIcon);
                         frozenRoulettes.Remove(frozenChk);
                     }
                     else
                     {
-                        RouletteManager.Inst.roulettePieces[index].roulette.type = ERouletteType.None;
-                        RouletteManager.Inst.EnchantRoulettePiece(index, ERouletteType.None, 0);
+                        RouletteManager.Inst.roulettePieces[index].roulette.rtype = new RouletteType(ERouletteType.None);
+                        RouletteManager.Inst.EnchantRoulettePiece(index, new RouletteType(ERouletteType.None), 0);
                     }
                 };
                 // 트리거 게이지 최대치 설정
                 TurnManager.Inst.playerTriggerMaxCnt = 12;
                 // 트리거 조각 설정
-                rItem.type = ERouletteType.None;
+                rItem.rtype = new RouletteType(ERouletteType.None);
                 rItem.value = 0;
                 if(personaName == "겨울 바람+") 
                 {
-                    rItem.type = ERouletteType.Attack;
+                    rItem.rtype = new RouletteType(ERouletteType.Attack);
                     rItem.value = 12;
                 }
                 RouletteManager.Inst.playerTriggerPiece = rItem;
@@ -299,7 +325,7 @@ public class PassiveManager : MonoBehaviour
                 {
                     for(int i = 0; i < RouletteManager.rouletteNum; i++)
                     {
-                        RouletteManager.Inst.EnchantRoulettePiece(i, ERouletteType.Player_Special_1, 2);
+                        RouletteManager.Inst.EnchantRoulettePiece(i, new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 0)), 2);
                     }
                     for(int i = 0; i < EnemyManager.Inst.actionList.Count; i++)
                     {
@@ -307,14 +333,146 @@ public class PassiveManager : MonoBehaviour
                     }
                 };
                 break;
+            case "사냥 본능":
+            case "사냥 본능+":
+                // 특수 룰렛 설정
+                BuffManager.InitSpecialRouletteBuffs += () =>
+                {
+                    BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(true, 0)].Add(new List<Buff>());
+                    BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(true, 1)].Add(new List<Buff>());
+                    BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(true, 2)].Add(new List<Buff>());
+                };
+                playerSpecialRouletteActivation[GetSpecialRouletteIdx(true, 0)] = (isEnemy, value) =>
+                {
+                    if (isEnemy)
+                    {
+                        TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette);
+                    }
+                    else
+                    {
+                        TurnManager.Inst.TakeDmg(value, EDamageSource.Roulette);
+                    }
+                };
+                playerSpecialRouletteClear[GetSpecialRouletteIdx(true, 0)] = (index) =>
+                {
+                    RouletteManager.Inst.EnchantRoulettePiece(index, new RouletteType(ERouletteType.None), 0);
+                };
+                playerSpecialRouletteActivation[GetSpecialRouletteIdx(true, 1)] = (isEnemy, value) =>
+                {
+                    if (isEnemy)
+                    {
+                        TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette);
+                    }
+                    else
+                    {
+                        TurnManager.Inst.TakeDmg(value, EDamageSource.Roulette);
+                    }
+                };
+                playerSpecialRouletteClear[GetSpecialRouletteIdx(true, 1)] = (index) =>
+                {
+                    RouletteManager.Inst.EnchantRoulettePiece(index, new RouletteType(ERouletteType.None), 0);
+                };
+                playerSpecialRouletteActivation[GetSpecialRouletteIdx(true, 2)] = (isEnemy, value) =>
+                {
+                    if (isEnemy)
+                    {
+                        TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette);
+                    }
+                    else
+                    {
+                        TurnManager.Inst.TakeDmg(value, EDamageSource.Roulette);
+                    }
+                };
+                playerSpecialRouletteClear[GetSpecialRouletteIdx(true, 2)] = (index) =>
+                {
+                    RouletteManager.Inst.EnchantRoulettePiece(index, new RouletteType(ERouletteType.None), 0);
+                };
+                TurnManager.OnRouletteActivate += () =>
+                {
+                    if(RouletteManager.Inst.isTriggerActivated) return;
+                    var playerPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat];
+                    var enemyPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat];
+                    if (enemyPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 0)))
+                    {
+                        enemyPiece.roulette.value -= 3;
+                        if(enemyPiece.roulette.value <= 0)
+                        {
+                            enemyPiece.RouletteClear();
+                        }
+                    }
+                    else if(enemyPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 1)))
+                    {
+                        enemyPiece.RouletteClear();
+                        BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(true, 1)][0].Clear();
+                    }
+                    else if(enemyPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 2)))
+                    {
+                        enemyPiece.RouletteClear();
+                        BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(true, 2)][0].Clear();
+                    }
+                    if (playerPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 0)))
+                    {
+                        playerPiece.roulette.value -= 3;
+                        if(playerPiece.roulette.value <= 0)
+                        {
+                            playerPiece.RouletteClear();
+                        }
+                    }
+                    else if(playerPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 1)))
+                    {
+                        playerPiece.RouletteClear();
+                        BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(true, 1)][0].Clear();
+                    }
+                    else if(playerPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 2)))
+                    {
+                        playerPiece.RouletteClear();
+                        BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(true, 2)][0].Clear();
+                    }
+                };
+                TurnManager.OnRouletteSpin += (isClockwise, spinValue) =>
+                {
+                    for(int i = 0; i < RouletteManager.rouletteNum; i++)
+                    {
+                        if(RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 1)))
+                        {
+                            BuffManager.AddBuffToTarget(BuffManager.Inst.roulettePieceBuff[RouletteManager.Inst.roulettePieces[i]], spinValue, 1, -1);
+                        }
+                        else if(RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 2)))
+                        {
+                            BuffManager.AddBuffToTarget(BuffManager.Inst.roulettePieceBuff[RouletteManager.Inst.roulettePieces[i]], spinValue * 2, 1, -1);
+                        }
+                    }
+                };
+                // 트리거 게이지 최대치 설정
+                TurnManager.Inst.playerTriggerMaxCnt = 12;
+                // 트리거 조각 설정
+                rItem.rtype = new RouletteType(ERouletteType.Attack);
+                rItem.value = 24;
+                if(personaName == "사냥 본능+") 
+                {
+                    rItem.value = 36;
+                }
+                RouletteManager.Inst.playerTriggerPiece = rItem;
+                // 트리거 조건 설정
+                TurnManager.OnUseCard += (x) =>
+                {
+                    TurnManager.Inst.TriggerPlayerPassive(1);
+                };
+                // 트리거 효과 설정
+                RouletteManager.PlayerTriggerActivation = (isEnemy, totalVal) =>
+                {
+                    TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette);
+                };
+                break;
         }
     }
     public void SetShadow()
     {
         if (TurnManager.Inst.characterSO.shadowPiece == null) return;
-        PlayerSpecialRoulette2Sprite = TurnManager.Inst.characterSO.shadowPiece.specialRouletteSprite;
-        PlayerSpecialRoulette2Title = TurnManager.Inst.characterSO.shadowPiece.specialRouletteTitle;
-        PlayerSpecialRoulette2Text = TurnManager.Inst.characterSO.shadowPiece.specialRouletteText;
+        for(int i = 0; i < TurnManager.Inst.characterSO.shadowPiece.playerSpecialRoulettes.Length; i++)
+        {
+            playerSpecialRoulettes[GetSpecialRouletteIdx(false, i)] = new SpecialRoulette(TurnManager.Inst.characterSO.shadowPiece.playerSpecialRoulettes[i]);
+        }
         RouletteItem rItem = new RouletteItem();
         string shadowName = "";
         if (TurnManager.Inst.characterSO.shadowPiece.shadow.isEnhanced) shadowName = TurnManager.Inst.characterSO.shadowPiece.shadow.enhancedPassive.name;
@@ -323,42 +481,60 @@ public class PassiveManager : MonoBehaviour
         {
             case "붉은 송곳니":
             case "붉은 송곳니+":
-                // 특수 룰렛 설정
                 BuffManager.InitSpecialRouletteBuffs += () =>
                 {
-                    BuffManager.Inst.rouletteBuff_PlayerSpecial2.Add(new List<Buff>());
-                    BuffManager.Inst.rouletteBuff_PlayerSpecial2.Add(new List<Buff>());
+                    BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(false, 0)].Add(new List<Buff>());
+                    BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(false, 0)].Add(new List<Buff>());
+                    BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(false, 1)].Add(new List<Buff>());
+                    BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(false, 1)].Add(new List<Buff>());
                 };
-                PlayerSpecialRoulette2Activation = (isEnemy, value) =>
+                playerSpecialRouletteActivation[GetSpecialRouletteIdx(false, 0)] = (isEnemy, value) =>
                 {
                     int trueDamage = 0;
-                    bool isEnhanced = false;
                     if (isEnemy)
                     {
                         trueDamage = TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette);
-                        isEnhanced = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].isEnhanced;
                     }
                     else
                     {
                         trueDamage = TurnManager.Inst.TakeDmg(value, EDamageSource.Roulette);
-                        isEnhanced = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].isEnhanced;
                     }
                     int healVal = 0;
-                    if (isEnhanced) healVal = trueDamage / 2;
-                    else healVal = trueDamage / 3;
-                    int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_PlayerSpecial2[1], healVal);
+                    healVal = trueDamage / 3;
+                    int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(false, 0)][1], healVal);
                     TurnManager.Inst.TakeDmg(-totalVal_Heal, EDamageSource.Roulette);
                 };
-                PlayerSpecialRoulette2Clear = (index) =>
+                playerSpecialRouletteClear[GetSpecialRouletteIdx(false, 0)] = (index) =>
                 {
-                    RouletteManager.Inst.EnchantRoulettePiece(index, ERouletteType.None, 0);
+                    RouletteManager.Inst.EnchantRoulettePiece(index, new RouletteType(ERouletteType.None), 0);
+                };
+                playerSpecialRouletteActivation[GetSpecialRouletteIdx(false, 1)] = (isEnemy, value) =>
+                {
+                    int trueDamage = 0;
+                    if (isEnemy)
+                    {
+                        trueDamage = TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette);
+                    }
+                    else
+                    {
+                        trueDamage = TurnManager.Inst.TakeDmg(value, EDamageSource.Roulette);
+                    }
+                    int healVal = 0;
+                    healVal = trueDamage / 2;
+                    int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(false, 0)][1], healVal);
+                    TurnManager.Inst.TakeDmg(-totalVal_Heal, EDamageSource.Roulette);
+                };
+                playerSpecialRouletteClear[GetSpecialRouletteIdx(false, 1)] = (index) =>
+                {
+                    RouletteManager.Inst.EnchantRoulettePiece(index, new RouletteType(ERouletteType.None), 0);
                 };
                 // 패시브 효과 설정
                 TurnManager.OnRouletteActivate += () =>
                 {
+                    if(RouletteManager.Inst.isTriggerActivated) return;
                     var playerPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat];
                     var enemyPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat];
-                    if (enemyPiece.roulette.type == ERouletteType.Attack)
+                    if (enemyPiece.roulette.rtype.type == ERouletteType.Attack)
                     {
                         int damage = BuffManager.Inst.GetBuffedRouletteValue(enemyPiece);
                         int heal = 0;
@@ -366,7 +542,7 @@ public class PassiveManager : MonoBehaviour
                         else if (shadowName == "붉은 송곳니+") heal = damage / 2;
                         TurnManager.Inst.TakeDmg(-heal, EDamageSource.Passive);
                     }
-                    if (playerPiece.roulette.type == ERouletteType.Attack)
+                    if (playerPiece.roulette.rtype.type == ERouletteType.Attack)
                     {
                         int damage = BuffManager.Inst.GetBuffedRouletteValue(playerPiece);
                         int heal = 0;
@@ -382,7 +558,7 @@ public class PassiveManager : MonoBehaviour
                 // 특수 룰렛 설정
                 BuffManager.InitSpecialRouletteBuffs += () =>
                 {
-                    BuffManager.Inst.rouletteBuff_PlayerSpecial2.Add(new List<Buff>());
+                    BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(false, 0)].Add(new List<Buff>());
                 };
                 TurnManager.OnRouletteSpin += (x, y) =>
                 {
@@ -390,28 +566,28 @@ public class PassiveManager : MonoBehaviour
                     {
                         for (int i = 0; i < RouletteManager.rouletteNum; i++)
                         {
-                            if (RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.Player_Special_2)
+                            if (RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 0)))
                             {
                                 RouletteManager.Inst.roulettePieces[i].roulette.value--;
                                 int val = BuffManager.Inst.GetBuffedRouletteValue(RouletteManager.Inst.roulettePieces[i]);
                                 if (val == 0)
                                 {
-                                    PlayerSpecialRoulette2Clear?.Invoke(i);
+                                    playerSpecialRouletteClear[GetSpecialRouletteIdx(false, 0)]?.Invoke(i);
                                 }
                             }
                         }
                     }
                 };
-                PlayerSpecialRoulette2Clear = (index) =>
+                playerSpecialRouletteClear[GetSpecialRouletteIdx(false, 0)] = (index) =>
                 {
-                    RouletteManager.Inst.EnchantRoulettePiece(index, ERouletteType.None, 0);
+                    RouletteManager.Inst.EnchantRoulettePiece(index, new RouletteType(ERouletteType.None), 0);
                 };
                 // 패시브 효과 설정
                 int cardCnt = 0;
                 int maxCardCnt = 0;
                 if (shadowName == "손기술") maxCardCnt = 3;
                 else if (shadowName == "손기술+") maxCardCnt = 2;
-                TurnManager.OnUseCard += () =>
+                TurnManager.OnUseCard += (x) =>
                 {
                     cardCnt++;
                     if(cardCnt >= maxCardCnt)
@@ -426,17 +602,17 @@ public class PassiveManager : MonoBehaviour
                 // 특수 룰렛 설정
                 BuffManager.InitSpecialRouletteBuffs += () =>
                 {
-                    BuffManager.Inst.rouletteBuff_PlayerSpecial2.Add(new List<Buff>());
+                    BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(false, 0)].Add(new List<Buff>());
                 };
                 List<FrozenRoulette> frozenRoulettes = new List<FrozenRoulette>();
                 TurnManager.CheckRouletteEnchantable += (index, type) =>
                 {
                     var frozenChk = frozenRoulettes.Find(x => x.rIdx == index);
-                    if (frozenChk != null && RouletteManager.Inst.roulettePieces[index].roulette.type == ERouletteType.Player_Special_2)
+                    if (frozenChk != null && RouletteManager.Inst.roulettePieces[index].roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 0)))
                     {
                         return false;
                     }
-                    if(frozenChk == null && type == ERouletteType.Player_Special_2)
+                    if(frozenChk == null && type == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 0)))
                     {
                         GameObject frozenSprite = new GameObject("FrozenIcon");
                         FrozenRoulette frzRlt = new FrozenRoulette();
@@ -449,9 +625,9 @@ public class PassiveManager : MonoBehaviour
                         frozenSprite.transform.localRotation = Quaternion.Euler(0f, 0f, -15f);
                         SpriteRenderer frozenSpriteRenderer = frozenSprite.AddComponent<SpriteRenderer>();
                         frozenSpriteRenderer.sortingOrder = RouletteManager.Inst.roulettePieces[index].GetComponent<SpriteRenderer>().sortingOrder + 1;
-                        frozenSpriteRenderer.sprite = TurnManager.Inst.characterSO.shadowPiece.specialRouletteSprite;
+                        frozenSpriteRenderer.sprite = TurnManager.Inst.characterSO.shadowPiece.playerSpecialRoulettes[0].sprite;
                         frozenSpriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
-                        PlayerSpecialRoulette2Sprite = RouletteManager.Inst.roulettePieces[index].originalSprite;
+                        playerSpecialRoulettes[GetSpecialRouletteIdx(false, 0)].sprite = RouletteManager.Inst.roulettePieces[index].originalSprite;
                         if(RouletteManager.Inst.isTriggerActivated)
                         {
                             frozenSprite.SetActive(false);
@@ -467,29 +643,29 @@ public class PassiveManager : MonoBehaviour
                 {
                     for (int i = 0; i < RouletteManager.rouletteNum; i++)
                     {
-                        if (RouletteManager.Inst.roulettePieces[i].roulette.type == ERouletteType.Player_Special_2)
+                        if (RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 0)))
                         {
                             RouletteManager.Inst.roulettePieces[i].roulette.value--;
                             int val = BuffManager.Inst.GetBuffedRouletteValue(RouletteManager.Inst.roulettePieces[i]);
                             if (val == 0)
                             {
-                                PlayerSpecialRoulette2Clear?.Invoke(i);
+                                playerSpecialRouletteClear[GetSpecialRouletteIdx(false, 0)]?.Invoke(i);
                             }
                         }
                     }
                 };
-                PlayerSpecialRoulette2Clear = (index) =>
+                playerSpecialRouletteClear[GetSpecialRouletteIdx(false, 0)] = (index) =>
                 {
                     var frozenChk = frozenRoulettes.Find(x => x.rIdx == index);
                     if (frozenChk != null)
                     {
-                        RouletteManager.Inst.EnchantRoulettePiece(index, frozenChk.rItem.type, frozenChk.rItem.value);
+                        RouletteManager.Inst.EnchantRoulettePiece(index, frozenChk.rItem.rtype, frozenChk.rItem.value);
                         Destroy(frozenChk.frozenIcon);
                         frozenRoulettes.Remove(frozenChk);
                     }
                     else
                     {
-                        RouletteManager.Inst.EnchantRoulettePiece(index, ERouletteType.None, 0);
+                        RouletteManager.Inst.EnchantRoulettePiece(index, new RouletteType(ERouletteType.None), 0);
                     }
                 };
                 // 패시브 효과 설정
@@ -507,13 +683,134 @@ public class PassiveManager : MonoBehaviour
                     }
                 };
                 break;
+            case "영역 본능":
+            case "영역 본능+":
+                // 특수 룰렛 설정
+                // 특수 룰렛 설정
+                BuffManager.InitSpecialRouletteBuffs += () =>
+                {
+                    BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(false, 0)].Add(new List<Buff>());
+                    BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(false, 1)].Add(new List<Buff>());
+                    BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(false, 2)].Add(new List<Buff>());
+                };
+                playerSpecialRouletteActivation[GetSpecialRouletteIdx(false, 0)] = (isEnemy, value) =>
+                {
+                    if (isEnemy)
+                    {
+                        TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette);
+                    }
+                    else
+                    {
+                        TurnManager.Inst.TakeDmg(value, EDamageSource.Roulette);
+                    }
+                };
+                playerSpecialRouletteClear[GetSpecialRouletteIdx(false, 0)] = (index) =>
+                {
+                    RouletteManager.Inst.EnchantRoulettePiece(index, new RouletteType(ERouletteType.None), 0);
+                };
+                playerSpecialRouletteActivation[GetSpecialRouletteIdx(false, 1)] = (isEnemy, value) =>
+                {
+                    if (isEnemy)
+                    {
+                        TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette);
+                    }
+                    else
+                    {
+                        TurnManager.Inst.TakeDmg(value, EDamageSource.Roulette);
+                    }
+                };
+                playerSpecialRouletteClear[GetSpecialRouletteIdx(false, 1)] = (index) =>
+                {
+                    RouletteManager.Inst.EnchantRoulettePiece(index, new RouletteType(ERouletteType.None), 0);
+                };
+                playerSpecialRouletteActivation[GetSpecialRouletteIdx(false, 2)] = (isEnemy, value) =>
+                {
+                    if (isEnemy)
+                    {
+                        TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette);
+                    }
+                    else
+                    {
+                        TurnManager.Inst.TakeDmg(value, EDamageSource.Roulette);
+                    }
+                };
+                playerSpecialRouletteClear[GetSpecialRouletteIdx(false, 2)] = (index) =>
+                {
+                    RouletteManager.Inst.EnchantRoulettePiece(index, new RouletteType(ERouletteType.None), 0);
+                };
+                TurnManager.OnRouletteActivate += () =>
+                {
+                    if(RouletteManager.Inst.isTriggerActivated) return;
+                    var playerPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat];
+                    var enemyPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat];
+                    if (enemyPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 0)))
+                    {
+                        enemyPiece.roulette.value -= 3;
+                        if(enemyPiece.roulette.value <= 0)
+                        {
+                            enemyPiece.RouletteClear();
+                        }
+                    }
+                    else if(enemyPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 1)))
+                    {
+                        enemyPiece.RouletteClear();
+                        BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(false, 1)][0].Clear();
+                    }
+                    else if(enemyPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 2)))
+                    {
+                        enemyPiece.RouletteClear();
+                        BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(false, 2)][0].Clear();
+                    }
+                    if (playerPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 0)))
+                    {
+                        playerPiece.roulette.value -= 3;
+                        if(playerPiece.roulette.value <= 0)
+                        {
+                            playerPiece.RouletteClear();
+                        }
+                    }
+                    else if(playerPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 1)))
+                    {
+                        playerPiece.RouletteClear();
+                        BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(false, 1)][0].Clear();
+                    }
+                    else if(playerPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 2)))
+                    {
+                        playerPiece.RouletteClear();
+                        BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(false, 2)][0].Clear();
+                    }
+                };
+                TurnManager.OnRouletteSpin += (isClockwise, spinValue) =>
+                {
+                    for(int i = 0; i < RouletteManager.rouletteNum; i++)
+                    {
+                        if(RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 1)))
+                        {
+                            BuffManager.AddBuffToTarget(BuffManager.Inst.roulettePieceBuff[RouletteManager.Inst.roulettePieces[i]], spinValue, 1, -1);
+                        }
+                        else if(RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 2)))
+                        {
+                            BuffManager.AddBuffToTarget(BuffManager.Inst.roulettePieceBuff[RouletteManager.Inst.roulettePieces[i]], spinValue * 2, 1, -1);
+                        }
+                    }
+                };
+                // 패시브 효과 설정
+                TurnManager.OnGameStart += () =>
+                {
+                    EnemyAction.EnchantAction(new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 0)), playerSpecialRoulettes[GetSpecialRouletteIdx(false, 0)].baseVal);
+                    if(shadowName == "영역 본능+") EnemyAction.EnchantAction(new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 0)), playerSpecialRoulettes[GetSpecialRouletteIdx(false, 0)].baseVal);
+                };
+                break;
         }
     }
 
     private void OnDestroy()
     {
-        PlayerSpecialRoulette1Activation = null;
-        PlayerSpecialRoulette2Activation = null;
+        for(int i = 0; i < DreamPiece_Base.playerSpecialRouletteNum * 2; i++)
+        {
+            playerSpecialRouletteActivation[i] = null;
+            playerSpecialRouletteClear[i] = null;
+        }
     }
 }
 

@@ -63,7 +63,7 @@ public class RouletteManager : MonoBehaviour
             {
                 pieces *= -1;
             }
-            Vector3 newRotation = new Vector3(0f, 0f, rouletteArea.transform.eulerAngles.z + 360f * pieces / rouletteNum);
+            Vector3 newRotation = new Vector3(rouletteArea.transform.parent.eulerAngles.x, rouletteArea.transform.parent.eulerAngles.y, rouletteArea.transform.parent.eulerAngles.z + 360f * pieces / rouletteNum);
             playerLookat = (playerLookat + pieces + rouletteNum) % rouletteNum;
             enemyLookat = (enemyLookat + pieces + rouletteNum) % rouletteNum;
             rouletteArea.transform.parent.DORotate(newRotation, spinDelay, RotateMode.FastBeyond360).OnComplete(() => {
@@ -77,10 +77,10 @@ public class RouletteManager : MonoBehaviour
 
     private int ActivationWeight(int index)
     {
-        if (roulettePieces[index].roulette.type == ERouletteType.Shield) return 0;
-        if (roulettePieces[index].roulette.type == ERouletteType.Heal) return 1;
-        if (roulettePieces[index].roulette.type == ERouletteType.Attack) return 3;
-        if (roulettePieces[index].roulette.type == ERouletteType.None) return 4;
+        if (roulettePieces[index].roulette.rtype.type == ERouletteType.Shield) return 0;
+        if (roulettePieces[index].roulette.rtype.type == ERouletteType.Heal) return 1;
+        if (roulettePieces[index].roulette.rtype.type == ERouletteType.Attack) return 3;
+        if (roulettePieces[index].roulette.rtype.type == ERouletteType.None) return 4;
         return 2;
     }
 
@@ -157,7 +157,7 @@ public class RouletteManager : MonoBehaviour
         BuffManager.Inst.rouletteBuff_Trigger.Clear();
     }
 
-    public bool EnchantRoulette(bool isEnemy, ERouletteType rType, int rValue)
+    public bool EnchantRoulette(bool isEnemy, RouletteType rType, int rValue)
     {
         bool ret = false;
         if (isEnemy)
@@ -171,19 +171,19 @@ public class RouletteManager : MonoBehaviour
         return ret;
     }
 
-    public bool EnchantRoulettePiece(int index, ERouletteType rType, int rValue)
+    public bool EnchantRoulettePiece(int index, RouletteType rType, int rValue)
     {
         bool ret = true;
         if(TurnManager.CheckRouletteEnchantable != null)
         {
-            foreach (Func<int, ERouletteType, bool> func in TurnManager.CheckRouletteEnchantable.GetInvocationList())
+            foreach (Func<int, RouletteType, bool> func in TurnManager.CheckRouletteEnchantable.GetInvocationList())
             {
                 ret = ret && func.Invoke(index, rType);
             }
             if (ret == false) return false;
         }
         RouletteItem rItem = new RouletteItem();
-        rItem.type = rType;
+        rItem.rtype = rType;
         rItem.value = rValue;
         roulettePieces[index].Setup(rItem);
         Utils.AllignActions(ref TurnManager.OnRouletteEnchant, typeof(ShowBuff), typeof(RelicManager));
@@ -191,18 +191,18 @@ public class RouletteManager : MonoBehaviour
         return true;
     }
 
-    public bool EnchantRoulettePiece(RoulettePiece piece, ERouletteType rType, int rValue)
+    public bool EnchantRoulettePiece(RoulettePiece piece, RouletteType rType, int rValue)
     {
         int index = Array.IndexOf(roulettePieces, piece);
         return EnchantRoulettePiece(index, rType, rValue);
     }
 
-    public int CountRouletteType(ERouletteType rType)
+    public int CountRouletteType(RouletteType rType)
     {
         int counter = 0;
         for (int i = 0; i < rouletteNum; i++)
         {
-            if (roulettePieces[i].roulette.type == rType)
+            if (roulettePieces[i].roulette.rtype == rType)
             {
                 counter++;
             }
@@ -229,7 +229,7 @@ public class RouletteManager : MonoBehaviour
             roulettePieces[i].Setup(EnemyManager.Inst.enemy.roulettePattern[i]);
         }
         RouletteItem tempRoulettePiece = new RouletteItem();
-        tempRoulettePiece.type = ERouletteType.None;
+        tempRoulettePiece.rtype = new RouletteType(ERouletteType.None);
         tempRoulettePiece.value = 0;
         triggerPiece_None = tempRoulettePiece;
         // roulettePieces[triggerPos].Setup(tempRoulettePiece);

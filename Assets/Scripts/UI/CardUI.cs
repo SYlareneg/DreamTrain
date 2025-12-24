@@ -37,7 +37,7 @@ public class CardUI : MonoBehaviour
                 cardImg.sprite = cardTypes[0]; break;
             case CardType.Enchant:
                 cardImg.sprite = cardTypes[1]; break;
-            case CardType.Effect:
+            case CardType.Skill:
                 cardImg.sprite = cardTypes[2]; break;
         }
 
