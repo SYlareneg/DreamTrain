@@ -146,12 +146,29 @@ public class RelicItem
     public RelicActivateConditionArray[] relicConditions;
     public RelicActivateEffect[] relicEffects;
     public bool isEnhanced;
+
+    public RelicItem(RelicItem relicItem)
+    {
+        relicOwner = relicItem.relicOwner;
+        relicSprite = relicItem.relicSprite;
+        relicName = relicItem.relicName;
+        relicTxt = relicItem.relicTxt;
+        relicTimings = relicItem.relicTimings;
+        relicConditions = relicItem.relicConditions;
+        relicEffects = relicItem.relicEffects;
+        isEnhanced = relicItem.isEnhanced;
+    }
 }
 
 [System.Serializable]
 public class RelicItem_Enhanceable : RelicItem
 {
     public RelicItem enhancedRelicItem;
+
+    public RelicItem_Enhanceable(RelicItem_Enhanceable relicItem_Enhanceable) : base((RelicItem)relicItem_Enhanceable)
+    {
+        enhancedRelicItem = new RelicItem(relicItem_Enhanceable.enhancedRelicItem);
+    }
 }
 
 [CreateAssetMenu(fileName = "RelicSO", menuName = "Scriptable Objects/RelicSO")]

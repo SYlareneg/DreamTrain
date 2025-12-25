@@ -12,7 +12,6 @@ public class Item
     [Tooltip("카드 제목")] public string name;
     [Tooltip("카드 코스트")] public int cost;
     [Tooltip("카드 타입")] public CardType type;
-    [Tooltip("카드 속성 (공용, 페르소나, 그림자)")] public EPassiveType element;
     [Tooltip("카드 희귀도")] public CardRarity rarity;
     [Tooltip("카드가 속한 꿈 조각 번호")] public int dreamPieceNum;
     [Tooltip("휘발성")] public bool isVolatile;

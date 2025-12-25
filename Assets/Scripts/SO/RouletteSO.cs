@@ -9,22 +9,32 @@ public struct RouletteType
 {
     public ERouletteType type;
     public int specialTypeIdx;
+    public int enemyIdx;
+
+    public RouletteType(ERouletteType type, int specialTypeIdx, int enemyIdx)
+    {
+        this.type = type;
+        this.specialTypeIdx = specialTypeIdx;
+        this.enemyIdx = enemyIdx;
+    }
 
     public RouletteType(ERouletteType type, int specialTypeIdx)
     {
         this.type = type;
         this.specialTypeIdx = specialTypeIdx;
+        this.enemyIdx = 0;
     }
 
     public RouletteType(ERouletteType type)
     {
         this.type = type;
         this.specialTypeIdx = -1;
+        this.enemyIdx = 0;
     }
 
     public static bool operator ==(RouletteType a, RouletteType b)
     {
-        return a.type == b.type && a.specialTypeIdx == b.specialTypeIdx;
+        return a.type == b.type && a.specialTypeIdx == b.specialTypeIdx && a.enemyIdx == b.enemyIdx;
     }
 
     public static bool operator !=(RouletteType a, RouletteType b)
@@ -34,7 +44,7 @@ public struct RouletteType
 
     public bool Equals(RouletteType other)
     {
-        return type == other.type && specialTypeIdx == other.specialTypeIdx;
+        return type == other.type && specialTypeIdx == other.specialTypeIdx && enemyIdx == other.enemyIdx;
     }
 
     public override bool Equals(object obj)
@@ -44,7 +54,7 @@ public struct RouletteType
 
     public override int GetHashCode()
     {
-        return (type, specialTypeIdx).GetHashCode();
+        return (type, specialTypeIdx, enemyIdx).GetHashCode();
     }
 }
 
@@ -79,6 +89,24 @@ public class RouletteItem
 {
     [Tooltip("칸 종류")] public RouletteType rtype;
     [Tooltip("칸 계수")] public int value;
+
+    public RouletteItem(RouletteItem rouletteItem)
+    {
+        rtype = rouletteItem.rtype;
+        value = rouletteItem.value;
+    }
+
+    public RouletteItem()
+    {
+        rtype = new RouletteType(ERouletteType.None);
+        value = 0;
+    }
+
+    public RouletteItem(RouletteType rtype, int value)
+    {
+        this.rtype = rtype;
+        this.value = value;
+    }
 }
 
 [CreateAssetMenu(fileName = "RouletteSO", menuName = "Scriptable Objects/RouletteSO")]
