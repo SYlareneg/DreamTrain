@@ -10,18 +10,20 @@ public class Card : MonoBehaviour
 {
     [SerializeField] SpriteRenderer card;
     [SerializeField] SpriteRenderer character;
-    [SerializeField] SpriteRenderer element;
+    [SerializeField] SpriteRenderer type;
+    [SerializeField] SpriteRenderer rarity;
     [SerializeField] TMP_Text nameTMP;
     [SerializeField] TMP_Text costTMP;
+    [SerializeField] TMP_Text typeTMP;
     public TMP_Text textTMP;
     [SerializeField] Sprite[] cardTypes;
-    [SerializeField] Sprite[] elementTypes;
+    [SerializeField] Sprite[] rarityTypes;
 
     public Item item;
     public PRS originPRS;
     
     public Action OnCardClicked; 
-    public enum SceneType { Dialogue, Emotion, General};
+    public enum SceneType { Dialogue, Emotion, General };
     
     SceneType currType = SceneType.General;
     public void Setup(Item item)
@@ -35,27 +37,25 @@ public class Card : MonoBehaviour
 
         this.item = item;
 
-        switch (this.item.type)
+        type.sprite = cardTypes[(int)this.item.type];
+        switch(this.item.type)
         {
             case CardType.Turn:
-                card.sprite = cardTypes[0]; break;
+                typeTMP.text = "회전";
+                break;
             case CardType.Enchant:
-                card.sprite = cardTypes[1]; break;
+                typeTMP.text = "부여";
+                break;
             case CardType.Skill:
-                card.sprite = cardTypes[2]; break;
+                typeTMP.text = "스킬";
+                break;
+            case CardType.Dream:
+                typeTMP.text = "몽상";
+                break;
         }
+        rarity.sprite = rarityTypes[(int)this.item.rarity];
 
         character.sprite = Utils.LoadSpriteByName("Cards", this.item.sprite);
-
-        switch (this.item.element)
-        {
-            case EPassiveType.Normal:
-                element.sprite = elementTypes[0]; break;
-            case EPassiveType.Persona:
-                element.sprite = elementTypes[1]; break;
-            case EPassiveType.Shadow:
-                element.sprite = elementTypes[2]; break;
-        }
 
         nameTMP.text = this.item.name;
         ShowBuffedCost();
@@ -163,7 +163,6 @@ public class Card : MonoBehaviour
         else character.color = Color.clear;
         
         costTMP.text = "";
-        if (element != null) element.color = Color.clear;
     }
     
     public void SetupEmotion(string title, string description, Sprite charSprite, Action onClick)
@@ -177,7 +176,6 @@ public class Card : MonoBehaviour
         else character.color = Color.clear;
         
         costTMP.text = "";
-        if (element != null) element.color = Color.clear;
     }
     
     private void OnMouseOver()

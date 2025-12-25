@@ -10,12 +10,14 @@ public class CardUI : MonoBehaviour
 {
     [SerializeField] Image cardImg;
     [SerializeField] Image character;
-    [SerializeField] Image element;
+    [SerializeField] Image type;
+    [SerializeField] Image rarity;
     [SerializeField] TMP_Text nameTMP;
     [SerializeField] TMP_Text costTMP;
+    [SerializeField] TMP_Text typeTMP;
     [SerializeField] TMP_Text textTMP;
     [SerializeField] Sprite[] cardTypes;
-    [SerializeField] Sprite[] elementTypes;
+    [SerializeField] Sprite[] rarityTypes;
 
     public Item item;
 
@@ -31,27 +33,25 @@ public class CardUI : MonoBehaviour
         this.item = item;
         UnsetBlank();
 
-        switch (this.item.type)
+        type.sprite = cardTypes[(int)this.item.type];
+        switch(this.item.type)
         {
             case CardType.Turn:
-                cardImg.sprite = cardTypes[0]; break;
+                typeTMP.text = "회전";
+                break;
             case CardType.Enchant:
-                cardImg.sprite = cardTypes[1]; break;
+                typeTMP.text = "부여";
+                break;
             case CardType.Skill:
-                cardImg.sprite = cardTypes[2]; break;
+                typeTMP.text = "스킬";
+                break;
+            case CardType.Dream:
+                typeTMP.text = "몽상";
+                break;
         }
+        rarity.sprite = rarityTypes[(int)this.item.rarity];
 
         character.sprite = Utils.LoadSpriteByName("Cards", this.item.sprite);
-
-        switch (this.item.element)
-        {
-            case EPassiveType.Normal:
-                element.sprite = elementTypes[0]; break;
-            case EPassiveType.Persona:
-                element.sprite = elementTypes[1]; break;
-            case EPassiveType.Shadow:
-                element.sprite = elementTypes[2]; break;
-        }
 
         nameTMP.text = this.item.name;
         costTMP.text = this.item.cost.ToString();
@@ -94,7 +94,7 @@ public class CardUI : MonoBehaviour
     public void SetBlank()
     {
         character.gameObject.SetActive(false);
-        element.gameObject.SetActive(false);
+        rarity.gameObject.SetActive(false);
         nameTMP.gameObject.SetActive(false);
         costTMP.gameObject.SetActive(false);
         textTMP.gameObject.SetActive(false);
@@ -104,7 +104,7 @@ public class CardUI : MonoBehaviour
     public void UnsetBlank()
     {
         character.gameObject.SetActive(true);
-        element.gameObject.SetActive(true);
+        rarity.gameObject.SetActive(true);
         nameTMP.gameObject.SetActive(true);
         costTMP.gameObject.SetActive(true);
         textTMP.gameObject.SetActive(true);

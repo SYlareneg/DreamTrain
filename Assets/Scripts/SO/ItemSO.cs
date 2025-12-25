@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum CardType { Turn, Enchant, Skill, Dream };
+public enum CardRarity { Normal, Rare };
 public enum ECardValueType { Damage, Heal, Shield, Special, Default };
 
 [System.Serializable]
@@ -10,8 +11,9 @@ public class Item
 {
     [Tooltip("카드 제목")] public string name;
     [Tooltip("카드 코스트")] public int cost;
-    [Tooltip("카드 타입 (배경이미지 결정)")] public CardType type;
+    [Tooltip("카드 타입")] public CardType type;
     [Tooltip("카드 속성 (공용, 페르소나, 그림자)")] public EPassiveType element;
+    [Tooltip("카드 희귀도")] public CardRarity rarity;
     [Tooltip("카드가 속한 꿈 조각 번호")] public int dreamPieceNum;
     [Tooltip("휘발성")] public bool isVolatile;
     [Tooltip("소멸")] public bool isVanish;
@@ -28,7 +30,7 @@ public class Item
         name = item.name;
         cost = item.cost;
         type = item.type;
-        element = item.element;
+        rarity = item.rarity;
         dreamPieceNum = item.dreamPieceNum;
         isVolatile = item.isVolatile;
         isVanish = item.isVanish;

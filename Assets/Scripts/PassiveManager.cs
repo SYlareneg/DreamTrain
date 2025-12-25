@@ -173,7 +173,7 @@ public class PassiveManager : MonoBehaviour
                     if (personaName == "카드 숨기기+") ace.name += "+";
                     ace.cost = 1;
                     ace.type = CardType.Skill;
-                    ace.element = EPassiveType.Normal;
+                    ace.rarity = CardRarity.Normal;
                     ace.dreamPieceNum = -1;
                     ace.isVolatile = false;
                     ace.isVanish = false;

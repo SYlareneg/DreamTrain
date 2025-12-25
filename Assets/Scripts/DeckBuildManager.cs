@@ -139,26 +139,23 @@ public class DeckBuildManager : MonoBehaviour
         List<Item_Enhanceable> itemList = newDP.cards;
         foreach (Item_Enhanceable item in itemList)
         {
-            if (item.element == pType || item.element == EPassiveType.Normal)
-            {
-                GameObject cardObject = null;
-                CardUI_Draggable card = null;
-                cardObject = Instantiate(draggableCardUIPrefab, cardListScroll.transform.position, Utils.QI);
-                cardObject.transform.SetParent(cardListScroll.transform);
-                card = cardObject.GetComponent<CardUI_Draggable>();
-                card.Setup((Item)item);
-                card.item.num = 2;
-                card.raycaster = canvas.GetComponent<GraphicRaycaster>();
-                availableCardList.Add(card);
+            GameObject cardObject = null;
+            CardUI_Draggable card = null;
+            cardObject = Instantiate(draggableCardUIPrefab, cardListScroll.transform.position, Utils.QI);
+            cardObject.transform.SetParent(cardListScroll.transform);
+            card = cardObject.GetComponent<CardUI_Draggable>();
+            card.Setup((Item)item);
+            card.item.num = 2;
+            card.raycaster = canvas.GetComponent<GraphicRaycaster>();
+            availableCardList.Add(card);
 
-                cardObject = Instantiate(draggableCardUIPrefab, cardListScroll.transform.position, Utils.QI);
-                cardObject.transform.SetParent(cardListScroll.transform);
-                card = cardObject.GetComponent<CardUI_Draggable>();
-                card.Setup(item.enhancedItem);
-                card.item.num = 2;
-                card.raycaster = canvas.GetComponent<GraphicRaycaster>();
-                availableCardList.Add(card);
-            }
+            cardObject = Instantiate(draggableCardUIPrefab, cardListScroll.transform.position, Utils.QI);
+            cardObject.transform.SetParent(cardListScroll.transform);
+            card = cardObject.GetComponent<CardUI_Draggable>();
+            card.Setup(item.enhancedItem);
+            card.item.num = 2;
+            card.raycaster = canvas.GetComponent<GraphicRaycaster>();
+            availableCardList.Add(card);
         }
     }
 

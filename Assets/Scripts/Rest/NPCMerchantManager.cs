@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 using System.Linq;
+using System;
 
 public class NPCMerchantManager : MonoBehaviour
 {
@@ -19,8 +20,8 @@ public class NPCMerchantManager : MonoBehaviour
     [SerializeField] CardUI_Sell[] sellCards;
     [SerializeField] DreamPieceSO dreamPieceListSO;
     [SerializeField] ItemSO normalItemListSO;
-    [SerializeField] int[] sellCardCosts = new int[7];
-    [SerializeField] float[] sellCardWeights = new float[4];
+    [SerializeField] int[] sellCardCosts = new int[Enum.GetNames(typeof(CardRarity)).Length * 2 + 1];
+    [SerializeField] float[] sellCardWeights = new float[Enum.GetNames(typeof(CardRarity)).Length + 1];
     [SerializeField] float enhanceProbability;
     [SerializeField] Button rerollButton;
     [SerializeField] TMP_Text rerollTMP;
@@ -101,50 +102,34 @@ public class NPCMerchantManager : MonoBehaviour
 
         List<Item> shareCards = normalItemListSO.items;
         List<Item> normalCards = new List<Item>();
-        List<Item> personaCards = new List<Item>();
-        List<Item> shadowCards = new List<Item>();
-        List<Item> normalCards_enhanced = new List<Item>();
-        List<Item> personaCards_enhanced = new List<Item>();
-        List<Item> shadowCards_enhanced = new List<Item>();
+        List<Item>[] dreamCards = new List<Item>[Enum.GetNames(typeof(CardRarity)).Length];
+        List<Item>[] dreamCards_enhanced = new List<Item>[Enum.GetNames(typeof(CardRarity)).Length];
         DreamPiece_Reference persona_ref = dreamPieceListSO.dreamPieces.Find(x => x.name == characterSO.personaPiece.name);
         DreamPiece_Reference shadow_ref = dreamPieceListSO.dreamPieces.Find(x => x.name == characterSO.shadowPiece.name);
+        foreach(Item item in normalItemListSO.items)
+        {
+            normalCards.Add(item);
+        }
         foreach (Item_Enhanceable item in persona_ref.cards)
         {
-            if (item.element == EPassiveType.Normal)
-            {
-                normalCards.Add((Item)item);
-                normalCards_enhanced.Add(item.enhancedItem);
-            }
-            else if (item.element == EPassiveType.Persona)
-            {
-                personaCards.Add((Item)item);
-                personaCards_enhanced.Add(item.enhancedItem);
-            }
+            dreamCards[(int)item.rarity].Add((Item)item);
+            dreamCards_enhanced[(int)item.rarity].Add(item.enhancedItem);
         }
         foreach (Item_Enhanceable item in shadow_ref.cards)
         {
-            if (item.element == EPassiveType.Normal)
-            {
-                normalCards.Add((Item)item);
-                normalCards_enhanced.Add(item.enhancedItem);
-            }
-            else if (item.element == EPassiveType.Shadow)
-            {
-                shadowCards.Add((Item)item);
-                shadowCards_enhanced.Add(item.enhancedItem);
-            }
+            dreamCards[(int)item.rarity].Add((Item)item);
+            dreamCards_enhanced[(int)item.rarity].Add(item.enhancedItem);
         }
         foreach (CardUI_Sell sc in sellCards)
         {
-            bool isE = Random.value < enhanceProbability;
             float totalW = 0f;
-            for (int i = isE ? 1 : 0; i < sellCardWeights.Length; i++)
+            for (int i = 0; i < sellCardWeights.Length; i++)
             {
                 totalW += sellCardWeights[i];
             }
             float rPoint = Random.value * totalW;
-            int chooseCardPool = isE ? 1 : 0;
-            for (int i = isE ? 1 : 0; i < sellCardWeights.Length; i++)
+            int chooseCardPool = 0;
+            for (int i = 0; i < sellCardWeights.Length; i++)
             {
                 if (rPoint < sellCardWeights[i])
                 {
@@ -153,29 +138,26 @@ public class NPCMerchantManager : MonoBehaviour
                 }
                 rPoint -= sellCardWeights[i];
             }
-            List<Item> lookat;
+            List<Item> lookat = new List<Item>();
             int sellCost = sellCardCosts[0];
-            if (chooseCardPool > 0) sellCost = sellCardCosts[chooseCardPool * 2 + (isE ? 0 : -1)];
-            switch (chooseCardPool)
+            if(chooseCardPool == 0)
             {
-                case 0:
-                    lookat = shareCards;
-                    break;
-                case 1:
-                    if (isE) lookat = normalCards_enhanced;
-                    else lookat = normalCards;
-                    break;
-                case 2:
-                    if (isE) lookat = personaCards_enhanced;
-                    else lookat = personaCards;
-                    break;
-                case 3:
-                    if (isE) lookat = shadowCards_enhanced;
-                    else lookat = shadowCards;
-                    break;
-                default:
-                    lookat = new List<Item>();
-                    break;
+                lookat = normalCards;
+                sellCost = sellCardCosts[0];
+            }
+            else if(chooseCardPool > 0 && chooseCardPool <= Enum.GetNames(typeof(CardRarity)).Length)
+            {
+                bool isE = Random.value < enhanceProbability;
+                if(isE)
+                {
+                    lookat = dreamCards_enhanced[chooseCardPool - 1];
+                    sellCost = sellCardCosts[chooseCardPool * 2];
+                }
+                else
+                {
+                    lookat = dreamCards[chooseCardPool - 1];
+                    sellCost = sellCardCosts[chooseCardPool * 2 - 1];
+                }
             }
             int cardIdx = Random.Range(0, lookat.Count);
 
