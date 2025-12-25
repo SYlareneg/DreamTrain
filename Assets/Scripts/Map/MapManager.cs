@@ -97,6 +97,7 @@ public class MapManager : MonoBehaviour
 
     void Start()
     {
+        map = new Map();
         map.CreateMap(8, actSO.acts[0], actSO.normalNodes);
         PrintMap(map);
         curNode = map.sortedMapNodeList[0];

@@ -694,6 +694,10 @@ public class Card : MonoBehaviour
                     TurnManager.Inst.GetShield(false, tempVal, EDamageSource.Card);
                     BuffManager.AddBuffToTarget(BuffManager.Inst.roulettePieceBuff[RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat]], -tempVal, 1, -1);
                 }
+                else
+                {
+                    isCardUsed = false;
+                }
                 break;
             case "놀이 시간":
             case "놀이 시간+":

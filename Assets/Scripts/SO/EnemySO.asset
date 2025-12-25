@@ -37,7 +37,7 @@ MonoBehaviour:
           val: 3
           isTrigger: 0
       - pattern:
-        - type: 6
+        - type: 5
           typeNum: 0
           val: 5
           isTrigger: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
           val: 4
           isTrigger: 0
       - pattern:
-        - type: 6
+        - type: 5
           typeNum: 0
           val: 5
           isTrigger: 0
@@ -69,7 +69,7 @@ MonoBehaviour:
           val: 3
           isTrigger: 0
       - pattern:
-        - type: 6
+        - type: 5
           typeNum: 0
           val: 5
           isTrigger: 0
@@ -102,15 +102,15 @@ MonoBehaviour:
       text: "\uBC40\uD30C\uC774\uC5B4\uAC00 \uD2B8\uB9AC\uAC70 \uC0C1\uD0DC\uC785\uB2C8\uB2E4."
       patterns:
       - pattern:
-        - type: 6
+        - type: 5
           typeNum: 0
           val: 5
           isTrigger: 1
-        - type: 6
+        - type: 5
           typeNum: 0
           val: 5
           isTrigger: 1
-        - type: 6
+        - type: 5
           typeNum: 0
           val: 5
           isTrigger: 1
@@ -120,50 +120,62 @@ MonoBehaviour:
     - rtype:
         type: 1
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 5
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 3
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 5
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 3
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 5
     - rtype:
         type: 1
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 5
     - rtype:
         type: 2
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 2
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     enemySpecialRoulettes:
     - sprite: {fileID: 2548602056424267579, guid: d9684565a5c77ee4084b7c729e932a89, type: 3}
@@ -178,6 +190,7 @@ MonoBehaviour:
       text: "\uD53C\uD574\uB97C \uAC12\uB9CC\uD07C \uC8FC\uACE0, \uC785\uD78C \uD53C\uD574\uB9CC\uD07C
         \uBC40\uD30C\uC774\uC5B4\uC758 \uCCB4\uB825\uC774 \uD68C\uBCF5\uB418\uACE0,
         \uD761\uD608 \uCE74\uC6B4\uD2B8\uB97C 1 \uC5BB\uC2B5\uB2C8\uB2E4."
+    subEnemies: []
   - name: "\uBC15\uC950"
     health: 68
     actionNum: 2
@@ -209,7 +222,7 @@ MonoBehaviour:
           val: -3
           isTrigger: 0
       - pattern:
-        - type: 6
+        - type: 5
           typeNum: 0
           val: 4
           isTrigger: 0
@@ -231,7 +244,7 @@ MonoBehaviour:
           typeNum: 0
           val: 6
           isTrigger: 0
-        - type: 6
+        - type: 5
           typeNum: 0
           val: 4
           isTrigger: 0
@@ -253,12 +266,12 @@ MonoBehaviour:
           typeNum: 0
           val: -3
           isTrigger: 0
-        - type: 6
+        - type: 5
           typeNum: 1
           val: 4
           isTrigger: 1
       - pattern:
-        - type: 6
+        - type: 5
           typeNum: 0
           val: 4
           isTrigger: 0
@@ -266,7 +279,7 @@ MonoBehaviour:
           typeNum: 0
           val: 6
           isTrigger: 0
-        - type: 6
+        - type: 5
           typeNum: 1
           val: 4
           isTrigger: 1
@@ -279,7 +292,7 @@ MonoBehaviour:
           typeNum: 0
           val: -4
           isTrigger: 0
-        - type: 6
+        - type: 5
           typeNum: 1
           val: 4
           isTrigger: 1
@@ -288,11 +301,11 @@ MonoBehaviour:
           typeNum: 0
           val: 6
           isTrigger: 0
-        - type: 6
+        - type: 5
           typeNum: 0
           val: 4
           isTrigger: 0
-        - type: 6
+        - type: 5
           typeNum: 1
           val: 4
           isTrigger: 1
@@ -302,50 +315,62 @@ MonoBehaviour:
     - rtype:
         type: 3
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 5
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 0
         specialTypeIdx: 0
-      value: 0
-    - rtype:
-        type: 1
-        specialTypeIdx: 0
-      value: 4
-    - rtype:
-        type: 0
-        specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 1
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 4
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
+      value: 0
+    - rtype:
+        type: 1
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 4
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 3
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 5
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     enemySpecialRoulettes: []
     enemySpecialActions:
@@ -358,6 +383,7 @@ MonoBehaviour:
       title: "\uD761\uD608+"
       text: "\uD53C\uD574\uB97C \uAC12\uB9CC\uD07C \uC8FC\uACE0, \uC785\uD78C \uD53C\uD574\uB9CC\uD07C
         \uBC15\uC950\uC758 \uCCB4\uB825\uC774 \uD68C\uBCF5\uB429\uB2C8\uB2E4."
+    subEnemies: []
   - name: "\uBE44\uB458\uAE30"
     health: 49
     actionNum: 2
@@ -418,7 +444,7 @@ MonoBehaviour:
       text: "\uBE44\uB458\uAE30\uAC00 \uD2B8\uB9AC\uAC70 \uC0C1\uD0DC\uC785\uB2C8\uB2E4."
       patterns:
       - pattern:
-        - type: 6
+        - type: 5
           typeNum: 0
           val: 0
           isTrigger: 1
@@ -428,50 +454,62 @@ MonoBehaviour:
     - rtype:
         type: 3
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 5
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 1
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 5
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 1
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 5
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 2
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 3
     enemySpecialRoulettes:
     - sprite: {fileID: -1033747301121760791, guid: d70a422d594c0c64ca0e09b3852cd601, type: 3}
@@ -489,6 +527,7 @@ MonoBehaviour:
       text: "\uB8F0\uB81B\uC5D0 \uC874\uC7AC\uD558\uB294 \uB9C8\uC220 \uBAA8\uC790\uB97C
         \uBAA8\uB450 \uC81C\uAC70\uD558\uACE0, \uC81C\uAC70\uD55C \uB9C8\uC220 \uBAA8\uC790
         \uAC1C\uC218X5\uC758 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
+    subEnemies: []
   - name: "\uB9DD\uB839 1"
     health: 52
     actionNum: 2
@@ -561,50 +600,62 @@ MonoBehaviour:
     - rtype:
         type: 3
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 5
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 3
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 5
     - rtype:
         type: 1
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 5
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 2
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 2
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 3
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 5
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     enemySpecialRoulettes:
     - sprite: {fileID: 5301150221465536405, guid: c53e46bb395a59c42a367fa17a77f66b, type: 3}
@@ -612,6 +663,7 @@ MonoBehaviour:
       text: "\uD53C\uD574\uB97C \uAC12\uB9CC\uD07C \uC90D\uB2C8\uB2E4."
       baseVal: 5
     enemySpecialActions: []
+    subEnemies: []
   - name: "\uB9DD\uB839 2"
     health: 52
     actionNum: 2
@@ -640,7 +692,7 @@ MonoBehaviour:
           val: -3
           isTrigger: 0
       - pattern:
-        - type: 4
+        - type: 5
           typeNum: 0
           val: 1
           isTrigger: 0
@@ -669,8 +721,8 @@ MonoBehaviour:
       text: "\uB9DD\uB839 2\uAC00 \uD2B8\uB9AC\uAC70 \uC0C1\uD0DC\uC785\uB2C8\uB2E4."
       patterns:
       - pattern:
-        - type: 6
-          typeNum: 0
+        - type: 5
+          typeNum: 1
           val: 3
           isTrigger: 0
       phaseClear: 0
@@ -679,61 +731,75 @@ MonoBehaviour:
     - rtype:
         type: 3
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 5
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 3
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 5
     - rtype:
         type: 1
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 5
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 2
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 2
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 1
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 5
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
-    enemySpecialRoulettes:
-    - sprite: {fileID: 5301150221465536405, guid: c53e46bb395a59c42a367fa17a77f66b, type: 3}
-      title: "\uACF5\uACA9 \uB8F0\uB81B"
-      text: "\uD53C\uD574\uB97C \uAC12\uB9CC\uD07C \uC90D\uB2C8\uB2E4."
-      baseVal: 5
+    enemySpecialRoulettes: []
     enemySpecialActions:
+    - sprite: {fileID: -9202054676734628973, guid: 2a52294a21365ef449b22a23d4a355a6, type: 3}
+      title: "\uACF5\uACA9 \uBD80\uC5EC"
+      text: "\uBB34\uC791\uC704 \uBE48 \uB8F0\uB81B \uCE78\uC5D0 '\uACF5\uACA9' \uB8F0\uB81B\uC744
+        \uBD80\uC5EC\uD569\uB2C8\uB2E4. \uBE48 \uCE78\uC774 \uC5C6\uC744 \uACBD\uC6B0
+        \uBB34\uC791\uC704 \uCE78\uC5D0 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
     - sprite: {fileID: -9202054676734628973, guid: 2a52294a21365ef449b22a23d4a355a6, type: 3}
       title: "\uD68C\uC804 \uBD09\uC778"
       text: "\uD50C\uB808\uC774\uC5B4\uC5D0\uAC8C '\uD68C\uC804 \uBD09\uC778' \uB514\uBC84\uD504\uB97C
         \uAC12\uD134\uB3D9\uC548 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    subEnemies: []
   - name: "\uB9C8\uC220\uC0AC"
     health: 84
     actionNum: 3
@@ -760,7 +826,7 @@ MonoBehaviour:
           val: 1
           isTrigger: 0
       - pattern:
-        - type: 6
+        - type: 5
           typeNum: 0
           val: 0
           isTrigger: 0
@@ -780,7 +846,7 @@ MonoBehaviour:
           val: 1
           isTrigger: 0
       - pattern:
-        - type: 6
+        - type: 5
           typeNum: 1
           val: 0
           isTrigger: 0
@@ -798,7 +864,7 @@ MonoBehaviour:
           val: 1
           isTrigger: 0
       - pattern:
-        - type: 6
+        - type: 5
           typeNum: 0
           val: 0
           isTrigger: 0
@@ -809,12 +875,12 @@ MonoBehaviour:
       text: "\uB9C8\uC220\uC0AC\uB294 \uD2B8\uB9AC\uAC70 \uC0C1\uD0DC\uC785\uB2C8\uB2E4."
       patterns:
       - pattern:
-        - type: 6
+        - type: 5
           typeNum: 2
           val: 0
           isTrigger: 1
       - pattern:
-        - type: 6
+        - type: 5
           typeNum: 3
           val: 0
           isTrigger: 1
@@ -824,50 +890,62 @@ MonoBehaviour:
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 1
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 5
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 3
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 5
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 1
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 5
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 3
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 5
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     - rtype:
         type: 0
         specialTypeIdx: 0
+        enemyIdx: 0
       value: 0
     enemySpecialRoulettes:
     - sprite: {fileID: -1033747301121760791, guid: d70a422d594c0c64ca0e09b3852cd601, type: 3}
@@ -895,3 +973,5 @@ MonoBehaviour:
       title: "\uB9C8\uC220-\uC1FC\uD0C0\uC784"
       text: "\uD134x1+\uB9C8\uC220 \uBAA8\uC790 \uAC1C\uC218x1 \uC758 \uD53C\uD574\uB97C
         \uC90D\uB2C8\uB2E4."
+    subEnemies: []
+  subEnemies: []

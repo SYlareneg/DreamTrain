@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: be37d7e5cc822764da02d17bf972fc8c, type: 3}
   m_Name: ActSO
   m_EditorClassIdentifier: Assembly-CSharp::ActSO
   normalNodes:
@@ -20,7 +20,6 @@ MonoBehaviour:
     difficulty: 0
     level: 0
     pos: 0
-    childNodes: []
   acts:
   - essentialNodes:
     - nodeImg: {fileID: 0}
@@ -30,7 +29,6 @@ MonoBehaviour:
       difficulty: 0
       level: 0
       pos: 0
-      childNodes: []
     - nodeImg: {fileID: 0}
       title: 
       text: 
@@ -38,7 +36,6 @@ MonoBehaviour:
       difficulty: 1
       level: 0
       pos: 0
-      childNodes: []
     - nodeImg: {fileID: 0}
       title: 
       text: 
@@ -46,7 +43,6 @@ MonoBehaviour:
       difficulty: 2
       level: 0
       pos: 0
-      childNodes: []
     specialNodes:
     - nodeImg: {fileID: 0}
       title: 
@@ -55,7 +51,6 @@ MonoBehaviour:
       difficulty: 1
       level: 0
       pos: 0
-      childNodes: []
     - nodeImg: {fileID: 0}
       title: 
       text: 
@@ -63,7 +58,6 @@ MonoBehaviour:
       difficulty: 1
       level: 0
       pos: 0
-      childNodes: []
     - nodeImg: {fileID: 0}
       title: 
       text: 
@@ -71,7 +65,6 @@ MonoBehaviour:
       difficulty: 1
       level: 0
       pos: 0
-      childNodes: []
     - nodeImg: {fileID: 0}
       title: 
       text: 
@@ -79,7 +72,6 @@ MonoBehaviour:
       difficulty: 0
       level: 0
       pos: 0
-      childNodes: []
     - nodeImg: {fileID: 0}
       title: 
       text: 
@@ -87,4 +79,24 @@ MonoBehaviour:
       difficulty: 0
       level: 0
       pos: 0
-      childNodes: []
+    - nodeImg: {fileID: 0}
+      title: 
+      text: 
+      encounterNum: 0
+      difficulty: 0
+      level: 0
+      pos: 0
+    - nodeImg: {fileID: 0}
+      title: 
+      text: 
+      encounterNum: 0
+      difficulty: 0
+      level: 0
+      pos: 0
+    - nodeImg: {fileID: 0}
+      title: 
+      text: 
+      encounterNum: 0
+      difficulty: 0
+      level: 0
+      pos: 0

@@ -245,7 +245,7 @@ public class PassiveManager : MonoBehaviour
                     {
                         return false;
                     }
-                    if(frozenChk == null && type == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 0)))
+                    else if(frozenChk == null && type == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 0)))
                     {
                         GameObject frozenSprite = new GameObject("FrozenIcon");
                         FrozenRoulette frzRlt = new FrozenRoulette();
@@ -403,12 +403,12 @@ public class PassiveManager : MonoBehaviour
                     else if(enemyPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 1)))
                     {
                         enemyPiece.RouletteClear();
-                        BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(true, 1)][0].Clear();
+                        BuffManager.Inst.roulettePieceBuff[enemyPiece].Clear();
                     }
                     else if(enemyPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 2)))
                     {
                         enemyPiece.RouletteClear();
-                        BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(true, 2)][0].Clear();
+                        BuffManager.Inst.roulettePieceBuff[enemyPiece].Clear();
                     }
                     if (playerPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 0)))
                     {
@@ -421,12 +421,12 @@ public class PassiveManager : MonoBehaviour
                     else if(playerPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 1)))
                     {
                         playerPiece.RouletteClear();
-                        BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(true, 1)][0].Clear();
+                        BuffManager.Inst.roulettePieceBuff[playerPiece].Clear();
                     }
                     else if(playerPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 2)))
                     {
                         playerPiece.RouletteClear();
-                        BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(true, 2)][0].Clear();
+                        BuffManager.Inst.roulettePieceBuff[playerPiece].Clear();
                     }
                 };
                 TurnManager.OnRouletteSpin += (isClockwise, spinValue) =>
@@ -596,6 +596,10 @@ public class PassiveManager : MonoBehaviour
                         cardCnt = 0;
                     }
                 };
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    cardCnt = 0;
+                };
                 break;
             case "순환하는 계절":
             case "순환하는 계절+":
@@ -612,7 +616,7 @@ public class PassiveManager : MonoBehaviour
                     {
                         return false;
                     }
-                    if(frozenChk == null && type == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 0)))
+                    else if(frozenChk == null && type == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 0)))
                     {
                         GameObject frozenSprite = new GameObject("FrozenIcon");
                         FrozenRoulette frzRlt = new FrozenRoulette();
@@ -754,12 +758,12 @@ public class PassiveManager : MonoBehaviour
                     else if(enemyPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 1)))
                     {
                         enemyPiece.RouletteClear();
-                        BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(false, 1)][0].Clear();
+                        BuffManager.Inst.roulettePieceBuff[enemyPiece].Clear();
                     }
                     else if(enemyPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 2)))
                     {
                         enemyPiece.RouletteClear();
-                        BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(false, 2)][0].Clear();
+                        BuffManager.Inst.roulettePieceBuff[enemyPiece].Clear();
                     }
                     if (playerPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 0)))
                     {
@@ -772,12 +776,12 @@ public class PassiveManager : MonoBehaviour
                     else if(playerPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 1)))
                     {
                         playerPiece.RouletteClear();
-                        BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(false, 1)][0].Clear();
+                        BuffManager.Inst.roulettePieceBuff[playerPiece].Clear();
                     }
                     else if(playerPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 2)))
                     {
                         playerPiece.RouletteClear();
-                        BuffManager.Inst.rouletteBuff_PlayerSpecial[GetSpecialRouletteIdx(false, 2)][0].Clear();
+                        BuffManager.Inst.roulettePieceBuff[playerPiece].Clear();
                     }
                 };
                 TurnManager.OnRouletteSpin += (isClockwise, spinValue) =>

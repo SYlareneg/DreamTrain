@@ -58,6 +58,8 @@ public class Map
     {
         if(nodeNum < act.essentialNodes.Count) return null;
 
+        sortedMapNodeList = new List<MapNode>();
+
         List<MapNode> essentialNodes_sorted = act.essentialNodes.OrderBy(node => node.difficulty).ToList();
         List<MapNode> prev_level_nodes = new List<MapNode>();
         List<MapNode> prev2_level_nodes = new List<MapNode>();
@@ -224,10 +226,4 @@ public class ActSO : ScriptableObject
 {
     public List<MapNode> normalNodes;
     public List<Act> acts;
-}
-
-[CreateAssetMenu(fileName = "MapSO", menuName = "Scriptable Objects/MapSO")]
-public class MapSO : ScriptableObject
-{
-    
 }
