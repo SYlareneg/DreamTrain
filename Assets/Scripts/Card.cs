@@ -38,6 +38,8 @@ public class Card : MonoBehaviour
         this.item = item;
 
         type.sprite = cardTypes[(int)this.item.type];
+        if(type.sprite == null) type.enabled = false;
+        else type.enabled = true;
         switch(this.item.type)
         {
             case CardType.Turn:
@@ -54,6 +56,8 @@ public class Card : MonoBehaviour
                 break;
         }
         rarity.sprite = rarityTypes[(int)this.item.rarity];
+        if(rarity.sprite == null) rarity.enabled = false;
+        else rarity.enabled = true;
 
         character.sprite = Utils.LoadSpriteByName("Cards", this.item.sprite);
 
@@ -405,7 +409,7 @@ public class Card : MonoBehaviour
                 TurnManager.Inst.EnemyTakeDmg(GetBuffedVal(item.cardValues[0], ECardValueType.Damage), EDamageSource.Card);
                 if (checkMagic)
                 {
-                    TurnManager.Inst.enemyShieldHealth = 0;
+                    TurnManager.Inst.GetShield(true, -TurnManager.Inst.enemyShieldHealth[0], EDamageSource.Card);
                 }
                 break;
             case "마술-절단+":
@@ -413,7 +417,7 @@ public class Card : MonoBehaviour
                 checkMagic = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].roulette.rtype == magicBox;
                 if (checkMagic)
                 {
-                    TurnManager.Inst.enemyShieldHealth = 0;
+                    TurnManager.Inst.GetShield(true, -TurnManager.Inst.enemyShieldHealth[0], EDamageSource.Card);
                 }
                 TurnManager.Inst.EnemyTakeDmg(GetBuffedVal(item.cardValues[0], ECardValueType.Damage), EDamageSource.Card);
                 break;

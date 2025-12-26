@@ -27,13 +27,13 @@ public class Order : MonoBehaviour
         foreach(Renderer renderer in backRenderers)
         {
             renderer.sortingLayerName = sortingLayerName;
-            renderer.sortingOrder = mulOrder;
+            renderer.sortingOrder = mulOrder++;
         }
 
         foreach(Renderer renderer in middleRenderers)
         {
             renderer.sortingLayerName = sortingLayerName;
-            renderer.sortingOrder = ++mulOrder;
+            renderer.sortingOrder = mulOrder++;
         }
     }
 }

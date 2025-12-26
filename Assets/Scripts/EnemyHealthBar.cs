@@ -13,7 +13,7 @@ public class EnemyHealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float newSizeX = originSizeX * TurnManager.Inst.enemyCurHealth / TurnManager.Inst.enemyMaxHealth;
+        float newSizeX = originSizeX * TurnManager.Inst.enemyCurHealth[0] / TurnManager.Inst.enemyMaxHealth[0];
         Vector3 newScale = this.transform.localScale;
         newScale.x = newSizeX;
         this.transform.localScale = newScale;

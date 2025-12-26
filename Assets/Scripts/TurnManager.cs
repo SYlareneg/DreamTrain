@@ -12,7 +12,13 @@ public enum EDamageSource
 public class TurnManager : MonoBehaviour
 {
     public static TurnManager Inst { get; private set; }
-    private void Awake() => Inst = this;
+    private void Awake()
+    {
+        Inst = this;
+        enemyMaxHealth = new int[Enemy.maxSubEnemyNum + 1];
+        enemyCurHealth = new int[Enemy.maxSubEnemyNum + 1];
+        enemyShieldHealth = new int[Enemy.maxSubEnemyNum + 1];
+    }
 
     [Header("개발 설정")]
     [SerializeField][Tooltip("카드 배분이 매우 빨라집니다")] bool fastMode;
@@ -34,9 +40,9 @@ public class TurnManager : MonoBehaviour
     [Tooltip("트리거 조건")] public int playerTriggerMaxCnt;
     [Tooltip("트리거 조건 현재 카운트")] public int playerTriggerCnt;
     [Header("적")]
-    [Tooltip("최대 체력")] public int enemyMaxHealth;
-    [Tooltip("현재 체력")] public int enemyCurHealth;
-    [Tooltip("현재 실드량")] public int enemyShieldHealth;
+    [Tooltip("최대 체력")] public int[] enemyMaxHealth = new int[Enemy.maxSubEnemyNum + 1];
+    [Tooltip("현재 체력")] public int[] enemyCurHealth = new int[Enemy.maxSubEnemyNum + 1];
+    [Tooltip("현재 실드량")] public int[] enemyShieldHealth = new int[Enemy.maxSubEnemyNum + 1];
     [Tooltip("트리거 조건")] public int enemyTriggerMaxCnt;
     [Tooltip("트리거 조건 현재 카운트")] public int enemyTriggerCnt;
     [Header("SO")]
@@ -267,7 +273,7 @@ public class TurnManager : MonoBehaviour
     }
 
     // 적 체력 변동 (데미지 or 힐, 실드 고려). 적 생존 여부 반환
-    public int EnemyTakeDmg(int damage, EDamageSource damageSource)
+    public int EnemyTakeDmg(int damage, EDamageSource damageSource, int enemyIdx = 0)
     {
         if (damage > 0)
         {
@@ -291,32 +297,32 @@ public class TurnManager : MonoBehaviour
             Utils.AllignActions(ref OnEnemyHealed, typeof(ShowBuff), typeof(RelicManager));
             OnEnemyHealed?.Invoke(-damage, damageSource);
         }
-        if (enemyCurHealth + enemyShieldHealth > damage)
+        if (enemyCurHealth[enemyIdx] + enemyShieldHealth[enemyIdx] > damage)
         {
             if (damage > 0)
             {
-                if (enemyShieldHealth >= damage)
+                if (enemyShieldHealth[enemyIdx] >= damage)
                 {
-                    enemyShieldHealth -= damage;
+                    enemyShieldHealth[enemyIdx] -= damage;
                     return 0;
                 }
                 else
                 {
-                    damage -= enemyShieldHealth;
-                    enemyShieldHealth = 0;
+                    damage -= enemyShieldHealth[enemyIdx];
+                    enemyShieldHealth[enemyIdx] = 0;
                 }
             }
-            if (enemyCurHealth - damage > enemyMaxHealth)
+            if (enemyCurHealth[enemyIdx] - damage > enemyMaxHealth[enemyIdx])
             {
-                damage = enemyCurHealth - enemyMaxHealth;
+                damage = enemyCurHealth[enemyIdx] - enemyMaxHealth[enemyIdx];
             }
-            enemyCurHealth -= damage;
+            enemyCurHealth[enemyIdx] -= damage;
             return damage;
         }
         else
         {
-            damage = enemyCurHealth;
-            enemyCurHealth = 0;
+            damage = enemyCurHealth[enemyIdx];
+            enemyCurHealth[enemyIdx] = 0;
             StartCoroutine(GameManager.Inst.GameOver(true));
             return damage;
         }
@@ -334,13 +340,13 @@ public class TurnManager : MonoBehaviour
         IncreaseCost(turnCost - nowCost);
     }
 
-    public void GetShield(bool isEnemy, int value, EDamageSource source)
+    public void GetShield(bool isEnemy, int value, EDamageSource source, int enemyIdx = 0)
     {
         if (isEnemy)
         {
             value = BuffManager.Inst.GetBuffedEnemyShield(source, value);
-            enemyShieldHealth += value;
-            if (enemyShieldHealth < 0) enemyShieldHealth = 0;
+            enemyShieldHealth[enemyIdx] += value;
+            if (enemyShieldHealth[enemyIdx] < 0) enemyShieldHealth[enemyIdx] = 0;
             Utils.AllignActions(ref OnEnemyShielded, typeof(ShowBuff), typeof(RelicManager));
             OnEnemyShielded?.Invoke(value, source);
         }

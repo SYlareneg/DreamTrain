@@ -799,7 +799,8 @@ MonoBehaviour:
       title: "\uD68C\uC804 \uBD09\uC778"
       text: "\uD50C\uB808\uC774\uC5B4\uC5D0\uAC8C '\uD68C\uC804 \uBD09\uC778' \uB514\uBC84\uD504\uB97C
         \uAC12\uD134\uB3D9\uC548 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
-    subEnemies: []
+    subEnemies:
+    - "\uC784\uC2DC \uC801"
   - name: "\uB9C8\uC220\uC0AC"
     health: 84
     actionNum: 3
@@ -974,4 +975,34 @@ MonoBehaviour:
       text: "\uD134x1+\uB9C8\uC220 \uBAA8\uC790 \uAC1C\uC218x1 \uC758 \uD53C\uD574\uB97C
         \uC90D\uB2C8\uB2E4."
     subEnemies: []
-  subEnemies: []
+  subEnemies:
+  - name: "\uC784\uC2DC \uC801"
+    health: 10
+    actionNum: 1
+    roulettePos: 9
+    phase:
+    - name: "\uACF5\uACA9"
+      text: "\uACF5\uACA9"
+      patterns:
+      - pattern:
+        - type: 1
+          typeNum: 0
+          val: 5
+          isTrigger: 0
+        - type: 2
+          typeNum: 0
+          val: 5
+          isTrigger: 0
+      - pattern:
+        - type: 3
+          typeNum: 0
+          val: 5
+          isTrigger: 0
+        - type: 2
+          typeNum: 0
+          val: 5
+          isTrigger: 0
+      phaseClear: 0
+      phaseRepeat: 1
+    enemySpecialRoulettes: []
+    enemySpecialActions: []

@@ -34,6 +34,8 @@ public class CardUI : MonoBehaviour
         UnsetBlank();
 
         type.sprite = cardTypes[(int)this.item.type];
+        if(type.sprite == null) type.enabled = false;
+        else type.enabled = true;
         switch(this.item.type)
         {
             case CardType.Turn:
@@ -50,8 +52,11 @@ public class CardUI : MonoBehaviour
                 break;
         }
         rarity.sprite = rarityTypes[(int)this.item.rarity];
+        if(rarity.sprite == null) rarity.enabled = false;
+        else rarity.enabled = true;
 
-        character.sprite = Utils.LoadSpriteByName("Cards", this.item.sprite);
+        Sprite tempSprite = Utils.LoadSpriteByName("Cards", this.item.sprite);
+        if(tempSprite != null) character.sprite = tempSprite;
 
         nameTMP.text = this.item.name;
         costTMP.text = this.item.cost.ToString();

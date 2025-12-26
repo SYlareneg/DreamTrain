@@ -868,9 +868,9 @@ MonoBehaviour:
   shieldHealth: 0
   playerTriggerMaxCnt: 0
   playerTriggerCnt: 0
-  enemyMaxHealth: 0
-  enemyCurHealth: 0
-  enemyShieldHealth: 0
+  enemyMaxHealth: 
+  enemyCurHealth: 
+  enemyShieldHealth: 
   enemyTriggerMaxCnt: 0
   enemyTriggerCnt: 0
   characterSO: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
@@ -10184,15 +10184,20 @@ MonoBehaviour:
   enemyPos: {fileID: 722924043}
   enemyActionPos: {fileID: 863325228}
   enemyExecutePos: {fileID: 1472957325}
-  subEnemyPos: []
-  subEnemyActionPos: []
-  subEnemyExecutePos: []
+  subEnemyPos:
+  - {fileID: 875949398}
+  subEnemyActionPos:
+  - {fileID: 1370663514}
+  subEnemyExecutePos:
+  - {fileID: 1954715310}
   maxActionVal: 0
   actionNum: 0
   actionBox: {fileID: 984188660}
   enemyImg: {fileID: 1552146881}
-  subEnemyActionBox: []
-  subEnemyImg: []
+  subEnemyActionBox:
+  - {fileID: 5550727}
+  subEnemyImg:
+  - {fileID: 903485189}
   enemyName: {fileID: 432007397}
   actionList: []
   executeActionList: []
