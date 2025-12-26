@@ -108,14 +108,14 @@ public class RelicManager : MonoBehaviour
                 {
                     cardUsed = false;
                     BuffManager.AddBuffToTarget(BuffManager.Inst.playerBuff_Damage_Type[(int)EDamageSource.Roulette], 0, damageMul, -1);
-                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Damage_Type[(int)EDamageSource.Roulette], 0, damageMul, -1);
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Damage_Type[0, (int)EDamageSource.Roulette], 0, damageMul, -1);
                 };
                 TurnManager.OnUseCard += (x) =>
                 {
                     if(cardUsed == false)
                     {
                         BuffManager.AddBuffToTarget(BuffManager.Inst.playerBuff_Damage_Type[(int)EDamageSource.Roulette], 0, 1f / damageMul, -1);
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Damage_Type[(int)EDamageSource.Roulette], 0, 1f / damageMul, -1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Damage_Type[0, (int)EDamageSource.Roulette], 0, 1f / damageMul, -1);
                         cardUsed = true;
                     }
                 };
@@ -124,7 +124,7 @@ public class RelicManager : MonoBehaviour
                     if(cardUsed == false)
                     {
                         BuffManager.AddBuffToTarget(BuffManager.Inst.playerBuff_Damage_Type[(int)EDamageSource.Roulette], 0, 1f / damageMul, -1);
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Damage_Type[(int)EDamageSource.Roulette], 0, 1f / damageMul, -1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Damage_Type[0, (int)EDamageSource.Roulette], 0, 1f / damageMul, -1);
                         cardUsed = true;
                     }
                 };
@@ -528,7 +528,7 @@ public class RelicManager : MonoBehaviour
                     case ERelicActivateConditionType.Enemy_Health_GE:
                         totalCondition = () =>
                         {
-                            if (((float)TurnManager.Inst.enemyCurHealth / TurnManager.Inst.enemyMaxHealth) >= localCondition.fvalue)
+                            if (((float)TurnManager.Inst.enemyCurHealth[0] / TurnManager.Inst.enemyMaxHealth[0]) >= localCondition.fvalue)
                             {
                                 temp?.Invoke();
                             }
@@ -536,7 +536,7 @@ public class RelicManager : MonoBehaviour
                     case ERelicActivateConditionType.Enemy_Health_LE:
                         totalCondition = () =>
                         {
-                            if (((float)TurnManager.Inst.enemyCurHealth / TurnManager.Inst.enemyMaxHealth) <= localCondition.fvalue)
+                            if (((float)TurnManager.Inst.enemyCurHealth[0] / TurnManager.Inst.enemyMaxHealth[0]) <= localCondition.fvalue)
                             {
                                 temp?.Invoke();
                             }
@@ -544,7 +544,7 @@ public class RelicManager : MonoBehaviour
                     case ERelicActivateConditionType.Enemy_Shield_GE:
                         totalCondition = () =>
                         {
-                            if (TurnManager.Inst.enemyShieldHealth >= localCondition.value)
+                            if (TurnManager.Inst.enemyShieldHealth[0] >= localCondition.value)
                             {
                                 temp?.Invoke();
                             }

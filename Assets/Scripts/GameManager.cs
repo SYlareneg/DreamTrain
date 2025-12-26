@@ -142,9 +142,9 @@ public class GameManager : MonoBehaviour
         {
             triggerCntImg.fillAmount = (float)TurnManager.Inst.playerTriggerCnt / TurnManager.Inst.playerTriggerMaxCnt;
         }
-        enemyHealthTMP.text = TurnManager.Inst.enemyCurHealth.ToString() + "/" + TurnManager.Inst.enemyMaxHealth.ToString();
-        enemyHealthImg.fillAmount = (float)TurnManager.Inst.enemyCurHealth / TurnManager.Inst.enemyMaxHealth;
-        if(TurnManager.Inst.enemyShieldHealth > 0)
+        enemyHealthTMP.text = TurnManager.Inst.enemyCurHealth[0].ToString() + "/" + TurnManager.Inst.enemyMaxHealth[0].ToString();
+        enemyHealthImg.fillAmount = (float)TurnManager.Inst.enemyCurHealth[0] / TurnManager.Inst.enemyMaxHealth[0];
+        if(TurnManager.Inst.enemyShieldHealth[0] > 0)
         {
             enemyShieldObj.SetActive(true);
         }
@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
         {
             enemyShieldObj.SetActive(false);
         }
-        enemyShieldTMP.text = TurnManager.Inst.enemyShieldHealth.ToString();
+        enemyShieldTMP.text = TurnManager.Inst.enemyShieldHealth[0].ToString();
         enemyTriggerCountTMP.text = TurnManager.Inst.enemyTriggerCnt.ToString() + "/" + TurnManager.Inst.enemyTriggerMaxCnt.ToString();
         if (TurnManager.Inst.enemyTriggerMaxCnt == 0)
         {
@@ -331,7 +331,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(enemyBuffUIView.transform.GetChild(i).gameObject);
         }
-        BuffManager.Inst.BuffListToBuffUIList(BuffManager.Inst.enemyShowBuffs, enemyBuffUIView, enemyBuffPos);
+        BuffManager.Inst.BuffListToBuffUIList(BuffManager.Inst.enemyShowBuffs[0], enemyBuffUIView, enemyBuffPos);
     }
 
     public void SetRouletteBuffUI()

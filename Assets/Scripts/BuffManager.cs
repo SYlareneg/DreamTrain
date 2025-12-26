@@ -61,6 +61,7 @@ public class ShowBuff
     public Sprite icon;
     public EBuffType type;
     [HideInInspector] public EBuffAffectType affectType;
+    public int affectEnemyIdx;
     public EBuffEffectType effectType;
     public int val;
     public List<float> defaultVal = new List<float>{1f};
@@ -77,7 +78,7 @@ public class ShowBuff
         affectBuffs.Add(buff);
         target.Add(buff);
     }
-    public void SetShowBuff(string name, EBuffAffectType aType, int newVal, bool isSetOnEnemyTurn, List<float> baseVal = null)
+    public void SetShowBuff(string name, EBuffAffectType aType, int newVal, bool isSetOnEnemyTurn, List<float> baseVal = null, int affectEnemyIdx = 0)
     {
         ShowBuff origin = BuffManager.Inst.showBuffSO.showBuffs.Find(x => x.name == name);
         if (origin == null)
@@ -91,6 +92,7 @@ public class ShowBuff
         type = origin.type;
         effectType = origin.effectType;
         affectType = aType;
+        this.affectEnemyIdx = affectEnemyIdx;
         val = newVal;
         defaultVal.Clear();
         foreach(float v in origin.defaultVal) defaultVal.Add(v);
@@ -104,8 +106,8 @@ public class ShowBuff
             case "강화":
                 if (affectType == EBuffAffectType.Enemy)
                 {
-                    BuffManager.Inst.enemyShowBuffs.Add(this);
-                    AddAffectBuff(BuffManager.Inst.enemyBuff_Attack, newVal, baseVal[0], -1);
+                    BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Add(this);
+                    AddAffectBuff(BuffManager.Inst.enemyBuff_Attack[affectEnemyIdx], newVal, baseVal[0], -1);
                 }
                 else if (affectType == EBuffAffectType.Roulette)
                 {
@@ -116,8 +118,8 @@ public class ShowBuff
             case "보호":
                 if (affectType == EBuffAffectType.Enemy)
                 {
-                    BuffManager.Inst.enemyShowBuffs.Add(this);
-                    AddAffectBuff(BuffManager.Inst.enemyBuff_Shield, newVal, baseVal[0], -1);
+                    BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Add(this);
+                    AddAffectBuff(BuffManager.Inst.enemyBuff_Shield[affectEnemyIdx], newVal, baseVal[0], -1);
                 }
                 else if (affectType == EBuffAffectType.Roulette)
                 {
@@ -133,8 +135,8 @@ public class ShowBuff
             case "활력":
                 if (affectType == EBuffAffectType.Enemy)
                 {
-                    BuffManager.Inst.enemyShowBuffs.Add(this);
-                    AddAffectBuff(BuffManager.Inst.enemyBuff_Heal, newVal, baseVal[0], -1);
+                    BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Add(this);
+                    AddAffectBuff(BuffManager.Inst.enemyBuff_Heal[affectEnemyIdx], newVal, baseVal[0], -1);
                 }
                 else if (affectType == EBuffAffectType.Roulette)
                 {
@@ -150,8 +152,8 @@ public class ShowBuff
             case "주저함":
                 if (affectType == EBuffAffectType.Enemy)
                 {
-                    BuffManager.Inst.enemyShowBuffs.Add(this);
-                    AddAffectBuff(BuffManager.Inst.enemyBuff_Attack, 0, baseVal[0], newVal);
+                    BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Add(this);
+                    AddAffectBuff(BuffManager.Inst.enemyBuff_Attack[affectEnemyIdx], 0, baseVal[0], newVal);
                     // 0.75f
                 }
                 else if (affectType == EBuffAffectType.Roulette)
@@ -163,8 +165,8 @@ public class ShowBuff
             case "취약":
                 if (affectType == EBuffAffectType.Enemy)
                 {
-                    BuffManager.Inst.enemyShowBuffs.Add(this);
-                    AddAffectBuff(BuffManager.Inst.enemyBuff_Damage, 0, baseVal[0], newVal);
+                    BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Add(this);
+                    AddAffectBuff(BuffManager.Inst.enemyBuff_Damage[affectEnemyIdx], 0, baseVal[0], newVal);
                     // 1.5f
                 }
                 else if (affectType == EBuffAffectType.Player)
@@ -234,15 +236,15 @@ public class ShowBuff
             case "환영":
                 if (affectType == EBuffAffectType.Enemy)
                 {
-                    BuffManager.Inst.enemyShowBuffs.Add(this);
+                    BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Add(this);
                     Action<int, EDamageSource> noDamage = null;
                     noDamage = (value, source) =>
                     {
-                        TurnManager.Inst.enemyShieldHealth += value;
+                        TurnManager.Inst.enemyShieldHealth[affectEnemyIdx] += value;
                         BuffManager.Inst.AddShowBuff("환영", affectType, -1, isSetOnEnemyTurn, baseVal);
                         if (this.val == 0)
                         {
-                            BuffManager.Inst.enemyShowBuffs.Remove(this);
+                            BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Remove(this);
                             TurnManager.OnEnemyDamaged -= noDamage;
                         }
                     };
@@ -276,8 +278,8 @@ public class ShowBuff
             case "과민함":
                 if (affectType == EBuffAffectType.Enemy)
                 {
-                    BuffManager.Inst.enemyShowBuffs.Add(this);
-                    AddAffectBuff(BuffManager.Inst.enemyBuff_Damage, 0, baseVal[0], -1);
+                    BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Add(this);
+                    AddAffectBuff(BuffManager.Inst.enemyBuff_Damage[affectEnemyIdx], 0, baseVal[0], -1);
                     // 1.5f
                     Action<int, EDamageSource> reduceCount = null;
                     reduceCount = (damage, source) =>
@@ -285,7 +287,7 @@ public class ShowBuff
                         BuffManager.Inst.AddShowBuff("과민함", affectType, -1, isSetOnEnemyTurn, baseVal);
                         if (this.val == 0)
                         {
-                            BuffManager.Inst.enemyShowBuffs.Remove(this);
+                            BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Remove(this);
                             TurnManager.OnEnemyDamaged -= reduceCount;
                         }
                     };
@@ -320,7 +322,7 @@ public class ShowBuff
             case "불쾌함":
                 if (affectType == EBuffAffectType.Enemy)
                 {
-                    BuffManager.Inst.enemyShowBuffs.Add(this);
+                    BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Add(this);
                     Action<bool, int> reduceCount = null;
                     reduceCount = (b, spin) =>
                     {
@@ -328,7 +330,7 @@ public class ShowBuff
                         BuffManager.Inst.AddShowBuff("불쾌함", affectType, -1, isSetOnEnemyTurn, baseVal);
                         if (this.val == 0)
                         {
-                            BuffManager.Inst.enemyShowBuffs.Remove(this);
+                            BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Remove(this);
                             TurnManager.OnRouletteSpin -= reduceCount;
                         }
                     };
@@ -362,7 +364,7 @@ public class ShowBuff
             case "회전 봉인":
                 if(affectType == EBuffAffectType.Enemy)
                 {
-                    BuffManager.Inst.enemyShowBuffs.Add(this);
+                    BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Add(this);
                     BuffManager.Inst.enemyBuff_ActionBlock[EEnemyActionType.Turn] = true;
                     Action endSpinBlock = null;
                     endSpinBlock = () =>
@@ -370,7 +372,7 @@ public class ShowBuff
                         if (this.val == 0)
                         {
                             BuffManager.Inst.enemyBuff_ActionBlock[EEnemyActionType.Turn] = false;
-                            BuffManager.Inst.enemyShowBuffs.Remove(this);
+                            BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Remove(this);
                             TurnManager.OnPlayerTurnStart -= endSpinBlock;
                         }
                     };
@@ -430,7 +432,7 @@ public class ShowBuff
 
         removeBuff?.Invoke();
 
-        if (affectType == EBuffAffectType.Enemy) BuffManager.Inst.enemyShowBuffs.Remove(this);
+        if (affectType == EBuffAffectType.Enemy) BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Remove(this);
         else if (affectType == EBuffAffectType.Roulette) BuffManager.Inst.rouletteShowBuffs.Remove(this);
         else BuffManager.Inst.playerShowBuffs.Remove(this);
 
@@ -461,7 +463,7 @@ public class ShowBuff
                 case EBuffAffectType.Enemy:
                     if (this.val == 0)
                     {
-                        BuffManager.Inst.enemyShowBuffs.Remove(this);
+                        BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Remove(this);
                     }
                     GameManager.Inst.SetEnemyBuffUI(); break;
                 case EBuffAffectType.Player:
@@ -513,7 +515,7 @@ public class BuffManager : MonoBehaviour
     public List<Buff> rouletteBuff_Attack;
     public List<Buff> rouletteBuff_Heal;
     public List<Buff> rouletteBuff_Shield;
-    public List<List<Buff>>[] rouletteBuff_EnemySpecial = new List<List<Buff>>[Enemy.enemySpecialRouletteNum];
+    public List<List<Buff>>[,] rouletteBuff_EnemySpecial = new List<List<Buff>>[Enemy.maxSubEnemyNum + 1, Enemy.enemySpecialRouletteNum];
     public List<List<Buff>>[] rouletteBuff_PlayerSpecial = new List<List<Buff>>[DreamPiece_Base.playerSpecialRouletteNum * 2];
     public List<Buff> rouletteBuff_Trigger;
     public Dictionary<RoulettePiece, List<Buff>> roulettePieceBuff = new Dictionary<RoulettePiece, List<Buff>>();
@@ -530,15 +532,15 @@ public class BuffManager : MonoBehaviour
     public List<Buff> playerBuff_Draw;
 
     public List<List<Buff>> enemyBuffs = new List<List<Buff>>();
-    public List<ShowBuff> enemyShowBuffs = new List<ShowBuff>();
-    public List<Buff> enemyBuff_Damage;
-    public List<Buff>[] enemyBuff_Damage_Type = new List<Buff>[Enum.GetNames(typeof(EDamageSource)).Length];
-    public List<Buff> enemyBuff_Heal;
-    public List<Buff>[] enemyBuff_Heal_Type = new List<Buff>[Enum.GetNames(typeof(EDamageSource)).Length];
-    public List<Buff> enemyBuff_Shield;
-    public List<Buff>[] enemyBuff_Shield_Type = new List<Buff>[Enum.GetNames(typeof(EDamageSource)).Length];
-    public List<Buff> enemyBuff_Attack;
-    public List<Buff>[] enemyBuff_Special = new List<Buff>[Enemy.enemySpecialActionNum];
+    public List<ShowBuff>[] enemyShowBuffs = new List<ShowBuff>[Enemy.maxSubEnemyNum + 1];
+    public List<Buff>[] enemyBuff_Damage = new List<Buff>[Enemy.maxSubEnemyNum + 1];
+    public List<Buff>[,] enemyBuff_Damage_Type = new List<Buff>[Enemy.maxSubEnemyNum + 1, Enum.GetNames(typeof(EDamageSource)).Length];
+    public List<Buff>[] enemyBuff_Heal = new List<Buff>[Enemy.maxSubEnemyNum + 1];
+    public List<Buff>[,] enemyBuff_Heal_Type = new List<Buff>[Enemy.maxSubEnemyNum + 1, Enum.GetNames(typeof(EDamageSource)).Length];
+    public List<Buff>[] enemyBuff_Shield = new List<Buff>[Enemy.maxSubEnemyNum + 1];
+    public List<Buff>[,] enemyBuff_Shield_Type = new List<Buff>[Enemy.maxSubEnemyNum + 1, Enum.GetNames(typeof(EDamageSource)).Length];
+    public List<Buff>[] enemyBuff_Attack = new List<Buff>[Enemy.maxSubEnemyNum + 1];
+    public List<Buff>[,] enemyBuff_Special = new List<Buff>[Enemy.maxSubEnemyNum + 1, Enemy.enemySpecialActionNum];
     public Dictionary<EEnemyActionType, bool> enemyBuff_ActionBlock = new Dictionary<EEnemyActionType, bool>();
 
     public List<Buff> allCardValueBuff;
@@ -548,7 +550,7 @@ public class BuffManager : MonoBehaviour
 
     public static Action InitSpecialRouletteBuffs;
 
-    public ShowBuff GetShowBuff(string name, EBuffAffectType aType)
+    public ShowBuff GetShowBuff(string name, EBuffAffectType aType, int enemyIdx = 0)
     {
         ShowBuff findBuff = null;
         switch (aType)
@@ -557,7 +559,7 @@ public class BuffManager : MonoBehaviour
                 findBuff = rouletteShowBuffs.Find(x => x.name == name);
                 break;
             case EBuffAffectType.Enemy:
-                findBuff = enemyShowBuffs.Find(x => x.name == name);
+                findBuff = enemyShowBuffs[enemyIdx].Find(x => x.name == name);
                 break;
             case EBuffAffectType.Player:
                 findBuff = playerShowBuffs.Find(x => x.name == name);
@@ -630,9 +632,12 @@ public class BuffManager : MonoBehaviour
         rouletteBuff_Attack = new List<Buff>();
         rouletteBuff_Heal = new List<Buff>();
         rouletteBuff_Shield = new List<Buff>();
-        for(int i = 0; i < Enemy.enemySpecialRouletteNum; i++)
+        for(int i = 0; i < Enemy.maxSubEnemyNum + 1; i++)
         {
-            rouletteBuff_EnemySpecial[i] = new List<List<Buff>>();
+            for(int j = 0; j < Enemy.enemySpecialRouletteNum; j++)
+            {
+                rouletteBuff_EnemySpecial[i, j] = new List<List<Buff>>();
+            }
         }
         for(int i = 0; i < DreamPiece_Base.playerSpecialRouletteNum * 2; i++)
         {
@@ -645,9 +650,12 @@ public class BuffManager : MonoBehaviour
         rouletteBuffs.Add(rouletteBuff_Attack);
         rouletteBuffs.Add(rouletteBuff_Heal);
         rouletteBuffs.Add(rouletteBuff_Shield);
-        for(int i = 0; i < Enemy.enemySpecialRouletteNum; i++)
+        for(int i = 0; i < Enemy.maxSubEnemyNum + 1; i++)
         {
-            foreach(var bl in rouletteBuff_EnemySpecial[i]) rouletteBuffs.Add(bl);
+            for(int j = 0; j < Enemy.enemySpecialRouletteNum; j++)
+            {
+                foreach(var bl in rouletteBuff_EnemySpecial[i, j]) rouletteBuffs.Add(bl);
+            }
         }
         for(int i = 0; i < DreamPiece_Base.playerSpecialRouletteNum; i++)
         {
@@ -691,30 +699,34 @@ public class BuffManager : MonoBehaviour
 
     public void InitEnemyBuff()
     {
-        enemyBuff_Attack = new List<Buff>();
-        enemyBuff_Damage = new List<Buff>();
-        enemyBuff_Heal = new List<Buff>();
-        enemyBuff_Shield = new List<Buff>();
-        for(int i = 0; i < Enemy.enemySpecialActionNum; i++)
+        for(int i = 0; i < Enemy.maxSubEnemyNum + 1; i++)
         {
-            enemyBuff_Special[i] = new List<Buff>();
-            enemyBuffs.Add(enemyBuff_Special[i]);
-        }
-        for(int i = 0; i < Enum.GetNames(typeof(EDamageSource)).Length; i++)
-        {
-            enemyBuff_Damage_Type[i] = new List<Buff>();
-            enemyBuff_Heal_Type[i] = new List<Buff>();
-            enemyBuff_Shield_Type[i] = new List<Buff>();
+            enemyShowBuffs[i] = new List<ShowBuff>();
+            enemyBuff_Attack[i] = new List<Buff>();
+            enemyBuff_Damage[i] = new List<Buff>();
+            enemyBuff_Heal[i] = new List<Buff>();
+            enemyBuff_Shield[i] = new List<Buff>();
+            for(int j = 0; j < Enemy.enemySpecialActionNum; j++)
+            {
+                enemyBuff_Special[i, j] = new List<Buff>();
+                enemyBuffs.Add(enemyBuff_Special[i, j]);
+            }
+            for(int j = 0; j < Enum.GetNames(typeof(EDamageSource)).Length; j++)
+            {
+                enemyBuff_Damage_Type[i, j] = new List<Buff>();
+                enemyBuff_Heal_Type[i, j] = new List<Buff>();
+                enemyBuff_Shield_Type[i, j] = new List<Buff>();
 
-            enemyBuffs.Add(enemyBuff_Damage_Type[i]);
-            enemyBuffs.Add(enemyBuff_Heal_Type[i]);
-            enemyBuffs.Add(enemyBuff_Shield_Type[i]);
-        }
+                enemyBuffs.Add(enemyBuff_Damage_Type[i, j]);
+                enemyBuffs.Add(enemyBuff_Heal_Type[i, j]);
+                enemyBuffs.Add(enemyBuff_Shield_Type[i, j]);
+            }
 
-        enemyBuffs.Add(enemyBuff_Attack);
-        enemyBuffs.Add(enemyBuff_Damage);
-        enemyBuffs.Add(enemyBuff_Heal);
-        enemyBuffs.Add(enemyBuff_Shield);
+            enemyBuffs.Add(enemyBuff_Attack[i]);
+            enemyBuffs.Add(enemyBuff_Damage[i]);
+            enemyBuffs.Add(enemyBuff_Heal[i]);
+            enemyBuffs.Add(enemyBuff_Shield[i]);
+        }
 
         enemyBuff_ActionBlock = new Dictionary<EEnemyActionType, bool>();
         foreach(EEnemyActionType eat in Enum.GetValues(typeof(EEnemyActionType)))
@@ -798,7 +810,7 @@ public class BuffManager : MonoBehaviour
             case ERouletteType.Shield:
                 totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_Shield)); break;
             case ERouletteType.Enemy_Special:
-                totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_EnemySpecial[targetPiece.roulette.rtype.specialTypeIdx][0])); break;
+                totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_EnemySpecial[targetPiece.roulette.rtype.enemyIdx, targetPiece.roulette.rtype.specialTypeIdx][0])); break;
             case ERouletteType.Player_Special:
                 totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_PlayerSpecial[targetPiece.roulette.rtype.specialTypeIdx][0])); break;
         }
@@ -823,7 +835,7 @@ public class BuffManager : MonoBehaviour
             case ERouletteType.Shield:
                 totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_Shield)); break;
             case ERouletteType.Enemy_Special:
-                totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_EnemySpecial[rouletteItem.rtype.specialTypeIdx][0])); break;
+                totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_EnemySpecial[rouletteItem.rtype.enemyIdx, rouletteItem.rtype.enemyIdx][0])); break;
             case ERouletteType.Player_Special:
                 totalBuff.AddBuff(CalcTotalBuff(rouletteBuff_PlayerSpecial[rouletteItem.rtype.specialTypeIdx][0])); break;
         }
@@ -881,30 +893,30 @@ public class BuffManager : MonoBehaviour
         return (int)((shield + totalBuff.add) * totalBuff.mul);
     }
 
-    public int GetBuffedEnemyDamage(EDamageSource source, int damage)
+    public int GetBuffedEnemyDamage(EDamageSource source, int damage, int enemyIdx = 0)
     {
         Buff totalBuff = new Buff();
         totalBuff.InitBuff();
-        totalBuff.AddBuff(CalcTotalBuff(enemyBuff_Damage_Type[(int)source]));
-        totalBuff.AddBuff(CalcTotalBuff(enemyBuff_Damage));
+        totalBuff.AddBuff(CalcTotalBuff(enemyBuff_Damage_Type[enemyIdx, (int)source]));
+        totalBuff.AddBuff(CalcTotalBuff(enemyBuff_Damage[enemyIdx]));
         return (int)((damage + totalBuff.add) * totalBuff.mul);
     }
 
-    public int GetBuffedEnemyHeal(EDamageSource source, int heal)
+    public int GetBuffedEnemyHeal(EDamageSource source, int heal, int enemyIdx = 0)
     {
         Buff totalBuff = new Buff();
         totalBuff.InitBuff();
-        totalBuff.AddBuff(CalcTotalBuff(enemyBuff_Heal_Type[(int)source]));
-        totalBuff.AddBuff(CalcTotalBuff(enemyBuff_Heal));
+        totalBuff.AddBuff(CalcTotalBuff(enemyBuff_Heal_Type[enemyIdx, (int)source]));
+        totalBuff.AddBuff(CalcTotalBuff(enemyBuff_Heal[enemyIdx]));
         return (int)((heal + totalBuff.add) * totalBuff.mul);
     }
 
-    public int GetBuffedEnemyShield(EDamageSource source, int shield)
+    public int GetBuffedEnemyShield(EDamageSource source, int shield, int enemyIdx = 0)
     {
         Buff totalBuff = new Buff();
         totalBuff.InitBuff();
-        totalBuff.AddBuff(CalcTotalBuff(enemyBuff_Shield_Type[(int)source]));
-        totalBuff.AddBuff(CalcTotalBuff(enemyBuff_Shield));
+        totalBuff.AddBuff(CalcTotalBuff(enemyBuff_Shield_Type[enemyIdx, (int)source]));
+        totalBuff.AddBuff(CalcTotalBuff(enemyBuff_Shield[enemyIdx]));
         return (int)((shield + totalBuff.add) * totalBuff.mul);
     }
 
@@ -946,9 +958,12 @@ public class BuffManager : MonoBehaviour
         {
             playerShowBuffs[i].ReduceShowBuffCounter();
         }
-        for (int i = enemyShowBuffs.Count - 1; i >= 0; i--)
+        for(int i = 0; i < Enemy.maxSubEnemyNum + 1; i++)
         {
-            enemyShowBuffs[i].ReduceShowBuffCounter();
+            for (int j = enemyShowBuffs[i].Count - 1; j >= 0; j--)
+            {
+                enemyShowBuffs[i][j].ReduceShowBuffCounter();
+            }
         }
     }
 

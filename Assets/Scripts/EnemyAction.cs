@@ -15,6 +15,7 @@ public class EnemyAction : MonoBehaviour
 
     public EEnemyActionType actionType;
     public int actionTypeNum;
+    public int enemyIdx;
     public int baseActionVal;
     public int actionVal;
     public bool isIgnore = false;
@@ -25,11 +26,7 @@ public class EnemyAction : MonoBehaviour
     {
         actionType = type;
         actionTypeNum = typeNum;
-        if (type == EEnemyActionType.Enchant_Random_1 || type == EEnemyActionType.Enchant_Random_2)
-        {
-            enemyAction.sprite = enemyActionSprites[5];
-        }
-        else if (type == EEnemyActionType.Special_Activate)
+        if (type == EEnemyActionType.Special_Activate)
         {
             enemyAction.sprite = EnemyManager.Inst.enemySpecialActions[typeNum].sprite;
         }
@@ -50,19 +47,19 @@ public class EnemyAction : MonoBehaviour
         int totalVal = actionVal;
         if (actionType == EEnemyActionType.Special_Activate)
         {
-            totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Special[actionTypeNum], totalVal);
+            totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Special[enemyIdx, actionTypeNum], totalVal);
         }
         if(actionType == EEnemyActionType.Attack)
         {
-            totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Attack, totalVal);
+            totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Attack[enemyIdx], totalVal);
         }
         if(actionType == EEnemyActionType.Heal)
         {
-            totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Heal, totalVal);
+            totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Heal[enemyIdx], totalVal);
         }
         if(actionType == EEnemyActionType.Shield)
         {
-            totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Shield, totalVal);
+            totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Shield[enemyIdx], totalVal);
         }
         
         if (totalVal == 0)
@@ -105,13 +102,9 @@ public class EnemyAction : MonoBehaviour
                 tooltip.tooltipTitle = EnemyManager.Inst.enemySpecialActions[actionTypeNum].title;
                 tooltip.tooltipTxt = EnemyManager.Inst.enemySpecialActions[actionTypeNum].text;
                 break;
-            case EEnemyActionType.Enchant_Random_1:
+            case EEnemyActionType.Enchant_Random:
                 tooltip.tooltipTitle = "부여";
-                tooltip.tooltipTxt = "무작위 빈 룰렛 칸에 " + EnemyManager.Inst.enemySpecialRoulettes[0].title + "을(를) 부여합니다. 빈 칸이 없을 경우 무작위 칸에 부여합니다.";
-                break;
-            case EEnemyActionType.Enchant_Random_2:
-                tooltip.tooltipTitle = "부여";
-                tooltip.tooltipTxt = "무작위 빈 룰렛 칸에 " + EnemyManager.Inst.enemySpecialRoulettes[1].title + "을(를) 부여합니다. 빈 칸이 없을 경우 무작위 칸에 부여합니다.";
+                tooltip.tooltipTxt = "무작위 빈 룰렛 칸에 " + EnemyManager.Inst.enemySpecialRoulettes[actionTypeNum].title + "을(를) 부여합니다. 빈 칸이 없을 경우 무작위 칸에 부여합니다.";
                 break;
             case EEnemyActionType.Heal:
                 tooltip.tooltipTitle = "회복";
@@ -133,9 +126,10 @@ public class EnemyAction : MonoBehaviour
         });
     }
 
-    public void SetAction(EnemyPattern p)
+    public void SetAction(EnemyPattern p, int enemyIdx)
     {
         SetActionType(p.type, p.typeNum);
+        this.enemyIdx = enemyIdx;
         SetActionVal(p.val);
         isIgnore = false;
 
@@ -194,28 +188,22 @@ public class EnemyAction : MonoBehaviour
                 case EEnemyActionType.Turn:
                     RouletteManager.Inst.Spin(totalVal > 0, Math.Abs(totalVal)); break;
                 case EEnemyActionType.Attack:
-                    totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Attack, totalVal);
+                    totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Attack[enemyIdx], totalVal);
                     TurnManager.Inst.TakeDmg(totalVal, EDamageSource.Enemy); break;
                 case EEnemyActionType.Heal:
-                    totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Heal, totalVal);
+                    totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Heal[enemyIdx], totalVal);
                     TurnManager.Inst.EnemyTakeDmg(-totalVal, EDamageSource.Enemy); break;
                 case EEnemyActionType.Shield:
-                    totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Shield, totalVal);
+                    totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Shield[enemyIdx], totalVal);
                     TurnManager.Inst.GetShield(true, totalVal, EDamageSource.Enemy); break;
-                case EEnemyActionType.Enchant_Random_1:
+                case EEnemyActionType.Enchant_Random:
                     for(int i = 0; i < totalVal; i++)
                     {
-                        EnchantAction(new RouletteType(ERouletteType.Enemy_Special, 0), EnemyManager.Inst.enemySpecialRoulettes[0].baseVal);
-                    }
-                    break;
-                case EEnemyActionType.Enchant_Random_2:
-                    for(int i = 0; i < totalVal; i++)
-                    {
-                        EnchantAction(new RouletteType(ERouletteType.Enemy_Special, 1), EnemyManager.Inst.enemySpecialRoulettes[1].baseVal);
+                        EnchantAction(new RouletteType(ERouletteType.Enemy_Special, actionTypeNum), EnemyManager.Inst.enemySpecialRoulettes[actionTypeNum].baseVal);
                     }
                     break;
                 case EEnemyActionType.Special_Activate:
-                    totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Special[actionTypeNum], totalVal);
+                    totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Special[enemyIdx, actionTypeNum], totalVal);
                     SpecialAction(actionTypeNum, totalVal); break;
             }
         }
