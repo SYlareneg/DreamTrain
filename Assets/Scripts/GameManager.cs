@@ -42,14 +42,14 @@ public class GameManager : MonoBehaviour
     [Tooltip("플레이어 페르소나")] public Image personaImg;
     [Tooltip("플레이어 그림자")] public Image shadowImg;
     [Header("적 UI")]
-    [SerializeField][Tooltip("적 체력 값 텍스트")] TMP_Text enemyHealthTMP;
-    [SerializeField][Tooltip("적 체력 바")] Image enemyHealthImg;
-    [SerializeField][Tooltip("적 실드 UI")] GameObject enemyShieldObj;
-    [SerializeField][Tooltip("적 실드 값 텍스트")] TMP_Text enemyShieldTMP;
+    [SerializeField][Tooltip("적 체력 값 텍스트")] TMP_Text[] enemyHealthTMP;
+    [SerializeField][Tooltip("적 체력 바")] Image[] enemyHealthImg;
+    [SerializeField][Tooltip("적 실드 UI")] GameObject[] enemyShieldObj;
+    [SerializeField][Tooltip("적 실드 값 텍스트")] TMP_Text[] enemyShieldTMP;
     [SerializeField][Tooltip("적 트리거 조건 텍스트")] TMP_Text enemyTriggerCountTMP;
     [SerializeField][Tooltip("적 트리거 조건 바")] Image enemyTriggerCntImg;
-    [SerializeField][Tooltip("적 버프 위치")] Vector2 enemyBuffPos;
-    [Tooltip("적 버프")] public GameObject enemyBuffUIView;
+    [SerializeField][Tooltip("적 버프 위치")] Vector2[] enemyBuffPos;
+    [Tooltip("적 버프")] public GameObject[] enemyBuffUIView;
     [HideInInspector] public List<RelicUI> relicList;
     [Header("카드 획득 UI")]
     [SerializeField][Tooltip("카드 획득 화면")] GameObject rewardCardView;
@@ -142,17 +142,21 @@ public class GameManager : MonoBehaviour
         {
             triggerCntImg.fillAmount = (float)TurnManager.Inst.playerTriggerCnt / TurnManager.Inst.playerTriggerMaxCnt;
         }
-        enemyHealthTMP.text = TurnManager.Inst.enemyCurHealth[0].ToString() + "/" + TurnManager.Inst.enemyMaxHealth[0].ToString();
-        enemyHealthImg.fillAmount = (float)TurnManager.Inst.enemyCurHealth[0] / TurnManager.Inst.enemyMaxHealth[0];
-        if(TurnManager.Inst.enemyShieldHealth[0] > 0)
+        for(int i = 0; i < enemyHealthTMP.Length; i++)
         {
-            enemyShieldObj.SetActive(true);
+            if(enemyHealthTMP[i] == null) continue;
+            enemyHealthTMP[i].text = TurnManager.Inst.enemyCurHealth[i].ToString() + "/" + TurnManager.Inst.enemyMaxHealth[i].ToString();
+            enemyHealthImg[i].fillAmount = (float)TurnManager.Inst.enemyCurHealth[i] / TurnManager.Inst.enemyMaxHealth[i];
+            if(TurnManager.Inst.enemyShieldHealth[i] > 0)
+            {
+                enemyShieldObj[i].SetActive(true);
+            }
+            else
+            {
+                enemyShieldObj[i].SetActive(false);
+            }
+            enemyShieldTMP[i].text = TurnManager.Inst.enemyShieldHealth[i].ToString();
         }
-        else
-        {
-            enemyShieldObj.SetActive(false);
-        }
-        enemyShieldTMP.text = TurnManager.Inst.enemyShieldHealth[0].ToString();
         enemyTriggerCountTMP.text = TurnManager.Inst.enemyTriggerCnt.ToString() + "/" + TurnManager.Inst.enemyTriggerMaxCnt.ToString();
         if (TurnManager.Inst.enemyTriggerMaxCnt == 0)
         {
@@ -162,6 +166,27 @@ public class GameManager : MonoBehaviour
         {
             enemyTriggerCntImg.fillAmount = (float)TurnManager.Inst.enemyTriggerCnt / TurnManager.Inst.enemyTriggerMaxCnt;
         }
+    }
+
+    public void SetSubEnemyUI(int subEnemyIdx, Transform subEnemyTransform)
+    {
+        enemyHealthTMP[subEnemyIdx + 1] = subEnemyTransform.Find("SubEnemyUI/Values/Health/HealthBar/HealthBarFront/HealthTMP").GetComponent<TMP_Text>();
+        enemyHealthImg[subEnemyIdx + 1] = subEnemyTransform.Find("SubEnemyUI/Values/Health/HealthBar/HealthBarFront").GetComponent<Image>();
+        enemyShieldObj[subEnemyIdx + 1] = subEnemyTransform.Find("SubEnemyUI/Values/Health/Icon/ShieldIcon").gameObject;
+        enemyShieldTMP[subEnemyIdx + 1] = subEnemyTransform.Find("SubEnemyUI/Values/Health/Icon/ShieldIcon/ShieldTMP").GetComponent<TMP_Text>();
+        RectTransform buffPosRect = subEnemyTransform.Find("SubEnemyUI/BuffPos").GetComponent<RectTransform>();
+        enemyBuffPos[subEnemyIdx + 1] = RectTransformUtility.WorldToScreenPoint(Camera.main, buffPosRect.position) - new Vector2(Screen.width / 2, Screen.height / 2);
+        enemyBuffUIView[subEnemyIdx + 1] = subEnemyTransform.Find("SubEnemyUI/Buffs").gameObject;
+    }
+
+    public void RemoveSubEnemyUI(int subEnemyIdx)
+    {
+        enemyHealthTMP[subEnemyIdx + 1] = null;
+        enemyHealthImg[subEnemyIdx + 1] = null;
+        enemyShieldObj[subEnemyIdx + 1] = null;
+        enemyShieldTMP[subEnemyIdx + 1] = null;
+        enemyBuffPos[subEnemyIdx + 1] = new Vector2(0, 0);
+        enemyBuffUIView[subEnemyIdx + 1] = null;
     }
 
     public void StartGame()
@@ -325,13 +350,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SetEnemyBuffUI()
+    public void SetEnemyBuffUI(int enemyIdx = 0)
     {
-        for (int i = enemyBuffUIView.transform.childCount - 1; i >= 0; i--)
+        for (int i = enemyBuffUIView[enemyIdx].transform.childCount - 1; i >= 0; i--)
         {
-            Destroy(enemyBuffUIView.transform.GetChild(i).gameObject);
+            Destroy(enemyBuffUIView[enemyIdx].transform.GetChild(i).gameObject);
         }
-        BuffManager.Inst.BuffListToBuffUIList(BuffManager.Inst.enemyShowBuffs[0], enemyBuffUIView, enemyBuffPos);
+        BuffManager.Inst.BuffListToBuffUIList(BuffManager.Inst.enemyShowBuffs[enemyIdx], enemyBuffUIView[enemyIdx], enemyBuffPos[enemyIdx]);
     }
 
     public void SetRouletteBuffUI()

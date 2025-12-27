@@ -17,6 +17,7 @@ public class Item
     [Tooltip("휘발성")] public bool isVolatile;
     [Tooltip("소멸")] public bool isVanish;
     [Tooltip("잔류")] public bool isRemain;
+    [Tooltip("단일기")] public bool isSingleTarget;
     [Tooltip("카드 이미지")] public string sprite;
     [Tooltip("카드 설명")] public string text;
     [Tooltip("카드 계수")] public List<int> cardValues = new List<int>();

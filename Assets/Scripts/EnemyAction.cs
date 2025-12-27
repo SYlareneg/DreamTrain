@@ -106,6 +106,10 @@ public class EnemyAction : MonoBehaviour
                 tooltip.tooltipTitle = "부여";
                 tooltip.tooltipTxt = "무작위 빈 룰렛 칸에 " + EnemyManager.Inst.enemySpecialRoulettes[actionTypeNum].title + "을(를) 부여합니다. 빈 칸이 없을 경우 무작위 칸에 부여합니다.";
                 break;
+            case EEnemyActionType.Spawn_SubEnemy:
+                tooltip.tooltipTitle = "소환";
+                tooltip.tooltipTxt = "하위 적을 값명 소환합니다.";
+                break;
             case EEnemyActionType.Heal:
                 tooltip.tooltipTitle = "회복";
                 tooltip.tooltipTxt = "체력을 값만큼 회복합니다.";
@@ -192,26 +196,38 @@ public class EnemyAction : MonoBehaviour
                     TurnManager.Inst.TakeDmg(totalVal, EDamageSource.Enemy); break;
                 case EEnemyActionType.Heal:
                     totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Heal[enemyIdx], totalVal);
-                    TurnManager.Inst.EnemyTakeDmg(-totalVal, EDamageSource.Enemy); break;
+                    TurnManager.Inst.EnemyTakeDmg(-totalVal, EDamageSource.Enemy, enemyIdx); break;
                 case EEnemyActionType.Shield:
                     totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Shield[enemyIdx], totalVal);
-                    TurnManager.Inst.GetShield(true, totalVal, EDamageSource.Enemy); break;
+                    TurnManager.Inst.GetShield(true, totalVal, EDamageSource.Enemy, enemyIdx); break;
                 case EEnemyActionType.Enchant_Random:
                     for(int i = 0; i < totalVal; i++)
                     {
-                        EnchantAction(new RouletteType(ERouletteType.Enemy_Special, actionTypeNum), EnemyManager.Inst.enemySpecialRoulettes[actionTypeNum].baseVal);
+                        int baseVal = 0;
+                        if(enemyIdx == 0) baseVal = EnemyManager.Inst.enemySpecialRoulettes[actionTypeNum].baseVal;
+                        else baseVal = EnemyManager.Inst.subEnemySpecialRoulettes[enemyIdx - 1][actionTypeNum].baseVal;
+                        EnchantAction(new RouletteType(ERouletteType.Enemy_Special, actionTypeNum, enemyIdx), baseVal);
                     }
                     break;
                 case EEnemyActionType.Special_Activate:
                     totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Special[enemyIdx, actionTypeNum], totalVal);
-                    SpecialAction(actionTypeNum, totalVal); break;
+                    SpecialAction(actionTypeNum, totalVal, enemyIdx); break;
+                case EEnemyActionType.Spawn_SubEnemy:
+                    SubEnemy SE = TurnManager.Inst.enemySO.subEnemies.Find(x => x.name == EnemyManager.Inst.enemy.subEnemies_Spawn[actionTypeNum]);
+                    if(SE == null || SE.name == null) break;
+                    for(int i = 0; i < totalVal; i++)
+                    {
+                        EnemyManager.Inst.InitSubEnemy(SE);
+                    }
+                    break;
             }
         }
     }
 
-    public static void SpecialAction(int num, int val)
+    public static void SpecialAction(int num, int val, int enemyIdx = 0)
     {
-        EnemyManager.enemySpecialActivation[num]?.Invoke(val);
+        if(enemyIdx == 0) EnemyManager.enemySpecialActivation[num]?.Invoke(val);
+        else EnemyManager.subEnemySpecialActivation[enemyIdx - 1, num]?.Invoke(val);
     }
 
     public static void EnchantAction(RouletteType rType, int rVal)
@@ -255,8 +271,8 @@ public class EnemyAction : MonoBehaviour
                     case ERouletteType.Shield:
                         TurnManager.Inst.GetShield(true, rVal, EDamageSource.Enemy); break;
                     case ERouletteType.Enemy_Special:
-                        if (rType.specialTypeIdx == 0 && EnemyManager.Inst.enemy.name == "마술사") break;
-                        SpecialAction(rType.specialTypeIdx, rVal); break;
+                        if (rType.specialTypeIdx == 0 && rType.enemyIdx == 0 && EnemyManager.Inst.enemy.name == "마술사") break;
+                        SpecialAction(rType.specialTypeIdx, rVal, rType.enemyIdx); break;
                     default:
                         break;
                 }

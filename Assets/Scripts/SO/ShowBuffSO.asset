@@ -19,6 +19,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     type: 0
     affectType: 0
+    affectEnemyIdx: 0
     effectType: 2
     val: 0
     defaultVal:
@@ -30,6 +31,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     type: 0
     affectType: 0
+    affectEnemyIdx: 0
     effectType: 2
     val: 0
     defaultVal:
@@ -41,6 +43,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     type: 0
     affectType: 0
+    affectEnemyIdx: 0
     effectType: 2
     val: 0
     defaultVal:
@@ -53,6 +56,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     type: 1
     affectType: 0
+    affectEnemyIdx: 0
     effectType: 1
     val: 0
     defaultVal:
@@ -65,6 +69,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     type: 1
     affectType: 0
+    affectEnemyIdx: 0
     effectType: 1
     val: 0
     defaultVal:
@@ -78,6 +83,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     type: 1
     affectType: 0
+    affectEnemyIdx: 0
     effectType: 0
     val: 0
     defaultVal:
@@ -92,6 +98,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     type: 1
     affectType: 0
+    affectEnemyIdx: 0
     effectType: 0
     val: 0
     defaultVal:
@@ -104,6 +111,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     type: 1
     affectType: 0
+    affectEnemyIdx: 0
     effectType: 0
     val: 0
     defaultVal:
@@ -116,6 +124,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     type: 1
     affectType: 0
+    affectEnemyIdx: 0
     effectType: 0
     val: 0
     defaultVal:
@@ -129,6 +138,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     type: 2
     affectType: 0
+    affectEnemyIdx: 0
     effectType: 0
     val: 0
     defaultVal:
@@ -142,6 +152,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     type: 2
     affectType: 0
+    affectEnemyIdx: 0
     effectType: 1
     val: 0
     defaultVal:
@@ -155,6 +166,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     type: 2
     affectType: 0
+    affectEnemyIdx: 0
     effectType: 1
     val: 0
     defaultVal:
@@ -167,6 +179,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     type: 1
     affectType: 0
+    affectEnemyIdx: 0
     effectType: 1
     val: 0
     defaultVal: []
@@ -179,6 +192,21 @@ MonoBehaviour:
     icon: {fileID: 0}
     type: 1
     affectType: 0
+    affectEnemyIdx: 0
+    effectType: 0
+    val: 0
+    defaultVal:
+    - 1
+    isSetOnEnemyTurn: 0
+    affectBuffs: []
+  - name: "\uBE59\uADF8\uB974!"
+    text: "\uB8F0\uB81B\uC774 3\uCE78 \uC774\uC0C1 \uD68C\uC804\uD558\uBA74 \uAC15\uD654\uB97C
+      1 \uC5BB\uC2B5\uB2C8\uB2E4. \uD6A8\uACFC \uBC1C\uB3D9\uC2DC \uD69F\uC218\uAC00
+      \uC904\uC5B4\uB4E4\uBA70, \uD69F\uC218\uAC00 0\uC774 \uB418\uBA74 \uC4F0\uB7EC\uC9D1\uB2C8\uB2E4."
+    icon: {fileID: 0}
+    type: 2
+    affectType: 0
+    affectEnemyIdx: 0
     effectType: 0
     val: 0
     defaultVal:

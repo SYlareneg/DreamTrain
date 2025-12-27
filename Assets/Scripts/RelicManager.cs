@@ -163,7 +163,7 @@ public class RelicManager : MonoBehaviour
                 {
                     chkEnemyDamaged = false;
                 };
-                TurnManager.OnEnemyDamaged += (x, s) =>
+                TurnManager.OnEnemyDamaged += (x, s, i) =>
                 {
                     chkEnemyDamaged = true;
                 };
@@ -649,9 +649,9 @@ public class RelicManager : MonoBehaviour
                 case ERelicActivateTimingType.Card_Draw:
                     TurnManager.OnAddCard += relicActivation; break;
                 case ERelicActivateTimingType.Enemy_Damage:
-                    TurnManager.OnEnemyDamaged += (x, s) => relicActivation?.Invoke(); break;
+                    TurnManager.OnEnemyDamaged += (x, s, i) => relicActivation?.Invoke(); break;
                 case ERelicActivateTimingType.Enemy_Heal:
-                    TurnManager.OnEnemyHealed += (x, s) => relicActivation?.Invoke(); break;
+                    TurnManager.OnEnemyHealed += (x, s, i) => relicActivation?.Invoke(); break;
                 case ERelicActivateTimingType.Enemy_Trigger:
                     TurnManager.OnEnemyTrigger += relicActivation; break;
                 case ERelicActivateTimingType.Enemy_Trigger_Increase:
@@ -659,7 +659,7 @@ public class RelicManager : MonoBehaviour
                 case ERelicActivateTimingType.Enemy_Trigger_Decrease:
                     TurnManager.OnEnemyTriggerDecrease += (x) => relicActivation?.Invoke(); break;
                 case ERelicActivateTimingType.Enemy_Shield:
-                    TurnManager.OnEnemyShielded += (x, s) => relicActivation(); break;
+                    TurnManager.OnEnemyShielded += (x, s, i) => relicActivation(); break;
                 case ERelicActivateTimingType.Enemy_Action:
                     TurnManager.OnEnemyAction += relicActivation; break;
                 case ERelicActivateTimingType.Player_Damage:

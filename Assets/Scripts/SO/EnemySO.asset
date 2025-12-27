@@ -191,6 +191,7 @@ MonoBehaviour:
         \uBC40\uD30C\uC774\uC5B4\uC758 \uCCB4\uB825\uC774 \uD68C\uBCF5\uB418\uACE0,
         \uD761\uD608 \uCE74\uC6B4\uD2B8\uB97C 1 \uC5BB\uC2B5\uB2C8\uB2E4."
     subEnemies: []
+    subEnemies_Spawn: []
   - name: "\uBC15\uC950"
     health: 68
     actionNum: 2
@@ -384,6 +385,7 @@ MonoBehaviour:
       text: "\uD53C\uD574\uB97C \uAC12\uB9CC\uD07C \uC8FC\uACE0, \uC785\uD78C \uD53C\uD574\uB9CC\uD07C
         \uBC15\uC950\uC758 \uCCB4\uB825\uC774 \uD68C\uBCF5\uB429\uB2C8\uB2E4."
     subEnemies: []
+    subEnemies_Spawn: []
   - name: "\uBE44\uB458\uAE30"
     health: 49
     actionNum: 2
@@ -528,6 +530,7 @@ MonoBehaviour:
         \uBAA8\uB450 \uC81C\uAC70\uD558\uACE0, \uC81C\uAC70\uD55C \uB9C8\uC220 \uBAA8\uC790
         \uAC1C\uC218X5\uC758 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
     subEnemies: []
+    subEnemies_Spawn: []
   - name: "\uB9DD\uB839 1"
     health: 52
     actionNum: 2
@@ -556,9 +559,9 @@ MonoBehaviour:
           val: -3
           isTrigger: 0
       - pattern:
-        - type: 4
+        - type: 5
           typeNum: 0
-          val: 1
+          val: 0
           isTrigger: 0
         - type: 2
           typeNum: 0
@@ -657,13 +660,15 @@ MonoBehaviour:
         specialTypeIdx: 0
         enemyIdx: 0
       value: 0
-    enemySpecialRoulettes:
-    - sprite: {fileID: 5301150221465536405, guid: c53e46bb395a59c42a367fa17a77f66b, type: 3}
-      title: "\uACF5\uACA9 \uB8F0\uB81B"
-      text: "\uD53C\uD574\uB97C \uAC12\uB9CC\uD07C \uC90D\uB2C8\uB2E4."
-      baseVal: 5
-    enemySpecialActions: []
+    enemySpecialRoulettes: []
+    enemySpecialActions:
+    - sprite: {fileID: -9202054676734628973, guid: 2a52294a21365ef449b22a23d4a355a6, type: 3}
+      title: "\uACF5\uACA9 \uBD80\uC5EC"
+      text: "\uBB34\uC791\uC704 \uBE48 \uB8F0\uB81B \uCE78\uC5D0 '\uACF5\uACA9' \uB8F0\uB81B\uC744
+        \uBD80\uC5EC\uD569\uB2C8\uB2E4. \uBE48 \uCE78\uC774 \uC5C6\uC744 \uACBD\uC6B0
+        \uBB34\uC791\uC704 \uCE78\uC5D0 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
     subEnemies: []
+    subEnemies_Spawn: []
   - name: "\uB9DD\uB839 2"
     health: 52
     actionNum: 2
@@ -799,8 +804,8 @@ MonoBehaviour:
       title: "\uD68C\uC804 \uBD09\uC778"
       text: "\uD50C\uB808\uC774\uC5B4\uC5D0\uAC8C '\uD68C\uC804 \uBD09\uC778' \uB514\uBC84\uD504\uB97C
         \uAC12\uD134\uB3D9\uC548 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
-    subEnemies:
-    - "\uC784\uC2DC \uC801"
+    subEnemies: []
+    subEnemies_Spawn: []
   - name: "\uB9C8\uC220\uC0AC"
     health: 84
     actionNum: 3
@@ -975,21 +980,311 @@ MonoBehaviour:
       text: "\uD134x1+\uB9C8\uC220 \uBAA8\uC790 \uAC1C\uC218x1 \uC758 \uD53C\uD574\uB97C
         \uC90D\uB2C8\uB2E4."
     subEnemies: []
-  subEnemies:
-  - name: "\uC784\uC2DC \uC801"
-    health: 10
-    actionNum: 1
-    roulettePos: 9
+    subEnemies_Spawn: []
+  - name: "\uADC0\uC2E0\uB4E4\uB9B0 \uC778\uD615"
+    health: 144
+    actionNum: 2
+    passive:
+      type: 2
+      sprite: {fileID: 0}
+      name: "\uC778\uD615\uC758 \uC800\uC8FC"
+      text: "\uC800\uC8FC \uC778\uD615\uC774 \uC874\uC7AC\uD55C\uB2E4\uBA74, \uC790\uC2E0\uC774
+        \uACF5\uACA9\uBC1B\uC744 \uB54C \uD2B8\uB9AC\uAC70 \uAC8C\uC774\uC9C0\uB97C
+        1 \uC5BB\uACE0 \uC800\uC8FC \uC778\uD615\uC774 \uD53C\uD574\uB97C \uB300\uC2E0
+        \uBC1B\uC2B5\uB2C8\uB2E4."
+      dreamPieceNum: 0
+    relics: []
+    triggerNum: 4
     phase:
-    - name: "\uACF5\uACA9"
-      text: "\uACF5\uACA9"
+    - name: "\uC778\uD615\uC758 \uC800\uC8FC"
+      text: "\uC800\uC8FC \uC778\uD615\uC774 \uC874\uC7AC\uD55C\uB2E4\uBA74, \uC790\uC2E0\uC774
+        \uACF5\uACA9\uBC1B\uC744 \uB54C \uD2B8\uB9AC\uAC70 \uAC8C\uC774\uC9C0\uB97C
+        1 \uC5BB\uACE0 \uC800\uC8FC \uC778\uD615\uC774 \uD53C\uD574\uB97C \uB300\uC2E0
+        \uBC1B\uC2B5\uB2C8\uB2E4."
+      patterns:
+      - pattern:
+        - type: 6
+          typeNum: 0
+          val: 1
+          isTrigger: 0
+      phaseClear: 0
+      phaseRepeat: 0
+    - name: "\uC778\uD615\uC758 \uC800\uC8FC"
+      text: "\uC800\uC8FC \uC778\uD615\uC774 \uC874\uC7AC\uD55C\uB2E4\uBA74, \uC790\uC2E0\uC774
+        \uACF5\uACA9\uBC1B\uC744 \uB54C \uD2B8\uB9AC\uAC70 \uAC8C\uC774\uC9C0\uB97C
+        1 \uC5BB\uACE0 \uC800\uC8FC \uC778\uD615\uC774 \uD53C\uD574\uB97C \uB300\uC2E0
+        \uBC1B\uC2B5\uB2C8\uB2E4."
       patterns:
       - pattern:
         - type: 1
           typeNum: 0
-          val: 5
+          val: 8
           isTrigger: 0
+      - pattern:
+        - type: 0
+          typeNum: 0
+          val: 3
+          isTrigger: 0
+        - type: 1
+          typeNum: 0
+          val: 4
+          isTrigger: 0
+      - pattern:
+        - type: 1
+          typeNum: 0
+          val: 6
+          isTrigger: 0
+        - type: 1
+          typeNum: 0
+          val: 6
+          isTrigger: 0
+      phaseClear: 0
+      phaseRepeat: 1
+    triggerPhase:
+    - name: "\uADC0\uC2E0\uB4E4\uB9B0 \uC778\uD615:\uD2B8\uB9AC\uAC70"
+      text: "\uADC0\uC2E0\uB4E4\uB9B0 \uC778\uD615\uC774 \uD2B8\uB9AC\uAC70 \uC0C1\uD0DC\uC785\uB2C8\uB2E4."
+      patterns:
+      - pattern:
+        - type: 5
+          typeNum: 0
+          val: 0
+          isTrigger: 1
+      phaseClear: 0
+      phaseRepeat: 0
+    roulettePattern:
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 0
+    - rtype:
+        type: 1
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 4
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 0
+    - rtype:
+        type: 1
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 4
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 0
+    - rtype:
+        type: 1
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 4
+    enemySpecialRoulettes: []
+    enemySpecialActions:
+    - sprite: {fileID: -1521565114957691944, guid: b8b8956a5637e7f49819dc7206e06c9a, type: 3}
+      title: "\uC778\uD615 \uD761\uC218"
+      text: "\uC800\uC8FC \uC778\uD615\uC774 \uC874\uC7AC\uD55C\uB2E4\uBA74, \uC800\uC8FC
+        \uC778\uD615\uC758 \uD604\uC7AC \uCCB4\uB825\uB9CC\uD07C \uC790\uC2E0\uC758
+        \uCCB4\uB825\uC744 \uD68C\uBCF5\uD558\uACE0 \uC800\uC8FC \uC778\uD615\uC740
+        \uC18C\uBA78\uC2DC\uD0B5\uB2C8\uB2E4. \uC800\uC8FC \uC778\uD615\uC774 \uC5C6\uC73C\uBA74
+        \uC790\uC2E0\uC758 \uCCB4\uB825\uC774 4 \uAC00 \uB429\uB2C8\uB2E4."
+    subEnemies: []
+    subEnemies_Spawn:
+    - "\uC800\uC8FC \uC778\uD615"
+  - name: "\uB300\uC7A5 \uCEF5"
+    health: 55
+    actionNum: 2
+    passive:
+      type: 2
+      sprite: {fileID: 0}
+      name: "\uC778\uD615\uC758 \uC800\uC8FC"
+      text: "\uC800\uC8FC \uC778\uD615\uC774 \uC874\uC7AC\uD55C\uB2E4\uBA74, \uC790\uC2E0\uC774
+        \uACF5\uACA9\uBC1B\uC744 \uB54C \uD2B8\uB9AC\uAC70 \uAC8C\uC774\uC9C0\uB97C
+        1 \uC5BB\uACE0 \uC800\uC8FC \uC778\uD615\uC774 \uD53C\uD574\uB97C \uB300\uC2E0
+        \uBC1B\uC2B5\uB2C8\uB2E4."
+      dreamPieceNum: 0
+    relics: []
+    triggerNum: 24
+    phase:
+    - name: "\uBE59\uADF8\uB974\uB974"
+      text: "\uB8F0\uB81B\uC774 \uC2DC\uACC4 \uBC29\uD5A5\uC73C\uB85C \uD68C\uC804\uD558\uBA74
+        \uD68C\uC804\uD55C \uCE78 \uC218\uB9CC\uD07C \uD2B8\uB9AC\uAC70 \uAC8C\uC774\uC9C0\uC640
+        \uBC29\uC5B4\uB3C4\uB97C \uC5BB\uC2B5\uB2C8\uB2E4. \uB9CC\uC57D \uD2B8\uB9AC\uAC70
+        \uC0C1\uD0DC\uB77C\uBA74 \uD134 \uC2DC\uC791\uC2DC \uB8F0\uB81B\uC744 \uB79C\uB364\uD558\uAC8C
+        \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
+      patterns:
+      - pattern:
+        - type: 1
+          typeNum: 0
+          val: 6
+          isTrigger: 0
+        - type: 0
+          typeNum: 0
+          val: 6
+          isTrigger: 0
+      - pattern:
+        - type: 3
+          typeNum: 0
+          val: 8
+          isTrigger: 0
+        - type: 0
+          typeNum: 0
+          val: 6
+          isTrigger: 0
+      - pattern:
+        - type: 1
+          typeNum: 0
+          val: 10
+          isTrigger: 0
+        - type: 0
+          typeNum: 0
+          val: 6
+          isTrigger: 0
+      - pattern:
         - type: 2
+          typeNum: 0
+          val: 6
+          isTrigger: 0
+        - type: 5
+          typeNum: 0
+          val: 6
+          isTrigger: 0
+      phaseClear: 0
+      phaseRepeat: 1
+    triggerPhase: []
+    roulettePattern:
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 0
+    - rtype:
+        type: 3
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 5
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 0
+    - rtype:
+        type: 1
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 5
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 0
+    - rtype:
+        type: 2
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 3
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 0
+    - rtype:
+        type: 0
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 0
+    - rtype:
+        type: 1
+        specialTypeIdx: 0
+        enemyIdx: 0
+      value: 5
+    enemySpecialRoulettes: []
+    enemySpecialActions:
+    - sprite: {fileID: -503537775607994396, guid: e6516cbe38e9c54488c3fa3a7ae338cf, type: 3}
+      title: "\uD68C\uC804"
+      text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C \uAC12\uCE78
+        \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
+    subEnemies:
+    - "\uBD80\uD558 \uCEF5 1"
+    - "\uBD80\uD558 \uCEF5 2"
+    subEnemies_Spawn: []
+  subEnemies:
+  - name: "\uC800\uC8FC \uC778\uD615"
+    health: 44
+    actionNum: 1
+    roulettePos: 1
+    phase:
+    - name: "\uC800\uC8FC \uC778\uD615"
+      text: "\uADC0\uC2E0\uB4E4\uB9B0 \uC778\uD615\uC758 \uD53C\uD574\uB97C \uB300\uC2E0
+        \uC785\uC2B5\uB2C8\uB2E4."
+      patterns:
+      - pattern:
+        - type: 3
+          typeNum: 0
+          val: 1
+          isTrigger: 0
+      phaseClear: 0
+      phaseRepeat: 1
+    enemySpecialRoulettes: []
+    enemySpecialActions: []
+  - name: "\uBD80\uD558 \uCEF5 1"
+    health: 22
+    actionNum: 1
+    roulettePos: 1
+    phase:
+    - name: "\uBD80\uD558 \uCEF5 1"
+      text: "\uB300\uC7A5 \uCEF5\uC758 \uBD80\uD558\uC785\uB2C8\uB2E4."
+      patterns:
+      - pattern:
+        - type: 1
           typeNum: 0
           val: 5
           isTrigger: 0
@@ -998,9 +1293,27 @@ MonoBehaviour:
           typeNum: 0
           val: 5
           isTrigger: 0
-        - type: 2
+      phaseClear: 0
+      phaseRepeat: 1
+    enemySpecialRoulettes: []
+    enemySpecialActions: []
+  - name: "\uBD80\uD558 \uCEF5 2"
+    health: 33
+    actionNum: 1
+    roulettePos: 9
+    phase:
+    - name: "\uBD80\uD558 \uCEF5 2"
+      text: "\uB300\uC7A5 \uCEF5\uC758 \uBD80\uD558\uC785\uB2C8\uB2E4."
+      patterns:
+      - pattern:
+        - type: 3
           typeNum: 0
-          val: 5
+          val: 6
+          isTrigger: 0
+      - pattern:
+        - type: 1
+          typeNum: 0
+          val: 6
           isTrigger: 0
       phaseClear: 0
       phaseRepeat: 1

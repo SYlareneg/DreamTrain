@@ -61,9 +61,18 @@ public class RoulettePiece : MonoBehaviour
                 originalTooltipText = "실드를 값만큼 획득합니다.";
                 break;
             case ERouletteType.Enemy_Special:
-                originalSprite = EnemyManager.Inst.enemySpecialRoulettes[rlt.rtype.specialTypeIdx].sprite;
-                originalTooltipTitle = EnemyManager.Inst.enemySpecialRoulettes[rlt.rtype.specialTypeIdx].title;
-                originalTooltipText = EnemyManager.Inst.enemySpecialRoulettes[rlt.rtype.specialTypeIdx].text;
+                if(rlt.rtype.enemyIdx == 0)
+                {
+                    originalSprite = EnemyManager.Inst.enemySpecialRoulettes[rlt.rtype.specialTypeIdx].sprite;
+                    originalTooltipTitle = EnemyManager.Inst.enemySpecialRoulettes[rlt.rtype.specialTypeIdx].title;
+                    originalTooltipText = EnemyManager.Inst.enemySpecialRoulettes[rlt.rtype.specialTypeIdx].text;
+                }
+                else
+                {
+                    originalSprite = EnemyManager.Inst.subEnemySpecialRoulettes[rlt.rtype.enemyIdx - 1][rlt.rtype.specialTypeIdx].sprite;
+                    originalTooltipTitle = EnemyManager.Inst.subEnemySpecialRoulettes[rlt.rtype.enemyIdx - 1][rlt.rtype.specialTypeIdx].title;
+                    originalTooltipText = EnemyManager.Inst.subEnemySpecialRoulettes[rlt.rtype.enemyIdx - 1][rlt.rtype.specialTypeIdx].text;
+                }
                 break;
             case ERouletteType.Player_Special:
                 originalSprite = PassiveManager.Inst.playerSpecialRoulettes[rlt.rtype.specialTypeIdx].sprite;
@@ -182,7 +191,7 @@ public class RoulettePiece : MonoBehaviour
         }
     }
 
-    public void Activate(bool isEnemy)
+    public void Activate(bool isEnemy, int enemyIdx = 0)
     {
         int totalVal = BuffManager.Inst.GetBuffedRouletteValue(this);
         switch (roulette.rtype.type)
@@ -190,7 +199,7 @@ public class RoulettePiece : MonoBehaviour
             case ERouletteType.Attack:
                 if (isEnemy)
                 {
-                    TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette);
+                    TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette, enemyIdx);
                 }
                 else
                 {
@@ -200,7 +209,7 @@ public class RoulettePiece : MonoBehaviour
             case ERouletteType.Heal:
                 if (isEnemy)
                 {
-                    TurnManager.Inst.EnemyTakeDmg(-totalVal, EDamageSource.Roulette);
+                    TurnManager.Inst.EnemyTakeDmg(-totalVal, EDamageSource.Roulette, enemyIdx);
                 }
                 else
                 {
@@ -210,7 +219,7 @@ public class RoulettePiece : MonoBehaviour
             case ERouletteType.Shield:
                 if (isEnemy)
                 {
-                    TurnManager.Inst.GetShield(true, totalVal, EDamageSource.Roulette);
+                    TurnManager.Inst.GetShield(true, totalVal, EDamageSource.Roulette, enemyIdx);
                 }
                 else
                 {
@@ -218,10 +227,11 @@ public class RoulettePiece : MonoBehaviour
                 }
                 break;
             case ERouletteType.Enemy_Special:
-                EnemyManager.enemySpecialRouletteActivation[roulette.rtype.specialTypeIdx]?.Invoke(this, isEnemy, totalVal);
+                if(enemyIdx == 0) EnemyManager.enemySpecialRouletteActivation[roulette.rtype.specialTypeIdx]?.Invoke(this, isEnemy, totalVal, 0);
+                else EnemyManager.subEnemySpecialRouletteActivation[enemyIdx - 1, roulette.rtype.specialTypeIdx]?.Invoke(this, isEnemy, totalVal, enemyIdx);
                 break;
             case ERouletteType.Player_Special:
-                PassiveManager.playerSpecialRouletteActivation[roulette.rtype.specialTypeIdx]?.Invoke(isEnemy, totalVal);
+                PassiveManager.playerSpecialRouletteActivation[roulette.rtype.specialTypeIdx]?.Invoke(isEnemy, totalVal, enemyIdx);
                 break;
         }
     }

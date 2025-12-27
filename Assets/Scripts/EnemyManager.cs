@@ -12,10 +12,32 @@ using Random = UnityEngine.Random;
 public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager Inst { get; private set; }
-    void Awake() => Inst = this;
+    void Awake()
+    {
+        Inst = this;
+
+        subEnemyPos = new Transform[Enemy.maxSubEnemyNum];
+        subEnemyActionPos = new Transform[Enemy.maxSubEnemyNum];
+        subEnemyExecutePos = new Transform[Enemy.maxSubEnemyNum];
+        subEnemyActionBox = new GameObject[Enemy.maxSubEnemyNum];
+        subEnemyImg = new GameObject[Enemy.maxSubEnemyNum];
+
+        subEnemies = new SubEnemy[Enemy.maxSubEnemyNum];
+        subEnemyActionList = new List<EnemyAction>[Enemy.maxSubEnemyNum];
+        subEnemySpecialRoulettes = new List<SpecialRoulette>[Enemy.maxSubEnemyNum];
+        subEnemySpecialActions = new List<EnemySpecialAction>[Enemy.maxSubEnemyNum];
+        phaseNum_SE = new int[Enemy.maxSubEnemyNum];
+        patternNum_SE = new int[Enemy.maxSubEnemyNum];
+        currentPattern_SE = new List<EnemyPattern>[Enemy.maxSubEnemyNum];
+    }
 
     [Header("Prefabs")]
     [SerializeField][Tooltip("액션 심볼 Prefab")] GameObject actionPrefab;
+    [SerializeField][Tooltip("서브 적 Prefab")] GameObject subEnemyPrefab;
+    [SerializeField][Tooltip("서브 적 캔버스")] Canvas subEnemyCanvas;
+    [SerializeField][Tooltip("서브 적 룰렛 위치에 따른 캔버스 위치")] int[] subEnemyCanvasPos_roulettePos = new int[Enemy.maxSubEnemyNum];
+    [SerializeField][Tooltip("서브 적 룰렛 위치에 따른 캔버스 위치")] Transform[] subEnemyCanvasPos_transform = new Transform[Enemy.maxSubEnemyNum];
+    [SerializeField][Tooltip("서브 적 룰렛 위치에 따른 룰렛 마커")] GameObject[] subEnemyCanvasPos_rouletteMarker;
     [Header("Positions")]
     [Tooltip("액션 심볼 간격")] public static float actionMargin = 0.5f;
     [SerializeField][Tooltip("액션 심볼 스폰 지점")] Transform enemyPos;
@@ -35,36 +57,45 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] GameObject[] subEnemyImg;
     [SerializeField] TMP_Text enemyName;
     public List<EnemyAction> actionList;
-    public List<List<EnemyAction>> subEnemyActionList;
+    public List<EnemyAction>[] subEnemyActionList = new List<EnemyAction>[Enemy.maxSubEnemyNum];
     public List<EnemyAction> executeActionList;
     static float actionInterval = 0.5f;
     public EnemyAction lastAction;
 
     public Enemy enemy;
-    public List<SubEnemy> subEnemies;
+    public SubEnemy[] subEnemies = new SubEnemy[Enemy.maxSubEnemyNum];
     public int phaseNum;
-    public List<int> phaseNum_SE;
+    public int[] phaseNum_SE = new int[Enemy.maxSubEnemyNum];
     public int patternNum;
-    public List<int> patternNum_SE;
+    public int[] patternNum_SE = new int[Enemy.maxSubEnemyNum];
     public bool isTriggerActivated;
     public int triggerPhaseNum;
     public int triggerPatternNum;
     public List<EnemyPattern> currentPattern;
-    public List<List<EnemyPattern>> currentPattern_SE;
+    public List<EnemyPattern>[] currentPattern_SE = new List<EnemyPattern>[Enemy.maxSubEnemyNum];
     Action extendPattern;
     [Header("적 특수룰렛")]
     public List<SpecialRoulette> enemySpecialRoulettes;
-    public static Action<RoulettePiece, bool, int>[] enemySpecialRouletteActivation = new Action<RoulettePiece, bool, int>[Enemy.enemySpecialRouletteNum];
+    public static Action<RoulettePiece, bool, int, int>[] enemySpecialRouletteActivation = new Action<RoulettePiece, bool, int, int>[Enemy.enemySpecialRouletteNum];
     [Header("적 특수행동")]
     public List<EnemySpecialAction> enemySpecialActions;
     public static Action<int>[] enemySpecialActivation = new Action<int>[Enemy.enemySpecialActionNum];
     [Header("하위 적 특수룰렛")]
-    public List<SpecialRoulette[]> subEnemySpecialRoulettes;
-    public static Action<RoulettePiece, bool, int>[,] subEnemySpecialRouletteActivation = new Action<RoulettePiece, bool, int>[Enemy.maxSubEnemyNum, SubEnemy.enemySpecialRouletteNum];
+    public List<SpecialRoulette>[] subEnemySpecialRoulettes = new List<SpecialRoulette>[Enemy.maxSubEnemyNum];
+    public static Action<RoulettePiece, bool, int, int>[,] subEnemySpecialRouletteActivation = new Action<RoulettePiece, bool, int, int>[Enemy.maxSubEnemyNum, SubEnemy.enemySpecialRouletteNum];
     [Header("하위 적 특수행동")]
-    public List<EnemySpecialAction[]> subEnemySpecialActions;
+    public List<EnemySpecialAction>[] subEnemySpecialActions = new List<EnemySpecialAction>[Enemy.maxSubEnemyNum];
     public static Action<int>[,] subEnemySpecialActivation = new Action<int>[Enemy.maxSubEnemyNum, SubEnemy.enemySpecialActionNum];
 
+    public int FindEnemyIdxByPos(Transform enemyPos)
+    {
+        if(this.enemyPos == enemyPos) return 0;
+        for(int i = 0; i < subEnemyPos.Length; i++)
+        {
+            if(subEnemyPos[i] == enemyPos) return i + 1;
+        }
+        return -1;
+    }
 
     public void InitEnemy()
     {
@@ -135,12 +166,12 @@ public class EnemyManager : MonoBehaviour
                     BuffManager.Inst.rouletteBuff_EnemySpecial[0, 0].Add(new List<Buff>());
                     BuffManager.Inst.rouletteBuff_EnemySpecial[0, 0].Add(new List<Buff>());
                 };
-                enemySpecialRouletteActivation[0] = (rPiece, isEnemy, value) =>
+                enemySpecialRouletteActivation[0] = (rPiece, isEnemy, value, enemyIdx) =>
                 {
                     int trueDamage = 0;
                     if (isEnemy)
                     {
-                        trueDamage = TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette);
+                        trueDamage = TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette, enemyIdx);
                     }
                     else
                     {
@@ -170,23 +201,6 @@ public class EnemyManager : MonoBehaviour
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], TurnManager.Inst.turnNum / 2, 1, 2);
                         BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_EnemySpecial[0, 0][0], TurnManager.Inst.turnNum / 2, 1, 2);
                     }
-                };
-
-                RouletteItem rItem = new RouletteItem();
-                rItem.rtype = new RouletteType(ERouletteType.Enemy_Special, 0);
-                rItem.value = 15;
-                RouletteManager.Inst.enemyTriggerPiece = rItem;
-                TurnManager.OnEnemyTrigger += () =>
-                {
-                    if(phaseNum == 1)
-                    {
-                        BuffManager.Inst.rouletteBuff_Trigger.Clear();
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, -10, 3, -1);
-                    }
-                };
-                RouletteManager.EnemyTriggerActivation = (isEnemy, totalVal) =>
-                {
-                    enemySpecialRouletteActivation[0]?.Invoke(null, isEnemy, totalVal);
                 };
                 break;
             case "박쥐":
@@ -227,9 +241,9 @@ public class EnemyManager : MonoBehaviour
                 };
 
                 bool wasDamaged = false;
-                TurnManager.OnEnemyDamaged += (x, s) =>
+                TurnManager.OnEnemyDamaged += (x, s, i) =>
                 {
-                    if(s == EDamageSource.Roulette)
+                    if(s == EDamageSource.Roulette && i == 0)
                     {
                         wasDamaged = true;
                     }
@@ -246,7 +260,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     BuffManager.Inst.rouletteBuff_EnemySpecial[0, 0].Add(new List<Buff>());
                 };
-                enemySpecialRouletteActivation[0] = (rPiece, isEnemy, value) =>
+                enemySpecialRouletteActivation[0] = (rPiece, isEnemy, value, enemyIdx) =>
                 {
                     if (!isEnemy)
                     {
@@ -307,20 +321,13 @@ public class EnemyManager : MonoBehaviour
                 {
                     BuffManager.Inst.rouletteBuff_EnemySpecial[0, 0].Add(new List<Buff>());
                 };
-                enemySpecialRouletteActivation[0] = (rPiece, isEnemy, value) =>
+                enemySpecialActivation[0] = (value) =>
                 {
-                    if (isEnemy)
-                    {
-                        TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette);
-                    }
-                    else
-                    {
-                        TurnManager.Inst.TakeDmg(value, EDamageSource.Roulette);
-                    }
+                    EnemyAction.EnchantAction(new RouletteType(ERouletteType.Attack), 5);
                 };
-                TurnManager.OnEnemyDamaged += (x, s) =>
+                TurnManager.OnEnemyDamaged += (x, s, i) =>
                 {
-                    TurnManager.Inst.TriggerEnemyPassive(1);
+                    if(i == 0) TurnManager.Inst.TriggerEnemyPassive(1);
                 };
                 TurnManager.OnPlayerTurnStart += () =>
                 {
@@ -334,17 +341,6 @@ public class EnemyManager : MonoBehaviour
                 BuffManager.InitSpecialRouletteBuffs += () =>
                 {
                     BuffManager.Inst.rouletteBuff_EnemySpecial[0, 0].Add(new List<Buff>());
-                };
-                enemySpecialRouletteActivation[0] = (rPiece, isEnemy, value) =>
-                {
-                    if (isEnemy)
-                    {
-                        TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette);
-                    }
-                    else
-                    {
-                        TurnManager.Inst.TakeDmg(value, EDamageSource.Roulette);
-                    }
                 };
                 enemySpecialActivation[0] = (value) =>
                 {
@@ -371,7 +367,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     BuffManager.Inst.rouletteBuff_EnemySpecial[0, 0].Add(new List<Buff>());
                 };
-                enemySpecialRouletteActivation[0] = (rPiece, isEnemy, value) =>
+                enemySpecialRouletteActivation[0] = (rPiece, isEnemy, value, enemyIdx) =>
                 {
                     if (!isEnemy)
                     {
@@ -445,59 +441,164 @@ public class EnemyManager : MonoBehaviour
                     }
                 };
                 break;
+            case "귀신들린 인형":
+                enemySpecialActivation[0] = (value) =>
+                {
+                    SubEnemy curseDoll = Array.Find(subEnemies, x => x != null && x.name == "저주 인형");
+                    if(curseDoll == null)
+                    {
+                        TurnManager.Inst.EnemyTakeDmg(TurnManager.Inst.enemyCurHealth[0] + TurnManager.Inst.enemyShieldHealth[0] - 4, EDamageSource.Enemy);
+                    }
+                    else
+                    {
+                        int curseDollIdx = Array.FindIndex(subEnemies, x => x != null && x.name == "저주 인형");
+                        TurnManager.Inst.EnemyTakeDmg(-TurnManager.Inst.enemyCurHealth[curseDollIdx], EDamageSource.Enemy);
+                        DestroySubEnemy(curseDollIdx);
+                    }
+                };
+                TurnManager.OnEnemyDamaged += (damage, source, enemyIdx) =>
+                {
+                    if(enemyIdx != 0) return;
+                    int curseDoll = Array.FindIndex(subEnemies, x => x != null && x.name == "저주 인형");
+                    if(curseDoll != -1)
+                    {
+                        TurnManager.Inst.TriggerEnemyPassive(1);
+                        TurnManager.Inst.enemyShieldHealth[0] += damage;
+                        TurnManager.Inst.EnemyTakeDmg(damage, source, curseDoll + 1);
+                    }
+                };
+                TurnManager.OnSubEnemyDestroy += (subEnemyIdx) =>
+                {
+                    if(subEnemies[subEnemyIdx].name == "저주 인형")
+                    {
+                        ChangePhase(0, 0);
+                    }
+                };
+                break;
+            case "대장 컵":
+                enemySpecialActivation[0] = (value) =>
+                {
+                    RouletteManager.Inst.Spin(true, value);
+                };
+                TurnManager.OnRouletteSpin += (isClockwise, pieces) =>
+                {
+                    if (isClockwise)
+                    {
+                        TurnManager.Inst.TriggerEnemyPassive(pieces);
+                        TurnManager.Inst.GetShield(true, pieces, EDamageSource.Enemy);
+                    }
+                };
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    if(patternNum == 3)
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], Random.Range(1, 7), 1, 1);
+                    }
+                };
+                break;
         }
 
-        subEnemies = new List<SubEnemy>();
-        subEnemyActionList = new List<List<EnemyAction>>();
-        subEnemySpecialRoulettes = new List<SpecialRoulette[]>();
-        subEnemySpecialActions = new List<EnemySpecialAction[]>();
-        phaseNum_SE = new List<int>();
-        patternNum_SE = new List<int>();
-        currentPattern_SE = new List<List<EnemyPattern>>();
         for(int i = 0; i < enemy.subEnemies.Count; i++)
         {
             SubEnemy subEnemy = TurnManager.Inst.enemySO.subEnemies.Find(x => x.name == enemy.subEnemies[i]);
             if(subEnemy == null) continue;
-            TurnManager.Inst.enemyMaxHealth[i + 1] = subEnemy.health;
-            TurnManager.Inst.enemyCurHealth[i + 1] = subEnemy.health;
             InitSubEnemy(subEnemy);
-            subEnemyImg[i].GetComponent<Tooltip>().tooltipTitle = subEnemy.phase[0].name;
-            subEnemyImg[i].GetComponent<Tooltip>().tooltipTxt = subEnemy.phase[0].text;
         }
     }
 
     public void InitSubEnemy(SubEnemy subEnemy)
     {
-        subEnemies.Add(new SubEnemy(subEnemy));
+        int subEnemyIdx = -1;
+        for(int i = 0; i < Enemy.maxSubEnemyNum; i++)
+        {
+            if(subEnemies[i] == null || subEnemies[i].name == null)
+            {
+                subEnemies[i] = new SubEnemy(subEnemy);
+                subEnemyIdx = i;
+                break;
+            }
+        }
+        if(subEnemyIdx == -1) return;
+        TurnManager.Inst.enemyMaxHealth[subEnemyIdx + 1] = subEnemy.health;
+        TurnManager.Inst.enemyCurHealth[subEnemyIdx + 1] = subEnemy.health;
 
-        phaseNum_SE.Add(0);
-        patternNum_SE.Add(0);
-        currentPattern_SE.Add(subEnemy.phase[0].patterns[0].pattern);
-        foreach(var p in subEnemy.phase)
+        int tempIdx = Array.FindIndex(subEnemyCanvasPos_roulettePos, x => x == subEnemies[subEnemyIdx].roulettePos);
+        if(tempIdx == -1) return;
+        var subEnemyObj = Instantiate(subEnemyPrefab, subEnemyCanvas.transform, false);
+        subEnemyObj.transform.position = subEnemyCanvasPos_transform[tempIdx].position;
+        subEnemyObj.transform.localScale = subEnemyCanvasPos_transform[tempIdx].localScale;
+        subEnemyCanvasPos_rouletteMarker[tempIdx].SetActive(true);
+        subEnemyPos[subEnemyIdx] = subEnemyObj.transform;
+        subEnemyActionPos[subEnemyIdx] = subEnemyObj.transform.Find("EnemyActionPos");
+        subEnemyExecutePos[subEnemyIdx] = subEnemyObj.transform.Find("EnemyExecutePos");
+        subEnemyActionBox[subEnemyIdx] = subEnemyObj.transform.Find("EnemyActionBox").gameObject;
+        subEnemyActionBox[subEnemyIdx].SetActive(false);
+        subEnemyImg[subEnemyIdx] = subEnemyObj.transform.Find("EnemyImg").gameObject;
+        subEnemyImg[subEnemyIdx].GetComponent<Tooltip>().tooltipPos = new Vector2(subEnemyObj.transform.position.x + 87, subEnemyObj.transform.position.y - 38.8f);
+        GameManager.Inst.SetSubEnemyUI(subEnemyIdx, subEnemyObj.transform);
+
+        phaseNum_SE[subEnemyIdx] = 0;
+        patternNum_SE[subEnemyIdx] = 0;
+        currentPattern_SE[subEnemyIdx] = subEnemy.phase[0].patterns[0].pattern;
+        foreach(var p in subEnemies[subEnemyIdx].phase)
         {
             p.phaseClear = false;
         }
-        subEnemyActionList.Add(new List<EnemyAction>());
+        subEnemyImg[subEnemyIdx].GetComponent<Tooltip>().tooltipTitle = subEnemy.phase[0].name;
+        subEnemyImg[subEnemyIdx].GetComponent<Tooltip>().tooltipTxt = subEnemy.phase[0].text;
+        subEnemyActionList[subEnemyIdx] = new List<EnemyAction>();
 
-        SpecialRoulette[] specialRoulettes = new SpecialRoulette[SubEnemy.enemySpecialRouletteNum];
+        List<SpecialRoulette> specialRoulettes = new List<SpecialRoulette>();
         for(int i = 0; i < subEnemy.enemySpecialRoulettes.Length; i++)
         {
-            specialRoulettes[i] = new SpecialRoulette(subEnemy.enemySpecialRoulettes[i]);
+            specialRoulettes.Add(new SpecialRoulette(subEnemy.enemySpecialRoulettes[i]));
         }
-        subEnemySpecialRoulettes.Add(specialRoulettes);
+        subEnemySpecialRoulettes[subEnemyIdx] = specialRoulettes;
 
-        EnemySpecialAction[] specialActions = new EnemySpecialAction[SubEnemy.enemySpecialActionNum];
+        List<EnemySpecialAction> specialActions = new List<EnemySpecialAction>();
         for(int i = 0; i < subEnemy.enemySpecialActions.Length; i++)
         {
-            specialActions[i] = new EnemySpecialAction(subEnemy.enemySpecialActions[i]);
+            specialActions.Add(new EnemySpecialAction(subEnemy.enemySpecialActions[i]));
         }
-        subEnemySpecialActions.Add(specialActions);
+        subEnemySpecialActions[subEnemyIdx] = specialActions;
 
         switch(subEnemy.name)
         {
+            case "부하 컵 1":
+            case "부하 컵 2":
+                TurnManager.OnGameStart += () =>
+                {
+                    BuffManager.Inst.AddShowBuff("빙그르!", EBuffAffectType.Enemy, 5, true, null, subEnemyIdx + 1);
+                };
+                break;
             default:
                 break;
         }
+    }
+
+    public void DestroySubEnemy(int subEnemyIdx)
+    {
+        Utils.AllignActions(ref TurnManager.OnSubEnemyDestroy, typeof(ShowBuff), typeof(RelicManager));
+        TurnManager.OnSubEnemyDestroy?.Invoke(subEnemyIdx);
+        subEnemyCanvasPos_rouletteMarker[Array.FindIndex(subEnemyCanvasPos_roulettePos, x => x == subEnemies[subEnemyIdx].roulettePos)].SetActive(false);
+        subEnemies[subEnemyIdx] = null;
+        subEnemyPos[subEnemyIdx].gameObject.SetActive(false);
+        StartCoroutine(DestroySubEnemyObj(subEnemyPos[subEnemyIdx].gameObject));
+        subEnemyPos[subEnemyIdx] = null;
+        subEnemyActionPos[subEnemyIdx] = null;
+        subEnemyExecutePos[subEnemyIdx] = null;
+        subEnemyActionBox[subEnemyIdx] = null;
+        subEnemyImg[subEnemyIdx] = null;
+        GameManager.Inst.RemoveSubEnemyUI(subEnemyIdx);
+        subEnemyActionList[subEnemyIdx] = new List<EnemyAction>();
+        subEnemySpecialRoulettes[subEnemyIdx] = new List<SpecialRoulette>();
+        subEnemySpecialActions[subEnemyIdx] = new List<EnemySpecialAction>();
+    }
+
+    IEnumerator DestroySubEnemyObj(GameObject subEnemyObj)
+    {
+        yield return new WaitForSeconds(5f);
+        if(subEnemyObj != null) Destroy(subEnemyObj);
     }
 
     public void CheckPhase()
@@ -521,15 +622,28 @@ public class EnemyManager : MonoBehaviour
         }
 
         // 서브 적 페이즈 전환
-        for(int i = 0; i < subEnemies.Count; i++)
+        for(int i = 0; i < subEnemies.Length; i++)
         {
+            if(subEnemies[i] == null || subEnemies[i].name == null) continue;
             if (subEnemies[i].phase[phaseNum_SE[i]].phaseClear)
             {
                 phaseNum_SE[i]++;
                 patternNum_SE[i] = 0;
                 currentPattern_SE[i] = subEnemies[i].phase[phaseNum_SE[i]].patterns[0].pattern;
+                subEnemyImg[i].GetComponent<Tooltip>().tooltipTitle = subEnemies[i].phase[phaseNum_SE[i]].name;
+                subEnemyImg[i].GetComponent<Tooltip>().tooltipTxt = subEnemies[i].phase[phaseNum_SE[i]].text;
             }
         }
+    }
+
+    public void ChangePhase(int phaseNum, int patternNum)
+    {
+        this.phaseNum = phaseNum;
+        this.patternNum = patternNum;
+        currentPattern = enemy.phase[phaseNum].patterns[patternNum].pattern;
+        enemy.phase[phaseNum].phaseClear = false;
+        enemyImg.GetComponent<Tooltip>().tooltipTitle = enemy.phase[phaseNum].name;
+        enemyImg.GetComponent<Tooltip>().tooltipTxt = enemy.phase[phaseNum].text;
     }
 
     // 액션 리스트 초기화. 랜덤한 액션을 actionNum 개수만큼 생성
@@ -571,8 +685,9 @@ public class EnemyManager : MonoBehaviour
             }
         }
         // 서브 적 패턴 결정
-        for(int i = 0; i < subEnemies.Count; i++)
+        for(int i = 0; i < subEnemies.Length; i++)
         {
+            if(subEnemies[i] == null || subEnemies[i].name == null) continue;
             currentPattern_SE[i] = subEnemies[i].phase[phaseNum_SE[i]].patterns[patternNum_SE[i]++].pattern;
             if(patternNum_SE[i] == subEnemies[i].phase[phaseNum_SE[i]].patterns.Count)
             {
@@ -591,8 +706,9 @@ public class EnemyManager : MonoBehaviour
         // 액션 리스트 초기화
         actionList.Clear();
         actionBox.SetActive(true);
-        for(int i = 0; i < subEnemyActionList.Count; i++)
+        for(int i = 0; i < subEnemies.Length; i++)
         {
+            if(subEnemies[i] == null || subEnemies[i].name == null) continue;
             subEnemyActionList[i].Clear();
             subEnemyActionBox[i].SetActive(true);
         }
@@ -610,8 +726,9 @@ public class EnemyManager : MonoBehaviour
         }
         extendPattern?.Invoke();
         // 서브 적 액션 생성
-        for(int i = 0; i < subEnemies.Count; i++)
+        for(int i = 0; i < subEnemies.Length; i++)
         {
+            if(subEnemies[i] == null || subEnemies[i].name == null) continue;
             for (int j = 0; j < currentPattern_SE[i].Count; j++)
             {
                 var newActionObj = Instantiate(actionPrefab, subEnemyPos[i].position, Utils.QI);
@@ -652,8 +769,9 @@ public class EnemyManager : MonoBehaviour
         newScale.x *= (actionPrefab.GetComponent<SpriteRenderer>().bounds.size.x + actionMargin) * actionList.Count / actionBox.GetComponent<SpriteRenderer>().bounds.size.x;
         actionBox.transform.localScale = newScale;
 
-        for(int i = 0; i < subEnemyActionList.Count; i++)
+        for(int i = 0; i < subEnemies.Length; i++)
         {
+            if(subEnemies[i] == null || subEnemies[i].name == null) continue;
             for (int j = 0; j < subEnemyActionList[i].Count; j++)
             {
                 var targetPos = subEnemyActionPos[i].position;
@@ -799,6 +917,40 @@ public class EnemyManager : MonoBehaviour
                     TurnManager.OnEnemyTurnEnd += detrigger;
                 }
                 break;
+            case "귀신들린 인형":
+                if (isTriggerActivated == false && (phaseNum == 0 || phaseNum == 1))
+                {
+                    isTriggerActivated = true;
+                    triggerPhaseNum = 0;
+                    triggerPatternNum = 0;
+                    Action detrigger = null;
+                    detrigger = () =>
+                    {
+                        if (!isTriggerActivated)
+                        {
+                            phaseNum = 0;
+                            TurnManager.Inst.enemyTriggerCnt = 0;
+                            TurnManager.OnEnemyTurnEnd -= detrigger;
+                        }
+                    };
+                    TurnManager.OnEnemyTurnEnd += detrigger;
+                }
+                break;
+            case "대장 컵":
+                int triggerSpinCount = 2;
+                Action randomSpin = null;
+                randomSpin = () =>
+                {
+                    RouletteManager.Inst.Spin(true, Random.Range(1, 13));
+                    triggerSpinCount--;
+                    if (triggerSpinCount == 0)
+                    {
+                        TurnManager.Inst.enemyTriggerCnt = 0;
+                        TurnManager.OnPlayerTurnStart -= randomSpin;
+                    }
+                };
+                TurnManager.OnPlayerTurnStart += randomSpin;
+                break;
             default:
                 if(isTriggerActivated == false && phaseNum == 0)
                 {
@@ -832,6 +984,7 @@ public class EnemyManager : MonoBehaviour
 
     public void RemoveSubEnemyAction(int subEnemyIdx, int actionIdx)
     {
+        if (subEnemies[subEnemyIdx] == null || subEnemies[subEnemyIdx].name == null) return;
         if (actionIdx >= 0 && actionIdx < subEnemyActionList[subEnemyIdx].Count)
         {
             subEnemyActionList[subEnemyIdx][actionIdx].IgnoreAction(true);
@@ -864,8 +1017,9 @@ public class EnemyManager : MonoBehaviour
             }
         }
 
-        for(int i = 0; i < subEnemyActionList.Count; i++)
+        for(int i = 0; i < subEnemies.Length; i++)
         {
+            if(subEnemies[i] == null || subEnemies[i].name == null) continue;
             foreach (var action in subEnemyActionList[i])
             {
                 if (action.actionType == actionType)
@@ -886,8 +1040,9 @@ public class EnemyManager : MonoBehaviour
             }
         }
 
-        for(int i = 0; i < subEnemyActionList.Count; i++)
+        for(int i = 0; i < subEnemies.Length; i++)
         {
+            if(subEnemies[i] == null || subEnemies[i].name == null) continue;
             foreach (var action in subEnemyActionList[i])
             {
                 if(action.actionType == EEnemyActionType.Turn)
@@ -985,17 +1140,22 @@ public class EnemyManager : MonoBehaviour
     {
         GetBestAction();
         Sequence executionSeq = DOTween.Sequence();
-        for(int i = 0; i < subEnemyActionList.Count; i++)
+        List<(SubEnemy SE, int enemyIdx)> sortedSubEnemies = new List<(SubEnemy, int)>();
+        for(int i = 0; i < subEnemies.Length; i++)
         {
-            for(int j = 0; j < subEnemyActionList[i].Count; j++)
+            if(subEnemies[i] == null || subEnemies[i].name == null) continue;
+            sortedSubEnemies.Add((subEnemies[i], i));
+        }
+        sortedSubEnemies.OrderBy(x => x.SE.roulettePos).ToList();
+        for(int i = 0; i < sortedSubEnemies.Count; i++)
+        {
+            for(int j = 0; j < subEnemyActionList[sortedSubEnemies[i].enemyIdx].Count; j++)
             {
-                int localIndex_i = i;
+                int localIndex_i = sortedSubEnemies[i].enemyIdx;
                 int localIndex_j = j;
-                var originalPos = subEnemyActionList[i][j].transform.position;
-                executionSeq.Append(subEnemyActionList[i][localIndex_j].transform.DOMove(subEnemyExecutePos[localIndex_i].position, actionInterval).OnComplete(() =>
+                var originalPos = subEnemyActionList[sortedSubEnemies[i].enemyIdx][j].transform.position;
+                executionSeq.Append(subEnemyActionList[localIndex_i][localIndex_j].transform.DOMove(subEnemyExecutePos[localIndex_i].position, actionInterval).OnComplete(() =>
                 {
-                    Debug.Log(subEnemyActionList[localIndex_i].Count);
-                    Debug.Log(localIndex_j);
                     lastAction = subEnemyActionList[localIndex_i][localIndex_j];
                     subEnemyActionList[localIndex_i][localIndex_j].ExecuteAction();
                 }));
@@ -1042,8 +1202,9 @@ public class EnemyManager : MonoBehaviour
         actionList.Clear();
         executeActionList.Clear();
 
-        for(int i = 0; i < subEnemyActionList.Count; i++)
+        for(int i = 0; i < subEnemies.Length; i++)
         {
+            if(subEnemies[i] == null || subEnemies[i].name == null) continue;
             foreach (var obj in subEnemyActionList[i])
             {
                 Destroy(obj.gameObject);
@@ -1069,9 +1230,10 @@ public class EnemyManager : MonoBehaviour
     {
         DestroyAllActionObjects();
         actionBox.SetActive(false);
-        foreach(var box in subEnemyActionBox)
+        for(int i = 0; i < subEnemies.Length; i++)
         {
-            box.SetActive(false);
+            if(subEnemies[i] == null || subEnemies[i].name == null) continue;
+            subEnemyActionBox[i].SetActive(false);
         }
         Utils.AllignActions(ref TurnManager.OnEnemyTurnEnd, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnEnemyTurnEnd?.Invoke();

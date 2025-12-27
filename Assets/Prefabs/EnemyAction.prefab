@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.3, z: 0}
-  m_LocalScale: {x: 7, y: 7, z: 1}
+  m_LocalScale: {x: 15, y: 15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5009480883725721895}
@@ -115,7 +115,11 @@ MonoBehaviour:
   - {fileID: -9072811048990575798, guid: ddae0aa653d142d4aa972d46d0908c0d, type: 3}
   - {fileID: 4760986240223711845, guid: 08f886e1f88bc6a42bfc4541c1aaf99d, type: 3}
   - {fileID: -9202054676734628973, guid: 2a52294a21365ef449b22a23d4a355a6, type: 3}
+  - {fileID: -9202054676734628973, guid: 2a52294a21365ef449b22a23d4a355a6, type: 3}
+  - {fileID: -9202054676734628973, guid: 2a52294a21365ef449b22a23d4a355a6, type: 3}
   actionType: 0
+  actionTypeNum: 0
+  enemyIdx: 0
   baseActionVal: 0
   actionVal: 0
   isIgnore: 0
@@ -136,6 +140,7 @@ MonoBehaviour:
   tooltipTitle: 
   tooltipTxt: 
   tooltipPos: {x: 0, y: 0}
+  tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
 --- !u!61 &122752281651435639
 BoxCollider2D:

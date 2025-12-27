@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum EEnemyActionType { Turn, Attack, Heal, Shield, Enchant_Random, Special_Activate };
+public enum EEnemyActionType { Turn, Attack, Heal, Shield, Enchant_Random, Special_Activate, Spawn_SubEnemy };
 
 [System.Serializable]
 public struct EnemyPattern
@@ -111,6 +111,7 @@ public class Enemy
 
     public static int maxSubEnemyNum = 4;
     public List<string> subEnemies;
+    public List<string> subEnemies_Spawn;
 
     public Enemy(Enemy enemy)
     {
@@ -152,6 +153,11 @@ public class Enemy
         {
             subEnemies.Add(enemy.subEnemies[i]);
         }
+        subEnemies_Spawn = new List<string>();
+        for(int i = 0; i < enemy.subEnemies_Spawn.Count; i++)
+        {
+            subEnemies_Spawn.Add(enemy.subEnemies_Spawn[i]);
+        }
     }
 }
 
@@ -175,6 +181,7 @@ public class SubEnemy
         name = subEnemy.name;
         health = subEnemy.health;
         actionNum = subEnemy.actionNum;
+        roulettePos = subEnemy.roulettePos;
         phase = new List<EnemyPhase>();
         for(int i = 0; i < subEnemy.phase.Count; i++)
         {

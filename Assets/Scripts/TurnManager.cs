@@ -74,13 +74,14 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action OnPlayerTrigger;
     [HideInInspector] public static Action<int> OnPlayerTriggerIncrease;
     [HideInInspector] public static Action<int> OnPlayerTriggerDecrease;
-    [HideInInspector] public static Action<int, EDamageSource> OnEnemyDamaged;
-    [HideInInspector] public static Action<int, EDamageSource> OnEnemyHealed;
-    [HideInInspector] public static Action<int, EDamageSource> OnEnemyShielded;
+    [HideInInspector] public static Action<int, EDamageSource, int> OnEnemyDamaged;
+    [HideInInspector] public static Action<int, EDamageSource, int> OnEnemyHealed;
+    [HideInInspector] public static Action<int, EDamageSource, int> OnEnemyShielded;
     [HideInInspector] public static Action OnEnemyTrigger;
     [HideInInspector] public static Action<int> OnEnemyTriggerIncrease;
     [HideInInspector] public static Action<int> OnEnemyTriggerDecrease;
     [HideInInspector] public static Action OnEnemyAction;
+    [HideInInspector] public static Action<int> OnSubEnemyDestroy;
     [HideInInspector] public static Action<bool, int> OnRouletteSpin;
     [HideInInspector] public static Action<int> AfterRouletteSpin;
     [HideInInspector] public static Action OnRouletteTrigger;
@@ -151,7 +152,8 @@ public class TurnManager : MonoBehaviour
     {
         Utils.AllignActions(ref OnGameStart, typeof(ShowBuff), typeof(RelicManager));
         OnGameStart?.Invoke();
-        //BuffManager.Inst.AddShowBuff("회전 봉인", EBuffAffectType.Enemy, 2, false);
+        // BuffManager.Inst.AddShowBuff("회전 봉인", EBuffAffectType.Enemy, 2, false);
+        // BuffManager.Inst.AddShowBuff("강화", EBuffAffectType.Enemy, 2, false);
         turnDraw = drawCardCount;
         // startCardCount만큼 카드를 뽑고, StartPlayerTurn 호출
         StartCoroutine(Draw(startCardCount, StartPlayerTurn));
@@ -284,7 +286,7 @@ public class TurnManager : MonoBehaviour
                 return 0;
             }
             Utils.AllignActions(ref OnEnemyDamaged, typeof(ShowBuff), typeof(RelicManager));
-            OnEnemyDamaged?.Invoke(damage, damageSource);
+            OnEnemyDamaged?.Invoke(damage, damageSource, enemyIdx);
         }
         else
         {
@@ -295,7 +297,7 @@ public class TurnManager : MonoBehaviour
                 return 0;
             }
             Utils.AllignActions(ref OnEnemyHealed, typeof(ShowBuff), typeof(RelicManager));
-            OnEnemyHealed?.Invoke(-damage, damageSource);
+            OnEnemyHealed?.Invoke(-damage, damageSource, enemyIdx);
         }
         if (enemyCurHealth[enemyIdx] + enemyShieldHealth[enemyIdx] > damage)
         {
@@ -323,7 +325,8 @@ public class TurnManager : MonoBehaviour
         {
             damage = enemyCurHealth[enemyIdx];
             enemyCurHealth[enemyIdx] = 0;
-            StartCoroutine(GameManager.Inst.GameOver(true));
+            if(enemyIdx == 0) StartCoroutine(GameManager.Inst.GameOver(true));
+            else EnemyManager.Inst.DestroySubEnemy(enemyIdx - 1);
             return damage;
         }
     }
@@ -348,7 +351,7 @@ public class TurnManager : MonoBehaviour
             enemyShieldHealth[enemyIdx] += value;
             if (enemyShieldHealth[enemyIdx] < 0) enemyShieldHealth[enemyIdx] = 0;
             Utils.AllignActions(ref OnEnemyShielded, typeof(ShowBuff), typeof(RelicManager));
-            OnEnemyShielded?.Invoke(value, source);
+            OnEnemyShielded?.Invoke(value, source, enemyIdx);
         }
         else
         {

@@ -46,6 +46,7 @@ public class RouletteManager : MonoBehaviour
     public int spinDistance;
     public int spinDistance_Turn;
     public int spinDirection;
+    public int spinOffset;
 
     public void Spin(bool isClockwise, int pieces)
     {
@@ -66,13 +67,19 @@ public class RouletteManager : MonoBehaviour
             Vector3 newRotation = new Vector3(rouletteArea.transform.parent.eulerAngles.x, rouletteArea.transform.parent.eulerAngles.y, rouletteArea.transform.parent.eulerAngles.z + 360f * pieces / rouletteNum);
             playerLookat = (playerLookat + pieces + rouletteNum) % rouletteNum;
             enemyLookat = (enemyLookat + pieces + rouletteNum) % rouletteNum;
+            spinOffset = (spinOffset + pieces + rouletteNum) % rouletteNum;
             rouletteArea.transform.parent.DORotate(newRotation, spinDelay, RotateMode.FastBeyond360).OnComplete(() => {
                 spinFlag = false;
                 Utils.AllignActions(ref TurnManager.AfterRouletteSpin, typeof(ShowBuff), typeof(RelicManager));
                 TurnManager.AfterRouletteSpin?.Invoke(pieces);
             });
         }
+    }
 
+    public int EnemyIdxSpinOffset(int enemyIdx)
+    {
+        if(enemyIdx == 0) return enemyLookat;
+        return (EnemyManager.Inst.subEnemies[enemyIdx - 1].roulettePos + spinOffset + rouletteNum) % rouletteNum;
     }
 
     private int ActivationWeight(int index)
@@ -81,6 +88,15 @@ public class RouletteManager : MonoBehaviour
         if (roulettePieces[index].roulette.rtype.type == ERouletteType.Heal) return 1;
         if (roulettePieces[index].roulette.rtype.type == ERouletteType.Attack) return 3;
         if (roulettePieces[index].roulette.rtype.type == ERouletteType.None) return 4;
+        return 2;
+    }
+
+    private int ActivationWeight(RoulettePiece roulettePiece)
+    {
+        if (roulettePiece.roulette.rtype.type == ERouletteType.Shield) return 0;
+        if (roulettePiece.roulette.rtype.type == ERouletteType.Heal) return 1;
+        if (roulettePiece.roulette.rtype.type == ERouletteType.Attack) return 3;
+        if (roulettePiece.roulette.rtype.type == ERouletteType.None) return 4;
         return 2;
     }
 
@@ -95,17 +111,20 @@ public class RouletteManager : MonoBehaviour
         }
         else
         {
-            int playerWeight = ActivationWeight(playerLookat);
-            int enemyWeight = ActivationWeight(enemyLookat);
-            if (playerWeight < enemyWeight)
+            List<(RoulettePiece rp, int owner)> activateRoulettePieces = new List<(RoulettePiece, int)>();
+            activateRoulettePieces.Add((roulettePieces[playerLookat], -1));
+            activateRoulettePieces.Add((roulettePieces[enemyLookat], 0));
+            for(int i = 0; i < Enemy.maxSubEnemyNum; i++)
             {
-                roulettePieces[playerLookat].Activate(false);
-                roulettePieces[enemyLookat].Activate(true);
+                if(EnemyManager.Inst.subEnemies[i] == null || EnemyManager.Inst.subEnemies[i].name == null) continue;
+                activateRoulettePieces.Add((roulettePieces[EnemyIdxSpinOffset(i + 1)], i + 1));
             }
-            else
+            activateRoulettePieces = activateRoulettePieces.OrderBy(x => ActivationWeight(x.rp)).ThenBy(x => (Array.FindIndex(roulettePieces, y => y == x.rp) + spinOffset + rouletteNum) % rouletteNum).ToList();
+            foreach(var rp_owner in activateRoulettePieces)
             {
-                roulettePieces[enemyLookat].Activate(true);
-                roulettePieces[playerLookat].Activate(false);
+                if(rp_owner.owner == -1) roulettePieces[playerLookat].Activate(false);
+                else if(rp_owner.owner == 0) roulettePieces[enemyLookat].Activate(true);
+                else rp_owner.rp.Activate(true, rp_owner.owner);
             }
         }
 
@@ -113,9 +132,9 @@ public class RouletteManager : MonoBehaviour
         TurnManager.OnRouletteActivate?.Invoke();
     }
 
-    public void ActivateRoulettePiece(int index, bool isEnemy)
+    public void ActivateRoulettePiece(int index, bool isEnemy, int enemyIdx = 0)
     {
-        roulettePieces[index].Activate(isEnemy);
+        roulettePieces[index].Activate(isEnemy, enemyIdx);
     }
 
     public bool isPlayerTrigger()
@@ -157,12 +176,12 @@ public class RouletteManager : MonoBehaviour
         BuffManager.Inst.rouletteBuff_Trigger.Clear();
     }
 
-    public bool EnchantRoulette(bool isEnemy, RouletteType rType, int rValue)
+    public bool EnchantRoulette(bool isEnemy, RouletteType rType, int rValue, int enemyIdx = 0)
     {
         bool ret = false;
         if (isEnemy)
         {
-            ret = EnchantRoulettePiece(enemyLookat, rType, rValue);
+            ret = EnchantRoulettePiece(EnemyIdxSpinOffset(enemyIdx), rType, rValue);
         }
         else
         {
@@ -218,6 +237,7 @@ public class RouletteManager : MonoBehaviour
         spinCount_Turn = 0;
         spinDistance = 0;
         spinDistance_Turn = 0;
+        spinOffset = 0;
         isTriggerActivated = false;
 
         for (int i = 0; i < rouletteNum; i++)

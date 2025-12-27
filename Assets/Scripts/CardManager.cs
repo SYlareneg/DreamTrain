@@ -26,6 +26,7 @@ public class CardManager : MonoBehaviour
     [Tooltip("현재 카드 매니저 상태(카드를 드래그 할 수 있는지)")][ReadOnly, SerializeField] ECardState eCardState;
     [Tooltip("카드 드래그 여부")][ReadOnly, SerializeField] bool isMyCardDrag;
     [Tooltip("현재 드래그 중인 카드가 나의 핸드 범위에 위치하는지 확인")][ReadOnly, SerializeField] bool onMyCardArea; // false일 경우 카드 사용, true일 경우 카드 핸드로 복귀
+    [Tooltip("현재 드래그 중인 카드가 적의 카드 적용 범위에 위치하는지 확인")][ReadOnly, SerializeField] int onEnemyCardArea; // 0 이상일 경우 카드 사용, -1일 경우 카드 핸드로 복귀
 
     // 카드 매니저 상태 (카드 상호작용 불가, 카드 마우스 호버 가능/사용 불가, 카드 사용 가능)
     enum ECardState { Nothing, CanMouseOver, CanMouseDrag }
@@ -440,11 +441,17 @@ public class CardManager : MonoBehaviour
         {
             return;
         }
-        // 카드를 놓은 지점이 MyCardArea 외부일 경우, 카드 사용
+        // 카드를 놓은 지점이 MyCardArea 외부(복수 적일 경우 추가로 적 카드 적용 범위 내부)일 경우, 카드 사용
         if (!onMyCardArea)
         {
+            if(selectedCard.item.isSingleTarget == true && onEnemyCardArea == -1)
+            {
+                EnlargeCard(false, selectedCard);
+                selectedCard = null;
+                return;
+            }
             // 카드 사용
-            if (selectedCard.UseCard(true) == false)
+            if (selectedCard.UseCard(onEnemyCardArea) == false)
             {
                 // 카드 사용이 불가능할 경우, 카드 축소 및 selectCard 초기화
                 EnlargeCard(false, selectedCard);
@@ -478,6 +485,11 @@ public class CardManager : MonoBehaviour
             SetOriginOrder();
             CardAlignment();
         }
+        else
+        {
+            EnlargeCard(false, selectedCard);
+            selectedCard = null;
+        }
     }
 
     // 카드 드래그. 카드 위치를 마우스 위치로 이동
@@ -493,10 +505,29 @@ public class CardManager : MonoBehaviour
     void DetectCardArea()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        int layer = LayerMask.NameToLayer("MyCardArea");
-        int layerMask = LayerMask.GetMask("MyCardArea");
+        int mylayer = LayerMask.NameToLayer("MyCardArea");
+        int enemylayer = LayerMask.NameToLayer("EnemyCardArea");
+        int layerMask = LayerMask.GetMask("MyCardArea", "EnemyCardArea");
         RaycastHit2D[] hits = Physics2D.GetRayIntersectionAll(ray, Mathf.Infinity, layerMask);
-        onMyCardArea = Array.Exists(hits, x => x.collider.gameObject.layer == layer);
+        onMyCardArea = Array.Exists(hits, x => x.collider.gameObject.layer == mylayer);
+        var enemyHits = Array.Find(hits, x => x.collider.gameObject.layer == enemylayer);
+        if(enemyHits.collider != null)
+        {
+            Transform enemyPos = enemyHits.collider.transform;
+            onEnemyCardArea = EnemyManager.Inst.FindEnemyIdxByPos(enemyPos);
+        }
+        else
+        {
+            onEnemyCardArea = 0;
+            for(int i = 0; i < Enemy.maxSubEnemyNum; i++)
+            {
+                if(EnemyManager.Inst.subEnemies[i] != null)
+                {
+                    onEnemyCardArea = -1;
+                    break;
+                }
+            }
+        }
     }
 
     // 카드 확대/축소
