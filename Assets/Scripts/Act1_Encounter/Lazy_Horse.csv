@@ -1,0 +1,24 @@
+﻿Page_ID,Type,Text_Content,Next_Page_ID,Call_Function,Constraint
+P1,DESC,"여러 회전목마들이 일정한 속도를 유지하며 제자리를 빙빙 돌고 있습니다. 당신도 회전목마를 즐기다 가기로 결정합니다. 그런데 당신이 타고 있는 말이 조금 이상합니다.
+",,,
+P1,BRANCH,"말을 관찰한다.
+",P2,,DEFAULT
+P2,DESC,"말은 불만이 잔뜩 섞인 목소리로 말하고 있습니다.
+""귀찮아. 나는 너무 오랫동안 이곳에서 달려왔어. 더 이상은 달리고 싶지 않아.""
+말은 점점 느려지더니 이윽고 멈춰버렸습니다.",,,
+P2,BRANCH,"말을 채찍질한다. (전투)
+",P_AFTER_BATTLE,StartBattle(horse),DEFAULT
+P2,BRANCH,가만히 있는다.,P_PAUSE,,DEFAULT
+P_AFTER_BATTLE,DESC,"말은 여전히 불만스러운 기색을 감추지 않지만, 어쨌든 다시 달리기 시작합니다. 당신은 회전목마를 조금 더 즐기다가 자리를 떠납니다.",,,
+P_AFTER_BATTLE,BRANCH,떠난다,END,,DEFAULT
+P_PAUSE,DESC,"""뭐야, 이거! 고장났잖아!""
+이곳저곳에서 손님들이 원성을 터뜨립니다.
+
+""으음…여기가 고장나버릴 줄이야.""
+지지는 실망과 걱정이 섞인 목소리로 작게 혼잣말을 뱉습니다.
+
+당신은 조금 더 목마 위에 앉아 있다가, 다음 장소를 향해 떠납니다.",,,
+P_PAUSE,BRANCH,"떠난다
+",END,,DEFAULT
+,,,,,
+,,,,,

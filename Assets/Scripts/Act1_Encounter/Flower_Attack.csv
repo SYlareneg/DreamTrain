@@ -1,0 +1,19 @@
+﻿Page_ID,Type,Text_Content,Next_Page_ID,Call_Function,Constraint
+P1,DESC,"척 보기에도 위험하게 생긴 꽃이 하나 있군요. 제법 달콤한 향기를 풍기고 있긴 하지만 꽃의 옆에는 수상한 빨간 자국들이 보이는 듯합니다.
+
+""설마 다가가려는 건 아니지?""
+",,,
+P1,BRANCH,다가간다   (전투),P_AFTER_BATTLE,StartBattle(CruelFlower),DEFAULT
+P1,BRANCH,지나간다,P_PASS,,
+P_AFTER_BATTLE,DESC,"당신은 난폭한 꽃을 제압하는 데 성공했습니다! 투쟁의 전리품으로 달꼼한 꿀을 맛볼 수 있었습니다.
+
+""음, 맛있다. 역시 노력하는 고양이가 달콤한 꿀을 얻는 거지!""
+당신은 흡족해하는 지지와 함께 다시 길을 떠납니다.
+",,GetObjet(Honey),DEFAULT
+P_AFTER_BATTLE,BRANCH,떠난다,END,,DEFAULT
+P_PASS,DESC,현명한 당신은 꽃과 멀찍이 떨어져 지나갑니다. 아무 일도 일어나지 않았습니다. ,,,
+P_PASS,BRANCH,떠난다,END,,DEFAULT
+,,,,,
+,,,,,
+,,,,,
+,,,,,
