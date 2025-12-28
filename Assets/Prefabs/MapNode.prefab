@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2440106288103414982}
   - component: {fileID: 7861880856985785683}
   - component: {fileID: 8860225500808798596}
+  - component: {fileID: 8160257667710511674}
   - component: {fileID: 8640269843609238806}
   m_Layer: 0
   m_Name: MapNode
@@ -114,6 +115,24 @@ MonoBehaviour:
     pos: 0
   spriteRenderer: {fileID: 7861880856985785683}
   expandSize: 1.1
+--- !u!114 &8160257667710511674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8918888303948354407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a00420b01652994990b4f0921a3d65a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tooltip
+  tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
+  tooltipTitle: 
+  tooltipTxt: 
+  tooltipPos: {x: 0, y: 0}
+  tooltipPivot: {x: 0, y: 1}
+  tooltipDisable: 0
 --- !u!61 &8640269843609238806
 BoxCollider2D:
   m_ObjectHideFlags: 0

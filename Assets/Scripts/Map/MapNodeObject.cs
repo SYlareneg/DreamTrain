@@ -7,6 +7,7 @@ public class MapNodeObject : MonoBehaviour
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] float expandSize = 1.1f;
     Vector3 originScale;
+    Tooltip tooltip;
     
     private void OnMouseEnter()
     {
@@ -56,6 +57,7 @@ public class MapNodeObject : MonoBehaviour
         Color color = spriteRenderer.color;
         color.a = 0.5f;
         spriteRenderer.color = color;
+        tooltip = GetComponent<Tooltip>();
     }
 
     private void Update()
@@ -66,6 +68,13 @@ public class MapNodeObject : MonoBehaviour
             Color color = spriteRenderer.color;
             color.a = 1f;
             spriteRenderer.color = color;
+        }
+        if(tooltip != null)
+        {
+            tooltip.tooltipTitle = mapNode.title;
+            tooltip.tooltipTxt = mapNode.text;
+            tooltip.tooltipPos = Camera.main.WorldToScreenPoint(transform.position) - Camera.main.WorldToScreenPoint(Vector3.zero);
+            tooltip.tooltipPos += MapManager.Inst.tooltipOffset;
         }
     }
 }

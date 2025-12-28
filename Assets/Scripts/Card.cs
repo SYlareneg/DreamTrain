@@ -12,12 +12,14 @@ public class Card : MonoBehaviour
     [SerializeField] SpriteRenderer character;
     [SerializeField] SpriteRenderer type;
     [SerializeField] SpriteRenderer rarity;
+    [SerializeField] SpriteRenderer cost;
     [SerializeField] TMP_Text nameTMP;
     [SerializeField] TMP_Text costTMP;
     [SerializeField] TMP_Text typeTMP;
     public TMP_Text textTMP;
     [SerializeField] Sprite[] cardTypes;
     [SerializeField] Sprite[] rarityTypes;
+    [SerializeField] Sprite[] costTypes;
 
     public Item item;
     public PRS originPRS;
@@ -56,6 +58,7 @@ public class Card : MonoBehaviour
                 break;
         }
         rarity.sprite = rarityTypes[(int)this.item.rarity];
+        card.sprite = rarityTypes[(int)this.item.rarity];
         if(rarity.sprite == null) rarity.enabled = false;
         else rarity.enabled = true;
 
@@ -94,23 +97,33 @@ public class Card : MonoBehaviour
         ShowBuffedVal();
     }
 
+    public void SetCostImg(int costVal)
+    {
+        if(costVal < 0 || costVal > 9) return;
+        cost.sprite = costTypes[costVal];
+    }
+
     public void ShowBuffedCost()
     {
         if (currType != SceneType.General) return;
         int buffedCost = BuffManager.Inst.GetBuffedCardCost(this.item);
         costTMP.text = buffedCost.ToString();
+        SetCostImg(buffedCost);
 
         if (buffedCost > this.item.cost)
         {
             costTMP.color = Color.red;
+            cost.color = Color.red;
         }
         else if (buffedCost == this.item.cost)
         {
             costTMP.color = Color.white;
+            cost.color = Color.white;
         }
         else
         {
             costTMP.color = Color.green;
+            cost.color = Color.green;
         }
     }
 

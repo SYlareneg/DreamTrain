@@ -12,12 +12,14 @@ public class CardUI : MonoBehaviour
     [SerializeField] Image character;
     [SerializeField] Image type;
     [SerializeField] Image rarity;
+    [SerializeField] Image cost;
     [SerializeField] TMP_Text nameTMP;
     [SerializeField] TMP_Text costTMP;
     [SerializeField] TMP_Text typeTMP;
     [SerializeField] TMP_Text textTMP;
     [SerializeField] Sprite[] cardTypes;
     [SerializeField] Sprite[] rarityTypes;
+    [SerializeField] Sprite[] costTypes;
 
     public Item item;
 
@@ -34,8 +36,8 @@ public class CardUI : MonoBehaviour
         UnsetBlank();
 
         type.sprite = cardTypes[(int)this.item.type];
-        if(type.sprite == null) type.enabled = false;
-        else type.enabled = true;
+        // if(type.sprite == null) type.enabled = false;
+        // else type.enabled = true;
         switch(this.item.type)
         {
             case CardType.Turn:
@@ -52,14 +54,25 @@ public class CardUI : MonoBehaviour
                 break;
         }
         rarity.sprite = rarityTypes[(int)this.item.rarity];
-        if(rarity.sprite == null) rarity.enabled = false;
-        else rarity.enabled = true;
+        cardImg.sprite = rarityTypes[(int)this.item.rarity];
+        // if(rarity.sprite == null) rarity.enabled = false;
+        // else rarity.enabled = true;
 
         Sprite tempSprite = Utils.LoadSpriteByName("Cards", this.item.sprite);
         if(tempSprite != null) character.sprite = tempSprite;
 
         nameTMP.text = this.item.name;
         costTMP.text = this.item.cost.ToString();
+        if(this.item.cost >= 0 && this.item.cost <= 9)
+        {
+            cost.sprite = costTypes[this.item.cost];
+            cost.enabled = true;
+        }
+        else
+        {
+            cost.enabled = false;
+        }
+        
         
         string showText = this.item.text;
         int index = 0;
@@ -109,9 +122,9 @@ public class CardUI : MonoBehaviour
     public void UnsetBlank()
     {
         character.gameObject.SetActive(true);
-        rarity.gameObject.SetActive(true);
+        //rarity.gameObject.SetActive(true);
         nameTMP.gameObject.SetActive(true);
-        costTMP.gameObject.SetActive(true);
+        //costTMP.gameObject.SetActive(true);
         textTMP.gameObject.SetActive(true);
         cardImg.color = Color.white;
     }

@@ -23,22 +23,22 @@ MonoBehaviour:
   acts:
   - essentialNodes:
     - nodeImg: {fileID: 0}
-      title: 
-      text: 
+      title: "\uCD9C\uBC1C"
+      text: "\uCD9C\uBC1C \uC9C0\uC810\uC785\uB2C8\uB2E4."
       encounterNum: 0
       difficulty: 0
       level: 0
       pos: 0
     - nodeImg: {fileID: 0}
-      title: 
-      text: 
+      title: "1\uBC88 \uACBD\uC720\uC9C0"
+      text: "\uC911\uAC04 \uC9C0\uC810\uC785\uB2C8\uB2E4."
       encounterNum: 0
       difficulty: 1
       level: 0
       pos: 0
     - nodeImg: {fileID: 0}
-      title: 
-      text: 
+      title: "\uB3C4\uCC29"
+      text: "\uB3C4\uCC29\uC9C0\uC785\uB2C8\uB2E4."
       encounterNum: 0
       difficulty: 2
       level: 0

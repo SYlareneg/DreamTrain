@@ -16,6 +16,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] Vector3 zeroPos;
     [SerializeField] float levelDist;
     [SerializeField] float posDist;
+    public Vector2 tooltipOffset;
     public Map map;
     Dictionary<MapNode, Vector3> mapNodeScreenPos = new Dictionary<MapNode, Vector3>();
 
@@ -44,6 +45,9 @@ public class MapManager : MonoBehaviour
             var newMapNode = Instantiate(mapNodePrefab, Vector3.zero, Utils.QI);
             MapNodeObject mapNodeObject = newMapNode.GetComponent<MapNodeObject>();
             mapNodeObject.mapNode = mp.sortedMapNodeList[i];
+            Tooltip mapNodeTooltip = newMapNode.GetComponent<Tooltip>();
+            mapNodeTooltip.tooltipTitle = mp.sortedMapNodeList[i].title;
+            mapNodeTooltip.tooltipTxt = mp.sortedMapNodeList[i].text;
             newMapNode.transform.SetParent(mapTransform);
             if(i == 0 || i == mp.sortedMapNodeList.Count - 1)
             {
@@ -53,6 +57,8 @@ public class MapManager : MonoBehaviour
             {
                 newMapNode.transform.position = nodePos2ScreenPos(mp.sortedMapNodeList[i], true);
             }
+            mapNodeTooltip.tooltipPos = Camera.main.WorldToScreenPoint(newMapNode.transform.position);
+            mapNodeTooltip.tooltipPos += tooltipOffset;
             mapNodeScreenPos.Add(mp.sortedMapNodeList[i], newMapNode.transform.position);
         }
         foreach(MapNode mapNode in mp.sortedMapNodeList)
