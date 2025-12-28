@@ -1,6 +1,18 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+public enum EncounterType
+{
+    Battle,      
+    DangerousBattle,  
+    BossBattle,       
+    Exploration,    
+    Merchant,         
+    Rest,           
+    Special,            
+    Essential        
+}
+
 public enum EncounterStepType
 {
     DESC,   
@@ -21,31 +33,38 @@ public class EncounterStep
 
     public string functionCall;
     
-    // BRANCH 타입 선택지들
     public List<EncounterOption> options; 
-    
-    // DESC 타입 다음 ID
     public string nextStepId;
 }
 
 [System.Serializable]
 public class EncounterOption
 {
-    public string text;  // 선택지
+    public string text;
     public string nextStepId;  
-    public string condition;  // 선택 조건
+    public string condition;
     public string functionCall;
 }
 
 [CreateAssetMenu(fileName = "NewEncounterScenario", menuName = "TRPG/Encounter Scenario")]
 public class EncounterScenarioSO : ScriptableObject
 {
+    [Header("Basic Info")]
     public string encounterId;    
     public string encounterName;
-    public Sprite defaultImage; 
+    public Sprite defaultImage;
+
+    [Header("Type Info")]
+    public EncounterType encounterType; 
     
+    [Header("Scenario Data")]
     public List<EncounterStep> steps; 
-    
+
+    public EncounterType GetEncounterType()
+    {
+        return encounterType;
+    }
+
     public EncounterStep GetStep(string id)
     {
         return steps.Find(s => s.id == id);
