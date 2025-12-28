@@ -7,7 +7,7 @@ P2,DESC,"말은 불만이 잔뜩 섞인 목소리로 말하고 있습니다.
 ""내 친구들은 너무 느려. 난 이것보다 훨씬 빨리 달릴 수 있다고!""
 말은 주어진 경로와 속도를 이탈하여 금방이라도 뛰쳐나갈 것 같습니다.  ",,
 P2,BRANCH,"말을 제압한다. (전투)
-",P__AFTER_BATTLE,StartBattle(horse)
+",P_AFTER_BATTLE,StartBattle(horse)
 P2,BRANCH,가만히 있는다.,P_CRASH,
 P_AFTER_BATTLE,DESC,말은 다시 얌전해 졌습니다. 당신은 회전목마를 조금 더 즐기다가 자리를 떠납니다.,,
 P_AFTER_BATTLE,BRANCH,떠난다,END,
@@ -22,5 +22,3 @@ P_CRASH,DESC,"말은 점점 빠르게 돌다가… 결국 경로를 이탈해 �
 ",,
 P_CRASH,BRANCH,"떠난다
 ",END,Courage.add(1)
-,,,,
-,,,,

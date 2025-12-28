@@ -291,6 +291,7 @@ MonoBehaviour:
   choiceContainer: {fileID: 1678150799}
   choiceButtonPrefab: {fileID: 2629090740747698780, guid: e27feb4d80209a247a0a71358e359d1d, type: 3}
   encounterCsvFile: {fileID: 4900000, guid: a774d303f0d211949a6504eeeaf72a06, type: 3}
+  characterData: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
 --- !u!4 &988924727
 Transform:
   m_ObjectHideFlags: 0

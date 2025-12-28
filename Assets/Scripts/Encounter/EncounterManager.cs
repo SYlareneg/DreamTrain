@@ -2,104 +2,167 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
-using System.Text.RegularExpressions; // 정규식 사용을 위해 추가
+using System.Text.RegularExpressions;
+using UnityEngine.SceneManagement;
+using System.IO; 
+using System.Text;
+
+public class EncounterMetaInfo
+{
+    public string id;           
+    public string nameKO;       
+    public EncounterType type;  
+    public string imagePath;    
+    public string filePath;     
+}
 
 public class EncounterManager : MonoBehaviour
 {
     public static EncounterManager Instance;
 
     [Header("UI References")]
-    public GameObject encounterPanel;
-    public Image illustrationImage;
-    public TextMeshProUGUI titleText;
-    public TextMeshProUGUI descriptionText;
-    public Transform choiceContainer;
-    public GameObject choiceButtonPrefab;
+    public GameObject encounterPanel;       
+    public Image illustrationImage;         
+    public TextMeshProUGUI titleText;       
+    public TextMeshProUGUI descriptionText; 
+    public Transform choiceContainer;       
+    public GameObject choiceButtonPrefab;   
 
-    [Header("Data Source")]
-    // 엑셀에서 뽑은 CSV 파일을 여기에 넣으세요
-    public TextAsset encounterCsvFile; 
+    [Header("Master Data")]
+    public TextAsset masterTableCsv; 
     
-    // 파싱된 데이터를 담을 딕셔너리 (ID -> Step)
+    [Header("System")]
+    public CharacterSO characterData; 
+    
+    private Dictionary<string, EncounterMetaInfo> masterDatabase = new Dictionary<string, EncounterMetaInfo>();
     private Dictionary<string, EncounterStep> stepDictionary = new Dictionary<string, EncounterStep>();
     private EncounterStep currentStep;
+    
+    private bool isSceneLoading = false;
 
     void Awake()
     {
         Instance = this;
-        encounterPanel.SetActive(true);
-        StartEncounterFromCSV();
     }
 
-    // CSV 파일을 읽어서 인카운터 시작
-    public void StartEncounterFromCSV()
+    void Start()
     {
-        if (encounterCsvFile == null) 
+        isSceneLoading = false;
+        
+        if (masterTableCsv != null)
         {
-            Debug.LogError("CSV 파일이 연결되지 않았습니다!");
+            ParseMasterTable(masterTableCsv.text);
+        }
+        else
+        {
+            Debug.LogError("[EncounterManager] Master Table CSV가 연결되지 않았습니다.");
             return;
         }
 
-        ParseCSV(encounterCsvFile.text);
-        encounterPanel.SetActive(true);
+        if (masterDatabase.Count > 0)
+        {
+            var enumerator = masterDatabase.Keys.GetEnumerator();
+            enumerator.MoveNext();
+            string autoID = enumerator.Current;
+            StartEncounterByID(autoID);
+        }
+        else
+        {
+            Debug.LogWarning("[EncounterManager] 마스터 테이블이 비어있습니다.");
+        }
+    }
+
+    public void StartEncounterByID(string encounterID)
+    {
+        if (!masterDatabase.ContainsKey(encounterID))
+        {
+            Debug.LogError($"ID '{encounterID}'가 마스터 테이블에 없습니다.");
+            return;
+        }
+
+        EncounterMetaInfo meta = masterDatabase[encounterID];
         
-        // CSV의 첫 번째 ID인 'P1'부터 시작 (규칙에 따라 변경 가능)
+        string targetPath = meta.filePath;
+        if (!targetPath.EndsWith(".csv")) targetPath += ".csv";
+
+        string projectRoot = Directory.GetParent(Application.dataPath).ToString();
+        string fullPath = Path.Combine(projectRoot, targetPath);
+
+        if (!File.Exists(fullPath))
+        {
+            Debug.LogError($"파일을 찾을 수 없습니다: {fullPath}");
+            return;
+        }
+
+        Debug.Log($"[Encounter Load] {meta.id}");
+        string csvContent = File.ReadAllText(fullPath);
+
+        if (!string.IsNullOrEmpty(meta.imagePath))
+        {
+            string imgName = Path.GetFileNameWithoutExtension(meta.imagePath);
+            Sprite img = Resources.Load<Sprite>($"Images/{imgName}");
+            if (img == null) img = Resources.Load<Sprite>(imgName); 
+
+            if (img != null && illustrationImage != null) 
+                illustrationImage.sprite = img;
+        }
+
+        if (titleText != null) titleText.text = meta.nameKO;
+
+        StartEncounterFromText(csvContent);
+    }
+
+    public void StartEncounterFromText(string csvText)
+    {
+        ParseEncounterCSV(csvText);
+        
+        if (encounterPanel != null) encounterPanel.SetActive(true);
+
         if (stepDictionary.ContainsKey("P1"))
             PlayStep("P1");
         else
-            Debug.LogError("CSV에 'P1' ID가 없습니다.");
+            Debug.LogError("인카운터 시작 실패: 'P1' ID가 없습니다.");
     }
 
-    void PlayStep(string id)
+    public void PlayStep(string id)
     {
+        if (isSceneLoading) return;
         if (!stepDictionary.ContainsKey(id)) return;
 
         currentStep = stepDictionary[id];
 
-        // 1. 텍스트 출력
-        // BRANCH 타입은 텍스트가 선택지 내용이므로, DESC 타입일 때만 본문 갱신
         if (currentStep.type == EncounterStepType.DESC)
         {
-            descriptionText.text = currentStep.textContent;
+            descriptionText.text = currentStep.textContent.Replace("\\n", "\n");
         }
 
-        // 2. 함수 실행 (예: StartBattle(horse), Courage.add(1))
-        if (!string.IsNullOrEmpty(currentStep.functionCall) && currentStep.functionCall != "-")
+        if (IsValidFunction(currentStep.functionCall))
         {
-            ParseAndExecuteFunction(currentStep.functionCall);
+            ParseAndExecuteFunctions(currentStep.functionCall);
         }
+        
+        if (isSceneLoading) return;
 
-        // 3. UI 업데이트 (선택지 표시 등)
         UpdateOptionsUI();
     }
 
     void UpdateOptionsUI()
     {
-        // 기존 버튼 삭제
         foreach (Transform child in choiceContainer) Destroy(child.gameObject);
 
-        // ★ 핵심 수정: 타입(Type)보다 '선택지 리스트(options)'가 있는지 먼저 검사합니다.
-        // P1처럼 DESC로 시작했지만 뒤에 BRANCH가 붙어서 선택지가 생긴 경우를 처리하기 위함입니다.
         if (currentStep.options != null && currentStep.options.Count > 0)
         {
-            // 선택지가 존재하면 무조건 선택지 버튼들을 생성
             foreach (var option in currentStep.options)
             {
+                if (!CheckCondition(option.condition)) continue; 
                 CreateButton(option.text, option.nextStepId, option.functionCall);
             }
         }
-        // 선택지가 없는 순수 DESC 타입인 경우
         else 
         {
-            // 다음 페이지가 있으면 '다음', 없으면 '떠난다'
-            if (!string.IsNullOrEmpty(currentStep.nextStepId) && currentStep.nextStepId != "-" && currentStep.nextStepId != "")
-            {
-                CreateButton("다음", currentStep.nextStepId);
-            }
-            else
-            {
-                CreateButton("떠난다", "END");
-            }
+            if (IsWaitState(currentStep.nextStepId)) { }
+            else if (currentStep.nextStepId == "END") CreateButton("떠난다", "END");
+            else CreateButton("다음", currentStep.nextStepId);
         }
     }
 
@@ -107,133 +170,223 @@ public class EncounterManager : MonoBehaviour
     {
         GameObject btnObj = Instantiate(choiceButtonPrefab, choiceContainer);
         btnObj.GetComponentInChildren<TextMeshProUGUI>().text = text;
+        
         btnObj.GetComponent<Button>().onClick.AddListener(() => 
         {
-            // 선택지 클릭 시 함수가 있다면 실행
-            if (!string.IsNullOrEmpty(functionCall) && functionCall != "-")
-                ParseAndExecuteFunction(functionCall);
+            if (IsValidFunction(functionCall))
+                ParseAndExecuteFunctions(functionCall);
 
-            if (nextId == "END") EndEncounter();
+            if (isSceneLoading) return;
+
+            if (IsWaitState(nextId)) { }
+            else if (nextId == "END") EndEncounter();
             else PlayStep(nextId);
         });
     }
 
-    public void EndEncounter()
+    bool IsWaitState(string id) => string.IsNullOrEmpty(id) || id == "-" || id == "R";
+    bool IsValidFunction(string func) => !string.IsNullOrEmpty(func) && func != "-" && func != "DEFAULT";
+
+    bool CheckCondition(string condition)
     {
-        encounterPanel.SetActive(false);
-        MapManager.Inst.player_moveable = true;
+        if (string.IsNullOrEmpty(condition) || condition == "-" || condition == "DEFAULT") return true;
+        if (condition.StartsWith("HasDream") || condition.StartsWith("HasObjet"))
+        {
+            // TODO: 인벤토리 연동
+            return true; 
+        }
+        return true; 
     }
 
-    // ★ CSV 파서 (핵심)
-    // ★ 안전한 CSV 파서 (에러 방지 버전)
-    void ParseCSV(string csvText)
+    public void EndEncounter()
     {
-        stepDictionary.Clear();
-        string[] lines = Regex.Split(csvText, @"\r\n|\n(?=(?:[^""]*""[^""]*"")*[^""]*$)");
+        if (encounterPanel != null) encounterPanel.SetActive(false);
+    }
 
-        for (int i = 1; i < lines.Length; i++)
+    void ParseAndExecuteFunctions(string commandLine)
+    {
+        string[] commands = Regex.Split(commandLine, @",\s*(?![^()]*\))");
+        foreach (string cmd in commands)
         {
-            if (string.IsNullOrWhiteSpace(lines[i])) continue;
+            ExecuteSingleFunction(cmd.Trim());
+            if (isSceneLoading) break; 
+        }
+    }
 
-            // 쉼표 분리 (따옴표 안의 쉼표 무시)
-            string[] row = Regex.Split(lines[i], ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
-            
-            // 데이터가 충분하지 않거나, 내용이 빈 줄(,,,,)인 경우 건너뛰기
-            if (row.Length < 5 || string.IsNullOrWhiteSpace(row[0]) || string.IsNullOrWhiteSpace(row[1])) 
-                continue;
+    void ExecuteSingleFunction(string command)
+    {
+        if (string.IsNullOrEmpty(command) || command == "-") return;
 
-            // 따옴표 제거
-            for (int k = 0; k < row.Length; k++) row[k] = row[k].Trim().Replace("\"", "");
+        string funcName = command.Split('(')[0].Trim();
+        string argsRaw = "";
+        
+        Match match = Regex.Match(command, @"\(([^)]*)\)");
+        if (match.Success) argsRaw = match.Groups[1].Value;
 
-            string id = row[0];
-            string typeStr = row[1];
-            string content = row[2];
-            string nextId = row[3];
-            string func = row[4];
+        string[] args = argsRaw.Split(',');
+        for(int i=0; i<args.Length; i++) args[i] = args[i].Trim();
 
-            // ★ 핵심 수정: Enum 변환을 안전하게 시도 (실패 시 에러 대신 로그 띄우고 넘어가기)
-            if (!System.Enum.TryParse(typeStr, true, out EncounterStepType type))
-            {
-                Debug.LogWarning($"[CSV 파싱 경고] {i+1}번째 줄의 타입 '{typeStr}'이(가) 잘못되었습니다. (DESC, BRANCH 등이어야 함) - 행 무시됨");
-                continue;
-            }
-
-            // --- 기존 로직 ---
-            if (stepDictionary.ContainsKey(id))
-            {
-                if (type == EncounterStepType.BRANCH)
+        switch (funcName)
+        {
+            case "LoseHP": 
+                if (args.Length >= 2)
                 {
-                    stepDictionary[id].options.Add(new EncounterOption 
-                    { 
-                        text = content, 
-                        nextStepId = nextId, 
-                        functionCall = func 
-                    });
+                    int amount = int.Parse(args[0]);
+                    string type = args[1].ToLower();
+
+                    // int currentHP = 100;
+                    // int maxHP = 100; 
+                    // int damage = (type == "per") ? (int)(maxHP * (amount / 100f)) : amount;
+                    // int finalHP = Mathf.Max(1, currentHP - damage);
+                    // int actualLoss = currentHP - finalHP;
+
+                    descriptionText.text += $"\n<color=red>체력을 잃었습니다.</color>";
                 }
+                break;
+
+            case "GetDebris": 
+                if (args.Length >= 1)
+                {
+                    int amount = int.Parse(args[0]);
+                    descriptionText.text += $"\n<color=yellow>꿈의 잔해 {amount}개를 얻었습니다.</color>";
+                }
+                break;
+
+            case "StartBattle": 
+                if (args.Length >= 1)
+                {
+                    string enemyID = args[0];
+                    if (characterData != null)
+                    {
+                        characterData.enemyName = enemyID; 
+                        Debug.Log($"[StartBattle] 적 '{enemyID}' 전투 시작");
+                        
+                        isSceneLoading = true;
+                        if (encounterPanel != null) encounterPanel.SetActive(false);
+                        SceneManager.LoadScene("BattleScene"); 
+                    }
+                }
+                break;
+
+            case "StartRoullete": 
+                if (args.Length >= 3)
+                {
+                    // string stat = args[0];
+                    // int val = int.Parse(args[1]);
+                    // string cond = args[2];
+                    string winPage = (args.Length > 3) ? args[3] : "P_WIN"; 
+                    string losePage = (args.Length > 4) ? args[4] : "P_LOSE";
+                    // 룰렛 UI 오픈
+                }
+                break;
+            
+            case "GetObjet": 
+                 Debug.Log($"[GetObjet] 오브제 '{args[0]}' 획득");
+                 break;
+
+            default:
+                if (command.Contains(".add"))
+                {
+                    string[] parts = command.Split('.');
+                    string targetStat = parts[0];
+                    int val = int.Parse(Regex.Match(parts[1], @"\(([^)]*)\)").Groups[1].Value);
+                    descriptionText.text += $"\n<color=blue>{targetStat}가 {val} 증가했다!</color>";
+                }
+                break;
+        }
+    }
+
+    
+    List<List<string>> ParseCSVRaw(string text)
+    {
+        var result = new List<List<string>>();
+        var currentRow = new List<string>();
+        var currentCell = new StringBuilder();
+        bool inQuotes = false;
+
+        for (int i = 0; i < text.Length; i++)
+        {
+            char c = text[i];
+            if (inQuotes)
+            {
+                if (c == '"')
+                {
+                    if (i + 1 < text.Length && text[i + 1] == '"') { currentCell.Append('"'); i++; }
+                    else inQuotes = false;
+                }
+                else currentCell.Append(c);
             }
             else
             {
-                EncounterStep newStep = new EncounterStep
-                {
-                    id = id,
-                    type = type,
-                    textContent = content,
-                    nextStepId = nextId,
-                    functionCall = func,
-                    options = new List<EncounterOption>()
-                };
-
-                if (type == EncounterStepType.BRANCH)
-                {
-                    newStep.options.Add(new EncounterOption 
-                    { 
-                        text = content, 
-                        nextStepId = nextId, 
-                        functionCall = func 
-                    });
-                }
-
-                stepDictionary.Add(id, newStep);
+                if (c == '"') inQuotes = true;
+                else if (c == ',') { currentRow.Add(currentCell.ToString()); currentCell.Clear(); }
+                else if (c == '\n') { currentRow.Add(currentCell.ToString()); result.Add(currentRow); currentRow = new List<string>(); currentCell.Clear(); }
+                else if (c != '\r') currentCell.Append(c);
             }
-            Debug.Log(id + ", " + typeStr + ", " + content +  ", " + nextId + ", " + func);
+        }
+        if (currentCell.Length > 0 || currentRow.Count > 0) { currentRow.Add(currentCell.ToString()); result.Add(currentRow); }
+        return result;
+    }
+
+    void ParseMasterTable(string csvText)
+    {
+        masterDatabase.Clear();
+        var rows = ParseCSVRaw(csvText);
+
+        for (int i = 1; i < rows.Count; i++) 
+        {
+            var row = rows[i];
+            if (row.Count < 5 || string.IsNullOrWhiteSpace(row[0])) continue;
+
+            for (int k = 0; k < row.Count; k++) row[k] = row[k].Trim();
+
+            EncounterMetaInfo info = new EncounterMetaInfo();
+            info.id = row[0];
+            info.nameKO = row[1];
+            if (System.Enum.TryParse(row[2], true, out EncounterType type)) info.type = type;
+            else info.type = EncounterType.Battle;
+            info.imagePath = row[3];
+            info.filePath = row[4]; 
+
+            if (!masterDatabase.ContainsKey(info.id))
+                masterDatabase.Add(info.id, info);
         }
     }
 
-    // ★ 함수 파서 (CSV 문법 대응: Courage.add(1), StartBattle(horse))
-    void ParseAndExecuteFunction(string command)
+    void ParseEncounterCSV(string csvText)
     {
-        command = command.Trim();
-        
-        // 1. "대상.명령(값)" 형태 (예: Courage.add(1))
-        if (command.Contains("."))
+        stepDictionary.Clear();
+        var rows = ParseCSVRaw(csvText);
+
+        for (int i = 1; i < rows.Count; i++)
         {
-            string[] parts = command.Split('.');
-            string target = parts[0]; // Courage
-            string actionPart = parts[1]; // add(1)
+            var row = rows[i];
+            if (row.Count < 5 || string.IsNullOrWhiteSpace(row[0])) continue;
+            
+            for (int k = 0; k < row.Count; k++) row[k] = row[k].Trim();
 
-            if (actionPart.Contains("add"))
+            string id = row[0];
+            if (!System.Enum.TryParse(row[1], true, out EncounterStepType type)) continue;
+            string content = row[2];
+            string nextId = row[3];
+            string functionCall = row[4];
+            string condition = (row.Count > 5) ? row[5] : "DEFAULT";
+
+            if (!stepDictionary.ContainsKey(id))
             {
-                string valueStr = Regex.Match(actionPart, @"\(([^)]*)\)").Groups[1].Value;
-                int value = int.Parse(valueStr);
-
-                // 스탯 증가 처리
-                // StatType type = (StatType)System.Enum.Parse(typeof(StatType), target);
-                // PlayerStatsSO.Instance.ModifyStat(type, value);
-                
-                Debug.Log($"[함수실행] {target} 스탯 {value} 증가");
-                descriptionText.text += $"\n<color=blue>{target}가 {value} 증가했다!</color>";
+                stepDictionary.Add(id, new EncounterStep
+                {
+                    id = id, type = type, textContent = content, nextStepId = nextId, functionCall = functionCall,
+                    options = new List<EncounterOption>()
+                });
             }
-        }
-        // 2. "명령(값)" 형태 (예: StartBattle(horse))
-        else if (command.Contains("("))
-        {
-            string funcName = command.Split('(')[0];
-            string arg = Regex.Match(command, @"\(([^)]*)\)").Groups[1].Value;
 
-            if (funcName == "StartBattle")
+            if (type == EncounterStepType.BRANCH)
             {
-                Debug.Log($"[함수실행] 전투 시작! 적: {arg}");
-                // BattleManager.Instance.StartBattle(arg);
+                stepDictionary[id].options.Add(new EncounterOption 
+                { 
+                    text = content, nextStepId = nextId, functionCall = functionCall, condition = condition 
+                });
             }
         }
     }
