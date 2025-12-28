@@ -240,6 +240,7 @@ MonoBehaviour:
     isVolatile: 0
     isVanish: 0
     isRemain: 1
+    isSingleTarget: 0
     sprite: 
     text: 
     cardValues: 
@@ -386,7 +387,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uCE74\uB4DC 1"
+  m_text: "\uCE74\uB4DC 1 "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5123a43cf7d3430479ad054dc2f9d9f5, type: 2}
   m_sharedMaterial: {fileID: 6647372491221899127, guid: 5123a43cf7d3430479ad054dc2f9d9f5, type: 2}
@@ -414,7 +415,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   m_fontSize: 18
-  m_fontSizeBase: 25
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
