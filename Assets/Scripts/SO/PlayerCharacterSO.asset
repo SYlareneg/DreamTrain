@@ -81,7 +81,7 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       isSingleTarget: 1
-      sprite: 
+      sprite: "\uBC1C\uD1B1\uC138\uC6B0\uAE30"
       text: "\uC801 \uC55E \uB8F0\uB81B\uC5D0 \uBC1C\uD1B1 \uB8F0\uB81B\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
       cardValues: 
       cardValueTypes: 
@@ -96,7 +96,7 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       isSingleTarget: 0
-      sprite: 
+      sprite: "\uC54C\uB730\uD55C\uC0AC\uB0E5\uAFBC"
       text: "3<\uD2B9\uC218> \uC774\uD558\uC778 \uBC1C\uD1B1 \uB8F0\uB81B\uC744 \uBAA8\uB450
         \uC81C\uAC70\uD558\uACE0 \uC81C\uAC70\uD55C \uB8F0\uB81B\uB2F9 \uCF54\uC2A4\uD2B8\uB97C
         1<\uD2B9\uC218> \uC5BB\uC2B5\uB2C8\uB2E4."
@@ -107,13 +107,13 @@ MonoBehaviour:
     - name: "\uB9C8\uAD6C \uD560\uD034\uAE30"
       cost: 2
       type: 2
-      rarity: 0
+      rarity: 1
       dreamPieceNum: 3
       isVolatile: 0
       isVanish: 0
       isRemain: 0
       isSingleTarget: 0
-      sprite: 
+      sprite: "\uB9C8\uAD6C\uD560\uD034\uAE30"
       text: "\uBAA8\uB4E0 \uBC1C\uD1B1 \uB8F0\uB81B\uC758 \uD6A8\uACFC\uB97C \uC989\uC2DC
         2<\uD2B9\uC218>\uBC88 \uC801\uC6A9\uD569\uB2C8\uB2E4."
       cardValues: 02000000
@@ -129,7 +129,7 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       isSingleTarget: 0
-      sprite: 
+      sprite: "\uBC1C\uD1B1\uC190\uC9C8"
       text: "\uBAA8\uB4E0 \uBC1C\uD1B1 \uB8F0\uB81B\uC758 \uAC12\uC744 3<\uD2B9\uC218>
         \uB192\uC785\uB2C8\uB2E4."
       cardValues: 03000000
@@ -145,7 +145,7 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       isSingleTarget: 1
-      sprite: 
+      sprite: "\uC18C\uC2EC\uD55C\uD560\uD034\uAE30"
       text: "\uC801\uC5D0\uAC8C 2<\uD53C\uD574> \uD53C\uD574\uB97C \uC8FC\uACE0,
         \uC801 \uC55E \uB8F0\uB81B\uC5D0 \uC57D\uD654\uB41C \uBC1C\uD1B1 \uB8F0\uB81B\uC744
         \uBD80\uC5EC\uD569\uB2C8\uB2E4."
@@ -156,13 +156,13 @@ MonoBehaviour:
     - name: "\uB0A0\uCE74\uB85C\uC6B4 \uBC1C\uD1B1"
       cost: 2
       type: 2
-      rarity: 0
+      rarity: 1
       dreamPieceNum: 3
       isVolatile: 0
       isVanish: 0
       isRemain: 0
       isSingleTarget: 0
-      sprite: 
+      sprite: "\uB0A0\uCE74\uB85C\uC6B4\uBC1C\uD1B1"
       text: "\uC790\uC2E0 \uC55E\uC5D0 \uB193\uC778 \uBC1C\uD1B1 \uB8F0\uB81B\uC758
         \uAC12\uC744 2<\uD2B9\uC218>\uBC30\uB85C \uB9CC\uB4ED\uB2C8\uB2E4."
       cardValues: 02000000
@@ -172,13 +172,13 @@ MonoBehaviour:
     - name: "\uACE0\uC591\uC774\uC758 \uC2DC\uAC04"
       cost: 3
       type: 1
-      rarity: 0
+      rarity: 1
       dreamPieceNum: 3
       isVolatile: 0
       isVanish: 0
       isRemain: 0
       isSingleTarget: 0
-      sprite: 
+      sprite: "\uACE0\uC591\uC774\uC758\uC2DC\uAC04"
       text: "\uBAA8\uB4E0 \uACF5\uACA9 \uB8F0\uB81B\uC744 \uBC1C\uD1B1 \uB8F0\uB81B\uC73C\uB85C
         \uBC14\uAFC9\uB2C8\uB2E4."
       cardValues: 
@@ -188,13 +188,13 @@ MonoBehaviour:
     - name: "\uAE30\uBBFC\uD568"
       cost: 2
       type: 3
-      rarity: 0
+      rarity: 1
       dreamPieceNum: 3
       isVolatile: 0
       isVanish: 1
       isRemain: 0
       isSingleTarget: 0
-      sprite: 
+      sprite: "\uAE30\uBBFC\uD568"
       text: "\uD658\uC601\uC744 1 \uC5BB\uC2B5\uB2C8\uB2E4. \uC18C\uBA78."
       cardValues: 01000000
       cardValueTypes: 03000000
@@ -209,7 +209,7 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       isSingleTarget: 0
-      sprite: 
+      sprite: "\uC2E4\uBB49\uCE58"
       text: "\uC790\uC2E0 \uC55E \uB8F0\uB81B\uC5D0 \uC2E4\uBB49\uCE58 \uB8F0\uB81B\uC744
         \uBD80\uC5EC\uD569\uB2C8\uB2E4."
       cardValues: 
@@ -225,7 +225,7 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       isSingleTarget: 0
-      sprite: 
+      sprite: "\uACE0\uC591\uC774\uAC78\uC74C"
       text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 4<\uD2B9\uC218>\uCE78
         \uD68C\uC804\uD558\uACE0, \uCE74\uB4DC\uB97C 1<\uD2B9\uC218>\uC7A5 \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
       cardValues: 0400000001000000
@@ -241,7 +241,7 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       isSingleTarget: 0
-      sprite: 
+      sprite: "\uC2E4\uD480\uAE30"
       text: "\uC790\uC2E0 \uC55E\uC5D0 \uB193\uC778 \uC2E4\uBB49\uCE58 \uB8F0\uB81B\uC758
         \uAC12\uC744 \uC808\uBC18\uC73C\uB85C \uAC10\uC18C\uC2DC\uD0A4\uACE0, \uAC10\uC18C\uD55C
         \uAC12\uB9CC\uD07C \uBC29\uC5B4\uB3C4\uB97C \uC5BB\uC2B5\uB2C8\uB2E4."
@@ -252,13 +252,13 @@ MonoBehaviour:
     - name: "\uB180\uC774 \uC2DC\uAC04"
       cost: 2
       type: 3
-      rarity: 0
+      rarity: 1
       dreamPieceNum: 3
       isVolatile: 0
       isVanish: 0
       isRemain: 0
       isSingleTarget: 0
-      sprite: 
+      sprite: "\uB180\uC774\uC2DC\uAC04"
       text: "3<\uD2B9\uC218>\uD134 \uB3D9\uC548, \uD68C\uC804 \uCE74\uB4DC\uB97C
         \uC0AC\uC6A9\uD560 \uB54C\uB9C8\uB2E4 \uD589\uB3D9\uB825\uC744 1<\uD2B9\uC218>
         \uC5BB\uC2B5\uB2C8\uB2E4."
@@ -275,7 +275,7 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       isSingleTarget: 0
-      sprite: 
+      sprite: "\uC228\uAE30"
       text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 6<\uD2B9\uC218>\uCE78
         \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4. \uC218\uBE44 \uB8F0\uB81B\uC744 \uB9CC\uB098\uBA74
         \uD68C\uC804\uC744 \uC911\uB2E8\uD569\uB2C8\uB2E4."
@@ -292,7 +292,7 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       isSingleTarget: 0
-      sprite: 
+      sprite: "\uADF8\uB8E8\uBC0D"
       text: "\uBC29\uC5B4\uB3C4\uB97C 3<\uC218\uBE44> \uC5BB\uACE0, \uBCF4\uD638\uB97C
         1<\uD2B9\uC218> \uC5BB\uC2B5\uB2C8\uB2E4."
       cardValues: 0300000001000000
@@ -302,13 +302,13 @@ MonoBehaviour:
     - name: "\uAC04\uC2DD \uC2DC\uAC04"
       cost: 1
       type: 2
-      rarity: 0
+      rarity: 1
       dreamPieceNum: 3
       isVolatile: 0
       isVanish: 1
       isRemain: 0
       isSingleTarget: 0
-      sprite: 
+      sprite: "\uAC04\uC2DD\uC2DC\uAC04"
       text: "\uD589\uB3D9\uB825\uC744 2<\uD2B9\uC218> \uC5BB\uC2B5\uB2C8\uB2E4. \uC18C\uBA78."
       cardValues: 02000000
       cardValueTypes: 03000000
@@ -367,7 +367,7 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       isSingleTarget: 0
-      sprite: 
+      sprite: Freeze!
       text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC744
         2\uD134\uAC04 \uAF41\uAF41 \uC5BC\uB9BD\uB2C8\uB2E4."
       cardValues: 02000000
@@ -383,7 +383,7 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       isSingleTarget: 1
-      sprite: 
+      sprite: Cold Handshake
       text: "\uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC744
         3\uD134\uAC04 \uAF41\uAF41 \uC5BC\uB9AC\uACE0, \uC801\uC5D0\uAC8C '\uACFC\uBBFC\uD568'
         \uD6A8\uACFC\uB97C 1 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
@@ -400,7 +400,7 @@ MonoBehaviour:
       isVanish: 0
       isRemain: 0
       isSingleTarget: 1
-      sprite: 
+      sprite: Snowball fight
       text: "\uC801\uC5D0\uAC8C \uAF41\uAF41 \uB8F0\uB81B\uC758 \uAC1C\uC218 x 4<\uD53C\uD574>\uC758
         \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
       cardValues: 04000000
