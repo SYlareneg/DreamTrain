@@ -62,7 +62,7 @@ public class Card : MonoBehaviour
         if(rarity.sprite == null) rarity.enabled = false;
         else rarity.enabled = true;
 
-        character.sprite = Utils.LoadSpriteByName("Cards", this.item.sprite);
+        character.sprite = this.item.sprite;
 
         nameTMP.text = this.item.name;
         ShowBuffedCost();

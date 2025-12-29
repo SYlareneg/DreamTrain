@@ -58,7 +58,7 @@ public class CardUI : MonoBehaviour
         // if(rarity.sprite == null) rarity.enabled = false;
         // else rarity.enabled = true;
 
-        Sprite tempSprite = Utils.LoadSpriteByName("Cards", this.item.sprite);
+        Sprite tempSprite = this.item.sprite;
         if(tempSprite != null) character.sprite = tempSprite;
 
         nameTMP.text = this.item.name;

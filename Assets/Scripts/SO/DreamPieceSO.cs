@@ -31,16 +31,16 @@ public class DreamPiece_Base
 [System.Serializable]
 public class DreamPiece_Data : DreamPiece_Base
 {
-    public List<Item_Enhanceable> cards;
-    public List<string> baseCards_persona;
-    public List<string> baseCards_shadow;
+    public List<string> cards;
+    public List<Item_Data> baseCards_persona;
+    public List<Item_Data> baseCards_shadow;
 
     public void Setup(DreamPiece_Data dp)
     {
         base.Setup(dp);
-        cards = new List<Item_Enhanceable>(dp.cards);
-        baseCards_persona = new List<string>(dp.baseCards_persona);
-        baseCards_shadow = new List<string>(dp.baseCards_shadow);
+        cards = new List<string>(dp.cards);
+        baseCards_persona = new List<Item_Data>(dp.baseCards_persona);
+        baseCards_shadow = new List<Item_Data>(dp.baseCards_shadow);
     }
 }
 
@@ -51,29 +51,37 @@ public class DreamPiece_Reference : DreamPiece_Base
     public List<Item_Enhanceable> baseCards_persona;
     public List<Item_Enhanceable> baseCards_shadow;
 
-    public void Setup(DreamPiece_Data dp)
+    public void Setup(DreamPiece_Data dp, ItemDataSO cardList)
     {
         base.Setup(dp);
-        cards = new List<Item_Enhanceable>(dp.cards);
-        baseCards_persona = new List<Item_Enhanceable>();
-        baseCards_shadow = new List<Item_Enhanceable>();
-        foreach(string cardName in dp.baseCards_persona)
+        cards = new List<Item_Enhanceable>();
+        foreach(string cardName in dp.cards)
         {
-            Item_Enhanceable item = this.cards.Find(x => x.name == cardName);
-            Debug.Log(item.name);
+            Item_Enhanceable item = new Item_Enhanceable(cardList.items.Find(x => x.name == cardName));
             if(item != null)
             {
                 item.num = 1;
+                cards.Add(item);
+            }
+
+        }
+        baseCards_persona = new List<Item_Enhanceable>();
+        baseCards_shadow = new List<Item_Enhanceable>();
+        foreach(Item_Data cardData in dp.baseCards_persona)
+        {
+            Item_Enhanceable item = new Item_Enhanceable(this.cards.Find(x => x.name == cardData.cardName));
+            if(item != null)
+            {
+                item.num = cardData.num;
                 baseCards_persona.Add(item);
             }
         }
-        foreach(string cardName in dp.baseCards_shadow)
+        foreach(Item_Data cardData in dp.baseCards_shadow)
         {
-            Item_Enhanceable item = this.cards.Find(x => x.name == cardName);
-            Debug.Log(item.name);
+            Item_Enhanceable item = new Item_Enhanceable(this.cards.Find(x => x.name == cardData.cardName));
             if(item != null)
             {
-                item.num = 1;
+                item.num = cardData.num;
                 baseCards_shadow.Add(item);
             }
         }

@@ -18,7 +18,7 @@ public class Item
     [Tooltip("소멸")] public bool isVanish;
     [Tooltip("잔류")] public bool isRemain;
     [Tooltip("단일기")] public bool isSingleTarget;
-    [Tooltip("카드 이미지")] public string sprite;
+    [Tooltip("카드 이미지")] public Sprite sprite;
     [Tooltip("카드 설명")] public string text;
     [Tooltip("카드 계수")] public List<int> cardValues = new List<int>();
     [Tooltip("카드 계수 타입")] public List<ECardValueType> cardValueTypes = new List<ECardValueType>();
@@ -50,10 +50,37 @@ public class Item
 public class Item_Enhanceable : Item
 {
     [Tooltip("강화 카드")] public Item enhancedItem;
+
+    public Item_Enhanceable(Item_Enhanceable item)
+    {
+        if(item == null) return;
+        this.SetItem((Item)item);
+        this.enhancedItem = new Item();
+        this.enhancedItem.SetItem(item.enhancedItem);
+    }
 }
 
 [CreateAssetMenu(fileName = "ItemSO", menuName = "Scriptable Objects/ItemSO")]
 public class ItemSO : ScriptableObject
 {
     public List<Item> items;
+}
+
+[System.Serializable]
+public class Item_Data
+{
+    public string cardName;
+    public int num;
+
+    public Item_Data(Item_Data data)
+    {
+        cardName = data.cardName;
+        num = data.num;
+    }
+}
+
+[CreateAssetMenu(fileName = "ItemDataSO", menuName = "Scriptable Objects/ItemDataSO")]
+public class ItemDataSO : ScriptableObject
+{
+    public List<Item_Enhanceable> items;
 }
