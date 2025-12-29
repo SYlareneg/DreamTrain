@@ -1,2 +1,21 @@
-﻿Encounter_ID,Name_KO,Type,Image_Pathway,File_To_Call
-ACT1_FASTEST_HORSE,가장 빠른 말,BATTLE,,Assets\Scripts\Act1_Encounter\Fastest_Horse
+﻿Encounter_ID,Name_KO,Type,Image_Pathway,File_To_Call,Is_Essential,Order
+ACT1_WHITE_RABBIT,하얀 토끼,BATTLE,Assets/Sprites/Encounter/White_Rabbit.png,Assets/Scripts/Act1_Encounter/White_Rabbit,TRUE,0
+ACT1_FASTEST_HORSE,가장 빠른 말,Assets/Sprites/Encounter/Fastest_Horse.png,Assets/Scripts/Act1_Encounter/Fastest_Horse,FALSE,0,
+ACT1_LAZY_HORSE,게으른 말,Assets/Sprites/Encounter/Lazy_Horse.png,Assets/Scripts/Act1_Encounter/Lazy_Horse,FALSE,1,
+ACT1_BEST_HORSE,가장 좋은 말,Assets/Sprites/Encounter/Best_Horse.png,Assets/Scripts/Act1_Encounter/Best_Horse,FALSE,2,
+ACT1_SPINNING_CUP,빙글빙글,BATTLE,Assets/Sprites/Encounter/Spinning_Cup.png,Assets/Scripts/Act1_Encounter/Spinning_Cup,FALSE,
+ACT1_WINE_IN_CUP,찻잔과 와인잔,BATTLE,Assets/Sprites/Encounter/Wine_in_Cup.png,Assets/Scripts/Act1_Encounter/Wine_in_Cup,FALSE,
+ACT1_TEA_TIME,티타임,Assets/Sprites/Encounter/Tea_Time.png,Assets/Scripts/Act1_Encounter/Tea_Time,FALSE,,
+ACT1_MISSING_ZIZI,사라진 지지,BATTLE,Assets/Sprites/Encounter/Missing_Zizi.png,Assets/Scripts/Act1_Encounter/Missing_Zizi,FALSE,
+ACT1_DEVIL_DOLL,귀신들린 인형,BATTLE,Assets/Sprites/Encounter/Devil_Doll.png,Assets/Scripts/Act1_Encounter/Devil_Doll,FALSE,
+ACT1_GUEST_OR_GHOST,유령이 된 손님,BATTLE,Assets/Sprites/Encounter/Guest_or_Ghost.png,Assets/Scripts/Act1_Encounter/Guest_or_Ghost,FALSE,
+ACT1_BAT_ATTACK,박쥐의 습격,BATTLE,Assets/Sprites/Encounter/Bat_Attack.png,Assets/Scripts/Act1_Encounter/Bat_Attack,FALSE,
+ACT1_VAMP_INVITATION,뱀파이어의 초대,DangerousBattle,Assets/Sprites/Encounter/Vamp_Invitation.png,Assets/Scripts/Act1_Encounter/Vamp_Invitation,FALSE,
+ACT1_SHEEP_IN_MAZE,길을 잃은 상인,MERCHANT,Assets/Sprites/Encounter/Sheep_in_Maze.png,Assets/Scripts/Act1_Encounter/Sheep_in_Maze,FALSE,
+ACT1_SUNNY_AFTERNOON,한가로운 오후,REST,Assets/Sprites/Encounter/Sunny_Afternoon.png,Assets/Scripts/Act1_Encounter/Sunny_Afternoon,FALSE,
+ACT1_WHERE_DOVE_FROM,비둘기는 어디에서 왔을까?,EXPLORATION,Assets/Sprites/Encounter/Where_Dove_From.png,Assets/Scripts/Act1_Encounter/Where_Dove_From,FALSE,
+ACT1_FLOWER_ATTACK,식인 꽃의 습격,BATTLE,Assets/Sprites/Encounter/Flower_Attack.png,Assets/Scripts/Act1_Encounter/Flower_Attack,FALSE,
+ACT1_WATER_ON_FLOWER,시든 꽃에 물을,EXPLORATION,Assets/Sprites/Encounter/Water_on_Flower.png,Assets/Scripts/Act1_Encounter/Water_on_Flower,FALSE,
+ACT1_ESCAPE_MAZE,미로 탈출,EXPLORATION,Assets/Sprites/Encounter/Escape_Maze.png,Assets/Scripts/Act1_Encounter/Escape_Maze,FALSE,
+ACT1_SWEET_THING,단 것,Assets/Sprites/Encounter/Sweet_Thing.png,Assets/Scripts/Act1_Encounter/Sweet_Thing,FALSE,,
+ACT1_SOUVENIR,기념품을 고르자,Assets/Sprites/Encounter/Souvenir.png,Assets/Scripts/Act1_Encounter/Souvenir,FALSE,,
