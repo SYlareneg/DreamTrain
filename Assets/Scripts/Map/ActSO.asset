@@ -35,7 +35,7 @@ MonoBehaviour:
     childNodes: []
   acts:
   - essentialNodes:
-    - nodeImg: {fileID: 0}
+    - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
       title: "\uCD9C\uBC1C"
       text: "\uCD9C\uBC1C \uC9C0\uC810\uC785\uB2C8\uB2E4."
       encounterNum: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
       - 8e32cfe95bf645c5ab4f3816ccb0ae9a
       - e329f7044b06496095709c2415ccc9b6
       - 1c0f0a70da984a118bc577b5396da19d
-    - nodeImg: {fileID: 0}
+    - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
       title: "\uB180\uC774\uACF5\uC6D0 \uC785\uAD6C"
       text: "\uC5EC\uC815\uC758 \uC2DC\uC791\uC740 \uD56D\uC0C1 \uB450\uADFC\uAC70\uB9AC\uB294
         \uBC95\uC774\uC8E0."
@@ -59,7 +59,7 @@ MonoBehaviour:
       level: 0
       pos: 0
       childNodes: []
-    - nodeImg: {fileID: 0}
+    - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
       title: "1\uBC88 \uACBD\uC720\uC9C0"
       text: "\uC911\uAC04 \uC9C0\uC810\uC785\uB2C8\uB2E4."
       encounterNum: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
       childNodes:
       - 25b8959b4f6f4790b3dda479d3a46e1c
       - 953631e217f3481ca5d7a062490f26ef
-    - nodeImg: {fileID: 0}
+    - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
       title: "\uB3C4\uCC29"
       text: "\uB3C4\uCC29\uC9C0\uC785\uB2C8\uB2E4."
       encounterNum: 0
@@ -81,7 +81,7 @@ MonoBehaviour:
       level: 0
       pos: 0
       childNodes: []
-    - nodeImg: {fileID: 0}
+    - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
       title: "1\uBC88 \uACBD\uC720\uC9C0"
       text: "\uC911\uAC04 \uC9C0\uC810\uC785\uB2C8\uB2E4."
       encounterNum: 0
@@ -175,7 +175,7 @@ MonoBehaviour:
   curActIndex: 0
   mapSave:
     sortedMapNodeList:
-    - nodeImg: {fileID: 0}
+    - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
       title: "\uCD9C\uBC1C"
       text: "\uCD9C\uBC1C \uC9C0\uC810\uC785\uB2C8\uB2E4."
       encounterNum: 0
@@ -186,7 +186,7 @@ MonoBehaviour:
       pos: 0
       childNodes:
       - 9b0b4d3778d74b49b7883bc6f4d8a1bd
-    - nodeImg: {fileID: 0}
+    - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
       title: "\uB180\uC774\uACF5\uC6D0 \uC785\uAD6C"
       text: "\uC5EC\uC815\uC758 \uC2DC\uC791\uC740 \uD56D\uC0C1 \uB450\uADFC\uAC70\uB9AC\uB294
         \uBC95\uC774\uC8E0."
@@ -199,7 +199,7 @@ MonoBehaviour:
       childNodes:
       - 8d963c5fc5e74d91aed7a2bf9bb18274
       - 23c8ed2a3b2b468f8cb937cdd05b1f6e
-    - nodeImg: {fileID: 0}
+    - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
       title: "1\uBC88 \uACBD\uC720\uC9C0"
       text: "\uC911\uAC04 \uC9C0\uC810\uC785\uB2C8\uB2E4."
       encounterNum: 0
@@ -210,7 +210,7 @@ MonoBehaviour:
       pos: 0
       childNodes:
       - 9c8be42cac5d4ad29d3ba2ebbab85184
-    - nodeImg: {fileID: 0}
+    - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
       title: "1\uBC88 \uACBD\uC720\uC9C0"
       text: "\uC911\uAC04 \uC9C0\uC810\uC785\uB2C8\uB2E4."
       encounterNum: 0
@@ -221,7 +221,7 @@ MonoBehaviour:
       pos: -1
       childNodes:
       - 9c8be42cac5d4ad29d3ba2ebbab85184
-    - nodeImg: {fileID: 0}
+    - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
       title: "\uB3C4\uCC29"
       text: "\uB3C4\uCC29\uC9C0\uC785\uB2C8\uB2E4."
       encounterNum: 0

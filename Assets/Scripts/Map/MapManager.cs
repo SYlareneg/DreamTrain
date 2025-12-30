@@ -44,6 +44,7 @@ public class MapManager : MonoBehaviour
         for(int i = 0; i < mp.sortedMapNodeList.Count; i++)
         {
             var newMapNode = Instantiate(mapNodePrefab, Vector3.zero, Utils.QI);
+            newMapNode.GetComponent<SpriteRenderer>().sprite = mp.sortedMapNodeList[i].nodeImg;
             MapNodeObject mapNodeObject = newMapNode.GetComponent<MapNodeObject>();
             mapNodeObject.mapNode = mp.sortedMapNodeList[i];
             Tooltip mapNodeTooltip = newMapNode.GetComponent<Tooltip>();
