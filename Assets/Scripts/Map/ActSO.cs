@@ -13,11 +13,12 @@ public class MapNode
     public string text;
     public int encounterNum;
     // 분류정보
+    public string ID;
     public int difficulty;
     // 설정정보
     public int level;
     public int pos;
-    [System.NonSerialized][HideInInspector] public List<MapNode> childNodes;
+    public List<string> childNodes;
 
     public MapNode(MapNode mapNode)
     {
@@ -25,6 +26,7 @@ public class MapNode
         title = mapNode.title;
         text = mapNode.text;
         encounterNum = mapNode.encounterNum;
+        ID = Guid.NewGuid().ToString("N");
         difficulty = mapNode.difficulty;
         level = mapNode.level;
         pos = mapNode.pos;
@@ -35,7 +37,7 @@ public class MapNode
     {
         this.level = level;
         this.pos = pos;
-        this.childNodes = new List<MapNode>();
+        this.childNodes = new List<string>();
     }
 }
 
@@ -53,6 +55,8 @@ public class Map
     public int totalLevel;
     public static int posValMin = -2;
     public static int posValMax = 2;
+    public static int layerMaxNodeNum = 4;
+    public static float probability = 0.72f; // layer num이 2, 3일 확률
 
     public Map CreateMap(int nodeNum, Act act, List<MapNode> normalNodes)
     {
@@ -63,36 +67,113 @@ public class Map
         List<MapNode> essentialNodes_sorted = act.essentialNodes.OrderBy(node => node.difficulty).ToList();
         List<MapNode> prev_level_nodes = new List<MapNode>();
         List<MapNode> prev2_level_nodes = new List<MapNode>();
+        int essentialLayerCount = 0;
+        for(int i = 0; i < act.essentialNodes.Count; i++)
+        {
+            int layerCount = 1;
+            while(i + 1 < act.essentialNodes.Count && layerCount < (posValMax - posValMin + 1) && essentialNodes_sorted[i].difficulty == essentialNodes_sorted[i + 1].difficulty)
+            {
+                i++;
+                layerCount++;
+            }
+            essentialLayerCount++;
+        }
         int cur_level = 0;
         for(int i = 0; i < act.essentialNodes.Count - 1; i++)
         {
             // 노드 선택
             // 필수 노드 삽입
-            MapNode essentialNode = new MapNode(essentialNodes_sorted[i]);
-            essentialNode.SetPos(cur_level, (posValMin + posValMax) / 2);
+            List<MapNode> essentialNodes_samelayer = new List<MapNode>();
+            essentialNodes_samelayer.Add(new MapNode(essentialNodes_sorted[i]));
+            while(i + 1 < act.essentialNodes.Count - 1 && essentialNodes_samelayer.Count < (posValMax - posValMin + 1) && essentialNodes_sorted[i].difficulty == essentialNodes_sorted[i + 1].difficulty)
+            {
+                i++;
+                essentialNodes_samelayer.Add(new MapNode(essentialNodes_sorted[i]));
+            }
+            for(int j = 0; j < essentialNodes_samelayer.Count; j++)
+            {
+                essentialNodes_samelayer[j].SetPos(cur_level, (posValMin + posValMax) / 2 + (j + 1) / 2 * ((j % 2 == 0) ? 1 : -1));
+                MapNode closest_node = null;
+                foreach(MapNode prev_level_node in prev_level_nodes)
+                {
+                    if(closest_node == null || Mathf.Abs(closest_node.pos - essentialNodes_samelayer[j].pos) > Mathf.Abs(prev_level_node.pos - essentialNodes_samelayer[j].pos))
+                    {
+                        closest_node = prev_level_node;
+                    }
+                }
+                foreach(MapNode prev2_level_node in prev2_level_nodes)
+                {
+                    if(closest_node == null || Mathf.Abs(closest_node.pos - essentialNodes_samelayer[j].pos) > Mathf.Abs(prev2_level_node.pos - essentialNodes_samelayer[j].pos))
+                    {
+                        closest_node = prev2_level_node;
+                    }
+                }
+                if(closest_node == null)
+                {
+                    // 오류상황
+                    break;
+                }
+                closest_node.childNodes.Add(essentialNodes_samelayer[j].ID);
+            }
             // 이전 두 층의 노드 중 자식이 없는 노드와 새로 삽입하는 필수 노드 연결
             foreach(MapNode prev_level_node in prev_level_nodes)
             {
                 if(prev_level_node.childNodes.Count == 0)
                 {
-                    prev_level_node.childNodes.Add(essentialNode);
+                    MapNode closest_node = null;
+                    foreach(MapNode mapNode in essentialNodes_samelayer)
+                    {
+                        if(closest_node == null || Mathf.Abs(closest_node.pos - prev_level_node.pos) > Mathf.Abs(mapNode.pos - prev_level_node.pos))
+                        {
+                            closest_node = mapNode;
+                        }
+                    }
+                    if(closest_node == null)
+                    {
+                        // 오류상황
+                        break;
+                    }
+                    prev_level_node.childNodes.Add(closest_node.ID);
                 }
             }
             foreach(MapNode prev2_level_node in prev2_level_nodes)
             {
                 if(prev2_level_node.childNodes.Count == 0)
                 {
-                    prev2_level_node.childNodes.Add(essentialNode);
+                    MapNode closest_node = null;
+                    foreach(MapNode mapNode in essentialNodes_samelayer)
+                    {
+                        if(closest_node == null || Mathf.Abs(closest_node.pos - prev2_level_node.pos) > Mathf.Abs(mapNode.pos - prev2_level_node.pos))
+                        {
+                            closest_node = mapNode;
+                        }
+                    }
+                    foreach(MapNode mapNode in prev_level_nodes)
+                    {
+                        if(closest_node == null || Mathf.Abs(closest_node.pos - prev2_level_node.pos) > Mathf.Abs(mapNode.pos - prev2_level_node.pos))
+                        {
+                            closest_node = mapNode;
+                        }
+                    }
+                    if(closest_node == null)
+                    {
+                        // 오류상황
+                        break;
+                    }
+                    prev2_level_node.childNodes.Add(closest_node.ID);
                 }
             }
             prev2_level_nodes = new List<MapNode>();
             prev_level_nodes = new List<MapNode>();
-            prev_level_nodes.Add(essentialNode);
-            sortedMapNodeList.Add(essentialNode);
+            foreach(MapNode essentialNode in essentialNodes_samelayer)
+            {
+                prev_level_nodes.Add(essentialNode);
+                sortedMapNodeList.Add(essentialNode);
+            }
             cur_level++;
             // 삽입할 특수 & 공용 노드 개수
-            int chooseNum = (nodeNum - act.essentialNodes.Count) / (act.essentialNodes.Count - 1);
-            if(i == act.essentialNodes.Count - 2) chooseNum = nodeNum - act.essentialNodes.Count - chooseNum * (act.essentialNodes.Count - 2);
+            int chooseNum = (nodeNum - act.essentialNodes.Count) / (essentialLayerCount - 1);
+            if(i == act.essentialNodes.Count - 2) chooseNum = nodeNum - act.essentialNodes.Count - chooseNum * (essentialLayerCount - 2);
             // 삽입할 노드 최소 & 최대 난이도
             int minDiff = essentialNodes_sorted[i].difficulty;
             int maxDiff = essentialNodes_sorted[i+1].difficulty;
@@ -118,7 +199,11 @@ public class Map
             for(int j = 0; j < chooseNum; j += cur_level_num)
             {
                 // 현재 층에 추가할 노드 개수
-                cur_level_num = Random.Range(1, posValMax - posValMin + 2);
+                int[] high_prob_layer_nums = new int[] {2, 3};
+                int[] low_prob_layer_nums = new int[] {1, 4};
+                if(Random.value < probability) cur_level_num = high_prob_layer_nums[Random.Range(0, high_prob_layer_nums.Length)];
+                else cur_level_num = low_prob_layer_nums[Random.Range(0, low_prob_layer_nums.Length)];
+                //cur_level_num = Random.Range(1, layerMaxNodeNum + 1);
                 if(j + cur_level_num > chooseNum) cur_level_num = chooseNum - j;
                 // 현재 층에 추가할 노드 위치
                 List<int> nodePos = new List<int>();
@@ -169,7 +254,7 @@ public class Map
                         // 오류상황
                         break;
                     }
-                    closest_node.childNodes.Add(mapNode);
+                    closest_node.childNodes.Add(mapNode.ID);
                     sortedMapNodeList.Add(mapNode);
                 }
                 foreach(MapNode prev2_level_node in prev2_level_nodes)
@@ -184,12 +269,19 @@ public class Map
                                 closest_node = mapNode;
                             }
                         }
+                        foreach(MapNode mapNode in prev_level_nodes)
+                        {
+                            if(closest_node == null || Mathf.Abs(closest_node.pos - prev2_level_node.pos) > Mathf.Abs(mapNode.pos - prev2_level_node.pos))
+                            {
+                                closest_node = mapNode;
+                            }
+                        }
                         if(closest_node == null)
                         {
                             // 오류상황
                             break;
                         }
-                        prev2_level_node.childNodes.Add(closest_node);
+                        prev2_level_node.childNodes.Add(closest_node.ID);
                     }
                 }
                 prev2_level_nodes = prev_level_nodes;
@@ -204,14 +296,14 @@ public class Map
         {
             if(prev_level_node.childNodes.Count == 0)
             {
-                prev_level_node.childNodes.Add(essentialNode_last);
+                prev_level_node.childNodes.Add(essentialNode_last.ID);
             }
         }
         foreach(MapNode prev2_level_node in prev2_level_nodes)
         {
             if(prev2_level_node.childNodes.Count == 0)
             {
-                prev2_level_node.childNodes.Add(essentialNode_last);
+                prev2_level_node.childNodes.Add(essentialNode_last.ID);
             }
         }
         sortedMapNodeList.Add(essentialNode_last);
@@ -226,4 +318,9 @@ public class ActSO : ScriptableObject
 {
     public List<MapNode> normalNodes;
     public List<Act> acts;
+
+    public int curActIndex;
+    public Map mapSave;
+    public List<Vector3> mapNodeScreenPosSave;
+    public int curNodeIndex;
 }

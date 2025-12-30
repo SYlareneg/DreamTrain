@@ -20,12 +20,16 @@ public class GameManager : MonoBehaviour
     [SerializeField][Tooltip("룰렛 버프 위치")] Vector2 rouletteBuffPos;
     [Tooltip("룰렛 버프")] public GameObject rouletteBuffUIView;
     [Header("카드 UI")]
-    [SerializeField][Tooltip("카드 목록 UI")] GameObject cardScrollView;
-    [Tooltip("카드 목록 content")] public GameObject cardListScroll;
-    [HideInInspector] public List<CardUI> cardList;
-    [SerializeField][Tooltip("드로우풀 카드 수 UI")] TMP_Text drawNum;
-    [SerializeField][Tooltip("무덤 카드 수 UI")] TMP_Text discardNum;
-    [SerializeField][Tooltip("덱 카드 수 UI")] TMP_Text deckNum;
+    [SerializeField][Tooltip("카드 목록 UI")] GameObject cardListView;
+    [SerializeField][Tooltip("카드 목록 UI")] GameObject cardScrollView_Deck;
+    [SerializeField][Tooltip("카드 목록 UI")] GameObject cardScrollView_Draw;
+    [SerializeField][Tooltip("카드 목록 UI")] GameObject cardScrollView_Discard;
+    [Tooltip("카드 목록 content - 덱")] public GameObject cardListContent_Deck;
+    [Tooltip("카드 목록 content - 드로우")] public GameObject cardListContent_Draw;
+    [Tooltip("카드 목록 content - 무덤")] public GameObject cardListContent_Discard;
+    [HideInInspector] public List<CardUI> cardList_Deck;
+    [HideInInspector] public List<CardUI> cardList_Draw;
+    [HideInInspector] public List<CardUI> cardList_Discard;
     [Header("이드 UI")]
     [SerializeField][Tooltip("이드 목록 UI")] GameObject relicScrollView;
     [Tooltip("이드 목록 content")] public GameObject relicListScroll;
@@ -52,8 +56,11 @@ public class GameManager : MonoBehaviour
     [Tooltip("적 버프")] public GameObject[] enemyBuffUIView;
     [HideInInspector] public List<RelicUI> relicList;
     [Header("카드 획득 UI")]
+    [Tooltip("카드 보상 개수")] public int rewardCardCount = 3;
     [SerializeField][Tooltip("카드 획득 화면")] GameObject rewardCardView;
-    [SerializeField][Tooltip("획득 카드 목록")] CardUI_Reward[] rewardCards;
+    [SerializeField][Tooltip("획득 카드 목록 위치")] Transform rewardCardList;
+    [SerializeField][Tooltip("카드 보상 prefab")] GameObject rewardCardPrefab;
+    [SerializeField][Tooltip("획득 카드 목록")] List<CardUI_Reward> rewardCards;
     [SerializeField][Tooltip("플레이어 정보")] CharacterSO characterSO;
     [SerializeField][Tooltip("카드풀 정보(공용)")] ItemSO normalItemListSO;
     [SerializeField][Tooltip("카드풀 정보(페르소나/그림자)")] DreamPieceSO dreamPieceListSO;
@@ -118,9 +125,6 @@ public class GameManager : MonoBehaviour
     // UI 텍스트, 숨김 여부 설정
     void UpdateUIState()
     {
-        drawNum.text = CardManager.Inst.itemDraw.Count.ToString();
-        discardNum.text = CardManager.Inst.itemDiscard.Count.ToString();
-        deckNum.text = CardManager.Inst.itemDeck.Count.ToString();
         costTMP.text = TurnManager.Inst.nowCost.ToString() + "/" + TurnManager.Inst.turnCost.ToString();
         healthTMP.text = TurnManager.Inst.curHealth.ToString() + "/" + TurnManager.Inst.maxHealth.ToString();
         healthImg.fillAmount = (float)TurnManager.Inst.curHealth / TurnManager.Inst.maxHealth;
@@ -272,55 +276,61 @@ public class GameManager : MonoBehaviour
     public enum ListType { Deck, Draw, Discard };
 
     // 카드 목록 UI 호출
-    public void CardList(ListType listType)
+
+    public void ShowCardList()
     {
-        if (cardScrollView.activeSelf == false)
+        if (cardListView.activeSelf == false)
         {
             TurnManager.Inst.isLoading = true;
-            foreach (CardUI card in cardList)
+            foreach (CardUI card in cardList_Deck)
             {
                 Destroy(card.gameObject);
             }
-
-            switch (listType)
+            cardList_Deck = CardManager.Inst.ItemBufferToCardUIList(CardManager.Inst.itemDeck, cardListContent_Deck.transform);
+            foreach (CardUI card in cardList_Draw)
             {
-                case ListType.Deck:
-                    cardList = CardManager.Inst.ItemBufferToCardUIList(CardManager.Inst.itemDeck, cardListScroll.transform);
-                    break;
-                case ListType.Draw:
-                    cardList = CardManager.Inst.ItemBufferToCardUIList(CardManager.Inst.itemDraw, cardListScroll.transform);
-                    break;
-                case ListType.Discard:
-                    cardList = CardManager.Inst.ItemBufferToCardUIList(CardManager.Inst.itemDiscard, cardListScroll.transform);
-                    break;
+                Destroy(card.gameObject);
             }
+            cardList_Draw = CardManager.Inst.ItemBufferToCardUIList(CardManager.Inst.itemDraw, cardListContent_Draw.transform);
+            foreach (CardUI card in cardList_Discard)
+            {
+                Destroy(card.gameObject);
+            }
+            cardList_Discard = CardManager.Inst.ItemBufferToCardUIList(CardManager.Inst.itemDiscard, cardListContent_Discard.transform);
+            DeckCardList();
             Canvas.ForceUpdateCanvases();
 
-            cardScrollView.SetActive(true);
+            cardListView.SetActive(true);
         }
         else
         {
             TurnManager.Inst.isLoading = false;
-            cardScrollView.SetActive(false);
+            cardListView.SetActive(false);
         }
     }
 
     // 덱 카드 목록 띄움
     public void DeckCardList()
     {
-        CardList(ListType.Deck);
+        cardScrollView_Deck.SetActive(true);
+        cardScrollView_Draw.SetActive(false);
+        cardScrollView_Discard.SetActive(false);
     }
 
     // 드로우 풀 카드 목록 띄움
     public void DrawCardList()
     {
-        CardList(ListType.Draw);
+        cardScrollView_Deck.SetActive(false);
+        cardScrollView_Draw.SetActive(true);
+        cardScrollView_Discard.SetActive(false);
     }
 
     // 무덤 카드 목록 띄움
     public void DiscardCardList()
     {
-        CardList(ListType.Discard);
+        cardScrollView_Deck.SetActive(false);
+        cardScrollView_Draw.SetActive(false);
+        cardScrollView_Discard.SetActive(true);
     }
 
     // 이드 목록 띄움
@@ -399,7 +409,15 @@ public class GameManager : MonoBehaviour
         List<Item> shareCards = normalItemListSO.items;
         List<Item> normalCards = new List<Item>();
         List<Item>[] dreamCards = new List<Item>[Enum.GetNames(typeof(CardRarity)).Length];
+        for(int i = 0; i < dreamCards.Length; i++)
+        {
+            dreamCards[i] = new List<Item>();
+        }
         List<Item>[] dreamCards_enhanced = new List<Item>[Enum.GetNames(typeof(CardRarity)).Length];
+        for(int i = 0; i < dreamCards_enhanced.Length; i++)
+        {
+            dreamCards_enhanced[i] = new List<Item>();
+        }
         DreamPiece_Reference persona_ref = dreamPieceListSO.dreamPieces.Find(x => x.name == characterSO.personaPiece.name);
         DreamPiece_Reference shadow_ref = dreamPieceListSO.dreamPieces.Find(x => x.name == characterSO.shadowPiece.name);
         foreach(Item item in normalItemListSO.items)
@@ -415,6 +433,17 @@ public class GameManager : MonoBehaviour
         {
             dreamCards[(int)item.rarity].Add((Item)item);
             dreamCards_enhanced[(int)item.rarity].Add(item.enhancedItem);
+        }
+        foreach(Transform child in rewardCardList)
+        {
+            Destroy(child.gameObject);
+        }
+        rewardCards = new List<CardUI_Reward>();
+        for(int i = 0; i < rewardCardCount; i++)
+        {
+            var rewardCardObj = Instantiate(rewardCardPrefab, rewardCardList);
+            CardUI_Reward rc = rewardCardObj.GetComponent<CardUI_Reward>();
+            rewardCards.Add(rc);
         }
         foreach (CardUI_Reward rc in rewardCards)
         {
@@ -434,16 +463,19 @@ public class GameManager : MonoBehaviour
                 }
                 rPoint -= rewardCardWeights[i];
             }
+            Debug.Log("Chosen Card Pool: " + chooseCardPool.ToString());
             List<Item> lookat = new List<Item>();
             if(chooseCardPool == 0)
             {
                 lookat = normalCards;
+                Debug.Log(lookat.Count);
             }
             else if(chooseCardPool > 0 && chooseCardPool <= Enum.GetNames(typeof(CardRarity)).Length)
             {
                 bool isE = Random.value < enhanceProbability;
                 if(isE) lookat = dreamCards_enhanced[chooseCardPool - 1];
                 else lookat = dreamCards[chooseCardPool - 1];
+                Debug.Log(lookat.Count);
             }
             int cardIdx = Random.Range(0, lookat.Count);
             rc.Setup(lookat[cardIdx]);

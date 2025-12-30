@@ -12,7 +12,7 @@ public class MapNodeObject : MonoBehaviour
     private void OnMouseEnter()
     {
         if(mapNode == null) return;
-        if(MapManager.Inst.curNode.childNodes.Find(x => x == mapNode) == null) return;
+        if(MapManager.Inst.curNode.childNodes.Find(x => x == mapNode.ID) == null) return;
 
         transform.localScale = originScale * expandSize;
         Color color = spriteRenderer.color;
@@ -23,7 +23,7 @@ public class MapNodeObject : MonoBehaviour
     private void OnMouseOver()
     {
         if(mapNode == null) return;
-        if(MapManager.Inst.curNode.childNodes.Find(x => x == mapNode) == null) return;
+        if(MapManager.Inst.curNode.childNodes.Find(x => x == mapNode.ID) == null) return;
 
         transform.localScale = originScale * expandSize;
         Color color = spriteRenderer.color;
@@ -34,7 +34,7 @@ public class MapNodeObject : MonoBehaviour
     private void OnMouseExit()
     {
         if(mapNode == null) return;
-        if(MapManager.Inst.curNode.childNodes.Find(x => x == mapNode) == null) return;
+        if(MapManager.Inst.curNode.childNodes.Find(x => x == mapNode.ID) == null) return;
         if(mapNode == MapManager.Inst.curNode || MapManager.Inst.player_moveable == false) return;
 
         transform.localScale = originScale;
@@ -46,7 +46,7 @@ public class MapNodeObject : MonoBehaviour
     private void OnMouseUpAsButton()
     {
         if(mapNode == null) return;
-        if(MapManager.Inst.curNode.childNodes.Find(x => x == mapNode) == null) return;
+        if(MapManager.Inst.curNode.childNodes.Find(x => x == mapNode.ID) == null) return;
         if(MapManager.Inst.player_moveable == false) return;
         MapManager.Inst.MovePlayerTo(mapNode);
     }

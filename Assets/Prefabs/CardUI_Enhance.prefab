@@ -868,29 +868,31 @@ MonoBehaviour:
   character: {fileID: 4743940414240245683}
   type: {fileID: 8976891957579261959}
   rarity: {fileID: 471890580643910057}
+  cost: {fileID: 0}
   nameTMP: {fileID: 4376306425444943034}
   costTMP: {fileID: 2215903050171148686}
   typeTMP: {fileID: 1441719805002504825}
   textTMP: {fileID: 787367465114156383}
   cardTypes:
-  - {fileID: -7935226861627755592, guid: cf58b29d8048bdf419cd706db6d6cd9f, type: 3}
-  - {fileID: -7935226861627755592, guid: cf58b29d8048bdf419cd706db6d6cd9f, type: 3}
-  - {fileID: -7935226861627755592, guid: cf58b29d8048bdf419cd706db6d6cd9f, type: 3}
-  - {fileID: -7935226861627755592, guid: cf58b29d8048bdf419cd706db6d6cd9f, type: 3}
+  - {fileID: 21300000, guid: f163e1553e5b90946a9d36d915356c9e, type: 3}
+  - {fileID: 21300000, guid: 6eefdd879b1eec7419cdca17c94ef6da, type: 3}
+  - {fileID: 21300000, guid: f163e1553e5b90946a9d36d915356c9e, type: 3}
+  - {fileID: 21300000, guid: f163e1553e5b90946a9d36d915356c9e, type: 3}
   rarityTypes:
   - {fileID: -7935226861627755592, guid: cf58b29d8048bdf419cd706db6d6cd9f, type: 3}
   - {fileID: -7935226861627755592, guid: cf58b29d8048bdf419cd706db6d6cd9f, type: 3}
+  costTypes: []
   item:
     name: 
     cost: 0
     type: 0
-    element: 0
     rarity: 0
     dreamPieceNum: 0
     isVolatile: 0
     isVanish: 0
     isRemain: 0
-    sprite: 
+    isSingleTarget: 0
+    sprite: {fileID: 0}
     text: 
     cardValues: 
     cardValueTypes: 

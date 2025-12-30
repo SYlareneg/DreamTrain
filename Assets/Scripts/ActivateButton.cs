@@ -6,9 +6,11 @@ public class ActivateButton : MonoBehaviour
 {
     [Header("Settings")]
     public bool useClickEffect = true; // 클릭 시 눌리는 효과 사용 여부
-    [SerializeField] TMP_Text buttonCostText;
     [Header("Cost")]
     public int useCost;
+    [SerializeField] int maxUseCost;
+    [SerializeField] SpriteRenderer costSR;
+    [SerializeField] Sprite[] costSprites;
 
     // 내부 변수
     private Vector3 originalScale;
@@ -71,12 +73,12 @@ public class ActivateButton : MonoBehaviour
         {
             RouletteManager.Inst.ActivateRoulette();
             TurnManager.Inst.IncreaseCost(-useCost);
-            useCost += 1;
+            if(useCost < maxUseCost) useCost += 1;
         }
     }
 
     private void Update()
     {
-        buttonCostText.text = useCost.ToString();
+        costSR.sprite = costSprites[useCost - 1];
     }
 }

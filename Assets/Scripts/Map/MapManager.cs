@@ -18,7 +18,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] float posDist;
     public Vector2 tooltipOffset;
     public Map map;
-    Dictionary<MapNode, Vector3> mapNodeScreenPos = new Dictionary<MapNode, Vector3>();
+    Dictionary<string, Vector3> mapNodeScreenPos = new Dictionary<string, Vector3>();
 
     public GameObject player;
     public MapCamera mapCamera;
@@ -32,13 +32,13 @@ public class MapManager : MonoBehaviour
         retVec.y += mapNode.pos * posDist;
         if(addOffset)
         {
-            float randOffset = Random.Range(-posDist / 2, posDist / 2);
+            float randOffset = Random.Range(-posDist / 3, posDist / 3);
             retVec.y += randOffset;
         }
         return retVec;
     }
 
-    public void PrintMap(Map mp)
+    public void PrintMap(Map mp, List<Vector3> savedPos = null)
     {
         for(int i = 0; i < mp.sortedMapNodeList.Count; i++)
         {
@@ -49,65 +49,93 @@ public class MapManager : MonoBehaviour
             mapNodeTooltip.tooltipTitle = mp.sortedMapNodeList[i].title;
             mapNodeTooltip.tooltipTxt = mp.sortedMapNodeList[i].text;
             newMapNode.transform.SetParent(mapTransform);
-            if(i == 0 || i == mp.sortedMapNodeList.Count - 1)
+            if(savedPos != null && savedPos.Count == mp.sortedMapNodeList.Count)
             {
-                newMapNode.transform.position = nodePos2ScreenPos(mp.sortedMapNodeList[i], false);
+                newMapNode.transform.position = savedPos[i];
             }
             else
             {
-                newMapNode.transform.position = nodePos2ScreenPos(mp.sortedMapNodeList[i], true);
+                if(i == 0 || i == mp.sortedMapNodeList.Count - 1)
+                {
+                    newMapNode.transform.position = nodePos2ScreenPos(mp.sortedMapNodeList[i], false);
+                }
+                else
+                {
+                    newMapNode.transform.position = nodePos2ScreenPos(mp.sortedMapNodeList[i], true);
+                }
             }
             mapNodeTooltip.tooltipPos = Camera.main.WorldToScreenPoint(newMapNode.transform.position);
             mapNodeTooltip.tooltipPos += tooltipOffset;
-            mapNodeScreenPos.Add(mp.sortedMapNodeList[i], newMapNode.transform.position);
+            mapNodeScreenPos.Add(mp.sortedMapNodeList[i].ID, newMapNode.transform.position);
         }
         foreach(MapNode mapNode in mp.sortedMapNodeList)
         {
-            foreach(MapNode childNode in mapNode.childNodes)
+            foreach(string childNode in mapNode.childNodes)
             {
-                Vector3 linePos = (mapNodeScreenPos[mapNode] + mapNodeScreenPos[childNode]) / 2;
+                Vector3 linePos = (mapNodeScreenPos[mapNode.ID] + mapNodeScreenPos[childNode]) / 2;
                 var newMapLine = Instantiate(mapLinePrefab, Vector3.zero, Utils.QI);
                 newMapLine.transform.SetParent(mapTransform);
                 newMapLine.transform.position = linePos;
-                Vector3 direction = mapNodeScreenPos[childNode] - mapNodeScreenPos[mapNode];
+                Vector3 direction = mapNodeScreenPos[childNode] - mapNodeScreenPos[mapNode.ID];
                 newMapLine.transform.right = direction;
                 newMapLine.transform.localScale = new Vector3(direction.magnitude, lineWidth, 1f);
             }
         }
     }
 
-    public Vector3 GetScreenPos(MapNode mapNode)
+    public void SaveMap()
     {
-        if(mapNode == null || !mapNodeScreenPos.ContainsKey(mapNode)) return Vector3.zero;
-        return mapNodeScreenPos[mapNode];
+        actSO.mapSave = map;
+        actSO.mapNodeScreenPosSave = new List<Vector3>();
+        foreach(MapNode mapNode in map.sortedMapNodeList)
+        {
+            actSO.mapNodeScreenPosSave.Add(mapNodeScreenPos[mapNode.ID]);
+        }
     }
 
-    public Vector3 GetStartPos()
+    public Vector3 GetScreenPos(MapNode mapNode)
+    {
+        if(mapNode == null || !mapNodeScreenPos.ContainsKey(mapNode.ID)) return Vector3.zero;
+        return mapNodeScreenPos[mapNode.ID];
+    }
+
+    public Vector3 GetStartPos(MapNode curNode)
     {
         if(map == null || map.sortedMapNodeList.Count == 0) return Vector3.zero;
-        if(!mapNodeScreenPos.ContainsKey(map.sortedMapNodeList[0])) return Vector3.zero;
-        return mapNodeScreenPos[map.sortedMapNodeList[0]];
+        if(!mapNodeScreenPos.ContainsKey(curNode.ID)) return Vector3.zero;
+        return mapNodeScreenPos[curNode.ID];
     }
 
     public void MovePlayerTo(MapNode mapNode)
     {
-        if(mapNode == null || !mapNodeScreenPos.ContainsKey(mapNode)) return;
-        if(curNode.childNodes.Find(x => x == mapNode) == null) return;
+        if(mapNode == null || !mapNodeScreenPos.ContainsKey(mapNode.ID)) return;
+        if(curNode.childNodes.Find(x => x == mapNode.ID) == null) return;
         player_moveable = false;
-        player.transform.DOMove(mapNodeScreenPos[mapNode], 1f).OnComplete(() =>
+        player.transform.DOMove(mapNodeScreenPos[mapNode.ID], 1f).OnComplete(() =>
         {
             curNode = mapNode;
+            actSO.curNodeIndex = map.sortedMapNodeList.IndexOf(mapNode);
             player_moveable = true;
         });
     }
 
     void Start()
     {
-        map = new Map();
-        map.CreateMap(8, actSO.acts[0], actSO.normalNodes);
-        PrintMap(map);
-        curNode = map.sortedMapNodeList[0];
-        player.transform.position = GetStartPos();
+        if(actSO.mapSave != null && actSO.mapNodeScreenPosSave != null && actSO.mapSave.sortedMapNodeList != null && actSO.mapNodeScreenPosSave.Count != 0 && actSO.mapNodeScreenPosSave.Count == actSO.mapSave.sortedMapNodeList.Count)
+        {
+            map = actSO.mapSave;
+            PrintMap(map, actSO.mapNodeScreenPosSave);
+        }
+        else
+        {
+            map = new Map();
+            map.CreateMap(15, actSO.acts[actSO.curActIndex], actSO.normalNodes);
+            PrintMap(map);
+            SaveMap();
+            actSO.curNodeIndex = 0;
+        }
+        curNode = map.sortedMapNodeList[actSO.curNodeIndex];
+        player.transform.position = GetStartPos(curNode);
         mapCamera = player.transform.GetComponentInChildren<MapCamera>();
         if(mapCamera != null)
         {

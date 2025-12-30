@@ -23,21 +23,21 @@ public class ToolPanel : MonoBehaviour
 
     void hidePanel()
     {
-        DOTween.To(() => rect.anchorMin, x => rect.anchorMin = x, new Vector2(rect.anchorMin.x + hideAnchorX, 0), easeTime).SetEase(Ease.InOutQuad);
-        DOTween.To(() => rect.anchorMax, x => rect.anchorMax = x, new Vector2(rect.anchorMax.x + hideAnchorX, 1), easeTime).SetEase(Ease.InOutQuad);
+        DOTween.To(() => rect.anchorMin, x => rect.anchorMin = x, new Vector2(rect.anchorMin.x + hideAnchorX, rect.anchorMin.y), easeTime).SetEase(Ease.InOutQuad);
+        DOTween.To(() => rect.anchorMax, x => rect.anchorMax = x, new Vector2(rect.anchorMax.x + hideAnchorX, rect.anchorMax.y), easeTime).SetEase(Ease.InOutQuad);
     }
 
     void showPanel()
     {
-        DOTween.To(() => rect.anchorMin, x => rect.anchorMin = x, new Vector2(rect.anchorMin.x - hideAnchorX, 0), easeTime).SetEase(Ease.InOutQuad);
-        DOTween.To(() => rect.anchorMax, x => rect.anchorMax = x, new Vector2(rect.anchorMax.x - hideAnchorX, 1), easeTime).SetEase(Ease.InOutQuad);
+        DOTween.To(() => rect.anchorMin, x => rect.anchorMin = x, new Vector2(rect.anchorMin.x - hideAnchorX, rect.anchorMin.y), easeTime).SetEase(Ease.InOutQuad);
+        DOTween.To(() => rect.anchorMax, x => rect.anchorMax = x, new Vector2(rect.anchorMax.x - hideAnchorX, rect.anchorMax.y), easeTime).SetEase(Ease.InOutQuad);
     }
     
     void Start()
     {
         rect = GetComponent<RectTransform>();
-        rect.anchorMin = new Vector2(0.99f, 0f);
-        rect.anchorMax = new Vector2(1.16f, 1f);
+        rect.anchorMin = new Vector2(0.99f, rect.anchorMin.y);
+        rect.anchorMax = new Vector2(1.16f, rect.anchorMax.y);
         isShown = false;
     }
 }

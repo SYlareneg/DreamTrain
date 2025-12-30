@@ -10,6 +10,7 @@ public class Card : MonoBehaviour
 {
     [SerializeField] SpriteRenderer card;
     [SerializeField] SpriteRenderer character;
+    public SpriteRenderer highlight;
     [SerializeField] SpriteRenderer type;
     [SerializeField] SpriteRenderer rarity;
     [SerializeField] SpriteRenderer cost;
@@ -63,6 +64,7 @@ public class Card : MonoBehaviour
         else rarity.enabled = true;
 
         character.sprite = this.item.sprite;
+        highlight.enabled = false;
 
         nameTMP.text = this.item.name;
         ShowBuffedCost();
@@ -292,12 +294,16 @@ public class Card : MonoBehaviour
         {
             case "회전 카드 1":
                 RouletteManager.Inst.Spin(true, 1);
+                CardManager.Inst.CardSelectModeTransit(ECardSelectMode.Discard, 2);
+                BuffManager.Inst.AddShowBuff("강화", EBuffAffectType.Roulette, 2, false);
                 break;
             case "회전 카드 2":
                 RouletteManager.Inst.Spin(true, 2);
+                BuffManager.Inst.AddShowBuff("보호", EBuffAffectType.Roulette, 2, false);
                 break;
             case "회전 카드 3":
                 RouletteManager.Inst.Spin(true, 3);
+                BuffManager.Inst.AddShowBuff("활력", EBuffAffectType.Roulette, 2, false);
                 break;
             case "회전 카드 4":
                 RouletteManager.Inst.Spin(false, 2);

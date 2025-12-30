@@ -52,6 +52,7 @@ public class CardManager : MonoBehaviour
     [Tooltip("선택된 카드 배치 레이아웃")][SerializeField] GameObject selectedCards;
     [Tooltip("카드 선택 화면 모드 텍스트")][SerializeField] TMP_Text selectModeText;
     [Tooltip("카드 선택 버튼")][SerializeField] Button cardSelectButton;
+    [Tooltip("보드 보기 버튼")][SerializeField] Button showBoardButton;
 
     [Header("이드")]
     [Tooltip("총 사용한 카드 개수")] public int useCount; 
@@ -216,7 +217,9 @@ public class CardManager : MonoBehaviour
         if (card.item.isVolatile == false && isRemain == false)
         {
             itemDiscard.Add(card.item);
-            card.MoveTransform(new PRS(cardDiscardPoint.position, Utils.QI, new Vector3(1, 1, 1)), true, 0.7f);
+            // 카드 버리는 모션
+            card.gameObject.SetActive(false);
+            //card.MoveTransform(new PRS(cardDiscardPoint.position, Utils.QI, new Vector3(1, 1, 1)), true, 0.7f);
         }
 
         // 핸드 재정렬
@@ -291,10 +294,10 @@ public class CardManager : MonoBehaviour
             case 3:
             case 4:
             case 5:
-                interval = 0.6f / (objCount - 1);
+                interval = 0.8f / (objCount - 1);
                 for (int i = 0; i < objCount; i++)
                 {
-                    objLerps[i] = 0.2f + interval * i;
+                    objLerps[i] = 0.1f + interval * i;
                 }
                 break;
             default:
@@ -340,6 +343,7 @@ public class CardManager : MonoBehaviour
 
         // selectedCard = 마우스를 올려놓은 카드
         selectedCard = card;
+        selectedCard.highlight.enabled = false;
         // 카드 확대
         EnlargeCard(true, card);
 
@@ -397,6 +401,7 @@ public class CardManager : MonoBehaviour
             return;
         }
 
+        selectedCard.highlight.enabled = false;
         // 확대했던 카드 축소
         EnlargeCard(false, card);
         // 마우스가 카드를 벗어났는데 툴팁이 여전히 띄워져 있을 경우, 툴팁 제거
@@ -451,6 +456,7 @@ public class CardManager : MonoBehaviour
                 return;
             }
             // 카드 사용
+            selectedCard.highlight.enabled = false;
             if (selectedCard.UseCard(onEnemyCardArea) == false)
             {
                 // 카드 사용이 불가능할 경우, 카드 축소 및 selectCard 초기화
@@ -498,6 +504,14 @@ public class CardManager : MonoBehaviour
         if(selectedCard != null)
         {
             selectedCard.MoveTransform(new PRS(Utils.MousePos, Utils.QI, selectedCard.originPRS.scale), false);
+            if(!onMyCardArea && (onEnemyCardArea >= 0 || selectedCard.item.isSingleTarget == false))
+            {
+                selectedCard.highlight.enabled = true;
+            }
+            else
+            {
+                selectedCard.highlight.enabled = false;
+            }
         }
     }
 
@@ -586,6 +600,7 @@ public class CardManager : MonoBehaviour
         // 카드 선택 화면을 띄울 경우 플레이어의 UI 이외 상호작용 막음(카드 드래그, 룰렛 등)
         TurnManager.Inst.isLoading = mode != ECardSelectMode.Hide;
         cardSelectButton.interactable = false;
+        showBoardButton.gameObject.SetActive(mode != ECardSelectMode.Hide);
 
         // 카드 선택 화면 설명
         if (mode == ECardSelectMode.Duplicate)
@@ -606,6 +621,12 @@ public class CardManager : MonoBehaviour
             }
             SelectCardDone();
         }
+    }
+
+    public void ShowBoard()
+    {
+        if(cardSelectScreen.activeSelf == true) cardSelectScreen.SetActive(false);
+        else cardSelectScreen.SetActive(true);
     }
 
     // 카드 card 선택 
