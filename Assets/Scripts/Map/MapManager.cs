@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class MapManager : MonoBehaviour
 {
@@ -115,7 +116,8 @@ public class MapManager : MonoBehaviour
         {
             curNode = mapNode;
             actSO.curNodeIndex = map.sortedMapNodeList.IndexOf(mapNode);
-            player_moveable = true;
+            actSO.curNodeLocationID = mapNode.locationID;
+            SceneManager.LoadScene("EncounterScene");
         });
     }
 
@@ -129,7 +131,7 @@ public class MapManager : MonoBehaviour
         else
         {
             map = new Map();
-            map.CreateMap(15, actSO.acts[actSO.curActIndex], actSO.normalNodes);
+            map.CreateMap(5, actSO.acts[actSO.curActIndex], actSO.normalNodes);
             PrintMap(map);
             SaveMap();
             actSO.curNodeIndex = 0;

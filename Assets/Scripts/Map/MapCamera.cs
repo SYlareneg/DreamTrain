@@ -9,6 +9,7 @@ public class MapCamera : MonoBehaviour
 
     public float GetCameraPosRatio()
     {
+        if(minX == maxX) return 0f;
         return (transform.position.x - minX) / (maxX - minX);
     }
 

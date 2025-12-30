@@ -14,6 +14,7 @@ public class MapNode
     public int encounterNum;
     // 분류정보
     public string ID;
+    public string locationID;
     public int difficulty;
     // 설정정보
     public int level;
@@ -27,6 +28,7 @@ public class MapNode
         text = mapNode.text;
         encounterNum = mapNode.encounterNum;
         ID = Guid.NewGuid().ToString("N");
+        locationID = mapNode.locationID;
         difficulty = mapNode.difficulty;
         level = mapNode.level;
         pos = mapNode.pos;
@@ -323,4 +325,5 @@ public class ActSO : ScriptableObject
     public Map mapSave;
     public List<Vector3> mapNodeScreenPosSave;
     public int curNodeIndex;
+    public string curNodeLocationID;
 }

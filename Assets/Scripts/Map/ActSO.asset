@@ -18,6 +18,7 @@ MonoBehaviour:
     text: 
     encounterNum: 0
     ID: NormalNode1
+    locationID: 
     difficulty: 0
     level: 0
     pos: 0
@@ -27,6 +28,7 @@ MonoBehaviour:
     text: 
     encounterNum: 0
     ID: NormalNode2
+    locationID: 
     difficulty: 1
     level: 0
     pos: 0
@@ -38,7 +40,8 @@ MonoBehaviour:
       text: "\uCD9C\uBC1C \uC9C0\uC810\uC785\uB2C8\uB2E4."
       encounterNum: 0
       ID: StartNode
-      difficulty: 0
+      locationID: 
+      difficulty: -1
       level: 0
       pos: 0
       childNodes:
@@ -46,10 +49,22 @@ MonoBehaviour:
       - e329f7044b06496095709c2415ccc9b6
       - 1c0f0a70da984a118bc577b5396da19d
     - nodeImg: {fileID: 0}
+      title: "\uB180\uC774\uACF5\uC6D0 \uC785\uAD6C"
+      text: "\uC5EC\uC815\uC758 \uC2DC\uC791\uC740 \uD56D\uC0C1 \uB450\uADFC\uAC70\uB9AC\uB294
+        \uBC95\uC774\uC8E0."
+      encounterNum: 0
+      ID: Entrance
+      locationID: AMUSEMENT_PARK_ENTRANCE
+      difficulty: 0
+      level: 0
+      pos: 0
+      childNodes: []
+    - nodeImg: {fileID: 0}
       title: "1\uBC88 \uACBD\uC720\uC9C0"
       text: "\uC911\uAC04 \uC9C0\uC810\uC785\uB2C8\uB2E4."
       encounterNum: 0
       ID: MidNode1
+      locationID: 
       difficulty: 1
       level: 3
       pos: 0
@@ -61,6 +76,7 @@ MonoBehaviour:
       text: "\uB3C4\uCC29\uC9C0\uC785\uB2C8\uB2E4."
       encounterNum: 0
       ID: EndNode
+      locationID: 
       difficulty: 2
       level: 0
       pos: 0
@@ -70,6 +86,7 @@ MonoBehaviour:
       text: "\uC911\uAC04 \uC9C0\uC810\uC785\uB2C8\uB2E4."
       encounterNum: 0
       ID: MidNode2
+      locationID: 
       difficulty: 1
       level: 0
       pos: 0
@@ -80,6 +97,7 @@ MonoBehaviour:
       text: 
       encounterNum: 0
       ID: SpecialNode1
+      locationID: 
       difficulty: 1
       level: 0
       pos: 0
@@ -89,6 +107,7 @@ MonoBehaviour:
       text: 
       encounterNum: 0
       ID: SpecialNode2
+      locationID: 
       difficulty: 1
       level: 0
       pos: 0
@@ -98,6 +117,7 @@ MonoBehaviour:
       text: 
       encounterNum: 0
       ID: SpecialNode3
+      locationID: 
       difficulty: 1
       level: 0
       pos: 0
@@ -107,6 +127,7 @@ MonoBehaviour:
       text: 
       encounterNum: 0
       ID: SpecialNode4
+      locationID: 
       difficulty: 0
       level: 0
       pos: 0
@@ -116,6 +137,7 @@ MonoBehaviour:
       text: 
       encounterNum: 0
       ID: SpecialNode5
+      locationID: 
       difficulty: 0
       level: 0
       pos: 0
@@ -125,6 +147,7 @@ MonoBehaviour:
       text: 
       encounterNum: 0
       ID: SpecialNode6
+      locationID: 
       difficulty: 0
       level: 0
       pos: 0
@@ -134,6 +157,7 @@ MonoBehaviour:
       text: 
       encounterNum: 0
       ID: SpecialNode7
+      locationID: 
       difficulty: 0
       level: 0
       pos: 0
@@ -143,11 +167,76 @@ MonoBehaviour:
       text: 
       encounterNum: 0
       ID: SpecialNode8
+      locationID: 
       difficulty: 0
       level: 0
       pos: 0
       childNodes: []
+  curActIndex: 0
   mapSave:
-    sortedMapNodeList: []
-    totalLevel: 0
-  mapNodeScreenPosSave: []
+    sortedMapNodeList:
+    - nodeImg: {fileID: 0}
+      title: "\uCD9C\uBC1C"
+      text: "\uCD9C\uBC1C \uC9C0\uC810\uC785\uB2C8\uB2E4."
+      encounterNum: 0
+      ID: beed9941663046f299524a8a968c5e67
+      locationID: 
+      difficulty: -1
+      level: 0
+      pos: 0
+      childNodes:
+      - 9b0b4d3778d74b49b7883bc6f4d8a1bd
+    - nodeImg: {fileID: 0}
+      title: "\uB180\uC774\uACF5\uC6D0 \uC785\uAD6C"
+      text: "\uC5EC\uC815\uC758 \uC2DC\uC791\uC740 \uD56D\uC0C1 \uB450\uADFC\uAC70\uB9AC\uB294
+        \uBC95\uC774\uC8E0."
+      encounterNum: 0
+      ID: 9b0b4d3778d74b49b7883bc6f4d8a1bd
+      locationID: AMUSEMENT_PARK_ENTRANCE
+      difficulty: 0
+      level: 1
+      pos: 0
+      childNodes:
+      - 8d963c5fc5e74d91aed7a2bf9bb18274
+      - 23c8ed2a3b2b468f8cb937cdd05b1f6e
+    - nodeImg: {fileID: 0}
+      title: "1\uBC88 \uACBD\uC720\uC9C0"
+      text: "\uC911\uAC04 \uC9C0\uC810\uC785\uB2C8\uB2E4."
+      encounterNum: 0
+      ID: 8d963c5fc5e74d91aed7a2bf9bb18274
+      locationID: 
+      difficulty: 1
+      level: 2
+      pos: 0
+      childNodes:
+      - 9c8be42cac5d4ad29d3ba2ebbab85184
+    - nodeImg: {fileID: 0}
+      title: "1\uBC88 \uACBD\uC720\uC9C0"
+      text: "\uC911\uAC04 \uC9C0\uC810\uC785\uB2C8\uB2E4."
+      encounterNum: 0
+      ID: 23c8ed2a3b2b468f8cb937cdd05b1f6e
+      locationID: 
+      difficulty: 1
+      level: 2
+      pos: -1
+      childNodes:
+      - 9c8be42cac5d4ad29d3ba2ebbab85184
+    - nodeImg: {fileID: 0}
+      title: "\uB3C4\uCC29"
+      text: "\uB3C4\uCC29\uC9C0\uC785\uB2C8\uB2E4."
+      encounterNum: 0
+      ID: 9c8be42cac5d4ad29d3ba2ebbab85184
+      locationID: 
+      difficulty: 2
+      level: 3
+      pos: 0
+      childNodes: []
+    totalLevel: 4
+  mapNodeScreenPosSave:
+  - {x: -9, y: 0.7, z: 0}
+  - {x: -5, y: 0.5839094, z: 0}
+  - {x: -1, y: 0.7157583, z: 0}
+  - {x: -1, y: -0.025561988, z: 0}
+  - {x: 3, y: 0.7, z: 0}
+  curNodeIndex: 0
+  curNodeLocationID: 
