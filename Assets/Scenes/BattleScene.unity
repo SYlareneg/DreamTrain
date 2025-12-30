@@ -3106,6 +3106,7 @@ MonoBehaviour:
   characterSO: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
   cardPrefab: {fileID: 3101435894562736061, guid: 00faca8f8365c654ba92e1bca964104a, type: 3}
   cardUIPrefab: {fileID: 2874763482636186485, guid: 8165cd5009ea959418b5ae143b538cab, type: 3}
+  cardTooltipPrefab: {fileID: 7395121463942104081, guid: cdbb763cc62d79c408dcc5edc98c757f, type: 3}
   eCardState: 0
   isMyCardDrag: 0
   onMyCardArea: 0

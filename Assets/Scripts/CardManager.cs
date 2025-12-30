@@ -23,6 +23,7 @@ public class CardManager : MonoBehaviour
     [Tooltip("플레이어 덱 정보")] public CharacterSO characterSO;
     [Tooltip("카드 프리팹")][SerializeField] GameObject cardPrefab;
     [Tooltip("카드 UI 프리팹")][SerializeField] GameObject cardUIPrefab;
+    [Tooltip("카드 툴팁 프리팹")][SerializeField] GameObject cardTooltipPrefab;
     [Tooltip("현재 카드 매니저 상태(카드를 드래그 할 수 있는지)")][ReadOnly, SerializeField] ECardState eCardState;
     [Tooltip("카드 드래그 여부")][ReadOnly, SerializeField] bool isMyCardDrag;
     [Tooltip("현재 드래그 중인 카드가 나의 핸드 범위에 위치하는지 확인")][ReadOnly, SerializeField] bool onMyCardArea; // false일 경우 카드 사용, true일 경우 카드 핸드로 복귀
@@ -62,8 +63,7 @@ public class CardManager : MonoBehaviour
     [Tooltip("툴팁 배치 캔버스")][SerializeField] Canvas uiCanvas;
     [Tooltip("툴팁 프리팹")][SerializeField] GameObject tooltipPrefab;
     [Tooltip("툴팁 키워드 목록")][SerializeField] KeywordSO keywordSO;
-    private Camera mainCam; // 메인 카메라
-    private GameObject tooltip; // 툴팁
+    private bool tooltipCreated = false; // 툴팁 생성 여부
     private RectTransform canvasRect; // 툴팁 배치 캔버스 위치
 
     #region Item Management
@@ -346,48 +346,28 @@ public class CardManager : MonoBehaviour
         selectedCard.highlight.enabled = false;
         // 카드 확대
         EnlargeCard(true, card);
-
-        // 카드 텍스트에 따라 tooltip 설정
-        int wordIndex = TMP_TextUtilities.FindIntersectingWord(card.textTMP, Input.mousePosition, mainCam);
-
-        if (wordIndex != -1)
+        if (tooltipCreated)
         {
-            // 현재 마우스를 올려놓은 카드 텍스트
-            TMP_WordInfo wordInfo = card.textTMP.textInfo.wordInfo[wordIndex];
-            string hoveredWord = wordInfo.GetWord();
-            Keyword keyword = Array.Find(keywordSO.keywords, x => x.word == hoveredWord);
-            // 해당 텍스트가 키워드 목록에 있을 경우
-            if (keyword != null)
-            {
-                // 툴팁을 생성하지 않았을 경우 새로운 툴팁 생성
-                if (tooltip == null)
-                {
-                    tooltip = Instantiate(tooltipPrefab, uiCanvas.transform);
-                }
-
-                // 텍스트 위치에 툴팁 생성
-                Vector2 localPos;
-                RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                    canvasRect,
-                    Input.mousePosition,
-                    uiCanvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : uiCanvas.worldCamera,
-                    out localPos);
-
-                RectTransform tooltipRect = tooltip.GetComponent<RectTransform>();
-                // 툴팁 offset 적용
-                tooltipRect.anchoredPosition = localPos + new Vector2(20f, 20f);
-                // 툴팁 제목, 텍스트 설정
-                TMP_Text[] tooltipTMP = tooltip.GetComponentsInChildren<TMP_Text>();
-                tooltipTMP[0].text = hoveredWord;
-                tooltipTMP[1].text = keyword.explanation;
-                return;
-            }
+            return;
         }
-        
-        // 마우스가 텍스트 위에 올라가있지 않은데 툴팁이 여전히 띄워져 있을 경우, 툴팁 제거
-        if (tooltip != null)
+        // 카드 텍스트에 따라 tooltip 설정
+        TMP_WordInfo[] wordInfos = card.textTMP.textInfo.wordInfo;
+        int tooltipCount = 0;
+        for(int i = 0; i < wordInfos.Length; i++)
         {
-            Destroy(tooltip);
+            // 단어별로 키워드 목록에 있는지 확인
+            if(wordInfos[i].characterCount == 0) continue;
+            string word = wordInfos[i].GetWord();
+            Keyword keyword = Array.Find(keywordSO.keywords, x => x.word == word);
+            if(keyword != null)
+            {
+                var keywordTooltipObj = Instantiate(cardTooltipPrefab, card.tooltipPos);
+                keywordTooltipObj.transform.position = card.tooltipPos.position - new Vector3(0f, keywordTooltipObj.GetComponent<SpriteRenderer>().bounds.size.y * tooltipCount * 1.1f, 0f);
+                CardTooltip keywordTooltip = keywordTooltipObj.GetComponent<CardTooltip>();
+                keywordTooltip.SetTooltip(keyword.word, keyword.explanation);
+                tooltipCreated = true;
+                tooltipCount++;
+            }
         }
     }
 
@@ -404,11 +384,11 @@ public class CardManager : MonoBehaviour
         selectedCard.highlight.enabled = false;
         // 확대했던 카드 축소
         EnlargeCard(false, card);
-        // 마우스가 카드를 벗어났는데 툴팁이 여전히 띄워져 있을 경우, 툴팁 제거
-        if (tooltip != null)
+        foreach(Transform child in card.tooltipPos)
         {
-            Destroy(tooltip);
+            Destroy(child.gameObject);
         }
+        tooltipCreated = false;
     }
 
     // 카드에 마우스를 놓고 눌렀을 때 호출
@@ -730,7 +710,6 @@ public class CardManager : MonoBehaviour
     // 플레이어 턴 시작 시 '이번 턴 사용한 카드 개수(useCount_Turn)' 초기화
     private void Start()
     {
-        mainCam = Camera.main;
         canvasRect = uiCanvas.GetComponent<RectTransform>();
 
         TurnManager.OnAddCard += AddCard;

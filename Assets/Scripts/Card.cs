@@ -24,6 +24,7 @@ public class Card : MonoBehaviour
 
     public Item item;
     public PRS originPRS;
+    public Transform tooltipPos;
     
     public Action OnCardClicked; 
     public enum SceneType { Dialogue, Emotion, General };
