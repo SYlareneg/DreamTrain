@@ -11,7 +11,7 @@ P2,DESC,"회중시계를 손에 든 토끼가 급한 목소리로 당신에게 �
 
 
 ",,,
-P2,BRANCH,행운을 나눠주지 않는다. (전투),P_AFTER_BATTLE,StartBattle(WhiteRabbit),
+P2,BRANCH,행운을 나눠주지 않는다. (전투),P_AFTER_BATTLE,StartBattle(박쥐),
 P2,BRANCH,행운을 나눠준다. (행운 -1),P_LOSE_LUCK,"DownStatus(Luck, 1)",
 P_AFTER_BATTLE,DESC,"""안 돼…꼭 들어가야 하는데…""
 토끼는 체력이 다했는지 그 자리에 쓰러집니다. 
@@ -30,5 +30,3 @@ P_LOSE_LUCK,DESC,"""고마워! 답례로 이걸 줄게!""
 
 ",,,
 P_LOSE_LUCK,BRANCH,떠난다,END,,
-,,,,,
-,,,,,

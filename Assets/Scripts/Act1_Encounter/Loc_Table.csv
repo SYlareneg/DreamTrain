@@ -2,18 +2,14 @@
 AMUSEMENT_PARK_ENTRANCE,놀이공원 입구,여정의 시작은 항상 두근거리는 법이죠.,Assets/Sprites/Map/Amusement_Park_Entrance.png,ACT1_WHITE_RABBIT,1
 MERRY_GO_ROUND,회전목마,돌고 돌고 돌고. 해가 지고 달이 져도 멈추지 않는 회전목마!,Assets/Sprites/Map/Merry_Go_Round.png,"ACT1_FASTEST_HORSE, ACT1_LAZY_HORSE, 
 ACT1_BEST_HORSE",2
-TEA_CUPS,회전 컵,빙글빙글 도는 컵들과 함께 차 한잔의 여유를!,"ACT1_SPINNING_CUP, ACT1_WINE_IN_CUP, 
-ACT1_TEA_TIME",2,
-GHOST_HOUSE,유령의 집,으스스하고 위험한 유령의 집. 소문에 의하면 들어갔다가 나오지 못한 손님이 꽤 많다고 합니다.,"ACT1_MISSING_ZIZI,
-ACT1_DEVIL_DOLL,
-ACT1_GUEST_OR_GHOST,
-ACT1_BAT_ATTACK,
-ACT1_VAMP_INVITATION",3,
-MAZE_GARDEN,미로 정원,꽃으로 가득한 미로 정원. 길이 복잡해서 어린 아이에게는 탈출하기 어려울 수 있음,Assets/Sprites/Map/Maze_Garden.png,"ACT1_SHEEP_IN_MAZE,
-ACT1_SUNNY_AFTERNOON,
-ACT1_WHERE_DOVE_FROM,
-ACT1_FLOWER_ATTACK,
-ACT1_WATER_ON_FLOWER,
+TEA_CUPS,회전 컵,빙글빙글 도는 컵들과 함께 차 한잔의 여유를!,Assets/Sprites/Map/Tea_Cups.png,"ACT1_SPINNING_CUP, ACT1_WINE_IN_CUP, 
+ACT1_TEA_TIME",2
+GHOST_HOUSE,유령의 집,으스스하고 위험한 유령의 집. 소문에 의하면 들어갔다가 나오지 못한 손님이 꽤 많다고 합니다.,Assets/Sprites/Map/Ghost_House.png,"ACT1_MISSING_ZIZI, ACT1_DEVIL_DOLL, ACT1_GUEST_OR_GHOST, ACT1_BAT_ATTACK, ACT1_VAMP_INVITATION",3
+MAZE_GARDEN,미로 정원,꽃으로 가득한 미로 정원. 길이 복잡해서 어린 아이에게는 탈출하기 어려울 수 있음,Assets/Sprites/Map/Maze_Garden.png,"ACT1_SHEEP_IN_MAZE, 
+ACT1_SUNNY_AFTERNOON, 
+ACT1_WHERE_DOVE_FROM, 
+ACT1_FLOWER_ATTACK, 
+ACT1_WATER_ON_FLOWER, 
 ACT1_ESCAPE_MAZE",3
-ICECREAM_CART,아이스크림 카트,당신의 지친 몸을 깨워줄 달달한 아이스크림 하나 어떠세요?,Assets/Sprites/Map/Icecream_Cart.png,"ACT1_SWEET_THING,
+ICECREAM_CART,아이스크림 카트,당신의 지친 몸을 깨워줄 달달한 아이스크림 하나 어떠세요?,Assets/Sprites/Map/Icecream_Cart.png,"ACT1_SWEET_THING, 
 ACT1_SOUVENIR",1

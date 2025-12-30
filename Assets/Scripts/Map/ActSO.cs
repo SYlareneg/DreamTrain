@@ -326,4 +326,5 @@ public class ActSO : ScriptableObject
     public List<Vector3> mapNodeScreenPosSave;
     public int curNodeIndex;
     public string curNodeLocationID;
+    public EncounterType lastEncounterType;
 }

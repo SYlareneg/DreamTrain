@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 using System;
+using System.Diagnostics;
+using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
 
 public class EncounterMerchantUI : MonoBehaviour
@@ -20,6 +22,8 @@ public class EncounterMerchantUI : MonoBehaviour
 
     [Header("UI Containers")]
     public Transform cardContainer;         // 카드들이 생성될 부모 Transform
+    public GameObject objetPrefab;    
+    public Transform objetContainer;
 
     [Header("Prefabs")]
     public GameObject sellCardPrefab;       // CardUI_Sell 프리팹
@@ -36,20 +40,18 @@ public class EncounterMerchantUI : MonoBehaviour
         panelRoot.SetActive(true);
 
         // 저장된 상점 데이터가 없으면 새로 생성, 있으면 불러오기
-        if (stageSO.merchantSellCards.Count == 0 && stageSO.merchantSellUItems.Count == 0)
+        //if (stageSO.merchantSellCards.Count == 0 && stageSO.merchantSellUItems.Count == 0)
+        if (stageSO.merchantSellCards.Count == 0) 
         {
-            GenerateShopInventory();
+            GenerateShopInventory(); 
         }
-        
         DrawShopUI();
     }
 
     // 상점 닫기 (인카운터로 복귀)
-    public void Close()
+    public void OnClickExitButton()
     {
         panelRoot.SetActive(false);
-        // EncounterManager에게 복귀 신호 보냄
-        // (EncounterManager.cs의 EndMerchant 로직이 호출되어야 함)
         if (EncounterManager.Instance != null)
         {
             EncounterManager.Instance.OnMerchantClosed();
@@ -169,61 +171,78 @@ public class EncounterMerchantUI : MonoBehaviour
 
     void DrawShopUI()
     {
-        // 기존 UI 삭제
-        foreach (Transform child in cardContainer) Destroy(child.gameObject);
+        int dataCount = stageSO.merchantSellCards.Count;
+        int currentChildCount = cardContainer.childCount;
 
-        // 카드 목록 생성
-        for (int i = 0; i < stageSO.merchantSellCards.Count; i++)
+        // 1. 모자란 만큼 프리팹 생성 (미리 만들어둠)
+        if (currentChildCount < dataCount)
         {
-            var data = stageSO.merchantSellCards[i];
-            
-            // 프리팹 생성
-            GameObject obj = Instantiate(sellCardPrefab, cardContainer);
-            
-            // [수정] 새로 만든 스크립트 가져오기
-            EncounterCardUI_Sell script = obj.GetComponent<EncounterCardUI_Sell>();
-
-            if (script != null)
+            int diff = dataCount - currentChildCount;
+            for (int i = 0; i < diff; i++)
             {
-                int index = i; // 클로저 캡처 방지
+                Instantiate(sellCardPrefab, cardContainer);
+            }
+        }
 
-                // Setup 호출 시, 구매 로직을 람다식으로 전달
-                script.Setup(data.cardItem, data.cost, data.isValid, () => 
+        // 2. 전체 순회하면서 데이터 연결
+        for (int i = 0; i < cardContainer.childCount; i++)
+        {
+            Transform child = cardContainer.GetChild(i);
+            
+            // 데이터 범위 안쪽이면 -> Setup 하고 켜기
+            if (i < dataCount)
+            {
+                var data = stageSO.merchantSellCards[i];
+                EncounterCardUI_Sell script = child.GetComponent<EncounterCardUI_Sell>();
+
+                if (script != null)
                 {
-                    TryBuyCard(index);
-                });
+                    int index = i; 
+                    script.Setup(data.cardItem, data.cost, data.isValid, characterSO, () => 
+                    {
+                        TryBuyCard(index);
+                    });
+                }
+                
+                // 팔린 카드(isValid == false)는 끄고, 안 팔린 건 켬
+                child.gameObject.SetActive(data.isValid); 
+            }
+            // 데이터 범위 밖(남는 UI)이면 -> 끄기
+            else
+            {
+                child.gameObject.SetActive(false);
             }
         }
     }
 
-   public void TryBuyCard(int index)
+
+    // --- [수정] 구매 시도 ---
+    public void TryBuyCard(int index)
     {
+        Debug.Log("Try Buying Card");
         var data = stageSO.merchantSellCards[index];
 
-        if (!data.isValid) return; // 이미 팔림
+        if (!data.isValid) return; 
 
-        // 돈 확인
         if (characterSO.dreamDust >= data.cost)
         {
-            // 결제
             characterSO.dreamDust -= data.cost;
-
-            // 인벤토리에 추가 (아래 함수 참조)
             AddCardToInventory(data.cardItem);
 
-            // 품절 처리
+            // 데이터 갱신
             data.isValid = false;
-            stageSO.merchantSellCards[index] = data; // 데이터 갱신
+            stageSO.merchantSellCards[index] = data; 
             
-            // UI 갱신 (구매된 상태 반영)
+            // [중요] UI 전체를 다시 그리지 않고, 해당 카드만 즉시 갱신하거나
+            // 재활용 로직이 적용된 DrawShopUI를 호출하여 안전하게 갱신
             DrawShopUI(); 
+            
             Debug.Log("구매 성공!");
         }
     }
-
-    // --- [로직 3] 카드 추가 로직 (삭제 코드의 역순 로직 적용) ---
     void AddCardToInventory(Item itemToAdd)
     {
+        Debug.Log("inventory");
         // 1. 참조 문제가 없도록 새 아이템 객체 생성
         Item newItem = new Item();
         newItem.SetItem(itemToAdd);

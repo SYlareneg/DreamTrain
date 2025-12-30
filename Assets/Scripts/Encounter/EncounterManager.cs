@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 using System.IO; 
 using System.Text;
 using System;
+using System.Linq;
 using Random = UnityEngine.Random;
 
-// 데이터 파싱용 클래스
 public class EncounterMetaInfo
 {
     public string id;           
@@ -17,8 +17,17 @@ public class EncounterMetaInfo
     public EncounterType type;  
     public string imagePath;    
     public string filePath;     
+    public int order;      
+    public bool isEssential;   
 }
 
+public class LocationMetaInfo
+{
+    public string id;
+    public string nameKO;
+    public List<string> encounterPool; 
+    public int howManyEnc;            
+}
 public class EncounterManager : MonoBehaviour
 {
     public static EncounterManager Instance;
@@ -32,28 +41,35 @@ public class EncounterManager : MonoBehaviour
     public GameObject choiceButtonPrefab;  
     
     [Header("Sub-Systems")]
-    public EncounterRouletteUI rouletteUI;      // 룰렛 시스템
-    public EncounterMenuControll headerUI;          // 상단 정보바 (HP, 스탯 갱신용)
-    public GameObject merchantPanel;            // 상점 UI 패널 [cite: 543]
-    public GameObject cardRemovalPanel;         // 카드 삭제 UI 패널 [cite: 543]
-
+    public EncounterRouletteUI rouletteUI;
+    public EncounterMenuControll headerUI;
+    public GameObject merchantPanel;
+    public GameObject cardRemovalPanel;
     public EncounterMerchantUI merchantUI;
-    public TextAsset masterTableCsv; 
-    
-    [Header("Game Data")]
-    public CharacterSO characterData;           // HP 관리용
-    public PlayerStatsSo playerStats;           // 스탯/재화 관리용 [cite: 541]
-    
-    private Dictionary<string, EncounterMetaInfo> masterDatabase = new Dictionary<string, EncounterMetaInfo>();
-    private Dictionary<string, EncounterStep> stepDictionary = new Dictionary<string, EncounterStep>();
-    private EncounterStep currentStep;
-    
-    private bool isSceneLoading = false;
-    private const string DEFAULT_DEBUG_ID = "ACT1_WHITE_RABBIT";
 
-    private Dictionary<string, int> locationProgress = new Dictionary<string, int>(); // 장소별 진행 단계 저장
-    private string currentLocationID = "";
+    [Header("Data Tables")]
+    public TextAsset masterTableCsv;   
+    public TextAsset locationTableCsv;  
+
+    [Header("Game Data")]
+    public CharacterSO characterData;
+    public PlayerStatsSo playerStats;
+    public ActSO actData; 
+
     
+    public static EncounterType LastEncounterType = EncounterType.Battle; 
+
+    private Dictionary<string, EncounterMetaInfo> masterDatabase = new Dictionary<string, EncounterMetaInfo>();
+    private Dictionary<string, LocationMetaInfo> locationDatabase = new Dictionary<string, LocationMetaInfo>();
+    private Dictionary<string, EncounterStep> stepDictionary = new Dictionary<string, EncounterStep>();
+    
+    private EncounterStep currentStep;
+    private bool isSceneLoading = false;
+    private const string DEFAULT_DEBUG_ID = "ACT1_BEST_HORSE";
+
+    
+    private Queue<string> encounterSequenceQueue = new Queue<string>();
+
     void Awake()
     {
         if (Instance == null)
@@ -61,72 +77,148 @@ public class EncounterManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject); 
         }
-        else
-        {
-            Destroy(gameObject);  
-        }
+        else { Destroy(gameObject); }
     }
+
     void Start()
     {
         isSceneLoading = false;
         
-        // 마스터 테이블 로드
-        if (masterTableCsv != null)
-        {
-            ParseMasterTable(masterTableCsv.text);
-        }
+        if (masterTableCsv != null) ParseMasterTable(masterTableCsv.text);
+        else Debug.LogError("[EncounterManager] Master Table CSV Missing!");
+
+        if (locationTableCsv != null) ParseLocationTable(locationTableCsv.text);
+        else Debug.LogError("[EncounterManager] Location Table CSV Missing!");
+
+        InitializeEncounterSequence();
+    }
+
+    void InitializeEncounterSequence()
+    {
+        string currentLocID = "";
+
+        if (actData != null) currentLocID = actData.curNodeLocationID;
         else
         {
-            Debug.LogError("[EncounterManager] Master Table CSV가 연결되지 않았습니다.");
+            Debug.LogWarning("ActSO가 연결되지 않았습니다. 디버그용 위치를 사용합니다.");
+            currentLocID = "MERRY_GO_ROUND"; 
+        }
+
+        if (!locationDatabase.ContainsKey(currentLocID))
+        {
+            Debug.LogError($"Location ID '{currentLocID}' 정보를 찾을 수 없습니다.");
             return;
         }
 
-        List<string> ePool = new List<string>();
-        ePool.Add(DEFAULT_DEBUG_ID);
-        SetEncounterPool(ePool);
-    }
+        LocationMetaInfo locInfo = locationDatabase[currentLocID];
+        List<string> selectedIDs = SelectEncounters(locInfo);
 
-    // --- 인카운터 시작 및 진행 로직 ---
-    public void SetEncounterPool(List<string> poolIds)
-    {
-        string targetID = DEFAULT_DEBUG_ID;
-
-        // 1. 풀에서 인카운터 선택 (기본적으로 랜덤, 추후 규칙 적용 가능)
-        if (poolIds != null && poolIds.Count > 0)
+        encounterSequenceQueue.Clear();
+        foreach (var id in selectedIDs)
         {
-            // 예: 랜덤 선택
-            int randomIndex = Random.Range(0, poolIds.Count);
-            targetID = poolIds[randomIndex];
-        }
-        else
-        {
-            Debug.LogWarning("인카운터 풀이 비어있습니다. 디버그용 기본 인카운터를 실행합니다.");
+            encounterSequenceQueue.Enqueue(id);
         }
 
-        // 2. 인카운터 유효성 검사 및 실행
-        StartEncounter(targetID);
+        PlayNextEncounterInQueue();
     }
-    
-    public void StartEncounter(string encounterID)
-    {
-        // 마스터 테이블에 ID가 존재하는지 확인
-        if (!masterDatabase.ContainsKey(encounterID))
-        {
-            Debug.LogError($"ID '{encounterID}'가 마스터 테이블에 없습니다. 디버깅용 '{DEFAULT_DEBUG_ID}'를 실행합니다.");
-            encounterID = DEFAULT_DEBUG_ID;
 
-            // 만약 디버깅용 ID조차 없다면 리턴
-            if (!masterDatabase.ContainsKey(encounterID))
+    List<string> SelectEncounters(LocationMetaInfo locInfo)
+    {
+        List<string> result = new List<string>();
+        
+        var candidates = new List<EncounterCandidate>();
+
+        foreach (string id in locInfo.encounterPool)
+        {
+            if (!masterDatabase.ContainsKey(id))
             {
-                Debug.LogError($"치명적 오류: 디버깅용 ID '{DEFAULT_DEBUG_ID}'도 마스터 테이블에 없습니다.");
-                return;
+                Debug.LogWarning($"Pool에 있는 ID '{id}'가 Master Table에 없습니다.");
+                continue;
+            }
+
+            EncounterMetaInfo info = masterDatabase[id];
+            candidates.Add(new EncounterCandidate { id = id, info = info, score = 0 });
+        }
+
+        foreach (var cand in candidates)
+        {
+            cand.score = Random.Range(1, 100);
+
+            if (!cand.info.isEssential)
+            {
+                if (LastEncounterType == EncounterType.Rest && cand.info.type == EncounterType.Rest)
+                {
+                    cand.score = 0;
+                }
+                if (LastEncounterType == EncounterType.Merchant && cand.info.type == EncounterType.Merchant)
+                {
+                    cand.score = 0;
+                }
+            }
+
+            if (cand.info.isEssential)
+            {
+                cand.score = 100;
             }
         }
 
-        // 3. 인카운터 로드 및 UI 활성화
-        StartEncounterByID(encounterID);
+        int pickCount = 0;
+        int targetCount = locInfo.howManyEnc;
+
+        while (pickCount < targetCount)
+        {
+            var bestCandidate = candidates
+                .Where(c => c.score > 0 && !result.Contains(c.id))
+                .OrderByDescending(c => c.score)
+                .FirstOrDefault();
+
+            if (bestCandidate == null) break; 
+
+            result.Add(bestCandidate.id);
+            pickCount++;
+
+            foreach (var other in candidates)
+            {
+                if (other.id == bestCandidate.id) continue; 
+
+                if (other.info.order == bestCandidate.info.order)
+                {
+                    other.score = 0; 
+                }
+            }
+        }
+
+        result = result.OrderBy(id => masterDatabase[id].order).ToList();
+
+        Debug.Log($"[Encounter Selection] 장소: {locInfo.id}, 선택됨: {string.Join(", ", result)}");
+
+        return result;
     }
-    
+
+    private class EncounterCandidate
+    {
+        public string id;
+        public EncounterMetaInfo info;
+        public int score;
+    }
+
+    void PlayNextEncounterInQueue()
+    {
+        if (encounterSequenceQueue.Count > 0)
+        {
+            string nextID = encounterSequenceQueue.Dequeue();
+            
+            if (masterDatabase.ContainsKey(nextID))
+                LastEncounterType = masterDatabase[nextID].type;
+
+            StartEncounterByID(nextID);
+        }
+        else
+        {
+            Debug.Log("[System] 해당 지역의 모든 인카운터 종료. MapScene으로 이동합니다.");
+            SceneManager.LoadScene("MapScene");
+        }
+    }
     public void StartEncounterByID(string encounterID)
     {
         if (!masterDatabase.ContainsKey(encounterID))
@@ -137,7 +229,6 @@ public class EncounterManager : MonoBehaviour
 
         EncounterMetaInfo meta = masterDatabase[encounterID];
         
-        // CSV 파일 경로 처리
         string targetPath = meta.filePath;
         if (!targetPath.EndsWith(".csv")) targetPath += ".csv";
         string projectRoot = Directory.GetParent(Application.dataPath).ToString();
@@ -149,16 +240,15 @@ public class EncounterManager : MonoBehaviour
             return;
         }
 
-        Debug.Log($"[Encounter Load] {meta.id}");
+        Debug.Log($"[Encounter Start] {meta.id} (Order: {meta.order})");
         string csvContent = File.ReadAllText(fullPath);
 
-        // 이미지 로드
         if (!string.IsNullOrEmpty(meta.imagePath))
         {
             string imgName = Path.GetFileNameWithoutExtension(meta.imagePath);
-            Sprite img = Resources.Load<Sprite>($"Images/{imgName}"); // 경로에 맞춰 수정 필요
+            Sprite img = Resources.Load<Sprite>($"Images/{imgName}"); 
             if (img == null) img = Resources.Load<Sprite>(imgName); 
-
+            
             if (img != null && illustrationImage != null) 
                 illustrationImage.sprite = img;
         }
@@ -171,13 +261,9 @@ public class EncounterManager : MonoBehaviour
     public void StartEncounterFromText(string csvText)
     {
         ParseEncounterCSV(csvText);
-        
         if (encounterPanel != null) encounterPanel.SetActive(true);
-
-        if (stepDictionary.ContainsKey("P1"))
-            PlayStep("P1");
-        else
-            Debug.LogError("인카운터 시작 실패: 'P1' ID가 없습니다.");
+        if (stepDictionary.ContainsKey("P1")) PlayStep("P1");
+        else Debug.LogError("인카운터 시작 실패: 'P1' ID가 없습니다.");
     }
 
     public void PlayStep(string id)
@@ -187,13 +273,11 @@ public class EncounterManager : MonoBehaviour
 
         currentStep = stepDictionary[id];
 
-        // 서술 텍스트 출력 (줄바꿈 처리)
         if (currentStep.type == EncounterStepType.DESC)
         {
             descriptionText.text = currentStep.textContent.Replace("\\n", "\n");
         }
 
-        // 함수 실행 (텍스트 출력 후에 실행하여 결과 텍스트가 덧붙여지도록 함)
         if (IsValidFunction(currentStep.functionCall))
         {
             ParseAndExecuteFunctions(currentStep.functionCall);
@@ -208,7 +292,7 @@ public class EncounterManager : MonoBehaviour
     {
         foreach (Transform child in choiceContainer) Destroy(child.gameObject);
 
-        // 선택지가 있는 경우 (BRANCH)
+        // BRANCH
         if (currentStep.options != null && currentStep.options.Count > 0)
         {
             foreach (var option in currentStep.options)
@@ -217,10 +301,8 @@ public class EncounterManager : MonoBehaviour
                 CreateButton(option.text, option.nextStepId, option.functionCall);
             }
         }
-        // 선택지가 없는 경우 (DESC -> NextPage 자동 연결 버튼)
         else 
         {
-            // 다음 페이지가 없거나 대기 상태면 버튼 생성 안 함
             if (IsWaitState(currentStep.nextStepId)) { }
             else if (currentStep.nextStepId == "END") CreateButton("떠난다", "END");
             else CreateButton("다음", currentStep.nextStepId); // [cite: 94]
@@ -234,20 +316,17 @@ public class EncounterManager : MonoBehaviour
         
         btnObj.GetComponent<Button>().onClick.AddListener(() => 
         {
-            // 버튼 클릭 시 함수 실행
             if (IsValidFunction(functionCall))
                 ParseAndExecuteFunctions(functionCall);
 
             if (isSceneLoading) return;
 
-            // 페이지 이동
             if (IsWaitState(nextId)) { }
             else if (nextId == "END") EndEncounter();
             else PlayStep(nextId);
         });
     }
 
-    // --- 유틸리티 함수 ---
     bool IsWaitState(string id) => string.IsNullOrEmpty(id) || id == "-" || id == "R";
     bool IsValidFunction(string func) => !string.IsNullOrEmpty(func) && func != "-" && func != "DEFAULT";
 
@@ -264,38 +343,54 @@ public class EncounterManager : MonoBehaviour
 
     public void EndEncounter()
     {
-        // 1. 현재 장소의 진행도(인카운터 순서) 저장
-        // (이게 있어야 다음에 같은 장소 왔을 때 다음 인카운터가 나옴)
-        if (!string.IsNullOrEmpty(currentLocationID))
+        if (encounterPanel != null) encounterPanel.SetActive(false);
+        PlayNextEncounterInQueue();
+    }
+    
+    public static List<EncounterType> GetEncounterType(string locationID)
+    {
+        if (Instance == null)
         {
-            if (!locationProgress.ContainsKey(currentLocationID))
-                locationProgress[currentLocationID] = 0;
-
-            locationProgress[currentLocationID]++;
-            Debug.Log($"[Location: {currentLocationID}] 인카운터 완료. 다음 진행도: {locationProgress[currentLocationID]}");
+            Debug.LogError("[EncounterManager] 인스턴스가 생성되지 않았습니다.");
+            return new List<EncounterType>();
         }
 
-        // 2. 인카운터 패널 끄기
-        if (encounterPanel != null) encounterPanel.SetActive(false);
+        if (!Instance.locationDatabase.ContainsKey(locationID))
+        {
+            Debug.LogError($"[EncounterManager] Location ID '{locationID}'를 찾을 수 없습니다.");
+            return new List<EncounterType>();
+        }
 
-        // 3. MapScene으로 전환
-        Debug.Log("[System] MapScene으로 이동합니다.");
-        SceneManager.LoadScene("MapScene"); 
+        List<EncounterType> typeList = new List<EncounterType>();
+        LocationMetaInfo locInfo = Instance.locationDatabase[locationID];
+
+        if (locInfo.encounterPool != null)
+        {
+            foreach (string encID in locInfo.encounterPool)
+            {
+                if (Instance.masterDatabase.ContainsKey(encID))
+                {
+                    EncounterType type = Instance.masterDatabase[encID].type;
+                    typeList.Add(type);
+                }
+                else
+                {
+                    Debug.LogWarning($"[GetEncounterType] Pool에 있는 ID '{encID}'가 Master Table에 없습니다.");
+                }
+            }
+        }
+
+        return typeList.Distinct().ToList(); // 중복된 타입은 제거하고 종류만
     }
-
-    // --- [핵심] 함수 파싱 및 실행 ---
-    // 복수의 함수가 콤마로 연결되어 있을 수 있음
+    
     void ParseAndExecuteFunctions(string commandLine)
     {
-        // 괄호 안의 콤마는 무시하고, 함수 간의 콤마만 분리하기 위한 정규식
         string[] commands = Regex.Split(commandLine, @",\s*(?![^()]*\))");
         foreach (string cmd in commands)
         {
             ExecuteSingleFunction(cmd.Trim());
             if (isSceneLoading) break; 
         }
-        
-        // 함수 실행 후 UI(HP, 스탯) 갱신
         if (headerUI != null) headerUI.RefreshUI();
     }
 
@@ -303,7 +398,6 @@ public class EncounterManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(command) || command == "-") return;
 
-        // 함수명과 인자 분리 (예: "LoseHP(10, value)" -> "LoseHP", ["10", "value"])
         string funcName = command.Split('(')[0].Trim();
         string argsRaw = "";
         
@@ -315,24 +409,22 @@ public class EncounterManager : MonoBehaviour
 
         switch (funcName)
         {
-            case "StartRoullete": 
-            case "StartRoulette": // 오타 방지
+            case "StartRoulette": 
                 if (args.Length >= 2)
                 {
                     string statName = args[0];
                     int difficulty = int.Parse(args[1]);
-                    // args[2]는 조건(upper 등)이지만 현재 로직엔 미반영
+                    // TODO: args[2] 조건(upper 등) 반영 필요
 
-                    // 성공/실패 시 이동할 페이지 ID (CSV에 추가 인자로 있다고 가정하거나 기본값 사용)
                     string winPage = (args.Length > 3) ? args[3] : "P_WIN"; 
                     string losePage = (args.Length > 4) ? args[4] : "P_LOSE";
 
                     if (rouletteUI != null)
                     {
-                        encounterPanel.SetActive(false); // UI 잠시 숨김
+                        encounterPanel.SetActive(false); 
                         rouletteUI.Open(statName, difficulty, (result) => 
                         {
-                            encounterPanel.SetActive(true); // 복귀
+                            encounterPanel.SetActive(true); 
                             if (result == RouletteResultType.Success || result == RouletteResultType.GreatSuccess)
                                 PlayStep(winPage);
                             else
@@ -352,12 +444,11 @@ public class EncounterManager : MonoBehaviour
                 }
                 break;
 
-            case "GetDreamDebris":
-            case "GetDebris": // 기획서 혼용 대응
+            case "GetDebris":
                 if (args.Length >= 1 && playerStats != null)
                 {
                     int amount = int.Parse(args[0]);
-                    //playerSO.ModifyDreamFragment(amount);
+                    // TODO: playerSO.ModifyDreamFragment(amount); 이거 연결하기
                     descriptionText.text += $"\n<color=#FFFF00>꿈의 파편을 {amount}개 얻었다!</color>";
                 }
                 break;
@@ -380,7 +471,6 @@ public class EncounterManager : MonoBehaviour
                     if (Enum.TryParse(args[0], true, out StatType statType))
                     {
                         int amount = int.Parse(args[1]);
-                        // 감소니까 음수로 전달
                         playerStats.ModifyStat(statType, -amount);
                         descriptionText.text += $"\n<color=#FF0000>{statType}가(이) {amount} 감소했다...</color>";
                     }
@@ -399,7 +489,7 @@ public class EncounterManager : MonoBehaviour
                 }
                 break;
             
-            case "MeetMerchant":
+            case "meetMerchant":
                 if (merchantPanel != null)
                 {
                     encounterPanel.SetActive(false);
@@ -426,8 +516,6 @@ public class EncounterManager : MonoBehaviour
                 {
                     int amount = int.Parse(args[0]);
                     bool isRatio = false;
-                    
-                    // 두 번째 인자가 "ratio" 또는 "비율"이면 % 데미지
                     if (args.Length >= 2)
                     {
                         string option = args[1].ToLower();
@@ -458,24 +546,35 @@ public class EncounterManager : MonoBehaviour
                     cardRemovalPanel.SetActive(true);
                     Debug.Log("카드 삭제 UI 오픈");
                 }
+                else
+                {
+                    Debug.Log("카드 삭제 UI 에러");
+                    //TODO: 카드 삭제 로직 버그 수정
+                }
                 break;
 
             default:
                 if (command.Contains(".add"))
                 {
-                    // 예: Courage.add(1) 처리
-                    // 위 upStatus 로직으로 대체하는 것을 권장
                     Debug.LogWarning($"Deprecated command format: {command}");
                 }
                 break;
         }
     }
+
     public void OnMerchantClosed()
     {
-        if (encounterPanel != null)
+        if (merchantPanel != null) merchantPanel.SetActive(false);
+        if (cardRemovalPanel != null) cardRemovalPanel.SetActive(false);
+        if (encounterPanel != null) encounterPanel.SetActive(true);
+
+        if (currentStep != null)
         {
-            encounterPanel.SetActive(true);
-            PlayStep(currentStep.id); 
+            string nextId = currentStep.nextStepId;
+            Debug.Log($"[Merchant Closed] 다음 페이지로 이동: {nextId}");
+            if (nextId == "END") EndEncounter();
+            else if (!string.IsNullOrEmpty(nextId) && nextId != "-" && nextId != "R") PlayStep(nextId);
+            else PlayStep(currentStep.id);
         }
     }
 
@@ -510,6 +609,32 @@ public class EncounterManager : MonoBehaviour
         return result;
     }
 
+    void ParseLocationTable(string csvText)
+    {
+        locationDatabase.Clear();
+        var rows = ParseCSVRaw(csvText);
+
+        for (int i = 1; i < rows.Count; i++)
+        {
+            var row = rows[i];
+            if (row.Count < 6 || string.IsNullOrWhiteSpace(row[0])) continue;
+
+            LocationMetaInfo info = new LocationMetaInfo();
+            info.id = row[0].Trim();
+            info.nameKO = row[1].Trim();
+            string poolRaw = row[4]; 
+            info.encounterPool = new List<string>();
+            string[] poolSplit = poolRaw.Split(new char[] { ',', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach(var p in poolSplit) info.encounterPool.Add(p.Trim());
+
+            if (int.TryParse(row[5], out int count)) info.howManyEnc = count;
+            else info.howManyEnc = 1;
+
+            if (!locationDatabase.ContainsKey(info.id))
+                locationDatabase.Add(info.id, info);
+        }
+    }
+
     void ParseMasterTable(string csvText)
     {
         masterDatabase.Clear();
@@ -520,15 +645,27 @@ public class EncounterManager : MonoBehaviour
             var row = rows[i];
             if (row.Count < 5 || string.IsNullOrWhiteSpace(row[0])) continue;
 
-            for (int k = 0; k < row.Count; k++) row[k] = row[k].Trim();
-
             EncounterMetaInfo info = new EncounterMetaInfo();
-            info.id = row[0];
-            info.nameKO = row[1];
-            if (System.Enum.TryParse(row[2], true, out EncounterType type)) info.type = type;
+            info.id = row[0].Trim();
+            info.nameKO = row[1].Trim();
+            
+            if (System.Enum.TryParse(row[2].Trim(), true, out EncounterType type)) info.type = type;
             else info.type = EncounterType.Battle;
-            info.imagePath = row[3];
-            info.filePath = row[4]; 
+            
+            info.imagePath = row[3].Trim();
+            info.filePath = row[4].Trim();
+            
+            if (row.Count > 5)
+            {
+                string essRaw = row[5].Trim().ToUpper();
+                info.isEssential = (essRaw == "TRUE" || essRaw == "T" || essRaw == "1");
+            }
+            else info.isEssential = false;
+            
+            if (row.Count > 6 && int.TryParse(row[6], out int order)) 
+                info.order = order;
+            else 
+                info.order = 0;
 
             if (!masterDatabase.ContainsKey(info.id))
                 masterDatabase.Add(info.id, info);
