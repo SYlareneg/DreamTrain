@@ -33,7 +33,7 @@ public class MapManager : MonoBehaviour
         retVec.y += mapNode.pos * posDist;
         if(addOffset)
         {
-            float randOffset = Random.Range(-posDist / 3, posDist / 3);
+            float randOffset = Random.Range(-posDist / 4, posDist / 4);
             retVec.y += randOffset;
         }
         return retVec;
@@ -41,6 +41,12 @@ public class MapManager : MonoBehaviour
 
     public void PrintMap(Map mp, List<Vector3> savedPos = null)
     {
+        foreach(Transform child in mapTransform)
+        {
+            if(child.name == "Background") continue;
+            Destroy(child.gameObject);
+        }
+        mapNodeScreenPos.Clear();
         for(int i = 0; i < mp.sortedMapNodeList.Count; i++)
         {
             var newMapNode = Instantiate(mapNodePrefab, Vector3.zero, Utils.QI);
@@ -68,7 +74,6 @@ public class MapManager : MonoBehaviour
             }
             mapNodeTooltip.tooltipPos = Camera.main.WorldToScreenPoint(newMapNode.transform.position) - Camera.main.WorldToScreenPoint(Vector3.zero);
             mapNodeTooltip.tooltipPos += tooltipOffset;
-            Debug.Log("Map Node Tooltip Pos: " + mapNodeTooltip.tooltipPos);
             mapNodeScreenPos.Add(mp.sortedMapNodeList[i].ID, newMapNode.transform.position);
         }
         foreach(MapNode mapNode in mp.sortedMapNodeList)
@@ -123,6 +128,15 @@ public class MapManager : MonoBehaviour
         });
     }
 
+    public void SetNewMap()
+    {
+        map = new Map();
+        map.CreateMap(actSO.acts[actSO.curActIndex], actSO.normalNodes);
+        PrintMap(map);
+        SaveMap();
+        actSO.curNodeIndex = 0;
+    }
+
     void Start()
     {
         if(actSO.mapSave != null && actSO.mapNodeScreenPosSave != null && actSO.mapSave.sortedMapNodeList != null && actSO.mapNodeScreenPosSave.Count != 0 && actSO.mapNodeScreenPosSave.Count == actSO.mapSave.sortedMapNodeList.Count)
@@ -132,11 +146,7 @@ public class MapManager : MonoBehaviour
         }
         else
         {
-            map = new Map();
-            map.CreateMap(5, actSO.acts[actSO.curActIndex], actSO.normalNodes);
-            PrintMap(map);
-            SaveMap();
-            actSO.curNodeIndex = 0;
+            SetNewMap();
         }
         curNode = map.sortedMapNodeList[actSO.curNodeIndex];
         player.transform.position = GetStartPos(curNode);

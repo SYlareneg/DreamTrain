@@ -2,12 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
+using DG.Tweening;
 
 public class RelicManager : MonoBehaviour
 {
@@ -17,6 +17,9 @@ public class RelicManager : MonoBehaviour
     public RelicSO relicSO;
     public GameObject relicUIPrefab;
     public List<RelicItem_Enhanceable> relicList;
+    public List<RelicItem> relicActivationList;
+    [SerializeField][Tooltip("이드 발동 효과 표시 위치")] RectTransform relicActivateEffectPos;
+    [SerializeField][Tooltip("이드 발동 효과 표시 시간")] float relicActivateEffectTime = 1.5f;
 
     public List<RelicUI> RelicItemListToRelicUIList(List<RelicItem_Enhanceable> rItemList, Transform attachUI)
     {
@@ -58,6 +61,34 @@ public class RelicManager : MonoBehaviour
             GameManager.Inst.RelicList();
         }
     }
+
+    public void RelicActivateEffect()
+    {
+        if(relicActivateEffectPos.gameObject.activeSelf == false && relicActivationList.Count > 0)
+        {
+            relicActivateEffectPos.gameObject.SetActive(true);
+            for(int i = relicActivationList.Count - 1; i >= 0; i--)
+            {
+                var relicUIObj = Instantiate(relicUIPrefab, relicActivateEffectPos.transform);
+                var relicUI = relicUIObj.GetComponent<RelicUI>();
+                relicUI.Setup(relicActivationList[i], null);
+                relicActivationList.RemoveAt(i);
+            }
+            Sequence seq = DOTween.Sequence();
+            seq.Append(DOTween.To(() => relicActivateEffectPos.pivot, x => relicActivateEffectPos.pivot = x, new Vector2(1f, relicActivateEffectPos.pivot.y), relicActivateEffectTime * 0.33f).SetEase(Ease.InOutQuad));
+            seq.AppendInterval(relicActivateEffectTime * 0.33f);
+            seq.Append(DOTween.To(() => relicActivateEffectPos.pivot, x => relicActivateEffectPos.pivot = x, new Vector2(0f, relicActivateEffectPos.pivot.y), relicActivateEffectTime * 0.33f).SetEase(Ease.InOutQuad));
+            seq.OnComplete(() =>
+            {
+                foreach (Transform child in relicActivateEffectPos)
+                {
+                    Destroy(child.gameObject);
+                }
+                relicActivateEffectPos.gameObject.SetActive(false);
+            });
+            seq.Play();
+        }
+    }
     
     public void ActivateRelic(RelicItem relicItem)
     {
@@ -71,6 +102,8 @@ public class RelicManager : MonoBehaviour
                     int leftShield = TurnManager.Inst.shieldHealth;
                     if (relicItem.relicName == "흔적") leftShield = (int)(leftShield * 0.25f);
                     else leftShield = (int)(leftShield * 0.4f);
+                    Debug.Log("Relic Activate: " + relicItem.relicName);
+                    if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
                 };
                 return;
             case "갈증":
@@ -81,7 +114,12 @@ public class RelicManager : MonoBehaviour
                 {
                     if (TurnManager.Inst.curHealth <= threshold)
                     {
-                        if (BuffManager.Inst.GetShowBuff("활력", EBuffAffectType.Player) != null) BuffManager.Inst.AddShowBuff("활력", EBuffAffectType.Player, 1, false);
+                        if (BuffManager.Inst.GetShowBuff("활력", EBuffAffectType.Player) != null)
+                        {
+                            BuffManager.Inst.AddShowBuff("활력", EBuffAffectType.Player, 1, false);
+                            Debug.Log("Relic Activate: " + relicItem.relicName);
+                            if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
+                        }
                     }
                     else
                     {
@@ -97,6 +135,8 @@ public class RelicManager : MonoBehaviour
                 {
                     if (relicItem.relicName == "호기심") TurnManager.Inst.IncreaseCost(1);
                     else TurnManager.Inst.IncreaseCost(2);
+                    Debug.Log("Relic Activate: " + relicItem.relicName);
+                    if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
                 };
                 return;
             case "순진무구":
@@ -128,6 +168,22 @@ public class RelicManager : MonoBehaviour
                         cardUsed = true;
                     }
                 };
+                TurnManager.OnPlayerDamaged += (x, s) =>
+                {
+                    if (cardUsed == false && s == EDamageSource.Roulette)
+                    {
+                        Debug.Log("Relic Activate: " + relicItem.relicName);
+                        if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
+                    }
+                };
+                TurnManager.OnEnemyDamaged += (x, s, i) =>
+                {
+                    if (cardUsed == false && s == EDamageSource.Roulette)
+                    {
+                        Debug.Log("Relic Activate: " + relicItem.relicName);
+                        if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
+                    }
+                };
                 break;
             case "송곳니":
             case "송곳니+":
@@ -143,6 +199,8 @@ public class RelicManager : MonoBehaviour
                     {
                         BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_PlayerSpecial[PassiveManager.GetSpecialRouletteIdx(false, 0)][0], addVal, 1, -1);
                     }
+                    Debug.Log("Relic Activate: " + relicItem.relicName);
+                    if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
                 };
                 return;
             case "작은 날개":
@@ -152,6 +210,8 @@ public class RelicManager : MonoBehaviour
                 TurnManager.OnPlayerTurnEnd += () =>
                 {
                     TurnManager.Inst.GetShield(false, TurnManager.Inst.nowCost * mulVal, EDamageSource.Relic);
+                    Debug.Log("Relic Activate: " + relicItem.relicName);
+                    if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
                 };
                 return;
             case "평화주의":
@@ -172,6 +232,8 @@ public class RelicManager : MonoBehaviour
                     if (chkEnemyDamaged == false)
                     {
                         TurnManager.Inst.GetShield(false, shieldVal, EDamageSource.Relic);
+                        Debug.Log("Relic Activate: " + relicItem.relicName);
+                        if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
                     }
                 };
                 return;
@@ -301,6 +363,11 @@ public class RelicManager : MonoBehaviour
                     Debug.LogWarning("Error in relic effect"); break;
             }
         }
+        relicAction += () =>
+        {
+            Debug.Log("Relic Activate: " + relicItem.relicName);
+            if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
+        };
         Action relicActivation = null;
         if(relicItem.relicConditions.Length == 0)
         {
@@ -690,6 +757,11 @@ public class RelicManager : MonoBehaviour
             if (relicList[i].isEnhanced) ActivateRelic(relicList[i].enhancedRelicItem);
             else ActivateRelic(relicList[i]);
         }
+    }
+
+    private void LateUpdate()
+    {
+        RelicActivateEffect();
     }
 
     private void OnDestroy()

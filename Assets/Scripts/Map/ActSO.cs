@@ -47,6 +47,7 @@ public class MapNode
 public class Act
 {
     public List<MapNode> essentialNodes;
+    public List<int> essentialIntervalLayerCount;
     public List<MapNode> specialNodes;
 }
 
@@ -58,12 +59,10 @@ public class Map
     public static int posValMin = -2;
     public static int posValMax = 2;
     public static int layerMaxNodeNum = 4;
-    public static float probability = 0.72f; // layer num이 2, 3일 확률
+    public static float probability = 0.9f; // layer num이 2, 3일 확률
 
-    public Map CreateMap(int nodeNum, Act act, List<MapNode> normalNodes)
+    public Map CreateMap(Act act, List<MapNode> normalNodes)
     {
-        if(nodeNum < act.essentialNodes.Count) return null;
-
         sortedMapNodeList = new List<MapNode>();
 
         List<MapNode> essentialNodes_sorted = act.essentialNodes.OrderBy(node => node.difficulty).ToList();
@@ -80,7 +79,9 @@ public class Map
             }
             essentialLayerCount++;
         }
+        if(act.essentialIntervalLayerCount == null || act.essentialIntervalLayerCount.Count != essentialLayerCount - 1) return null;
         int cur_level = 0;
+        int essentialLayerIdx = 0;
         for(int i = 0; i < act.essentialNodes.Count - 1; i++)
         {
             // 노드 선택
@@ -173,9 +174,11 @@ public class Map
                 sortedMapNodeList.Add(essentialNode);
             }
             cur_level++;
+            essentialLayerIdx++;
             // 삽입할 특수 & 공용 노드 개수
-            int chooseNum = (nodeNum - act.essentialNodes.Count) / (essentialLayerCount - 1);
-            if(i == act.essentialNodes.Count - 2) chooseNum = nodeNum - act.essentialNodes.Count - chooseNum * (essentialLayerCount - 2);
+            // int chooseNum = (nodeNum - act.essentialNodes.Count) / (essentialLayerCount - 1);
+            // if(i == act.essentialNodes.Count - 2) chooseNum = nodeNum - act.essentialNodes.Count - chooseNum * (essentialLayerCount - 2);
+            int chooseNum = act.essentialIntervalLayerCount[essentialLayerIdx - 1];
             // 삽입할 노드 최소 & 최대 난이도
             int minDiff = essentialNodes_sorted[i].difficulty;
             int maxDiff = essentialNodes_sorted[i+1].difficulty;
@@ -198,7 +201,8 @@ public class Map
             }
             // 특수 & 공용 노드 삽입
             int cur_level_num = 0;
-            for(int j = 0; j < chooseNum; j += cur_level_num)
+            //for(int j = 0; j < chooseNum; j += cur_level_num)
+            for(int j = 0; j < chooseNum; j++)
             {
                 // 현재 층에 추가할 노드 개수
                 int[] high_prob_layer_nums = new int[] {2, 3};
@@ -206,7 +210,7 @@ public class Map
                 if(Random.value < probability) cur_level_num = high_prob_layer_nums[Random.Range(0, high_prob_layer_nums.Length)];
                 else cur_level_num = low_prob_layer_nums[Random.Range(0, low_prob_layer_nums.Length)];
                 //cur_level_num = Random.Range(1, layerMaxNodeNum + 1);
-                if(j + cur_level_num > chooseNum) cur_level_num = chooseNum - j;
+                //if(j + cur_level_num > chooseNum) cur_level_num = chooseNum - j;
                 // 현재 층에 추가할 노드 위치
                 List<int> nodePos = new List<int>();
                 for(int k = posValMin; k < posValMax + 1; k++)

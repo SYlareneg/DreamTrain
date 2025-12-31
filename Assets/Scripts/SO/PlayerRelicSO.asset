@@ -27,18 +27,23 @@ MonoBehaviour:
         name: 
         cost: 0
         type: 0
-        element: 0
+        rarity: 0
         dreamPieceNum: 0
         isVolatile: 0
         isVanish: 0
         isRemain: 0
+        isSingleTarget: 0
         sprite: {fileID: 0}
         text: 
         cardValues: 
+        cardValueTypes: 
         num: 0
         isEnhanced: 0
       rlvalue:
-        type: 0
+        rtype:
+          type: 0
+          specialTypeIdx: -1
+          enemyIdx: 0
         value: 0
     isEnhanced: 0
     enhancedRelicItem:
@@ -57,18 +62,23 @@ MonoBehaviour:
           name: 
           cost: 0
           type: 0
-          element: 0
+          rarity: 0
           dreamPieceNum: 0
           isVolatile: 0
           isVanish: 0
           isRemain: 0
+          isSingleTarget: 0
           sprite: {fileID: 0}
           text: 
           cardValues: 
+          cardValueTypes: 
           num: 0
           isEnhanced: 0
         rlvalue:
-          type: 0
+          rtype:
+            type: 0
+            specialTypeIdx: -1
+            enemyIdx: 0
           value: 0
       isEnhanced: 1
   - relicOwner: 0

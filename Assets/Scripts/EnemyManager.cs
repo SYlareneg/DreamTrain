@@ -40,10 +40,10 @@ public class EnemyManager : MonoBehaviour
     [SerializeField][Tooltip("서브 적 룰렛 위치에 따른 룰렛 마커")] GameObject[] subEnemyCanvasPos_rouletteMarker;
     [Header("Positions")]
     [Tooltip("액션 심볼 간격")] public static float actionMargin = 0.5f;
-    [SerializeField][Tooltip("액션 심볼 스폰 지점")] Transform enemyPos;
+    [Tooltip("액션 심볼 스폰 지점")] public Transform enemyPos;
     [SerializeField][Tooltip("1번 액션 심볼 위치")] Transform enemyActionPos;
     [SerializeField][Tooltip("액션 심볼 소멸 지점")] Transform enemyExecutePos;
-    [SerializeField][Tooltip("서브 적 액션 심볼 스폰 지점")] Transform[] subEnemyPos;
+    [Tooltip("서브 적 액션 심볼 스폰 지점")] public Transform[] subEnemyPos;
     [SerializeField][Tooltip("서브 적 1번 액션 심볼 위치")] Transform[] subEnemyActionPos;
     [SerializeField][Tooltip("서브 적 액션 심볼 소멸 지점")] Transform[] subEnemyExecutePos;
     [Header("Data")]
