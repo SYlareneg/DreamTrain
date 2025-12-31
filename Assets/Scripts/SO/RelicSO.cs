@@ -142,6 +142,7 @@ public class RelicItem
     public Sprite relicSprite;
     public string relicName;
     public string relicTxt;
+    public int relicVal;
     public ERelicActivateTimingType[] relicTimings;
     public RelicActivateConditionArray[] relicConditions;
     public RelicActivateEffect[] relicEffects;

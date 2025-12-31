@@ -14,9 +14,159 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RelicSO
   relicItems:
   - relicOwner: 0
-    relicSprite: {fileID: 21300000, guid: 97cf6276bc58332439c15a527f8af6b2, type: 3}
-    relicName: "\uBD88\uB85C\uC7A5\uC0DD"
+    relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
+    relicName: "\uBC15\uC950 \uB0A0\uAC1C"
+    relicTxt: "\uD134 \uC885\uB8CC \uC2DC \uB0A8\uC740 \uD589\uB3D9\uB825x3\uC758
+      \uBC29\uC5B4\uB3C4\uB97C \uC5BB\uC2B5\uB2C8\uB2E4."
+    relicVal: 0
+    relicTimings: 
+    relicConditions: []
+    relicEffects: []
+    isEnhanced: 0
+    enhancedRelicItem:
+      relicOwner: 0
+      relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
+      relicName: "\uBC15\uC950 \uB0A0\uAC1C+"
+      relicTxt: "\uD134 \uC885\uB8CC \uC2DC \uB0A8\uC740 \uD589\uB3D9\uB825<color=red>x4</color>\uC758
+        \uBC29\uC5B4\uB3C4\uB97C \uC5BB\uC2B5\uB2C8\uB2E4."
+      relicVal: 0
+      relicTimings: 
+      relicConditions: []
+      relicEffects: []
+      isEnhanced: 1
+  - relicOwner: 1
+    relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
+    relicName: "\uC800\uC8FC \uC778\uD615"
+    relicTxt: "\uB9E4 \uC804\uD22C\uB9C8\uB2E4 \uCC98\uC74C\uC73C\uB85C \uBC1B\uB294
+      \uD53C\uD574\uB97C \uC778\uD615\uC774 \uB300\uC2E0 \uBC1B\uC2B5\uB2C8\uB2E4.
+      \uBC1B\uC740 \uD53C\uD574\uAC00 44\uAC00 \uB418\uBA74 \uBD80\uC11C\uC9D1\uB2C8\uB2E4."
+    relicVal: 44
+    relicTimings: 
+    relicConditions: []
+    relicEffects: []
+    isEnhanced: 0
+    enhancedRelicItem:
+      relicOwner: 0
+      relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
+      relicName: "\uC800\uC8FC \uC778\uD615+"
+      relicTxt: "\uB9E4 \uC804\uD22C\uB9C8\uB2E4 \uCC98\uC74C\uC73C\uB85C \uBC1B\uB294
+        \uD53C\uD574\uB97C \uC778\uD615\uC774 \uB300\uC2E0 \uBC1B\uC2B5\uB2C8\uB2E4.
+        \uBC1B\uC740 \uD53C\uD574\uAC00 <color=red>144</color>\uAC00 \uB418\uBA74
+        \uBD80\uC11C\uC9D1\uB2C8\uB2E4."
+      relicVal: 144
+      relicTimings: 
+      relicConditions: []
+      relicEffects: []
+      isEnhanced: 1
+  - relicOwner: 2
+    relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
+    relicName: "\uAFC0"
+    relicTxt: "\uD134 \uC2DC\uC791 \uC2DC, \uD30C\uAD34\uB418\uC9C0 \uC54A\uACE0
+      \uB0A8\uC740 \uBC29\uC5B4\uB3C4\uC758 25%\uB97C \uCCB4\uB825\uC73C\uB85C \uC804\uD658\uD569\uB2C8\uB2E4."
+    relicVal: 0
+    relicTimings: 
+    relicConditions: []
+    relicEffects: []
+    isEnhanced: 0
+    enhancedRelicItem:
+      relicOwner: 2
+      relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
+      relicName: "\uAFC0+"
+      relicTxt: "\uD134 \uC2DC\uC791 \uC2DC, \uD30C\uAD34\uB418\uC9C0 \uC54A\uACE0
+        \uB0A8\uC740 \uBC29\uC5B4\uB3C4\uC758 <color=red>40%</color>\uB97C \uCCB4\uB825\uC73C\uB85C
+        \uC804\uD658\uD569\uB2C8\uB2E4."
+      relicVal: 0
+      relicTimings: 
+      relicConditions: []
+      relicEffects: []
+      isEnhanced: 1
+  - relicOwner: 3
+    relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
+    relicName: "\uC601\uC6D0\uD55C \uC6C3\uC74C"
+    relicTxt: "\uC9C0\uD61C\uAC00 1\uB85C \uACE0\uC815\uB429\uB2C8\uB2E4. \uC804\uD22C
+      \uC2DC\uC791 \uC2DC \uBCF4\uD638\uB97C 2 \uC5BB\uC2B5\uB2C8\uB2E4."
+    relicVal: 0
+    relicTimings: 
+    relicConditions: []
+    relicEffects: []
+    isEnhanced: 0
+    enhancedRelicItem:
+      relicOwner: 3
+      relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
+      relicName: "\uC601\uC6D0\uD55C \uC6C3\uC74C+"
+      relicTxt: "\uC9C0\uD61C\uAC00 1\uB85C \uACE0\uC815\uB429\uB2C8\uB2E4. \uC804\uD22C
+        \uC2DC\uC791 \uC2DC \uBCF4\uD638\uB97C 2 \uC5BB\uC2B5\uB2C8\uB2E4."
+      relicVal: 0
+      relicTimings: 
+      relicConditions: []
+      relicEffects: []
+      isEnhanced: 1
+  - relicOwner: 4
+    relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
+    relicName: "\uBD89\uC740 \uAF43\uC78E"
+    relicTxt: "\uCCB4\uB825\uC774 30%\uC774\uD558\uC774\uBA74 \uD134 \uC2DC\uC791
+      \uC2DC \uD589\uB3D9\uB825\uC744 1 \uC5BB\uC2B5\uB2C8\uB2E4."
+    relicVal: 0
+    relicTimings: 
+    relicConditions: []
+    relicEffects: []
+    isEnhanced: 0
+    enhancedRelicItem:
+      relicOwner: 4
+      relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
+      relicName: "\uBD89\uC740 \uAF43\uC78E+"
+      relicTxt: "\uCCB4\uB825\uC774 <color=red>60%</color>\uC774\uD558\uC774\uBA74
+        \uD134 \uC2DC\uC791 \uC2DC \uD589\uB3D9\uB825\uC744 1 \uC5BB\uC2B5\uB2C8\uB2E4."
+      relicVal: 0
+      relicTimings: 
+      relicConditions: []
+      relicEffects: []
+      isEnhanced: 1
+  - relicOwner: 5
+    relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
+    relicName: "\uBE44\uB458\uAE30 \uCF54\uC778"
+    relicTxt: "\uC9C0\uB2C8\uACE0 \uC788\uC73C\uBA74 \uD589\uC6B4\uC774 1 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    relicVal: 0
+    relicTimings: 
+    relicConditions: []
+    relicEffects: []
+    isEnhanced: 0
+    enhancedRelicItem:
+      relicOwner: 5
+      relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
+      relicName: "\uBE44\uB458\uAE30 \uCF54\uC778+"
+      relicTxt: "\uC9C0\uB2C8\uACE0 \uC788\uC73C\uBA74 \uD589\uC6B4\uC774 1 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+      relicVal: 0
+      relicTimings: 
+      relicConditions: []
+      relicEffects: []
+      isEnhanced: 1
+  - relicOwner: 6
+    relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
+    relicName: "\uC640\uC778\uC758 \uB208\uBB3C"
+    relicTxt: "\uCCB4\uB825\uC774 50% \uC774\uD558\uC774\uBA74 \uD65C\uB825 \uBC84\uD504\uB97C
+      1 \uC5BB\uC2B5\uB2C8\uB2E4."
+    relicVal: 0
+    relicTimings: 
+    relicConditions: []
+    relicEffects: []
+    isEnhanced: 0
+    enhancedRelicItem:
+      relicOwner: 6
+      relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
+      relicName: "\uC640\uC778\uC758 \uB208\uBB3C+"
+      relicTxt: "\uCCB4\uB825\uC774 <color=red>70%</color> \uC774\uD558\uC774\uBA74
+        \uD65C\uB825 \uBC84\uD504\uB97C 1 \uC5BB\uC2B5\uB2C8\uB2E4."
+      relicVal: 0
+      relicTimings: 
+      relicConditions: []
+      relicEffects: []
+      isEnhanced: 1
+  - relicOwner: 7
+    relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
+    relicName: "\uCC3B\uC794"
     relicTxt: "\uD134 \uC2DC\uC791 \uC2DC 1\uC758 \uCCB4\uB825\uC744 \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+    relicVal: 0
     relicTimings: 00000000
     relicConditions: []
     relicEffects:
@@ -42,16 +192,17 @@ MonoBehaviour:
       rlvalue:
         rtype:
           type: 0
-          specialTypeIdx: -1
+          specialTypeIdx: 0
           enemyIdx: 0
         value: 0
     isEnhanced: 0
     enhancedRelicItem:
-      relicOwner: 0
-      relicSprite: {fileID: 21300000, guid: 97cf6276bc58332439c15a527f8af6b2, type: 3}
-      relicName: "\uBD88\uB85C\uC7A5\uC0DD+"
+      relicOwner: 7
+      relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
+      relicName: "\uCC3B\uC794+"
       relicTxt: "\uD134 \uC2DC\uC791 \uC2DC <color=red>2</color>\uC758 \uCCB4\uB825\uC744
         \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+      relicVal: 0
       relicTimings: 00000000
       relicConditions: []
       relicEffects:
@@ -77,27 +228,7 @@ MonoBehaviour:
         rlvalue:
           rtype:
             type: 0
-            specialTypeIdx: -1
+            specialTypeIdx: 0
             enemyIdx: 0
           value: 0
-      isEnhanced: 1
-  - relicOwner: 0
-    relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
-    relicName: "\uC21C\uC9C4\uBB34\uAD6C"
-    relicTxt: "\uC774\uBC88 \uD134\uC5D0 \uCE74\uB4DC\uB97C \uC0AC\uC6A9\uD558\uC9C0
-      \uC54A\uC558\uB2E4\uBA74, \uB8F0\uB81B\uC73C\uB85C \uC785\uD788\uB294 \uBAA8\uB4E0
-      \uD53C\uD574\uAC00 1.5\uBC30\uAC00 \uB429\uB2C8\uB2E4."
-    relicTimings: 
-    relicConditions: []
-    relicEffects: []
-    isEnhanced: 0
-    enhancedRelicItem:
-      relicOwner: 0
-      relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
-      relicName: "\uD638\uAE30\uC2EC+"
-      relicTxt: "\uC18C\uBAA8\uD488\uC744 \uC0AC\uC6A9\uD560 \uB54C\uB9C8\uB2E4 \uD589\uB3D9\uB825\uC744
-        <color=red>2</color> \uC5BB\uC2B5\uB2C8\uB2E4"
-      relicTimings: 
-      relicConditions: []
-      relicEffects: []
       isEnhanced: 1

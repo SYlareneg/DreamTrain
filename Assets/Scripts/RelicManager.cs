@@ -95,50 +95,6 @@ public class RelicManager : MonoBehaviour
         // 특수 이드
         switch(relicItem.relicName)
         {
-            case "흔적":
-            case "흔적+":
-                TurnManager.BeforePlayerTurnStart += () =>
-                {
-                    int leftShield = TurnManager.Inst.shieldHealth;
-                    if (relicItem.relicName == "흔적") leftShield = (int)(leftShield * 0.25f);
-                    else leftShield = (int)(leftShield * 0.4f);
-                    Debug.Log("Relic Activate: " + relicItem.relicName);
-                    if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
-                };
-                return;
-            case "갈증":
-            case "갈증+":
-                int threshold = (int)(TurnManager.Inst.maxHealth * 0.5f);
-                if (relicItem.relicName == "갈증+") threshold = (int)(TurnManager.Inst.maxHealth * 0.75f);
-                Action<int, EDamageSource> buffAction = (x, s) =>
-                {
-                    if (TurnManager.Inst.curHealth <= threshold)
-                    {
-                        if (BuffManager.Inst.GetShowBuff("활력", EBuffAffectType.Player) != null)
-                        {
-                            BuffManager.Inst.AddShowBuff("활력", EBuffAffectType.Player, 1, false);
-                            Debug.Log("Relic Activate: " + relicItem.relicName);
-                            if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
-                        }
-                    }
-                    else
-                    {
-                        BuffManager.Inst.RemoveShowBuff("활력", EBuffAffectType.Player);
-                    }
-                };
-                TurnManager.OnPlayerDamaged += buffAction;
-                TurnManager.OnPlayerHealed += buffAction;
-                return;
-            case "호기심":
-            case "호기심+":
-                TurnManager.OnUseableItemUse += () =>
-                {
-                    if (relicItem.relicName == "호기심") TurnManager.Inst.IncreaseCost(1);
-                    else TurnManager.Inst.IncreaseCost(2);
-                    Debug.Log("Relic Activate: " + relicItem.relicName);
-                    if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
-                };
-                return;
             case "순진무구":
             case "순진무구+":
                 float damageMul = 1.5f;
@@ -185,55 +141,99 @@ public class RelicManager : MonoBehaviour
                     }
                 };
                 break;
-            case "송곳니":
-            case "송곳니+":
-                int addVal = 3;
-                if (relicItem.relicName == "송곳니+") addVal = 5;
-                TurnManager.OnGameStart += () =>
-                {
-                    if (TurnManager.Inst.characterSO.personaPiece.name == "뱀파이어 폴")
-                    {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_PlayerSpecial[PassiveManager.GetSpecialRouletteIdx(true, 0)][0], addVal, 1, -1);
-                    }
-                    else if(TurnManager.Inst.characterSO.shadowPiece.name == "뱀파이어 폴")
-                    {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_PlayerSpecial[PassiveManager.GetSpecialRouletteIdx(false, 0)][0], addVal, 1, -1);
-                    }
-                    Debug.Log("Relic Activate: " + relicItem.relicName);
-                    if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
-                };
-                return;
-            case "작은 날개":
-            case "작은 날개+":
-                int mulVal = 3;
-                if (relicItem.relicName == "작은 날개+") mulVal = 4;
+            case "박쥐 날개":
+            case "박쥐 날개+":
+                int shieldMul = 3;
+                if (relicItem.relicName == "박쥐 날개+") shieldMul = 4;
                 TurnManager.OnPlayerTurnEnd += () =>
                 {
-                    TurnManager.Inst.GetShield(false, TurnManager.Inst.nowCost * mulVal, EDamageSource.Relic);
-                    Debug.Log("Relic Activate: " + relicItem.relicName);
-                    if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
-                };
-                return;
-            case "평화주의":
-            case "평화주의+":
-                int shieldVal = 8;
-                if (relicItem.relicName == "평화주의+") shieldVal = 10;
-                bool chkEnemyDamaged = false;
-                TurnManager.OnPlayerTurnStart += () =>
-                {
-                    chkEnemyDamaged = false;
-                };
-                TurnManager.OnEnemyDamaged += (x, s, i) =>
-                {
-                    chkEnemyDamaged = true;
-                };
-                TurnManager.OnPlayerTurnEnd += () =>
-                {
-                    if (chkEnemyDamaged == false)
+                    if (TurnManager.Inst.nowCost != 0)
                     {
-                        TurnManager.Inst.GetShield(false, shieldVal, EDamageSource.Relic);
+                        TurnManager.Inst.GetShield(false, TurnManager.Inst.nowCost * shieldMul, EDamageSource.Relic);
                         Debug.Log("Relic Activate: " + relicItem.relicName);
                         if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
+                    }
+                };
+                return;
+            case "저주 인형":
+            case "저주 인형+":
+                Action<int, EDamageSource> curseDollActivate = null;
+                curseDollActivate = (x, s) =>
+                {
+                    TurnManager.Inst.shieldHealth += x;
+                    relicItem.relicVal -= x;
+                    if(relicItem.relicVal <= 0)
+                    {
+                        relicItem.relicVal = 0;
+                        RelicItem_Enhanceable curseDollRelic = relicSO.relicItems.Find(r => r.relicName == relicItem.relicName || r.enhancedRelicItem.relicName == relicItem.relicName);
+                        relicSO.relicItems.Remove(curseDollRelic);
+                    }
+                    TurnManager.OnPlayerDamaged -= curseDollActivate;
+                    Debug.Log("Relic Activate: " + relicItem.relicName);
+                    if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
+                };
+                TurnManager.OnPlayerDamaged += curseDollActivate;
+                return;
+            case "꿀":
+            case "꿀+":
+                float healMul = 0.25f;
+                if (relicItem.relicName == "꿀+") healMul = 0.4f;
+                TurnManager.BeforePlayerTurnStart += () =>
+                {
+                    int healVal = (int)(TurnManager.Inst.shieldHealth * healMul);
+                    Debug.Log("Healing for " + healVal + " from Relic: " + relicItem.relicName);
+                    TurnManager.Inst.TakeDmg(-healVal, EDamageSource.Relic);
+                    Debug.Log("Relic Activate: " + relicItem.relicName);
+                    if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
+                };
+                return;
+            case "영원한 웃음":
+            case "영원한 웃음+":
+                TurnManager.OnGameStart += () =>
+                {
+                    BuffManager.Inst.AddShowBuff("보호", EBuffAffectType.Player, 2, false);
+                    Debug.Log("Relic Activate: " + relicItem.relicName);
+                    if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
+                };
+                return;
+            case "붉은 꽃잎":
+            case "붉은 꽃잎+":
+                int threshold = (int)(TurnManager.Inst.maxHealth * 0.3f);
+                if (relicItem.relicName == "붉은 꽃잎+") threshold = (int)(TurnManager.Inst.maxHealth * 0.6f);
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    if (TurnManager.Inst.curHealth <= threshold)
+                    {
+                        TurnManager.Inst.IncreaseCost(1);
+                        Debug.Log("Relic Activate: " + relicItem.relicName);
+                        if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
+                    }
+                };
+                return;
+            case "와인의 눈물":
+            case "와인의 눈물+":
+                threshold = (int)(TurnManager.Inst.maxHealth * 0.5f);
+                if (relicItem.relicName == "와인의 눈물+") threshold = (int)(TurnManager.Inst.maxHealth * 0.7f);
+                TurnManager.OnGameStart += () =>
+                {
+                    if (TurnManager.Inst.curHealth <= threshold)
+                    {
+                        BuffManager.Inst.AddShowBuff("활력", EBuffAffectType.Player, 1, false);
+                        Debug.Log("Relic Activate: " + relicItem.relicName);
+                        if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
+                    }
+                };
+                TurnManager.OnPlayerHealthChange += (x) =>
+                {
+                    if (TurnManager.Inst.curHealth <= threshold && TurnManager.Inst.curHealth + x > threshold)
+                    {
+                        BuffManager.Inst.AddShowBuff("활력", EBuffAffectType.Player, 1, false);
+                        Debug.Log("Relic Activate: " + relicItem.relicName);
+                        if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
+                    }
+                    else if (TurnManager.Inst.curHealth + x <= threshold && TurnManager.Inst.curHealth > threshold)
+                    {
+                        BuffManager.Inst.AddShowBuff("활력", EBuffAffectType.Player, -1, false);
                     }
                 };
                 return;
