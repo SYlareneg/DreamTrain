@@ -260,7 +260,7 @@ public class CardManager : MonoBehaviour
     {
         // 정렬된 카드 PRS(position, rotation, scale)
         List<PRS> originCardPRSs = new List<PRS>();
-        originCardPRSs = RoundAlignment(myCardLeft, myCardRight, myCards.Count, 0.5f, cardPrefab.transform.localScale);
+        originCardPRSs = RoundAlignment(myCardLeft, myCardRight, myCards.Count, 0f, cardPrefab.transform.localScale);
 
         // 카드를 정렬된 카드 PRS로 이동
         var targetCards = myCards;
@@ -287,39 +287,57 @@ public class CardManager : MonoBehaviour
         // 카드 1장: 가운데 배치
         // 카드 2~5장: leftTr, rightTr 기준 0.2~0.8 지점에 카드 배치
         // 카드 6장 이상: leftTr, rightTr 기준 0~1 지점에 카드 배치
-        switch (objCount)
+        // switch (objCount)
+        // {
+        //     case 1: objLerps = new float[] { 0.5f }; break;
+        //     case 2:
+        //     case 3:
+        //     case 4:
+        //     case 5:
+        //         interval = 1f / (objCount - 1);
+        //         for (int i = 0; i < objCount; i++)
+        //         {
+        //             objLerps[i] = interval * i;
+        //         }
+        //         break;
+        //     default:
+        //         interval = 1.5f / (objCount - 1);
+        //         for(int i = 0; i < objCount; i++)
+        //         {
+        //             objLerps[i] = interval * i;
+        //         }
+        //         break;
+        // }
+        if(objCount == 1)
         {
-            case 1: objLerps = new float[] { 0.5f }; break;
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-                interval = 0.8f / (objCount - 1);
-                for (int i = 0; i < objCount; i++)
-                {
-                    objLerps[i] = 0.1f + interval * i;
-                }
-                break;
-            default:
-                interval = 1f / (objCount - 1);
-                for(int i = 0; i < objCount; i++)
-                {
-                    objLerps[i] = interval * i;
-                }
-                break;
+            objLerps = new float[] { 0.5f };
+        }
+        else
+        {
+            interval = 1f / (objCount - 1);
+            for(int i = 0; i < objCount; i++)
+            {
+                objLerps[i] = interval * i;
+            }
+        }
+        if(objCount > 5)
+        {
+            Vector3 newRightTr = rightTr.position;
+            newRightTr.x += (objCount - 5) * 0.7f;
+            rightTr.position = newRightTr;
         }
 
         for(int i = 0; i < objCount; i++)
         {
             var targetPos = Vector3.Lerp(leftTr.position, rightTr.position, objLerps[i]);
             var targetRot = Utils.QI;
-            // 곡률에 따른 카드 position, rotation 보정
-            float curve = Mathf.Sqrt(Mathf.Pow(height, 2) - Mathf.Pow(objLerps[i] - 0.5f, 2));
-            curve = height >= 0 ? curve : -curve;
-            // 카드 position 설정
-            targetPos.y += curve;
-            // 카드 rotation 설정
-            targetRot = Quaternion.Slerp(leftTr.rotation, rightTr.rotation, objLerps[i]);
+            // // 곡률에 따른 카드 position, rotation 보정
+            // float curve = Mathf.Sqrt(Mathf.Pow(height, 2) - Mathf.Pow(objLerps[i] - 0.5f, 2));
+            // curve = height >= 0 ? curve : -curve;
+            // // 카드 position 설정
+            // targetPos.y += curve;
+            // // 카드 rotation 설정
+            // targetRot = Quaternion.Slerp(leftTr.rotation, rightTr.rotation, objLerps[i]);
             results.Add(new PRS(targetPos, targetRot, scale));
         }
 
@@ -381,7 +399,10 @@ public class CardManager : MonoBehaviour
             return;
         }
 
-        selectedCard.highlight.enabled = false;
+        if(selectedCard != null)
+        {
+            selectedCard.highlight.enabled = false;
+        }
         // 확대했던 카드 축소
         EnlargeCard(false, card);
         foreach(Transform child in card.tooltipPos)
@@ -509,17 +530,28 @@ public class CardManager : MonoBehaviour
         {
             Transform enemyPos = enemyHits.collider.transform;
             onEnemyCardArea = EnemyManager.Inst.FindEnemyIdxByPos(enemyPos);
+
+            if(selectedCard != null && selectedCard.item.isSingleTarget == true)
+            {
+                enemyPos.Find("EnemyImg/EnemyHighlight").gameObject.SetActive(true);
+            }
         }
         else
         {
             onEnemyCardArea = 0;
+            EnemyManager.Inst.enemyPos.Find("EnemyImg/EnemyHighlight").gameObject.SetActive(false);
             for(int i = 0; i < Enemy.maxSubEnemyNum; i++)
             {
                 if(EnemyManager.Inst.subEnemies[i] != null)
                 {
                     onEnemyCardArea = -1;
-                    break;
+                    EnemyManager.Inst.subEnemyPos[i].Find("EnemyImg/EnemyHighlight").gameObject.SetActive(false);
                 }
+            }
+
+            if(selectedCard != null && selectedCard.item.isSingleTarget == true && onEnemyCardArea == 0)
+            {
+                EnemyManager.Inst.enemyPos.Find("EnemyImg/EnemyHighlight").gameObject.SetActive(true);
             }
         }
     }
