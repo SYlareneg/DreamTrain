@@ -47,7 +47,7 @@ public class MapManager : MonoBehaviour
             newMapNode.GetComponent<SpriteRenderer>().sprite = mp.sortedMapNodeList[i].nodeImg;
             MapNodeObject mapNodeObject = newMapNode.GetComponent<MapNodeObject>();
             mapNodeObject.mapNode = mp.sortedMapNodeList[i];
-            Tooltip mapNodeTooltip = newMapNode.GetComponent<Tooltip>();
+            MapNodeTooltip mapNodeTooltip = newMapNode.GetComponent<MapNodeTooltip>();
             mapNodeTooltip.tooltipTitle = mp.sortedMapNodeList[i].title;
             mapNodeTooltip.tooltipTxt = mp.sortedMapNodeList[i].text;
             newMapNode.transform.SetParent(mapTransform);
@@ -66,8 +66,9 @@ public class MapManager : MonoBehaviour
                     newMapNode.transform.position = nodePos2ScreenPos(mp.sortedMapNodeList[i], true);
                 }
             }
-            mapNodeTooltip.tooltipPos = Camera.main.WorldToScreenPoint(newMapNode.transform.position);
+            mapNodeTooltip.tooltipPos = Camera.main.WorldToScreenPoint(newMapNode.transform.position) - Camera.main.WorldToScreenPoint(Vector3.zero);
             mapNodeTooltip.tooltipPos += tooltipOffset;
+            Debug.Log("Map Node Tooltip Pos: " + mapNodeTooltip.tooltipPos);
             mapNodeScreenPos.Add(mp.sortedMapNodeList[i].ID, newMapNode.transform.position);
         }
         foreach(MapNode mapNode in mp.sortedMapNodeList)

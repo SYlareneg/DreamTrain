@@ -401,7 +401,7 @@ public class GameManager : MonoBehaviour
             stageEnemy.isClear = true;
             characterSO.dreamDust += stageEnemy.dreamDustReward;
         }
-        SceneChangeManager.Inst.SceneFadeOut("NewHallScene");
+        SceneChangeManager.Inst.SceneFadeOut("EncounterScene");
     }
 
     public void SetCardReward()
