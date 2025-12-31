@@ -209,6 +209,11 @@ public class Map
                 int[] low_prob_layer_nums = new int[] {1, 4};
                 if(Random.value < probability) cur_level_num = high_prob_layer_nums[Random.Range(0, high_prob_layer_nums.Length)];
                 else cur_level_num = low_prob_layer_nums[Random.Range(0, low_prob_layer_nums.Length)];
+
+                if(mapNodes_curDiff_normal.Count + mapNodes_curDiff_special.Count - cur_level_num < chooseNum - j - 1)
+                {
+                    cur_level_num = mapNodes_curDiff_normal.Count + mapNodes_curDiff_special.Count - (chooseNum - j - 1);
+                }
                 //cur_level_num = Random.Range(1, layerMaxNodeNum + 1);
                 //if(j + cur_level_num > chooseNum) cur_level_num = chooseNum - j;
                 // 현재 층에 추가할 노드 위치

@@ -12,27 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be37d7e5cc822764da02d17bf972fc8c, type: 3}
   m_Name: ActSO
   m_EditorClassIdentifier: Assembly-CSharp::ActSO
-  normalNodes:
-  - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
-    title: 
-    text: 
-    encounterNum: 0
-    ID: NormalNode1
-    locationID: 
-    difficulty: 0
-    level: 0
-    pos: 0
-    childNodes: []
-  - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
-    title: 
-    text: 
-    encounterNum: 0
-    ID: NormalNode2
-    locationID: 
-    difficulty: 1
-    level: 0
-    pos: 0
-    childNodes: []
+  normalNodes: []
   acts:
   - essentialNodes:
     - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
@@ -41,7 +21,7 @@ MonoBehaviour:
       encounterNum: 0
       ID: StartNode
       locationID: 
-      difficulty: -1
+      difficulty: 0
       level: 0
       pos: 0
       childNodes:
@@ -55,121 +35,77 @@ MonoBehaviour:
       encounterNum: 0
       ID: Entrance
       locationID: AMUSEMENT_PARK_ENTRANCE
-      difficulty: 0
-      level: 0
-      pos: 0
-      childNodes: []
-    - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
-      title: "1\uBC88 \uACBD\uC720\uC9C0"
-      text: "\uC911\uAC04 \uC9C0\uC810\uC785\uB2C8\uB2E4."
-      encounterNum: 0
-      ID: MidNode1
-      locationID: 
       difficulty: 1
       level: 0
       pos: 0
-      childNodes:
-      - 25b8959b4f6f4790b3dda479d3a46e1c
-      - 953631e217f3481ca5d7a062490f26ef
+      childNodes: []
     - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
       title: "\uB3C4\uCC29"
       text: "\uB3C4\uCC29\uC9C0\uC785\uB2C8\uB2E4."
       encounterNum: 0
       ID: EndNode
       locationID: 
+      difficulty: 10
+      level: 0
+      pos: 0
+      childNodes: []
+    - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
+      title: "\uC544\uC774\uC2A4\uD06C\uB9BC \uCE74\uD2B8"
+      text: "\uB2F9\uC2E0\uC758 \uC9C0\uCE5C \uBAB8\uC744 \uAE68\uC6CC\uC904 \uB2EC\uB2EC\uD55C
+        \uC544\uC774\uC2A4\uD06C\uB9BC \uD558\uB098 \uC5B4\uB5A0\uC138\uC694?"
+      encounterNum: 0
+      ID: MidNode
+      locationID: ICECREAM_CART
+      difficulty: 5
+      level: 0
+      pos: 0
+      childNodes: []
+    essentialIntervalLayerCount: 000000000200000000000000
+    specialNodes:
+    - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
+      title: "\uD68C\uC804\uBAA9\uB9C8"
+      text: "\uB3CC\uACE0 \uB3CC\uACE0 \uB3CC\uACE0. \uD574\uAC00 \uC9C0\uACE0 \uB2EC\uC774
+        \uC838\uB3C4 \uBA48\uCD94\uC9C0 \uC54A\uB294 \uD68C\uC804\uBAA9\uB9C8!"
+      encounterNum: 0
+      ID: SpecialNode
+      locationID: MERRY_GO_ROUND
       difficulty: 2
       level: 0
       pos: 0
       childNodes: []
     - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
-      title: "1\uBC88 \uACBD\uC720\uC9C0"
-      text: "\uC911\uAC04 \uC9C0\uC810\uC785\uB2C8\uB2E4."
-      encounterNum: 0
-      ID: MidNode2
-      locationID: 
-      difficulty: 1
-      level: 0
-      pos: 0
-      childNodes: []
-    essentialIntervalLayerCount: 000000000100000001000000
-    specialNodes:
-    - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
-      title: 
-      text: 
+      title: "\uD68C\uC804 \uCEF5"
+      text: "\uBE59\uAE00\uBE59\uAE00 \uB3C4\uB294 \uCEF5\uB4E4\uACFC \uD568\uAED8
+        \uCC28 \uD55C\uC794\uC758 \uC5EC\uC720\uB97C!"
       encounterNum: 0
       ID: SpecialNode
-      locationID: 
-      difficulty: 1
+      locationID: TEA_CUPS
+      difficulty: 2
       level: 0
       pos: 0
       childNodes: []
     - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
-      title: 
-      text: 
+      title: "\uC720\uB839\uC758 \uC9D1"
+      text: "\uC73C\uC2A4\uC2A4\uD558\uACE0 \uC704\uD5D8\uD55C \uC720\uB839\uC758
+        \uC9D1. \uC18C\uBB38\uC5D0 \uC758\uD558\uBA74 \uB4E4\uC5B4\uAC14\uB2E4\uAC00
+        \uB098\uC624\uC9C0 \uBABB\uD55C \uC190\uB2D8\uC774 \uAF64 \uB9CE\uB2E4\uACE0
+        \uD569\uB2C8\uB2E4. "
       encounterNum: 0
       ID: SpecialNode
-      locationID: 
-      difficulty: 1
+      locationID: GHOST_HOUSE
+      difficulty: 3
       level: 0
       pos: 0
       childNodes: []
     - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
-      title: 
-      text: 
+      title: "\uBBF8\uB85C \uC815\uC6D0"
+      text: "\uAF43\uC73C\uB85C \uAC00\uB4DD\uD55C \uBBF8\uB85C \uC815\uC6D0. \uAE38\uC774
+        \uBCF5\uC7A1\uD574\uC11C \uC5B4\uB9B0 \uC544\uC774\uC5D0\uAC8C\uB294 \uD0C8\uCD9C\uD558\uAE30
+        \uC5B4\uB824\uC6B8 \uC218 \uC788\uC74C"
       encounterNum: 0
       ID: SpecialNode
-      locationID: 
-      difficulty: 1
-      level: 0
-      pos: 0
-      childNodes: []
-    - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
-      title: 
-      text: 
-      encounterNum: 0
-      ID: SpecialNode
-      locationID: 
-      difficulty: 0
-      level: 0
-      pos: 0
-      childNodes: []
-    - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
-      title: 
-      text: 
-      encounterNum: 0
-      ID: SpecialNode
-      locationID: 
-      difficulty: 0
-      level: 0
-      pos: 0
-      childNodes: []
-    - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
-      title: 
-      text: 
-      encounterNum: 0
-      ID: SpecialNode
-      locationID: 
-      difficulty: 0
-      level: 0
-      pos: 0
-      childNodes: []
-    - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
-      title: 
-      text: 
-      encounterNum: 0
-      ID: SpecialNode
-      locationID: 
-      difficulty: 0
-      level: 0
-      pos: 0
-      childNodes: []
-    - nodeImg: {fileID: -2413806693520163455, guid: 14df035d91b682d4bb2a1b0ed185ffd1, type: 3}
-      title: 
-      text: 
-      encounterNum: 0
-      ID: SpecialNode
-      locationID: 
-      difficulty: 0
+      locationID: MAZE_GARDEN
+      difficulty: 4
       level: 0
       pos: 0
       childNodes: []
