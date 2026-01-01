@@ -135,6 +135,14 @@ public class MapManager : MonoBehaviour
         PrintMap(map);
         SaveMap();
         actSO.curNodeIndex = 0;
+        curNode = map.sortedMapNodeList[actSO.curNodeIndex];
+        player.transform.position = GetStartPos(curNode);
+        mapCamera = player.transform.GetComponentInChildren<MapCamera>();
+        if(mapCamera != null)
+        {
+            mapCamera.minX = GetScreenPos(map.sortedMapNodeList[0]).x + 6f;
+            mapCamera.maxX = GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).x - 6f;
+        }
     }
 
     void Start()
@@ -143,18 +151,18 @@ public class MapManager : MonoBehaviour
         {
             map = actSO.mapSave;
             PrintMap(map, actSO.mapNodeScreenPosSave);
+            curNode = map.sortedMapNodeList[actSO.curNodeIndex];
+            player.transform.position = GetStartPos(curNode);
+            mapCamera = player.transform.GetComponentInChildren<MapCamera>();
+            if(mapCamera != null)
+            {
+                mapCamera.minX = GetScreenPos(map.sortedMapNodeList[0]).x + 6f;
+                mapCamera.maxX = GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).x - 6f;
+            }
         }
         else
         {
             SetNewMap();
-        }
-        curNode = map.sortedMapNodeList[actSO.curNodeIndex];
-        player.transform.position = GetStartPos(curNode);
-        mapCamera = player.transform.GetComponentInChildren<MapCamera>();
-        if(mapCamera != null)
-        {
-            mapCamera.minX = GetScreenPos(map.sortedMapNodeList[0]).x + 6f;
-            mapCamera.maxX = GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).x - 6f;
         }
     }
 }
