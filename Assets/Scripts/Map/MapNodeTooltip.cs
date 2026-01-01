@@ -54,14 +54,24 @@ public class MapNodeTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         Transform mapNodeType = tooltip.transform.Find("TooltipTitle/MapNodeType");
         if (mapNodeType != null)
         {
-            //List<EncounterType> encounterTypes = EncounterManager.GetEncounterType(GetComponent<MapNodeObject>().mapNode.locationID);
-            List<EncounterType> encounterTypes = new List<EncounterType>(); // Temporary empty list
-            encounterTypes.Add(EncounterType.Battle); // Temporary data for testing
-            encounterTypes.Add(EncounterType.Exploration); // Temporary data for testing
-            for(int i = 0; i < encounterTypes.Count; i++)
+            List<string> nextNodeIDs = MapManager.Inst.curNode.childNodes;
+            MapNode thisNode = GetComponent<MapNodeObject>().mapNode;
+            if (nextNodeIDs.Contains(thisNode.ID) == false)
             {
-                var typeIcon = Instantiate(typeIconPrefab, mapNodeType);
-                typeIcon.GetComponent<Image>().sprite = encounterTypeIcons[(int)encounterTypes[i]];
+                for(int i = 0; i < thisNode.encounterNum; i++)
+                {
+                    var typeIcon = Instantiate(typeIconPrefab, mapNodeType);
+                    typeIcon.GetComponent<Image>().sprite = encounterTypeIcons[0];
+                }
+            }
+            else
+            {
+                List<EncounterType> encounterTypes = MapManager.Inst.GetEncounterType(thisNode.locationID);
+                for(int i = 0; i < encounterTypes.Count; i++)
+                {
+                    var typeIcon = Instantiate(typeIconPrefab, mapNodeType);
+                    typeIcon.GetComponent<Image>().sprite = encounterTypeIcons[(int)encounterTypes[i] + 1];
+                }
             }
         }
         tooltip.SetActive(true);

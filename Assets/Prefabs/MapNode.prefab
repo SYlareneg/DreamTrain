@@ -133,6 +133,7 @@ MonoBehaviour:
   tooltipPrefab: {fileID: 5662423541783804191, guid: 6ac173e16c5f50248a6a4581fa3dc373, type: 3}
   typeIconPrefab: {fileID: 8343954715764999215, guid: cf8ec0534d9b1a84a9f21149c974283a, type: 3}
   encounterTypeIcons:
+  - {fileID: 21300000, guid: 22c29c67f5857a24abd99d878ef55b89, type: 3}
   - {fileID: 21300000, guid: 928b5307577a7374fb7876e67c87a035, type: 3}
   - {fileID: 21300000, guid: 928b5307577a7374fb7876e67c87a035, type: 3}
   - {fileID: 21300000, guid: 928b5307577a7374fb7876e67c87a035, type: 3}

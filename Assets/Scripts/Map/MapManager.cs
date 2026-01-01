@@ -3,13 +3,21 @@ using System.Collections.Generic;
 using Random = UnityEngine.Random;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
+class EncounterCandidate
+{
+    public EncounterMetaInfo info;
+    public int score;
+}
 public class MapManager : MonoBehaviour
 {
     public static MapManager Inst;
     void Awake() => Inst = this;
 
     [SerializeField] ActSO actSO;
+    public EncounterDatabaseSO encounterDB;
+    public LocationDatabaseSO locationDB;
     [SerializeField] Transform mapTransform;
     [SerializeField] GameObject mapNodePrefab;
     [SerializeField] GameObject mapLinePrefab;
@@ -37,6 +45,89 @@ public class MapManager : MonoBehaviour
             retVec.y += randOffset;
         }
         return retVec;
+    }
+
+    public List<EncounterType> GetEncounterType(string locationID)
+    {
+        LocationMetaInfo locInfo = locationDB.locationTable.Find(x => x.id == locationID);
+        if (locInfo == null)
+            return new List<EncounterType>();
+
+        if(locInfo.selectedEncounterPool != null && locInfo.selectedEncounterPool.Count == locInfo.howManyEnc)
+        {
+            List<EncounterType> existingTypes = new List<EncounterType>();
+            foreach(string encID in locInfo.selectedEncounterPool)
+            {
+                EncounterMetaInfo encInfo = encounterDB.masterTable.Find(x => x.id == encID);
+                if (encInfo != null)
+                {
+                    existingTypes.Add(encInfo.type);
+                }
+            }
+            return existingTypes;
+        }
+        else
+        {
+            locInfo.selectedEncounterPool = new List<string>();
+        }
+
+        List<(string id, EncounterType type)> result = new List<(string id, EncounterType type)>();
+        List<EncounterCandidate> candidates = new List<EncounterCandidate>();
+        EncounterType prevType = (actSO != null) ? actSO.lastEncounterType : EncounterType.Battle;
+
+        foreach (string id in locInfo.encounterPool)
+        {
+            EncounterMetaInfo info = encounterDB.masterTable.Find(x => x.id == id);
+            if (info == null) continue;
+            candidates.Add(new EncounterCandidate { info = info, score = 0 });
+        }
+
+        foreach (var cand in candidates)
+        {
+            cand.score = Random.Range(1, 100);
+
+            if (cand.info.isEssential)
+            {
+                cand.score = 100;
+            }
+            else
+            {
+                if (prevType == EncounterType.Rest && cand.info.type == EncounterType.Rest) cand.score = 0;
+                if (prevType == EncounterType.Merchant && cand.info.type == EncounterType.Merchant) cand.score = 0;
+            }
+        }
+
+        int pickCount = 0;
+        int targetCount = locInfo.howManyEnc;
+
+        while (pickCount < targetCount)
+        {
+            var best = candidates
+                .Where(c => c.score > 0 && !result.Contains((c.info.id, c.info.type)))
+                .OrderByDescending(c => c.score)
+                .FirstOrDefault();
+
+            if (best == null) break; 
+
+            result.Add((best.info.id, best.info.type));
+            pickCount++;
+
+            // 같은 Order 제거
+            foreach (var other in candidates)
+            {
+                if (other.info.id == best.info.id) continue; 
+                if (other.info.order == best.info.order) other.score = 0; 
+            }
+        }
+
+        result = result.OrderBy(x => encounterDB.masterTable.Find(e => e.id == x.id).order).ToList();
+        List<EncounterType> typeList = new List<EncounterType>();
+        foreach (var enc in result)
+        {
+            locInfo.selectedEncounterPool.Add(enc.id);
+            typeList.Add(enc.type);
+        }
+        return typeList;
     }
 
     public void PrintMap(Map mp, List<Vector3> savedPos = null)
@@ -132,10 +223,22 @@ public class MapManager : MonoBehaviour
     {
         map = new Map();
         map.CreateMap(actSO.acts[actSO.curActIndex], actSO.normalNodes);
+        foreach(MapNode node in map.sortedMapNodeList)
+        {
+            LocationMetaInfo locInfo = locationDB.locationTable.Find(x => x.id == node.locationID);
+            if (locInfo != null)
+            {
+                locInfo.selectedEncounterPool = new List<string>();
+            }
+        }
         PrintMap(map);
         SaveMap();
         actSO.curNodeIndex = 0;
         curNode = map.sortedMapNodeList[actSO.curNodeIndex];
+        foreach(string nextNodeId in curNode.childNodes)
+        {
+            GetEncounterType(map.sortedMapNodeList.Find(x => x.ID == nextNodeId).locationID);
+        }
         player.transform.position = GetStartPos(curNode);
         mapCamera = player.transform.GetComponentInChildren<MapCamera>();
         if(mapCamera != null)
@@ -152,6 +255,10 @@ public class MapManager : MonoBehaviour
             map = actSO.mapSave;
             PrintMap(map, actSO.mapNodeScreenPosSave);
             curNode = map.sortedMapNodeList[actSO.curNodeIndex];
+            foreach(string nextNodeId in curNode.childNodes)
+            {
+                GetEncounterType(map.sortedMapNodeList.Find(x => x.ID == nextNodeId).locationID);
+            }
             player.transform.position = GetStartPos(curNode);
             mapCamera = player.transform.GetComponentInChildren<MapCamera>();
             if(mapCamera != null)

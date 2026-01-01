@@ -7,6 +7,7 @@ public class LocationMetaInfo
     public string id;
     public string nameKO;
     public List<string> encounterPool;
+    public List<string> selectedEncounterPool;
     public int howManyEnc;
 }
 [CreateAssetMenu(fileName = "LocationDatabase", menuName = "Data/Location Database")]

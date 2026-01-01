@@ -679,6 +679,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapManager
   actSO: {fileID: 11400000, guid: ad73d8b4a4d8e6441bab56db52dc9fbf, type: 2}
+  encounterDB: {fileID: 11400000, guid: 560f8c2d9a9e79a4184d8bc2e9b8898e, type: 2}
+  locationDB: {fileID: 11400000, guid: c08b0a46a1f95814f939101e2a309bdf, type: 2}
   mapTransform: {fileID: 1945880272}
   mapNodePrefab: {fileID: 8918888303948354407, guid: 598903db5c6c44f47939bd3ed0429a6a, type: 3}
   mapLinePrefab: {fileID: 6548123826495189928, guid: d8d42f284ea48dd44a74f118fc63d18a, type: 3}
