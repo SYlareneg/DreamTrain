@@ -728,7 +728,7 @@ public class RelicManager : MonoBehaviour
                 case ERelicActivateTimingType.Enemy_Shield:
                     TurnManager.OnEnemyShielded += (x, s, i) => relicActivation(); break;
                 case ERelicActivateTimingType.Enemy_Action:
-                    TurnManager.OnEnemyAction += relicActivation; break;
+                    TurnManager.OnEnemyAction += (x) => relicActivation(); break;
                 case ERelicActivateTimingType.Player_Damage:
                     TurnManager.OnPlayerDamaged += (x, s) => relicActivation(); break;
                 case ERelicActivateTimingType.Player_Heal:

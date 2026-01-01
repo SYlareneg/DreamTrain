@@ -476,10 +476,6 @@ public class EnemyManager : MonoBehaviour
                 };
                 break;
             case "대장 컵":
-                enemySpecialActivation[0] = (value) =>
-                {
-                    RouletteManager.Inst.Spin(true, value);
-                };
                 TurnManager.OnRouletteSpin += (isClockwise, pieces) =>
                 {
                     if (isClockwise)
@@ -488,11 +484,158 @@ public class EnemyManager : MonoBehaviour
                         TurnManager.Inst.GetShield(true, pieces, EDamageSource.Enemy);
                     }
                 };
+                break;
+            case "흰 토끼":
                 TurnManager.OnPlayerTurnStart += () =>
                 {
-                    if(patternNum == 3)
+                    TurnManager.Inst.TriggerEnemyPassive(1);
+                    if(isTriggerActivated && triggerPatternNum == 0)
                     {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], Random.Range(1, 7), 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], TurnManager.Inst.turnNum, 1, 1);
+                    }
+                    else if(!isTriggerActivated && patternNum == 0)
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], TurnManager.Inst.turnNum, 1, 1);
+                    }
+                    else if(!isTriggerActivated && patternNum == 2)
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Shield[0], TurnManager.Inst.turnNum, 1, 1);
+                    }
+                };
+                break;
+            case "말":
+                enemySpecialActivation[0] = (value) =>
+                {
+                    TurnManager.Inst.TakeDmg(value, EDamageSource.Enemy);
+                };
+                TurnManager.OnEnemyAction += (enemyAction) =>
+                {
+                    if(enemyAction.actionType == EEnemyActionType.Shield)
+                    {
+                        TurnManager.Inst.TriggerEnemyPassive(1);
+                    }
+                };
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    if(isTriggerActivated && triggerPatternNum == 0)
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], TurnManager.Inst.turnNum * 3, 1, 1);
+                        if(TurnManager.Inst.shieldHealth > 0)
+                        {
+                            BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], 0, 0.5f, 1);
+                        }
+                    }
+                    else if(!isTriggerActivated && patternNum == 0)
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], TurnManager.Inst.turnNum, 1, 1);
+                    }
+                    else if(!isTriggerActivated && patternNum == 2)
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], TurnManager.Inst.turnNum, 1, 1);
+                    }
+                };
+                TurnManager.OnPlayerDamaged += (damage, source) =>
+                {
+                    if(TurnManager.Inst.shieldHealth > 0 && damage >= TurnManager.Inst.shieldHealth)
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], 0, 2f, 1);
+                    }
+                };
+                TurnManager.OnPlayerShielded += (shield, source) =>
+                {
+                    if(TurnManager.Inst.shieldHealth == shield && shield > 0)
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], 0, 0.5f, 1);
+                    }
+                };
+                break;
+            case "식인 꽃":
+                enemySpecialActivation[0] = (value) =>
+                {
+                    int trueDamage = TurnManager.Inst.TakeDmg(value, EDamageSource.Enemy);
+                    TurnManager.Inst.EnemyTakeDmg(-trueDamage, EDamageSource.Enemy);
+                    TurnManager.Inst.TriggerEnemyPassive(trueDamage);
+                };
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    if(!isTriggerActivated && patternNum == 0)
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], TurnManager.Inst.turnNum / 2, 1, 1);
+                    }
+                    else if(!isTriggerActivated && patternNum == 1)
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], TurnManager.Inst.turnNum, 1, 1);
+                    }
+                    else if(!isTriggerActivated && patternNum == 3)
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], TurnManager.Inst.turnNum * 2, 1, 1);
+                    }
+                };
+                break;
+            case "무서운 고양이":
+                enemySpecialActivation[0] = (value) =>
+                {
+                    TurnManager.Inst.TakeDmg(value, EDamageSource.Enemy);
+                };
+                enemySpecialActivation[1] = (value) =>
+                {
+                    BuffManager.Inst.AddShowBuff("주저함", EBuffAffectType.Player, value, true);
+                    BuffManager.Inst.AddShowBuff("주저함", EBuffAffectType.Roulette, value, true);
+                };
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    if(isTriggerActivated && triggerPatternNum == 0)
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], TurnManager.Inst.turnNum, 1, 1);
+                    }
+                    else if(!isTriggerActivated && patternNum == 0)
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], TurnManager.Inst.turnNum / 2, 1, 1);
+                    }
+                    else if(!isTriggerActivated && patternNum == 1)
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Shield[0], TurnManager.Inst.turnNum, 1, 1);
+                    }
+                    else if(!isTriggerActivated && patternNum == 2)
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], TurnManager.Inst.turnNum / 2, 1, 1);
+                    }
+                };
+                TurnManager.OnEnemyDamaged += (damage, source, enemyIdx) =>
+                {
+                    if(enemyIdx != 0) return;
+                    if(source == EDamageSource.Roulette && damage > 0)
+                    {
+                        TurnManager.Inst.TriggerEnemyPassive(1);
+                    }
+                    Buff totalBuff = BuffManager.CalcTotalBuff(BuffManager.Inst.enemyBuff_Special[0, 0]);
+                    int decreaseDamage = (totalBuff.add + 24 > damage)? damage : totalBuff.add + 24;
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], -decreaseDamage, 1, 1);
+                };
+                break;
+            case "우는 와인":
+                enemySpecialActivation[0] = (value) =>
+                {
+                    TurnManager.Inst.TakeDmg(value, EDamageSource.Enemy);
+                    TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Enemy);
+                };
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    if (isTriggerActivated)
+                    {
+                        BuffManager.Inst.AddShowBuff("취약", EBuffAffectType.Enemy, 1, true);
+                    }
+                    else if(!isTriggerActivated && patternNum == 0)
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], TurnManager.Inst.turnNum, 1, 1);
+                    }
+                };
+                TurnManager.OnEnemyDamaged += (damage, source, enemyIdx) =>
+                {
+                    if(enemyIdx != 0) return;
+                    if(damage > TurnManager.Inst.enemyShieldHealth[0])
+                    {
+                        TurnManager.Inst.TriggerEnemyPassive(damage - TurnManager.Inst.enemyShieldHealth[0]);
                     }
                 };
                 break;
@@ -950,6 +1093,101 @@ public class EnemyManager : MonoBehaviour
                     }
                 };
                 TurnManager.OnPlayerTurnStart += randomSpin;
+                break;
+            case "흰 토끼":
+                if(isTriggerActivated == false && phaseNum == 0)
+                {
+                    isTriggerActivated = true;
+                    triggerPhaseNum = 0;
+                    triggerPatternNum = 0;
+                    Action detrigger = null;
+                    detrigger = () =>
+                    {
+                        if(!isTriggerActivated)
+                        {
+                            phaseNum = 0;
+                            TurnManager.Inst.enemyTriggerCnt = 0;
+                            TurnManager.OnEnemyTurnEnd -= detrigger;
+                        }
+                    };
+                    TurnManager.OnEnemyTurnEnd += detrigger;
+                }
+                break;
+            case "말":
+                if(isTriggerActivated == false && phaseNum == 0)
+                {
+                    isTriggerActivated = true;
+                    triggerPhaseNum = 0;
+                    triggerPatternNum = 0;
+                    Action detrigger = null;
+                    detrigger = () =>
+                    {
+                        if(!isTriggerActivated)
+                        {
+                            phaseNum = 0;
+                            TurnManager.Inst.enemyTriggerCnt = 0;
+                            TurnManager.OnEnemyTurnEnd -= detrigger;
+                        }
+                    };
+                    TurnManager.OnEnemyTurnEnd += detrigger;
+                }
+                break;
+            case "식인 꽃":
+                if(isTriggerActivated == false && phaseNum == 0)
+                {
+                    isTriggerActivated = true;
+                    triggerPhaseNum = 0;
+                    triggerPatternNum = 0;
+                    Action detrigger = null;
+                    detrigger = () =>
+                    {
+                        if(!isTriggerActivated)
+                        {
+                            phaseNum = 0;
+                            TurnManager.Inst.enemyTriggerCnt = 0;
+                            TurnManager.OnEnemyTurnEnd -= detrigger;
+                        }
+                    };
+                    TurnManager.OnEnemyTurnEnd += detrigger;
+                }
+                break;
+            case "무서운 고양이":
+                if(isTriggerActivated == false && phaseNum == 0)
+                {
+                    isTriggerActivated = true;
+                    triggerPhaseNum = 0;
+                    triggerPatternNum = 0;
+                    Action detrigger = null;
+                    detrigger = () =>
+                    {
+                        if(!isTriggerActivated)
+                        {
+                            phaseNum = 0;
+                            TurnManager.Inst.enemyTriggerCnt = 0;
+                            TurnManager.OnEnemyTurnEnd -= detrigger;
+                        }
+                    };
+                    TurnManager.OnEnemyTurnEnd += detrigger;
+                }
+                break;
+            case "우는 와인":
+                if(isTriggerActivated == false && phaseNum == 0)
+                {
+                    isTriggerActivated = true;
+                    triggerPhaseNum = 0;
+                    triggerPatternNum = 0;
+                    Action detrigger = null;
+                    detrigger = () =>
+                    {
+                        if(!isTriggerActivated)
+                        {
+                            phaseNum = 0;
+                            TurnManager.Inst.enemyTriggerCnt = 0;
+                            TurnManager.OnEnemyTurnEnd -= detrigger;
+                        }
+                    };
+                    TurnManager.OnEnemyTurnEnd += detrigger;
+                }
                 break;
             default:
                 if(isTriggerActivated == false && phaseNum == 0)

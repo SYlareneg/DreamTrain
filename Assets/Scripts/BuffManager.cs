@@ -161,6 +161,11 @@ public class ShowBuff
                     BuffManager.Inst.rouletteShowBuffs.Add(this);
                     AddAffectBuff(BuffManager.Inst.rouletteBuff_Attack, 0, baseVal[0], newVal);
                 }
+                else
+                {
+                    BuffManager.Inst.playerShowBuffs.Add(this);
+                    AddAffectBuff(BuffManager.Inst.enemyBuff_Damage_Type[affectEnemyIdx, (int)EDamageSource.Card], 0, baseVal[0], newVal);
+                }
                 break;
             case "취약":
                 if (affectType == EBuffAffectType.Enemy)

@@ -142,11 +142,11 @@ public class EnemyAction : MonoBehaviour
             if (baseActionVal < 0)
             {
                 enemyAction.flipX = !enemyAction.flipX;
-                actionVal = Random.Range(baseActionVal, 0);
+                actionVal = Random.Range(baseActionVal, p.typeNum);
             }
             else
             {
-                actionVal = Random.Range(1, baseActionVal + 1);
+                actionVal = Random.Range(p.typeNum + 1, baseActionVal + 1);
             }
         }
         tooltip = GetComponent<Tooltip>();
@@ -185,7 +185,7 @@ public class EnemyAction : MonoBehaviour
         if (isIgnore == false)
         {
             Utils.AllignActions(ref TurnManager.OnEnemyAction, typeof(ShowBuff), typeof(RelicManager));
-            TurnManager.OnEnemyAction?.Invoke();
+            TurnManager.OnEnemyAction?.Invoke(this);
             int totalVal = actionVal;
             switch (actionType)
             {

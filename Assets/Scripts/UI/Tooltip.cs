@@ -98,4 +98,9 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (objectEnter) return;
         if(tooltip != null) HideTooltip();
     }
+
+    private void OnDestroy()
+    {
+        if(tooltip != null) HideTooltip();
+    }
 }

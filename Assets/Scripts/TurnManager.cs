@@ -80,7 +80,7 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action OnEnemyTrigger;
     [HideInInspector] public static Action<int> OnEnemyTriggerIncrease;
     [HideInInspector] public static Action<int> OnEnemyTriggerDecrease;
-    [HideInInspector] public static Action OnEnemyAction;
+    [HideInInspector] public static Action<EnemyAction> OnEnemyAction;
     [HideInInspector] public static Action<int> OnSubEnemyDestroy;
     [HideInInspector] public static Action<bool, int> OnRouletteSpin;
     [HideInInspector] public static Action<int> AfterRouletteSpin;
@@ -290,7 +290,7 @@ public class TurnManager : MonoBehaviour
         }
         else
         {
-            damage = -BuffManager.Inst.GetBuffedPlayerHeal(damageSource, -damage);
+            damage = -BuffManager.Inst.GetBuffedEnemyHeal(damageSource, -damage);
             if (damage > 0)
             {
                 damage = 0;

@@ -531,7 +531,7 @@ public class CardManager : MonoBehaviour
             Transform enemyPos = enemyHits.collider.transform;
             onEnemyCardArea = EnemyManager.Inst.FindEnemyIdxByPos(enemyPos);
 
-            if(selectedCard != null && selectedCard.item.isSingleTarget == true)
+            if(!onMyCardArea && selectedCard != null && selectedCard.item.isSingleTarget == true)
             {
                 enemyPos.Find("EnemyImg/EnemyHighlight").gameObject.SetActive(true);
             }
@@ -542,14 +542,14 @@ public class CardManager : MonoBehaviour
             EnemyManager.Inst.enemyPos.Find("EnemyImg/EnemyHighlight").gameObject.SetActive(false);
             for(int i = 0; i < Enemy.maxSubEnemyNum; i++)
             {
-                if(EnemyManager.Inst.subEnemies[i] != null)
+                if(EnemyManager.Inst.subEnemies[i] != null && EnemyManager.Inst.subEnemies[i].name != null)
                 {
                     onEnemyCardArea = -1;
                     EnemyManager.Inst.subEnemyPos[i].Find("EnemyImg/EnemyHighlight").gameObject.SetActive(false);
                 }
             }
 
-            if(selectedCard != null && selectedCard.item.isSingleTarget == true && onEnemyCardArea == 0)
+            if(!onMyCardArea && selectedCard != null && selectedCard.item.isSingleTarget == true && onEnemyCardArea == 0)
             {
                 EnemyManager.Inst.enemyPos.Find("EnemyImg/EnemyHighlight").gameObject.SetActive(true);
             }
