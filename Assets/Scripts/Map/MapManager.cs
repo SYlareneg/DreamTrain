@@ -163,8 +163,7 @@ public class MapManager : MonoBehaviour
                     newMapNode.transform.position = nodePos2ScreenPos(mp.sortedMapNodeList[i], true);
                 }
             }
-            mapNodeTooltip.tooltipPos = Camera.main.WorldToScreenPoint(newMapNode.transform.position) - Camera.main.WorldToScreenPoint(Vector3.zero);
-            mapNodeTooltip.tooltipPos += tooltipOffset;
+            mapNodeTooltip.tooltipPos = newMapNode.transform.position;
             mapNodeScreenPos.Add(mp.sortedMapNodeList[i].ID, newMapNode.transform.position);
         }
         foreach(MapNode mapNode in mp.sortedMapNodeList)
