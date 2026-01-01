@@ -77,11 +77,10 @@ public class EncounterManager : MonoBehaviour
     void InitializeEncounterSequence()
     {
         string currentLocID = "";
-
+        
         if (actData != null)
         {
             currentLocID = actData.curNodeLocationID;
-            
             Debug.Log(currentLocID);
         }
         else
@@ -89,16 +88,10 @@ public class EncounterManager : MonoBehaviour
             Debug.LogError("ActSO가 연결되지 않았습니다. 인스펙터를 확인해주세요.");
             return;
         }
-
-        if (locationDatabase == null || !locationDatabase.ContainsKey(currentLocID))
-        {
-            
-            Debug.LogError($"Location Database에서 ID '{currentLocID}'를 찾을 수 없습니다.");
-            return;
-        }
-
+        
         LocationMetaInfo locInfo = locationDatabase[currentLocID];
-        List<string> selectedIDs = SelectEncounters(locInfo);
+        List<string> selectedIDs = locInfo.selectedEncounterPool;
+
 
         encounterSequenceQueue.Clear();
         foreach (var id in selectedIDs)
