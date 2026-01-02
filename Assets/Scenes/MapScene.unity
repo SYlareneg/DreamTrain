@@ -688,7 +688,7 @@ MonoBehaviour:
   zeroPos: {x: -9, y: 0.7, z: 0}
   levelDist: 4
   posDist: 1
-  tooltipOffset: {x: 0.5, y: -0.5}
+  tooltipOffset: {x: 0.5, y: -0.2}
   map:
     sortedMapNodeList: []
     totalLevel: 0

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class Keyword
@@ -10,5 +11,5 @@ public class Keyword
 [CreateAssetMenu(fileName = "KeywordSO", menuName = "Scriptable Objects/KeywordSO")]
 public class KeywordSO : ScriptableObject
 {
-    public Keyword[] keywords;
+    public List<Keyword> keywords;
 }

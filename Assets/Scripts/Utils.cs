@@ -214,7 +214,8 @@ public class Utils
 		if(spriteName == null || spriteName == "") return null;
 
 		spriteName = Path.Combine(path, spriteName);
-        if (!spriteCache.ContainsKey(spriteName)) {
+        if (!spriteCache.ContainsKey(spriteName))
+		{
 			spriteCache[spriteName] = Resources.Load<Sprite>(spriteName);
 		}
 		return spriteCache[spriteName];

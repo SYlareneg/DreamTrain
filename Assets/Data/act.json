@@ -1,0 +1,140 @@
+{
+    "actDataList": [
+        {
+            "actNum": 1,
+            "essentialLocations": [
+                "START",
+                "AMUSEMENT_PARK_ENTRANCE",
+                "ICECREAM_CART",
+                "END"
+            ],
+            "essentialIntervalLayerCount": [
+                0,
+                2,
+                0
+            ],
+            "specialLocations": [
+                "MERRY_GO_ROUND",
+                "TEA_CUPS",
+                "GHOST_HOUSE",
+                "MAZE_GARDEN"
+            ]
+        }
+    ],
+    "locationDataList": [
+        {
+            "id": "START",
+            "nameKO": "출발",
+            "descriptionKO": "출발 지점입니다.",
+            "sprite": "Circle",
+            "encounterPool": [],
+            "encounterNum": 0,
+            "difficulty": 0,
+            "isNormalLocation": false
+        },
+        {
+            "id": "END",
+            "nameKO": "도착",
+            "descriptionKO": "도착 지점입니다.",
+            "sprite": "Circle",
+            "encounterPool": [],
+            "encounterNum": 0,
+            "difficulty": 10,
+            "isNormalLocation": false
+        },
+        {
+            "id": "AMUSEMENT_PARK_ENTRANCE",
+            "nameKO": "놀이공원 입구",
+            "descriptionKO": "여정의 시작은 항상 두근거리는 법이죠.",
+            "sprite": "Circle",
+            "encounterPool": [
+                "ACT1_WHITE_RABBIT"
+            ],
+            "encounterNum": 1,
+            "difficulty": 1,
+            "isNormalLocation": false
+        },
+        {
+            "id": "MERRY_GO_ROUND",
+            "nameKO": "회전목마",
+            "descriptionKO": "돌고 돌고 돌고. 해가 지고 달이 져도 멈추지 않는 회전목마!",
+            "sprite": "Circle",
+            "encounterPool": [
+                "ACT1_FASTEST_HORSE",
+                "ACT1_LAZY_HORSE",
+                "",
+                "ACT1_BEST_HORSE"
+            ],
+            "encounterNum": 2,
+            "difficulty": 2,
+            "isNormalLocation": false
+        },
+        {
+            "id": "TEA_CUPS",
+            "nameKO": "회전 컵",
+            "descriptionKO": "빙글빙글 도는 컵들과 함께 차 한잔의 여유를!",
+            "sprite": "Circle",
+            "encounterPool": [
+                "ACT1_SPINNING_CUP",
+                "ACT1_WINE_IN_CUP",
+                "",
+                "ACT1_TEA_TIME"
+            ],
+            "encounterNum": 2,
+            "difficulty": 2,
+            "isNormalLocation": false
+        },
+        {
+            "id": "GHOST_HOUSE",
+            "nameKO": "유령의 집",
+            "descriptionKO": "으스스하고 위험한 유령의 집. 소문에 의하면 들어갔다가 나오지 못한 손님이 꽤 많다고 합니다. ",
+            "sprite": "Circle",
+            "encounterPool": [
+                "ACT1_MISSING_ZIZI",
+                "ACT1_DEVIL_DOLL",
+                "ACT1_GUEST_OR_GHOST",
+                "ACT1_BAT_ATTACK",
+                "ACT1_VAMP_INVITATION"
+            ],
+            "encounterNum": 3,
+            "difficulty": 3,
+            "isNormalLocation": false
+        },
+        {
+            "id": "MAZE_GARDEN",
+            "nameKO": "미로 정원",
+            "descriptionKO": "꽃으로 가득한 미로 정원. 길이 복잡해서 어린 아이에게는 탈출하기 어려울 수 있음",
+            "sprite": "Circle",
+            "encounterPool": [
+                "ACT1_SHEEP_IN_MAZE",
+                "",
+                "ACT1_SUNNY_AFTERNOON",
+                "",
+                "ACT1_WHERE_DOVE_FROM",
+                "",
+                "ACT1_FLOWER_ATTACK",
+                "",
+                "ACT1_WATER_ON_FLOWER",
+                "",
+                "ACT1_ESCAPE_MAZE"
+            ],
+            "encounterNum": 3,
+            "difficulty": 4,
+            "isNormalLocation": false
+        },
+        {
+            "id": "ICECREAM_CART",
+            "nameKO": "아이스크림 카트",
+            "descriptionKO": "당신의 지친 몸을 깨워줄 달달한 아이스크림 하나 어떠세요?",
+            "sprite": "Circle",
+            "encounterPool": [
+                "ACT1_SWEET_THING",
+                "",
+                "ACT1_SOUVENIR"
+            ],
+            "encounterNum": 1,
+            "difficulty": 5,
+            "isNormalLocation": false
+        }
+    ]
+}

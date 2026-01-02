@@ -221,7 +221,13 @@ public class MapManager : MonoBehaviour
     public void SetNewMap()
     {
         map = new Map();
-        map.CreateMap(actSO.acts[actSO.curActIndex], actSO.normalNodes);
+        Act currentAct = actSO.acts.Find(x => x.actNum == actSO.curActNum);
+        if(currentAct == null)
+        {
+            Debug.LogError("현재 막에 해당하는 맵 데이터가 없습니다. 현재 막 번호: " + actSO.curActNum);
+            return;
+        }
+        map.CreateMap(currentAct, actSO.normalNodes);
         foreach(MapNode node in map.sortedMapNodeList)
         {
             LocationMetaInfo locInfo = locationDB.locationTable.Find(x => x.id == node.locationID);

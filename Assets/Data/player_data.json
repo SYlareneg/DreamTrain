@@ -1,0 +1,249 @@
+{
+    "maxHealth": 60,
+    "curHealth": 60,
+    "dreamDust": 1000,
+    "leftPassengers": 2,
+    "personaPiece": "고양이의 꿈",
+    "isPersonaEnhanced": false,
+    "personaCards": [
+        {
+            "cardName": "발톱 세우기",
+            "num": 1
+        },
+        {
+            "cardName": "알뜰한 사냥꾼",
+            "num": 1
+        },
+        {
+            "cardName": "마구 할퀴기",
+            "num": 1
+        },
+        {
+            "cardName": "발톱 손질",
+            "num": 1
+        },
+        {
+            "cardName": "소심한 할퀴기",
+            "num": 1
+        },
+        {
+            "cardName": "날카로운 발톱",
+            "num": 1
+        },
+        {
+            "cardName": "고양이의 시간",
+            "num": 1
+        },
+        {
+            "cardName": "기민함",
+            "num": 1
+        },
+        {
+            "cardName": "실뭉치",
+            "num": 1
+        },
+        {
+            "cardName": "고양이걸음",
+            "num": 1
+        },
+        {
+            "cardName": "실 풀기",
+            "num": 1
+        },
+        {
+            "cardName": "놀이 시간",
+            "num": 1
+        },
+        {
+            "cardName": "숨기",
+            "num": 1
+        },
+        {
+            "cardName": "그루밍",
+            "num": 1
+        },
+        {
+            "cardName": "간식 시간",
+            "num": 1
+        }
+    ],
+    "shadowPiece": "눈사람의 꿈",
+    "isShadowEnhanced": false,
+    "shadowCards": [
+        {
+            "cardName": "꽁꽁 얼리기",
+            "num": 1
+        },
+        {
+            "cardName": "차가운 악수",
+            "num": 1
+        },
+        {
+            "cardName": "눈싸움",
+            "num": 1
+        }
+    ],
+    "normalCards": [
+        {
+            "cardName": "회전 카드 1",
+            "num": 2
+        },
+        {
+            "cardName": "회전 카드 2",
+            "num": 2
+        },
+        {
+            "cardName": "회전 카드 3",
+            "num": 2
+        }
+    ],
+    "relics": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+    ],
+    "relicEnhancements": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+    ],
+    "useableItems": [
+        "화살",
+        "나무 방패",
+        "레테의 눈물",
+        "오염된 주사바늘"
+    ],
+    "courage": 1,
+    "wisdom": 1,
+    "luck": 1,
+    "currentActNum": 1,
+    "mapNodes": [
+        {
+            "locationID": "START",
+            "ID": "57a9650bf74246b782cc1a2abbdd34bc",
+            "level": 0,
+            "pos": 0,
+            "screenPos": {
+                "x": -9.0,
+                "y": 0.699999988079071,
+                "z": 0.0
+            },
+            "childNodes": [
+                "929bf56451334d93b51385f0ddf25301"
+            ]
+        },
+        {
+            "locationID": "AMUSEMENT_PARK_ENTRANCE",
+            "ID": "929bf56451334d93b51385f0ddf25301",
+            "level": 1,
+            "pos": 0,
+            "screenPos": {
+                "x": -5.0,
+                "y": 0.6779135465621948,
+                "z": 0.0
+            },
+            "childNodes": [
+                "2ada673f915a472cac76fbcfb46841b0",
+                "1c9c7eeda5b349d297d38b285ddca930"
+            ]
+        },
+        {
+            "locationID": "GHOST_HOUSE",
+            "ID": "2ada673f915a472cac76fbcfb46841b0",
+            "level": 2,
+            "pos": -1,
+            "screenPos": {
+                "x": -1.0,
+                "y": -0.4863293766975403,
+                "z": 0.0
+            },
+            "childNodes": [
+                "cc5a8e3d743847c482f34756b3737c76"
+            ]
+        },
+        {
+            "locationID": "MAZE_GARDEN",
+            "ID": "1c9c7eeda5b349d297d38b285ddca930",
+            "level": 2,
+            "pos": 0,
+            "screenPos": {
+                "x": -1.0,
+                "y": 0.7169233560562134,
+                "z": 0.0
+            },
+            "childNodes": [
+                "c8be73184fd840b1a41334b5e2842bc8",
+                "c049910a3de047a49dc3ac6f175ae97e"
+            ]
+        },
+        {
+            "locationID": "TEA_CUPS",
+            "ID": "c8be73184fd840b1a41334b5e2842bc8",
+            "level": 3,
+            "pos": 1,
+            "screenPos": {
+                "x": 3.0,
+                "y": 1.8300800323486329,
+                "z": 0.0
+            },
+            "childNodes": [
+                "cc5a8e3d743847c482f34756b3737c76"
+            ]
+        },
+        {
+            "locationID": "MERRY_GO_ROUND",
+            "ID": "c049910a3de047a49dc3ac6f175ae97e",
+            "level": 3,
+            "pos": 0,
+            "screenPos": {
+                "x": 3.0,
+                "y": 0.524767279624939,
+                "z": 0.0
+            },
+            "childNodes": [
+                "cc5a8e3d743847c482f34756b3737c76"
+            ]
+        },
+        {
+            "locationID": "ICECREAM_CART",
+            "ID": "cc5a8e3d743847c482f34756b3737c76",
+            "level": 4,
+            "pos": 0,
+            "screenPos": {
+                "x": 7.0,
+                "y": 0.6681822538375855,
+                "z": 0.0
+            },
+            "childNodes": [
+                "1f6471b07e6a4ffc8960577b75101a08"
+            ]
+        },
+        {
+            "locationID": "END",
+            "ID": "1f6471b07e6a4ffc8960577b75101a08",
+            "level": 5,
+            "pos": 0,
+            "screenPos": {
+                "x": 11.0,
+                "y": 0.699999988079071,
+                "z": 0.0
+            },
+            "childNodes": []
+        }
+    ],
+    "totalLevel": 6,
+    "curNodeIndex": 0,
+    "curNodeLocationID": "",
+    "lastEncounterType": 0,
+    "enemyName": "우는 와인"
+}

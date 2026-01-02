@@ -89,6 +89,38 @@ public class EnemySpecialAction
         this.title = esa.title;
         this.text = esa.text;
     }
+
+    public EnemySpecialAction(EnemySpecialAction_Data esaData)
+    {
+        if(esaData == null) return;
+        this.sprite = Utils.LoadSpriteByName("SpecialAction", esaData.sprite);
+        this.title = esaData.title;
+        this.text = esaData.text;
+    }
+}
+
+[System.Serializable]
+public class EnemySpecialAction_Data
+{
+    public string sprite;
+    public string title;
+    public string text;
+
+    public EnemySpecialAction_Data(EnemySpecialAction_Data esa)
+    {
+        if(esa == null) return;
+        sprite = esa.sprite;
+        title = esa.title;
+        text = esa.text;
+    }
+
+    public EnemySpecialAction_Data(EnemySpecialAction esa)
+    {
+        if(esa == null) return;
+        sprite = esa.sprite != null ? esa.sprite.name : "";
+        title = esa.title;
+        text = esa.text;
+    }
 }
 
 [System.Serializable]
@@ -96,9 +128,6 @@ public class Enemy
 {
     public string name;
     public int health;
-    public int actionNum;
-    public Passive passive;
-    public List<RelicItem> relics;
     public int triggerNum;
     public List<EnemyPhase> phase;
     public List<EnemyPhase> triggerPhase;
@@ -117,13 +146,6 @@ public class Enemy
     {
         name = enemy.name;
         health = enemy.health;
-        actionNum = enemy.actionNum;
-        passive = enemy.passive;
-        relics = new List<RelicItem>();
-        for(int i = 0; i < enemy.relics.Count; i++)
-        {
-            relics.Add(new RelicItem(enemy.relics[i]));
-        }
         triggerNum = enemy.triggerNum;
         phase = new List<EnemyPhase>();
         for(int i = 0; i < enemy.phase.Count; i++)
@@ -148,16 +170,92 @@ public class Enemy
         {
             enemySpecialActions[i] = new EnemySpecialAction(enemy.enemySpecialActions[i]);
         }
-        subEnemies = new List<string>();
-        for(int i = 0; i < enemy.subEnemies.Count; i++)
+        subEnemies = new List<string>(enemy.subEnemies);
+        subEnemies_Spawn = new List<string>(enemy.subEnemies_Spawn);
+    }
+
+    public Enemy(Enemy_Data enemyData)
+    {
+        name = enemyData.name;
+        health = enemyData.health;
+        triggerNum = enemyData.triggerNum;
+        phase = new List<EnemyPhase>();
+        for(int i = 0; i < enemyData.phase.Count; i++)
         {
-            subEnemies.Add(enemy.subEnemies[i]);
+            phase.Add(new EnemyPhase(enemyData.phase[i]));
         }
-        subEnemies_Spawn = new List<string>();
-        for(int i = 0; i < enemy.subEnemies_Spawn.Count; i++)
+        triggerPhase = new List<EnemyPhase>();
+        for(int i = 0; i < enemyData.triggerPhase.Count; i++)
         {
-            subEnemies_Spawn.Add(enemy.subEnemies_Spawn[i]);
+            triggerPhase.Add(new EnemyPhase(enemyData.triggerPhase[i]));
         }
+        roulettePattern = new RouletteItem[RouletteManager.rouletteNum];
+        for(int i = 0; i < enemyData.roulettePattern.Length; i++)
+        {
+            roulettePattern[i] = new RouletteItem(enemyData.roulettePattern[i]);
+        }
+        for(int i = 0; i < enemyData.enemySpecialRoulettes.Length; i++)
+        {
+            enemySpecialRoulettes[i] = new SpecialRoulette(enemyData.enemySpecialRoulettes[i]);
+        }
+        for(int i = 0; i < enemyData.enemySpecialActions.Length; i++)
+        {
+            enemySpecialActions[i] = new EnemySpecialAction(enemyData.enemySpecialActions[i]);
+        }
+        subEnemies = new List<string>(enemyData.subEnemies);
+        subEnemies_Spawn = new List<string>(enemyData.subEnemies_Spawn);
+    }
+}
+
+[System.Serializable]
+public class Enemy_Data
+{
+    public string name;
+    public int health;
+    public int triggerNum;
+    public List<EnemyPhase> phase;
+    public List<EnemyPhase> triggerPhase;
+    public RouletteItem[] roulettePattern;
+    
+    public static int enemySpecialRouletteNum = 2;
+    public SpecialRoulette_Data[] enemySpecialRoulettes = new SpecialRoulette_Data[enemySpecialRouletteNum];
+    public static int enemySpecialActionNum = 4;
+    public EnemySpecialAction_Data[] enemySpecialActions = new EnemySpecialAction_Data[enemySpecialActionNum];
+
+    public static int maxSubEnemyNum = 4;
+    public List<string> subEnemies;
+    public List<string> subEnemies_Spawn;
+
+    public Enemy_Data(Enemy enemy)
+    {
+        name = enemy.name;
+        health = enemy.health;
+        triggerNum = enemy.triggerNum;
+        phase = new List<EnemyPhase>();
+        for(int i = 0; i < enemy.phase.Count; i++)
+        {
+            phase.Add(new EnemyPhase(enemy.phase[i]));
+        }
+        triggerPhase = new List<EnemyPhase>();
+        for(int i = 0; i < enemy.triggerPhase.Count; i++)
+        {
+            triggerPhase.Add(new EnemyPhase(enemy.triggerPhase[i]));
+        }
+        roulettePattern = new RouletteItem[RouletteManager.rouletteNum];
+        for(int i = 0; i < enemy.roulettePattern.Length; i++)
+        {
+            roulettePattern[i] = new RouletteItem(enemy.roulettePattern[i]);
+        }
+        for(int i = 0; i < enemy.enemySpecialRoulettes.Length; i++)
+        {
+            enemySpecialRoulettes[i] = new SpecialRoulette_Data(enemy.enemySpecialRoulettes[i]);
+        }
+        for(int i = 0; i < enemy.enemySpecialActions.Length; i++)
+        {
+            enemySpecialActions[i] = new EnemySpecialAction_Data(enemy.enemySpecialActions[i]);
+        }
+        subEnemies = new List<string>(enemy.subEnemies);
+        subEnemies_Spawn = new List<string>(enemy.subEnemies_Spawn);
     }
 }
 
@@ -166,7 +264,6 @@ public class SubEnemy
 {
     public string name;
     public int health;
-    public int actionNum;
     public int roulettePos;
     public List<EnemyPhase> phase;
     
@@ -180,7 +277,6 @@ public class SubEnemy
     {
         name = subEnemy.name;
         health = subEnemy.health;
-        actionNum = subEnemy.actionNum;
         roulettePos = subEnemy.roulettePos;
         phase = new List<EnemyPhase>();
         for(int i = 0; i < subEnemy.phase.Count; i++)
@@ -197,6 +293,65 @@ public class SubEnemy
             enemySpecialActions[i] = new EnemySpecialAction(subEnemy.enemySpecialActions[i]);
         }
     }
+
+    public SubEnemy(SubEnemy_Data subEnemyData)
+    {
+        name = subEnemyData.name;
+        health = subEnemyData.health;
+        roulettePos = subEnemyData.roulettePos;
+        phase = new List<EnemyPhase>();
+        for(int i = 0; i < subEnemyData.phase.Count; i++)
+        {
+            phase.Add(new EnemyPhase(subEnemyData.phase[i]));
+        }
+        enemySpecialRoulettes = new SpecialRoulette[enemySpecialRouletteNum];
+        for(int i = 0; i < subEnemyData.enemySpecialRoulettes.Length; i++)
+        {
+            enemySpecialRoulettes[i] = new SpecialRoulette(subEnemyData.enemySpecialRoulettes[i]);
+        }
+        enemySpecialActions = new EnemySpecialAction[enemySpecialActionNum];
+        for(int i = 0; i < subEnemyData.enemySpecialActions.Length; i++)
+        {
+            enemySpecialActions[i] = new EnemySpecialAction(subEnemyData.enemySpecialActions[i]);
+        }
+    }
+}
+
+[System.Serializable]
+public class SubEnemy_Data
+{
+    public string name;
+    public int health;
+    public int roulettePos;
+    public List<EnemyPhase> phase;
+    
+    public static int enemySpecialRouletteNum = 2;
+    public SpecialRoulette_Data[] enemySpecialRoulettes = new SpecialRoulette_Data[enemySpecialRouletteNum];
+    public static int enemySpecialActionNum = 4;
+    public EnemySpecialAction_Data[] enemySpecialActions = new EnemySpecialAction_Data[enemySpecialActionNum];
+    
+
+    public SubEnemy_Data(SubEnemy subEnemy)
+    {
+        name = subEnemy.name;
+        health = subEnemy.health;
+        roulettePos = subEnemy.roulettePos;
+        phase = new List<EnemyPhase>();
+        for(int i = 0; i < subEnemy.phase.Count; i++)
+        {
+            phase.Add(new EnemyPhase(subEnemy.phase[i]));
+        }
+        enemySpecialRoulettes = new SpecialRoulette_Data[enemySpecialRouletteNum];
+        for(int i = 0; i < subEnemy.enemySpecialRoulettes.Length; i++)
+        {
+            enemySpecialRoulettes[i] = new SpecialRoulette_Data(subEnemy.enemySpecialRoulettes[i]);
+        }
+        enemySpecialActions = new EnemySpecialAction_Data[enemySpecialActionNum];
+        for(int i = 0; i < subEnemy.enemySpecialActions.Length; i++)
+        {
+            enemySpecialActions[i] = new EnemySpecialAction_Data(subEnemy.enemySpecialActions[i]);
+        }
+    }
 }
 
 [CreateAssetMenu(fileName = "EnemySO", menuName = "Scriptable Objects/EnemySO")]
@@ -204,4 +359,11 @@ public class EnemySO : ScriptableObject
 {
     public List<Enemy> enemies;
     public List<SubEnemy> subEnemies;
+}
+
+[CreateAssetMenu(fileName = "EnemyDataSO", menuName = "Scriptable Objects/EnemyDataSO")]
+public class EnemyDataSO : ScriptableObject
+{
+    public List<Enemy_Data> enemies;
+    public List<SubEnemy_Data> subEnemies;
 }

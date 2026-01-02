@@ -64,11 +64,23 @@ public class ShowBuff
     public int affectEnemyIdx;
     public EBuffEffectType effectType;
     public int val;
-    public List<float> defaultVal = new List<float>{1f};
+    public List<float> defaultVal = new List<float>();
     [HideInInspector] public bool isSetOnEnemyTurn;
     [HideInInspector] public List<List<Buff>> targets;
     [HideInInspector] public List<Buff> affectBuffs;
     Action removeBuff;
+
+    public ShowBuff() { }
+
+    public ShowBuff(ShowBuff_Data showBuffData)
+    {
+        name = showBuffData.name;
+        text = showBuffData.text;
+        icon = Utils.LoadSpriteByName("BuffIcons", showBuffData.icon);
+        type = showBuffData.type;
+        effectType = showBuffData.effectType;
+        defaultVal = new List<float>(showBuffData.defaultVal);
+    }
 
     void AddAffectBuff(List<Buff> target, int add, float mul, int time)
     {
@@ -94,8 +106,7 @@ public class ShowBuff
         affectType = aType;
         this.affectEnemyIdx = affectEnemyIdx;
         val = newVal;
-        defaultVal.Clear();
-        foreach(float v in origin.defaultVal) defaultVal.Add(v);
+        defaultVal = new List<float>(origin.defaultVal);
         if(baseVal == null) baseVal = defaultVal;
         this.isSetOnEnemyTurn = isSetOnEnemyTurn;
         if(isSetOnEnemyTurn && type == EBuffType.Duration) newVal++;
@@ -331,7 +342,7 @@ public class ShowBuff
                     Action<bool, int> reduceCount = null;
                     reduceCount = (b, spin) =>
                     {
-                        TurnManager.Inst.EnemyTakeDmg(3, EDamageSource.Buff);
+                        TurnManager.Inst.EnemyTakeDmg(Mathf.RoundToInt(baseVal[0]), EDamageSource.Buff);
                         BuffManager.Inst.AddShowBuff("불쾌함", affectType, -1, isSetOnEnemyTurn, baseVal, affectEnemyIdx);
                         if (this.val == 0)
                         {
@@ -351,7 +362,7 @@ public class ShowBuff
                     Action<bool, int> reduceCount = null;
                     reduceCount = (b, spin) =>
                     {
-                        TurnManager.Inst.TakeDmg(3, EDamageSource.Buff);
+                        TurnManager.Inst.TakeDmg(Mathf.RoundToInt(baseVal[0]), EDamageSource.Buff);
                         BuffManager.Inst.AddShowBuff("불쾌함", affectType, -1, isSetOnEnemyTurn, baseVal, affectEnemyIdx);
                         if (this.val == 0)
                         {
@@ -418,7 +429,7 @@ public class ShowBuff
                     {
                         if(card.item.type == CardType.Turn)
                         {
-                            TurnManager.Inst.IncreaseCost(1);
+                            TurnManager.Inst.IncreaseCost(Mathf.RoundToInt(baseVal[0]));
                         }
                     };
                     TurnManager.OnUseCard += earnCost;
@@ -435,10 +446,10 @@ public class ShowBuff
                     Action<bool, int> reduceCount = null;
                     reduceCount = (isClockwise, spinAmount) =>
                     {
-                        if(spinAmount >= 3)
+                        if(spinAmount >= Mathf.RoundToInt(baseVal[0]))
                         {
                             BuffManager.Inst.AddShowBuff("빙그르!", affectType, -1, isSetOnEnemyTurn, baseVal, affectEnemyIdx);
-                            BuffManager.Inst.AddShowBuff("강화", EBuffAffectType.Enemy, 1, isSetOnEnemyTurn, null, affectEnemyIdx);
+                            BuffManager.Inst.AddShowBuff("강화", EBuffAffectType.Enemy, Mathf.RoundToInt(baseVal[1]), isSetOnEnemyTurn, null, affectEnemyIdx);
                             if (this.val == 0)
                             {
                                 BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Remove(this);

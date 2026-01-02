@@ -49,8 +49,6 @@ public class EnemyManager : MonoBehaviour
     [Header("Data")]
     [Tooltip("액션별 최대 실행값\n(예: 2일 경우 회전 액션은 최대 2칸 회전)")] public int maxActionVal;
 
-    [Tooltip("액션 개수")] public int actionNum;
-
     [SerializeField] GameObject actionBox;
     [SerializeField] GameObject enemyImg;
     [SerializeField] GameObject[] subEnemyActionBox;
@@ -103,7 +101,6 @@ public class EnemyManager : MonoBehaviour
         if(enemy == null) return;
         TurnManager.Inst.enemyMaxHealth[0] = enemy.health;
         TurnManager.Inst.enemyCurHealth[0] = enemy.health;
-        actionNum = enemy.actionNum;
         /*switch (enemy.passive)
         {
             case "Humanist":
@@ -126,10 +123,10 @@ public class EnemyManager : MonoBehaviour
                 BuffManager.Inst.AddEnemyBuff(BuffManager.Inst.enemyDrainBuff, 1, 1, -1);
                 break;
         }*/
-        foreach(var relic in enemy.relics)
-        {
-            RelicManager.Inst.ActivateRelic(relic);
-        }
+        // foreach(var relic in enemy.relics)
+        // {
+        //     RelicManager.Inst.ActivateRelic(relic);
+        // }
         TurnManager.Inst.enemyTriggerMaxCnt = enemy.triggerNum;
         TurnManager.Inst.enemyTriggerCnt = 0;
         phaseNum = 0;

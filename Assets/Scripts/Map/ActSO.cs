@@ -35,6 +35,36 @@ public class MapNode
         childNodes = mapNode.childNodes;
     }
 
+    public MapNode(Location_Data locData)
+    {
+        nodeImg = Utils.LoadSpriteByName("LocationIcons", locData.sprite);
+        title = locData.nameKO;
+        text = locData.descriptionKO;
+        encounterNum = locData.encounterNum;
+        ID = "";
+        locationID = locData.id;
+        difficulty = locData.difficulty;
+        level = 0;
+        pos = 0;
+        childNodes = new List<string>();
+    }
+
+    public MapNode(MapNode_Data mapNodeData, List<Location_Data> locationDataList)
+    {
+        Location_Data locData = locationDataList.Find(loc => loc.id == mapNodeData.locationID);
+        if(locData == null) return;
+        nodeImg = Utils.LoadSpriteByName("LocationIcons", locData.sprite);
+        title = locData.nameKO;
+        text = locData.descriptionKO;
+        encounterNum = locData.encounterNum;
+        ID = mapNodeData.ID;
+        locationID = mapNodeData.locationID;
+        difficulty = locData.difficulty;
+        level = mapNodeData.level;
+        pos = mapNodeData.pos;
+        childNodes = new List<string>(mapNodeData.childNodes);
+    }
+
     public void SetPos(int level, int pos)
     {
         this.level = level;
@@ -44,11 +74,57 @@ public class MapNode
 }
 
 [System.Serializable]
+public class MapNode_Data
+{
+    public string locationID;
+    public string ID;
+    public int level;
+    public int pos;
+    public Vector3 screenPos;
+    public List<string> childNodes;
+
+    public MapNode_Data() { }
+
+    public MapNode_Data(MapNode mapNode, Vector3 screenPos)
+    {
+        locationID = mapNode.locationID;
+        ID = mapNode.ID;
+        level = mapNode.level;
+        pos = mapNode.pos;
+        this.screenPos = screenPos;
+        childNodes = new List<string>(mapNode.childNodes);
+    }
+}
+
+[System.Serializable]
 public class Act
 {
+    public int actNum;
     public List<MapNode> essentialNodes;
     public List<int> essentialIntervalLayerCount;
     public List<MapNode> specialNodes;
+
+    public Act(Act_Data actData, List<Location_Data> locationData)
+    {
+        actNum = actData.actNum;
+        essentialNodes = new List<MapNode>();
+        essentialIntervalLayerCount = new List<int>(actData.essentialIntervalLayerCount);
+        specialNodes = new List<MapNode>();
+        foreach(var loc in locationData)
+        {
+            if(loc.isNormalLocation) continue;
+            if(actData.essentialLocations.Contains(loc.id))
+            {
+                MapNode essentialNode = new MapNode(loc);
+                essentialNodes.Add(essentialNode);
+            }
+            else if(actData.specialLocations.Contains(loc.id))
+            {
+                MapNode specialNode = new MapNode(loc);
+                specialNodes.Add(specialNode);
+            }
+        }
+    }
 }
 
 [System.Serializable]
@@ -330,7 +406,7 @@ public class ActSO : ScriptableObject
     public List<MapNode> normalNodes;
     public List<Act> acts;
 
-    public int curActIndex;
+    public int curActNum;
     public Map mapSave;
     public List<Vector3> mapNodeScreenPosSave;
     public int curNodeIndex;

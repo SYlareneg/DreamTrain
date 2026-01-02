@@ -1,0 +1,39 @@
+using UnityEngine;
+using System.Collections.Generic;
+
+[CreateAssetMenu(fileName = "PlayerDataSO", menuName = "Scriptable Objects/PlayerDataSO")]
+public class PlayerDataSO : ScriptableObject
+{
+    [Header("전투 외적 데이터")]
+    public int maxHealth;
+    public int curHealth;
+    public int dreamDust;
+    public int leftPassengers;
+    [Header("카드 데이터")]
+    public string personaPiece;
+    public bool isPersonaEnhanced;
+    public List<Item_Num> personaCards;
+    public string shadowPiece;
+    public bool isShadowEnhanced;
+    public List<Item_Num> shadowCards;
+    public List<Item_Num> normalCards;
+    [Header("오브제 데이터")]
+    public List<int> relics;
+    public List<bool> relicEnhancements;
+    [Header("소모품 데이터")]
+    public List<string> useableItems;
+    [Header("스탯 데이터")]
+    public int courage;
+    public int wisdom;
+    public int luck;
+    [Header("맵 데이터")]
+    public int currentActNum;
+    public List<MapNode_Data> mapNodes;
+    public int totalLevel;
+    public int curNodeIndex;
+    public string curNodeLocationID;
+    public EncounterType lastEncounterType;
+
+    [Header("전투 데이터")]
+    public string enemyName;
+}

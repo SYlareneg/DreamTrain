@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23816a58de1111f489cf29817ea609dc, type: 3}
+  m_Name: PlayerDataSO
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDataSO
+  maxHealth: 60
+  curHealth: 28
+  dreamDust: 1000
+  leftPassengers: 2
+  personaPiece: "\uACE0\uC591\uC774\uC758 \uAFC8"
+  isPersonaEnhanced: 0
+  personaCards:
+  - cardName: "\uBC1C\uD1B1 \uC138\uC6B0\uAE30"
+    num: 1
+  - cardName: "\uC54C\uB730\uD55C \uC0AC\uB0E5\uAFBC"
+    num: 1
+  - cardName: "\uB9C8\uAD6C \uD560\uD034\uAE30"
+    num: 1
+  - cardName: "\uBC1C\uD1B1 \uC190\uC9C8"
+    num: 1
+  - cardName: "\uC18C\uC2EC\uD55C \uD560\uD034\uAE30"
+    num: 1
+  - cardName: "\uB0A0\uCE74\uB85C\uC6B4 \uBC1C\uD1B1"
+    num: 1
+  - cardName: "\uACE0\uC591\uC774\uC758 \uC2DC\uAC04"
+    num: 1
+  - cardName: "\uAE30\uBBFC\uD568"
+    num: 1
+  - cardName: "\uC2E4\uBB49\uCE58"
+    num: 1
+  - cardName: "\uACE0\uC591\uC774\uAC78\uC74C"
+    num: 1
+  - cardName: "\uC2E4 \uD480\uAE30"
+    num: 1
+  - cardName: "\uB180\uC774 \uC2DC\uAC04"
+    num: 1
+  - cardName: "\uC228\uAE30"
+    num: 1
+  - cardName: "\uADF8\uB8E8\uBC0D"
+    num: 1
+  - cardName: "\uAC04\uC2DD \uC2DC\uAC04"
+    num: 1
+  shadowPiece: "\uB208\uC0AC\uB78C\uC758 \uAFC8"
+  isShadowEnhanced: 0
+  shadowCards:
+  - cardName: "\uAF41\uAF41 \uC5BC\uB9AC\uAE30"
+    num: 1
+  - cardName: "\uCC28\uAC00\uC6B4 \uC545\uC218"
+    num: 1
+  - cardName: "\uB208\uC2F8\uC6C0"
+    num: 1
+  normalCards:
+  - cardName: "\uD68C\uC804 \uCE74\uB4DC 1"
+    num: 2
+  - cardName: "\uD68C\uC804 \uCE74\uB4DC 2"
+    num: 2
+  - cardName: "\uD68C\uC804 \uCE74\uB4DC 3"
+    num: 2
+  relics: 0000000001000000020000000300000004000000050000000600000007000000
+  useableItems:
+  - "\uD654\uC0B4"
+  - "\uB098\uBB34 \uBC29\uD328"
+  - "\uB808\uD14C\uC758 \uB208\uBB3C"
+  - "\uC624\uC5FC\uB41C \uC8FC\uC0AC\uBC14\uB298"
+  courage: 1
+  wisdom: 1
+  luck: 1
+  currentAct: 0
+  mapNodes: []
+  totalLevel: 0
+  curNodeIndex: 0
+  curNodeLocationID: 
+  lastEncounterType: 0
+  enemyName: 

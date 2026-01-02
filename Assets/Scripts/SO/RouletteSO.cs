@@ -82,6 +82,50 @@ public class SpecialRoulette
         this.text = esr.text;
         this.baseVal = esr.baseVal;
     }
+
+    public SpecialRoulette(SpecialRoulette_Data esr)
+    {
+        if(esr == null) return;
+        this.sprite = Utils.LoadSpriteByName("SpecialRoulette", esr.sprite);
+        this.title = esr.title;
+        this.text = esr.text;
+        this.baseVal = esr.baseVal;
+    }
+}
+
+[System.Serializable]
+public class SpecialRoulette_Data
+{
+    public string sprite;
+    public string title;
+    public string text;
+    public int baseVal;
+
+    public SpecialRoulette_Data(string sprite, string title, string text, int baseVal)
+    {
+        this.sprite = sprite;
+        this.title = title;
+        this.text = text;
+        this.baseVal = baseVal;
+    }
+
+    public SpecialRoulette_Data(SpecialRoulette_Data esr)
+    {
+        if(esr == null) return;
+        this.sprite = esr.sprite;
+        this.title = esr.title;
+        this.text = esr.text;
+        this.baseVal = esr.baseVal;
+    }
+
+    public SpecialRoulette_Data(SpecialRoulette esr)
+    {
+        if(esr == null) return;
+        this.sprite = esr.sprite.name;
+        this.title = esr.title;
+        this.text = esr.text;
+        this.baseVal = esr.baseVal;
+    }
 }
 
 [System.Serializable]

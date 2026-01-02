@@ -376,7 +376,7 @@ public class CardManager : MonoBehaviour
             // 단어별로 키워드 목록에 있는지 확인
             if(wordInfos[i].characterCount == 0) continue;
             string word = wordInfos[i].GetWord();
-            Keyword keyword = Array.Find(keywordSO.keywords, x => x.word == word);
+            Keyword keyword = keywordSO.keywords.Find(x => x.word == word);
             if(keyword != null)
             {
                 var keywordTooltipObj = Instantiate(cardTooltipPrefab, card.tooltipPos);

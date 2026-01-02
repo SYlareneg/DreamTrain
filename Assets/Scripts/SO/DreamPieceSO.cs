@@ -15,10 +15,8 @@ public class DreamPiece_Base
     {
         if(dp == null) return;
         name = dp.name;
-        persona = new Passive_Enhanceable();
-        persona.Setup(dp.persona);
-        shadow = new Passive_Enhanceable();
-        shadow.Setup(dp.shadow);
+        persona = new Passive_Enhanceable(dp.persona);
+        shadow = new Passive_Enhanceable(dp.shadow);
         triggerSprite = dp.triggerSprite;
         playerSpecialRoulettes = new SpecialRoulette[playerSpecialRouletteNum];
         for(int i = 0; i < dp.playerSpecialRoulettes.Length; i++)
@@ -29,18 +27,67 @@ public class DreamPiece_Base
 }
 
 [System.Serializable]
-public class DreamPiece_Data : DreamPiece_Base
+public class DreamPiece_Data
 {
+    public string name;
+    public Passive_Data persona;
+    public Passive_Data shadow;
+    public string triggerSprite;
+    public static int playerSpecialRouletteNum = 3;
+    public SpecialRoulette_Data[] playerSpecialRoulettes = new SpecialRoulette_Data[playerSpecialRouletteNum];
     public List<string> cards;
-    public List<Item_Data> baseCards_persona;
-    public List<Item_Data> baseCards_shadow;
+    public List<Item_Num> baseCards_persona;
+    public List<Item_Num> baseCards_shadow;
 
-    public void Setup(DreamPiece_Data dp)
+    public DreamPiece_Data()
     {
-        base.Setup(dp);
+        cards = new List<string>();
+        baseCards_persona = new List<Item_Num>();
+        baseCards_shadow = new List<Item_Num>();
+    }
+
+    public DreamPiece_Data(DreamPiece_Data dp)
+    {
+        name = dp.name;
+        persona = dp.persona;
+        shadow = dp.shadow;
+        triggerSprite = dp.triggerSprite;
+        playerSpecialRoulettes = new SpecialRoulette_Data[playerSpecialRouletteNum];
+        for(int i = 0; i < dp.playerSpecialRoulettes.Length; i++)
+        {
+            playerSpecialRoulettes[i] = new SpecialRoulette_Data(dp.playerSpecialRoulettes[i]);
+        }
         cards = new List<string>(dp.cards);
-        baseCards_persona = new List<Item_Data>(dp.baseCards_persona);
-        baseCards_shadow = new List<Item_Data>(dp.baseCards_shadow);
+        baseCards_persona = new List<Item_Num>(dp.baseCards_persona);
+        baseCards_shadow = new List<Item_Num>(dp.baseCards_shadow);
+    }
+
+    public DreamPiece_Data(DreamPiece_Reference dp)
+    {
+        name = dp.name;
+        persona = new Passive_Data(dp.persona);
+        shadow = new Passive_Data(dp.shadow);
+        triggerSprite = dp.triggerSprite != null ? dp.triggerSprite.name : "";
+        playerSpecialRoulettes = new SpecialRoulette_Data[playerSpecialRouletteNum];
+        for(int i = 0; i < dp.playerSpecialRoulettes.Length; i++)
+        {
+            playerSpecialRoulettes[i] = new SpecialRoulette_Data(dp.playerSpecialRoulettes[i]);
+        }
+        cards = new List<string>();
+        foreach(Item_Enhanceable item in dp.cards)
+        {
+            cards.Add(item.name);
+        }
+        baseCards_persona = new List<Item_Num>();
+        foreach(Item_Enhanceable item in dp.baseCards_persona)
+        {
+            baseCards_persona.Add(new Item_Num(item.name, item.num));
+        }
+        baseCards_shadow = new List<Item_Num>();
+        foreach(Item_Enhanceable item in dp.baseCards_shadow)
+        {
+            baseCards_shadow.Add(new Item_Num(item.name, item.num));
+        }
     }
 }
 
@@ -53,13 +100,23 @@ public class DreamPiece_Reference : DreamPiece_Base
 
     public void Setup(DreamPiece_Data dp, ItemDataSO cardList)
     {
-        base.Setup(dp);
+        if(dp == null) return;
+        name = dp.name;
+        persona = new Passive_Enhanceable(dp.persona);
+        shadow = new Passive_Enhanceable(dp.shadow);
+        triggerSprite = Utils.LoadSpriteByName("TriggerRoulette", dp.triggerSprite);
+        playerSpecialRoulettes = new SpecialRoulette[playerSpecialRouletteNum];
+        for(int i = 0; i < dp.playerSpecialRoulettes.Length; i++)
+        {
+            playerSpecialRoulettes[i] = new SpecialRoulette(dp.playerSpecialRoulettes[i]);
+        }
         cards = new List<Item_Enhanceable>();
         foreach(string cardName in dp.cards)
         {
-            Item_Enhanceable item = new Item_Enhanceable(cardList.items.Find(x => x.name == cardName));
-            if(item != null)
+            Item_Data item_Data = cardList.items.Find(x => x.name == cardName);
+            if(item_Data != null)
             {
+                Item_Enhanceable item = new Item_Enhanceable(item_Data);
                 item.num = 1;
                 cards.Add(item);
             }
@@ -67,22 +124,24 @@ public class DreamPiece_Reference : DreamPiece_Base
         }
         baseCards_persona = new List<Item_Enhanceable>();
         baseCards_shadow = new List<Item_Enhanceable>();
-        foreach(Item_Data cardData in dp.baseCards_persona)
+        foreach(Item_Num cardData in dp.baseCards_persona)
         {
-            Item_Enhanceable item = new Item_Enhanceable(this.cards.Find(x => x.name == cardData.cardName));
+            Item_Enhanceable item = this.cards.Find(x => x.name == cardData.cardName);
             if(item != null)
             {
-                item.num = cardData.num;
-                baseCards_persona.Add(item);
+                Item_Enhanceable newItem = new Item_Enhanceable(item);
+                newItem.num = cardData.num;
+                baseCards_persona.Add(newItem);
             }
         }
-        foreach(Item_Data cardData in dp.baseCards_shadow)
+        foreach(Item_Num cardData in dp.baseCards_shadow)
         {
-            Item_Enhanceable item = new Item_Enhanceable(this.cards.Find(x => x.name == cardData.cardName));
+            Item_Enhanceable item = this.cards.Find(x => x.name == cardData.cardName);
             if(item != null)
             {
-                item.num = cardData.num;
-                baseCards_shadow.Add(item);
+                Item_Enhanceable newItem = new Item_Enhanceable(item);
+                newItem.num = cardData.num;
+                baseCards_shadow.Add(newItem);
             }
         }
     }
@@ -92,6 +151,41 @@ public class DreamPiece_Reference : DreamPiece_Base
 public class DreamPiece_Player : DreamPiece_Base
 {
     public List<Item> cards;
+
+    public DreamPiece_Player() { }
+
+    public DreamPiece_Player(DreamPiece_Player dp)
+    {
+        Setup(dp);
+    }
+
+    public DreamPiece_Player(string dpName, bool personaEnhanced, bool shadowEnhanced, List<Item_Num> cardNameNums, DreamPieceDataSO dpDataSO, ItemDataSO itemDataSO)
+    {
+        DreamPiece_Data dreamPiece_Data = dpDataSO.dreamPieces.Find(x => x.name == dpName);
+        if (dreamPiece_Data == null) return;
+        this.name = dreamPiece_Data.name;
+        this.persona = new Passive_Enhanceable(dreamPiece_Data.persona);
+        this.persona.isEnhanced = personaEnhanced;
+        this.shadow = new Passive_Enhanceable(dreamPiece_Data.shadow);
+        this.shadow.isEnhanced = shadowEnhanced;
+        this.triggerSprite = Utils.LoadSpriteByName("TriggerRoulette", dreamPiece_Data.triggerSprite);
+        this.playerSpecialRoulettes = new SpecialRoulette[playerSpecialRouletteNum];
+        for (int i = 0; i < dreamPiece_Data.playerSpecialRoulettes.Length; i++)
+        {
+            this.playerSpecialRoulettes[i] = new SpecialRoulette(dreamPiece_Data.playerSpecialRoulettes[i]);
+        }
+        this.cards = new List<Item>();
+        foreach (Item_Num card in cardNameNums)
+        {
+            Item_Data item_Data = itemDataSO.items.Find(x => x.name == card.cardName);
+            if (item_Data != null)
+            {
+                Item item = new Item(item_Data);
+                item.num = card.num;
+                this.cards.Add(item);
+            }
+        }
+    }
 
     public void Setup(DreamPiece_Player dp)
     {
@@ -109,5 +203,5 @@ public class DreamPieceSO : ScriptableObject
 [CreateAssetMenu(fileName = "DreamPieceDataSO", menuName = "Scriptable Objects/DreamPieceDataSO")]
 public class DreamPieceDataSO : ScriptableObject
 {
-    public List<DreamPiece_Data> dreamPieces = new List<DreamPiece_Data>();
+    public List<DreamPiece_Data> dreamPieces;
 }
