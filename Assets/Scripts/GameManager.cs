@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
     [SerializeField][Tooltip("플레이어 정보")] CharacterSO characterSO;
     [SerializeField][Tooltip("카드풀 정보(공용)")] ItemSO normalItemListSO;
     [SerializeField][Tooltip("카드풀 정보(페르소나/그림자)")] DreamPieceSO dreamPieceListSO;
-    [SerializeField][Tooltip("카드 등장 확률(가중치)\n{0: 공용, 1+: 꿈조각 전용}")] float[] rewardCardWeights = new float[Enum.GetNames(typeof(CardRarity)).Length + 1];
+    [Tooltip("카드 등장 확률(가중치)\n{0: 공용, 1+: 꿈조각 전용}")] public float[] rewardCardWeights = new float[Enum.GetNames(typeof(CardRarity)).Length + 1];
     [SerializeField][Tooltip("카드 강화 확률")] float enhanceProbability;
     [Header("기타")]
     [SerializeField][Tooltip("스테이지 적 정보")] StageSO stageSO;
@@ -248,7 +248,7 @@ public class GameManager : MonoBehaviour
     {
         gameOverSignal = true;
         Utils.AllignActions(ref TurnManager.OnGameEnd, typeof(ShowBuff), typeof(RelicManager));
-        TurnManager.OnGameEnd?.Invoke();
+        TurnManager.OnGameEnd?.Invoke(isMyWin);
         TurnManager.Inst.isLoading = true;
         endTurnBtn.SetActive(false);
         yield return new WaitForSeconds(0.5f);
@@ -401,6 +401,7 @@ public class GameManager : MonoBehaviour
             stageEnemy.isClear = true;
             characterSO.dreamDust += stageEnemy.dreamDustReward;
         }
+        DataManager.Inst.SavePlayerData();
         SceneChangeManager.Inst.SceneFadeOut("EncounterScene");
     }
 

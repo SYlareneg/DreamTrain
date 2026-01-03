@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public enum EDamageSource
 {
-    Enemy, Roulette, UseableItem, Buff, Relic, Card, Passive
+    Enemy, Roulette, UseableItem, Buff, Relic, Card, Passive, Stats
 };
 public class TurnManager : MonoBehaviour
 {
@@ -63,7 +63,7 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action OnEnemyTurnStart;
     [HideInInspector] public static Action OnEnemyTurnEnd;
     [HideInInspector] public static Action OnGameStart;
-    [HideInInspector] public static Action OnGameEnd;
+    [HideInInspector] public static Action<bool> OnGameEnd;
     [HideInInspector] public static Action<Card> OnUseCard;
     [HideInInspector] public static Action OnAddCard;
     [HideInInspector] public static Action OnDiscardCard;
