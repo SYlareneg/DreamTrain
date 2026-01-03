@@ -6,9 +6,16 @@ public class DataManager : MonoBehaviour
     public static DataManager Inst;
     void Awake()
     {
+        if (Inst != null && Inst != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
         Inst = this;
+        DontDestroyOnLoad(this.gameObject);
+
         LoadDeveloperData();
-        // LoadPlayerData();
+        LoadPlayerData();
         // SavePlayerData();
     }
 
