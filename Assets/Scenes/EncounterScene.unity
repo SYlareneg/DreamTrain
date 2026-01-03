@@ -1498,18 +1498,14 @@ MonoBehaviour:
     relicSprite: {fileID: 0}
     relicName: 
     relicTxt: 
-    relicTimings: 
-    relicConditions: []
-    relicEffects: []
+    relicVal: 
     isEnhanced: 0
   relicItem2:
     relicOwner: 0
     relicSprite: {fileID: 0}
     relicName: 
     relicTxt: 
-    relicTimings: 
-    relicConditions: []
-    relicEffects: []
+    relicVal: 
     isEnhanced: 0
   tooltipOffset: {x: 0, y: 0}
 --- !u!222 &227014698
@@ -3818,18 +3814,14 @@ MonoBehaviour:
     relicSprite: {fileID: 0}
     relicName: 
     relicTxt: 
-    relicTimings: 
-    relicConditions: []
-    relicEffects: []
+    relicVal: 
     isEnhanced: 0
   relicItem2:
     relicOwner: 0
     relicSprite: {fileID: 0}
     relicName: 
     relicTxt: 
-    relicTimings: 
-    relicConditions: []
-    relicEffects: []
+    relicVal: 
     isEnhanced: 0
   tooltipOffset: {x: 0, y: 0}
 --- !u!222 &628904314
@@ -5530,6 +5522,7 @@ GameObject:
   - component: {fileID: 988924727}
   - component: {fileID: 988924726}
   - component: {fileID: 988924728}
+  - component: {fileID: 988924729}
   m_Layer: 0
   m_Name: EncounterManager
   m_TagString: Untagged
@@ -5605,6 +5598,26 @@ MonoBehaviour:
   sellCardCosts: 
   sellCardWeights: []
   enhanceProbability: 0.3
+--- !u!114 &988924729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988924725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cf28ee14709b504ebd015e56f7fb583, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EncounterUIBinder
+  encounterPanel: {fileID: 520862443}
+  illustrationImage: {fileID: 1487452839}
+  titleText: {fileID: 1776550417}
+  descriptionText: {fileID: 2108446563}
+  choiceContainer: {fileID: 1678150799}
+  choiceButtonPrefab: {fileID: 2629090740747698780, guid: e27feb4d80209a247a0a71358e359d1d, type: 3}
+  merchantPanel: {fileID: 31375621}
+  cardRemovalPanel: {fileID: 2059001763}
 --- !u!1 &1004420944
 GameObject:
   m_ObjectHideFlags: 0

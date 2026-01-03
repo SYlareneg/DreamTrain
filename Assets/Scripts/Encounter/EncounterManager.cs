@@ -45,6 +45,9 @@ public class EncounterManager : MonoBehaviour
     private EncounterStep currentStep;
     private bool isSceneLoading = false;
     private Queue<string> encounterSequenceQueue = new Queue<string>();
+    
+    
+    private string currentLocID = "";
 
     void Awake()
     {
@@ -73,11 +76,73 @@ public class EncounterManager : MonoBehaviour
 
         InitializeEncounterSequence();
     }
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+        
+void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+{
+    if (scene.name == "EncounterScene")
+    {
+        GameObject canvas = GameObject.Find("Canvas"); 
+        if (canvas != null)
+        {
+            GameObject panelObj = GameObject.Find("EncounterPanel"); 
+            if(panelObj != null) encounterPanel = panelObj;
+
+            GameObject descObj = GameObject.Find("DiscribeText"); 
+            if(descObj != null) descriptionText = descObj.GetComponent<TextMeshProUGUI>();
+
+            GameObject titleObj = GameObject.Find("NameText"); 
+            if(titleObj != null) titleText = titleObj.GetComponent<TextMeshProUGUI>();
+            
+            GameObject illuObj = GameObject.Find("Image"); 
+            if(illuObj != null) illustrationImage = illuObj.GetComponent<Image>();
+
+            GameObject containerObj = GameObject.Find("ChoiceContainer");
+            if(containerObj != null) choiceContainer = containerObj.transform;
+            
+            GameObject merchant = GameObject.Find("Merchant"); 
+            if(panelObj != null) merchantPanel = merchant;
+            
+            GameObject roulette = GameObject.Find("RoulettePanel"); 
+            //if(panelObj != null) rouletteUI = roulette;
+            
+            GameObject delCard = GameObject.Find("SofaDeleteCardList");
+            if(panelObj != null) cardRemovalPanel = delCard;
+        }
+
+        isSceneLoading = false;
+        
+        if (actData != null)
+        {
+            if (masterDatabase == null || locationDatabase == null) return;
+            string newLocationID = actData.curNodeLocationID;
+            
+            if (currentLocID != newLocationID)
+            {
+                Debug.Log($"[EncounterManager] 시퀀스 초기화: {currentLocID} -> {newLocationID}");
+                InitializeEncounterSequence();
+            }
+            else
+            {
+                Debug.Log("[EncounterManager] 기존 지역 복귀.");
+                if (encounterPanel != null) encounterPanel.SetActive(true);
+                // 복귀했을 때 텍스트가 비어있을 수 있으니 현재 스텝 다시 그려주기
+                if(currentStep != null) PlayStep(currentStep.id); 
+            }
+        }
+    }
+}
     void InitializeEncounterSequence()
     {
-        string currentLocID = "";
-        
+        Debug.Log("init ");
         if (actData != null)
         {
             currentLocID = actData.curNodeLocationID;
@@ -303,11 +368,12 @@ public class EncounterManager : MonoBehaviour
     {
         if (isSceneLoading) return;
         if (!stepDictionary.ContainsKey(id)) return;
-
+        
         currentStep = stepDictionary[id];
 
         if (currentStep.type == EncounterStepType.DESC)
         {
+
             descriptionText.text = currentStep.textContent.Replace("\\n", "\n");
         }
 
@@ -362,6 +428,19 @@ public class EncounterManager : MonoBehaviour
     bool IsWaitState(string id) => string.IsNullOrEmpty(id) || id == "-" || id == "R";
     bool IsValidFunction(string func) => !string.IsNullOrEmpty(func) && func != "-" && func != "DEFAULT";
     bool CheckCondition(string condition) => true; 
+    
+    public void RegisterSceneUI(GameObject panel, Image illust, TextMeshProUGUI title, TextMeshProUGUI desc, Transform container, GameObject btnPrefab, GameObject merchant, GameObject cardRemove)
+    {
+        this.encounterPanel = panel;
+        this.illustrationImage = illust;
+        this.titleText = title;
+        this.descriptionText = desc;
+        this.choiceContainer = container;
+        this.choiceButtonPrefab = btnPrefab;
+        this.merchantPanel = merchant;
+        this.cardRemovalPanel = cardRemove;
+        if(this.encounterPanel != null) this.encounterPanel.SetActive(true);
+    }
 
     public void EndEncounter()
     {
