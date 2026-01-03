@@ -77,6 +77,7 @@ public class MapNode
 public class MapNode_Data
 {
     public string locationID;
+    public List<string> selectedEncounterPool;
     public string ID;
     public int level;
     public int pos;
@@ -88,6 +89,7 @@ public class MapNode_Data
     public MapNode_Data(MapNode mapNode, Vector3 screenPos)
     {
         locationID = mapNode.locationID;
+        selectedEncounterPool = new List<string>();
         ID = mapNode.ID;
         level = mapNode.level;
         pos = mapNode.pos;

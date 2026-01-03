@@ -34,10 +34,19 @@ public struct EnemyPattern
 public struct EnemyPatterns
 {
     public List<EnemyPattern> pattern;
+
+    public EnemyPatterns(EnemyPatterns ep)
+    {
+        pattern = new List<EnemyPattern>();
+        for(int i = 0; i < ep.pattern.Count; i++)
+        {
+            pattern.Add(new EnemyPattern(ep.pattern[i]));
+        }
+    }
 }
 
 [System.Serializable]
-public class EnemyPhase
+public class EnemyPhase_Base
 {
     public string name;
     public string text;
@@ -45,7 +54,7 @@ public class EnemyPhase
     public bool phaseClear;
     public bool phaseRepeat;
 
-    public EnemyPhase(string s, string t)
+    public EnemyPhase_Base(string s, string t)
     {
         name = s;
         text = t;
@@ -54,17 +63,47 @@ public class EnemyPhase
         phaseRepeat = false;
     }
 
-    public EnemyPhase(EnemyPhase ep)
+    public EnemyPhase_Base(EnemyPhase_Base ep)
     {
         name = ep.name;
         text = ep.text;
         patterns = new List<EnemyPatterns>();
         for(int i = 0; i < ep.patterns.Count; i++)
         {
-            patterns.Add(ep.patterns[i]);
+            patterns.Add(new EnemyPatterns(ep.patterns[i]));
         }
         phaseClear = ep.phaseClear;
         phaseRepeat = ep.phaseRepeat;
+    }
+}
+
+[System.Serializable]
+public class EnemyPhase : EnemyPhase_Base
+{
+    public Sprite sprite;
+    public EnemyPhase(EnemyPhase ep) : base(ep)
+    {
+        sprite = ep.sprite;
+    }
+
+    public EnemyPhase(EnemyPhase_Data epData) : base(epData)
+    {
+        sprite = Utils.LoadSpriteByName("Enemy", epData.sprite);
+    }
+}
+
+[System.Serializable]
+public class EnemyPhase_Data : EnemyPhase_Base
+{
+    public string sprite;
+    public EnemyPhase_Data(EnemyPhase_Data ep) : base(ep)
+    {
+        sprite = ep.sprite;
+    }
+
+    public EnemyPhase_Data(EnemyPhase ep) : base(ep)
+    {
+        sprite = ep.sprite != null ? ep.sprite.name : "";
     }
 }
 
@@ -213,8 +252,8 @@ public class Enemy_Data
     public string name;
     public int health;
     public int triggerNum;
-    public List<EnemyPhase> phase;
-    public List<EnemyPhase> triggerPhase;
+    public List<EnemyPhase_Data> phase;
+    public List<EnemyPhase_Data> triggerPhase;
     public RouletteItem[] roulettePattern;
     
     public static int enemySpecialRouletteNum = 2;
@@ -231,15 +270,15 @@ public class Enemy_Data
         name = enemy.name;
         health = enemy.health;
         triggerNum = enemy.triggerNum;
-        phase = new List<EnemyPhase>();
+        phase = new List<EnemyPhase_Data>();
         for(int i = 0; i < enemy.phase.Count; i++)
         {
-            phase.Add(new EnemyPhase(enemy.phase[i]));
+            phase.Add(new EnemyPhase_Data(enemy.phase[i]));
         }
-        triggerPhase = new List<EnemyPhase>();
+        triggerPhase = new List<EnemyPhase_Data>();
         for(int i = 0; i < enemy.triggerPhase.Count; i++)
         {
-            triggerPhase.Add(new EnemyPhase(enemy.triggerPhase[i]));
+            triggerPhase.Add(new EnemyPhase_Data(enemy.triggerPhase[i]));
         }
         roulettePattern = new RouletteItem[RouletteManager.rouletteNum];
         for(int i = 0; i < enemy.roulettePattern.Length; i++)
@@ -323,7 +362,7 @@ public class SubEnemy_Data
     public string name;
     public int health;
     public int roulettePos;
-    public List<EnemyPhase> phase;
+    public List<EnemyPhase_Data> phase;
     
     public static int enemySpecialRouletteNum = 2;
     public SpecialRoulette_Data[] enemySpecialRoulettes = new SpecialRoulette_Data[enemySpecialRouletteNum];
@@ -336,10 +375,10 @@ public class SubEnemy_Data
         name = subEnemy.name;
         health = subEnemy.health;
         roulettePos = subEnemy.roulettePos;
-        phase = new List<EnemyPhase>();
+        phase = new List<EnemyPhase_Data>();
         for(int i = 0; i < subEnemy.phase.Count; i++)
         {
-            phase.Add(new EnemyPhase(subEnemy.phase[i]));
+            phase.Add(new EnemyPhase_Data(subEnemy.phase[i]));
         }
         enemySpecialRoulettes = new SpecialRoulette_Data[enemySpecialRouletteNum];
         for(int i = 0; i < subEnemy.enemySpecialRoulettes.Length; i++)

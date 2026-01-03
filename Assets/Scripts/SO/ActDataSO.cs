@@ -28,4 +28,5 @@ public class ActDataSO : ScriptableObject
 {
     public List<Act_Data> actDataList;
     public List<Location_Data> locationDataList;
+    public List<EncounterMetaInfo> encounterDataList;
 }

@@ -51,7 +51,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": true
+                    "phaseRepeat": true,
+                    "sprite": "Enemy_Vampire"
                 },
                 {
                     "name": "각성:뱀파이어",
@@ -123,7 +124,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": true
+                    "phaseRepeat": true,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "triggerPhase": [
@@ -155,7 +157,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": false
+                    "phaseRepeat": false,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "roulettePattern": [
@@ -370,7 +373,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": true
+                    "phaseRepeat": true,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "triggerPhase": [
@@ -468,7 +472,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": true
+                    "phaseRepeat": true,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "roulettePattern": [
@@ -677,7 +682,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": true
+                    "phaseRepeat": true,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "triggerPhase": [
@@ -697,7 +703,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": false
+                    "phaseRepeat": false,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "roulettePattern": [
@@ -906,7 +913,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": true
+                    "phaseRepeat": true,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "triggerPhase": [
@@ -936,7 +944,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": false
+                    "phaseRepeat": false,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "roulettePattern": [
@@ -1145,7 +1154,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": true
+                    "phaseRepeat": true,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "triggerPhase": [
@@ -1165,7 +1175,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": false
+                    "phaseRepeat": false,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "roulettePattern": [
@@ -1342,7 +1353,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": false
+                    "phaseRepeat": false,
+                    "sprite": "Enemy_Vampire"
                 },
                 {
                     "name": "쇼타임",
@@ -1408,7 +1420,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": true
+                    "phaseRepeat": true,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "triggerPhase": [
@@ -1438,7 +1451,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": false
+                    "phaseRepeat": false,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "roulettePattern": [
@@ -1599,7 +1613,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": false
+                    "phaseRepeat": false,
+                    "sprite": "Enemy_Vampire"
                 },
                 {
                     "name": "인형의 저주",
@@ -1649,7 +1664,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": true
+                    "phaseRepeat": true,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "triggerPhase": [
@@ -1669,7 +1685,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": false
+                    "phaseRepeat": false,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "roulettePattern": [
@@ -1886,7 +1903,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": true
+                    "phaseRepeat": true,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "triggerPhase": [],
@@ -2071,7 +2089,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": true
+                    "phaseRepeat": true,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "triggerPhase": [
@@ -2097,7 +2116,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": false
+                    "phaseRepeat": false,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "roulettePattern": [
@@ -2294,7 +2314,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": true
+                    "phaseRepeat": true,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "triggerPhase": [
@@ -2314,7 +2335,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": false
+                    "phaseRepeat": false,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "roulettePattern": [
@@ -2511,7 +2533,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": true
+                    "phaseRepeat": true,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "triggerPhase": [
@@ -2541,7 +2564,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": false
+                    "phaseRepeat": false,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "roulettePattern": [
@@ -2738,7 +2762,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": true
+                    "phaseRepeat": true,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "triggerPhase": [
@@ -2758,7 +2783,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": false
+                    "phaseRepeat": false,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "roulettePattern": [
@@ -2945,7 +2971,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": true
+                    "phaseRepeat": true,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "triggerPhase": [
@@ -2965,7 +2992,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": false
+                    "phaseRepeat": false,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "roulettePattern": [
@@ -3128,7 +3156,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": true
+                    "phaseRepeat": true,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "enemySpecialRoulettes": [
@@ -3199,7 +3228,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": true
+                    "phaseRepeat": true,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "enemySpecialRoulettes": [
@@ -3270,7 +3300,8 @@
                         }
                     ],
                     "phaseClear": false,
-                    "phaseRepeat": true
+                    "phaseRepeat": true,
+                    "sprite": "Enemy_Vampire"
                 }
             ],
             "enemySpecialRoulettes": [

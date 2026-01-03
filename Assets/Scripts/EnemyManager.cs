@@ -6,7 +6,6 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 public class EnemyManager : MonoBehaviour
@@ -140,6 +139,7 @@ public class EnemyManager : MonoBehaviour
             p.phaseClear = false;
         }
         enemyName.text = enemy.name;
+        enemyImg.GetComponent<SpriteRenderer>().sprite = enemy.phase[0].sprite;
         enemyImg.GetComponent<Tooltip>().tooltipTitle = enemy.phase[0].name;
         enemyImg.GetComponent<Tooltip>().tooltipTxt = enemy.phase[0].text;
 
@@ -684,6 +684,7 @@ public class EnemyManager : MonoBehaviour
         {
             p.phaseClear = false;
         }
+        subEnemyImg[subEnemyIdx].GetComponent<SpriteRenderer>().sprite = subEnemy.phase[0].sprite;
         subEnemyImg[subEnemyIdx].GetComponent<Tooltip>().tooltipTitle = subEnemy.phase[0].name;
         subEnemyImg[subEnemyIdx].GetComponent<Tooltip>().tooltipTxt = subEnemy.phase[0].text;
         subEnemyActionList[subEnemyIdx] = new List<EnemyAction>();
@@ -749,6 +750,7 @@ public class EnemyManager : MonoBehaviour
             phaseNum++;
             patternNum = 0;
             currentPattern = enemy.phase[phaseNum].patterns[0].pattern;
+            enemyImg.GetComponent<SpriteRenderer>().sprite = enemy.phase[phaseNum].sprite;
             enemyImg.GetComponent<Tooltip>().tooltipTitle = enemy.phase[phaseNum].name;
             enemyImg.GetComponent<Tooltip>().tooltipTxt = enemy.phase[phaseNum].text;
         }
@@ -757,6 +759,7 @@ public class EnemyManager : MonoBehaviour
             triggerPhaseNum++;
             triggerPatternNum = 0;
             currentPattern = enemy.triggerPhase[triggerPhaseNum].patterns[0].pattern;
+            enemyImg.GetComponent<SpriteRenderer>().sprite = enemy.triggerPhase[triggerPhaseNum].sprite;
             enemyImg.GetComponent<Tooltip>().tooltipTitle = enemy.triggerPhase[triggerPhaseNum].name;
             enemyImg.GetComponent<Tooltip>().tooltipTxt = enemy.triggerPhase[triggerPhaseNum].text;
         }
@@ -770,6 +773,7 @@ public class EnemyManager : MonoBehaviour
                 phaseNum_SE[i]++;
                 patternNum_SE[i] = 0;
                 currentPattern_SE[i] = subEnemies[i].phase[phaseNum_SE[i]].patterns[0].pattern;
+                subEnemyImg[i].GetComponent<SpriteRenderer>().sprite = subEnemies[i].phase[phaseNum_SE[i]].sprite;
                 subEnemyImg[i].GetComponent<Tooltip>().tooltipTitle = subEnemies[i].phase[phaseNum_SE[i]].name;
                 subEnemyImg[i].GetComponent<Tooltip>().tooltipTxt = subEnemies[i].phase[phaseNum_SE[i]].text;
             }
@@ -782,6 +786,7 @@ public class EnemyManager : MonoBehaviour
         this.patternNum = patternNum;
         currentPattern = enemy.phase[phaseNum].patterns[patternNum].pattern;
         enemy.phase[phaseNum].phaseClear = false;
+        enemyImg.GetComponent<SpriteRenderer>().sprite = enemy.phase[phaseNum].sprite;
         enemyImg.GetComponent<Tooltip>().tooltipTitle = enemy.phase[phaseNum].name;
         enemyImg.GetComponent<Tooltip>().tooltipTxt = enemy.phase[phaseNum].text;
     }

@@ -4,7 +4,13 @@ using System.Collections.Generic;
 public class DataManager : MonoBehaviour
 {
     public static DataManager Inst;
-    void Awake() => Inst = this;
+    void Awake()
+    {
+        Inst = this;
+        LoadDeveloperData();
+        // LoadPlayerData();
+        // SavePlayerData();
+    }
 
     [Header("Developer Data")]
     public DreamPieceDataSO dreamPieceDataSO;
@@ -23,6 +29,7 @@ public class DataManager : MonoBehaviour
     public UseableItemSO useableItemSO;
     public ActSO actSO;
     public LocationDatabaseSO locationDatabaseSO;
+    public EncounterDatabaseSO encounterDatabaseSO;
 
     [Header("Player Data")]
     public PlayerDataSO playerDataSO;
@@ -110,6 +117,19 @@ public class DataManager : MonoBehaviour
             locInfo.howManyEnc = loc.encounterNum;
             locationDatabaseSO.locationTable.Add(locInfo);
         }
+        encounterDatabaseSO.masterTable.Clear();
+        foreach(var enc in actDataSO.encounterDataList)
+        {
+            EncounterMetaInfo encInfo = new EncounterMetaInfo();
+            encInfo.id = enc.id;
+            encInfo.nameKO = enc.nameKO;
+            encInfo.type = enc.type;
+            encInfo.imagePath = enc.imagePath;
+            encInfo.filePath = enc.filePath;
+            encInfo.order = enc.order;
+            encInfo.isEssential = enc.isEssential;
+            encounterDatabaseSO.masterTable.Add(encInfo);
+        }
     }
 
     public void LoadPlayerData()
@@ -177,6 +197,7 @@ public class DataManager : MonoBehaviour
             MapNode mapNode = new MapNode(nodeData, actDataSO.locationDataList);
             actSO.mapSave.sortedMapNodeList.Add(mapNode);
             actSO.mapNodeScreenPosSave.Add(nodeData.screenPos);
+            locationDatabaseSO.FindById(nodeData.locationID).selectedEncounterPool = new List<string>(nodeData.selectedEncounterPool);
         }
         actSO.curNodeIndex = playerDataSO.curNodeIndex;
         actSO.curNodeLocationID = playerDataSO.curNodeLocationID;
@@ -241,6 +262,7 @@ public class DataManager : MonoBehaviour
         for(int i = 0; i < actSO.mapSave.sortedMapNodeList.Count; i++)
         {
             playerDataSO.mapNodes.Add(new MapNode_Data(actSO.mapSave.sortedMapNodeList[i], actSO.mapNodeScreenPosSave[i]));
+            playerDataSO.mapNodes[i].selectedEncounterPool = new List<string>(locationDatabaseSO.FindById(playerDataSO.mapNodes[i].locationID).selectedEncounterPool);
         }
         playerDataSO.totalLevel = actSO.mapSave.totalLevel;
         playerDataSO.curNodeIndex = actSO.curNodeIndex;
@@ -249,12 +271,5 @@ public class DataManager : MonoBehaviour
         // 전투 데이터
         playerDataSO.enemyName = characterSO.enemyName;
         Utils.SaveData(playerDataSO, "player_data.json");
-    }
-
-    void Start()
-    {
-        //LoadDeveloperData();
-        //SavePlayerData();
-        //LoadPlayerData();
     }
 }
