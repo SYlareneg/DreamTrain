@@ -43,9 +43,35 @@ public class EncounterRouletteUI : MonoBehaviour
     public void Open(string statName, int difficulty, System.Action<RouletteResultType> onComplete)
     {
         panelRoot.SetActive(true);
+        Debug.Log(statName);
         this.onCompleteCallback = onComplete;
         isSpinning = false;
         spinButton.interactable = true;
+
+        if (spinButton == null)
+        {
+            Button[] allButtons = panelRoot.GetComponentsInChildren<Button>(true);
+
+            foreach (var btn in allButtons)
+            {
+                if (btn.name == "RollButton" )
+                {
+                    spinButton = btn;
+                    break;
+                }
+            }
+
+            if (spinButton != null)
+            {
+                // 혹시 모를 중복 방지를 위해 기존 리스너 제거 후 추가
+                spinButton.onClick.RemoveAllListeners(); 
+                spinButton.onClick.AddListener(OnClickSpin);
+            }
+            else
+            {
+                Debug.LogWarning("[EncounterRouletteUI] 'RollButton'이라는 이름의 버튼을 찾을 수 없습니다. 이름을 확인해주세요.");
+            }
+        }
 
         // 1. 플레이어 스탯 가져오기 (EncounterManager나 CharacterSO에서 가져와야 함)
         // 임시로 랜덤값 혹은 EncounterManager를 통해 가져온다고 가정
@@ -214,7 +240,7 @@ public class EncounterRouletteUI : MonoBehaviour
         // 단순하게 Random.Range로 정한 targetIndex를 그대로 결과로 써도 무방함 (시각적 싱크만 맞다면)
         RouletteResultType result = currentSegments[targetIndex]; // 미리 정한 결과 사용
         
-        yield return new WaitForSeconds(0.5f); // 결과 확인 대기
+        yield return new WaitForSeconds(1f); // 결과 확인 대기
 
         if (playerStats != null)
         {

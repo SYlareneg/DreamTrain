@@ -301,6 +301,7 @@ GameObject:
   m_Component:
   - component: {fileID: 31375622}
   - component: {fileID: 31375623}
+  - component: {fileID: 31375624}
   m_Layer: 5
   m_Name: Merchant
   m_TagString: Untagged
@@ -337,6 +338,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31375621}
   m_CullTransparentMesh: 1
+--- !u!114 &31375624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31375621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a33c14232d66b34a892f156d9af763a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EncounterMerchantUI
+  panelRoot: {fileID: 31375621}
+  characterSO: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
+  stageSO: {fileID: 11400000, guid: 2de9de6b9f0fbea46b0149e204bb7b11, type: 2}
+  dreamPieceListSO: {fileID: 11400000, guid: fa145bd86cf8d8a47b1d9e3683cef771, type: 2}
+  normalItemListSO: {fileID: 11400000, guid: 839e0b6ae25343344aea4d6b6cc55c32, type: 2}
+  useableItemListSO: {fileID: 11400000, guid: e2b1eb20f9745d14d9ffcef82aa9b454, type: 2}
+  cardContainer: {fileID: 281916175}
+  objetPrefab: {fileID: 0}
+  objetContainer: {fileID: 0}
+  sellCardPrefab: {fileID: 7478611203382353997, guid: e9dd45c717fba81498b141351e5fc5d5, type: 3}
+  sellCardCosts: 
+  sellCardWeights: []
+  enhanceProbability: 0.3
 --- !u!1 &78657789
 GameObject:
   m_ObjectHideFlags: 0
@@ -2767,15 +2793,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1690048471}
-  - {fileID: 597607956}
+  m_Children: []
   m_Father: {fileID: 518884967}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1103.6724, y: 1080}
+  m_SizeDelta: {x: 830, y: 830}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &432421469
 GameObject:
@@ -3214,8 +3238,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1958085180}
-  - {fileID: 1740820834}
   - {fileID: 431694175}
+  - {fileID: 1690048471}
+  - {fileID: 597607956}
+  - {fileID: 1740820834}
   m_Father: {fileID: 1619673954}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3663,7 +3689,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 431694175}
+  m_Father: {fileID: 518884967}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3713,7 +3739,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 597607958}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 518884970}
+        m_TargetAssemblyTypeName: EncounterRouletteUI, Assembly-CSharp
+        m_MethodName: OnClickSpin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &597607958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5521,8 +5559,6 @@ GameObject:
   m_Component:
   - component: {fileID: 988924727}
   - component: {fileID: 988924726}
-  - component: {fileID: 988924728}
-  - component: {fileID: 988924729}
   m_Layer: 0
   m_Name: EncounterManager
   m_TagString: Untagged
@@ -5549,10 +5585,11 @@ MonoBehaviour:
   choiceContainer: {fileID: 1678150799}
   choiceButtonPrefab: {fileID: 2629090740747698780, guid: e27feb4d80209a247a0a71358e359d1d, type: 3}
   rouletteUI: {fileID: 518884970}
+  roulettePanel: {fileID: 518884966}
   headerUI: {fileID: 1306292636}
   merchantPanel: {fileID: 31375621}
   cardRemovalPanel: {fileID: 2059001763}
-  merchantUI: {fileID: 988924728}
+  merchantUI: {fileID: 31375624}
   masterDB: {fileID: 11400000, guid: 560f8c2d9a9e79a4184d8bc2e9b8898e, type: 2}
   locationDB: {fileID: 11400000, guid: c08b0a46a1f95814f939101e2a309bdf, type: 2}
   characterData: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
@@ -5573,51 +5610,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &988924728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 988924725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a33c14232d66b34a892f156d9af763a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EncounterMerchantUI
-  panelRoot: {fileID: 31375621}
-  characterSO: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
-  stageSO: {fileID: 11400000, guid: 2de9de6b9f0fbea46b0149e204bb7b11, type: 2}
-  dreamPieceListSO: {fileID: 11400000, guid: fa145bd86cf8d8a47b1d9e3683cef771, type: 2}
-  normalItemListSO: {fileID: 11400000, guid: 839e0b6ae25343344aea4d6b6cc55c32, type: 2}
-  useableItemListSO: {fileID: 11400000, guid: e2b1eb20f9745d14d9ffcef82aa9b454, type: 2}
-  cardContainer: {fileID: 281916175}
-  objetPrefab: {fileID: 0}
-  objetContainer: {fileID: 0}
-  sellCardPrefab: {fileID: 7478611203382353997, guid: e9dd45c717fba81498b141351e5fc5d5, type: 3}
-  sellCardCosts: 
-  sellCardWeights: []
-  enhanceProbability: 0.3
---- !u!114 &988924729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 988924725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cf28ee14709b504ebd015e56f7fb583, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EncounterUIBinder
-  encounterPanel: {fileID: 520862443}
-  illustrationImage: {fileID: 1487452839}
-  titleText: {fileID: 1776550417}
-  descriptionText: {fileID: 2108446563}
-  choiceContainer: {fileID: 1678150799}
-  choiceButtonPrefab: {fileID: 2629090740747698780, guid: e27feb4d80209a247a0a71358e359d1d, type: 3}
-  merchantPanel: {fileID: 31375621}
-  cardRemovalPanel: {fileID: 2059001763}
 --- !u!1 &1004420944
 GameObject:
   m_ObjectHideFlags: 0
@@ -11805,7 +11797,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 431694175}
+  m_Father: {fileID: 518884967}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12964,6 +12956,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1829119110}
   m_CullTransparentMesh: 1
+--- !u!1 &1848677137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1848677139}
+  - component: {fileID: 1848677138}
+  m_Layer: 0
+  m_Name: SceneBinder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1848677138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848677137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cf28ee14709b504ebd015e56f7fb583, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EncounterUIBinder
+  encounterPanel: {fileID: 520862443}
+  illustrationImage: {fileID: 1487452839}
+  titleText: {fileID: 1776550417}
+  descriptionText: {fileID: 2108446563}
+  choiceContainer: {fileID: 1678150799}
+  choiceButtonPrefab: {fileID: 2629090740747698780, guid: e27feb4d80209a247a0a71358e359d1d, type: 3}
+  merchantPanel: {fileID: 31375621}
+  cardRemovalPanel: {fileID: 2059001763}
+  rouletteUI: {fileID: 518884970}
+  roulettePanel: {fileID: 518884966}
+--- !u!4 &1848677139
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848677137}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 727.5957, y: 481.14816, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1862004934
 GameObject:
   m_ObjectHideFlags: 0
@@ -13496,7 +13542,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 988924728}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: EncounterMerchantUI, Assembly-CSharp
         m_MethodName: OnClickExitButton
         m_Mode: 1
@@ -15745,3 +15791,4 @@ SceneRoots:
   - {fileID: 1665816292}
   - {fileID: 988924727}
   - {fileID: 1493062489}
+  - {fileID: 1848677139}

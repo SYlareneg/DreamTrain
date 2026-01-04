@@ -33,7 +33,50 @@ public class EncounterMerchantUI : MonoBehaviour
     public float[] sellCardWeights = new float[Enum.GetNames(typeof(CardRarity)).Length + 1];
     [Range(0, 1)] public float enhanceProbability = 0.3f;
 
+    void Awake()
+    {
+        // 인스펙터에서 panelRoot를 연결하지 않았다면, 이 스크립트가 붙은 오브젝트 자체를 할당
+        if (panelRoot == null)
+        {
+            panelRoot = this.gameObject;
+            Debug.Log("[EncounterMerchantUI] panelRoot가 비어있어 자동으로 할당했습니다.");
+        }
 
+        // [추가 방어] 카드 컨테이너가 없다면 자식 중에서 찾기 시도
+        if (cardContainer == null)
+        {
+            // "Content"나 "Container"라는 이름의 자식을 찾거나, 없으면 자기 자신으로 설정
+            Transform findT = transform.Find("CardContainer"); // 계층구조 이름에 맞춰 수정 필요
+            if (findT != null) cardContainer = findT;
+            else cardContainer = this.transform; 
+        }
+        
+        Button[] allButtons = panelRoot.GetComponentsInChildren<Button>(true);
+        Button exitBtn = null;
+
+        foreach (var btn in allButtons)
+        {
+            // 버튼 오브젝트의 이름이 "ExitButton" 이거나 "Exit"가 포함되어 있으면 찾은 것으로 간주
+            if (btn.name == "ExitButton" || btn.name == "CloseButton" || btn.name.Contains("Exit"))
+            {
+                exitBtn = btn;
+                break;
+            }
+        }
+
+        if (exitBtn != null)
+        {
+            // 혹시 모를 중복 방지를 위해 기존 리스너 제거 후 추가
+            exitBtn.onClick.RemoveAllListeners(); 
+            exitBtn.onClick.AddListener(OnClickExitButton);
+            
+            Debug.Log($"[EncounterMerchantUI] '{exitBtn.name}' 버튼에 종료 기능이 자동 연결되었습니다.");
+        }
+        else
+        {
+            Debug.LogWarning("[EncounterMerchantUI] 'ExitButton'이라는 이름의 버튼을 찾을 수 없습니다. 이름을 확인해주세요.");
+        }
+    }
     // 초기화 및 열기
     public void Open()
     {

@@ -24,6 +24,7 @@ public class EncounterManager : MonoBehaviour
     
     [Header("Sub-Systems")]
     public EncounterRouletteUI rouletteUI;
+    public GameObject roulettePanel;
     public EncounterMenuControll headerUI;
     public GameObject merchantPanel;
     public GameObject cardRemovalPanel;
@@ -46,6 +47,8 @@ public class EncounterManager : MonoBehaviour
     private bool isSceneLoading = false;
     private Queue<string> encounterSequenceQueue = new Queue<string>();
     
+    private bool isDebuging = false;
+    private string debuggerID = "ACT1_ESCAPE_MAZE";
     
     private string currentLocID = "";
 
@@ -74,7 +77,7 @@ public class EncounterManager : MonoBehaviour
         else 
             Debug.LogError("[EncounterManager] Location DB SO가 연결되지 않았습니다!");
 
-        InitializeEncounterSequence();
+        //InitializeEncounterSequence();
     }
     void OnEnable()
     {
@@ -86,85 +89,53 @@ public class EncounterManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
         
-void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-{
-    if (scene.name == "EncounterScene")
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        GameObject canvas = GameObject.Find("Canvas"); 
-        if (canvas != null)
+        if (scene.name == "EncounterScene")
         {
-            GameObject panelObj = GameObject.Find("EncounterPanel"); 
-            if(panelObj != null) encounterPanel = panelObj;
-
-            GameObject descObj = GameObject.Find("DiscribeText"); 
-            if(descObj != null) descriptionText = descObj.GetComponent<TextMeshProUGUI>();
-
-            GameObject titleObj = GameObject.Find("NameText"); 
-            if(titleObj != null) titleText = titleObj.GetComponent<TextMeshProUGUI>();
+            isSceneLoading = false;
             
-            GameObject illuObj = GameObject.Find("Image"); 
-            if(illuObj != null) illustrationImage = illuObj.GetComponent<Image>();
-
-            GameObject containerObj = GameObject.Find("ChoiceContainer");
-            if(containerObj != null) choiceContainer = containerObj.transform;
-            
-            GameObject merchant = GameObject.Find("Merchant"); 
-            if(panelObj != null) merchantPanel = merchant;
-            
-            GameObject roulette = GameObject.Find("RoulettePanel"); 
-            //if(panelObj != null) rouletteUI = roulette;
-            
-            GameObject delCard = GameObject.Find("SofaDeleteCardList");
-            if(panelObj != null) cardRemovalPanel = delCard;
-        }
-
-        isSceneLoading = false;
-        
-        if (actData != null)
-        {
-            if (masterDatabase == null || locationDatabase == null) return;
-            string newLocationID = actData.curNodeLocationID;
-            
-            if (currentLocID != newLocationID)
+            if (actData != null && masterDatabase != null && locationDatabase != null)
             {
-                Debug.Log($"[EncounterManager] 시퀀스 초기화: {currentLocID} -> {newLocationID}");
-                InitializeEncounterSequence();
-            }
-            else
-            {
-                Debug.Log("[EncounterManager] 기존 지역 복귀.");
-                if (encounterPanel != null) encounterPanel.SetActive(true);
-                // 복귀했을 때 텍스트가 비어있을 수 있으니 현재 스텝 다시 그려주기
-                if(currentStep != null) PlayStep(currentStep.id); 
+                string newLocationID = actData.curNodeLocationID;
+                if (currentLocID != newLocationID || currentLocID == "")
+                {
+                    Debug.Log($"[EncounterManager] 시퀀스 초기화: {currentLocID} -> {newLocationID}");
+                    currentLocID = newLocationID;
+                    InitializeEncounterSequence();
+                }
             }
         }
     }
-}
     void InitializeEncounterSequence()
     {
-        Debug.Log("init ");
-        if (actData != null)
+        Debug.Log($"[EncounterManager] 초기화 시퀀스 시작 (Target: {actData?.curNodeLocationID})");
+        currentStep = null; 
+        stepDictionary.Clear();
+        
+        if (actData == null) {Debug.LogError("ActSO가 연결되지 않았습니다."); return;}
+        currentLocID = actData.curNodeLocationID;
+
+        if (locationDatabase == null)
         {
-            currentLocID = actData.curNodeLocationID;
-            Debug.Log(currentLocID);
-        }
-        else
-        {
-            Debug.LogError("ActSO가 연결되지 않았습니다. 인스펙터를 확인해주세요.");
-            return;
+            if (locationDB != null) locationDatabase = locationDB.GetDictionary();
+            else {Debug.LogError("Location DB SO가 연결되지 않아 초기화할 수 없습니다!"); return;}
         }
         
+        if (masterDatabase == null && masterDB != null) masterDatabase = masterDB.GetDictionary();
+
+        if (!locationDatabase.ContainsKey(currentLocID)) {Debug.LogError($"[EncounterManager] LocationDB에 ID '{currentLocID}'가 존재하지 않습니다."); return;}
+
         LocationMetaInfo locInfo = locationDatabase[currentLocID];
         List<string> selectedIDs = locInfo.selectedEncounterPool;
-
 
         encounterSequenceQueue.Clear();
         foreach (var id in selectedIDs)
         {
             encounterSequenceQueue.Enqueue(id);
         }
-
-        PlayNextEncounterInQueue();
+        Debug.Log(currentLocID);
+        Debug.Log($"[EncounterManager] 시퀀스 큐 초기화 완료 (개수: {encounterSequenceQueue.Count})");
     }
 
     List<string> SelectEncounters(LocationMetaInfo locInfo)
@@ -232,6 +203,11 @@ void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 
     void PlayNextEncounterInQueue()
     {
+        if (isDebuging)
+        {
+            StartEncounterByID(debuggerID);
+            return;
+        }
         if (encounterSequenceQueue.Count > 0)
         {
             string nextID = encounterSequenceQueue.Dequeue();
@@ -414,14 +390,15 @@ void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         
         btnObj.GetComponent<Button>().onClick.AddListener(() => 
         {
+            if (!isSceneLoading)
+            {
+                if (IsWaitState(nextId)) { } // 대기 상태면 텍스트 유지
+                else if (nextId == "END") EndEncounter();
+                else PlayStep(nextId); // ★ 여기서 새 페이지 텍스트("그렇군...")가 로드됨
+            }
             if (IsValidFunction(functionCall))
                 ParseAndExecuteFunctions(functionCall);
 
-            if (isSceneLoading) return;
-
-            if (IsWaitState(nextId)) { }
-            else if (nextId == "END") EndEncounter();
-            else PlayStep(nextId);
         });
     }
 
@@ -429,7 +406,7 @@ void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     bool IsValidFunction(string func) => !string.IsNullOrEmpty(func) && func != "-" && func != "DEFAULT";
     bool CheckCondition(string condition) => true; 
     
-    public void RegisterSceneUI(GameObject panel, Image illust, TextMeshProUGUI title, TextMeshProUGUI desc, Transform container, GameObject btnPrefab, GameObject merchant, GameObject cardRemove)
+    public void RegisterSceneUI(GameObject panel, Image illust, TextMeshProUGUI title, TextMeshProUGUI desc, Transform container, GameObject btnPrefab, GameObject merchant, GameObject cardRemove, EncounterRouletteUI roulette, GameObject roulettePanel)
     {
         this.encounterPanel = panel;
         this.illustrationImage = illust;
@@ -437,9 +414,45 @@ void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         this.descriptionText = desc;
         this.choiceContainer = container;
         this.choiceButtonPrefab = btnPrefab;
-        this.merchantPanel = merchant;
+        this.merchantPanel = merchant;      
         this.cardRemovalPanel = cardRemove;
-        if(this.encounterPanel != null) this.encounterPanel.SetActive(true);
+        this.rouletteUI = roulette;
+        this.roulettePanel = roulettePanel;
+
+        Debug.Log("[EncounterManager] UI 바인딩 완료");
+
+        if(this.encounterPanel != null) this.encounterPanel.SetActive(false);
+        
+        if (this.merchantPanel != null) this.merchantUI = this.merchantPanel.GetComponent<EncounterMerchantUI>();
+
+        string targetLocID = (actData != null) ? actData.curNodeLocationID : "";
+        
+        if (!string.IsNullOrEmpty(targetLocID) && currentLocID != targetLocID)
+        {
+            Debug.Log($"[EncounterManager] 지역 변경 감지(UI 등록 시점): {currentLocID} -> {targetLocID}");
+            currentLocID = targetLocID;
+            InitializeEncounterSequence(); 
+        }
+
+        if (currentStep != null)
+        {
+            Debug.Log($"[EncounterManager] 기존 스텝 복구: {currentStep.id}");
+            if(this.encounterPanel != null) this.encounterPanel.SetActive(true);
+            PlayStep(currentStep.id);
+        }
+        else 
+        {
+            if(encounterSequenceQueue.Count > 0)
+            {
+                Debug.Log($"[EncounterManager] 대기열 시작 (남은 개수: {encounterSequenceQueue.Count})");
+                PlayNextEncounterInQueue();
+            }
+            else
+            {
+                InitializeEncounterSequence();
+                PlayNextEncounterInQueue();
+            }
+        }
     }
 
     public void EndEncounter()
@@ -501,26 +514,28 @@ void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 
         switch (funcName)
         {
-            case "StartRoulette": 
-                // 룰렛 로직...
+            case "StartRoulette":
+            case "StartRoullete":
                  if (args.Length >= 2 && rouletteUI != null)
-                {
-                    string statName = args[0];
-                    int difficulty = int.Parse(args[1]);
-                    string winPage = (args.Length > 3) ? args[3] : "P_WIN"; 
-                    string losePage = (args.Length > 4) ? args[4] : "P_LOSE";
+                 {
+                     Debug.Log("Roullete");
+                     string statName = args[0];
+                     int difficulty = int.Parse(args[1]);
+                     string winPage = (args.Length > 3) ? args[3] : "P_WIN"; 
+                     string losePage = (args.Length > 4) ? args[4] : "P_LOSE";
 
-                    encounterPanel.SetActive(false);
-                    rouletteUI.Open(statName, difficulty, (result) => 
-                    {
-                        encounterPanel.SetActive(true);
-                        if (result == RouletteResultType.Success || result == RouletteResultType.GreatSuccess)
-                            PlayStep(winPage);
-                        else
-                            PlayStep(losePage);
-                    });
-                }
-                break;
+                     roulettePanel.SetActive(true);
+                     rouletteUI.Open(statName, difficulty, (result) => 
+                     {
+                         roulettePanel.SetActive(false);
+                         encounterPanel.SetActive(true);
+                         if (result == RouletteResultType.Success || result == RouletteResultType.GreatSuccess)
+                         {PlayStep(winPage); Debug.Log("성공");}
+                         else {PlayStep(losePage); Debug.Log("실패");}
+                             
+                     });
+                 }
+                 break;
             
             case "GetObjet":
                 if (args.Length >= 1) descriptionText.text += $"\n<color=#0000FF>오브제 {args[0]} 획득!</color>";
@@ -531,13 +546,39 @@ void OnSceneLoaded(Scene scene, LoadSceneMode mode)
                 break;
 
             case "UpStatus":
+                Debug.Log("up "+ args.Length);
                 if (args.Length >= 2 && playerStats != null && System.Enum.TryParse(args[0], true, out StatType sType))
                 {
                     playerStats.ModifyStat(sType, int.Parse(args[1]));
-                    descriptionText.text += $"\n<color=#0000FF>{sType} 증가!</color>";
+
+                    if(descriptionText != null)
+                    {
+                        descriptionText.text += $"\n<color=#0000FF>{sType} 증가!</color>";
+                        Canvas.ForceUpdateCanvases(); 
+                    }
+                    else
+                    {
+                        Debug.LogError("[UpStatus] descriptionText가 비어있습니다!");
+                    }
                 }
                 break;
+            
+            case "DownStatus":
+                if (args.Length >= 2 && playerStats != null && System.Enum.TryParse(args[0], true, out StatType sType1))
+                {
+                    playerStats.ModifyStat(sType1, -int.Parse(args[1]));
 
+                    if(descriptionText != null)
+                    {
+                        descriptionText.text += $"\n<color=#FF0000>{sType1} 감소!</color>";
+                        Canvas.ForceUpdateCanvases(); 
+                    }
+                    else
+                    {
+                        Debug.LogError("[DownStatus] descriptionText가 비어있습니다!");
+                    }
+                }
+                break;
             case "StartBattle": 
                 if (args.Length >= 1)
                 {
@@ -546,7 +587,7 @@ void OnSceneLoaded(Scene scene, LoadSceneMode mode)
                     SceneManager.LoadScene("BattleScene"); 
                 }
                 break;
-
+            case "MeetMerchant":
             case "meetMerchant":
                 if (merchantPanel != null)
                 {
@@ -554,6 +595,7 @@ void OnSceneLoaded(Scene scene, LoadSceneMode mode)
                     merchantPanel.SetActive(true);
                     merchantUI.Open();
                 }
+                else Debug.Log("nulll");
                 break;
 
             case "Heal":

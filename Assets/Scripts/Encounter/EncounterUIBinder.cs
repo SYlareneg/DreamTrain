@@ -13,8 +13,10 @@ public class EncounterUIBinder : MonoBehaviour
     public GameObject choiceButtonPrefab;
     public GameObject merchantPanel;
     public GameObject cardRemovalPanel;
+    public EncounterRouletteUI rouletteUI;
+    public GameObject roulettePanel;
 
-    void Start()
+    void Awake()
     {
         if (EncounterManager.Instance != null)
         {
@@ -26,8 +28,22 @@ public class EncounterUIBinder : MonoBehaviour
                 choiceContainer, 
                 choiceButtonPrefab,
                 merchantPanel,
-                cardRemovalPanel
+                cardRemovalPanel,
+                rouletteUI,
+                roulettePanel
             );
+            
+        }
+        else
+        {
+            Debug.LogError("[Binder] 치명적 오류: EncounterManager 인스턴스를 찾을 수 없습니다!");
+        }
+    }
+    void Start()
+    {
+        if (EncounterManager.Instance != null && encounterPanel != null)
+        {
+            Debug.Log("Err");
         }
     }
 }

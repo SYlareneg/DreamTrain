@@ -29,9 +29,9 @@ MonoBehaviour:
       enemyName: "\uBC40\uD30C\uC774\uC5B4 \uD3F4"
       enemySprite: {fileID: 0}
       enemyPos: {x: 0, y: 0, z: 0}
-      isClear: 0
+      isClear: 1
       dreamDustReward: 1
-    stageClear: 1
+    stageClear: 0
   - stageEnemies:
     - enemyName: "\uB9DD\uB839 2"
       enemySprite: {fileID: 21300000, guid: 6d54aeaf15f157442bf23c62953474be, type: 3}
@@ -87,5 +87,77 @@ MonoBehaviour:
       dreamDustReward: 0
     stageClear: 0
   sofaUsed: 0
-  merchantSellCards: []
+  merchantSellCards:
+  - cardItem:
+      name: turn1
+      cost: 1
+      type: 0
+      rarity: 0
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      isSingleTarget: 0
+      sprite: {fileID: 0}
+      text: 
+      cardValues: 
+      cardValueTypes: 
+      num: 0
+      isEnhanced: 0
+    cost: 10
+    isValid: 0
+  - cardItem:
+      name: turn2
+      cost: 0
+      type: 0
+      rarity: 0
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      isSingleTarget: 0
+      sprite: {fileID: 0}
+      text: 
+      cardValues: 
+      cardValueTypes: 
+      num: 0
+      isEnhanced: 0
+    cost: 1
+    isValid: 0
+  - cardItem:
+      name: 
+      cost: 0
+      type: 0
+      rarity: 0
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      isSingleTarget: 0
+      sprite: {fileID: 0}
+      text: 
+      cardValues: 
+      cardValueTypes: 
+      num: 0
+      isEnhanced: 0
+    cost: 0
+    isValid: 0
+  - cardItem:
+      name: 
+      cost: 0
+      type: 0
+      rarity: 0
+      dreamPieceNum: 0
+      isVolatile: 0
+      isVanish: 0
+      isRemain: 0
+      isSingleTarget: 0
+      sprite: {fileID: 0}
+      text: 
+      cardValues: 
+      cardValueTypes: 
+      num: 0
+      isEnhanced: 0
+    cost: 0
+    isValid: 0
   merchantSellUItems: []

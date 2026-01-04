@@ -16,7 +16,7 @@ MonoBehaviour:
   - id: AMUSEMENT_PARK_ENTRANCE
     nameKO: "\uB180\uC774\uACF5\uC6D0 \uC785\uAD6C"
     encounterPool:
-    - ACT1_WHITE_RABBIT
+    - ACT1_DEVIL_DOLL
     selectedEncounterPool: []
     howManyEnc: 1
   - id: MERRY_GO_ROUND
