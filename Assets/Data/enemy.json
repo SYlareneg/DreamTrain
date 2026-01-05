@@ -2,6 +2,7 @@
     "enemies": [
         {
             "name": "뱀파이어 폴",
+            "id": "Vamp",
             "health": 70,
             "triggerNum": 2,
             "phase": [
@@ -300,6 +301,7 @@
         },
         {
             "name": "박쥐",
+            "id": "Bat",
             "health": 68,
             "triggerNum": 12,
             "phase": [
@@ -615,6 +617,7 @@
         },
         {
             "name": "비둘기",
+            "id": "Dove",
             "health": 49,
             "triggerNum": 10,
             "phase": [
@@ -846,6 +849,7 @@
         },
         {
             "name": "망령 1",
+            "id": "GuestOrGhost",
             "health": 52,
             "triggerNum": 6,
             "phase": [
@@ -1087,6 +1091,7 @@
         },
         {
             "name": "망령 2",
+            "id": "",
             "health": 52,
             "triggerNum": 6,
             "phase": [
@@ -1318,6 +1323,7 @@
         },
         {
             "name": "마술사",
+            "id": "",
             "health": 84,
             "triggerNum": 3,
             "phase": [
@@ -1594,6 +1600,7 @@
         },
         {
             "name": "귀신들린 인형",
+            "id": "DevilDoll",
             "health": 144,
             "triggerNum": 4,
             "phase": [
@@ -1830,6 +1837,7 @@
         },
         {
             "name": "대장 컵",
+            "id": "Cups",
             "health": 55,
             "triggerNum": 24,
             "phase": [
@@ -2050,6 +2058,7 @@
         },
         {
             "name": "흰 토끼",
+            "id": "WhiteRabbit",
             "health": 40,
             "triggerNum": 2,
             "phase": [
@@ -2259,6 +2268,7 @@
         },
         {
             "name": "말",
+            "id": "horse",
             "health": 56,
             "triggerNum": 2,
             "phase": [
@@ -2478,6 +2488,7 @@
         },
         {
             "name": "식인 꽃",
+            "id": "CruelFlower",
             "health": 48,
             "triggerNum": 12,
             "phase": [
@@ -2707,6 +2718,7 @@
         },
         {
             "name": "무서운 고양이",
+            "id": "ScaryCat",
             "health": 59,
             "triggerNum": 6,
             "phase": [
@@ -2926,6 +2938,7 @@
         },
         {
             "name": "우는 와인",
+            "id": "Wine",
             "health": 60,
             "triggerNum": 30,
             "phase": [

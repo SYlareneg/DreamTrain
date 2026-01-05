@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum EEnemyActionType { Turn, Attack, Heal, Shield, Enchant_Random, Special_Activate, Spawn_SubEnemy };
+public enum EEnemyActionType { Turn, Attack, Heal, Shield, Enchant_Random, Spawn_SubEnemy, Special_Activate };
 
 [System.Serializable]
 public struct EnemyPattern
@@ -166,6 +166,7 @@ public class EnemySpecialAction_Data
 public class Enemy
 {
     public string name;
+    public string id;
     public int health;
     public int triggerNum;
     public List<EnemyPhase> phase;
@@ -184,6 +185,7 @@ public class Enemy
     public Enemy(Enemy enemy)
     {
         name = enemy.name;
+        id = enemy.id;
         health = enemy.health;
         triggerNum = enemy.triggerNum;
         phase = new List<EnemyPhase>();
@@ -216,6 +218,7 @@ public class Enemy
     public Enemy(Enemy_Data enemyData)
     {
         name = enemyData.name;
+        id = enemyData.id;
         health = enemyData.health;
         triggerNum = enemyData.triggerNum;
         phase = new List<EnemyPhase>();
@@ -250,6 +253,7 @@ public class Enemy
 public class Enemy_Data
 {
     public string name;
+    public string id;
     public int health;
     public int triggerNum;
     public List<EnemyPhase_Data> phase;
@@ -268,6 +272,7 @@ public class Enemy_Data
     public Enemy_Data(Enemy enemy)
     {
         name = enemy.name;
+        id = enemy.id;
         health = enemy.health;
         triggerNum = enemy.triggerNum;
         phase = new List<EnemyPhase_Data>();

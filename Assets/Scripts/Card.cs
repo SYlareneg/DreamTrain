@@ -47,16 +47,16 @@ public class Card : MonoBehaviour
         switch(this.item.type)
         {
             case CardType.Turn:
-                typeTMP.text = "회전";
+                typeTMP.text = "회 전";
                 break;
             case CardType.Enchant:
-                typeTMP.text = "부여";
+                typeTMP.text = "부 여";
                 break;
             case CardType.Skill:
-                typeTMP.text = "스킬";
+                typeTMP.text = "스 킬";
                 break;
             case CardType.Dream:
-                typeTMP.text = "몽상";
+                typeTMP.text = "몽 상";
                 break;
         }
         rarity.sprite = rarityTypes[(int)this.item.rarity];
@@ -111,22 +111,22 @@ public class Card : MonoBehaviour
         if (currType != SceneType.General) return;
         int buffedCost = BuffManager.Inst.GetBuffedCardCost(this.item);
         costTMP.text = buffedCost.ToString();
-        SetCostImg(buffedCost);
+        // SetCostImg(buffedCost);
 
         if (buffedCost > this.item.cost)
         {
             costTMP.color = Color.red;
-            cost.color = Color.red;
+            // cost.color = Color.red;
         }
         else if (buffedCost == this.item.cost)
         {
-            costTMP.color = Color.white;
-            cost.color = Color.white;
+            costTMP.color = new Color(60f/255f, 60f/255f, 80f/255f);
+            // cost.color = Color.white;
         }
         else
         {
             costTMP.color = Color.green;
-            cost.color = Color.green;
+            // cost.color = Color.green;
         }
     }
 
@@ -146,7 +146,7 @@ public class Card : MonoBehaviour
             string returnString = "NaN";
             if(buffedVal > this.item.cardValues[index]) returnString = "<color=green>" + buffedVal.ToString() + "</color>";
             else if(buffedVal < this.item.cardValues[index]) returnString = "<color=red>" + buffedVal.ToString() + "</color>";
-            else returnString = "<color=white>" + buffedVal.ToString() + "</color>";
+            else returnString = "<color=black>" + buffedVal.ToString() + "</color>";
             index++;
             return returnString;
         });

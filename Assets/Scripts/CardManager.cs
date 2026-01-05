@@ -531,7 +531,7 @@ public class CardManager : MonoBehaviour
             Transform enemyPos = enemyHits.collider.transform;
             onEnemyCardArea = EnemyManager.Inst.FindEnemyIdxByPos(enemyPos);
 
-            if(!onMyCardArea && selectedCard != null && selectedCard.item.isSingleTarget == true)
+            if(isMyCardDrag && !onMyCardArea && selectedCard != null && selectedCard.item.isSingleTarget == true)
             {
                 enemyPos.Find("EnemyImg/EnemyHighlight").gameObject.SetActive(true);
             }
@@ -549,7 +549,7 @@ public class CardManager : MonoBehaviour
                 }
             }
 
-            if(!onMyCardArea && selectedCard != null && selectedCard.item.isSingleTarget == true && onEnemyCardArea == 0)
+            if(isMyCardDrag && !onMyCardArea && selectedCard != null && selectedCard.item.isSingleTarget == true && onEnemyCardArea == 0)
             {
                 EnemyManager.Inst.enemyPos.Find("EnemyImg/EnemyHighlight").gameObject.SetActive(true);
             }
@@ -563,7 +563,7 @@ public class CardManager : MonoBehaviour
     {
         if(isEnlarge)
         {
-            Vector3 enlargePos = new Vector3(card.originPRS.pos.x, -7.6f, -10f);
+            Vector3 enlargePos = new Vector3(card.originPRS.pos.x, Camera.main.ScreenToWorldPoint(new Vector3(0f, 0f, Camera.main.nearClipPlane)).y + cardPrefab.transform.localScale.y * 0.75f, -10f);
             card.MoveTransform(new PRS(enlargePos, Utils.QI, cardPrefab.transform.localScale * 1.5f), false);
         }
         else

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerDataSO
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDataSO
   maxHealth: 60
-  curHealth: 28
+  curHealth: 60
   dreamDust: 1000
   leftPassengers: 2
   personaPiece: "\uACE0\uC591\uC774\uC758 \uAFC8"
@@ -66,6 +66,7 @@ MonoBehaviour:
   - cardName: "\uD68C\uC804 \uCE74\uB4DC 3"
     num: 2
   relics: 0000000001000000020000000300000004000000050000000600000007000000
+  relicEnhancements: 0000000000000000
   useableItems:
   - "\uD654\uC0B4"
   - "\uB098\uBB34 \uBC29\uD328"
@@ -74,10 +75,76 @@ MonoBehaviour:
   courage: 1
   wisdom: 1
   luck: 1
-  currentAct: 0
-  mapNodes: []
-  totalLevel: 0
+  currentActNum: 1
+  mapNodes:
+  - locationID: START
+    selectedEncounterPool: []
+    ID: 57a9650bf74246b782cc1a2abbdd34bc
+    level: 0
+    pos: 0
+    screenPos: {x: -9, y: 0.7, z: 0}
+    childNodes:
+    - 929bf56451334d93b51385f0ddf25301
+  - locationID: AMUSEMENT_PARK_ENTRANCE
+    selectedEncounterPool:
+    - ACT1_WHITE_RABBIT
+    ID: 929bf56451334d93b51385f0ddf25301
+    level: 1
+    pos: 0
+    screenPos: {x: -5, y: 0.67791355, z: 0}
+    childNodes:
+    - 2ada673f915a472cac76fbcfb46841b0
+    - 1c9c7eeda5b349d297d38b285ddca930
+  - locationID: GHOST_HOUSE
+    selectedEncounterPool: []
+    ID: 2ada673f915a472cac76fbcfb46841b0
+    level: 2
+    pos: -1
+    screenPos: {x: -1, y: -0.48632938, z: 0}
+    childNodes:
+    - cc5a8e3d743847c482f34756b3737c76
+  - locationID: MAZE_GARDEN
+    selectedEncounterPool: []
+    ID: 1c9c7eeda5b349d297d38b285ddca930
+    level: 2
+    pos: 0
+    screenPos: {x: -1, y: 0.71692336, z: 0}
+    childNodes:
+    - c8be73184fd840b1a41334b5e2842bc8
+    - c049910a3de047a49dc3ac6f175ae97e
+  - locationID: TEA_CUPS
+    selectedEncounterPool: []
+    ID: c8be73184fd840b1a41334b5e2842bc8
+    level: 3
+    pos: 1
+    screenPos: {x: 3, y: 1.83008, z: 0}
+    childNodes:
+    - cc5a8e3d743847c482f34756b3737c76
+  - locationID: MERRY_GO_ROUND
+    selectedEncounterPool: []
+    ID: c049910a3de047a49dc3ac6f175ae97e
+    level: 3
+    pos: 0
+    screenPos: {x: 3, y: 0.5247673, z: 0}
+    childNodes:
+    - cc5a8e3d743847c482f34756b3737c76
+  - locationID: ICECREAM_CART
+    selectedEncounterPool: []
+    ID: cc5a8e3d743847c482f34756b3737c76
+    level: 4
+    pos: 0
+    screenPos: {x: 7, y: 0.66818225, z: 0}
+    childNodes:
+    - 1f6471b07e6a4ffc8960577b75101a08
+  - locationID: END
+    selectedEncounterPool: []
+    ID: 1f6471b07e6a4ffc8960577b75101a08
+    level: 5
+    pos: 0
+    screenPos: {x: 11, y: 0.7, z: 0}
+    childNodes: []
+  totalLevel: 6
   curNodeIndex: 0
   curNodeLocationID: 
   lastEncounterType: 0
-  enemyName: 
+  enemyName: "\uB300\uC7A5 \uCEF5"

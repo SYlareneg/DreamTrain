@@ -82,7 +82,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1579775890662008003, guid: 3144cdc1f3632ba40bef378c2038322c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -118,7 +118,10 @@ MonoBehaviour:
   originalTooltipTitle: 
   originalTooltipText: 
   roulette:
-    type: 0
+    rtype:
+      type: 0
+      specialTypeIdx: -1
+      enemyIdx: 0
     value: 0
   isEnhanced: 0
   tooltip: {fileID: 0}

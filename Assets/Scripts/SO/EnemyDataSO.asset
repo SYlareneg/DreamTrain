@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDataSO
   enemies:
   - name: "\uBC40\uD30C\uC774\uC5B4 \uD3F4"
+    id: Vamp
     health: 70
     triggerNum: 2
     phase:
@@ -200,6 +201,7 @@ MonoBehaviour:
     subEnemies: []
     subEnemies_Spawn: []
   - name: "\uBC15\uC950"
+    id: Bat
     health: 68
     triggerNum: 12
     phase:
@@ -247,7 +249,7 @@ MonoBehaviour:
           isTrigger: 0
       phaseClear: 0
       phaseRepeat: 1
-      sprite: 
+      sprite: Enemy_Vampire
     triggerPhase:
     - name: "\uBC15\uC950:\uD2B8\uB9AC\uAC70"
       text: "\uD2B8\uB9AC\uAC70 \uC0C1\uD0DC\uC785\uB2C8\uB2E4. \uD2B8\uB9AC\uAC70
@@ -309,7 +311,7 @@ MonoBehaviour:
           isTrigger: 1
       phaseClear: 0
       phaseRepeat: 1
-      sprite: 
+      sprite: Enemy_Vampire
     roulettePattern:
     - rtype:
         type: 3
@@ -399,6 +401,7 @@ MonoBehaviour:
     subEnemies: []
     subEnemies_Spawn: []
   - name: "\uBE44\uB458\uAE30"
+    id: Dove
     health: 49
     triggerNum: 10
     phase:
@@ -441,7 +444,7 @@ MonoBehaviour:
           isTrigger: 0
       phaseClear: 0
       phaseRepeat: 1
-      sprite: 
+      sprite: Enemy_Vampire
     triggerPhase:
     - name: "\uBE44\uB458\uAE30:\uD2B8\uB9AC\uAC70"
       text: "\uBE44\uB458\uAE30\uAC00 \uD2B8\uB9AC\uAC70 \uC0C1\uD0DC\uC785\uB2C8\uB2E4."
@@ -453,7 +456,7 @@ MonoBehaviour:
           isTrigger: 1
       phaseClear: 0
       phaseRepeat: 0
-      sprite: 
+      sprite: Enemy_Vampire
     roulettePattern:
     - rtype:
         type: 3
@@ -547,6 +550,7 @@ MonoBehaviour:
     subEnemies: []
     subEnemies_Spawn: []
   - name: "\uB9DD\uB839 1"
+    id: GuestOrGhost
     health: 52
     triggerNum: 6
     phase:
@@ -588,7 +592,7 @@ MonoBehaviour:
           isTrigger: 0
       phaseClear: 0
       phaseRepeat: 1
-      sprite: 
+      sprite: Enemy_Vampire
     triggerPhase:
     - name: "\uB9DD\uB839 1:\uD2B8\uB9AC\uAC70"
       text: "\uB9DD\uB839 1\uC774 \uD2B8\uB9AC\uAC70 \uC0C1\uD0DC\uC785\uB2C8\uB2E4."
@@ -605,7 +609,7 @@ MonoBehaviour:
           isTrigger: 1
       phaseClear: 0
       phaseRepeat: 0
-      sprite: 
+      sprite: Enemy_Vampire
     roulettePattern:
     - rtype:
         type: 3
@@ -694,6 +698,7 @@ MonoBehaviour:
     subEnemies: []
     subEnemies_Spawn: []
   - name: "\uB9DD\uB839 2"
+    id: 
     health: 52
     triggerNum: 6
     phase:
@@ -735,7 +740,7 @@ MonoBehaviour:
           isTrigger: 0
       phaseClear: 0
       phaseRepeat: 1
-      sprite: 
+      sprite: Enemy_Vampire
     triggerPhase:
     - name: "\uB9DD\uB839 2:\uD2B8\uB9AC\uAC70"
       text: "\uB9DD\uB839 2\uAC00 \uD2B8\uB9AC\uAC70 \uC0C1\uD0DC\uC785\uB2C8\uB2E4."
@@ -747,7 +752,7 @@ MonoBehaviour:
           isTrigger: 0
       phaseClear: 0
       phaseRepeat: 0
-      sprite: 
+      sprite: Enemy_Vampire
     roulettePattern:
     - rtype:
         type: 3
@@ -837,6 +842,7 @@ MonoBehaviour:
     subEnemies: []
     subEnemies_Spawn: []
   - name: "\uB9C8\uC220\uC0AC"
+    id: 
     health: 84
     triggerNum: 3
     phase:
@@ -860,7 +866,7 @@ MonoBehaviour:
           isTrigger: 0
       phaseClear: 0
       phaseRepeat: 0
-      sprite: 
+      sprite: Enemy_Vampire
     - name: "\uC1FC\uD0C0\uC784"
       text: "\uB9C8\uC220\uC5D0 3\uBC88 \uC2E4\uD328\uD558\uBA74 \uADF8\uC758 \uBE44\uBC00\uC774
         \uB4DC\uB7EC\uB0A9\uB2C8\uB2E4."
@@ -899,7 +905,7 @@ MonoBehaviour:
           isTrigger: 0
       phaseClear: 0
       phaseRepeat: 1
-      sprite: 
+      sprite: Enemy_Vampire
     triggerPhase:
     - name: "\uB9C8\uC220\uC0AC:\uD2B8\uB9AC\uAC70"
       text: "\uB9C8\uC220\uC0AC\uB294 \uD2B8\uB9AC\uAC70 \uC0C1\uD0DC\uC785\uB2C8\uB2E4."
@@ -916,7 +922,7 @@ MonoBehaviour:
           isTrigger: 1
       phaseClear: 0
       phaseRepeat: 0
-      sprite: 
+      sprite: Enemy_Vampire
     roulettePattern:
     - rtype:
         type: 0
@@ -1011,6 +1017,7 @@ MonoBehaviour:
     subEnemies: []
     subEnemies_Spawn: []
   - name: "\uADC0\uC2E0\uB4E4\uB9B0 \uC778\uD615"
+    id: DevilDoll
     health: 144
     triggerNum: 4
     phase:
@@ -1027,7 +1034,7 @@ MonoBehaviour:
           isTrigger: 0
       phaseClear: 0
       phaseRepeat: 0
-      sprite: 
+      sprite: Enemy_Vampire
     - name: "\uC778\uD615\uC758 \uC800\uC8FC"
       text: "\uC800\uC8FC \uC778\uD615\uC774 \uC874\uC7AC\uD55C\uB2E4\uBA74, \uC790\uC2E0\uC774
         \uACF5\uACA9\uBC1B\uC744 \uB54C \uD2B8\uB9AC\uAC70 \uAC8C\uC774\uC9C0\uB97C
@@ -1059,7 +1066,7 @@ MonoBehaviour:
           isTrigger: 0
       phaseClear: 0
       phaseRepeat: 1
-      sprite: 
+      sprite: Enemy_Vampire
     triggerPhase:
     - name: "\uADC0\uC2E0\uB4E4\uB9B0 \uC778\uD615:\uD2B8\uB9AC\uAC70"
       text: "\uADC0\uC2E0\uB4E4\uB9B0 \uC778\uD615\uC774 \uD2B8\uB9AC\uAC70 \uC0C1\uD0DC\uC785\uB2C8\uB2E4."
@@ -1071,7 +1078,7 @@ MonoBehaviour:
           isTrigger: 1
       phaseClear: 0
       phaseRepeat: 0
-      sprite: 
+      sprite: Enemy_Vampire
     roulettePattern:
     - rtype:
         type: 0
@@ -1163,6 +1170,7 @@ MonoBehaviour:
     subEnemies_Spawn:
     - "\uC800\uC8FC \uC778\uD615"
   - name: "\uB300\uC7A5 \uCEF5"
+    id: Cups
     health: 55
     triggerNum: 24
     phase:
@@ -1211,7 +1219,7 @@ MonoBehaviour:
           isTrigger: 0
       phaseClear: 0
       phaseRepeat: 1
-      sprite: 
+      sprite: Enemy_Vampire
     triggerPhase: []
     roulettePattern:
     - rtype:
@@ -1301,6 +1309,7 @@ MonoBehaviour:
     - "\uBD80\uD558 \uCEF5 2"
     subEnemies_Spawn: []
   - name: "\uD770 \uD1A0\uB07C"
+    id: WhiteRabbit
     health: 40
     triggerNum: 2
     phase:
@@ -1325,7 +1334,7 @@ MonoBehaviour:
           isTrigger: 0
       phaseClear: 0
       phaseRepeat: 1
-      sprite: 
+      sprite: Enemy_Vampire
     triggerPhase:
     - name: "\uD770 \uD1A0\uB07C:\uD2B8\uB9AC\uAC70"
       text: "\uD770 \uD1A0\uB07C\uB294 \uD2B8\uB9AC\uAC70 \uC0C1\uD0DC\uC785\uB2C8\uB2E4.
@@ -1343,7 +1352,7 @@ MonoBehaviour:
           isTrigger: 1
       phaseClear: 0
       phaseRepeat: 0
-      sprite: 
+      sprite: Enemy_Vampire
     roulettePattern:
     - rtype:
         type: 3
@@ -1430,6 +1439,7 @@ MonoBehaviour:
     subEnemies: []
     subEnemies_Spawn: []
   - name: "\uB9D0"
+    id: horse
     health: 56
     triggerNum: 2
     phase:
@@ -1462,7 +1472,7 @@ MonoBehaviour:
           isTrigger: 0
       phaseClear: 0
       phaseRepeat: 1
-      sprite: 
+      sprite: Enemy_Vampire
     triggerPhase:
     - name: "\uB9D0:\uD2B8\uB9AC\uAC70"
       text: "\uB9D0\uC740 \uD2B8\uB9AC\uAC70 \uC0C1\uD0DC\uC785\uB2C8\uB2E4. '\uC804\uB825\uC9C8\uC8FC'\uB97C
@@ -1475,7 +1485,7 @@ MonoBehaviour:
           isTrigger: 1
       phaseClear: 0
       phaseRepeat: 0
-      sprite: 
+      sprite: Enemy_Vampire
     roulettePattern:
     - rtype:
         type: 0
@@ -1564,6 +1574,7 @@ MonoBehaviour:
     subEnemies: []
     subEnemies_Spawn: []
   - name: "\uC2DD\uC778 \uAF43"
+    id: CruelFlower
     health: 48
     triggerNum: 12
     phase:
@@ -1597,7 +1608,7 @@ MonoBehaviour:
           isTrigger: 0
       phaseClear: 0
       phaseRepeat: 1
-      sprite: 
+      sprite: Enemy_Vampire
     triggerPhase:
     - name: "\uC2DD\uC778 \uAF43:\uD2B8\uB9AC\uAC70"
       text: "\uC2DD\uC778 \uAF43\uC740 \uD2B8\uB9AC\uAC70 \uC0C1\uD0DC\uC785\uB2C8\uB2E4."
@@ -1614,7 +1625,7 @@ MonoBehaviour:
           isTrigger: 1
       phaseClear: 0
       phaseRepeat: 0
-      sprite: 
+      sprite: Enemy_Vampire
     roulettePattern:
     - rtype:
         type: 1
@@ -1702,6 +1713,7 @@ MonoBehaviour:
     subEnemies: []
     subEnemies_Spawn: []
   - name: "\uBB34\uC11C\uC6B4 \uACE0\uC591\uC774"
+    id: ScaryCat
     health: 59
     triggerNum: 6
     phase:
@@ -1735,7 +1747,7 @@ MonoBehaviour:
           isTrigger: 0
       phaseClear: 0
       phaseRepeat: 1
-      sprite: 
+      sprite: Enemy_Vampire
     triggerPhase:
     - name: "\uBB34\uC11C\uC6B4 \uACE0\uC591\uC774:\uD2B8\uB9AC\uAC70"
       text: "\uBB34\uC11C\uC6B4 \uACE0\uC591\uC774\uB294 \uD2B8\uB9AC\uAC70 \uC0C1\uD0DC\uC785\uB2C8\uB2E4.
@@ -1748,7 +1760,7 @@ MonoBehaviour:
           isTrigger: 1
       phaseClear: 0
       phaseRepeat: 0
-      sprite: 
+      sprite: Enemy_Vampire
     roulettePattern:
     - rtype:
         type: 1
@@ -1838,6 +1850,7 @@ MonoBehaviour:
     subEnemies: []
     subEnemies_Spawn: []
   - name: "\uC6B0\uB294 \uC640\uC778"
+    id: Wine
     health: 60
     triggerNum: 30
     phase:
@@ -1867,7 +1880,7 @@ MonoBehaviour:
           isTrigger: 0
       phaseClear: 0
       phaseRepeat: 1
-      sprite: 
+      sprite: Enemy_Vampire
     triggerPhase:
     - name: "\uC6B0\uB294 \uC640\uC778:\uD2B8\uB9AC\uAC70"
       text: "\uC6B0\uB294 \uC640\uC778\uC740 \uD2B8\uB9AC\uAC70 \uC0C1\uD0DC\uC785\uB2C8\uB2E4.
@@ -1880,7 +1893,7 @@ MonoBehaviour:
           isTrigger: 1
       phaseClear: 0
       phaseRepeat: 0
-      sprite: 
+      sprite: Enemy_Vampire
     roulettePattern:
     - rtype:
         type: 0
@@ -1982,7 +1995,7 @@ MonoBehaviour:
           isTrigger: 0
       phaseClear: 0
       phaseRepeat: 1
-      sprite: 
+      sprite: Enemy_Vampire
     enemySpecialRoulettes:
     - sprite: 
       title: 
@@ -2024,7 +2037,7 @@ MonoBehaviour:
           isTrigger: 0
       phaseClear: 0
       phaseRepeat: 1
-      sprite: 
+      sprite: Enemy_Vampire
     enemySpecialRoulettes:
     - sprite: 
       title: 
@@ -2066,7 +2079,7 @@ MonoBehaviour:
           isTrigger: 0
       phaseClear: 0
       phaseRepeat: 1
-      sprite: 
+      sprite: Enemy_Vampire
     enemySpecialRoulettes:
     - sprite: 
       title: 
