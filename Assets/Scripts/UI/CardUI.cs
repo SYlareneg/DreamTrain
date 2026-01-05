@@ -34,7 +34,7 @@ public class CardUI : MonoBehaviour
 
         this.item = item;
         UnsetBlank();
-
+        
         type.sprite = cardTypes[(int)this.item.type];
         // if(type.sprite == null) type.enabled = false;
         // else type.enabled = true;

@@ -37,7 +37,9 @@ public class EncounterManager : MonoBehaviour
     [Header("Game Data")]
     public CharacterSO characterData;
     public PlayerStatsSo playerStats;
-    public ActSO actData; 
+    public ActSO actData;
+
+    public EncSofaManager sofaManager;
 
     private Dictionary<string, EncounterMetaInfo> masterDatabase;
     private Dictionary<string, LocationMetaInfo> locationDatabase;
@@ -47,8 +49,8 @@ public class EncounterManager : MonoBehaviour
     private bool isSceneLoading = false;
     private Queue<string> encounterSequenceQueue = new Queue<string>();
     
-    private bool isDebuging = false;
-    private string debuggerID = "ACT1_ESCAPE_MAZE";
+    private bool isDebuging = true;
+    private string debuggerID = "ACT1_SUNNY_AFTERNOON";
     
     private string currentLocID = "";
 
@@ -622,7 +624,8 @@ public class EncounterManager : MonoBehaviour
                 break;
             
             case "DeleteCard":
-                if (cardRemovalPanel != null) cardRemovalPanel.SetActive(true);
+                Debug.Log("deleteCard");
+                sofaManager.SofaCardDelete();
                 break;
         }
     }
