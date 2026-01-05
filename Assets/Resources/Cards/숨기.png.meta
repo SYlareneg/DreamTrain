@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1fe9de5e657fe93439161f66a17fb68e
+guid: 89d3768ddf66d044a867dc0e741a7380
 TextureImporter:
   internalIDToNameTable:
   - first:
       213: -8933495643972931924
-    second: "\uC228\uAE30_0"
+    second: "\0\0\0\0\x10\0\0\0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uC228\uAE30_0"
+      name: "\0\u8CF0\0\x7F\0\0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2000
-        height: 1600
+        x: 365
+        y: 1674
+        width: 1769
+        height: 1415
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\uC228\uAE30_0": -8933495643972931924
+      "\x1F\x02\0\0\0\0\0\0": -8933495643972931924
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

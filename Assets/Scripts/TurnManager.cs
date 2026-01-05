@@ -53,9 +53,6 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public bool isLoading;
 
     WaitForSeconds delay05 = new WaitForSeconds(0.5f);
-    WaitForSeconds delay07 = new WaitForSeconds(0.7f);
-    WaitForSeconds delay10 = new WaitForSeconds(1.0f);
-    WaitForSeconds delay15 = new WaitForSeconds(1.5f);
 
     [HideInInspector] public static Action BeforePlayerTurnStart;
     [HideInInspector] public static Action OnPlayerTurnStart;
@@ -204,6 +201,11 @@ public class TurnManager : MonoBehaviour
             OnAddCard?.Invoke();
         }
         onComplete?.Invoke();
+    }
+
+    public void StartDraw(int drawNum, Action onComplete)
+    {
+        StartCoroutine(Draw(drawNum, onComplete));
     }
 
     // 카드 버림 (카드 사용시 카드는 버려짐. 버려진 카드는 무덤으로 감.)

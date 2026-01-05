@@ -438,6 +438,7 @@ public class EncounterManager : MonoBehaviour
         {
             Debug.Log($"[EncounterManager] 기존 스텝 복구: {currentStep.id}");
             if(this.encounterPanel != null) this.encounterPanel.SetActive(true);
+            isSceneLoading = false;
             PlayStep(currentStep.id);
         }
         else 

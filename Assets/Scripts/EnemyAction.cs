@@ -30,9 +30,13 @@ public class EnemyAction : MonoBehaviour
         {
             enemyAction.sprite = EnemyManager.Inst.enemySpecialActions[typeNum].sprite;
         }
-        else
+        else if(type == EEnemyActionType.Turn)
         {
             enemyAction.sprite = enemyActionSprites[(int)type + 1];
+        }
+        else
+        {
+            enemyAction.sprite = enemyActionSprites[(int)type + 2];
         }
     }
 
@@ -84,7 +88,7 @@ public class EnemyAction : MonoBehaviour
         }
         else if (totalVal == actionVal)
         {
-            enemyActionTMP.color = Color.black;
+            enemyActionTMP.color = Color.white;
         }
         else
         {
@@ -141,7 +145,7 @@ public class EnemyAction : MonoBehaviour
         {
             if (baseActionVal < 0)
             {
-                enemyAction.flipX = !enemyAction.flipX;
+                enemyAction.sprite = enemyActionSprites[(int)actionType + 2];
                 actionVal = Random.Range(baseActionVal, p.typeNum);
             }
             else

@@ -41,16 +41,16 @@ public class CardUI : MonoBehaviour
         switch(this.item.type)
         {
             case CardType.Turn:
-                typeTMP.text = "회전";
+                typeTMP.text = "회 전";
                 break;
             case CardType.Enchant:
-                typeTMP.text = "부여";
+                typeTMP.text = "부 여";
                 break;
             case CardType.Skill:
-                typeTMP.text = "스킬";
+                typeTMP.text = "스 킬";
                 break;
             case CardType.Dream:
-                typeTMP.text = "몽상";
+                typeTMP.text = "몽 상";
                 break;
         }
         rarity.sprite = rarityTypes[(int)this.item.rarity];
@@ -63,15 +63,15 @@ public class CardUI : MonoBehaviour
 
         nameTMP.text = this.item.name;
         costTMP.text = this.item.cost.ToString();
-        if(this.item.cost >= 0 && this.item.cost <= 9)
-        {
-            cost.sprite = costTypes[this.item.cost];
-            cost.enabled = true;
-        }
-        else
-        {
-            cost.enabled = false;
-        }
+        // if(this.item.cost >= 0 && this.item.cost <= 9)
+        // {
+        //     cost.sprite = costTypes[this.item.cost];
+        //     cost.enabled = true;
+        // }
+        // else
+        // {
+        //     cost.enabled = false;
+        // }
         
         
         string showText = this.item.text;

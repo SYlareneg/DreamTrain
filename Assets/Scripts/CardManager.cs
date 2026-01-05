@@ -320,16 +320,15 @@ public class CardManager : MonoBehaviour
                 objLerps[i] = interval * i;
             }
         }
+        Vector3 newRightTr = new Vector3(rightTr.position.x, rightTr.position.y, rightTr.position.z);
         if(objCount > 5)
         {
-            Vector3 newRightTr = rightTr.position;
-            newRightTr.x += (objCount - 5) * 0.7f;
-            rightTr.position = newRightTr;
+            newRightTr.x += (objCount - 5) * cardPrefab.transform.localScale.x * 0.3f;
         }
 
         for(int i = 0; i < objCount; i++)
         {
-            var targetPos = Vector3.Lerp(leftTr.position, rightTr.position, objLerps[i]);
+            var targetPos = Vector3.Lerp(leftTr.position, newRightTr, objLerps[i]);
             var targetRot = Utils.QI;
             // // 곡률에 따른 카드 position, rotation 보정
             // float curve = Mathf.Sqrt(Mathf.Pow(height, 2) - Mathf.Pow(objLerps[i] - 0.5f, 2));
@@ -531,7 +530,7 @@ public class CardManager : MonoBehaviour
             Transform enemyPos = enemyHits.collider.transform;
             onEnemyCardArea = EnemyManager.Inst.FindEnemyIdxByPos(enemyPos);
 
-            if(!onMyCardArea && selectedCard != null && selectedCard.item.isSingleTarget == true)
+            if(isMyCardDrag && !onMyCardArea && selectedCard != null && selectedCard.item.isSingleTarget == true)
             {
                 enemyPos.Find("EnemyImg/EnemyHighlight").gameObject.SetActive(true);
             }
@@ -549,7 +548,7 @@ public class CardManager : MonoBehaviour
                 }
             }
 
-            if(!onMyCardArea && selectedCard != null && selectedCard.item.isSingleTarget == true && onEnemyCardArea == 0)
+            if(isMyCardDrag && !onMyCardArea && selectedCard != null && selectedCard.item.isSingleTarget == true && onEnemyCardArea == 0)
             {
                 EnemyManager.Inst.enemyPos.Find("EnemyImg/EnemyHighlight").gameObject.SetActive(true);
             }
@@ -563,7 +562,7 @@ public class CardManager : MonoBehaviour
     {
         if(isEnlarge)
         {
-            Vector3 enlargePos = new Vector3(card.originPRS.pos.x, -7.6f, -10f);
+            Vector3 enlargePos = new Vector3(card.originPRS.pos.x, Camera.main.ScreenToWorldPoint(new Vector3(0f, 0f, Camera.main.nearClipPlane)).y + cardPrefab.transform.localScale.y * 0.75f, -10f);
             card.MoveTransform(new PRS(enlargePos, Utils.QI, cardPrefab.transform.localScale * 1.5f), false);
         }
         else

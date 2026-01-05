@@ -22,7 +22,7 @@ public class RouletteBuffAllign : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            float angle = allignAngle - (count - 1) * spacing / 2f + spacing * i;
+            float angle = allignAngle - spacing * i;
             float rad = angle * Mathf.Deg2Rad;
             Vector3 pos = transform.position + new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0f) * radius;
 

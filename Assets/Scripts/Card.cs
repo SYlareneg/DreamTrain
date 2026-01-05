@@ -47,16 +47,16 @@ public class Card : MonoBehaviour
         switch(this.item.type)
         {
             case CardType.Turn:
-                typeTMP.text = "회전";
+                typeTMP.text = "회 전";
                 break;
             case CardType.Enchant:
-                typeTMP.text = "부여";
+                typeTMP.text = "부 여";
                 break;
             case CardType.Skill:
-                typeTMP.text = "스킬";
+                typeTMP.text = "스 킬";
                 break;
             case CardType.Dream:
-                typeTMP.text = "몽상";
+                typeTMP.text = "몽 상";
                 break;
         }
         rarity.sprite = rarityTypes[(int)this.item.rarity];
@@ -111,22 +111,22 @@ public class Card : MonoBehaviour
         if (currType != SceneType.General) return;
         int buffedCost = BuffManager.Inst.GetBuffedCardCost(this.item);
         costTMP.text = buffedCost.ToString();
-        SetCostImg(buffedCost);
+        // SetCostImg(buffedCost);
 
         if (buffedCost > this.item.cost)
         {
             costTMP.color = Color.red;
-            cost.color = Color.red;
+            // cost.color = Color.red;
         }
         else if (buffedCost == this.item.cost)
         {
-            costTMP.color = Color.white;
-            cost.color = Color.white;
+            costTMP.color = new Color(60f/255f, 60f/255f, 80f/255f);
+            // cost.color = Color.white;
         }
         else
         {
             costTMP.color = Color.green;
-            cost.color = Color.green;
+            // cost.color = Color.green;
         }
     }
 
@@ -146,7 +146,7 @@ public class Card : MonoBehaviour
             string returnString = "NaN";
             if(buffedVal > this.item.cardValues[index]) returnString = "<color=green>" + buffedVal.ToString() + "</color>";
             else if(buffedVal < this.item.cardValues[index]) returnString = "<color=red>" + buffedVal.ToString() + "</color>";
-            else returnString = "<color=white>" + buffedVal.ToString() + "</color>";
+            else returnString = "<color=black>" + buffedVal.ToString() + "</color>";
             index++;
             return returnString;
         });
@@ -459,7 +459,7 @@ public class Card : MonoBehaviour
                 break;
             case "재빠른 손놀림":
             case "재빠른 손놀림+":
-                StartCoroutine(TurnManager.Inst.Draw(GetBuffedVal(item.cardValues[0], ECardValueType.Special), null));
+                TurnManager.Inst.StartDraw(GetBuffedVal(item.cardValues[0], ECardValueType.Special), null);
                 break;
             case "초능력-예언":
             case "초능력-예언+":
@@ -491,7 +491,7 @@ public class Card : MonoBehaviour
                 break;
             case "나뭇가지 손":
             case "나뭇가지 손+":
-                StartCoroutine(TurnManager.Inst.Draw(GetBuffedVal(item.cardValues[0], ECardValueType.Special), null));
+                TurnManager.Inst.StartDraw(GetBuffedVal(item.cardValues[0], ECardValueType.Special), null);
                 TurnManager.Inst.TriggerPlayerPassive(-GetBuffedVal(item.cardValues[1], ECardValueType.Special));
                 break;
             case "데굴데굴":
@@ -641,6 +641,7 @@ public class Card : MonoBehaviour
                 {
                     for(int j = 0; j <= EnemyManager.Inst.subEnemies.Length; j++)
                     {
+                        if(j > 0 && (EnemyManager.Inst.subEnemies[j - 1] == null || EnemyManager.Inst.subEnemies[j - 1].name == "")) continue;
                         if(RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(j)].roulette.rtype == claw)
                         {
                             RoulettePiece enemyPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(j)];
@@ -725,7 +726,7 @@ public class Card : MonoBehaviour
             case "고양이걸음":
             case "고양이걸음+":
                 RouletteManager.Inst.Spin(true, GetBuffedVal(item.cardValues[0], ECardValueType.Special));
-                StartCoroutine(TurnManager.Inst.Draw(GetBuffedVal(item.cardValues[1], ECardValueType.Special), null));
+                TurnManager.Inst.StartDraw(GetBuffedVal(item.cardValues[1], ECardValueType.Special), null);
                 break;
             case "실 풀기":
             case "실 풀기+":
