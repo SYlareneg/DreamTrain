@@ -105,7 +105,7 @@ MonoBehaviour:
       num: 0
       isEnhanced: 0
     cost: 10
-    isValid: 0
+    isValid: 1
   - cardItem:
       name: turn2
       cost: 0
@@ -123,7 +123,7 @@ MonoBehaviour:
       num: 0
       isEnhanced: 0
     cost: 1
-    isValid: 0
+    isValid: 1
   - cardItem:
       name: 
       cost: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
       num: 0
       isEnhanced: 0
     cost: 0
-    isValid: 0
+    isValid: 1
   - cardItem:
       name: 
       cost: 0
@@ -159,5 +159,5 @@ MonoBehaviour:
       num: 0
       isEnhanced: 0
     cost: 0
-    isValid: 0
+    isValid: 1
   merchantSellUItems: []

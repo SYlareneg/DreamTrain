@@ -320,16 +320,15 @@ public class CardManager : MonoBehaviour
                 objLerps[i] = interval * i;
             }
         }
+        Vector3 newRightTr = new Vector3(rightTr.position.x, rightTr.position.y, rightTr.position.z);
         if(objCount > 5)
         {
-            Vector3 newRightTr = rightTr.position;
-            newRightTr.x += (objCount - 5) * 0.7f;
-            rightTr.position = newRightTr;
+            newRightTr.x += (objCount - 5) * cardPrefab.transform.localScale.x * 0.3f;
         }
 
         for(int i = 0; i < objCount; i++)
         {
-            var targetPos = Vector3.Lerp(leftTr.position, rightTr.position, objLerps[i]);
+            var targetPos = Vector3.Lerp(leftTr.position, newRightTr, objLerps[i]);
             var targetRot = Utils.QI;
             // // 곡률에 따른 카드 position, rotation 보정
             // float curve = Mathf.Sqrt(Mathf.Pow(height, 2) - Mathf.Pow(objLerps[i] - 0.5f, 2));
