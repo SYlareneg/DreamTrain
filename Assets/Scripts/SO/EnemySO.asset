@@ -1028,9 +1028,9 @@ MonoBehaviour:
         \uBC1B\uC2B5\uB2C8\uB2E4."
       patterns:
       - pattern:
-        - type: 6
+        - type: 5
           typeNum: 0
-          val: 1
+          val: 0
           isTrigger: 0
       phaseClear: 0
       phaseRepeat: 0
@@ -1072,9 +1072,9 @@ MonoBehaviour:
       text: "\uADC0\uC2E0\uB4E4\uB9B0 \uC778\uD615\uC774 \uD2B8\uB9AC\uAC70 \uC0C1\uD0DC\uC785\uB2C8\uB2E4."
       patterns:
       - pattern:
-        - type: 5
+        - type: 6
           typeNum: 0
-          val: 0
+          val: 1
           isTrigger: 1
       phaseClear: 0
       phaseRepeat: 0
@@ -2072,15 +2072,7 @@ MonoBehaviour:
           typeNum: 0
           val: 6
           isTrigger: 0
-        - type: 3
-          typeNum: 0
-          val: 6
-          isTrigger: 0
       - pattern:
-        - type: 1
-          typeNum: 0
-          val: 6
-          isTrigger: 0
         - type: 1
           typeNum: 0
           val: 6

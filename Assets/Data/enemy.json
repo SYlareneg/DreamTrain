@@ -1611,7 +1611,7 @@
                         {
                             "pattern": [
                                 {
-                                    "type": 6,
+                                    "type": 5,
                                     "typeNum": 0,
                                     "val": 1,
                                     "isTrigger": false
@@ -1683,7 +1683,7 @@
                         {
                             "pattern": [
                                 {
-                                    "type": 5,
+                                    "type": 6,
                                     "typeNum": 0,
                                     "val": 0,
                                     "isTrigger": true
