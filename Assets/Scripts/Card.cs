@@ -641,6 +641,7 @@ public class Card : MonoBehaviour
                 {
                     for(int j = 0; j <= EnemyManager.Inst.subEnemies.Length; j++)
                     {
+                        if(j > 0 && (EnemyManager.Inst.subEnemies[j - 1] == null || EnemyManager.Inst.subEnemies[j - 1].name == "")) continue;
                         if(RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(j)].roulette.rtype == claw)
                         {
                             RoulettePiece enemyPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(j)];
