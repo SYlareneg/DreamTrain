@@ -149,7 +149,8 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < enemyHealthTMP.Length; i++)
         {
             if(enemyHealthTMP[i] == null) continue;
-            enemyHealthTMP[i].text = TurnManager.Inst.enemyCurHealth[i].ToString() + "/" + TurnManager.Inst.enemyMaxHealth[i].ToString();
+            if(i == 0) enemyHealthTMP[i].text = TurnManager.Inst.enemyCurHealth[i].ToString() + "/" + TurnManager.Inst.enemyMaxHealth[i].ToString();
+            else enemyHealthTMP[i].text = TurnManager.Inst.enemyCurHealth[i].ToString();
             enemyHealthImg[i].fillAmount = (float)TurnManager.Inst.enemyCurHealth[i] / TurnManager.Inst.enemyMaxHealth[i];
             if(TurnManager.Inst.enemyShieldHealth[i] > 0)
             {
@@ -174,7 +175,7 @@ public class GameManager : MonoBehaviour
 
     public void SetSubEnemyUI(int subEnemyIdx, Transform subEnemyTransform)
     {
-        enemyHealthTMP[subEnemyIdx + 1] = subEnemyTransform.Find("SubEnemyUI/Values/Health/HealthBar/HealthBarFront/HealthTMP").GetComponent<TMP_Text>();
+        enemyHealthTMP[subEnemyIdx + 1] = subEnemyTransform.Find("SubEnemyUI/Values/Health/HealthTMP").GetComponent<TMP_Text>();
         enemyHealthImg[subEnemyIdx + 1] = subEnemyTransform.Find("SubEnemyUI/Values/Health/HealthBar/HealthBarFront").GetComponent<Image>();
         enemyShieldObj[subEnemyIdx + 1] = subEnemyTransform.Find("SubEnemyUI/Values/Health/Icon/ShieldIcon").gameObject;
         enemyShieldTMP[subEnemyIdx + 1] = subEnemyTransform.Find("SubEnemyUI/Values/Health/Icon/ShieldIcon/ShieldTMP").GetComponent<TMP_Text>();
