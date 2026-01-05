@@ -459,7 +459,7 @@ public class Card : MonoBehaviour
                 break;
             case "재빠른 손놀림":
             case "재빠른 손놀림+":
-                StartCoroutine(TurnManager.Inst.Draw(GetBuffedVal(item.cardValues[0], ECardValueType.Special), null));
+                TurnManager.Inst.StartDraw(GetBuffedVal(item.cardValues[0], ECardValueType.Special), null);
                 break;
             case "초능력-예언":
             case "초능력-예언+":
@@ -491,7 +491,7 @@ public class Card : MonoBehaviour
                 break;
             case "나뭇가지 손":
             case "나뭇가지 손+":
-                StartCoroutine(TurnManager.Inst.Draw(GetBuffedVal(item.cardValues[0], ECardValueType.Special), null));
+                TurnManager.Inst.StartDraw(GetBuffedVal(item.cardValues[0], ECardValueType.Special), null);
                 TurnManager.Inst.TriggerPlayerPassive(-GetBuffedVal(item.cardValues[1], ECardValueType.Special));
                 break;
             case "데굴데굴":
@@ -726,7 +726,7 @@ public class Card : MonoBehaviour
             case "고양이걸음":
             case "고양이걸음+":
                 RouletteManager.Inst.Spin(true, GetBuffedVal(item.cardValues[0], ECardValueType.Special));
-                StartCoroutine(TurnManager.Inst.Draw(GetBuffedVal(item.cardValues[1], ECardValueType.Special), null));
+                TurnManager.Inst.StartDraw(GetBuffedVal(item.cardValues[1], ECardValueType.Special), null);
                 break;
             case "실 풀기":
             case "실 풀기+":
