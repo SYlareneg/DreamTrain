@@ -368,11 +368,11 @@ public class Card : MonoBehaviour
                 break;
             case "블루 블러드":
             case "블루 블러드+":
-                BuffManager.Inst.AddShowBuff("블루 블러드", EBuffAffectType.Roulette, GetBuffedVal(item.cardValues[0], ECardValueType.Special), false, new List<float>{(float)GetBuffedVal(item.cardValues[1], ECardValueType.Special), 0f});
+                BuffManager.Inst.AddShowBuff("블루 블러드", EBuffAffectType.Roulette, GetBuffedVal(item.cardValues[0], ECardValueType.Special), false, new List<int>{GetBuffedVal(item.cardValues[1], ECardValueType.Special), 0});
                 break;
             case "만찬 시간":
             case "만찬 시간+":
-                BuffManager.Inst.AddShowBuff("만찬 시간", EBuffAffectType.Roulette, GetBuffedVal(item.cardValues[0], ECardValueType.Special), false, new List<float>{(float)GetBuffedVal(item.cardValues[1], ECardValueType.Special)});
+                BuffManager.Inst.AddShowBuff("만찬 시간", EBuffAffectType.Roulette, GetBuffedVal(item.cardValues[0], ECardValueType.Special), false, new List<int>{GetBuffedVal(item.cardValues[1], ECardValueType.Special)});
                 break;
             case "핏빛 날개":
             case "핏빛 날개+":

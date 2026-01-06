@@ -64,7 +64,7 @@ public class ShowBuff
     public int affectEnemyIdx;
     public EBuffEffectType effectType;
     public int val;
-    public List<float> defaultVal = new List<float>();
+    public List<int> defaultVal = new List<int>();
     [HideInInspector] public bool isSetOnEnemyTurn;
     [HideInInspector] public List<List<Buff>> targets;
     [HideInInspector] public List<Buff> affectBuffs;
@@ -79,7 +79,7 @@ public class ShowBuff
         icon = Utils.LoadSpriteByName("BuffIcons", showBuffData.icon);
         type = showBuffData.type;
         effectType = showBuffData.effectType;
-        defaultVal = new List<float>(showBuffData.defaultVal);
+        defaultVal = new List<int>(showBuffData.defaultVal);
     }
 
     void AddAffectBuff(List<Buff> target, int add, float mul, int time)
@@ -90,7 +90,7 @@ public class ShowBuff
         affectBuffs.Add(buff);
         target.Add(buff);
     }
-    public void SetShowBuff(string name, EBuffAffectType aType, int newVal, bool isSetOnEnemyTurn, List<float> baseVal = null, int affectEnemyIdx = 0)
+    public void SetShowBuff(string name, EBuffAffectType aType, int newVal, bool isSetOnEnemyTurn, List<int> baseVal = null, int affectEnemyIdx = 0)
     {
         ShowBuff origin = BuffManager.Inst.showBuffSO.showBuffs.Find(x => x.name == name);
         if (origin == null)
@@ -106,7 +106,7 @@ public class ShowBuff
         affectType = aType;
         this.affectEnemyIdx = affectEnemyIdx;
         val = newVal;
-        defaultVal = new List<float>(origin.defaultVal);
+        defaultVal = new List<int>(origin.defaultVal);
         if(baseVal == null) baseVal = defaultVal;
         this.isSetOnEnemyTurn = isSetOnEnemyTurn;
         if(isSetOnEnemyTurn && type == EBuffType.Duration) newVal++;
@@ -118,77 +118,76 @@ public class ShowBuff
                 if (affectType == EBuffAffectType.Enemy)
                 {
                     BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Add(this);
-                    AddAffectBuff(BuffManager.Inst.enemyBuff_Attack[affectEnemyIdx], newVal, baseVal[0], -1);
+                    AddAffectBuff(BuffManager.Inst.enemyBuff_Attack[affectEnemyIdx], newVal, 1, -1);
                 }
                 else if (affectType == EBuffAffectType.Roulette)
                 {
                     BuffManager.Inst.rouletteShowBuffs.Add(this);
-                    AddAffectBuff(BuffManager.Inst.rouletteBuff_Attack, newVal, baseVal[0], -1);
+                    AddAffectBuff(BuffManager.Inst.rouletteBuff_Attack, newVal, 1, -1);
                 }
                 break;
             case "보호":
                 if (affectType == EBuffAffectType.Enemy)
                 {
                     BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Add(this);
-                    AddAffectBuff(BuffManager.Inst.enemyBuff_Shield[affectEnemyIdx], newVal, baseVal[0], -1);
+                    AddAffectBuff(BuffManager.Inst.enemyBuff_Shield[affectEnemyIdx], newVal, 1, -1);
                 }
                 else if (affectType == EBuffAffectType.Roulette)
                 {
                     BuffManager.Inst.rouletteShowBuffs.Add(this);
-                    AddAffectBuff(BuffManager.Inst.rouletteBuff_Shield, newVal, baseVal[0], -1);
+                    AddAffectBuff(BuffManager.Inst.rouletteBuff_Shield, newVal, 1, -1);
                 }
                 else
                 {
                     BuffManager.Inst.playerShowBuffs.Add(this);
-                    AddAffectBuff(BuffManager.Inst.playerBuff_Shield, newVal, baseVal[0], -1);
+                    AddAffectBuff(BuffManager.Inst.playerBuff_Shield, newVal, 1, -1);
                 }
                 break;
             case "활력":
                 if (affectType == EBuffAffectType.Enemy)
                 {
                     BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Add(this);
-                    AddAffectBuff(BuffManager.Inst.enemyBuff_Heal[affectEnemyIdx], newVal, baseVal[0], -1);
+                    AddAffectBuff(BuffManager.Inst.enemyBuff_Heal[affectEnemyIdx], newVal, 1, -1);
                 }
                 else if (affectType == EBuffAffectType.Roulette)
                 {
                     BuffManager.Inst.rouletteShowBuffs.Add(this);
-                    AddAffectBuff(BuffManager.Inst.rouletteBuff_Heal, newVal, baseVal[0], -1);
+                    AddAffectBuff(BuffManager.Inst.rouletteBuff_Heal, newVal, 1, -1);
                 }
                 else
                 {
                     BuffManager.Inst.playerShowBuffs.Add(this);
-                    AddAffectBuff(BuffManager.Inst.playerBuff_Heal, newVal, baseVal[0], -1);
+                    AddAffectBuff(BuffManager.Inst.playerBuff_Heal, newVal, 1, -1);
                 }
                 break;
             case "주저함":
                 if (affectType == EBuffAffectType.Enemy)
                 {
                     BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Add(this);
-                    AddAffectBuff(BuffManager.Inst.enemyBuff_Attack[affectEnemyIdx], 0, baseVal[0], newVal);
-                    // 0.75f
+                    AddAffectBuff(BuffManager.Inst.enemyBuff_Attack[affectEnemyIdx], 0, 1 - (float)baseVal[0] / 100f, newVal);
                 }
                 else if (affectType == EBuffAffectType.Roulette)
                 {
                     BuffManager.Inst.rouletteShowBuffs.Add(this);
-                    AddAffectBuff(BuffManager.Inst.rouletteBuff_Attack, 0, baseVal[0], newVal);
+                    AddAffectBuff(BuffManager.Inst.rouletteBuff_Attack, 0, 1 - (float)baseVal[0] / 100f, newVal);
                 }
                 else
                 {
                     BuffManager.Inst.playerShowBuffs.Add(this);
-                    AddAffectBuff(BuffManager.Inst.enemyBuff_Damage_Type[affectEnemyIdx, (int)EDamageSource.Card], 0, baseVal[0], newVal);
+                    AddAffectBuff(BuffManager.Inst.enemyBuff_Damage_Type[affectEnemyIdx, (int)EDamageSource.Card], 0, 1 - (float)baseVal[0] / 100f, newVal);
                 }
                 break;
             case "취약":
                 if (affectType == EBuffAffectType.Enemy)
                 {
                     BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Add(this);
-                    AddAffectBuff(BuffManager.Inst.enemyBuff_Damage[affectEnemyIdx], 0, baseVal[0], newVal);
+                    AddAffectBuff(BuffManager.Inst.enemyBuff_Damage[affectEnemyIdx], 0, 1 + (float)baseVal[0] / 100f, newVal);
                     // 1.5f
                 }
                 else if (affectType == EBuffAffectType.Player)
                 {
                     BuffManager.Inst.playerShowBuffs.Add(this);
-                    AddAffectBuff(BuffManager.Inst.playerBuff_Damage, 0, baseVal[0], newVal);
+                    AddAffectBuff(BuffManager.Inst.playerBuff_Damage, 0, 1 + (float)baseVal[0] / 100f, newVal);
                 }
                 break;
             case "블루 블러드":
@@ -196,8 +195,7 @@ public class ShowBuff
                 {
                     BuffManager.Inst.rouletteShowBuffs.Add(this);
                     AddAffectBuff(BuffManager.Inst.rouletteBuff_PlayerSpecial[PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == 0, 0)][0], 0, baseVal[0], newVal);
-                    AddAffectBuff(BuffManager.Inst.rouletteBuff_PlayerSpecial[PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == 0, 0)][1], 0, baseVal[1], newVal);
-                    // 3f, 1f
+                    AddAffectBuff(BuffManager.Inst.rouletteBuff_PlayerSpecial[PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == 0, 0)][1], 0, 0, newVal);
                 }
                 break;
             case "만찬 시간":
@@ -205,7 +203,6 @@ public class ShowBuff
                 {
                     BuffManager.Inst.rouletteShowBuffs.Add(this);
                     AddAffectBuff(BuffManager.Inst.rouletteBuff_PlayerSpecial[PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == 0, 0)][0], 0, baseVal[0], newVal);
-                    // 2f
                 }
                 break;
             case "예언-준비":
@@ -256,7 +253,7 @@ public class ShowBuff
                     Action<int, EDamageSource, int> noDamage = null;
                     noDamage = (value, source, enemyIdx) =>
                     {
-                        TurnManager.Inst.enemyShieldHealth[affectEnemyIdx] += value;
+                        TurnManager.Inst.enemyShieldHealth[affectEnemyIdx] += value - baseVal[0];
                         BuffManager.Inst.AddShowBuff("환영", affectType, -1, isSetOnEnemyTurn, baseVal, affectEnemyIdx);
                         if (this.val == 0)
                         {
@@ -276,7 +273,7 @@ public class ShowBuff
                     Action<int, EDamageSource> noDamage = null;
                     noDamage = (value, source) =>
                     {
-                        TurnManager.Inst.shieldHealth += value;
+                        TurnManager.Inst.shieldHealth += value - baseVal[0];
                         BuffManager.Inst.AddShowBuff("환영", affectType, -1, isSetOnEnemyTurn, baseVal, affectEnemyIdx);
                         if (this.val == 0)
                         {
@@ -295,8 +292,7 @@ public class ShowBuff
                 if (affectType == EBuffAffectType.Enemy)
                 {
                     BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Add(this);
-                    AddAffectBuff(BuffManager.Inst.enemyBuff_Damage[affectEnemyIdx], 0, baseVal[0], -1);
-                    // 1.5f
+                    AddAffectBuff(BuffManager.Inst.enemyBuff_Damage[affectEnemyIdx], 0, 1 + (float)baseVal[0] / 100f, -1);
                     Action<int, EDamageSource, int> reduceCount = null;
                     reduceCount = (damage, source, enemyIdx) =>
                     {
@@ -316,8 +312,7 @@ public class ShowBuff
                 else if (affectType == EBuffAffectType.Player)
                 {
                     BuffManager.Inst.playerShowBuffs.Add(this);
-                    AddAffectBuff(BuffManager.Inst.playerBuff_Damage, 0, baseVal[0], -1);
-                    // 1.5f
+                    AddAffectBuff(BuffManager.Inst.playerBuff_Damage, 0, 1 + (float)baseVal[0] / 100f, -1);
                     Action<int, EDamageSource> reduceCount = null;
                     reduceCount = (damage, source) =>
                     {
@@ -342,7 +337,7 @@ public class ShowBuff
                     Action<bool, int> reduceCount = null;
                     reduceCount = (b, spin) =>
                     {
-                        TurnManager.Inst.EnemyTakeDmg(Mathf.RoundToInt(baseVal[0]), EDamageSource.Buff);
+                        TurnManager.Inst.EnemyTakeDmg(baseVal[0], EDamageSource.Buff);
                         BuffManager.Inst.AddShowBuff("불쾌함", affectType, -1, isSetOnEnemyTurn, baseVal, affectEnemyIdx);
                         if (this.val == 0)
                         {
@@ -362,7 +357,7 @@ public class ShowBuff
                     Action<bool, int> reduceCount = null;
                     reduceCount = (b, spin) =>
                     {
-                        TurnManager.Inst.TakeDmg(Mathf.RoundToInt(baseVal[0]), EDamageSource.Buff);
+                        TurnManager.Inst.TakeDmg(baseVal[0], EDamageSource.Buff);
                         BuffManager.Inst.AddShowBuff("불쾌함", affectType, -1, isSetOnEnemyTurn, baseVal, affectEnemyIdx);
                         if (this.val == 0)
                         {
@@ -429,7 +424,7 @@ public class ShowBuff
                     {
                         if(card.item.type == CardType.Turn)
                         {
-                            TurnManager.Inst.IncreaseCost(Mathf.RoundToInt(baseVal[0]));
+                            TurnManager.Inst.IncreaseCost(baseVal[0]);
                         }
                     };
                     TurnManager.OnUseCard += earnCost;
@@ -446,10 +441,10 @@ public class ShowBuff
                     Action<bool, int> reduceCount = null;
                     reduceCount = (isClockwise, spinAmount) =>
                     {
-                        if(spinAmount >= Mathf.RoundToInt(baseVal[0]))
+                        if(spinAmount >= baseVal[0])
                         {
                             BuffManager.Inst.AddShowBuff("빙그르!", affectType, -1, isSetOnEnemyTurn, baseVal, affectEnemyIdx);
-                            BuffManager.Inst.AddShowBuff("강화", EBuffAffectType.Enemy, Mathf.RoundToInt(baseVal[1]), isSetOnEnemyTurn, null, affectEnemyIdx);
+                            BuffManager.Inst.AddShowBuff("강화", EBuffAffectType.Enemy, baseVal[1], isSetOnEnemyTurn, null, affectEnemyIdx);
                             if (this.val == 0)
                             {
                                 BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Remove(this);
@@ -609,7 +604,7 @@ public class BuffManager : MonoBehaviour
         }
         return findBuff;
     }
-    public void AddShowBuff(string name, EBuffAffectType aType, int val, bool isSetOnEnemyTurn, List<float> bVal = null, int enemyIdx = 0)
+    public void AddShowBuff(string name, EBuffAffectType aType, int val, bool isSetOnEnemyTurn, List<int> bVal = null, int enemyIdx = 0)
     {
         ShowBuff findBuff = GetShowBuff(name, aType, enemyIdx);
         if (findBuff == null)

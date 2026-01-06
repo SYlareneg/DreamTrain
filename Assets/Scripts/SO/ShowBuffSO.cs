@@ -9,7 +9,7 @@ public class ShowBuff_Data
     public string icon;
     public EBuffType type; // value, duration, count
     public EBuffEffectType effectType; // beneficial, harmful, neutral
-    public List<float> defaultVal;
+    public List<int> defaultVal;
 
     public ShowBuff_Data(ShowBuff showBuff)
     {
@@ -19,7 +19,7 @@ public class ShowBuff_Data
         icon = showBuff.icon.name;
         type = showBuff.type;
         effectType = showBuff.effectType;
-        defaultVal = new List<float>(showBuff.defaultVal);
+        defaultVal = new List<int>(showBuff.defaultVal);
     }
 }
 

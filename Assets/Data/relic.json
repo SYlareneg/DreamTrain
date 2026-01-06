@@ -1,122 +1,122 @@
 {
-    "relicItems": [
-        {
-            "relicOwner": 0,
-            "relicSprite": "noble",
-            "relicName": "박쥐 날개",
-            "relicTxt": "턴 종료 시 남은 행동력x3의 방어도를 얻습니다.",
-            "relicVal": [
-                3
-            ],
-            "relicName_enhanced": "박쥐 날개+",
-            "relicTxt_enhanced": "턴 종료 시 남은 행동력<color=red>x4</color>의 방어도를 얻습니다.",
-            "relicVal_enhanced": [
-                4
-            ]
-        },
-        {
-            "relicOwner": 1,
-            "relicSprite": "noble",
-            "relicName": "저주 인형",
-            "relicTxt": "매 전투마다 처음으로 받는 피해를 인형이 대신 받습니다. 받은 피해가 44가 되면 부서집니다.",
-            "relicVal": [
-                44
-            ],
-            "relicName_enhanced": "저주 인형+",
-            "relicTxt_enhanced": "매 전투마다 처음으로 받는 피해를 인형이 대신 받습니다. 받은 피해가 <color=red>144</color>가 되면 부서집니다.",
-            "relicVal_enhanced": [
-                144
-            ]
-        },
-        {
-            "relicOwner": 2,
-            "relicSprite": "noble",
-            "relicName": "꿀",
-            "relicTxt": "턴 시작 시, 파괴되지 않고 남은 방어도의 25%를 체력으로 전환합니다.",
-            "relicVal": [
-                25
-            ],
-            "relicName_enhanced": "꿀+",
-            "relicTxt_enhanced": "턴 시작 시, 파괴되지 않고 남은 방어도의 <color=red>40%</color>를 체력으로 전환합니다.",
-            "relicVal_enhanced": [
-                40
-            ]
-        },
-        {
-            "relicOwner": 3,
-            "relicSprite": "noble",
-            "relicName": "영원한 웃음",
-            "relicTxt": "지혜가 1로 고정됩니다. 전투 시작 시 보호를 2 얻습니다.",
-            "relicVal": [
-                1,
-                2
-            ],
-            "relicName_enhanced": "영원한 웃음+",
-            "relicTxt_enhanced": "지혜가 1로 고정됩니다. 전투 시작 시 보호를 2 얻습니다.",
-            "relicVal_enhanced": [
-                1,
-                2
-            ]
-        },
-        {
-            "relicOwner": 4,
-            "relicSprite": "noble",
-            "relicName": "붉은 꽃잎",
-            "relicTxt": "체력이 30%이하이면 턴 시작 시 행동력을 1 얻습니다.",
-            "relicVal": [
-                30,
-                1
-            ],
-            "relicName_enhanced": "붉은 꽃잎+",
-            "relicTxt_enhanced": "체력이 <color=red>60%</color>이하이면 턴 시작 시 행동력을 1 얻습니다.",
-            "relicVal_enhanced": [
-                60,
-                1
-            ]
-        },
-        {
-            "relicOwner": 5,
-            "relicSprite": "noble",
-            "relicName": "비둘기 코인",
-            "relicTxt": "지니고 있으면 행운이 1 증가합니다.",
-            "relicVal": [
-                1
-            ],
-            "relicName_enhanced": "비둘기 코인+",
-            "relicTxt_enhanced": "지니고 있으면 행운이 1 증가합니다.",
-            "relicVal_enhanced": [
-                1
-            ]
-        },
-        {
-            "relicOwner": 6,
-            "relicSprite": "noble",
-            "relicName": "와인의 눈물",
-            "relicTxt": "체력이 50% 이하이면 활력 버프를 1 얻습니다.",
-            "relicVal": [
-                50,
-                1
-            ],
-            "relicName_enhanced": "와인의 눈물+",
-            "relicTxt_enhanced": "체력이 <color=red>70%</color> 이하이면 활력 버프를 1 얻습니다.",
-            "relicVal_enhanced": [
-                70,
-                1
-            ]
-        },
-        {
-            "relicOwner": 7,
-            "relicSprite": "noble",
-            "relicName": "찻잔",
-            "relicTxt": "턴 시작 시 1의 체력을 회복합니다.",
-            "relicVal": [
-                1
-            ],
-            "relicName_enhanced": "찻잔+",
-            "relicTxt_enhanced": "턴 시작 시 <color=red>2</color>의 체력을 회복합니다.",
-            "relicVal_enhanced": [
-                2
-            ]
-        }
-    ]
+  "relicItems": [
+    {
+      "relicName": "박쥐 날개",
+      "relicTxt": "턴 종료 시 남은 행동력x3의 방어도를 얻습니다.",
+      "relicSprite": "noble",
+      "relicOwner": 0,
+      "relicVal": [
+        3
+      ],
+      "relicName_enhanced": "박쥐 날개+",
+      "relicTxt_enhanced": "턴 종료 시 남은 행동력<color=red>x4</color>의 방어도를 얻습니다.",
+      "relicVal_enhanced": [
+        4
+      ]
+    },
+    {
+      "relicName": "저주 인형",
+      "relicTxt": "매 전투마다 처음으로 받는 피해를 인형이 대신 받습니다. 받은 피해가 44가 되면 부서집니다.",
+      "relicSprite": "noble",
+      "relicOwner": 1,
+      "relicVal": [
+        44
+      ],
+      "relicName_enhanced": "저주 인형+",
+      "relicTxt_enhanced": "매 전투마다 처음으로 받는 피해를 인형이 대신 받습니다. 받은 피해가 <color=red>144</color>가 되면 부서집니다.",
+      "relicVal_enhanced": [
+        144
+      ]
+    },
+    {
+      "relicName": "꿀",
+      "relicTxt": "턴 시작 시, 파괴되지 않고 남은 방어도의 25%를 체력으로 전환합니다.",
+      "relicSprite": "noble",
+      "relicOwner": 2,
+      "relicVal": [
+        25
+      ],
+      "relicName_enhanced": "꿀+",
+      "relicTxt_enhanced": "턴 시작 시, 파괴되지 않고 남은 방어도의 <color=red>40%</color>를 체력으로 전환합니다.",
+      "relicVal_enhanced": [
+        40
+      ]
+    },
+    {
+      "relicName": "영원한 웃음",
+      "relicTxt": "지혜가 1로 고정됩니다. 전투 시작 시 보호를 2 얻습니다.",
+      "relicSprite": "noble",
+      "relicOwner": 3,
+      "relicVal": [
+        1,
+        2
+      ],
+      "relicName_enhanced": "영원한 웃음+",
+      "relicTxt_enhanced": "지혜가 1로 고정됩니다. 전투 시작 시 보호를 2 얻습니다.",
+      "relicVal_enhanced": [
+        1,
+        2
+      ]
+    },
+    {
+      "relicName": "붉은 꽃잎",
+      "relicTxt": "체력이 30%이하이면 턴 시작 시 행동력을 1 얻습니다.",
+      "relicSprite": "noble",
+      "relicOwner": 4,
+      "relicVal": [
+        30,
+        1
+      ],
+      "relicName_enhanced": "붉은 꽃잎+",
+      "relicTxt_enhanced": "체력이 <color=red>60%</color>이하이면 턴 시작 시 행동력을 1 얻습니다.",
+      "relicVal_enhanced": [
+        60,
+        1
+      ]
+    },
+    {
+      "relicName": "비둘기 코인",
+      "relicTxt": "지니고 있으면 행운이 1 증가합니다.",
+      "relicSprite": "noble",
+      "relicOwner": 5,
+      "relicVal": [
+        1
+      ],
+      "relicName_enhanced": "비둘기 코인+",
+      "relicTxt_enhanced": "지니고 있으면 행운이 1 증가합니다.",
+      "relicVal_enhanced": [
+        1
+      ]
+    },
+    {
+      "relicName": "와인의 눈물",
+      "relicTxt": "체력이 50% 이하이면 활력 버프를 1 얻습니다.",
+      "relicSprite": "noble",
+      "relicOwner": 6,
+      "relicVal": [
+        50,
+        1
+      ],
+      "relicName_enhanced": "와인의 눈물+",
+      "relicTxt_enhanced": "체력이 <color=red>70%</color> 이하이면 활력 버프를 1 얻습니다.",
+      "relicVal_enhanced": [
+        70,
+        1
+      ]
+    },
+    {
+      "relicName": "찻잔",
+      "relicTxt": "턴 시작 시 1의 체력을 회복합니다.",
+      "relicSprite": "noble",
+      "relicOwner": 7,
+      "relicVal": [
+        1
+      ],
+      "relicName_enhanced": "찻잔+",
+      "relicTxt_enhanced": "턴 시작 시 <color=red>2</color>의 체력을 회복합니다.",
+      "relicVal_enhanced": [
+        2
+      ]
+    }
+  ]
 }
