@@ -414,4 +414,9 @@ public class ActSO : ScriptableObject
     public int curNodeIndex;
     public string curNodeLocationID;
     public EncounterType lastEncounterType;
+    
+    public List<string> encounterQueue = new List<string>(); 
+    public string currentStepID;
+    public string currentEncounterID;
+
 }

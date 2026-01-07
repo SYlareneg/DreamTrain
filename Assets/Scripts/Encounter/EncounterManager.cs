@@ -50,7 +50,7 @@ public class EncounterManager : MonoBehaviour
     private bool isSceneLoading = false;
     private Queue<string> encounterSequenceQueue = new Queue<string>();
     
-    private bool isDebuging = true;
+    private bool isDebuging = false;
     private string debuggerID = "ACT1_SHEEP_IN_MAZE";
     
     private string currentLocID = "";
@@ -60,28 +60,81 @@ public class EncounterManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); 
         }
         else { Destroy(gameObject); }
     }
 
-    IEnumerator Start()
+    void Start()
     {
-        yield return null;
-        isSceneLoading = false;
-        
-        if (masterDB != null) 
-            masterDatabase = masterDB.GetDictionary();
-        else 
-            Debug.LogError("[EncounterManager] Master DB SO가 연결되지 않았습니다!");
+        if (masterDB != null) masterDatabase = masterDB.GetDictionary();
+        if (locationDB != null) locationDatabase = locationDB.GetDictionary();
 
-        if (locationDB != null) 
-            locationDatabase = locationDB.GetDictionary();
-        else 
-            Debug.LogError("[EncounterManager] Location DB SO가 연결되지 않았습니다!");
-
-        //InitializeEncounterSequence();
+        RestoreOrStartEncounter();
     }
+    void RestoreOrStartEncounter()
+    {
+        if (actData == null)
+        {
+            Debug.LogError("[EncounterManager] ActSO가 없습니다!");
+            return;
+        }
+
+        // 1. 진행 중이던 인카운터가 있는지 확인 (BattleScene 등에서 돌아온 경우)
+        if (!string.IsNullOrEmpty(actData.currentEncounterID))
+        {
+            Debug.Log($"[EncounterManager] 중단된 인카운터 복구: {actData.currentEncounterID}, Step: {actData.currentStepID}");
+            
+            // 해당 인카운터 파일 로드 및 파싱
+            LoadEncounterData(actData.currentEncounterID);
+            
+            // 저장된 스텝으로 이동 (없으면 P1)
+            string savedStep = string.IsNullOrEmpty(actData.currentStepID) ? "P1" : actData.currentStepID;
+            
+            encounterPanel.SetActive(true);
+            PlayStep(savedStep);
+        }
+        else
+        {
+            // 2. 진행 중인 게 없다면 대기열(Queue) 확인 및 지역 초기화
+            if (actData.encounterQueue == null || actData.encounterQueue.Count == 0)
+            {
+                // 대기열도 비어있다면 새로 지역 진입한 것으로 간주하고 초기화
+                InitializeLocationEncounters();
+            }
+            
+            // 대기열에서 하나 뽑아서 시작
+            PlayNextEncounterInQueue();
+        }
+    }
+    
+    void InitializeLocationEncounters()
+    {
+        string locID = actData.curNodeLocationID;
+        Debug.Log($"[EncounterManager] 지역 인카운터 초기화: {locID}");
+
+        if (!locationDatabase.ContainsKey(locID))
+        {
+            Debug.LogError($"Location DB에 {locID} 없음");
+            return;
+        }
+
+        LocationMetaInfo locInfo = locationDatabase[locID];
+        
+        // ActSO에 큐 초기화 (ActSO에 List<string> encounterQueue가 있어야 함)
+        actData.encounterQueue = new List<string>();
+
+        // 고정 인카운터 추가
+        foreach (var id in locInfo.selectedEncounterPool)
+        {
+            actData.encounterQueue.Add(id);
+        }
+
+        // 랜덤 인카운터 로직 (기존 로직 활용)
+        // 만약 랜덤 뽑기가 필요하다면 SelectEncounters 함수 사용해서 추가
+        // List<string> randomEncounters = SelectEncounters(locInfo);
+        // actData.encounterQueue.AddRange(randomEncounters);
+    }
+    
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -207,32 +260,41 @@ public class EncounterManager : MonoBehaviour
     {
         if (isDebuging)
         {
-            StartEncounterByID(debuggerID);
+            actData.currentEncounterID = debuggerID;
+            actData.currentStepID = "P1";
+            LoadEncounterData(debuggerID);
+            PlayStep("P1");
             return;
         }
-        if (encounterSequenceQueue.Count > 0)
+
+        if (actData.encounterQueue != null && actData.encounterQueue.Count > 0)
         {
-            string nextID = encounterSequenceQueue.Dequeue();
+            string nextID = actData.encounterQueue[0];
+            actData.encounterQueue.RemoveAt(0); // 큐에서 제거
+
+            // ActSO에 현재 상태 기록 시작
+            actData.currentEncounterID = nextID;
+            actData.currentStepID = "P1"; 
             
-            if (masterDatabase.ContainsKey(nextID) && actData != null)
+            if (masterDatabase.ContainsKey(nextID))
                 actData.lastEncounterType = masterDatabase[nextID].type;
 
-            StartEncounterByID(nextID);
+            LoadEncounterData(nextID);
+            encounterPanel.SetActive(true);
+            PlayStep("P1");
         }
         else
         {
-            Debug.Log("[System] 지역 인카운터 완료. MapScene으로 이동.");
+            Debug.Log("[System] 모든 인카운터 완료. MapScene 이동.");
+            actData.currentEncounterID = "";
+            actData.currentStepID = "";
             SceneManager.LoadScene("MapScene");
         }
     }
-
-    public void StartEncounterByID(string encounterID)
+    
+    void LoadEncounterData(string encounterID)
     {
-        if (masterDatabase == null || !masterDatabase.ContainsKey(encounterID))
-        {
-            Debug.LogError($"ID '{encounterID}'가 Master DB에 없습니다.");
-            return;
-        }
+        if (!masterDatabase.ContainsKey(encounterID)) return;
 
         EncounterMetaInfo meta = masterDatabase[encounterID];
         
@@ -241,36 +303,26 @@ public class EncounterManager : MonoBehaviour
         string projectRoot = Directory.GetParent(Application.dataPath).ToString();
         string fullPath = Path.Combine(projectRoot, targetPath);
 
-        if (!File.Exists(fullPath))
+        if (File.Exists(fullPath))
         {
-            Debug.LogError($"시나리오 파일 없음: {fullPath}");
-            return;
-        }
-
-        Debug.Log($"[Encounter Start] {meta.id}");
-        string csvContent = File.ReadAllText(fullPath);
-
-        if (!string.IsNullOrEmpty(meta.imagePath))
-        {
-            string imgName = Path.GetFileNameWithoutExtension(meta.imagePath);
-            Sprite img = Resources.Load<Sprite>($"Images/{imgName}"); 
-            if (img == null) img = Resources.Load<Sprite>(imgName); 
+            string csvContent = File.ReadAllText(fullPath);
             
-            if (img != null && illustrationImage != null) 
-                illustrationImage.sprite = img;
+            if (!string.IsNullOrEmpty(meta.imagePath))
+            {
+                string imgName = Path.GetFileNameWithoutExtension(meta.imagePath);
+                Sprite img = Resources.Load<Sprite>($"Images/{imgName}");
+                if (img == null) img = Resources.Load<Sprite>(imgName);
+                if (img != null) illustrationImage.sprite = img;
+            }
+
+            if (titleText != null) titleText.text = meta.nameKO;
+
+            ParseEncounterCSV(csvContent);
         }
-
-        if (titleText != null) titleText.text = meta.nameKO;
-
-        StartEncounterFromText(csvContent);
-    }
-
-    public void StartEncounterFromText(string csvText)
-    {
-        ParseEncounterCSV(csvText); 
-        if (encounterPanel != null) encounterPanel.SetActive(true);
-        if (stepDictionary.ContainsKey("P1")) PlayStep("P1");
-        else Debug.LogError("인카운터 시작 실패: 'P1' ID가 없습니다.");
+        else
+        {
+            Debug.LogError($"파일 없음: {fullPath}");
+        }
     }
 
     void ParseEncounterCSV(string csvText)
@@ -344,11 +396,10 @@ public class EncounterManager : MonoBehaviour
     
     public void PlayStep(string id)
     {
-        if (isSceneLoading) return;
         if (!stepDictionary.ContainsKey(id)) return;
         
         currentStep = stepDictionary[id];
-
+        if (actData != null) actData.currentStepID = id;
         if (currentStep.type == EncounterStepType.DESC)
         {
 
@@ -361,8 +412,7 @@ public class EncounterManager : MonoBehaviour
             ParseAndExecuteFunctions(currentStep.functionCall);
         }
         
-        if (isSceneLoading) return;
-
+        if (actData.currentEncounterID == "" || SceneManager.GetActiveScene().name != "EncounterScene") return;
         UpdateOptionsUI();
     }
 
@@ -408,91 +458,21 @@ public class EncounterManager : MonoBehaviour
     bool IsWaitState(string id) => string.IsNullOrEmpty(id) || id == "-" || id == "R";
     bool IsValidFunction(string func) => !string.IsNullOrEmpty(func) && func != "-" && func != "DEFAULT";
     bool CheckCondition(string condition) => true; 
-    
-    public void RegisterSceneUI(GameObject panel, Image illust, TextMeshProUGUI title, TextMeshProUGUI desc, Transform container, GameObject btnPrefab, GameObject merchant, GameObject cardRemove, EncounterRouletteUI roulette, GameObject roulettePanel)
-    {
-        this.encounterPanel = panel;
-        this.illustrationImage = illust;
-        this.titleText = title;
-        this.descriptionText = desc;
-        this.choiceContainer = container;
-        this.choiceButtonPrefab = btnPrefab;
-        this.merchantPanel = merchant;      
-        this.cardRemovalPanel = cardRemove;
-        this.rouletteUI = roulette;
-        this.roulettePanel = roulettePanel;
-
-        Debug.Log("[EncounterManager] UI 바인딩 완료");
-
-        if(this.encounterPanel != null) this.encounterPanel.SetActive(false);
-        
-        if (this.merchantPanel != null) this.merchantUI = this.merchantPanel.GetComponent<EncounterMerchantUI>();
-
-        string targetLocID = (actData != null) ? actData.curNodeLocationID : "";
-        
-        if (!string.IsNullOrEmpty(targetLocID) && currentLocID != targetLocID)
-        {
-            Debug.Log($"[EncounterManager] 지역 변경 감지(UI 등록 시점): {currentLocID} -> {targetLocID}");
-            currentLocID = targetLocID;
-            InitializeEncounterSequence(); 
-        }
-
-        if (currentStep != null)
-        {
-            Debug.Log($"[EncounterManager] 기존 스텝 복구: {currentStep.id}");
-            if(this.encounterPanel != null) this.encounterPanel.SetActive(true);
-            isSceneLoading = false;
-            PlayStep(currentStep.id);
-        }
-        else 
-        {
-            if(encounterSequenceQueue.Count > 0)
-            {
-                Debug.Log($"[EncounterManager] 대기열 시작 (남은 개수: {encounterSequenceQueue.Count})");
-                PlayNextEncounterInQueue();
-            }
-            else
-            {
-                InitializeEncounterSequence();
-                PlayNextEncounterInQueue();
-            }
-        }
-    }
-
+   
     public void EndEncounter()
     {
+        if (actData != null)
+        {
+            actData.currentEncounterID = "";
+            actData.currentStepID = "";
+        }
+        
         if (encounterPanel != null) encounterPanel.SetActive(false);
+        
         PlayNextEncounterInQueue();
     }
     
-    // --- Static 메서드: MapScene 등 외부에서 타입 확인용 ---
-    public static List<EncounterType> GetEncounterType(string locationID)
-    {
-        if (Instance == null || Instance.locationDatabase == null)
-        {
-            // EncounterScene이 아니라면 Instance가 없을 수 있음.
-            // 이 경우 MapScene에서는 별도의 MapManager가 SO를 직접 참조해서 처리하는 것이 안전함.
-            Debug.LogWarning("EncounterManager 인스턴스가 없어 타입을 확인할 수 없습니다.");
-            return new List<EncounterType>();
-        }
-
-        if (!Instance.locationDatabase.ContainsKey(locationID))
-            return new List<EncounterType>();
-
-        List<EncounterType> typeList = new List<EncounterType>();
-        LocationMetaInfo locInfo = Instance.locationDatabase[locationID];
-
-        foreach (string encID in locInfo.encounterPool)
-        {
-            if (Instance.masterDatabase.ContainsKey(encID))
-            {
-                typeList.Add(Instance.masterDatabase[encID].type);
-            }
-        }
-        return typeList.Distinct().ToList();
-    }
     
-    // --- 함수 파싱 및 실행 (기존 유지) ---
     void ParseAndExecuteFunctions(string commandLine)
     {
         string[] commands = Regex.Split(commandLine, @",\s*(?![^()]*\))");
@@ -612,8 +592,8 @@ public class EncounterManager : MonoBehaviour
             case "StartBattle": 
                 if (args.Length >= 1)
                 {
-                    if (characterData != null) characterData.enemyName = args[0]; 
-                    isSceneLoading = true;
+                    encounterPanel.SetActive(false);
+                    if (characterData != null) characterData.enemyName = args[0];
                     SceneManager.LoadScene("BattleScene"); 
                 }
                 break;
@@ -660,10 +640,7 @@ public class EncounterManager : MonoBehaviour
     {
         if (descriptionScrollRect != null)
         {
-            // UI 레이아웃이 갱신될 때까지 1프레임 대기하거나 강제 업데이트 필요
             Canvas.ForceUpdateCanvases(); 
-            
-            // verticalNormalizedPosition: 1(위) ~ 0(아래)
             if (toTop)
                 descriptionScrollRect.verticalNormalizedPosition = 1f; 
             else
