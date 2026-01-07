@@ -1,6 +1,6 @@
 {
     "maxHealth": 60,
-    "curHealth": 60,
+    "curHealth": 51,
     "dreamDust": 1000,
     "leftPassengers": 2,
     "personaPiece": "고양이의 꿈",
@@ -86,7 +86,7 @@
     "normalCards": [
         {
             "cardName": "회전 카드 1",
-            "num": 2
+            "num": 3
         },
         {
             "cardName": "회전 카드 2",
@@ -252,8 +252,8 @@
         }
     ],
     "totalLevel": 6,
-    "curNodeIndex": 0,
-    "curNodeLocationID": "",
+    "curNodeIndex": 1,
+    "curNodeLocationID": "AMUSEMENT_PARK_ENTRANCE",
     "lastEncounterType": 0,
-    "enemyName": "우는 와인"
+    "enemyName": "박쥐"
 }

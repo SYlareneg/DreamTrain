@@ -37,7 +37,7 @@ public class EncounterRouletteUI : MonoBehaviour
 
     private void Start()
     {
-        panelRoot.SetActive(false);
+        //panelRoot.SetActive(false);
     }
 
     public void Open(string statName, int difficulty, System.Action<RouletteResultType> onComplete)
@@ -46,21 +46,22 @@ public class EncounterRouletteUI : MonoBehaviour
         Debug.Log(statName);
         this.onCompleteCallback = onComplete;
         isSpinning = false;
-        spinButton.interactable = true;
-
+        
+        Debug.Log(spinButton);
         if (spinButton == null)
         {
+            Debug.Log("finding button");
             Button[] allButtons = panelRoot.GetComponentsInChildren<Button>(true);
-
             foreach (var btn in allButtons)
             {
+                Debug.Log($"button name : {btn.name}");
                 if (btn.name == "RollButton" )
                 {
                     spinButton = btn;
                     break;
                 }
             }
-
+            Debug.Log(spinButton);
             if (spinButton != null)
             {
                 // 혹시 모를 중복 방지를 위해 기존 리스너 제거 후 추가
@@ -72,9 +73,8 @@ public class EncounterRouletteUI : MonoBehaviour
                 Debug.LogWarning("[EncounterRouletteUI] 'RollButton'이라는 이름의 버튼을 찾을 수 없습니다. 이름을 확인해주세요.");
             }
         }
-
-        // 1. 플레이어 스탯 가져오기 (EncounterManager나 CharacterSO에서 가져와야 함)
-        // 임시로 랜덤값 혹은 EncounterManager를 통해 가져온다고 가정
+        
+        spinButton.interactable = true;
 
         // 2. 슬롯 계산 (기획서 공식 적용)
         CalculateSegments(statName, difficulty);
@@ -148,7 +148,6 @@ public class EncounterRouletteUI : MonoBehaviour
 
     void DrawWheel()
     {
-        // 1. 기존 조각들 다 지우기
         foreach (Transform child in wheelContainer) Destroy(child.gameObject);
 
         // 룰렛은 총 12조각

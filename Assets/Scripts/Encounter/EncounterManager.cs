@@ -20,7 +20,8 @@ public class EncounterManager : MonoBehaviour
     public TextMeshProUGUI titleText;       
     public TextMeshProUGUI descriptionText; 
     public Transform choiceContainer;       
-    public GameObject choiceButtonPrefab;  
+    public GameObject choiceButtonPrefab; 
+    public ScrollRect descriptionScrollRect;
     
     [Header("Sub-Systems")]
     public EncounterRouletteUI rouletteUI;
@@ -50,7 +51,7 @@ public class EncounterManager : MonoBehaviour
     private Queue<string> encounterSequenceQueue = new Queue<string>();
     
     private bool isDebuging = true;
-    private string debuggerID = "ACT1_SUNNY_AFTERNOON";
+    private string debuggerID = "ACT1_SHEEP_IN_MAZE";
     
     private string currentLocID = "";
 
@@ -185,7 +186,6 @@ public class EncounterManager : MonoBehaviour
             result.Add(best.id);
             pickCount++;
 
-            // 같은 Order 제거
             foreach (var other in candidates)
             {
                 if (other.id == best.id) continue; 
@@ -353,6 +353,7 @@ public class EncounterManager : MonoBehaviour
         {
 
             descriptionText.text = currentStep.textContent.Replace("\\n", "\n");
+            ResetScrollPosition(true);
         }
 
         if (IsValidFunction(currentStep.functionCall))
@@ -519,24 +520,48 @@ public class EncounterManager : MonoBehaviour
         {
             case "StartRoulette":
             case "StartRoullete":
+                Debug.Log("rouleeeee");
                  if (args.Length >= 2 && rouletteUI != null)
                  {
-                     Debug.Log("Roullete");
                      string statName = args[0];
                      int difficulty = int.Parse(args[1]);
                      string winPage = (args.Length > 3) ? args[3] : "P_WIN"; 
                      string losePage = (args.Length > 4) ? args[4] : "P_LOSE";
-
-                     roulettePanel.SetActive(true);
-                     rouletteUI.Open(statName, difficulty, (result) => 
+                     int currentStat = 0;
+                     switch (statName)
                      {
-                         roulettePanel.SetActive(false);
-                         encounterPanel.SetActive(true);
-                         if (result == RouletteResultType.Success || result == RouletteResultType.GreatSuccess)
-                         {PlayStep(winPage); Debug.Log("성공");}
-                         else {PlayStep(losePage); Debug.Log("실패");}
+                        case "Wisdom": 
+                            currentStat = playerStats.wisdom;
+                            break;
+                        case "Luck": 
+                            currentStat = playerStats.luck;
+                            break;
+                        case "Courage": 
+                            currentStat = playerStats.courage;
+                            break;
+                        default:
+                            Debug.Log("Name ERror!");
+                            break;
+                            
+                     }
+
+                     if (currentStat > difficulty)
+                     {
+                         Debug.Log($"Roullete Start: {statName} ({currentStat} > {difficulty})");
+                         roulettePanel.SetActive(true);
+                         rouletteUI.Open(statName, difficulty, (result) => 
+                         {
+                             if (result == RouletteResultType.Success || result == RouletteResultType.GreatSuccess)
+                             {PlayStep(winPage); Debug.Log("성공");}
+                             else {PlayStep(losePage); Debug.Log("실패");}
+                         
+                             roulettePanel.SetActive(false);
+                             encounterPanel.SetActive(true);
                              
-                     });
+                         });
+                     }
+                     else Debug.Log($"{statName}가 부족합니다! (현재: {currentStat} < 필요: {difficulty})");
+                     
                  }
                  break;
             
@@ -557,6 +582,7 @@ public class EncounterManager : MonoBehaviour
                     if(descriptionText != null)
                     {
                         descriptionText.text += $"\n<color=#0000FF>{sType} 증가!</color>";
+                        ResetScrollPosition(false);
                         Canvas.ForceUpdateCanvases(); 
                     }
                     else
@@ -574,6 +600,7 @@ public class EncounterManager : MonoBehaviour
                     if(descriptionText != null)
                     {
                         descriptionText.text += $"\n<color=#FF0000>{sType1} 감소!</color>";
+                        ResetScrollPosition(false);
                         Canvas.ForceUpdateCanvases(); 
                     }
                     else
@@ -628,6 +655,27 @@ public class EncounterManager : MonoBehaviour
                 sofaManager.SofaCardDelete();
                 break;
         }
+    }
+    void ResetScrollPosition(bool toTop)
+    {
+        if (descriptionScrollRect != null)
+        {
+            // UI 레이아웃이 갱신될 때까지 1프레임 대기하거나 강제 업데이트 필요
+            Canvas.ForceUpdateCanvases(); 
+            
+            // verticalNormalizedPosition: 1(위) ~ 0(아래)
+            if (toTop)
+                descriptionScrollRect.verticalNormalizedPosition = 1f; 
+            else
+                StartCoroutine(ScrollToBottomCoroutine()); // 맨 아래는 프레임 딜레이가 필요할 때가 많음
+        }
+    }
+
+    IEnumerator ScrollToBottomCoroutine()
+    {
+        yield return new WaitForEndOfFrame(); // UI 렌더링 끝난 후
+        if(descriptionScrollRect != null) 
+            descriptionScrollRect.verticalNormalizedPosition = 0f;
     }
 
     public void OnMerchantClosed()

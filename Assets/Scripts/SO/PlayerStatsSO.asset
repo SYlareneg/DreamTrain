@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ed4b5d2dfce87f45be8f2fe9df2bf06, type: 3}
   m_Name: PlayerStatsSO
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStatsSo
-  courage: 1
-  wisdom: 1
-  luck: 1
+  courage: 3
+  wisdom: 4
+  luck: 3
