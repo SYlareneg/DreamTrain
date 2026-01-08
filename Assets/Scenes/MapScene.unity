@@ -316,8 +316,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.43770647, g: 1, b: 0.2688679, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 4f42798ad99a9304eb16d5e40b60b0a8, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -337,7 +337,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 6, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1945880272}
@@ -684,10 +684,15 @@ MonoBehaviour:
   mapTransform: {fileID: 1945880272}
   mapNodePrefab: {fileID: 8918888303948354407, guid: 598903db5c6c44f47939bd3ed0429a6a, type: 3}
   mapLinePrefab: {fileID: 6548123826495189928, guid: d8d42f284ea48dd44a74f118fc63d18a, type: 3}
-  lineWidth: 0.1
-  zeroPos: {x: -9, y: 0.7, z: 0}
+  lineSprites:
+  - {fileID: -2665730744065569099, guid: 338e35dda64552f4397f758ea6c40955, type: 3}
+  - {fileID: 4405842303913411296, guid: db597dfc39f678841b716ce4020a5ef7, type: 3}
+  - {fileID: 1165779605594618965, guid: f3112e322380b794bb2c7682ffc235f0, type: 3}
+  - {fileID: -155666842523058899, guid: 7184773a3728dff48b74769687ef8c3c, type: 3}
+  lineWidth: 0.3
+  zeroPos: {x: -15, y: 0.7, z: 0}
   levelDist: 4
-  posDist: 1
+  posDist: 0.8
   tooltipOffset: {x: 0.5, y: -0.2}
   map:
     sortedMapNodeList: []
@@ -697,6 +702,7 @@ MonoBehaviour:
   player_moveable: 1
   curNode:
     nodeImg: {fileID: 0}
+    hideNodeImg: {fileID: 0}
     title: 
     text: 
     encounterNum: 0

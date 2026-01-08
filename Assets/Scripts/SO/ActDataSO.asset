@@ -30,6 +30,7 @@ MonoBehaviour:
     nameKO: "\uCD9C\uBC1C"
     descriptionKO: "\uCD9C\uBC1C \uC9C0\uC810\uC785\uB2C8\uB2E4."
     sprite: Circle
+    hideSprite: 
     encounterPool: []
     encounterNum: 0
     difficulty: 0
@@ -38,6 +39,7 @@ MonoBehaviour:
     nameKO: "\uB3C4\uCC29"
     descriptionKO: "\uB3C4\uCC29 \uC9C0\uC810\uC785\uB2C8\uB2E4."
     sprite: Circle
+    hideSprite: 
     encounterPool: []
     encounterNum: 0
     difficulty: 10
@@ -46,7 +48,8 @@ MonoBehaviour:
     nameKO: "\uB180\uC774\uACF5\uC6D0 \uC785\uAD6C"
     descriptionKO: "\uC5EC\uC815\uC758 \uC2DC\uC791\uC740 \uD56D\uC0C1 \uB450\uADFC\uAC70\uB9AC\uB294
       \uBC95\uC774\uC8E0."
-    sprite: Circle
+    sprite: "\uB180\uC774\uACF5\uC6D0\uC785\uAD6C02"
+    hideSprite: "\uB180\uC774\uACF5\uC6D0\uC785\uAD6CN02"
     encounterPool:
     - ACT1_WHITE_RABBIT
     encounterNum: 1
@@ -56,7 +59,8 @@ MonoBehaviour:
     nameKO: "\uD68C\uC804\uBAA9\uB9C8"
     descriptionKO: "\uB3CC\uACE0 \uB3CC\uACE0 \uB3CC\uACE0. \uD574\uAC00 \uC9C0\uACE0
       \uB2EC\uC774 \uC838\uB3C4 \uBA48\uCD94\uC9C0 \uC54A\uB294 \uD68C\uC804\uBAA9\uB9C8!"
-    sprite: Circle
+    sprite: "\uD68C\uC804\uBAA9\uB9C802"
+    hideSprite: "\uD68C\uC804\uBAA9\uB9C8N02"
     encounterPool:
     - ACT1_FASTEST_HORSE
     - ACT1_LAZY_HORSE
@@ -69,7 +73,8 @@ MonoBehaviour:
     nameKO: "\uD68C\uC804 \uCEF5"
     descriptionKO: "\uBE59\uAE00\uBE59\uAE00 \uB3C4\uB294 \uCEF5\uB4E4\uACFC \uD568\uAED8
       \uCC28 \uD55C\uC794\uC758 \uC5EC\uC720\uB97C!"
-    sprite: Circle
+    sprite: "\uD68C\uC804\uCEF502"
+    hideSprite: "\uD68C\uC804\uCEF5N02"
     encounterPool:
     - ACT1_SPINNING_CUP
     - ACT1_WINE_IN_CUP
@@ -84,7 +89,8 @@ MonoBehaviour:
       \uC9D1. \uC18C\uBB38\uC5D0 \uC758\uD558\uBA74 \uB4E4\uC5B4\uAC14\uB2E4\uAC00
       \uB098\uC624\uC9C0 \uBABB\uD55C \uC190\uB2D8\uC774 \uAF64 \uB9CE\uB2E4\uACE0
       \uD569\uB2C8\uB2E4. "
-    sprite: Circle
+    sprite: "\uC720\uB839\uC758\uC9D102"
+    hideSprite: "\uC720\uB839\uC758\uC9D1N02"
     encounterPool:
     - ACT1_MISSING_ZIZI
     - ACT1_DEVIL_DOLL
@@ -99,7 +105,8 @@ MonoBehaviour:
     descriptionKO: "\uAF43\uC73C\uB85C \uAC00\uB4DD\uD55C \uBBF8\uB85C \uC815\uC6D0.
       \uAE38\uC774 \uBCF5\uC7A1\uD574\uC11C \uC5B4\uB9B0 \uC544\uC774\uC5D0\uAC8C\uB294
       \uD0C8\uCD9C\uD558\uAE30 \uC5B4\uB824\uC6B8 \uC218 \uC788\uC74C"
-    sprite: Circle
+    sprite: "\uBBF8\uB85C\uC815\uC6D002"
+    hideSprite: "\uBBF8\uB85C\uC815\uC6D0N02"
     encounterPool:
     - ACT1_SHEEP_IN_MAZE
     - 
@@ -119,7 +126,8 @@ MonoBehaviour:
     nameKO: "\uC544\uC774\uC2A4\uD06C\uB9BC \uCE74\uD2B8"
     descriptionKO: "\uB2F9\uC2E0\uC758 \uC9C0\uCE5C \uBAB8\uC744 \uAE68\uC6CC\uC904
       \uB2EC\uB2EC\uD55C \uC544\uC774\uC2A4\uD06C\uB9BC \uD558\uB098 \uC5B4\uB5A0\uC138\uC694?"
-    sprite: Circle
+    sprite: "\uC544\uC774\uC2A4\uD06C\uB9BC\uCE74\uD2B802"
+    hideSprite: "\uC544\uC774\uC2A4\uD06C\uB9BC\uCE74\uD2B8N02"
     encounterPool:
     - ACT1_SWEET_THING
     - 

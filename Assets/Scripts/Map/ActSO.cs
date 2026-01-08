@@ -9,6 +9,7 @@ public class MapNode
 {
     // 표기정보
     public Sprite nodeImg;
+    public Sprite hideNodeImg;
     public string title;
     public string text;
     public int encounterNum;
@@ -24,6 +25,7 @@ public class MapNode
     public MapNode(MapNode mapNode)
     {
         nodeImg = mapNode.nodeImg;
+        hideNodeImg = mapNode.hideNodeImg;
         title = mapNode.title;
         text = mapNode.text;
         encounterNum = mapNode.encounterNum;
@@ -38,6 +40,7 @@ public class MapNode
     public MapNode(Location_Data locData)
     {
         nodeImg = Utils.LoadSpriteByName("LocationIcons", locData.sprite);
+        hideNodeImg = Utils.LoadSpriteByName("LocationIcons", locData.hideSprite);
         title = locData.nameKO;
         text = locData.descriptionKO;
         encounterNum = locData.encounterNum;
@@ -54,6 +57,7 @@ public class MapNode
         Location_Data locData = locationDataList.Find(loc => loc.id == mapNodeData.locationID);
         if(locData == null) return;
         nodeImg = Utils.LoadSpriteByName("LocationIcons", locData.sprite);
+        hideNodeImg = Utils.LoadSpriteByName("LocationIcons", locData.hideSprite);
         title = locData.nameKO;
         text = locData.descriptionKO;
         encounterNum = locData.encounterNum;

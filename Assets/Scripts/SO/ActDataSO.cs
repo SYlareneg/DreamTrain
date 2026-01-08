@@ -8,6 +8,7 @@ public class Location_Data
     public string nameKO;
     public string descriptionKO;
     public string sprite;
+    public string hideSprite;
     public List<string> encounterPool;
     public int encounterNum;
     public int difficulty;

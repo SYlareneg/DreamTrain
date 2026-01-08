@@ -15,9 +15,10 @@ public class MapNodeObject : MonoBehaviour
         if(MapManager.Inst.curNode.childNodes.Find(x => x == mapNode.ID) == null) return;
 
         transform.localScale = originScale * expandSize;
-        Color color = spriteRenderer.color;
-        color.a = 1f;
-        spriteRenderer.color = color;
+        spriteRenderer.sprite = mapNode.nodeImg;
+        // Color color = spriteRenderer.color;
+        // color.a = 1f;
+        // spriteRenderer.color = color;
     }
 
     private void OnMouseOver()
@@ -26,9 +27,10 @@ public class MapNodeObject : MonoBehaviour
         if(MapManager.Inst.curNode.childNodes.Find(x => x == mapNode.ID) == null) return;
 
         transform.localScale = originScale * expandSize;
-        Color color = spriteRenderer.color;
-        color.a = 1f;
-        spriteRenderer.color = color;
+        spriteRenderer.sprite = mapNode.nodeImg;
+        // Color color = spriteRenderer.color;
+        // color.a = 1f;
+        // spriteRenderer.color = color;
     }
 
     private void OnMouseExit()
@@ -38,9 +40,10 @@ public class MapNodeObject : MonoBehaviour
         if(mapNode == MapManager.Inst.curNode || MapManager.Inst.player_moveable == false) return;
 
         transform.localScale = originScale;
-        Color color = spriteRenderer.color;
-        color.a = 0.5f;
-        spriteRenderer.color = color;
+        spriteRenderer.sprite = mapNode.hideNodeImg;
+        // Color color = spriteRenderer.color;
+        // color.a = 0.5f;
+        // spriteRenderer.color = color;
     }
 
     private void OnMouseUpAsButton()
@@ -54,9 +57,10 @@ public class MapNodeObject : MonoBehaviour
     private void Start()
     {
         originScale = transform.localScale;
-        Color color = spriteRenderer.color;
-        color.a = 0.5f;
-        spriteRenderer.color = color;
+        spriteRenderer.sprite = mapNode.hideNodeImg;
+        // Color color = spriteRenderer.color;
+        // color.a = 0.5f;
+        // spriteRenderer.color = color;
         tooltip = GetComponent<Tooltip>();
     }
 
@@ -65,9 +69,10 @@ public class MapNodeObject : MonoBehaviour
         if(mapNode != null && mapNode == MapManager.Inst.curNode)
         {
             transform.localScale = originScale * expandSize;
-            Color color = spriteRenderer.color;
-            color.a = 1f;
-            spriteRenderer.color = color;
+            spriteRenderer.sprite = mapNode.nodeImg;
+            // Color color = spriteRenderer.color;
+            // color.a = 1f;
+            // spriteRenderer.color = color;
         }
         if(tooltip != null)
         {

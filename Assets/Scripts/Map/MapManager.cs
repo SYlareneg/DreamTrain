@@ -21,6 +21,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] Transform mapTransform;
     [SerializeField] GameObject mapNodePrefab;
     [SerializeField] GameObject mapLinePrefab;
+    [SerializeField] Sprite[] lineSprites;
     [SerializeField] float lineWidth;
     [SerializeField] Vector3 zeroPos;
     [SerializeField] float levelDist;
@@ -41,7 +42,10 @@ public class MapManager : MonoBehaviour
         retVec.y += mapNode.pos * posDist;
         if(addOffset)
         {
-            float randOffset = Random.Range(-posDist / 4, posDist / 4);
+            float randOffset = 0f;
+            if(mapNode.pos > 0) randOffset = Random.Range(0, posDist / 4);
+            else if(mapNode.pos < 0) randOffset = Random.Range(-posDist / 4, 0);
+            else randOffset = Random.Range(-posDist / 4, posDist / 4);
             retVec.y += randOffset;
         }
         return retVec;
@@ -141,7 +145,7 @@ public class MapManager : MonoBehaviour
         for(int i = 0; i < mp.sortedMapNodeList.Count; i++)
         {
             var newMapNode = Instantiate(mapNodePrefab, Vector3.zero, Utils.QI);
-            newMapNode.GetComponent<SpriteRenderer>().sprite = mp.sortedMapNodeList[i].nodeImg;
+            newMapNode.GetComponent<SpriteRenderer>().sprite = mp.sortedMapNodeList[i].hideNodeImg;
             MapNodeObject mapNodeObject = newMapNode.GetComponent<MapNodeObject>();
             mapNodeObject.mapNode = mp.sortedMapNodeList[i];
             MapNodeTooltip mapNodeTooltip = newMapNode.GetComponent<MapNodeTooltip>();
@@ -176,7 +180,31 @@ public class MapManager : MonoBehaviour
                 newMapLine.transform.position = linePos;
                 Vector3 direction = mapNodeScreenPos[childNode] - mapNodeScreenPos[mapNode.ID];
                 newMapLine.transform.right = direction;
-                newMapLine.transform.localScale = new Vector3(direction.magnitude, lineWidth, 1f);
+                newMapLine.transform.localScale = new Vector3(lineWidth, lineWidth, 1f);
+                if(mapNode.childNodes.Count > 1)
+                {
+                    if(mapNodeScreenPos[mapNode.ID].y < mapNodeScreenPos[childNode].y)
+                    {
+                        newMapLine.GetComponent<SpriteRenderer>().sprite = lineSprites[Random.Range(0, lineSprites.Length / 2)];
+                    }
+                    else
+                    {
+                        newMapLine.GetComponent<SpriteRenderer>().sprite = lineSprites[Random.Range(lineSprites.Length / 2, lineSprites.Length)];
+                    }
+                }
+                else
+                {
+                    if(mapNodeScreenPos[mapNode.ID].y > mapNodeScreenPos[childNode].y)
+                    {
+                        newMapLine.GetComponent<SpriteRenderer>().sprite = lineSprites[Random.Range(0, lineSprites.Length / 2)];
+                    }
+                    else
+                    {
+                        newMapLine.GetComponent<SpriteRenderer>().sprite = lineSprites[Random.Range(lineSprites.Length / 2, lineSprites.Length)];
+                    }
+                }
+                //newMapLine.GetComponent<SpriteRenderer>().sprite = lineSprites[Random.Range(0, lineSprites.Length)];
+                newMapLine.GetComponent<SpriteRenderer>().size = new Vector2(direction.magnitude / lineWidth, 2f);
             }
         }
     }
@@ -189,6 +217,7 @@ public class MapManager : MonoBehaviour
         {
             actSO.mapNodeScreenPosSave.Add(mapNodeScreenPos[mapNode.ID]);
         }
+        //DataManager.Inst.SavePlayerData();
     }
 
     public Vector3 GetScreenPos(MapNode mapNode)

@@ -27,6 +27,7 @@
             "nameKO": "출발",
             "descriptionKO": "출발 지점입니다.",
             "sprite": "Circle",
+            "hideSprite": "",
             "encounterPool": [],
             "encounterNum": 0,
             "difficulty": 0,
@@ -37,6 +38,7 @@
             "nameKO": "도착",
             "descriptionKO": "도착 지점입니다.",
             "sprite": "Circle",
+            "hideSprite": "",
             "encounterPool": [],
             "encounterNum": 0,
             "difficulty": 10,
@@ -46,7 +48,8 @@
             "id": "AMUSEMENT_PARK_ENTRANCE",
             "nameKO": "놀이공원 입구",
             "descriptionKO": "여정의 시작은 항상 두근거리는 법이죠.",
-            "sprite": "Circle",
+            "sprite": "놀이공원입구02",
+            "hideSprite": "놀이공원입구N02",
             "encounterPool": [
                 "ACT1_WHITE_RABBIT"
             ],
@@ -58,7 +61,8 @@
             "id": "MERRY_GO_ROUND",
             "nameKO": "회전목마",
             "descriptionKO": "돌고 돌고 돌고. 해가 지고 달이 져도 멈추지 않는 회전목마!",
-            "sprite": "Circle",
+            "sprite": "회전목마02",
+            "hideSprite": "회전목마N02",
             "encounterPool": [
                 "ACT1_FASTEST_HORSE",
                 "ACT1_LAZY_HORSE",
@@ -73,7 +77,8 @@
             "id": "TEA_CUPS",
             "nameKO": "회전 컵",
             "descriptionKO": "빙글빙글 도는 컵들과 함께 차 한잔의 여유를!",
-            "sprite": "Circle",
+            "sprite": "회전컵02",
+            "hideSprite": "회전컵N02",
             "encounterPool": [
                 "ACT1_SPINNING_CUP",
                 "ACT1_WINE_IN_CUP",
@@ -88,7 +93,8 @@
             "id": "GHOST_HOUSE",
             "nameKO": "유령의 집",
             "descriptionKO": "으스스하고 위험한 유령의 집. 소문에 의하면 들어갔다가 나오지 못한 손님이 꽤 많다고 합니다. ",
-            "sprite": "Circle",
+            "sprite": "유령의집02",
+            "hideSprite": "유령의집N02",
             "encounterPool": [
                 "ACT1_MISSING_ZIZI",
                 "ACT1_DEVIL_DOLL",
@@ -104,7 +110,8 @@
             "id": "MAZE_GARDEN",
             "nameKO": "미로 정원",
             "descriptionKO": "꽃으로 가득한 미로 정원. 길이 복잡해서 어린 아이에게는 탈출하기 어려울 수 있음",
-            "sprite": "Circle",
+            "sprite": "미로정원02",
+            "hideSprite": "미로정원N02",
             "encounterPool": [
                 "ACT1_SHEEP_IN_MAZE",
                 "",
@@ -126,7 +133,8 @@
             "id": "ICECREAM_CART",
             "nameKO": "아이스크림 카트",
             "descriptionKO": "당신의 지친 몸을 깨워줄 달달한 아이스크림 하나 어떠세요?",
-            "sprite": "Circle",
+            "sprite": "아이스크림카트02",
+            "hideSprite": "아이스크림카트N02",
             "encounterPool": [
                 "ACT1_SWEET_THING",
                 "",
