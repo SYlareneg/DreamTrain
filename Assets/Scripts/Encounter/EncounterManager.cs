@@ -18,10 +18,20 @@ public class EncounterManager : MonoBehaviour
     public GameObject encounterPanel;       
     public Image illustrationImage;         
     public TextMeshProUGUI titleText;       
-    public TextMeshProUGUI descriptionText; 
-    public Transform choiceContainer;       
-    public GameObject choiceButtonPrefab; 
+    public TextMeshProUGUI descriptionText;
     public ScrollRect descriptionScrollRect;
+    
+    [Header("Choice Container Layouts")]
+    public GameObject oneChoiceContainer;
+    public Transform oneChoicePos; 
+
+    public GameObject twoChoiceContainer;
+    public Transform[] twoChoicePos;
+
+    public GameObject threeChoiceContainer;
+    public Transform[] threeChoicePos;
+    public GameObject choiceButtonPrefab; 
+    
     
     [Header("Sub-Systems")]
     public EncounterRouletteUI rouletteUI;
@@ -50,8 +60,8 @@ public class EncounterManager : MonoBehaviour
     private bool isSceneLoading = false;
     private Queue<string> encounterSequenceQueue = new Queue<string>();
     
-    private bool isDebuging = false;
-    private string debuggerID = "ACT1_SHEEP_IN_MAZE";
+    public bool isDebuging = true;
+    public string debuggerID = "ACT1_BEST_HORSE";
     
     private string currentLocID = "";
 
@@ -68,7 +78,7 @@ public class EncounterManager : MonoBehaviour
     {
         if (masterDB != null) masterDatabase = masterDB.GetDictionary();
         if (locationDB != null) locationDatabase = locationDB.GetDictionary();
-
+        ResetChoiceContainers();
         RestoreOrStartEncounter();
     }
     void RestoreOrStartEncounter()
@@ -418,40 +428,108 @@ public class EncounterManager : MonoBehaviour
 
     void UpdateOptionsUI()
     {
-        foreach (Transform child in choiceContainer) Destroy(child.gameObject);
+        // 1. 기존 버튼들 및 컨테이너 초기화
+        ResetChoiceContainers();
+
+        // 2. 생성할 버튼 정보 수집
+        List<TempOptionData> buttonsToCreate = new List<TempOptionData>();
 
         if (currentStep.options != null && currentStep.options.Count > 0)
         {
             foreach (var option in currentStep.options)
             {
                 if (!CheckCondition(option.condition)) continue; 
-                CreateButton(option.text, option.nextStepId, option.functionCall);
+                buttonsToCreate.Add(new TempOptionData(option.text, option.nextStepId, option.functionCall));
             }
         }
         else 
         {
-            if (IsWaitState(currentStep.nextStepId)) { }
-            else if (currentStep.nextStepId == "END") CreateButton("떠난다", "END");
-            else CreateButton("다음", currentStep.nextStepId);
+            // 옵션이 없는 경우 (기본 버튼)
+            if (IsWaitState(currentStep.nextStepId)) { /* 대기 상태면 버튼 없음 */ }
+            else if (currentStep.nextStepId == "END") buttonsToCreate.Add(new TempOptionData("떠난다", "END", null));
+            else buttonsToCreate.Add(new TempOptionData("다음", currentStep.nextStepId, null));
+        }
+
+        int count = buttonsToCreate.Count;
+
+        // 3. 개수에 따른 컨테이너 활성화 및 버튼 생성
+        if (count == 1)
+        {
+            oneChoiceContainer.SetActive(true);
+            CreateButtonAt(buttonsToCreate[0], oneChoicePos);
+        }
+        else if (count == 2)
+        {
+            twoChoiceContainer.SetActive(true);
+            for(int i=0; i<2; i++) CreateButtonAt(buttonsToCreate[i], twoChoicePos[i]);
+        }
+        else if (count >= 3)
+        {
+            threeChoiceContainer.SetActive(true);
+            // 3개 이상일 경우 3개까지만 표시하거나, 3번 자리에 마지막꺼 배치 등 기획 필요. 여기선 앞에서부터 3개.
+            int limit = Mathf.Min(count, 3);
+            for(int i=0; i<limit; i++) CreateButtonAt(buttonsToCreate[i], threeChoicePos[i]);
+        }
+    }
+    
+    private class TempOptionData
+    {
+        public string text;
+        public string nextId;
+        public string func;
+        public TempOptionData(string t, string n, string f) { text = t; nextId = n; func = f; }
+    }
+    void ResetChoiceContainers()
+    {
+        // 모든 컨테이너 비활성화 및 기존 생성된 버튼 삭제
+        if (oneChoiceContainer != null)
+        {
+            ClearContainer(oneChoicePos);
+            oneChoiceContainer.SetActive(false);
+        }
+        if (twoChoiceContainer != null)
+        {
+            foreach(Transform t in twoChoicePos) ClearContainer(t);
+            twoChoiceContainer.SetActive(false);
+        }
+        if (threeChoiceContainer != null)
+        {
+            foreach(Transform t in threeChoicePos) ClearContainer(t);
+            threeChoiceContainer.SetActive(false);
         }
     }
 
-    void CreateButton(string text, string nextId, string functionCall = null)
+    void ClearContainer(Transform parent)
     {
-        GameObject btnObj = Instantiate(choiceButtonPrefab, choiceContainer);
-        btnObj.GetComponentInChildren<TextMeshProUGUI>().text = text;
+        if (parent == null) return;
+        foreach (Transform child in parent) Destroy(child.gameObject);
+    }
+    
+    void CreateButtonAt(TempOptionData data, Transform targetParent)
+    {
+        if (targetParent == null) return;
+        GameObject btnObj = Instantiate(choiceButtonPrefab, targetParent);
+        RectTransform btnRect = btnObj.GetComponent<RectTransform>();
+
+        TextMeshProUGUI tmp = btnObj.GetComponentInChildren<TextMeshProUGUI>();
+        if (tmp != null)
+        {
+            tmp.text = data.text;
+            Vector2 textSize = tmp.GetPreferredValues(data.text);
+            btnRect.sizeDelta = new Vector2(textSize.x, textSize.y);
+        }
         
-        btnObj.GetComponent<Button>().onClick.AddListener(() => 
+        Button btn = btnObj.GetComponent<Button>();
+        btn.onClick.AddListener(() => 
         {
             if (!isSceneLoading)
             {
-                if (IsWaitState(nextId)) { } // 대기 상태면 텍스트 유지
-                else if (nextId == "END") EndEncounter();
-                else PlayStep(nextId); // ★ 여기서 새 페이지 텍스트("그렇군...")가 로드됨
+                if (IsWaitState(data.nextId)) { } 
+                else if (data.nextId == "END") EndEncounter();
+                else PlayStep(data.nextId); 
             }
-            if (IsValidFunction(functionCall))
-                ParseAndExecuteFunctions(functionCall);
-
+            if (IsValidFunction(data.func))
+                ParseAndExecuteFunctions(data.func);
         });
     }
 
@@ -546,7 +624,7 @@ public class EncounterManager : MonoBehaviour
                  break;
             
             case "GetObjet":
-                if (args.Length >= 1) descriptionText.text += $"\n<color=#0000FF>오브제 {args[0]} 획득!</color>";
+                if (args.Length >= 1) descriptionText.text += $"\n<color=#77B0FF>오브제 {args[0]} 획득!</color>";
                 break;
 
             case "GetDebris":
@@ -561,7 +639,7 @@ public class EncounterManager : MonoBehaviour
 
                     if(descriptionText != null)
                     {
-                        descriptionText.text += $"\n<color=#0000FF>{sType} 증가!</color>";
+                        descriptionText.text += $"\n<color=#77B0FF>{sType} 증가!</color>";
                         ResetScrollPosition(false);
                         Canvas.ForceUpdateCanvases(); 
                     }

@@ -10,7 +10,9 @@ public class EncounterMenuControll : MonoBehaviour
     [Header("UI Text References")]
     public TextMeshProUGUI hpText;       
     public TextMeshProUGUI dreamFragmentText;  
-    public TextMeshProUGUI statText;         
+    public TextMeshProUGUI courageText;
+    public TextMeshProUGUI wisdomText;
+    public TextMeshProUGUI luckText;
 
     private void OnEnable()
     {
@@ -44,21 +46,21 @@ public class EncounterMenuControll : MonoBehaviour
     void UpdateHP()
     {
         if (hpText == null || characterData == null) return;
-        hpText.text = $"HP: {characterData.curHealth}/{characterData.maxHealth}";
+        hpText.text = $"{characterData.curHealth}/{characterData.maxHealth}";
     }
 
     void UpdateDreamFragment()
     {
         if (dreamFragmentText == null ||  characterData == null) return;
 
-        dreamFragmentText.text = $"DreamFragment: {characterData.dreamDust}";
+        dreamFragmentText.text = $"{characterData.dreamDust}";
     }
 
     void UpdateStats()
     {
-        if (statText == null || playerStats == null) return;
-
-        // 가독성을 위해 간격을 둠
-        statText.text = $"용기: {playerStats.courage}     지혜: {playerStats.wisdom}     행운: {playerStats.luck}";
+        if (courageText == null || wisdomText == null || luckText == null || playerStats == null) return;
+        courageText.text = $"{playerStats.courage}";
+        wisdomText.text = $"{playerStats.wisdom}";
+        luckText.text = $"{playerStats.luck}";
     }
 }
