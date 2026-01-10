@@ -30,6 +30,7 @@ public class PlayerDataSO : ScriptableObject
     public int currentActNum;
     public List<MapNode_Data> mapNodes;
     public int totalLevel;
+    public List<string> visitedNodeIDList;
     public int curNodeIndex;
     public string curNodeLocationID;
     public EncounterType lastEncounterType;

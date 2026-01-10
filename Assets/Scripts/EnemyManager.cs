@@ -32,7 +32,7 @@ public class EnemyManager : MonoBehaviour
     [Header("Prefabs")]
     [SerializeField][Tooltip("액션 심볼 Prefab")] GameObject actionPrefab;
     [SerializeField][Tooltip("액션 심볼 Prefab")] GameObject mainActionPrefab;
-    [SerializeField][Tooltip("액션 심볼 Prefab")] GameObject subActionPrefab;
+    [SerializeField][Tooltip("액션 심볼 Prefab")] GameObject[] subActionPrefab = new GameObject[Enemy.maxSubEnemyNum];
     [SerializeField][Tooltip("서브 적 Prefab")] GameObject subEnemyPrefab;
     [SerializeField][Tooltip("서브 적 캔버스")] Canvas subEnemyCanvas;
     [SerializeField][Tooltip("서브 적 룰렛 위치에 따른 캔버스 위치")] int[] subEnemyCanvasPos_roulettePos = new int[Enemy.maxSubEnemyNum];
@@ -40,7 +40,8 @@ public class EnemyManager : MonoBehaviour
     [SerializeField][Tooltip("서브 적 룰렛 위치에 따른 룰렛 마커")] GameObject[] subEnemyCanvasPos_rouletteMarker = new GameObject[Enemy.maxSubEnemyNum];
     [SerializeField][Tooltip("서브 적 룰렛 위치에 따른 적 배경")] GameObject[] subEnemyCanvasPos_enemyRouletteBackground = new GameObject[Enemy.maxSubEnemyNum];
     [Header("Positions")]
-    [Tooltip("액션 심볼 간격")] public float actionMargin = 0.5f;
+    [Tooltip("액션 심볼 간격")] public float actionMargin = -0.4f;
+    [Tooltip("서브 액션 심볼 간격")] public float subActionMargin = -0.7f;
     [Tooltip("액션 심볼 스폰 지점")] public Transform enemyPos;
     [SerializeField][Tooltip("1번 액션 심볼 위치")] Transform enemyActionPos;
     [SerializeField][Tooltip("액션 심볼 소멸 지점")] Transform enemyExecutePos;
@@ -709,12 +710,6 @@ public class EnemyManager : MonoBehaviour
         subEnemySpecialActions[subEnemyIdx] = new List<EnemySpecialAction>();
     }
 
-    IEnumerator DestroySubEnemyObj(GameObject subEnemyObj)
-    {
-        yield return new WaitForSeconds(5f);
-        if(subEnemyObj != null) Destroy(subEnemyObj);
-    }
-
     public void CheckPhase()
     {
         // 메인 적 페이즈 전환
@@ -845,14 +840,17 @@ public class EnemyManager : MonoBehaviour
         for(int i = 0; i < subEnemies.Length; i++)
         {
             if(subEnemies[i] == null || subEnemies[i].name == null) continue;
+            int tempIdx = Array.FindIndex(subEnemyCanvasPos_roulettePos, x => x == subEnemies[i].roulettePos);
+            if(tempIdx == -1) continue;
             for (int j = 0; j < currentPattern_SE[i].Count; j++)
             {
-                var newActionObj = Instantiate(subActionPrefab, subEnemyPos[i].position, subEnemyActionPos[i].rotation);
+                var newActionObj = Instantiate(subActionPrefab[tempIdx], enemyPos, false);
                 newActionObj.transform.SetParent(subEnemyPos[i]);
+                newActionObj.transform.localScale = subActionPrefab[tempIdx].transform.localScale;
                 var newAction = newActionObj.GetComponent<EnemyAction>();
 
                 newAction.SetAction(currentPattern_SE[i][j], i + 1);
-                newAction.tooltipPos = subEnemyImg[i].GetComponent<Tooltip>().tooltipPos;
+                newAction.tooltipPos = enemyImg.GetComponent<Tooltip>().tooltipPos;
 
                 subEnemyActionList[i].Add(newAction);
             }
@@ -869,34 +867,42 @@ public class EnemyManager : MonoBehaviour
 
     public void AllignActionList()
     {
+        Vector3 mainActionPrefabWidthVec = new Vector3(mainActionPrefab.transform.localScale.x / 2 + actionMargin, 0, 0);
+        float mainActionPrefabScreenWidth = Camera.main.WorldToScreenPoint(mainActionPrefabWidthVec).x - Camera.main.WorldToScreenPoint(Vector3.zero).x;
         for (int i = 0; i < actionList.Count; i++)
         {
             var targetPos = enemyActionPos.position;
-            targetPos.x += i * (mainActionPrefab.transform.localScale.x / 2 + actionMargin);
+            targetPos.x += i * mainActionPrefabWidthVec.x;
             if (actionList[i].transform.position != targetPos)
             {
                 actionList[i].transform.DOMove(targetPos, 0.7f);
-                Vector3 mainActionPrefabWidthVec = new Vector3(mainActionPrefab.transform.localScale.x / 2 + actionMargin, 0, 0);
-                float mainActionPrefabScreenWidth = Camera.main.WorldToScreenPoint(mainActionPrefabWidthVec).x - Camera.main.WorldToScreenPoint(Vector3.zero).x;
                 actionList[i].tooltipPos.x += i * mainActionPrefabScreenWidth;
             }
         }
 
-        for(int i = 0; i < subEnemies.Length; i++)
+        Vector3 subActionPrefabWidthVec = new Vector3(subActionPrefab[0].transform.localScale.x / 2 + subActionMargin, 0, 0);
+        float subActionPrefabScreenWidth = Camera.main.WorldToScreenPoint(subActionPrefabWidthVec).x - Camera.main.WorldToScreenPoint(Vector3.zero).x;
+        var sortedSubEnemies = subEnemies.Where(x => x != null && x.name != null).OrderBy(x => x.roulettePos).ToArray();
+        var subActionPos = enemyActionPos.position + new Vector3(actionList.Count * (mainActionPrefab.transform.localScale.x / 2 + actionMargin) + (subActionMargin - 2 * actionMargin), 0, 0);
+        var subActionTooltipPos = mainActionPrefabScreenWidth * actionList.Count;
+        int subActionCnt = 0;
+
+        for(int i = 0; i < sortedSubEnemies.Length; i++)
         {
-            if(subEnemies[i] == null || subEnemies[i].name == null) continue;
-            for (int j = 0; j < subEnemyActionList[i].Count; j++)
+            if(sortedSubEnemies[i] == null || sortedSubEnemies[i].name == null) continue;
+            int subEnemyIdx = Array.FindIndex(subEnemies, x => x == sortedSubEnemies[i]);
+            for (int j = 0; j < subEnemyActionList[subEnemyIdx].Count; j++)
             {
-                var targetPos = subEnemyActionPos[i].position;
-                targetPos -= subEnemyActionPos[i].transform.up * j * (subActionPrefab.transform.localScale.y / 2);
-                Debug.Log(targetPos);
-                if (subEnemyActionList[i][j].transform.localPosition != targetPos)
+                int tempIdx = Array.FindIndex(subEnemyCanvasPos_roulettePos, x => x == subEnemies[i].roulettePos);
+                if(tempIdx == -1) continue;
+                var targetPos = subActionPos;
+                targetPos.x += subActionCnt * (subActionPrefab[tempIdx].transform.localScale.x / 2 + subActionMargin);
+                if (subEnemyActionList[subEnemyIdx][j].transform.position != targetPos)
                 {
-                    subEnemyActionList[i][j].transform.DOMove(targetPos, 0.7f);
-                    Vector3 actionPrefabWidthVec = subEnemyActionPos[i].transform.up * (subActionPrefab.transform.localScale.y / 2);
-                    Vector2 actionPrefabScreenWidth = Camera.main.WorldToScreenPoint(actionPrefabWidthVec) - Camera.main.WorldToScreenPoint(Vector3.zero);
-                    subEnemyActionList[i][j].tooltipPos -= j * actionPrefabScreenWidth;
+                    subEnemyActionList[subEnemyIdx][j].transform.DOMove(targetPos, 0.7f);
+                    subEnemyActionList[subEnemyIdx][j].tooltipPos.x += subActionTooltipPos + subActionCnt * subActionPrefabScreenWidth;
                 }
+                subActionCnt++;
             }
         }
     }
@@ -1346,6 +1352,41 @@ public class EnemyManager : MonoBehaviour
     {
         GetBestAction();
         Sequence executionSeq = DOTween.Sequence();
+        // 메인 적 액션 실행
+        for (int i = 0; i < executeActionList.Count; i++)
+        {
+            int localIndex = i;
+            var originalPos = executeActionList[localIndex].transform.position;
+            var originalScale = executeActionList[localIndex].transform.localScale;
+            var originalColor = new Color(120f / 255f, 120f / 255f, 120f / 255f);
+            Sequence executionSubSeq = DOTween.Sequence();
+            executionSubSeq.Append(executeActionList[localIndex].transform.DOScale(originalScale * 1.2f, actionInterval / 2));
+            var subSeqSR = executeActionList[localIndex].GetComponentsInChildren<SpriteRenderer>();
+            foreach (var sr in subSeqSR)
+            {
+                executionSubSeq.Join(sr.DOColor(Color.white, actionInterval / 2));
+            }
+            executionSubSeq.AppendCallback(() =>
+            {
+                lastAction = executeActionList[localIndex];
+                executeActionList[localIndex].ExecuteAction();
+            });
+            executionSubSeq.AppendInterval(RouletteManager.spinDelay);
+            executionSubSeq.Append(executeActionList[localIndex].transform.DOScale(originalScale, actionInterval / 2));
+            foreach (var sr in subSeqSR)
+            {
+                if (executeActionList[localIndex].isIgnore)
+                {
+                    executionSubSeq.Join(sr.DOColor(new Color(1, 1, 1, 0), actionInterval / 2));
+                }
+                else
+                {
+                    executionSubSeq.Join(sr.DOColor(originalColor, actionInterval / 2));
+                }
+            }
+            executionSeq.Append(executionSubSeq);
+        }
+        // 서브 적 액션 실행
         List<(SubEnemy SE, int enemyIdx)> sortedSubEnemies = new List<(SubEnemy, int)>();
         for(int i = 0; i < subEnemies.Length; i++)
         {
@@ -1359,41 +1400,38 @@ public class EnemyManager : MonoBehaviour
             {
                 int localIndex_i = sortedSubEnemies[i].enemyIdx;
                 int localIndex_j = j;
-                var originalPos = subEnemyActionList[sortedSubEnemies[i].enemyIdx][j].transform.position;
-                executionSeq.Append(subEnemyActionList[localIndex_i][localIndex_j].transform.DOMove(subEnemyExecutePos[localIndex_i].position, actionInterval).OnComplete(() =>
+                var originalScale = subEnemyActionList[sortedSubEnemies[i].enemyIdx][j].transform.localScale;
+                var originalColor = new Color(120f/255f, 120f/255f, 120f/255f);
+                Sequence executionSubSeq = DOTween.Sequence();
+                executionSubSeq.Append(subEnemyActionList[localIndex_i][localIndex_j].transform.DOScale(originalScale * 1.2f, actionInterval / 2));
+                var subSeqSR = subEnemyActionList[localIndex_i][localIndex_j].GetComponentsInChildren<SpriteRenderer>();
+                foreach(var sr in subSeqSR)
+                {
+                    executionSubSeq.Join(sr.DOColor(Color.white, actionInterval / 2));
+                }
+                executionSubSeq.AppendCallback(() =>
                 {
                     lastAction = subEnemyActionList[localIndex_i][localIndex_j];
                     subEnemyActionList[localIndex_i][localIndex_j].ExecuteAction();
-                }));
-                if (subEnemyActionList[localIndex_i][localIndex_j].isIgnore)
+                });
+                executionSubSeq.AppendInterval(RouletteManager.spinDelay);
+                executionSubSeq.Append(subEnemyActionList[localIndex_i][localIndex_j].transform.DOScale(originalScale, actionInterval / 2));
+                foreach (var sr in subSeqSR)
                 {
-                    executionSeq.Append(subEnemyActionList[localIndex_i][localIndex_j].transform.DOMove(originalPos, RouletteManager.spinDelay));
+                    if (subEnemyActionList[localIndex_i][localIndex_j].isIgnore)
+                    {
+                        executionSubSeq.Join(sr.DOColor(new Color(1, 1, 1, 0), actionInterval / 2));
+                    }
+                    else
+                    {
+                        executionSubSeq.Join(sr.DOColor(originalColor, actionInterval / 2));
+                    }
                 }
-                else
-                {
-                    executionSeq.AppendInterval(RouletteManager.spinDelay);
-                }
+                executionSeq.Append(executionSubSeq);
+                
             }
         }
 
-        for (int i = 0; i < executeActionList.Count; i++)
-        {
-            int localIndex = i;
-            var originalPos = executeActionList[localIndex].transform.position;
-            executionSeq.Append(executeActionList[localIndex].transform.DOMove(enemyExecutePos.position, actionInterval).OnComplete(() =>
-            {
-                lastAction = executeActionList[localIndex];
-                executeActionList[localIndex].ExecuteAction();
-            }));
-            if (executeActionList[localIndex].isIgnore)
-            {
-                executionSeq.Append(executeActionList[localIndex].transform.DOMove(originalPos, RouletteManager.spinDelay));
-            }
-            else
-            {
-                executionSeq.AppendInterval(RouletteManager.spinDelay);
-            }
-        }
         executionSeq.AppendCallback(EndEnemyTurn);
         executionSeq.Play();
     }

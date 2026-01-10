@@ -148,6 +148,14 @@ public class MapManager : MonoBehaviour
             newMapNode.GetComponent<SpriteRenderer>().sprite = mp.sortedMapNodeList[i].hideNodeImg;
             MapNodeObject mapNodeObject = newMapNode.GetComponent<MapNodeObject>();
             mapNodeObject.mapNode = mp.sortedMapNodeList[i];
+            if(actSO.visitedNodeIDList.Contains(mp.sortedMapNodeList[i].ID))
+            {
+                newMapNode.GetComponent<SpriteRenderer>().sprite = mp.sortedMapNodeList[i].nodeImg;
+            }
+            else
+            {
+                newMapNode.GetComponent<SpriteRenderer>().sprite = mp.sortedMapNodeList[i].hideNodeImg;
+            }
             MapNodeTooltip mapNodeTooltip = newMapNode.GetComponent<MapNodeTooltip>();
             mapNodeTooltip.tooltipTitle = mp.sortedMapNodeList[i].title;
             mapNodeTooltip.tooltipTxt = mp.sortedMapNodeList[i].text;
@@ -181,6 +189,14 @@ public class MapManager : MonoBehaviour
                 Vector3 direction = mapNodeScreenPos[childNode] - mapNodeScreenPos[mapNode.ID];
                 newMapLine.transform.right = direction;
                 newMapLine.transform.localScale = new Vector3(lineWidth, lineWidth, 1f);
+                if(actSO.visitedNodeIDList.Contains(mapNode.ID) && actSO.visitedNodeIDList.Contains(childNode))
+                {
+                    newMapLine.GetComponent<SpriteRenderer>().color = Color.white;
+                }
+                else
+                {
+                    newMapLine.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.3f);
+                }
                 if(mapNode.childNodes.Count > 1)
                 {
                     if(mapNodeScreenPos[mapNode.ID].y < mapNodeScreenPos[childNode].y)
@@ -241,6 +257,7 @@ public class MapManager : MonoBehaviour
         player.transform.DOMove(mapNodeScreenPos[mapNode.ID], 1f).OnComplete(() =>
         {
             curNode = mapNode;
+            actSO.visitedNodeIDList.Add(mapNode.ID);
             actSO.curNodeIndex = map.sortedMapNodeList.IndexOf(mapNode);
             actSO.curNodeLocationID = mapNode.locationID;
             SceneManager.LoadScene("EncounterScene");
@@ -265,10 +282,12 @@ public class MapManager : MonoBehaviour
                 locInfo.selectedEncounterPool = new List<string>();
             }
         }
+        actSO.visitedNodeIDList = new List<string>();
         PrintMap(map);
         SaveMap();
         actSO.curNodeIndex = 0;
         curNode = map.sortedMapNodeList[actSO.curNodeIndex];
+        actSO.visitedNodeIDList.Add(curNode.ID);
         foreach(string nextNodeId in curNode.childNodes)
         {
             GetEncounterType(map.sortedMapNodeList.Find(x => x.ID == nextNodeId).locationID);

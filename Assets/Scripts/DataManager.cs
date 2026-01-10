@@ -206,6 +206,7 @@ public class DataManager : MonoBehaviour
             actSO.mapNodeScreenPosSave.Add(nodeData.screenPos);
             locationDatabaseSO.FindById(nodeData.locationID).selectedEncounterPool = new List<string>(nodeData.selectedEncounterPool);
         }
+        actSO.visitedNodeIDList = new List<string>(playerDataSO.visitedNodeIDList);
         actSO.curNodeIndex = playerDataSO.curNodeIndex;
         actSO.curNodeLocationID = playerDataSO.curNodeLocationID;
         actSO.lastEncounterType = playerDataSO.lastEncounterType;
@@ -271,6 +272,7 @@ public class DataManager : MonoBehaviour
             playerDataSO.mapNodes.Add(new MapNode_Data(actSO.mapSave.sortedMapNodeList[i], actSO.mapNodeScreenPosSave[i]));
             playerDataSO.mapNodes[i].selectedEncounterPool = new List<string>(locationDatabaseSO.FindById(playerDataSO.mapNodes[i].locationID).selectedEncounterPool);
         }
+        playerDataSO.visitedNodeIDList = new List<string>(actSO.visitedNodeIDList);
         playerDataSO.totalLevel = actSO.mapSave.totalLevel;
         playerDataSO.curNodeIndex = actSO.curNodeIndex;
         playerDataSO.curNodeLocationID = actSO.curNodeLocationID;

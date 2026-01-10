@@ -250,8 +250,11 @@
         }
     ],
     "totalLevel": 6,
+    "visitedNodeIDList": [
+        "944777fddc79409eade2c56b777c69e5"
+    ],
     "curNodeIndex": 0,
-    "curNodeLocationID": "AMUSEMENT_PARK_ENTRANCE",
+    "curNodeLocationID": "START",
     "lastEncounterType": 0,
-    "enemyName": "박쥐"
+    "enemyName": "대장 컵"
 }

@@ -206,7 +206,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 7482667652216324306, guid: e6de391201c875e42b750d5f9543515c, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -239,8 +239,7 @@ MonoBehaviour:
     affectEnemyIdx: 0
     effectType: 0
     val: 0
-    defaultVal:
-    - 1
+    defaultVal: 01000000
     isSetOnEnemyTurn: 0
     affectBuffs: []
   tooltipBasePos: {x: 0, y: 0}

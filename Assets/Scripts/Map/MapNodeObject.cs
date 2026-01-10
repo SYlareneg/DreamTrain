@@ -56,12 +56,11 @@ public class MapNodeObject : MonoBehaviour
 
     private void Start()
     {
+        tooltip = GetComponent<Tooltip>();
         originScale = transform.localScale;
-        spriteRenderer.sprite = mapNode.hideNodeImg;
         // Color color = spriteRenderer.color;
         // color.a = 0.5f;
         // spriteRenderer.color = color;
-        tooltip = GetComponent<Tooltip>();
     }
 
     private void Update()

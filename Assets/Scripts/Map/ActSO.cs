@@ -415,6 +415,7 @@ public class ActSO : ScriptableObject
     public int curActNum;
     public Map mapSave;
     public List<Vector3> mapNodeScreenPosSave;
+    public List<string> visitedNodeIDList = new List<string>();
     public int curNodeIndex;
     public string curNodeLocationID;
     public EncounterType lastEncounterType;
