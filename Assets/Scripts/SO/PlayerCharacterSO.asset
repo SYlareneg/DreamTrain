@@ -53,26 +53,38 @@ MonoBehaviour:
         dreamPieceNum: 3
     triggerSprite: {fileID: 21300000, guid: e0ec8c705ffaf824b9895e95e1bcfa5c, type: 3}
     playerSpecialRoulettes:
-    - sprite: {fileID: 21300000, guid: fd8e67dc12f503443bffa434fb1f18c1, type: 3}
+    - sprite: {fileID: -6694683516753140928, guid: 311cd513a5e13e8469d7f4b689ff03f3, type: 3}
       title: "\uBC1C\uD1B1"
       text: "\uAC12 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4. \uD6A8\uACFC\uB97C \uC801\uC6A9\uD560
         \uB54C\uB9C8\uB2E4 \uC704\uB825\uC774 3 \uAC10\uC18C\uD558\uACE0, 0\uC774
         \uB418\uBA74 \uC0AC\uB77C\uC9D1\uB2C8\uB2E4."
       baseVal: 9
-    - sprite: {fileID: 21300000, guid: cdf8042d57ca9d54bb9b772b10781eb6, type: 3}
+      title_enhanced: "\uBC1C\uD1B1+"
+      text_enhanced: "\uAC12 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4. \uD6A8\uACFC\uB97C
+        \uC801\uC6A9\uD560 \uB54C\uB9C8\uB2E4 \uC704\uB825\uC774 3 \uAC10\uC18C\uD558\uACE0,
+        0\uC774 \uB418\uBA74 \uC0AC\uB77C\uC9D1\uB2C8\uB2E4."
+      baseVal_enhanced: 12
+    - sprite: {fileID: 2548602056424267579, guid: d9684565a5c77ee4084b7c729e932a89, type: 3}
       title: "\uC2E4\uBB49\uCE58"
       text: "\uAC12 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4. \uB8F0\uB81B\uC774 \uD68C\uC804\uD558\uBA74
         \uD68C\uC804\uD55C \uCE78 \uC218 \uB9CC\uD07C \uC704\uB825\uC774 \uC99D\uAC00\uD558\uACE0,
         \uD6A8\uACFC \uBC1C\uB3D9\uC2DC \uC81C\uAC70\uB429\uB2C8\uB2E4."
       baseVal: 1
-    - sprite: {fileID: 21300000, guid: cdf8042d57ca9d54bb9b772b10781eb6, type: 3}
-      title: "\uC2E4\uBB49\uCE58+"
-      text: "\uAC12 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4. \uB8F0\uB81B\uC774 \uD68C\uC804\uD558\uBA74
-        \uD68C\uC804\uD55C \uCE78 \uC218x2 \uB9CC\uD07C \uC704\uB825\uC774 \uC99D\uAC00\uD558\uACE0,
-        \uD6A8\uACFC \uBC1C\uB3D9\uC2DC \uC81C\uAC70\uB429\uB2C8\uB2E4."
-      baseVal: 1
+      title_enhanced: "\uC2E4\uBB49\uCE58+"
+      text_enhanced: "\uAC12 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4. \uB8F0\uB81B\uC774
+        \uD68C\uC804\uD558\uBA74 \uD68C\uC804\uD55C \uCE78 \uC218x2 \uB9CC\uD07C
+        \uC704\uB825\uC774 \uC99D\uAC00\uD558\uACE0, \uD6A8\uACFC \uBC1C\uB3D9\uC2DC
+        \uC81C\uAC70\uB429\uB2C8\uB2E4."
+      baseVal_enhanced: 1
+    - sprite: {fileID: 0}
+      title: 
+      text: 
+      baseVal: 0
+      title_enhanced: 
+      text_enhanced: 
+      baseVal_enhanced: 0
     cards:
-    - name: "\uBC1C\uD1B1 \uC138\uC6B0\uAE30"
+    - name: "\uBC1C\uD1B1 \uC138\uC6B0\uAE30+"
       cost: 2
       type: 1
       rarity: 0
@@ -82,11 +94,11 @@ MonoBehaviour:
       isRemain: 0
       isSingleTarget: 1
       sprite: {fileID: 21300000, guid: f8fef345c8f3fb046b405c6b05a240cb, type: 3}
-      text: "\uC801 \uC55E \uB8F0\uB81B\uC5D0 \uBC1C\uD1B1 \uB8F0\uB81B\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+      text: "\uC801 \uC55E \uB8F0\uB81B\uC5D0 \uBC1C\uD1B1+ \uB8F0\uB81B\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
       cardValues: 
       cardValueTypes: 
-      num: 1
-      isEnhanced: 0
+      num: 20
+      isEnhanced: 1
     - name: "\uC54C\uB730\uD55C \uC0AC\uB0E5\uAFBC"
       cost: 0
       type: 2
@@ -200,7 +212,7 @@ MonoBehaviour:
       cardValueTypes: 03000000
       num: 1
       isEnhanced: 0
-    - name: "\uC2E4\uBB49\uCE58"
+    - name: "\uC2E4\uBB49\uCE58+"
       cost: 1
       type: 1
       rarity: 0
@@ -210,11 +222,11 @@ MonoBehaviour:
       isRemain: 0
       isSingleTarget: 0
       sprite: {fileID: 21300000, guid: b8a1a7466a7b4b84786a49d0399c2220, type: 3}
-      text: "\uC790\uC2E0 \uC55E \uB8F0\uB81B\uC5D0 \uC2E4\uBB49\uCE58 \uB8F0\uB81B\uC744
+      text: "\uC790\uC2E0 \uC55E \uB8F0\uB81B\uC5D0 \uC2E4\uBB49\uCE58+ \uB8F0\uB81B\uC744
         \uBD80\uC5EC\uD569\uB2C8\uB2E4."
       cardValues: 
       cardValueTypes: 
-      num: 1
+      num: 20
       isEnhanced: 0
     - name: "\uACE0\uC591\uC774\uAC78\uC74C"
       cost: 1
@@ -357,14 +369,24 @@ MonoBehaviour:
       text: "\uAC12\uD134 \uC5BC\uC5B4 \uC788\uC2B5\uB2C8\uB2E4. \uC5BC\uC5B4\uC788\uB294
         \uB3D9\uC548 \uB8F0\uB81B\uC758 \uD6A8\uACFC\uAC00 \uBE44\uD65C\uC131\uD654\uB429\uB2C8\uB2E4."
       baseVal: 2
+      title_enhanced: "\uAF41\uAF41+"
+      text_enhanced: "\uAC12\uD134 \uC5BC\uC5B4 \uC788\uC2B5\uB2C8\uB2E4. \uC5BC\uC5B4\uC788\uB294
+        \uB3D9\uC548 \uB8F0\uB81B\uC758 \uD6A8\uACFC\uAC00 \uBE44\uD65C\uC131\uD654\uB429\uB2C8\uB2E4."
+      baseVal_enhanced: 3
     - sprite: {fileID: 0}
       title: 
       text: 
       baseVal: 0
+      title_enhanced: 
+      text_enhanced: 
+      baseVal_enhanced: 0
     - sprite: {fileID: 0}
       title: 
       text: 
       baseVal: 0
+      title_enhanced: 
+      text_enhanced: 
+      baseVal_enhanced: 0
     cards:
     - name: "\uAF41\uAF41 \uC5BC\uB9AC\uAE30"
       cost: 2

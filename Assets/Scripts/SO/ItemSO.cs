@@ -53,24 +53,43 @@ public class Item
         SetItem(item);
     }
 
-    public Item(Item_Data item_Data)
+    public Item(Item_Data item_Data, bool isEnhanced)
     {
         if(item_Data == null) return;
-        name = item_Data.name;
-        cost = item_Data.cost;
-        type = item_Data.type;
-        rarity = item_Data.rarity;
-        dreamPieceNum = item_Data.dreamPieceNum;
-        isVolatile = item_Data.isVolatile;
-        isVanish = item_Data.isVanish;
-        isRemain = item_Data.isRemain;
-        isSingleTarget = item_Data.isSingleTarget;
-        sprite = Utils.LoadSpriteByName("Cards", item_Data.sprite);
-        text = item_Data.text;
-        cardValues = new List<int>(item_Data.cardValues);
-        cardValueTypes = new List<ECardValueType>(item_Data.cardValueTypes);
-        num = 0;
-        isEnhanced = false;
+        if(isEnhanced)
+        {
+            name = item_Data.name_enhanced;
+            cost = item_Data.cost_enhanced;
+            type = item_Data.type;
+            rarity = item_Data.rarity;
+            dreamPieceNum = item_Data.dreamPieceNum;
+            isVolatile = item_Data.isVolatile_enhanced;
+            isVanish = item_Data.isVanish_enhanced;
+            isRemain = item_Data.isRemain_enhanced;
+            isSingleTarget = item_Data.isSingleTarget_enhanced;
+            sprite = Utils.LoadSpriteByName("Cards", item_Data.sprite);
+            text = item_Data.text_enhanced;
+            cardValues = new List<int>(item_Data.cardValues_enhanced);
+            cardValueTypes = new List<ECardValueType>(item_Data.cardValueTypes_enhanced);
+            this.isEnhanced = true;
+        }
+        else
+        {
+            name = item_Data.name;
+            cost = item_Data.cost;
+            type = item_Data.type;
+            rarity = item_Data.rarity;
+            dreamPieceNum = item_Data.dreamPieceNum;
+            isVolatile = item_Data.isVolatile;
+            isVanish = item_Data.isVanish;
+            isRemain = item_Data.isRemain;
+            isSingleTarget = item_Data.isSingleTarget;
+            sprite = Utils.LoadSpriteByName("Cards", item_Data.sprite);
+            text = item_Data.text;
+            cardValues = new List<int>(item_Data.cardValues);
+            cardValueTypes = new List<ECardValueType>(item_Data.cardValueTypes);
+            this.isEnhanced = false;
+        }
     }
 }
 

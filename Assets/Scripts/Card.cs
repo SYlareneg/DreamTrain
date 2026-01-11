@@ -321,16 +321,17 @@ public class Card : MonoBehaviour
             case "흡혈 부여":
             case "흡혈 부여+":
                 RouletteType bloodSteal = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0));
-                RouletteType bloodSteal_plus = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 1));
-                if(item.name == "흡혈 부여")
+                // RouletteType bloodSteal_plus = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 1));
+                isCardUsed = RouletteManager.Inst.EnchantRoulette(true, bloodSteal, PassiveManager.Inst.playerSpecialRoulettes[bloodSteal.specialTypeIdx].baseVal, enemyIdx);
+                if(isCardUsed && item.name == "흡혈 부여+")
                 {
-                    isCardUsed = RouletteManager.Inst.EnchantRoulette(true, bloodSteal, PassiveManager.Inst.playerSpecialRoulettes[PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0)].baseVal, enemyIdx);
+                    RouletteManager.Inst.EnhanceRoulette(true, enemyIdx);
                 }
-                else
-                {
-                    isCardUsed = RouletteManager.Inst.EnchantRoulette(true, bloodSteal_plus, PassiveManager.Inst.playerSpecialRoulettes[PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 1)].baseVal, enemyIdx);
-                    if(isCardUsed) RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(enemyIdx)].isEnhanced = true;
-                }
+                // else
+                // {
+                //     isCardUsed = RouletteManager.Inst.EnchantRoulette(true, bloodSteal_plus, PassiveManager.Inst.playerSpecialRoulettes[PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 1)].baseVal, enemyIdx);
+                //     if(isCardUsed) RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(enemyIdx)].isEnhanced = true;
+                // }
                 break;
             case "혈액 순환":
             case "혈액 순환+":
@@ -382,8 +383,8 @@ public class Card : MonoBehaviour
                     for(int j = 0; j <= EnemyManager.Inst.subEnemies.Length; j++)
                     {
                         int tempIdx = (RouletteManager.Inst.EnemyIdxSpinOffset(j) + i) % RouletteManager.rouletteNum;
-                        if (RouletteManager.Inst.roulettePieces[tempIdx].roulette.rtype == new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0))
-                        || RouletteManager.Inst.roulettePieces[tempIdx].roulette.rtype == new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 1)))
+                        if (RouletteManager.Inst.roulettePieces[tempIdx].roulette.rtype == new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0)))
+                        // || RouletteManager.Inst.roulettePieces[tempIdx].roulette.rtype == new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 1)))
                         {
                             RouletteManager.Inst.ActivateRoulettePiece(tempIdx, true, j);
                         }
@@ -394,13 +395,14 @@ public class Card : MonoBehaviour
             case "마술 상자":
             case "마술 상자+":
                 RouletteType magicBox = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0));
-                int boxVal = 12;
-                if(item.name == "마술 상자+") boxVal = 15;
-                isCardUsed = RouletteManager.Inst.EnchantRoulette(false, magicBox, boxVal);
+                // int boxVal = 12;
+                // if(item.name == "마술 상자+") boxVal = 15;
+                isCardUsed = RouletteManager.Inst.EnchantRoulette(false, magicBox, PassiveManager.Inst.playerSpecialRoulettes[magicBox.specialTypeIdx].baseVal);
                 if (item.name == "마술 상자+" && isCardUsed)
                 {
-                    RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].tooltip.tooltipTitle = "마술 상자+";
-                    RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].isEnhanced = true;
+                    // RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].tooltip.tooltipTitle = "마술 상자+";
+                    // RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].isEnhanced = true;
+                    RouletteManager.Inst.EnhanceRoulette(false);
                 }
                 break;
             case "마술-비둘기":
@@ -477,7 +479,11 @@ public class Card : MonoBehaviour
             case "꽁꽁 얼리기":
             case "꽁꽁 얼리기+":
                 RouletteType frozen = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0));
-                isCardUsed = RouletteManager.Inst.EnchantRoulette(false, frozen, GetBuffedVal(item.cardValues[0], ECardValueType.Special));
+                isCardUsed = RouletteManager.Inst.EnchantRoulette(false, frozen, PassiveManager.Inst.playerSpecialRoulettes[frozen.specialTypeIdx].baseVal);
+                if(isCardUsed && item.name == "꽁꽁 얼리기+")
+                {
+                    RouletteManager.Inst.EnhanceRoulette(false);
+                }
                 break;
             case "얼음 방패":
             case "얼음 방패+":
@@ -611,13 +617,14 @@ public class Card : MonoBehaviour
             case "발톱 세우기":
             case "발톱 세우기+":
                 RouletteType claw = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0));
-                int rltVal = 9;
-                if(item.name == "발톱 세우기+") rltVal = 12;
-                isCardUsed = RouletteManager.Inst.EnchantRoulette(true, claw, rltVal, enemyIdx);
+                // int rltVal = 9;
+                // if(item.name == "발톱 세우기+") rltVal = 12;
+                isCardUsed = RouletteManager.Inst.EnchantRoulette(true, claw, PassiveManager.Inst.playerSpecialRoulettes[claw.specialTypeIdx].baseVal, enemyIdx);
                 if(item.name == "발톱 세우기+" && isCardUsed)
                 {
-                    RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(enemyIdx)].tooltip.tooltipTitle = "발톱+";
-                    RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(enemyIdx)].isEnhanced = true;
+                    // RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(enemyIdx)].tooltip.tooltipTitle = "발톱+";
+                    // RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(enemyIdx)].isEnhanced = true;
+                    RouletteManager.Inst.EnhanceRoulette(true, enemyIdx);
                 }
                 break;
             case "알뜰한 사냥꾼":
@@ -697,17 +704,18 @@ public class Card : MonoBehaviour
             case "고양이의 시간":
             case "고양이의 시간+":
                 claw = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0));
-                rltVal = 9;
-                if(item.name == "고양이의 시간+") rltVal = 12;
+                // rltVal = 9;
+                // if(item.name == "고양이의 시간+") rltVal = 12;
                 for(int i = 0; i < RouletteManager.rouletteNum; i++)
                 {
                     if(RouletteManager.Inst.roulettePieces[i].roulette.rtype.type == ERouletteType.Attack)
                     {
-                        RouletteManager.Inst.EnchantRoulettePiece(i, claw, rltVal);
+                        RouletteManager.Inst.EnchantRoulettePiece(i, claw, PassiveManager.Inst.playerSpecialRoulettes[claw.specialTypeIdx].baseVal);
                         if(item.name == "고양이의 시간+" && isCardUsed)
                         {
-                            RouletteManager.Inst.roulettePieces[i].tooltip.tooltipTitle = "발톱+";
-                            RouletteManager.Inst.roulettePieces[i].isEnhanced = true;
+                            // RouletteManager.Inst.roulettePieces[i].tooltip.tooltipTitle = "발톱+";
+                            // RouletteManager.Inst.roulettePieces[i].isEnhanced = true;
+                            RouletteManager.Inst.EnhanceRoulettePiece(i);
                         }
                     }
                 }
@@ -719,9 +727,14 @@ public class Card : MonoBehaviour
             case "실뭉치":
             case "실뭉치+":
                 RouletteType furball = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 1));
-                RouletteType furball_plus = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 2));
-                if(item.name == "실뭉치") isCardUsed = RouletteManager.Inst.EnchantRoulette(false, furball, PassiveManager.Inst.playerSpecialRoulettes[PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 1)].baseVal);
-                else isCardUsed = RouletteManager.Inst.EnchantRoulette(false, furball_plus, PassiveManager.Inst.playerSpecialRoulettes[PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 2)].baseVal);
+                // RouletteType furball_plus = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 2));
+                isCardUsed = RouletteManager.Inst.EnchantRoulette(false, furball, PassiveManager.Inst.playerSpecialRoulettes[furball.specialTypeIdx].baseVal);
+                if(isCardUsed && item.name == "실뭉치+")
+                {
+                    RouletteManager.Inst.EnhanceRoulette(false);
+                }
+                // if(item.name == "실뭉치") isCardUsed = RouletteManager.Inst.EnchantRoulette(false, furball, PassiveManager.Inst.playerSpecialRoulettes[PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 1)].baseVal);
+                // else isCardUsed = RouletteManager.Inst.EnchantRoulette(false, furball_plus, PassiveManager.Inst.playerSpecialRoulettes[PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 2)].baseVal);
                 break;
             case "고양이걸음":
             case "고양이걸음+":
@@ -731,8 +744,8 @@ public class Card : MonoBehaviour
             case "실 풀기":
             case "실 풀기+":
                 furball = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 1));
-                furball_plus = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 1));
-                if(RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.rtype == furball || RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.rtype == furball_plus)
+                // furball_plus = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 1));
+                if(RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.rtype == furball) // || RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.rtype == furball_plus)
                 {
                     int tempVal = BuffManager.Inst.GetBuffedRouletteValue(RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat]);
                     tempVal = tempVal - tempVal / 2;

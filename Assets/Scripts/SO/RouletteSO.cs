@@ -65,13 +65,19 @@ public class SpecialRoulette
     public string title;
     public string text;
     public int baseVal;
+    public string title_enhanced;
+    public string text_enhanced;
+    public int baseVal_enhanced;
 
-    public SpecialRoulette(Sprite sprite, string title, string text, int baseVal)
+    public SpecialRoulette(Sprite sprite, string title, string text, int baseVal, int baseVal_enhanced, string title_enhanced, string text_enhanced)
     {
         this.sprite = sprite;
         this.title = title;
         this.text = text;
         this.baseVal = baseVal;
+        this.baseVal_enhanced = baseVal_enhanced;
+        this.title_enhanced = title_enhanced;
+        this.text_enhanced = text_enhanced;
     }
 
     public SpecialRoulette(SpecialRoulette esr)
@@ -81,6 +87,9 @@ public class SpecialRoulette
         this.title = esr.title;
         this.text = esr.text;
         this.baseVal = esr.baseVal;
+        this.baseVal_enhanced = esr.baseVal_enhanced;
+        this.title_enhanced = esr.title_enhanced;
+        this.text_enhanced = esr.text_enhanced;
     }
 
     public SpecialRoulette(SpecialRoulette_Data esr)
@@ -90,6 +99,9 @@ public class SpecialRoulette
         this.title = esr.title;
         this.text = esr.text;
         this.baseVal = esr.baseVal;
+        this.baseVal_enhanced = esr.baseVal_enhanced;
+        this.title_enhanced = esr.title_enhanced;
+        this.text_enhanced = esr.text_enhanced;
     }
 }
 
@@ -100,13 +112,19 @@ public class SpecialRoulette_Data
     public string title;
     public string text;
     public int baseVal;
+    public string title_enhanced;
+    public string text_enhanced;
+    public int baseVal_enhanced;
 
-    public SpecialRoulette_Data(string sprite, string title, string text, int baseVal)
+    public SpecialRoulette_Data(string sprite, string title, string text, int baseVal, string title_enhanced, string text_enhanced, int baseVal_enhanced)
     {
         this.sprite = sprite;
         this.title = title;
         this.text = text;
         this.baseVal = baseVal;
+        this.title_enhanced = title_enhanced;
+        this.text_enhanced = text_enhanced;
+        this.baseVal_enhanced = baseVal_enhanced;
     }
 
     public SpecialRoulette_Data(SpecialRoulette_Data esr)
@@ -116,6 +134,9 @@ public class SpecialRoulette_Data
         this.title = esr.title;
         this.text = esr.text;
         this.baseVal = esr.baseVal;
+        this.title_enhanced = esr.title_enhanced;
+        this.text_enhanced = esr.text_enhanced;
+        this.baseVal_enhanced = esr.baseVal_enhanced;
     }
 
     public SpecialRoulette_Data(SpecialRoulette esr)
@@ -125,6 +146,9 @@ public class SpecialRoulette_Data
         this.title = esr.title;
         this.text = esr.text;
         this.baseVal = esr.baseVal;
+        this.title_enhanced = esr.title_enhanced;
+        this.text_enhanced = esr.text_enhanced;
+        this.baseVal_enhanced = esr.baseVal_enhanced;
     }
 }
 

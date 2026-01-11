@@ -84,6 +84,7 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action OnRouletteTrigger;
     [HideInInspector] public static Func<int, RouletteType, bool> CheckRouletteEnchantable;
     [HideInInspector] public static Action<int> OnRouletteEnchant;
+    [HideInInspector] public static Action<int> OnRouletteEnhance;
     [HideInInspector] public static Action OnRouletteActivate;
     [HideInInspector] public static Action<int> OnCostChange;
     [HideInInspector] public static Action OnUseableItemUse;

@@ -216,6 +216,52 @@ public class RouletteManager : MonoBehaviour
         return EnchantRoulettePiece(index, rType, rValue);
     }
 
+    public bool EnhanceRoulette(bool isEnemy, int enemyIdx = 0)
+    {
+        int index;
+        if (isEnemy)
+        {
+            index = EnemyIdxSpinOffset(enemyIdx);
+        }
+        else
+        {
+            index = playerLookat;
+        }
+        if(roulettePieces[index].roulette.rtype.type != ERouletteType.Player_Special || roulettePieces[index].isEnhanced)
+        {
+            return false;
+        }
+        roulettePieces[index].Enhance();
+        Utils.AllignActions(ref TurnManager.OnRouletteEnhance, typeof(ShowBuff), typeof(RelicManager));
+        TurnManager.OnRouletteEnhance?.Invoke(index);
+        return true;
+    }
+
+    public bool EnhanceRoulettePiece(int index)
+    {
+        if(roulettePieces[index].roulette.rtype.type != ERouletteType.Player_Special || roulettePieces[index].isEnhanced)
+        {
+            return false;
+        }
+        roulettePieces[index].Enhance();
+        Utils.AllignActions(ref TurnManager.OnRouletteEnhance, typeof(ShowBuff), typeof(RelicManager));
+        TurnManager.OnRouletteEnhance?.Invoke(index);
+        return true;
+    }
+
+    public bool EnhanceRoulettePiece(RoulettePiece piece)
+    {
+        int index = Array.IndexOf(roulettePieces, piece);
+        if(roulettePieces[index].roulette.rtype.type != ERouletteType.Player_Special || roulettePieces[index].isEnhanced)
+        {
+            return false;
+        }
+        roulettePieces[index].Enhance();
+        Utils.AllignActions(ref TurnManager.OnRouletteEnhance, typeof(ShowBuff), typeof(RelicManager));
+        TurnManager.OnRouletteEnhance?.Invoke(index);
+        return true;
+    }
+
     public int CountRouletteType(RouletteType rType)
     {
         int counter = 0;

@@ -177,10 +177,10 @@ public class DreamPiece_Player : DreamPiece_Base
         this.cards = new List<Item>();
         foreach (Item_Num card in cardNameNums)
         {
-            Item_Data item_Data = itemDataSO.items.Find(x => x.name == card.cardName);
+            Item_Data item_Data = itemDataSO.items.Find(x => x.name == card.cardName || x.name_enhanced == card.cardName);
             if (item_Data != null)
             {
-                Item item = new Item(item_Data);
+                Item item = new Item(item_Data, item_Data.name_enhanced == card.cardName);
                 item.num = card.num;
                 this.cards.Add(item);
             }

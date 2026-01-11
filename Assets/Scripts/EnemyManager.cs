@@ -74,13 +74,13 @@ public class EnemyManager : MonoBehaviour
     Action extendPattern;
     [Header("적 특수룰렛")]
     public List<SpecialRoulette> enemySpecialRoulettes;
-    public static Action<RoulettePiece, bool, int, int>[] enemySpecialRouletteActivation = new Action<RoulettePiece, bool, int, int>[Enemy.enemySpecialRouletteNum];
+    public static Action<RoulettePiece, bool, int, int, bool>[] enemySpecialRouletteActivation = new Action<RoulettePiece, bool, int, int, bool>[Enemy.enemySpecialRouletteNum];
     [Header("적 특수행동")]
     public List<EnemySpecialAction> enemySpecialActions;
     public static Action<int>[] enemySpecialActivation = new Action<int>[Enemy.enemySpecialActionNum];
     [Header("하위 적 특수룰렛")]
     public List<SpecialRoulette>[] subEnemySpecialRoulettes = new List<SpecialRoulette>[Enemy.maxSubEnemyNum];
-    public static Action<RoulettePiece, bool, int, int>[,] subEnemySpecialRouletteActivation = new Action<RoulettePiece, bool, int, int>[Enemy.maxSubEnemyNum, SubEnemy.enemySpecialRouletteNum];
+    public static Action<RoulettePiece, bool, int, int, bool>[,] subEnemySpecialRouletteActivation = new Action<RoulettePiece, bool, int, int, bool>[Enemy.maxSubEnemyNum, SubEnemy.enemySpecialRouletteNum];
     [Header("하위 적 특수행동")]
     public List<EnemySpecialAction>[] subEnemySpecialActions = new List<EnemySpecialAction>[Enemy.maxSubEnemyNum];
     public static Action<int>[,] subEnemySpecialActivation = new Action<int>[Enemy.maxSubEnemyNum, SubEnemy.enemySpecialActionNum];
@@ -140,7 +140,7 @@ public class EnemyManager : MonoBehaviour
                     BuffManager.Inst.rouletteBuff_EnemySpecial[0, 0].Add(new List<Buff>());
                     BuffManager.Inst.rouletteBuff_EnemySpecial[0, 0].Add(new List<Buff>());
                 };
-                enemySpecialRouletteActivation[0] = (rPiece, isEnemy, value, enemyIdx) =>
+                enemySpecialRouletteActivation[0] = (rPiece, isEnemy, value, enemyIdx, isEnhanced) =>
                 {
                     int trueDamage = 0;
                     if (isEnemy)
@@ -234,7 +234,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     BuffManager.Inst.rouletteBuff_EnemySpecial[0, 0].Add(new List<Buff>());
                 };
-                enemySpecialRouletteActivation[0] = (rPiece, isEnemy, value, enemyIdx) =>
+                enemySpecialRouletteActivation[0] = (rPiece, isEnemy, value, enemyIdx, isEnhanced) =>
                 {
                     if (!isEnemy)
                     {
@@ -341,7 +341,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     BuffManager.Inst.rouletteBuff_EnemySpecial[0, 0].Add(new List<Buff>());
                 };
-                enemySpecialRouletteActivation[0] = (rPiece, isEnemy, value, enemyIdx) =>
+                enemySpecialRouletteActivation[0] = (rPiece, isEnemy, value, enemyIdx, isEnhanced) =>
                 {
                     if (!isEnemy)
                     {
@@ -893,7 +893,7 @@ public class EnemyManager : MonoBehaviour
             int subEnemyIdx = Array.FindIndex(subEnemies, x => x == sortedSubEnemies[i]);
             for (int j = 0; j < subEnemyActionList[subEnemyIdx].Count; j++)
             {
-                int tempIdx = Array.FindIndex(subEnemyCanvasPos_roulettePos, x => x == subEnemies[i].roulettePos);
+                int tempIdx = Array.FindIndex(subEnemyCanvasPos_roulettePos, x => x == sortedSubEnemies[i].roulettePos);
                 if(tempIdx == -1) continue;
                 var targetPos = subActionPos;
                 targetPos.x += subActionCnt * (subActionPrefab[tempIdx].transform.localScale.x / 2 + subActionMargin);

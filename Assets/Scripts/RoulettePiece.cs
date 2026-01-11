@@ -16,7 +16,7 @@ public class RoulettePiece : MonoBehaviour
     public string originalTooltipText;
     
     public RouletteItem roulette;
-    public bool isEnhanced;
+    public bool isEnhanced = false;
     public Tooltip tooltip;
 
     public void SetRoulettePieceSprite(Sprite sprite)
@@ -39,7 +39,7 @@ public class RoulettePiece : MonoBehaviour
         }
     }
 
-    public void Setup(RouletteItem rlt)
+    public void Setup(RouletteItem rlt, bool isEnhanced = false)
     {
         roulette = rlt;
         tooltip = GetComponent<Tooltip>();
@@ -64,20 +64,44 @@ public class RoulettePiece : MonoBehaviour
                 if(rlt.rtype.enemyIdx == 0)
                 {
                     originalSprite = EnemyManager.Inst.enemySpecialRoulettes[rlt.rtype.specialTypeIdx].sprite;
-                    originalTooltipTitle = EnemyManager.Inst.enemySpecialRoulettes[rlt.rtype.specialTypeIdx].title;
-                    originalTooltipText = EnemyManager.Inst.enemySpecialRoulettes[rlt.rtype.specialTypeIdx].text;
+                    if(isEnhanced)
+                    {
+                        originalTooltipTitle = EnemyManager.Inst.enemySpecialRoulettes[rlt.rtype.specialTypeIdx].title_enhanced;
+                        originalTooltipText = EnemyManager.Inst.enemySpecialRoulettes[rlt.rtype.specialTypeIdx].text_enhanced;
+                    }
+                    else
+                    {
+                        originalTooltipTitle = EnemyManager.Inst.enemySpecialRoulettes[rlt.rtype.specialTypeIdx].title;
+                        originalTooltipText = EnemyManager.Inst.enemySpecialRoulettes[rlt.rtype.specialTypeIdx].text;
+                    }
                 }
                 else
                 {
                     originalSprite = EnemyManager.Inst.subEnemySpecialRoulettes[rlt.rtype.enemyIdx - 1][rlt.rtype.specialTypeIdx].sprite;
-                    originalTooltipTitle = EnemyManager.Inst.subEnemySpecialRoulettes[rlt.rtype.enemyIdx - 1][rlt.rtype.specialTypeIdx].title;
-                    originalTooltipText = EnemyManager.Inst.subEnemySpecialRoulettes[rlt.rtype.enemyIdx - 1][rlt.rtype.specialTypeIdx].text;
+                    if(isEnhanced)
+                    {
+                        originalTooltipTitle = EnemyManager.Inst.subEnemySpecialRoulettes[rlt.rtype.enemyIdx - 1][rlt.rtype.specialTypeIdx].title_enhanced;
+                        originalTooltipText = EnemyManager.Inst.subEnemySpecialRoulettes[rlt.rtype.enemyIdx - 1][rlt.rtype.specialTypeIdx].text_enhanced;
+                    }
+                    else
+                    {
+                        originalTooltipTitle = EnemyManager.Inst.subEnemySpecialRoulettes[rlt.rtype.enemyIdx - 1][rlt.rtype.specialTypeIdx].title;
+                        originalTooltipText = EnemyManager.Inst.subEnemySpecialRoulettes[rlt.rtype.enemyIdx - 1][rlt.rtype.specialTypeIdx].text;
+                    }
                 }
                 break;
             case ERouletteType.Player_Special:
                 originalSprite = PassiveManager.Inst.playerSpecialRoulettes[rlt.rtype.specialTypeIdx].sprite;
-                originalTooltipTitle = PassiveManager.Inst.playerSpecialRoulettes[rlt.rtype.specialTypeIdx].title;
-                originalTooltipText = PassiveManager.Inst.playerSpecialRoulettes[rlt.rtype.specialTypeIdx].text;
+                if (isEnhanced)
+                {
+                    originalTooltipTitle = PassiveManager.Inst.playerSpecialRoulettes[rlt.rtype.specialTypeIdx].title_enhanced;
+                    originalTooltipText = PassiveManager.Inst.playerSpecialRoulettes[rlt.rtype.specialTypeIdx].text_enhanced;
+                }
+                else
+                {
+                    originalTooltipTitle = PassiveManager.Inst.playerSpecialRoulettes[rlt.rtype.specialTypeIdx].title;
+                    originalTooltipText = PassiveManager.Inst.playerSpecialRoulettes[rlt.rtype.specialTypeIdx].text;
+                }
                 break;
             default:
                 originalSprite = rouletteTypeSprites[0];
@@ -107,6 +131,14 @@ public class RoulettePiece : MonoBehaviour
                 RouletteManager.Inst.EnchantRoulettePiece(index, new RouletteType(ERouletteType.None), 0);
                 break;
         }
+    }
+
+    public void Enhance()
+    {
+        if(roulette.rtype.type != ERouletteType.Player_Special || roulette.rtype.type == ERouletteType.Enemy_Special || isEnhanced) return;
+        isEnhanced = true;
+        roulette.value = PassiveManager.Inst.playerSpecialRoulettes[roulette.rtype.specialTypeIdx].baseVal_enhanced;
+        Setup(roulette, true);
     }
 
     public void ShowTotalValue()
@@ -227,11 +259,11 @@ public class RoulettePiece : MonoBehaviour
                 }
                 break;
             case ERouletteType.Enemy_Special:
-                if(enemyIdx == 0) EnemyManager.enemySpecialRouletteActivation[roulette.rtype.specialTypeIdx]?.Invoke(this, isEnemy, totalVal, 0);
-                else EnemyManager.subEnemySpecialRouletteActivation[enemyIdx - 1, roulette.rtype.specialTypeIdx]?.Invoke(this, isEnemy, totalVal, enemyIdx);
+                if(enemyIdx == 0) EnemyManager.enemySpecialRouletteActivation[roulette.rtype.specialTypeIdx]?.Invoke(this, isEnemy, totalVal, 0, isEnhanced);
+                else EnemyManager.subEnemySpecialRouletteActivation[enemyIdx - 1, roulette.rtype.specialTypeIdx]?.Invoke(this, isEnemy, totalVal, enemyIdx, isEnhanced);
                 break;
             case ERouletteType.Player_Special:
-                PassiveManager.playerSpecialRouletteActivation[roulette.rtype.specialTypeIdx]?.Invoke(isEnemy, totalVal, enemyIdx);
+                PassiveManager.playerSpecialRouletteActivation[roulette.rtype.specialTypeIdx]?.Invoke(isEnemy, totalVal, enemyIdx, isEnhanced);
                 break;
         }
     }

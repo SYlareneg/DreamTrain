@@ -26,19 +26,28 @@
           "sprite": "Roulette_Lifesteal",
           "title": "생명력 흡수 룰렛",
           "text": "피해를 값만큼 줍니다. 입힌 피해의 33%만큼 플레이어의 체력을 회복합니다.",
-          "baseVal": 6
-        },
-        {
-          "sprite": "Roulette_Lifesteal",
-          "title": "생명력 흡수 룰렛+",
-          "text": "피해를 값만큼 줍니다. 입힌 피해의 <color=red>50%</color>만큼 플레이어의 체력을 회복합니다.",
-          "baseVal": 6
+          "baseVal": 6,
+          "title_enhanced": "생명력 흡수 룰렛+",
+          "text_enhanced": "피해를 값만큼 줍니다. 입힌 피해의 <color=red>50%</color>만큼 플레이어의 체력을 회복합니다.",
+          "baseVal_enhanced": 6
         },
         {
           "sprite": "",
           "title": "",
           "text": "",
-          "baseVal": 0
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
         }
       ],
       "cards": [
@@ -106,19 +115,28 @@
           "sprite": "Roulette_MagicBox",
           "title": "마술상자 룰렛",
           "text": "값의 카운터를 가지고 있습니다. 룰렛이 시계방향으로 회전할 때마다 카운트가 1 감소하고, 0이 되면 효과가 제거됩니다.",
-          "baseVal": 12
+          "baseVal": 12,
+          "title_enhanced": "마술상자 룰렛+",
+          "text_enhanced": "값의 카운터를 가지고 있습니다. 룰렛이 시계방향으로 회전할 때마다 카운트가 1 감소하고, 0이 되면 효과가 제거됩니다.",
+          "baseVal_enhanced": 15
         },
         {
           "sprite": "",
           "title": "",
           "text": "",
-          "baseVal": 0
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
         },
         {
           "sprite": "",
           "title": "",
           "text": "",
-          "baseVal": 0
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
         }
       ],
       "cards": [
@@ -187,19 +205,28 @@
           "sprite": "freeze",
           "title": "꽁꽁",
           "text": "값턴 얼어 있습니다. 얼어있는 동안 룰렛의 효과가 비활성화됩니다.",
-          "baseVal": 2
+          "baseVal": 2,
+          "title_enhanced": "꽁꽁+",
+          "text_enhanced": "값턴 얼어 있습니다. 얼어있는 동안 룰렛의 효과가 비활성화됩니다.",
+          "baseVal_enhanced": 3
         },
         {
           "sprite": "",
           "title": "",
           "text": "",
-          "baseVal": 0
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
         },
         {
           "sprite": "",
           "title": "",
           "text": "",
-          "baseVal": 0
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
         }
       ],
       "cards": [
@@ -271,19 +298,28 @@
           "sprite": "Roulette_Charge",
           "title": "발톱",
           "text": "값 피해를 줍니다. 효과를 적용할 때마다 위력이 3 감소하고, 0이 되면 사라집니다.",
-          "baseVal": 9
+          "baseVal": 9,
+          "title_enhanced": "발톱+",
+          "text_enhanced": "값 피해를 줍니다. 효과를 적용할 때마다 위력이 3 감소하고, 0이 되면 사라집니다.",
+          "baseVal_enhanced": 12
         },
         {
           "sprite": "Roulette_Drain",
           "title": "실뭉치",
           "text": "값 피해를 줍니다. 룰렛이 회전하면 회전한 칸 수 만큼 위력이 증가하고, 효과 발동시 제거됩니다.",
-          "baseVal": 1
+          "baseVal": 1,
+          "title_enhanced": "실뭉치+",
+          "text_enhanced": "값 피해를 줍니다. 룰렛이 회전하면 회전한 칸 수x2 만큼 위력이 증가하고, 효과 발동시 제거됩니다.",
+          "baseVal_enhanced": 1
         },
         {
-          "sprite": "Roulette_Drain",
-          "title": "실뭉치+",
-          "text": "값 피해를 줍니다. 룰렛이 회전하면 회전한 칸 수x2 만큼 위력이 증가하고, 효과 발동시 제거됩니다.",
-          "baseVal": 1
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
         }
       ],
       "cards": [

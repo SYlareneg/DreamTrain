@@ -60,12 +60,18 @@ MonoBehaviour:
         \uD53C\uD574\uC758 33%\uB9CC\uD07C \uD50C\uB808\uC774\uC5B4\uC758 \uCCB4\uB825\uC744
         \uD68C\uBCF5\uD569\uB2C8\uB2E4."
       baseVal: 6
+      title_enhanced: 
+      text_enhanced: 
+      baseVal_enhanced: 0
     - sprite: {fileID: 3372071434943392156, guid: a83e06a63255ee2408beb1f880295f2c, type: 3}
       title: "\uC0DD\uBA85\uB825 \uD761\uC218 \uB8F0\uB81B+"
       text: "\uD53C\uD574\uB97C \uAC12\uB9CC\uD07C \uC90D\uB2C8\uB2E4. \uC785\uD78C
         \uD53C\uD574\uC758 <color=red>50%</color>\uB9CC\uD07C \uD50C\uB808\uC774\uC5B4\uC758
         \uCCB4\uB825\uC744 \uD68C\uBCF5\uD569\uB2C8\uB2E4."
       baseVal: 6
+      title_enhanced: 
+      text_enhanced: 
+      baseVal_enhanced: 0
     cards:
     - name: "\uD761\uD608 \uBD80\uC5EC"
       cost: 2
@@ -592,6 +598,9 @@ MonoBehaviour:
         \uB54C\uB9C8\uB2E4 \uCE74\uC6B4\uD2B8\uAC00 1 \uAC10\uC18C\uD558\uACE0, 0\uC774
         \uB418\uBA74 \uD6A8\uACFC\uAC00 \uC81C\uAC70\uB429\uB2C8\uB2E4."
       baseVal: 12
+      title_enhanced: 
+      text_enhanced: 
+      baseVal_enhanced: 0
     cards:
     - name: "\uB9C8\uC220 \uC0C1\uC790"
       cost: 1
@@ -1168,11 +1177,29 @@ MonoBehaviour:
         dreamPieceNum: 2
     triggerSprite: {fileID: 21300000, guid: 85b3c2ce69f81364ab7bc1b6186fe49a, type: 3}
     playerSpecialRoulettes:
-    - sprite: {fileID: 21300000, guid: e36d8997c6273e048ac290f27e79a1d7, type: 3}
+    - sprite: {fileID: 21300000, guid: c75783b61ff39684d80afa93f23d1858, type: 3}
       title: "\uAF41\uAF41"
       text: "\uAC12\uD134 \uC5BC\uC5B4 \uC788\uC2B5\uB2C8\uB2E4. \uC5BC\uC5B4\uC788\uB294
         \uB3D9\uC548 \uB8F0\uB81B\uC758 \uD6A8\uACFC\uAC00 \uBE44\uD65C\uC131\uD654\uB429\uB2C8\uB2E4."
       baseVal: 2
+      title_enhanced: "\uAF41\uAF41+"
+      text_enhanced: "\uAC12\uD134 \uC5BC\uC5B4 \uC788\uC2B5\uB2C8\uB2E4. \uC5BC\uC5B4\uC788\uB294
+        \uB3D9\uC548 \uB8F0\uB81B\uC758 \uD6A8\uACFC\uAC00 \uBE44\uD65C\uC131\uD654\uB429\uB2C8\uB2E4."
+      baseVal_enhanced: 3
+    - sprite: {fileID: 0}
+      title: 
+      text: 
+      baseVal: 0
+      title_enhanced: 
+      text_enhanced: 
+      baseVal_enhanced: 0
+    - sprite: {fileID: 0}
+      title: 
+      text: 
+      baseVal: 0
+      title_enhanced: 
+      text_enhanced: 
+      baseVal_enhanced: 0
     cards:
     - name: "\uAF41\uAF41 \uC5BC\uB9AC\uAE30"
       cost: 2
@@ -1836,18 +1863,30 @@ MonoBehaviour:
         \uB54C\uB9C8\uB2E4 \uC704\uB825\uC774 3 \uAC10\uC18C\uD558\uACE0, 0\uC774
         \uB418\uBA74 \uC0AC\uB77C\uC9D1\uB2C8\uB2E4."
       baseVal: 9
+      title_enhanced: "\uBC1C\uD1B1+"
+      text_enhanced: "\uAC12 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4. \uD6A8\uACFC\uB97C
+        \uC801\uC6A9\uD560 \uB54C\uB9C8\uB2E4 \uC704\uB825\uC774 3 \uAC10\uC18C\uD558\uACE0,
+        0\uC774 \uB418\uBA74 \uC0AC\uB77C\uC9D1\uB2C8\uB2E4."
+      baseVal_enhanced: 12
     - sprite: {fileID: 2548602056424267579, guid: d9684565a5c77ee4084b7c729e932a89, type: 3}
       title: "\uC2E4\uBB49\uCE58"
       text: "\uAC12 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4. \uB8F0\uB81B\uC774 \uD68C\uC804\uD558\uBA74
         \uD68C\uC804\uD55C \uCE78 \uC218 \uB9CC\uD07C \uC704\uB825\uC774 \uC99D\uAC00\uD558\uACE0,
         \uD6A8\uACFC \uBC1C\uB3D9\uC2DC \uC81C\uAC70\uB429\uB2C8\uB2E4."
       baseVal: 1
-    - sprite: {fileID: 2548602056424267579, guid: d9684565a5c77ee4084b7c729e932a89, type: 3}
-      title: "\uC2E4\uBB49\uCE58+"
-      text: "\uAC12 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4. \uB8F0\uB81B\uC774 \uD68C\uC804\uD558\uBA74
-        \uD68C\uC804\uD55C \uCE78 \uC218x2 \uB9CC\uD07C \uC704\uB825\uC774 \uC99D\uAC00\uD558\uACE0,
-        \uD6A8\uACFC \uBC1C\uB3D9\uC2DC \uC81C\uAC70\uB429\uB2C8\uB2E4."
-      baseVal: 1
+      title_enhanced: "\uC2E4\uBB49\uCE58+"
+      text_enhanced: "\uAC12 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4. \uB8F0\uB81B\uC774
+        \uD68C\uC804\uD558\uBA74 \uD68C\uC804\uD55C \uCE78 \uC218x2 \uB9CC\uD07C
+        \uC704\uB825\uC774 \uC99D\uAC00\uD558\uACE0, \uD6A8\uACFC \uBC1C\uB3D9\uC2DC
+        \uC81C\uAC70\uB429\uB2C8\uB2E4."
+      baseVal_enhanced: 1
+    - sprite: {fileID: 0}
+      title: 
+      text: 
+      baseVal: 0
+      title_enhanced: 
+      text_enhanced: 
+      baseVal_enhanced: 0
     cards:
     - name: "\uBC1C\uD1B1 \uC138\uC6B0\uAE30"
       cost: 2

@@ -80,7 +80,7 @@ public class DataManager : MonoBehaviour
         {
             if (item.dreamPieceNum == -1)
             {
-                normalItemSO.items.Add(new Item(item));
+                normalItemSO.items.Add(new Item(item, false));
             }
         }
         relicSO.relicItems.Clear();
@@ -162,7 +162,7 @@ public class DataManager : MonoBehaviour
             Item_Data item_Data = itemDataSO.items.Find(x => x.name == cardData.cardName);
             if (item_Data != null)
             {
-                Item item = new Item(item_Data);
+                Item item = new Item(item_Data, false);
                 item.num = cardData.num;
                 characterSO.normalCards.Add(item);
             }
