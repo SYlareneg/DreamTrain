@@ -227,7 +227,7 @@ public class RouletteManager : MonoBehaviour
         {
             index = playerLookat;
         }
-        if(roulettePieces[index].roulette.rtype.type != ERouletteType.Player_Special || roulettePieces[index].isEnhanced)
+        if((roulettePieces[index].roulette.rtype.type != ERouletteType.Player_Special && roulettePieces[index].roulette.rtype.type != ERouletteType.Enemy_Special) || roulettePieces[index].isEnhanced)
         {
             return false;
         }
