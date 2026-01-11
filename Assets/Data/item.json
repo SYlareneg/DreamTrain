@@ -4,25 +4,40 @@
       "name": "화살",
       "text": "적에게 피해를 10 줍니다.",
       "sprite": "cupIcon",
-      "rarity": 0
+      "rarity": 0,
+      "isSingleTarget": true,
+      "useValue": [
+        10
+      ]
     },
     {
       "name": "나무 방패",
       "text": "자신에게 10 방어도를 부여합니다.",
       "sprite": "emptyIcon",
-      "rarity": 0
+      "rarity": 0,
+      "isSingleTarget": false,
+      "useValue": [
+        10
+      ]
     },
     {
       "name": "레테의 눈물",
       "text": "자신에게 걸린 모든 버프와 디버프를 제거합니다.",
       "sprite": "hatIcon",
-      "rarity": 1
+      "rarity": 1,
+      "isSingleTarget": false,
+      "useValue": []
     },
     {
       "name": "오염된 주사바늘",
       "text": "체력을 12 회복하고 2턴간 '취약' 상태가 됩니다.",
       "sprite": "UnivIcon",
-      "rarity": 0
+      "rarity": 0,
+      "isSingleTarget": false,
+      "useValue": [
+        12,
+        2
+      ]
     }
   ]
 }

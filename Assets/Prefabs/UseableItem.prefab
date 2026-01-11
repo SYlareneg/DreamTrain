@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7189823678984871684}
   - component: {fileID: 225284208640186954}
   - component: {fileID: 1552389759176258056}
+  - component: {fileID: 800873755993090988}
   m_Layer: 5
   m_Name: UseableItem
   m_TagString: Untagged
@@ -88,4 +89,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8add42544925dec41b0763157515c823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UseableItem
+  uItem:
+    name: 
+    text: 
+    sprite: {fileID: 0}
+    rarity: 0
+    isSingleTarget: 0
+    useValue: 
   image: {fileID: 225284208640186954}
+--- !u!114 &800873755993090988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3116151576270911241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a00420b01652994990b4f0921a3d65a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tooltip
+  tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
+  tooltipTitle: 
+  tooltipTxt: 
+  tooltipPos: {x: 0, y: 0}
+  tooltipPivot: {x: 1, y: 1}
+  tooltipDisable: 0

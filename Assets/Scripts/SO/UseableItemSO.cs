@@ -8,13 +8,17 @@ public class UseItem
     public string text;
     public Sprite sprite;
     public int rarity;
+    public bool isSingleTarget;
+    public List<int> useValue;
 
-    public void Setup(string name, string text, Sprite sprite, int rarity)
+    public void Setup(string name, string text, Sprite sprite, int rarity, bool isSingleTarget, List<int> useValue)
     {
         this.name = name;
         this.text = text;
         this.sprite = sprite;
         this.rarity = rarity;
+        this.isSingleTarget = isSingleTarget;
+        this.useValue = new List<int>(useValue);
     }
 
     public void Setup(UseItem useItem)
@@ -23,6 +27,8 @@ public class UseItem
         this.text = useItem.text;
         this.sprite = useItem.sprite;
         this.rarity = useItem.rarity;
+        this.isSingleTarget = useItem.isSingleTarget;
+        this.useValue = new List<int>(useItem.useValue);
     }
 
     public UseItem() { }
@@ -33,6 +39,8 @@ public class UseItem
         this.text = useItem.text;
         this.sprite = useItem.sprite;
         this.rarity = useItem.rarity;
+        this.isSingleTarget = useItem.isSingleTarget;
+        this.useValue = new List<int>(useItem.useValue);
     }
 
     public UseItem(UseItem_Data useItemData)
@@ -41,6 +49,8 @@ public class UseItem
         this.text = useItemData.text;
         this.sprite = Utils.LoadSpriteByName("Items", useItemData.sprite);
         this.rarity = useItemData.rarity;
+        this.isSingleTarget = useItemData.isSingleTarget;
+        this.useValue = new List<int>(useItemData.useValue);
     }
 }
 
@@ -51,6 +61,8 @@ public class UseItem_Data
     public string text;
     public string sprite;
     public int rarity;
+    public bool isSingleTarget;
+    public List<int> useValue;
 
     public UseItem_Data(UseItem useItem)
     {
@@ -58,6 +70,8 @@ public class UseItem_Data
         this.text = useItem.text;
         this.sprite = useItem.sprite != null ? useItem.sprite.name : "";
         this.rarity = useItem.rarity;
+        this.isSingleTarget = useItem.isSingleTarget;
+        this.useValue = new List<int>(useItem.useValue);
     }
 }
 

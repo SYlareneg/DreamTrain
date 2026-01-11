@@ -18,7 +18,12 @@ public class UseableItemManager : MonoBehaviour
             var uItemObj = Instantiate(useableItemPrefab, itemListScroll.transform, false);
             UseableItem useableItem = uItemObj.GetComponent<UseableItem>();
             useableItem.Setup(uItem);
-
+            Tooltip tooltip = uItemObj.GetComponent<Tooltip>();
+            if (tooltip != null)
+            {
+                tooltip.tooltipTitle = uItem.name;
+                tooltip.tooltipTxt = uItem.text;
+            }
         }
     }
     
