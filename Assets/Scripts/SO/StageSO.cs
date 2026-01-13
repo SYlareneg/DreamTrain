@@ -39,6 +39,13 @@ public class SellUItem
     public int cost;
     public bool isValid;
 }
+[System.Serializable]
+public class SellObjet
+{
+    public Item_Objets objetItem;
+    public int cost;
+    public bool isValid;
+}
 
 [CreateAssetMenu(fileName = "StageSO", menuName = "Scriptable Objects/StageSO")]
 public class StageSO : ScriptableObject
@@ -48,4 +55,6 @@ public class StageSO : ScriptableObject
     public bool sofaUsed;
     public List<SellCard> merchantSellCards = new List<SellCard>();
     public List<SellUItem> merchantSellUItems = new List<SellUItem>();
+    public List<SellObjet> merchantSellObjets = new List<SellObjet>();
+    
 }

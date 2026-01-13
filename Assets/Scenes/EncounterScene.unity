@@ -354,15 +354,26 @@ MonoBehaviour:
   characterSO: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
   stageSO: {fileID: 11400000, guid: 2de9de6b9f0fbea46b0149e204bb7b11, type: 2}
   dreamPieceListSO: {fileID: 11400000, guid: fa145bd86cf8d8a47b1d9e3683cef771, type: 2}
+  playerDataSO: {fileID: 11400000, guid: 00c60599a04bcec4f82efcd1f45339b4, type: 2}
+  objetDataList: {fileID: 11400000, guid: ea35f0ad735be2547a4578881d0c968e, type: 2}
+  playerRelicSO: {fileID: 11400000, guid: f261c4fa2c6606c4ea86c879ed3f631d, type: 2}
   normalItemListSO: {fileID: 11400000, guid: 839e0b6ae25343344aea4d6b6cc55c32, type: 2}
   useableItemListSO: {fileID: 11400000, guid: e2b1eb20f9745d14d9ffcef82aa9b454, type: 2}
   cardContainer: {fileID: 281916175}
-  objetPrefab: {fileID: 0}
-  objetContainer: {fileID: 0}
+  cardSectionObj: {fileID: 691578338}
+  objetContainer: {fileID: 691578339}
+  objetSectionObj: {fileID: 691578338}
+  objetRareSectionObj: {fileID: 314847762}
+  objetRareContainer: {fileID: 314847763}
+  consumableSectionObj: {fileID: 685749991}
   sellCardPrefab: {fileID: 7478611203382353997, guid: e9dd45c717fba81498b141351e5fc5d5, type: 3}
+  objetPrefab: {fileID: 4629691081660468709, guid: 46f183f220e4cc4438b070d8e952f509, type: 3}
+  objetRarePrefab: {fileID: 4629691081660468709, guid: 0bccb38ffbeaf9e45953600843aa5f8b, type: 3}
   sellCardCosts: 
   sellCardWeights: []
   enhanceProbability: 0.3
+  objetBaseCost: 100
+  currentShopId: 
 --- !u!1 &78657789
 GameObject:
   m_ObjectHideFlags: 0
@@ -2780,7 +2791,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &281916175
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2940,6 +2951,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 294265973}
   m_CullTransparentMesh: 1
+--- !u!1 &314847762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 314847763}
+  - component: {fileID: 314847764}
+  m_Layer: 5
+  m_Name: SellRare
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &314847763
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314847762}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1443323483}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 23, y: -18}
+  m_SizeDelta: {x: -412.2285, y: -102.38}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &314847764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314847762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &316699836
 GameObject:
   m_ObjectHideFlags: 0
@@ -2997,6 +3070,8 @@ MonoBehaviour:
       text: 
       sprite: {fileID: 0}
       rarity: 0
+      isSingleTarget: 0
+      useValue: 
     cost: 0
     isValid: 0
   image: {fileID: 316699839}
@@ -5254,6 +5329,68 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &691578338
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 691578339}
+  - component: {fileID: 691578340}
+  m_Layer: 5
+  m_Name: SellObjects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &691578339
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691578338}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1443323483}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 192, y: -316}
+  m_SizeDelta: {x: -691.2, y: -283.9477}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &691578340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691578338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &706736675
 GameObject:
   m_ObjectHideFlags: 0
@@ -6775,8 +6912,8 @@ MonoBehaviour:
   playerStats: {fileID: 11400000, guid: 3814c952094c0884fa9f39e909922626, type: 2}
   actData: {fileID: 11400000, guid: ad73d8b4a4d8e6441bab56db52dc9fbf, type: 2}
   sofaManager: {fileID: 1493062490}
-  isDebuging: 0
-  debuggerID: ACT1_SHEEP_IN_MAZE
+  isDebuging: 1
+  debuggerID: ACT1_BEST_HORSE
 --- !u!4 &988924727
 Transform:
   m_ObjectHideFlags: 0
@@ -7062,6 +7199,8 @@ MonoBehaviour:
       text: 
       sprite: {fileID: 0}
       rarity: 0
+      isSingleTarget: 0
+      useValue: 
     cost: 0
     isValid: 0
   image: {fileID: 1021456416}
@@ -10519,7 +10658,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uCE74\uB4DC \uAD6C\uB9E4"
+  m_text: "\uCE74\uB4DC \uAC15\uD654\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 47cca83c53488344680ff6471d8b9082, type: 2}
   m_sharedMaterial: {fileID: 2511819687917346823, guid: 47cca83c53488344680ff6471d8b9082, type: 2}
@@ -10971,6 +11110,8 @@ RectTransform:
   m_Children:
   - {fileID: 1918521158}
   - {fileID: 281916175}
+  - {fileID: 691578339}
+  - {fileID: 314847763}
   - {fileID: 1737194173}
   - {fileID: 685749992}
   - {fileID: 1943141399}
@@ -13582,6 +13723,8 @@ MonoBehaviour:
       text: 
       sprite: {fileID: 0}
       rarity: 0
+      isSingleTarget: 0
+      useValue: 
     cost: 0
     isValid: 0
   image: {fileID: 1708795524}
@@ -14313,7 +14456,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC624\uBE0C\uC81C \uAD6C\uB9E4"
+  m_text: "\uC624\uBE0C\uC81C \uAC15\uD654\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 47cca83c53488344680ff6471d8b9082, type: 2}
   m_sharedMaterial: {fileID: 2511819687917346823, guid: 47cca83c53488344680ff6471d8b9082, type: 2}

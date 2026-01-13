@@ -115,7 +115,7 @@ MonoBehaviour:
       level: 0
       pos: 0
       childNodes: []
-  curActNum: 1
+  curActNum: 2
   mapSave:
     sortedMapNodeList:
     - nodeImg: {fileID: -2413806693520163455, guid: 7f2f31cc9e11ef34b8c9ccdd9177ea17, type: 3}
@@ -244,5 +244,5 @@ MonoBehaviour:
   curNodeLocationID: MERRY_GO_ROUND
   lastEncounterType: 0
   encounterQueue: []
-  currentStepID: 
-  currentEncounterID: 
+  currentStepID: P2
+  currentEncounterID: ACT1_BEST_HORSE

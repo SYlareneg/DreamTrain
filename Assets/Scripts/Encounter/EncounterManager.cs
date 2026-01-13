@@ -61,7 +61,7 @@ public class EncounterManager : MonoBehaviour
     private Queue<string> encounterSequenceQueue = new Queue<string>();
     
     public bool isDebuging = true;
-    public string debuggerID = "ACT1_BEST_HORSE";
+    public string debuggerID = "ACT1_Souvenir";
     
     private string currentLocID = "";
 
@@ -95,11 +95,15 @@ public class EncounterManager : MonoBehaviour
             Debug.Log($"[EncounterManager] 중단된 인카운터 복구: {actData.currentEncounterID}, Step: {actData.currentStepID}");
             
             // 해당 인카운터 파일 로드 및 파싱
-            LoadEncounterData(actData.currentEncounterID);
-            
+            if (isDebuging)
+            {
+                LoadEncounterData(debuggerID);
+                encounterPanel.SetActive(true);
+                PlayStep("P1");
+            }
+            else LoadEncounterData(actData.currentEncounterID);
             // 저장된 스텝으로 이동 (없으면 P1)
             string savedStep = string.IsNullOrEmpty(actData.currentStepID) ? "P1" : actData.currentStepID;
-            
             encounterPanel.SetActive(true);
             PlayStep(savedStep);
         }
@@ -681,7 +685,14 @@ public class EncounterManager : MonoBehaviour
                 {
                     encounterPanel.SetActive(false);
                     merchantPanel.SetActive(true);
-                    merchantUI.Open();
+                    
+                    string shopId = "";
+                    if (args.Length > 0 && !string.IsNullOrEmpty(args[0]))
+                    {
+                        merchantUI.currentShopId = args[0]; 
+                    }
+                    
+                    merchantUI.Open(merchantUI.currentShopId);
                 }
                 else Debug.Log("nulll");
                 break;

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3472e4287c6d7047b03ee6defa168be, type: 3}
   m_Name: StageSO
   m_EditorClassIdentifier: Assembly-CSharp::StageSO
-  currentStage: 1
+  currentStage: 2
   stageList:
   - stageEnemies:
     - enemyName: "\uB9DD\uB839 1"
@@ -160,4 +160,26 @@ MonoBehaviour:
       isEnhanced: 0
     cost: 100
     isValid: 1
-  merchantSellUItems: []
+  merchantSellUItems:
+  - useItem:
+      name: "\uB808\uD14C\uC758 \uB208\uBB3C"
+      text: "\uC790\uC2E0\uC5D0\uAC8C \uAC78\uB9B0 \uBAA8\uB4E0 \uBC84\uD504\uC640
+        \uB514\uBC84\uD504\uB97C \uC81C\uAC70\uD569\uB2C8\uB2E4."
+      sprite: {fileID: 2010073336416285277, guid: 668a0959d9b3077459d0fa48557e97a0, type: 3}
+      rarity: 1
+      isSingleTarget: 0
+      useValue: 
+    cost: 50
+    isValid: 1
+  - useItem:
+      name: "\uC624\uC5FC\uB41C \uC8FC\uC0AC\uBC14\uB298"
+      text: "\uCCB4\uB825\uC744 12 \uD68C\uBCF5\uD558\uACE0 2\uD134\uAC04 '\uCDE8\uC57D'
+        \uC0C1\uD0DC\uAC00 \uB429\uB2C8\uB2E4."
+      sprite: {fileID: -5321652806142850321, guid: 47ef3830aa334b74099edb29d1f47cd9, type: 3}
+      rarity: 0
+      isSingleTarget: 0
+      useValue: 0c00000002000000
+    cost: 50
+    isValid: 1
+  merchantSellObjets: []
+  merchantSellObjetsTemp: []

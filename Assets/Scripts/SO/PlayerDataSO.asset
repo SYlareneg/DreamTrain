@@ -65,8 +65,8 @@ MonoBehaviour:
     num: 3
   - cardName: "\uD68C\uC804 \uCE74\uB4DC 3"
     num: 3
-  relics: 0000000001000000020000000300000004000000050000000600000007000000
-  relicEnhancements: 0000000000000000
+  relics: 0300000006000000
+  relicEnhancements: 0000000000000000000000000000
   useableItems:
   - "\uD654\uC0B4"
   - "\uB098\uBB34 \uBC29\uD328"
@@ -75,7 +75,7 @@ MonoBehaviour:
   courage: 1
   wisdom: 1
   luck: 1
-  currentActNum: 1
+  currentActNum: 2
   mapNodes:
   - locationID: START
     selectedEncounterPool: []
