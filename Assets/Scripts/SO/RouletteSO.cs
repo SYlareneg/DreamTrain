@@ -142,7 +142,7 @@ public class SpecialRoulette_Data
     public SpecialRoulette_Data(SpecialRoulette esr)
     {
         if(esr == null) return;
-        this.sprite = esr.sprite.name;
+        this.sprite = esr.sprite == null ? "" : esr.sprite.name;
         this.title = esr.title;
         this.text = esr.text;
         this.baseVal = esr.baseVal;

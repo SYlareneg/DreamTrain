@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 89d3768ddf66d044a867dc0e741a7380
+guid: cb0f00b99d17ea447beae0463e3fc443
 TextureImporter:
   internalIDToNameTable:
   - first:
       213: -8933495643972931924
-    second: "\0\0\0\0\x10\0\0\0"
+    second: "\0\0\0\0g\0\0\0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\0\u8CF0\0\x7F\0\0"
+      name: "\0\u879E\0\x7F\0\0"
       rect:
         serializedVersion: 2
-        x: 365
-        y: 1674
-        width: 1769
-        height: 1415
+        x: 268
+        y: 1487
+        width: 1843
+        height: 1474
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

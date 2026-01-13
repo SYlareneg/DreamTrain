@@ -53,6 +53,13 @@ MonoBehaviour:
           \uB0B4\uB9BC)"
         dreamPieceNum: 0
     triggerSprite: {fileID: 21300000, guid: e0a21c6a67322424f9d91e1e934608a0, type: 3}
+    cardBackgrounds:
+    - {fileID: 0}
+    - {fileID: 0}
+    textColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
     playerSpecialRoulettes:
     - sprite: {fileID: 3372071434943392156, guid: a83e06a63255ee2408beb1f880295f2c, type: 3}
       title: "\uC0DD\uBA85\uB825 \uD761\uC218 \uB8F0\uB81B"
@@ -590,6 +597,13 @@ MonoBehaviour:
           1\uC7A5 \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
         dreamPieceNum: 1
     triggerSprite: {fileID: 21300000, guid: 5ea702650a99f16419fb67913ebebbc6, type: 3}
+    cardBackgrounds:
+    - {fileID: 0}
+    - {fileID: 0}
+    textColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
     playerSpecialRoulettes:
     - sprite: {fileID: -1033747301121760791, guid: d70a422d594c0c64ca0e09b3852cd601, type: 3}
       title: "\uB9C8\uC220\uC0C1\uC790 \uB8F0\uB81B"
@@ -1176,6 +1190,13 @@ MonoBehaviour:
           \uC5BB\uC2B5\uB2C8\uB2E4."
         dreamPieceNum: 2
     triggerSprite: {fileID: 21300000, guid: 85b3c2ce69f81364ab7bc1b6186fe49a, type: 3}
+    cardBackgrounds:
+    - {fileID: 0}
+    - {fileID: 0}
+    textColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
     playerSpecialRoulettes:
     - sprite: {fileID: 21300000, guid: c75783b61ff39684d80afa93f23d1858, type: 3}
       title: "\uAF41\uAF41"
@@ -1856,6 +1877,13 @@ MonoBehaviour:
           \uBC1C\uD1B1 \uB8F0\uB81B\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
         dreamPieceNum: 3
     triggerSprite: {fileID: 21300000, guid: 85b3c2ce69f81364ab7bc1b6186fe49a, type: 3}
+    cardBackgrounds:
+    - {fileID: 21300000, guid: a1f690a3c04e26547ab1f00c678e2412, type: 3}
+    - {fileID: 21300000, guid: e26eeaaf91ce4e14cbdd21d4154d513c, type: 3}
+    textColors:
+    - {r: 0.6509804, g: 0.627451, b: 0.627451, a: 0}
+    - {r: 0.14901961, g: 0.14901961, b: 0.14901961, a: 0}
+    - {r: 0.21568628, g: 0.21568628, b: 0.21568628, a: 0}
     playerSpecialRoulettes:
     - sprite: {fileID: -6694683516753140928, guid: 311cd513a5e13e8469d7f4b689ff03f3, type: 3}
       title: "\uBC1C\uD1B1"

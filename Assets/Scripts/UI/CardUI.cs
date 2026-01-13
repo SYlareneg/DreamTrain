@@ -41,20 +41,38 @@ public class CardUI : MonoBehaviour
         switch(this.item.type)
         {
             case CardType.Turn:
-                typeTMP.text = "회 전";
+                typeTMP.text = "회전";
                 break;
             case CardType.Enchant:
-                typeTMP.text = "부 여";
+                typeTMP.text = "부여";
                 break;
             case CardType.Skill:
-                typeTMP.text = "스 킬";
+                typeTMP.text = "스킬";
                 break;
             case CardType.Dream:
-                typeTMP.text = "몽 상";
+                typeTMP.text = "몽상";
                 break;
         }
+
+        if(this.item.dreamPieceNum >= 0 && this.item.dreamPieceNum == TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum)
+        {
+            cardImg.sprite = TurnManager.Inst.characterSO.personaPiece.cardBackgrounds[(int)this.item.rarity];
+            typeTMP.color = TurnManager.Inst.characterSO.personaPiece.textColors[0];
+            nameTMP.color = TurnManager.Inst.characterSO.personaPiece.textColors[1];
+            textTMP.color = TurnManager.Inst.characterSO.personaPiece.textColors[2];
+        }
+        else if(this.item.dreamPieceNum >= 0 && this.item.dreamPieceNum == TurnManager.Inst.characterSO.shadowPiece.shadow.dreamPieceNum)
+        {
+            cardImg.sprite = TurnManager.Inst.characterSO.shadowPiece.cardBackgrounds[(int)this.item.rarity];
+            typeTMP.color = TurnManager.Inst.characterSO.shadowPiece.textColors[0];
+            nameTMP.color = TurnManager.Inst.characterSO.shadowPiece.textColors[1];
+            textTMP.color = TurnManager.Inst.characterSO.shadowPiece.textColors[2];
+        }
+        else
+        {
+            cardImg.sprite = rarityTypes[(int)this.item.rarity];
+        }
         rarity.sprite = rarityTypes[(int)this.item.rarity];
-        cardImg.sprite = rarityTypes[(int)this.item.rarity];
         // if(rarity.sprite == null) rarity.enabled = false;
         // else rarity.enabled = true;
 

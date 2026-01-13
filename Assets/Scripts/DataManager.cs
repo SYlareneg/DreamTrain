@@ -210,6 +210,9 @@ public class DataManager : MonoBehaviour
         actSO.curNodeIndex = playerDataSO.curNodeIndex;
         actSO.curNodeLocationID = playerDataSO.curNodeLocationID;
         actSO.lastEncounterType = playerDataSO.lastEncounterType;
+        actSO.encounterQueue = new List<string>(playerDataSO.encounterQueue);
+        actSO.currentStepID = playerDataSO.currentStepID;
+        actSO.currentEncounterID = playerDataSO.currentEncounterID;
         // 전투 데이터
         characterSO.enemyName = playerDataSO.enemyName;
     }
@@ -277,6 +280,9 @@ public class DataManager : MonoBehaviour
         playerDataSO.curNodeIndex = actSO.curNodeIndex;
         playerDataSO.curNodeLocationID = actSO.curNodeLocationID;
         playerDataSO.lastEncounterType = actSO.lastEncounterType;
+        playerDataSO.encounterQueue = new List<string>(actSO.encounterQueue);
+        playerDataSO.currentStepID = actSO.currentStepID;
+        playerDataSO.currentEncounterID = actSO.currentEncounterID;
         // 전투 데이터
         playerDataSO.enemyName = characterSO.enemyName;
         Utils.SaveData(playerDataSO, "player_data.json");
