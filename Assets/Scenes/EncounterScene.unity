@@ -6912,7 +6912,7 @@ MonoBehaviour:
   playerStats: {fileID: 11400000, guid: 3814c952094c0884fa9f39e909922626, type: 2}
   actData: {fileID: 11400000, guid: ad73d8b4a4d8e6441bab56db52dc9fbf, type: 2}
   sofaManager: {fileID: 1493062490}
-  isDebuging: 1
+  isDebuging: 0
   debuggerID: ACT1_BEST_HORSE
 --- !u!4 &988924727
 Transform:

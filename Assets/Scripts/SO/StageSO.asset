@@ -87,99 +87,44 @@ MonoBehaviour:
       dreamDustReward: 0
     stageClear: 0
   sofaUsed: 0
-  merchantSellCards:
-  - cardItem:
-      name: turn1
-      cost: 1
-      type: 0
-      rarity: 0
-      dreamPieceNum: 0
-      isVolatile: 0
-      isVanish: 0
-      isRemain: 0
-      isSingleTarget: 0
-      sprite: {fileID: 0}
-      text: 
-      cardValues: 
-      cardValueTypes: 
-      num: 0
-      isEnhanced: 0
-    cost: 10
-    isValid: 1
-  - cardItem:
-      name: turn2
-      cost: 0
-      type: 0
-      rarity: 0
-      dreamPieceNum: 0
-      isVolatile: 0
-      isVanish: 0
-      isRemain: 0
-      isSingleTarget: 0
-      sprite: {fileID: 0}
-      text: 
-      cardValues: 
-      cardValueTypes: 
-      num: 0
-      isEnhanced: 0
-    cost: 1
-    isValid: 1
-  - cardItem:
-      name: turn3
-      cost: 0
-      type: 0
-      rarity: 0
-      dreamPieceNum: 0
-      isVolatile: 0
-      isVanish: 0
-      isRemain: 0
-      isSingleTarget: 0
-      sprite: {fileID: 0}
-      text: 
-      cardValues: 
-      cardValueTypes: 
-      num: 0
-      isEnhanced: 0
-    cost: 10
-    isValid: 1
-  - cardItem:
-      name: turn4
-      cost: 0
-      type: 0
-      rarity: 0
-      dreamPieceNum: 0
-      isVolatile: 0
-      isVanish: 0
-      isRemain: 0
-      isSingleTarget: 0
-      sprite: {fileID: 0}
-      text: 
-      cardValues: 
-      cardValueTypes: 
-      num: 0
-      isEnhanced: 0
-    cost: 100
-    isValid: 1
-  merchantSellUItems:
-  - useItem:
-      name: "\uB808\uD14C\uC758 \uB208\uBB3C"
-      text: "\uC790\uC2E0\uC5D0\uAC8C \uAC78\uB9B0 \uBAA8\uB4E0 \uBC84\uD504\uC640
-        \uB514\uBC84\uD504\uB97C \uC81C\uAC70\uD569\uB2C8\uB2E4."
-      sprite: {fileID: 2010073336416285277, guid: 668a0959d9b3077459d0fa48557e97a0, type: 3}
+  merchantSellCards: []
+  merchantSellUItems: []
+  merchantSellObjets:
+  - objetItem:
+      id: 3
+      name_ko: "\uC601\uC6D0\uD55C \uC6C3\uC74C"
+      desc_ko: "\uC9C0\uD61C\uAC00 1\uB85C \uACE0\uC815\uB429\uB2C8\uB2E4. \uC804\uD22C
+        \uC2DC\uC791 \uC2DC \uBCF4\uD638\uB97C 2 \uC5BB\uC2B5\uB2C8\uB2E4."
+      act: 1
       rarity: 1
-      isSingleTarget: 0
-      useValue: 
-    cost: 50
+      price: 200
+      isBought: 0
+      relicData:
+        relicOwner: 3
+        relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
+        relicName: "\uC601\uC6D0\uD55C \uC6C3\uC74C"
+        relicTxt: "\uC9C0\uD61C\uAC00 1\uB85C \uACE0\uC815\uB429\uB2C8\uB2E4. \uC804\uD22C
+          \uC2DC\uC791 \uC2DC \uBCF4\uD638\uB97C 2 \uC5BB\uC2B5\uB2C8\uB2E4."
+        relicVal: 0100000002000000
+        isEnhanced: 0
+    cost: 200
     isValid: 1
-  - useItem:
-      name: "\uC624\uC5FC\uB41C \uC8FC\uC0AC\uBC14\uB298"
-      text: "\uCCB4\uB825\uC744 12 \uD68C\uBCF5\uD558\uACE0 2\uD134\uAC04 '\uCDE8\uC57D'
-        \uC0C1\uD0DC\uAC00 \uB429\uB2C8\uB2E4."
-      sprite: {fileID: -5321652806142850321, guid: 47ef3830aa334b74099edb29d1f47cd9, type: 3}
-      rarity: 0
-      isSingleTarget: 0
-      useValue: 0c00000002000000
-    cost: 50
-    isValid: 1
-  merchantSellObjets: []
-  merchantSellObjetsTemp: []
+  - objetItem:
+      id: 6
+      name_ko: "\uC640\uC778\uC758 \uB208\uBB3C"
+      desc_ko: "\uCCB4\uB825\uC774 50/70% \uC774\uD558\uC774\uBA74 \uD65C\uB825 \uBC84\uD504\uB97C
+        1 \uC5BB\uC2B5\uB2C8\uB2E4."
+      act: 1
+      rarity: 1
+      price: 200
+      isBought: 1
+      relicData:
+        relicOwner: 6
+        relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
+        relicName: "\uC640\uC778\uC758 \uB208\uBB3C"
+        relicTxt: "\uCCB4\uB825\uC774 50% \uC774\uD558\uC774\uBA74 \uD65C\uB825 \uBC84\uD504\uB97C
+          1 \uC5BB\uC2B5\uB2C8\uB2E4."
+        relicVal: 3200000001000000
+        isEnhanced: 0
+    cost: 200
+    isValid: 0

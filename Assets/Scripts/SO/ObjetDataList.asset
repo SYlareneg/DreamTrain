@@ -20,7 +20,7 @@ MonoBehaviour:
     act: 1
     rarity: 0
     price: 100
-    isBought: 1
+    isBought: 0
     relicData:
       relicOwner: 0
       relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
@@ -117,7 +117,7 @@ MonoBehaviour:
     act: 1
     rarity: 1
     price: 200
-    isBought: 0
+    isBought: 1
     relicData:
       relicOwner: 6
       relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}
@@ -132,7 +132,7 @@ MonoBehaviour:
     act: 1
     rarity: 0
     price: 100
-    isBought: 1
+    isBought: 0
     relicData:
       relicOwner: 7
       relicSprite: {fileID: 21300000, guid: 18e73d6390e2a2b418a38e87c77fdfd9, type: 3}

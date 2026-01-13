@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSO
   maxHealth: 60
   curHealth: 60
-  dreamDust: 1000
+  dreamDust: 100
   leftPassengers: 2
   personaPiece:
     name: "\uACE0\uC591\uC774\uC758 \uAFC8"
@@ -52,6 +52,11 @@ MonoBehaviour:
           \uBC1C\uD1B1 \uB8F0\uB81B\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
         dreamPieceNum: 3
     triggerSprite: {fileID: 21300000, guid: e0ec8c705ffaf824b9895e95e1bcfa5c, type: 3}
+    cardBackgrounds: []
+    textColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
     playerSpecialRoulettes:
     - sprite: {fileID: -6694683516753140928, guid: 311cd513a5e13e8469d7f4b689ff03f3, type: 3}
       title: "\uBC1C\uD1B1"
@@ -363,6 +368,11 @@ MonoBehaviour:
           \uC5BB\uC2B5\uB2C8\uB2E4."
         dreamPieceNum: 2
     triggerSprite: {fileID: 21300000, guid: e0ec8c705ffaf824b9895e95e1bcfa5c, type: 3}
+    cardBackgrounds: []
+    textColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
     playerSpecialRoulettes:
     - sprite: {fileID: 21300000, guid: c75783b61ff39684d80afa93f23d1858, type: 3}
       title: "\uAF41\uAF41"

@@ -65,8 +65,8 @@ MonoBehaviour:
     num: 3
   - cardName: "\uD68C\uC804 \uCE74\uB4DC 3"
     num: 3
-  relics: 0300000006000000
-  relicEnhancements: 0000000000000000000000000000
+  relics: 06000000
+  relicEnhancements: 0000000000000000000000000000000000000000000000
   useableItems:
   - "\uD654\uC0B4"
   - "\uB098\uBB34 \uBC29\uD328"
@@ -148,4 +148,7 @@ MonoBehaviour:
   curNodeIndex: 0
   curNodeLocationID: START
   lastEncounterType: 0
+  encounterQueue: []
+  currentStepID: 
+  currentEncounterID: 
   enemyName: "\uB300\uC7A5 \uCEF5"
