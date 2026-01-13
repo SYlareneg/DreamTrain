@@ -897,7 +897,7 @@ MonoBehaviour:
   fastMode: 1
   turnNum: 0
   maxCardCount: 10
-  drawCardCount: 5
+  drawCardCount: 10
   startCardCount: 0
   turnDraw: 0
   turnCost: 4
@@ -2111,26 +2111,44 @@ MonoBehaviour:
     title: 
     text: 
     baseVal: 0
+    title_enhanced: 
+    text_enhanced: 
+    baseVal_enhanced: 0
   - sprite: {fileID: 0}
     title: 
     text: 
     baseVal: 0
+    title_enhanced: 
+    text_enhanced: 
+    baseVal_enhanced: 0
   - sprite: {fileID: 0}
     title: 
     text: 
     baseVal: 0
+    title_enhanced: 
+    text_enhanced: 
+    baseVal_enhanced: 0
   - sprite: {fileID: 0}
     title: 
     text: 
     baseVal: 0
+    title_enhanced: 
+    text_enhanced: 
+    baseVal_enhanced: 0
   - sprite: {fileID: 0}
     title: 
     text: 
     baseVal: 0
+    title_enhanced: 
+    text_enhanced: 
+    baseVal_enhanced: 0
   - sprite: {fileID: 0}
     title: 
     text: 
     baseVal: 0
+    title_enhanced: 
+    text_enhanced: 
+    baseVal_enhanced: 0
 --- !u!4 &257622350
 Transform:
   m_ObjectHideFlags: 0
@@ -14074,10 +14092,16 @@ MonoBehaviour:
       title: 
       text: 
       baseVal: 0
+      title_enhanced: 
+      text_enhanced: 
+      baseVal_enhanced: 0
     - sprite: {fileID: 0}
       title: 
       text: 
       baseVal: 0
+      title_enhanced: 
+      text_enhanced: 
+      baseVal_enhanced: 0
     enemySpecialActions:
     - sprite: {fileID: 0}
       title: 

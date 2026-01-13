@@ -8,6 +8,8 @@ public class DreamPiece_Base
     public Passive_Enhanceable persona;
     public Passive_Enhanceable shadow;
     public Sprite triggerSprite;
+    public List<Sprite> cardBackgrounds;
+    public Color[] textColors = new Color[3]; 
     public static int playerSpecialRouletteNum = 3;
     public SpecialRoulette[] playerSpecialRoulettes = new SpecialRoulette[playerSpecialRouletteNum];
 
@@ -18,6 +20,12 @@ public class DreamPiece_Base
         persona = new Passive_Enhanceable(dp.persona);
         shadow = new Passive_Enhanceable(dp.shadow);
         triggerSprite = dp.triggerSprite;
+        cardBackgrounds = new List<Sprite>(dp.cardBackgrounds);
+        textColors = new Color[dp.textColors.Length];
+        for(int i = 0; i < dp.textColors.Length; i++)
+        {
+            textColors[i] = dp.textColors[i];
+        }
         playerSpecialRoulettes = new SpecialRoulette[playerSpecialRouletteNum];
         for(int i = 0; i < dp.playerSpecialRoulettes.Length; i++)
         {
@@ -33,6 +41,8 @@ public class DreamPiece_Data
     public Passive_Data persona;
     public Passive_Data shadow;
     public string triggerSprite;
+    public List<string> cardBackgrounds;
+    public Color[] textColors = new Color[3];
     public static int playerSpecialRouletteNum = 3;
     public SpecialRoulette_Data[] playerSpecialRoulettes = new SpecialRoulette_Data[playerSpecialRouletteNum];
     public List<string> cards;
@@ -52,6 +62,12 @@ public class DreamPiece_Data
         persona = dp.persona;
         shadow = dp.shadow;
         triggerSprite = dp.triggerSprite;
+        cardBackgrounds = new List<string>(dp.cardBackgrounds);
+        textColors = new Color[dp.textColors.Length];
+        for(int i = 0; i < dp.textColors.Length; i++)
+        {
+            textColors[i] = dp.textColors[i];
+        }
         playerSpecialRoulettes = new SpecialRoulette_Data[playerSpecialRouletteNum];
         for(int i = 0; i < dp.playerSpecialRoulettes.Length; i++)
         {
@@ -68,6 +84,16 @@ public class DreamPiece_Data
         persona = new Passive_Data(dp.persona);
         shadow = new Passive_Data(dp.shadow);
         triggerSprite = dp.triggerSprite != null ? dp.triggerSprite.name : "";
+        cardBackgrounds = new List<string>();
+        foreach(Sprite bg in dp.cardBackgrounds)
+        {
+            cardBackgrounds.Add(bg == null ? "" : bg.name);
+        }
+        textColors = new Color[dp.textColors.Length];
+        for(int i = 0; i < dp.textColors.Length; i++)
+        {
+            textColors[i] = dp.textColors[i];
+        }
         playerSpecialRoulettes = new SpecialRoulette_Data[playerSpecialRouletteNum];
         for(int i = 0; i < dp.playerSpecialRoulettes.Length; i++)
         {
@@ -169,6 +195,20 @@ public class DreamPiece_Player : DreamPiece_Base
         this.shadow = new Passive_Enhanceable(dreamPiece_Data.shadow);
         this.shadow.isEnhanced = shadowEnhanced;
         this.triggerSprite = Utils.LoadSpriteByName("TriggerRoulette", dreamPiece_Data.triggerSprite);
+        this.cardBackgrounds = new List<Sprite>();
+        foreach(string bgName in dreamPiece_Data.cardBackgrounds)
+        {
+            Sprite bgSprite = Utils.LoadSpriteByName("CardBackgrounds", bgName);
+            if(bgSprite != null)
+            {
+                this.cardBackgrounds.Add(bgSprite);
+            }
+        }
+        this.textColors = new Color[dreamPiece_Data.textColors.Length];
+        for(int i = 0; i < dreamPiece_Data.textColors.Length; i++)
+        {
+            this.textColors[i] = dreamPiece_Data.textColors[i];
+        }
         this.playerSpecialRoulettes = new SpecialRoulette[playerSpecialRouletteNum];
         for (int i = 0; i < dreamPiece_Data.playerSpecialRoulettes.Length; i++)
         {

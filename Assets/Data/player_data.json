@@ -52,7 +52,7 @@
         },
         {
             "cardName": "놀이 시간",
-            "num": 2
+            "num": 1
         },
         {
             "cardName": "숨기",
@@ -135,9 +135,9 @@
             "level": 0,
             "pos": 0,
             "screenPos": {
-                "x": -15.0,
+                "x": -15,
                 "y": 0.699999988079071,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "7c460145ffe24fc6a3d5b5a6469b261b"
@@ -150,9 +150,9 @@
             "level": 1,
             "pos": 0,
             "screenPos": {
-                "x": -11.0,
-                "y": 0.47230368852615359,
-                "z": 0.0
+                "x": -11,
+                "y": 0.47230368852615356,
+                "z": 0
             },
             "childNodes": [
                 "ccf920a3e4dd48a6af7a8b6b93c4abc3",
@@ -166,9 +166,9 @@
             "level": 2,
             "pos": 0,
             "screenPos": {
-                "x": -7.0,
+                "x": -7,
                 "y": 0.662987470626831,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "8a38a3be253046de8b0c41eac0f784ce",
@@ -182,9 +182,9 @@
             "level": 2,
             "pos": 2,
             "screenPos": {
-                "x": -7.0,
-                "y": 2.4837698936462404,
-                "z": 0.0
+                "x": -7,
+                "y": 2.4837698936462402,
+                "z": 0
             },
             "childNodes": [
                 "3b62f601431f43a5be1fbabd82760a23"
@@ -197,9 +197,9 @@
             "level": 3,
             "pos": 0,
             "screenPos": {
-                "x": -3.0,
+                "x": -3,
                 "y": 0.8028223514556885,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "3b62f601431f43a5be1fbabd82760a23"
@@ -212,9 +212,9 @@
             "level": 3,
             "pos": -2,
             "screenPos": {
-                "x": -3.0,
+                "x": -3,
                 "y": -1.2909355163574219,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "3b62f601431f43a5be1fbabd82760a23"
@@ -227,9 +227,9 @@
             "level": 4,
             "pos": 0,
             "screenPos": {
-                "x": 1.0,
+                "x": 1,
                 "y": 0.6709941625595093,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "377002c639334107a8e80f548b20a542"
@@ -242,9 +242,9 @@
             "level": 5,
             "pos": 0,
             "screenPos": {
-                "x": 5.0,
+                "x": 5,
                 "y": 0.699999988079071,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": []
         }
@@ -256,5 +256,8 @@
     "curNodeIndex": 0,
     "curNodeLocationID": "START",
     "lastEncounterType": 0,
+    "encounterQueue": [],
+    "currentStepID": "",
+    "currentEncounterID": "ACT1_FASTEST_HORSE",
     "enemyName": "대장 컵"
 }
