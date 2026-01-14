@@ -46,9 +46,9 @@ public class MapManager : MonoBehaviour
         if(addOffset)
         {
             float randOffset = 0f;
-            if(mapNode.pos > 0) randOffset = Random.Range(0, posDist / 4);
-            else if(mapNode.pos < 0) randOffset = Random.Range(-posDist / 4, 0);
-            else randOffset = Random.Range(-posDist / 4, posDist / 4);
+            if(mapNode.pos > 0) randOffset = Random.Range(posDist / 8, posDist / 4);
+            else if(mapNode.pos < 0) randOffset = Random.Range(-posDist / 4, -posDist / 8);
+            else randOffset = Random.Range(-posDist / 8, posDist / 8);
             retVec.y += randOffset;
         }
         return retVec;
