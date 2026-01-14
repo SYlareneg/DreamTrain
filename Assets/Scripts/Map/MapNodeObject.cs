@@ -1,13 +1,16 @@
 using UnityEngine;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class MapNodeObject : MonoBehaviour
 {
     public MapNode mapNode;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] float expandSize = 1.1f;
+    [SerializeField] float blinkInterval = 1f;
     Vector3 originScale;
     Tooltip tooltip;
+    Sequence blinkSeq;
     
     private void OnMouseEnter()
     {
@@ -19,6 +22,8 @@ public class MapNodeObject : MonoBehaviour
         // Color color = spriteRenderer.color;
         // color.a = 1f;
         // spriteRenderer.color = color;
+
+        MapManager.Inst.lookatNode = this;
     }
 
     private void OnMouseOver()
@@ -44,6 +49,8 @@ public class MapNodeObject : MonoBehaviour
         // Color color = spriteRenderer.color;
         // color.a = 0.5f;
         // spriteRenderer.color = color;
+
+        MapManager.Inst.lookatNode = null;
     }
 
     private void OnMouseUpAsButton()
@@ -61,6 +68,13 @@ public class MapNodeObject : MonoBehaviour
         // Color color = spriteRenderer.color;
         // color.a = 0.5f;
         // spriteRenderer.color = color;
+        blinkSeq = DOTween.Sequence()
+            .Append(transform.DOScale(originScale * expandSize, blinkInterval / 2))
+            .Join(spriteRenderer.DOColor(Color.black, blinkInterval / 2))
+            .Append(transform.DOScale(originScale, blinkInterval / 2))
+            .Join(spriteRenderer.DOColor(Color.white, blinkInterval / 2))
+            .SetLoops(-1)
+            .SetAutoKill(false);
     }
 
     private void Update()
@@ -79,6 +93,43 @@ public class MapNodeObject : MonoBehaviour
             tooltip.tooltipTxt = mapNode.text;
             tooltip.tooltipPos = Camera.main.WorldToScreenPoint(transform.position) - Camera.main.WorldToScreenPoint(Vector3.zero);
             tooltip.tooltipPos += MapManager.Inst.tooltipOffset;
+        }
+
+        if(MapManager.Inst.curNode.childNodes.Find(x => x == mapNode.ID) == null && blinkSeq.IsActive())
+        {
+            blinkSeq.Kill();
+            transform.localScale = originScale;
+        }
+        else if(MapManager.Inst.curNode.childNodes.Find(x => x == mapNode.ID) != null)
+        {
+            if (MapManager.Inst.lookatNode != null)
+            {
+                blinkSeq.Pause();
+                if(MapManager.Inst.lookatNode != this)
+                {
+                    transform.localScale = originScale;
+                    spriteRenderer.color = Color.white;
+                }
+            }
+            else
+            {
+                if(!blinkSeq.IsActive() || !blinkSeq.IsPlaying())
+                {
+                    blinkSeq.Restart();
+                }
+                else
+                {
+                    blinkSeq.Play();
+                }
+            }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if(blinkSeq != null && blinkSeq.IsActive())
+        {
+            blinkSeq.Kill();
         }
     }
 }

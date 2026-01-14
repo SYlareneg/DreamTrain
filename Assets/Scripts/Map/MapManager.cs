@@ -29,11 +29,14 @@ public class MapManager : MonoBehaviour
     public Vector2 tooltipOffset;
     public Map map;
     Dictionary<string, Vector3> mapNodeScreenPos = new Dictionary<string, Vector3>();
+    Dictionary<(string, string), GameObject> mapLines = new Dictionary<(string, string), GameObject>();
 
     public GameObject player;
     public MapCamera mapCamera;
     public bool player_moveable = true;
     [HideInInspector] public MapNode curNode = null;
+
+    public MapNodeObject lookatNode = null;
 
     public Vector3 nodePos2ScreenPos(MapNode mapNode, bool addOffset = false)
     {
@@ -182,7 +185,8 @@ public class MapManager : MonoBehaviour
         {
             foreach(string childNode in mapNode.childNodes)
             {
-                Vector3 linePos = (mapNodeScreenPos[mapNode.ID] + mapNodeScreenPos[childNode]) / 2;
+                // Vector3 linePos = (mapNodeScreenPos[mapNode.ID] + mapNodeScreenPos[childNode]) / 2;
+                Vector3 linePos = mapNodeScreenPos[mapNode.ID];
                 var newMapLine = Instantiate(mapLinePrefab, Vector3.zero, Utils.QI);
                 newMapLine.transform.SetParent(mapTransform);
                 newMapLine.transform.position = linePos;
@@ -191,36 +195,14 @@ public class MapManager : MonoBehaviour
                 newMapLine.transform.localScale = new Vector3(lineWidth, lineWidth, 1f);
                 if(actSO.visitedNodeIDList.Contains(mapNode.ID) && actSO.visitedNodeIDList.Contains(childNode))
                 {
-                    newMapLine.GetComponent<SpriteRenderer>().color = Color.white;
+                    newMapLine.GetComponent<SpriteRenderer>().sprite = lineSprites[0];
                 }
                 else
                 {
-                    newMapLine.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.3f);
+                    newMapLine.GetComponent<SpriteRenderer>().sprite = lineSprites[1];
                 }
-                if(mapNode.childNodes.Count > 1)
-                {
-                    if(mapNodeScreenPos[mapNode.ID].y < mapNodeScreenPos[childNode].y)
-                    {
-                        newMapLine.GetComponent<SpriteRenderer>().sprite = lineSprites[Random.Range(0, lineSprites.Length / 2)];
-                    }
-                    else
-                    {
-                        newMapLine.GetComponent<SpriteRenderer>().sprite = lineSprites[Random.Range(lineSprites.Length / 2, lineSprites.Length)];
-                    }
-                }
-                else
-                {
-                    if(mapNodeScreenPos[mapNode.ID].y > mapNodeScreenPos[childNode].y)
-                    {
-                        newMapLine.GetComponent<SpriteRenderer>().sprite = lineSprites[Random.Range(0, lineSprites.Length / 2)];
-                    }
-                    else
-                    {
-                        newMapLine.GetComponent<SpriteRenderer>().sprite = lineSprites[Random.Range(lineSprites.Length / 2, lineSprites.Length)];
-                    }
-                }
-                //newMapLine.GetComponent<SpriteRenderer>().sprite = lineSprites[Random.Range(0, lineSprites.Length)];
-                newMapLine.GetComponent<SpriteRenderer>().size = new Vector2(direction.magnitude / lineWidth, 2f);
+                newMapLine.GetComponent<SpriteRenderer>().size = new Vector2(direction.magnitude / lineWidth, 1f);
+                mapLines.Add((mapNode.ID, childNode), newMapLine);
             }
         }
     }
@@ -254,13 +236,27 @@ public class MapManager : MonoBehaviour
         if(mapNode == null || !mapNodeScreenPos.ContainsKey(mapNode.ID)) return;
         if(curNode.childNodes.Find(x => x == mapNode.ID) == null) return;
         player_moveable = false;
-        player.transform.DOMove(mapNodeScreenPos[mapNode.ID], 1f).OnComplete(() =>
+        GameObject moveRoad = mapLines[(curNode.ID, mapNode.ID)];
+        if(moveRoad != null)
+        {
+            var newMapLine = Instantiate(mapLinePrefab, Vector3.zero, Utils.QI);
+            newMapLine.transform.SetParent(mapTransform);
+            newMapLine.transform.position = moveRoad.transform.position;
+            newMapLine.transform.right = moveRoad.transform.right;
+            newMapLine.transform.localScale = moveRoad.transform.localScale;
+            SpriteRenderer sr = newMapLine.GetComponent<SpriteRenderer>();
+            sr.sprite = lineSprites[0];
+            sr.size = new Vector2(0f, 1f);
+            sr.sortingOrder = 2;
+            DOTween.To(() => sr.size, x => sr.size = x, new Vector2(moveRoad.GetComponent<SpriteRenderer>().size.x, 1f), 3f);
+        }
+        player.transform.DOMove(mapNodeScreenPos[mapNode.ID], 3f).OnComplete(() =>
         {
             curNode = mapNode;
             actSO.visitedNodeIDList.Add(mapNode.ID);
             actSO.curNodeIndex = map.sortedMapNodeList.IndexOf(mapNode);
             actSO.curNodeLocationID = mapNode.locationID;
-            SceneManager.LoadScene("EncounterScene");
+            SceneChangeManager.Inst.SceneFadeOut("EncounterScene");
         });
     }
 

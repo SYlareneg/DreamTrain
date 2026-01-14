@@ -80,6 +80,7 @@ public class EncounterManager : MonoBehaviour
         if (locationDB != null) locationDatabase = locationDB.GetDictionary();
         ResetChoiceContainers();
         RestoreOrStartEncounter();
+        SceneChangeManager.Inst.SceneFadeIn(() => {  });
     }
     void RestoreOrStartEncounter()
     {

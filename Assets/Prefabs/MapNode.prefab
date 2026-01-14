@@ -107,6 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MapNodeObject
   mapNode:
     nodeImg: {fileID: 0}
+    hideNodeImg: {fileID: 0}
     title: 
     text: 
     encounterNum: 0
@@ -118,6 +119,7 @@ MonoBehaviour:
     childNodes: []
   spriteRenderer: {fileID: 7861880856985785683}
   expandSize: 1.1
+  blinkInterval: 1.3
 --- !u!114 &6720151756191508630
 MonoBehaviour:
   m_ObjectHideFlags: 0
