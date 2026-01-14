@@ -256,6 +256,7 @@ public class MapManager : MonoBehaviour
             actSO.visitedNodeIDList.Add(mapNode.ID);
             actSO.curNodeIndex = map.sortedMapNodeList.IndexOf(mapNode);
             actSO.curNodeLocationID = mapNode.locationID;
+            DataManager.Inst.SavePlayerData();
             SceneChangeManager.Inst.SceneFadeOut("EncounterScene");
         });
     }
