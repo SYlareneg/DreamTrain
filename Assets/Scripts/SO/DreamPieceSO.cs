@@ -5,6 +5,10 @@ using UnityEngine;
 public class DreamPiece_Base
 {
     public string name;
+    public string description;
+    public int courageStat;
+    public int wisdomStat;
+    public int luckStat;
     public Passive_Enhanceable persona;
     public Passive_Enhanceable shadow;
     public Sprite triggerSprite;
@@ -17,6 +21,10 @@ public class DreamPiece_Base
     {
         if(dp == null) return;
         name = dp.name;
+        description = dp.description;
+        courageStat = dp.courageStat;
+        wisdomStat = dp.wisdomStat;
+        luckStat = dp.luckStat;
         persona = new Passive_Enhanceable(dp.persona);
         shadow = new Passive_Enhanceable(dp.shadow);
         triggerSprite = dp.triggerSprite;
@@ -38,6 +46,10 @@ public class DreamPiece_Base
 public class DreamPiece_Data
 {
     public string name;
+    public string description;
+    public int courageStat;
+    public int wisdomStat;
+    public int luckStat;
     public Passive_Data persona;
     public Passive_Data shadow;
     public string triggerSprite;
@@ -59,6 +71,10 @@ public class DreamPiece_Data
     public DreamPiece_Data(DreamPiece_Data dp)
     {
         name = dp.name;
+        description = dp.description;
+        courageStat = dp.courageStat;
+        wisdomStat = dp.wisdomStat;
+        luckStat = dp.luckStat;
         persona = dp.persona;
         shadow = dp.shadow;
         triggerSprite = dp.triggerSprite;
@@ -81,6 +97,10 @@ public class DreamPiece_Data
     public DreamPiece_Data(DreamPiece_Reference dp)
     {
         name = dp.name;
+        description = dp.description;
+        courageStat = dp.courageStat;
+        wisdomStat = dp.wisdomStat;
+        luckStat = dp.luckStat;
         persona = new Passive_Data(dp.persona);
         shadow = new Passive_Data(dp.shadow);
         triggerSprite = dp.triggerSprite != null ? dp.triggerSprite.name : "";
@@ -128,9 +148,27 @@ public class DreamPiece_Reference : DreamPiece_Base
     {
         if(dp == null) return;
         name = dp.name;
+        description = dp.description;
+        courageStat = dp.courageStat;
+        wisdomStat = dp.wisdomStat;
+        luckStat = dp.luckStat;
         persona = new Passive_Enhanceable(dp.persona);
         shadow = new Passive_Enhanceable(dp.shadow);
         triggerSprite = Utils.LoadSpriteByName("TriggerRoulette", dp.triggerSprite);
+        cardBackgrounds = new List<Sprite>();
+        foreach(string bgName in dp.cardBackgrounds)
+        {
+            Sprite bgSprite = Utils.LoadSpriteByName("CardBackgrounds", bgName);
+            if(bgSprite != null)
+            {
+                cardBackgrounds.Add(bgSprite);
+            }
+        }
+        textColors = new Color[dp.textColors.Length];
+        for(int i = 0; i < dp.textColors.Length; i++)
+        {
+            textColors[i] = dp.textColors[i];
+        }
         playerSpecialRoulettes = new SpecialRoulette[playerSpecialRouletteNum];
         for(int i = 0; i < dp.playerSpecialRoulettes.Length; i++)
         {
@@ -185,11 +223,21 @@ public class DreamPiece_Player : DreamPiece_Base
         Setup(dp);
     }
 
+    public DreamPiece_Player(DreamPiece_Reference dp)
+    {
+        base.Setup(dp);
+        cards = new List<Item>();
+    }
+
     public DreamPiece_Player(string dpName, bool personaEnhanced, bool shadowEnhanced, List<Item_Num> cardNameNums, DreamPieceDataSO dpDataSO, ItemDataSO itemDataSO)
     {
         DreamPiece_Data dreamPiece_Data = dpDataSO.dreamPieces.Find(x => x.name == dpName);
         if (dreamPiece_Data == null) return;
         this.name = dreamPiece_Data.name;
+        this.description = dreamPiece_Data.description;
+        this.courageStat = dreamPiece_Data.courageStat;
+        this.wisdomStat = dreamPiece_Data.wisdomStat;
+        this.luckStat = dreamPiece_Data.luckStat;
         this.persona = new Passive_Enhanceable(dreamPiece_Data.persona);
         this.persona.isEnhanced = personaEnhanced;
         this.shadow = new Passive_Enhanceable(dreamPiece_Data.shadow);

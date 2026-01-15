@@ -5,7 +5,9 @@ public class RoomMirror : RoomClickableObject
     public override void Interact()
     {
         if(objectState == "default") return;
+        RoomPlayer.Inst.isInteractable = false;
         DataManager.Inst.InitPlayerData();
-        SceneChangeManager.Inst.SceneFadeOut("MapScene");
+        RoomDPManager.Inst.InitDPUI();
+        // SceneChangeManager.Inst.SceneFadeOut("MapScene");
     }
 }

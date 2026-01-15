@@ -43,6 +43,7 @@
     "wisdom": 1,
     "luck": 0,
     "currentActNum": 1,
+<<<<<<< HEAD
     "mapNodes": [
         {
             "locationID": "START",
@@ -175,9 +176,20 @@
     ],
     "curNodeIndex": 1,
     "curNodeLocationID": "AMUSEMENT_PARK_ENTRANCE",
+=======
+    "mapNodes": [],
+    "totalLevel": 0,
+    "visitedNodeIDList": [],
+    "curNodeIndex": 0,
+    "curNodeLocationID": "",
+>>>>>>> 0724eacd9e8e29857dbdb4eacce930a290b66e91
     "lastEncounterType": 0,
     "encounterQueue": [],
     "currentStepID": "",
     "currentEncounterID": "",
+<<<<<<< HEAD
     "enemyName": "뱀파이어 폴"
+=======
+    "enemyName": ""
+>>>>>>> 0724eacd9e8e29857dbdb4eacce930a290b66e91
 }
