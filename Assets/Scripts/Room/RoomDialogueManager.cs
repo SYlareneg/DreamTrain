@@ -140,6 +140,10 @@ public class RoomDialogueManager : MonoBehaviour
 
     public void ShowNextDialogue(InputAction.CallbackContext context)
     {
+        if(currentDialogueLines == null || currentDialogueLines.Count == 0)
+        {
+            return;
+        }
         if(typingCoroutine != null)
         {
             StopCoroutine(typingCoroutine);
@@ -150,13 +154,15 @@ public class RoomDialogueManager : MonoBehaviour
             return;
         }
         currentLineIndex++;
-        if(currentLineIndex < currentDialogueLines.Count)
+        if(currentDialogueLines.Count > 0 && currentLineIndex < currentDialogueLines.Count)
         {
             ShowDialogue(currentDialogueLines[currentLineIndex]);
         }
         else
         {
             HideDialogue();
+            currentDialogueLines = null;
+            currentLineIndex = 0;
         }
     }
 }

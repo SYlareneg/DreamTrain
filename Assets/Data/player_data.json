@@ -152,140 +152,14 @@
     "wisdom": 1,
     "luck": 1,
     "currentActNum": 1,
-    "mapNodes": [
-        {
-            "locationID": "START",
-            "selectedEncounterPool": [],
-            "ID": "9b8454efab9a4599ae9ad0871bfe2d2c",
-            "level": 0,
-            "pos": 0,
-            "screenPos": {
-                "x": -19.5,
-                "y": 0,
-                "z": 0
-            },
-            "childNodes": [
-                "721e5bccf4e2478c8157b3b8dcd6d5ba"
-            ]
-        },
-        {
-            "locationID": "AMUSEMENT_PARK_ENTRANCE",
-            "selectedEncounterPool": [
-                "ACT1_WHITE_RABBIT"
-            ],
-            "ID": "721e5bccf4e2478c8157b3b8dcd6d5ba",
-            "level": 1,
-            "pos": 0,
-            "screenPos": {
-                "x": -15.5,
-                "y": -0.08623018115758896,
-                "z": 0
-            },
-            "childNodes": [
-                "1e925e5ae71946f3b8663299da390ff9",
-                "1269f6547fce4fa2ad0f571da4a29b8d",
-                "1d4e97af8edb4f2880dfeb2be8e7d43b"
-            ]
-        },
-        {
-            "locationID": "TEA_CUPS",
-            "selectedEncounterPool": [],
-            "ID": "1e925e5ae71946f3b8663299da390ff9",
-            "level": 2,
-            "pos": 2,
-            "screenPos": {
-                "x": -11.5,
-                "y": 1.7853235006332397,
-                "z": 0
-            },
-            "childNodes": [
-                "670b51b0020b439eb36a0adefdd13db6"
-            ]
-        },
-        {
-            "locationID": "MERRY_GO_ROUND",
-            "selectedEncounterPool": [],
-            "ID": "1269f6547fce4fa2ad0f571da4a29b8d",
-            "level": 2,
-            "pos": -2,
-            "screenPos": {
-                "x": -11.5,
-                "y": -1.7453910112380981,
-                "z": 0
-            },
-            "childNodes": [
-                "d8fc4e7e518f4795b13f1c4d23230d50"
-            ]
-        },
-        {
-            "locationID": "GHOST_HOUSE",
-            "selectedEncounterPool": [],
-            "ID": "1d4e97af8edb4f2880dfeb2be8e7d43b",
-            "level": 2,
-            "pos": 1,
-            "screenPos": {
-                "x": -11.5,
-                "y": 0.975103497505188,
-                "z": 0
-            },
-            "childNodes": [
-                "670b51b0020b439eb36a0adefdd13db6"
-            ]
-        },
-        {
-            "locationID": "MAZE_GARDEN",
-            "selectedEncounterPool": [],
-            "ID": "d8fc4e7e518f4795b13f1c4d23230d50",
-            "level": 3,
-            "pos": -1,
-            "screenPos": {
-                "x": -7.5,
-                "y": -0.9394293427467346,
-                "z": 0
-            },
-            "childNodes": [
-                "670b51b0020b439eb36a0adefdd13db6"
-            ]
-        },
-        {
-            "locationID": "ICECREAM_CART",
-            "selectedEncounterPool": [],
-            "ID": "670b51b0020b439eb36a0adefdd13db6",
-            "level": 4,
-            "pos": 0,
-            "screenPos": {
-                "x": -3.5,
-                "y": -0.09833722561597824,
-                "z": 0
-            },
-            "childNodes": [
-                "679ffdad43b842cfb8fe7a87c5c67d80"
-            ]
-        },
-        {
-            "locationID": "END",
-            "selectedEncounterPool": [],
-            "ID": "679ffdad43b842cfb8fe7a87c5c67d80",
-            "level": 5,
-            "pos": 0,
-            "screenPos": {
-                "x": 0.5,
-                "y": 0,
-                "z": 0
-            },
-            "childNodes": []
-        }
-    ],
-    "totalLevel": 6,
-    "visitedNodeIDList": [
-        "9b8454efab9a4599ae9ad0871bfe2d2c",
-        "721e5bccf4e2478c8157b3b8dcd6d5ba"
-    ],
-    "curNodeIndex": 1,
-    "curNodeLocationID": "AMUSEMENT_PARK_ENTRANCE",
+    "mapNodes": [],
+    "totalLevel": 0,
+    "visitedNodeIDList": [],
+    "curNodeIndex": 0,
+    "curNodeLocationID": "",
     "lastEncounterType": 0,
     "encounterQueue": [],
     "currentStepID": "",
-    "currentEncounterID": "ACT1_WHITE_RABBIT",
-    "enemyName": "뱀파이어 폴"
+    "currentEncounterID": "",
+    "enemyName": ""
 }

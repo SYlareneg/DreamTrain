@@ -14,10 +14,11 @@ public class RoomPlayer : MonoBehaviour
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
     private InputSystem_Actions input;
-
+    Animator animator;
 
     void PlayerMove(Vector2 pos)
     {
+        if(!isInteractable) return;
         moveTowards = pos;
     }
 
@@ -99,6 +100,7 @@ public class RoomPlayer : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         input = new InputSystem_Actions();
+        animator = GetComponent<Animator>();
     }
 
     void Start()
@@ -106,6 +108,8 @@ public class RoomPlayer : MonoBehaviour
         moveTowards = rb.position;
         isInteractable = true;
     }
+
+    Vector2 lastPos;
 
     void FixedUpdate()
     {
@@ -118,12 +122,30 @@ public class RoomPlayer : MonoBehaviour
         {
             rb.MovePosition(rb.position + deltaPos);
 
-            if (moveDir.x > 0) spriteRenderer.flipX = true;
-            else if (moveDir.x < 0) spriteRenderer.flipX = false;
+            if(Mathf.Abs(moveDir.normalized.x) > Mathf.Abs(moveDir.normalized.y))
+            {
+                animator.SetBool("MoveLeft", moveDir.x < 0 && lastPos != rb.position);
+                animator.SetBool("MoveRight", moveDir.x > 0 && lastPos != rb.position);
+                animator.SetBool("MoveFront", false);
+                animator.SetBool("MoveBack", false);
+            }
+            else
+            {
+                animator.SetBool("MoveBack", moveDir.y > 0 && lastPos != rb.position);
+                animator.SetBool("MoveFront", moveDir.y < 0 && lastPos != rb.position);
+                animator.SetBool("MoveLeft", false);
+                animator.SetBool("MoveRight", false);
+            }
         }
         else
         {
             rb.MovePosition(moveTowards);
+
+            animator.SetBool("MoveFront", false);
+            animator.SetBool("MoveBack", false);
+            animator.SetBool("MoveLeft", false);
+            animator.SetBool("MoveRight", false);
         }
+        lastPos = rb.position;
     }
 }

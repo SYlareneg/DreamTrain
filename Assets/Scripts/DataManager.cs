@@ -47,14 +47,6 @@ public class DataManager : MonoBehaviour
 
     public void LoadDeveloperData()
     {
-        itemDataSO = new ItemDataSO();
-        dreamPieceDataSO = new DreamPieceDataSO();
-        enemyDataSO = new EnemyDataSO();
-        relicDataSO = new RelicDataSO();
-        keywordSO = new KeywordSO();
-        showBuffDataSO = new ShowBuffDataSO();
-        useableItemDataSO = new UseableItemDataSO();
-        actDataSO = new ActDataSO();
         Utils.LoadData(itemDataSO, "card.json");
         Utils.LoadData(dreamPieceDataSO, "dreampiece.json");
         Utils.LoadData(enemyDataSO, "enemy.json");

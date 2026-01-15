@@ -1,0 +1,845 @@
+fileFormatVersion: 2
+guid: 9b1a5df7cd8af7f41b92506ea4cbdbc0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 157529866635926769
+    second: RoomBackCloud_0
+  - first:
+      213: -7983014765487563122
+    second: RoomBackCloud_1
+  - first:
+      213: -368631514638256522
+    second: RoomBackCloud_2
+  - first:
+      213: 1576474516512798997
+    second: RoomBackCloud_3
+  - first:
+      213: 645027057208079436
+    second: RoomBackCloud_4
+  - first:
+      213: 6829059645965239352
+    second: RoomBackCloud_5
+  - first:
+      213: 8735324205255373264
+    second: RoomBackCloud_6
+  - first:
+      213: 2979464960255662956
+    second: RoomBackCloud_7
+  - first:
+      213: -5363923302336772973
+    second: RoomBackCloud_8
+  - first:
+      213: 6704005214698309581
+    second: RoomBackCloud_9
+  - first:
+      213: -4091037804422506068
+    second: RoomBackCloud_10
+  - first:
+      213: -1186734684601313672
+    second: RoomBackCloud_11
+  - first:
+      213: 1933882144662084637
+    second: RoomBackCloud_12
+  - first:
+      213: 9121490189974449918
+    second: RoomBackCloud_13
+  - first:
+      213: 6537133094241830282
+    second: RoomBackCloud_14
+  - first:
+      213: 4927492797049235548
+    second: RoomBackCloud_15
+  - first:
+      213: 6134183635860910991
+    second: RoomBackCloud_16
+  - first:
+      213: 467148725833814998
+    second: RoomBackCloud_17
+  - first:
+      213: -4425106778384888847
+    second: RoomBackCloud_18
+  - first:
+      213: 8613452766424230858
+    second: RoomBackCloud_19
+  - first:
+      213: -8722117533167942463
+    second: RoomBackCloud_20
+  - first:
+      213: -4071189817544339699
+    second: RoomBackCloud_21
+  - first:
+      213: 6867966739998122373
+    second: RoomBackCloud_22
+  - first:
+      213: 4251133994553707238
+    second: RoomBackCloud_23
+  - first:
+      213: 1745484369036726149
+    second: RoomBackCloud_24
+  - first:
+      213: 167750940423720014
+    second: RoomBackCloud_25
+  - first:
+      213: -1943434430727863851
+    second: RoomBackCloud_26
+  - first:
+      213: 5530187667225359946
+    second: RoomBackCloud_27
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: RoomBackCloud_0
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 2081
+        width: 384
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fc595e3498af2200800000000000000
+      internalID: 157529866635926769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_1
+      rect:
+        serializedVersion: 2
+        x: 1125
+        y: 2139
+        width: 673
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8e5a6add52a63190800000000000000
+      internalID: -7983014765487563122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_2
+      rect:
+        serializedVersion: 2
+        x: 1909
+        y: 2126
+        width: 213
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 676f8fc279b52eaf0800000000000000
+      internalID: -368631514638256522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_3
+      rect:
+        serializedVersion: 2
+        x: 1569
+        y: 1930
+        width: 221
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51973326833c0e510800000000000000
+      internalID: 1576474516512798997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_4
+      rect:
+        serializedVersion: 2
+        x: 1919
+        y: 1929
+        width: 455
+        height: 209
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c443767e0b893f800800000000000000
+      internalID: 645027057208079436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 1767
+        width: 212
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83486bbe091b5ce50800000000000000
+      internalID: 6829059645965239352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_6
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 1664
+        width: 833
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d13e1c351b1a3970800000000000000
+      internalID: 8735324205255373264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_7
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 1244
+        width: 466
+        height: 249
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6b13c0789f295920800000000000000
+      internalID: 2979464960255662956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_8
+      rect:
+        serializedVersion: 2
+        x: 982
+        y: 1376
+        width: 380
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 394c6c10d248f85b0800000000000000
+      internalID: -5363923302336772973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_9
+      rect:
+        serializedVersion: 2
+        x: 1501
+        y: 1461
+        width: 852
+        height: 279
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc785723939690d50800000000000000
+      internalID: 6704005214698309581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_10
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 971
+        width: 680
+        height: 269
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca9d3b8cac6b937c0800000000000000
+      internalID: -4091037804422506068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_11
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 1226
+        width: 381
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87614b9871fd78fe0800000000000000
+      internalID: -1186734684601313672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_12
+      rect:
+        serializedVersion: 2
+        x: 1727
+        y: 1166
+        width: 475
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1cdd0e709786da10800000000000000
+      internalID: 1933882144662084637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_13
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 615
+        width: 611
+        height: 299
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efe23a3000b069e70800000000000000
+      internalID: 9121490189974449918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_14
+      rect:
+        serializedVersion: 2
+        x: 1370
+        y: 791
+        width: 734
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a850cbbf9ef88ba50800000000000000
+      internalID: 6537133094241830282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_15
+      rect:
+        serializedVersion: 2
+        x: 2217
+        y: 765
+        width: 214
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c586a698798f16440800000000000000
+      internalID: 4927492797049235548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_16
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 633
+        width: 192
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f83f08a348ff02550800000000000000
+      internalID: 6134183635860910991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_17
+      rect:
+        serializedVersion: 2
+        x: 1595
+        y: 602
+        width: 173
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d3d9948a45ab7600800000000000000
+      internalID: 467148725833814998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_18
+      rect:
+        serializedVersion: 2
+        x: 1717
+        y: 549
+        width: 592
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fb023d84dcd692c0800000000000000
+      internalID: -4425106778384888847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_19
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 458
+        width: 88
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acb6250b7a1298770800000000000000
+      internalID: 8613452766424230858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_20
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 372
+        width: 458
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c4815ab050d4f680800000000000000
+      internalID: -8722117533167942463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_21
+      rect:
+        serializedVersion: 2
+        x: 1108
+        y: 275
+        width: 593
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0f05185e6a3087c0800000000000000
+      internalID: -4071189817544339699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_22
+      rect:
+        serializedVersion: 2
+        x: 1499
+        y: 40
+        width: 889
+        height: 476
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58129caac5bef4f50800000000000000
+      internalID: 6867966739998122373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_23
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 171
+        width: 316
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ea06f538df0ffa30800000000000000
+      internalID: 4251133994553707238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_24
+      rect:
+        serializedVersion: 2
+        x: 829
+        y: 93
+        width: 389
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58f4e6129c4393810800000000000000
+      internalID: 1745484369036726149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_25
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 0
+        width: 502
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4c81be6798f35200800000000000000
+      internalID: 167750940423720014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_26
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 0
+        width: 182
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d1c3389ea88705e0800000000000000
+      internalID: -1943434430727863851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoomBackCloud_27
+      rect:
+        serializedVersion: 2
+        x: 2087
+        y: 0
+        width: 285
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a46b636126c2fbc40800000000000000
+      internalID: 5530187667225359946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      RoomBackCloud_0: 157529866635926769
+      RoomBackCloud_1: -7983014765487563122
+      RoomBackCloud_10: -4091037804422506068
+      RoomBackCloud_11: -1186734684601313672
+      RoomBackCloud_12: 1933882144662084637
+      RoomBackCloud_13: 9121490189974449918
+      RoomBackCloud_14: 6537133094241830282
+      RoomBackCloud_15: 4927492797049235548
+      RoomBackCloud_16: 6134183635860910991
+      RoomBackCloud_17: 467148725833814998
+      RoomBackCloud_18: -4425106778384888847
+      RoomBackCloud_19: 8613452766424230858
+      RoomBackCloud_2: -368631514638256522
+      RoomBackCloud_20: -8722117533167942463
+      RoomBackCloud_21: -4071189817544339699
+      RoomBackCloud_22: 6867966739998122373
+      RoomBackCloud_23: 4251133994553707238
+      RoomBackCloud_24: 1745484369036726149
+      RoomBackCloud_25: 167750940423720014
+      RoomBackCloud_26: -1943434430727863851
+      RoomBackCloud_27: 5530187667225359946
+      RoomBackCloud_3: 1576474516512798997
+      RoomBackCloud_4: 645027057208079436
+      RoomBackCloud_5: 6829059645965239352
+      RoomBackCloud_6: 8735324205255373264
+      RoomBackCloud_7: 2979464960255662956
+      RoomBackCloud_8: -5363923302336772973
+      RoomBackCloud_9: 6704005214698309581
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
