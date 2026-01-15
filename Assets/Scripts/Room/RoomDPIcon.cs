@@ -21,6 +21,7 @@ public class RoomDPIcon : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if(dreamPiece.name != "고양이의 꿈") return;
         RoomDPManager.Inst.SetDreamPieceView(dreamPiece);
     }
 }
