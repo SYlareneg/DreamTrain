@@ -313,35 +313,27 @@ public class EncounterManager : MonoBehaviour
 
         EncounterMetaInfo meta = masterDatabase[encounterID];
         
-        string targetPath = meta.filePath;
-        if (!targetPath.EndsWith(".csv")) targetPath += ".csv";
-        string projectRoot = Directory.GetParent(Application.dataPath).ToString();
-        string fullPath = Path.Combine(projectRoot, targetPath);
-
-        if (File.Exists(fullPath))
+        if (string.IsNullOrEmpty(meta.encounterContext.csvRawData))
         {
-            string csvContent = File.ReadAllText(fullPath);
+            Debug.LogError($"[EncounterManager] {encounterID}의 CSV 데이터가 비어있습니다. SO에 CSV 파일을 연결했는지 확인하세요.");
+            return;
+        }
             
-            if (!string.IsNullOrEmpty(meta.imagePath))
-            {
-                string imgName = Path.GetFileNameWithoutExtension(meta.imagePath);
-                Sprite img = Resources.Load<Sprite>($"Images/{imgName}");
-                if (img == null) img = Resources.Load<Sprite>(imgName);
-                if (img != null) illustrationImage.sprite = img;
-            }
-
-            if (titleText != null) titleText.text = meta.nameKO;
-
-            ParseEncounterCSV(csvContent);
-        }
-        else
+        if (!string.IsNullOrEmpty(meta.imagePath))
         {
-            Debug.LogError($"파일 없음: {fullPath}");
+            string imgName = Path.GetFileNameWithoutExtension(meta.imagePath);
+            Sprite img = Resources.Load<Sprite>($"Images/{imgName}");
+            if (img == null) img = Resources.Load<Sprite>(imgName);
+            if (img != null) illustrationImage.sprite = img;
         }
+
+        if (titleText != null) titleText.text = meta.nameKO;
+        ParseEncounterCSV(meta.encounterContext.csvRawData);
     }
 
     void ParseEncounterCSV(string csvText)
     {
+        csvText = csvText.TrimStart('\uFEFF');
         stepDictionary.Clear();
         var rows = ParseCSVRaw(csvText);
 
@@ -358,7 +350,7 @@ public class EncounterManager : MonoBehaviour
             string nextId = row[3];
             string functionCall = row[4];
             string condition = (row.Count > 5) ? row[5] : "DEFAULT";
-
+            Debug.Log($"id: {id}, content: {content}, nextID: {nextId}, functionCall: {functionCall},  condition: {condition}");
             if (!stepDictionary.ContainsKey(id))
             {
                 stepDictionary.Add(id, new EncounterStep
@@ -411,6 +403,7 @@ public class EncounterManager : MonoBehaviour
     
     public void PlayStep(string id)
     {
+        Debug.Log($"[PlayStep] '{id}' 재생 시도..."); // 로그 추가
         if (!stepDictionary.ContainsKey(id)) return;
         
         currentStep = stepDictionary[id];

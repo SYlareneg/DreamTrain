@@ -14,8 +14,8 @@ public class EncounterMerchantUI : MonoBehaviour
     public CharacterSO characterSO;         
     public StageSO stageSO;                 
     public DreamPieceSO dreamPieceListSO;  
-    public PlayerDataSO playerDataSO;   
-    public ObjetData objetDataList;
+    public PlayerDataSO playerDataSO;  
+    public RelicDataSO relicDataList;
     public RelicSO playerRelicSO;
     
     [Header("Databases")]
@@ -70,31 +70,15 @@ public class EncounterMerchantUI : MonoBehaviour
                 break;
             }
         }
-        InitializeObjetDatabase();
-    }
-    void InitializeObjetDatabase()
-    {
-        if (objetDataList == null || playerRelicSO == null)
+        int targetCostSize = Enum.GetNames(typeof(CardRarity)).Length * 2 + 1;
+        if (sellCardCosts == null || sellCardCosts.Length != targetCostSize)
         {
-            Debug.LogError("ObjetDataList 혹은 PlayerRelicSO가 연결되지 않았습니다!");
-            return;
+            sellCardCosts = new int[targetCostSize];
         }
-
-        foreach (var obj in objetDataList.ObjetItems)
+        int targetWeightSize = Enum.GetNames(typeof(CardRarity)).Length + 1;
+        if (sellCardWeights == null || sellCardWeights.Length != targetWeightSize)
         {
-            if (obj.relicData != null && !string.IsNullOrEmpty(obj.relicData.relicName)) continue;
-
-            var match = playerRelicSO.relicItems.Find(r => r.relicName == obj.name_ko);
-
-            if (match != null)
-            {
-                obj.relicData = match; 
-                obj.id = match.relicOwner; 
-            }
-            else
-            {
-                Debug.LogWarning($"[상점 초기화] '{obj.name_ko}'와 일치하는 유물을 찾을 수 없습니다.");
-            }
+            sellCardWeights = new float[targetWeightSize];
         }
     }
 
@@ -165,7 +149,7 @@ public class EncounterMerchantUI : MonoBehaviour
                 dreamCards_enhanced[(int)item.rarity].Add(item.enhancedItem);
             }
         }
-
+        Debug.Log(sellCardWeights.ToString());
         int cardSlotCount = 4; 
         for (int i = 0; i < cardSlotCount; i++)
         {
@@ -238,31 +222,27 @@ public class EncounterMerchantUI : MonoBehaviour
     void GenerateObjetInventory()
     {
         Debug.Log("called objet inventory");
+        
+        // playerDataSO는 현재 Act 정보만 확인하는 용도
         int currentAct = playerDataSO.currentActNum;
-        List<Item_Objets> candidates = objetDataList.ObjetItems.Where(obj => 
+        
+        List<RelicItem_Data> candidates = relicDataList.relicItems.Where(obj => 
         {
-            if (obj.relicData == null)
-            {
-                Debug.Log("연결에러");
-                return false;
-            }
+            // 1. 소유 여부 확인: playerRelicSO 안에 같은 ID(relicOwner)가 있는지 확인
+            bool hasRelic = playerRelicSO.relicItems.Exists(owned => owned.relicOwner == obj.relicOwner);
+            if (hasRelic) return false;
 
+            // 2. 조건 확인 (RelicItem_Data 내부 변수 사용: rarity, relicAct)
             bool isConditionMet = obj.rarity == CardRarity.Normal &&
-                                  obj.act < currentAct &&
-                                  obj.act > 0 &&
-                                  !obj.isBought;
-            Debug.Log($"rarity: {obj.rarity},  act: {obj.act}, isConditionMet: {isConditionMet}");
-            Debug.Log($"currentAct: {currentAct},  isBought: {obj.isBought}");
-            if (!isConditionMet) return false;
-
-            bool hasRelic = playerDataSO.relics.Contains(obj.relicData.relicOwner);
-            Debug.Log($"hasRelic : {hasRelic}");
-            return !hasRelic;
+                                  obj.relicAct < currentAct &&
+                                  obj.relicAct > 0;
+            
+            return isConditionMet;
 
         }).ToList();
-        Debug.Log($"candidates: {candidates}");
+
         int slotCount = 3; 
-        List<Item_Objets> selectedObjets = new List<Item_Objets>();
+        List<RelicItem_Data> selectedObjets = new List<RelicItem_Data>();
 
         for (int i = 0; i < slotCount; i++)
         {
@@ -275,33 +255,36 @@ public class EncounterMerchantUI : MonoBehaviour
 
         foreach (var obj in selectedObjets)
         {
+            // RelicItem_Data 자체에 cost가 있으므로 그것을 사용
             stageSO.merchantSellObjets.Add(new SellObjet 
             { 
                 objetItem = obj, 
-                cost = obj.price,
+                cost = obj.cost, 
                 isValid = true 
             });
         }
     }
+    
     public void GenerateSpecialShopInventory()
     {
-        List<Item_Objets> selectedObjets = objetDataList.ObjetItems.Where(obj => 
+        List<RelicItem_Data> selectedObjets = relicDataList.relicItems.Where(obj => 
         {
-            if (obj.relicData == null) return false;
+            // 소유 여부 확인 (playerRelicSO 기준)
+            bool hasRelic = playerRelicSO.relicItems.Exists(owned => owned.relicOwner == obj.relicOwner);
+            if (hasRelic) return false;
 
-            bool isConditionMet = obj.rarity == CardRarity.Rare && !obj.isBought;
-            if (!isConditionMet) return false;
-
-            bool hasRelic = playerDataSO.relics.Contains(obj.relicData.relicOwner);
-            return !hasRelic;
+            // 레어 등급 필터링
+            bool isConditionMet = obj.rarity == CardRarity.Rare;
+            return isConditionMet;
 
         }).ToList();
+
         foreach (var obj in selectedObjets)
         {
             stageSO.merchantSellObjets.Add(new SellObjet 
             { 
                 objetItem = obj, 
-                cost = obj.price,
+                cost = obj.cost, 
                 isValid = true 
             });
         }
@@ -378,13 +361,11 @@ public class EncounterMerchantUI : MonoBehaviour
                 child.gameObject.SetActive(false);
             }
         }
-    }
-    void DrawObjets()
+    }void DrawObjets()
     {
         int dataCount = stageSO.merchantSellObjets.Count;
         int currentChildCount = objetContainer.childCount;
 
-        // 프리팹 부족하면 생성
         if (currentChildCount < dataCount)
         {
             int diff = dataCount - currentChildCount;
@@ -412,7 +393,6 @@ public class EncounterMerchantUI : MonoBehaviour
             }
         }
     }
-
     public void TryBuyCard(int index)
     {
         var data = stageSO.merchantSellCards[index];
@@ -430,7 +410,6 @@ public class EncounterMerchantUI : MonoBehaviour
             Debug.Log("카드 구매 성공!");
         }
     }
-    
     public bool TryBuyObjet(int index)
     {
         var data = stageSO.merchantSellObjets[index];
@@ -440,16 +419,19 @@ public class EncounterMerchantUI : MonoBehaviour
         if (characterSO.dreamDust >= data.cost)
         {
             characterSO.dreamDust -= data.cost;
-            AddObjectToInventory(data.objetItem);
+            
+            // [중요] RelicItem_Data를 인자로 넘겨서 인벤토리에 추가
+            AddObjectToInventory(data.objetItem); 
+            
             Debug.Log($"구매 시도 중... 현재 ShopID: '{currentShopId}'");
 
             data.isValid = false;
             stageSO.merchantSellObjets[index] = data; 
             
-            data.objetItem.isBought = true; 
             if (currentShopId == "souvenir") DrawRareObjets();
             else DrawShopUI();
-            Debug.Log($"오브제 구매 성공: {data.objetItem.name_ko}");
+            
+            Debug.Log($"오브제 구매 성공: {data.objetItem.relicName}");
             return true;
         }
         else
@@ -459,26 +441,29 @@ public class EncounterMerchantUI : MonoBehaviour
         }
     }
 
-    void AddObjectToInventory(Item_Objets itemToAdd)
+    void AddObjectToInventory(RelicItem_Data itemToAdd)
     {
-        if (itemToAdd.relicData == null)
+        if (itemToAdd == null)
         {
-            Debug.LogError($"구매 오류: {itemToAdd.name_ko}의 relicData가 비어있습니다.");
+            Debug.LogError($"구매 오류: 데이터가 비어있습니다.");
             return;
         }
 
-        int relicID = itemToAdd.relicData.relicOwner;
-
-        if (!playerDataSO.relics.Contains(relicID))
+        // 중복 체크 (혹시 모르니 한 번 더)
+        if (playerRelicSO.relicItems.Exists(r => r.relicOwner == itemToAdd.relicOwner))
         {
-            playerDataSO.relics.Add(relicID);
-            playerDataSO.relicEnhancements.Add(false);
-        
-            itemToAdd.isBought = true;
-
-            Debug.Log($"오브제 획득: {itemToAdd.name_ko} (ID: {relicID})");
+            Debug.LogWarning($"이미 보유 중인 유물입니다: {itemToAdd.relicName}");
+            return;
         }
+
+        RelicItem_Enhanceable newRelic = new RelicItem_Enhanceable(itemToAdd);
+
+        // playerRelicSO(인벤토리)에 추가
+        playerRelicSO.relicItems.Add(newRelic);
+
+        Debug.Log($"오브제 획득 완료: {newRelic.relicName} -> PlayerRelicSO에 저장됨.");
     }
+    
     
     void AddCardToInventory(Item itemToAdd)
     {

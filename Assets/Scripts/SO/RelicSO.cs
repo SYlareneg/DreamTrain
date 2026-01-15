@@ -11,6 +11,9 @@ public class RelicItem
     public string relicTxt;
     public List<int> relicVal;
     public bool isEnhanced;
+    public int relicAct;
+    public CardRarity rarity; 
+    public int cost = 100;  
 
     public RelicItem() { }
     public RelicItem(RelicItem relicItem)
@@ -21,6 +24,9 @@ public class RelicItem
         relicTxt = relicItem.relicTxt;
         relicVal = new List<int>(relicItem.relicVal);
         isEnhanced = relicItem.isEnhanced;
+        relicAct = relicItem.relicAct;
+        rarity = relicItem.rarity;
+        cost = relicItem.cost;
     }
 }
 
@@ -41,6 +47,9 @@ public class RelicItem_Enhanceable : RelicItem
         relicName = relicItem_Data.relicName;
         relicTxt = relicItem_Data.relicTxt;
         relicVal = new List<int>(relicItem_Data.relicVal);
+        relicAct = relicItem_Data.relicAct;
+        rarity = relicItem_Data.rarity;
+        cost = relicItem_Data.cost;
         isEnhanced = false;
         enhancedRelicItem = new RelicItem();
         enhancedRelicItem.relicOwner = relicItem_Data.relicOwner;
@@ -49,6 +58,7 @@ public class RelicItem_Enhanceable : RelicItem
         enhancedRelicItem.relicTxt = relicItem_Data.relicTxt_enhanced;
         enhancedRelicItem.relicVal = new List<int>(relicItem_Data.relicVal_enhanced);
         enhancedRelicItem.isEnhanced = true;
+        
     }
 }
 
@@ -60,6 +70,9 @@ public class RelicItem_Data
     public string relicName;
     public string relicTxt;
     public List<int> relicVal;
+    public int relicAct;
+    public CardRarity rarity; 
+    public int cost = 100; 
     public string relicName_enhanced;
     public string relicTxt_enhanced;
     public List<int> relicVal_enhanced;
@@ -72,6 +85,9 @@ public class RelicItem_Data
         relicName = relicItem_Data.relicName;
         relicTxt = relicItem_Data.relicTxt;
         relicVal = new List<int>(relicItem_Data.relicVal);
+        relicAct = relicItem_Data.relicAct;
+        rarity = relicItem_Data.rarity;
+        cost = relicItem_Data.cost;
         relicName_enhanced = relicItem_Data.relicName_enhanced;
         relicTxt_enhanced = relicItem_Data.relicTxt_enhanced;
         relicVal_enhanced = new List<int>(relicItem_Data.relicVal_enhanced);
@@ -85,6 +101,9 @@ public class RelicItem_Data
         relicName = relicItem.relicName;
         relicTxt = relicItem.relicTxt;
         relicVal = new List<int>(relicItem.relicVal);
+        relicAct = relicItem.relicAct;
+        rarity = relicItem.rarity;
+        cost = relicItem.cost;
         relicName_enhanced = relicItem.enhancedRelicItem.relicName;
         relicTxt_enhanced = relicItem.enhancedRelicItem.relicTxt;
         relicVal_enhanced = new List<int>(relicItem.enhancedRelicItem.relicVal);

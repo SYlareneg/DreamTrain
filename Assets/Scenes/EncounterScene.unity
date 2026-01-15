@@ -355,12 +355,12 @@ MonoBehaviour:
   stageSO: {fileID: 11400000, guid: 2de9de6b9f0fbea46b0149e204bb7b11, type: 2}
   dreamPieceListSO: {fileID: 11400000, guid: fa145bd86cf8d8a47b1d9e3683cef771, type: 2}
   playerDataSO: {fileID: 11400000, guid: 00c60599a04bcec4f82efcd1f45339b4, type: 2}
-  objetDataList: {fileID: 11400000, guid: ea35f0ad735be2547a4578881d0c968e, type: 2}
+  relicDataList: {fileID: 11400000, guid: 51dcd8347c98008458816214e380ed75, type: 2}
   playerRelicSO: {fileID: 11400000, guid: f261c4fa2c6606c4ea86c879ed3f631d, type: 2}
   normalItemListSO: {fileID: 11400000, guid: 839e0b6ae25343344aea4d6b6cc55c32, type: 2}
   useableItemListSO: {fileID: 11400000, guid: e2b1eb20f9745d14d9ffcef82aa9b454, type: 2}
   cardContainer: {fileID: 281916175}
-  cardSectionObj: {fileID: 691578338}
+  cardSectionObj: {fileID: 281916174}
   objetContainer: {fileID: 691578339}
   objetSectionObj: {fileID: 691578338}
   objetRareSectionObj: {fileID: 314847762}
@@ -1911,6 +1911,9 @@ MonoBehaviour:
     relicTxt: 
     relicVal: 
     isEnhanced: 0
+    relicAct: 0
+    rarity: 0
+    cost: 100
   relicItem2:
     relicOwner: 0
     relicSprite: {fileID: 0}
@@ -1918,6 +1921,9 @@ MonoBehaviour:
     relicTxt: 
     relicVal: 
     isEnhanced: 0
+    relicAct: 0
+    rarity: 0
+    cost: 100
   tooltipOffset: {x: 0, y: 0}
 --- !u!222 &227014698
 CanvasRenderer:
@@ -5000,6 +5006,9 @@ MonoBehaviour:
     relicTxt: 
     relicVal: 
     isEnhanced: 0
+    relicAct: 0
+    rarity: 0
+    cost: 100
   relicItem2:
     relicOwner: 0
     relicSprite: {fileID: 0}
@@ -5007,6 +5016,9 @@ MonoBehaviour:
     relicTxt: 
     relicVal: 
     isEnhanced: 0
+    relicAct: 0
+    rarity: 0
+    cost: 100
   tooltipOffset: {x: 0, y: 0}
 --- !u!222 &628904314
 CanvasRenderer:

@@ -42,7 +42,7 @@ public class SellUItem
 [System.Serializable]
 public class SellObjet
 {
-    public Item_Objets objetItem;
+    public RelicItem_Data objetItem;
     public int cost;
     public bool isValid;
 }

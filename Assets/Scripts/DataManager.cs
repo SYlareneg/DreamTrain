@@ -135,6 +135,7 @@ public class DataManager : MonoBehaviour
             encInfo.filePath = enc.filePath;
             encInfo.order = enc.order;
             encInfo.isEssential = enc.isEssential;
+            encInfo.encounterContext = enc.encounterContext;
             encounterDatabaseSO.masterTable.Add(encInfo);
         }
     }

@@ -12,12 +12,13 @@ public class EncounterObjetUI_Sell : MonoBehaviour, IPointerClickHandler
     [SerializeField] public TMP_Text sellCostTMP; // EncounterCardUI_Sell과 동일하게 public 유지
     //[SerializeField] GameObject soldOutPanel;     // 판매 완료 시 표시할 패널
 
-    // 데이터
-    public Item_Objets objetItem;   // 오브제 데이터
+    // [변경] 데이터 타입 변경 (Item_Objets -> RelicItem_Data)
+    public RelicItem_Data relicItem;   
+    
     public int cost;                // 판매 가격
     public bool isValid;            // 구매 가능 여부
     
-    public CharacterSO _playerData; // 재화 확인용 (EncounterCardUI_Sell과 통일)
+    public CharacterSO _playerData; // 재화 확인용
     private System.Action _onBuyRequest;
 
     // [최적화용 변수] 매 프레임 컬러 변경 방지
@@ -26,13 +27,14 @@ public class EncounterObjetUI_Sell : MonoBehaviour, IPointerClickHandler
     /// <summary>
     /// 상점 UI에서 이 함수를 호출하여 데이터를 세팅합니다.
     /// </summary>
-    public void Setup(Item_Objets item, int cost, bool isValid, CharacterSO playerData, System.Action onBuyRequest)
+    // [변경] 매개변수 타입 변경 (Item_Objets -> RelicItem_Data)
+    public void Setup(RelicItem_Data item, int cost, bool isValid, CharacterSO playerData, System.Action onBuyRequest)
     {
-        // 디버깅용 로그 (EncounterCardUI_Sell과 통일)
-        Debug.Log($"[Objet SETUP 실행됨] ID: {this.GetInstanceID()} / 오브젝트: {gameObject.name} / 부모: {transform.parent?.name}");
-        Debug.Log($" -> 받은 데이터 Cost: {cost}, Callback: {(onBuyRequest != null)}");
+        // 디버깅용 로그
+        // Debug.Log($"[Objet SETUP 실행됨] ID: {this.GetInstanceID()} / 오브젝트: {gameObject.name} / 부모: {transform.parent?.name}");
+        // Debug.Log($" -> 받은 데이터 Cost: {cost}, Callback: {(onBuyRequest != null)}");
 
-        this.objetItem = item;
+        this.relicItem = item; // 데이터 저장
         this.cost = cost;
         this.isValid = isValid;
         this._playerData = playerData;
@@ -48,7 +50,7 @@ public class EncounterObjetUI_Sell : MonoBehaviour, IPointerClickHandler
             UpdateColor(true); // 초기화 시 색상 강제 업데이트
         }
 
-        // 판매 완료 상태 처리
+        // 판매 완료 상태 처리 (필요 시 주석 해제)
         /*if (soldOutPanel != null)
         {
             soldOutPanel.SetActive(!isValid);
@@ -61,9 +63,8 @@ public class EncounterObjetUI_Sell : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData data)
     {
         // 클릭 로그
-        Debug.Log($"[Objet CLICK 실행됨] ID: {this.GetInstanceID()} / 오브젝트: {gameObject.name} / 부모: {transform.parent?.name}");
-        Debug.Log($" -> 가지고 있는 Cost: {cost}, Callback: {(_onBuyRequest != null)}");
-
+        Debug.Log($"[Objet CLICK 실행됨] ID: {this.GetInstanceID()} / 오브젝트: {gameObject.name}");
+        
         // 이미 팔렸다면 클릭 무시
         if (!isValid) 
         {
@@ -81,20 +82,32 @@ public class EncounterObjetUI_Sell : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    void UpdateObjetVisual(Item_Objets item)
+    // [변경] RelicItem_Data 기반으로 UI 갱신
+    void UpdateObjetVisual(RelicItem_Data item)
     {
+        // 1. 아이콘 설정 (RelicItem_Data는 string으로 경로를 가짐)
+        if (objetIcon != null)
+        {
+            // 이전에 보여주신 코드를 참고하여 Utils 사용 (만약 Utils가 없으면 Resources.Load 등을 사용하세요)
+            Sprite sprite = Utils.LoadSpriteByName("Relics", item.relicSprite);
+            if (sprite != null)
+            {
+                objetIcon.sprite = sprite;
+                objetIcon.gameObject.SetActive(true);
+            }
+        }
 
-        // 2. 텍스트 설정
+        // 2. 텍스트 설정 (변수명 변경: name_ko -> relicName)
         if (nameTMP != null)
         {
-            nameTMP.text = item.name_ko;
+            nameTMP.text = item.relicName;
             nameTMP.gameObject.SetActive(true);
         }
 
-       /* if (descTMP != null)
+        // 설명 텍스트 (필요 시 주석 해제)
+        /* if (descTMP != null)
         {
-            // 설명이 너무 길면 잘리거나 크기가 줄어들도록 TMP 설정 확인 필요
-            descTMP.text = item.desc_ko;
+            descTMP.text = item.relicTxt; // desc_ko -> relicTxt
             descTMP.gameObject.SetActive(true);
         }*/
     }
@@ -102,7 +115,7 @@ public class EncounterObjetUI_Sell : MonoBehaviour, IPointerClickHandler
     private void Update()
     {
         // 데이터가 없거나 이미 팔렸으면 업데이트 중단
-        if (_playerData == null || objetItem == null || sellCostTMP == null || !isValid) return;
+        if (_playerData == null || relicItem == null || sellCostTMP == null || !isValid) return;
 
         // 현재 재화로 구매 가능한지 체크
         bool isAffordable = _playerData.dreamDust >= cost;
@@ -118,7 +131,7 @@ public class EncounterObjetUI_Sell : MonoBehaviour, IPointerClickHandler
     void UpdateColor(bool isAffordable)
     {
         if (sellCostTMP == null) return;
-        // 구매 가능하면 파란색, 불가능하면 빨간색 (EncounterCardUI_Sell과 동일)
+        // 구매 가능하면 파란색, 불가능하면 빨간색
         sellCostTMP.color = isAffordable ? Color.blue : Color.red;
     }
 }
