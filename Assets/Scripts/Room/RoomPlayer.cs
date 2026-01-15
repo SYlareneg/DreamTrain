@@ -1,0 +1,129 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using TMPro;
+
+public class RoomPlayer : MonoBehaviour
+{
+    public static RoomPlayer Inst;
+
+    [Header("플레이어블 캐릭터")]
+    [SerializeField] float speed;
+    public Vector2 moveTowards;
+    public bool isInteractable;
+    Rigidbody2D rb;
+    SpriteRenderer spriteRenderer;
+    private InputSystem_Actions input;
+
+
+    void PlayerMove(Vector2 pos)
+    {
+        moveTowards = pos;
+    }
+
+    private void OnEnable()
+    {
+        input.Player.Enable();
+        input.Player.Click.performed += OnClickPerformed;
+    }
+
+
+    private void OnDisable()
+    {
+        input.Player.Disable();
+        input.Player.Click.performed -= OnClickPerformed;
+
+    }
+
+    private void OnClickPerformed(InputAction.CallbackContext context)
+    {
+        // if (PlayerManager.Inst.isLoading) return;
+        if(!isInteractable) return;
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(mousePos, Vector2.zero);
+
+        foreach(var hit in hits)
+        {
+            if (hit.collider != null)
+            {
+                Debug.Log("Clicked on: " + hit.collider.name);
+
+                RoomClickableObject interactable = hit.collider.GetComponent<RoomClickableObject>();
+                if (interactable != null && interactable.isInteractable)
+                {
+                    interactable.Interact();
+                    return;
+                }
+            }
+        }
+
+        PlayerMove(Utils.MousePos);
+    }
+
+    private void CheckMove()
+    {
+        // if (PlayerManager.Inst.isLoading) return;
+        if(!isInteractable) return;
+        Vector2 moveDelta = input.Player.Move.ReadValue<Vector2>();
+        moveDelta *= speed * Time.fixedDeltaTime;
+        if (moveDelta.magnitude > 0)
+        {
+            PlayerMove(rb.position + moveDelta);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        RoomClickableObject interObj = collision.gameObject.GetComponent<RoomClickableObject>();
+        if (interObj != null && collision.isTrigger == false)
+        {
+            interObj.isInteractable = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        RoomClickableObject interObj = collision.gameObject.GetComponent<RoomClickableObject>();
+        if (interObj != null && collision.isTrigger == false)
+        {
+            interObj.isInteractable = false;
+        }
+    }
+
+    void Awake()
+    {
+        Inst = this;
+        rb = GetComponent<Rigidbody2D>();
+        rb.freezeRotation = true;
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        input = new InputSystem_Actions();
+    }
+
+    void Start()
+    {
+        moveTowards = rb.position;
+        isInteractable = true;
+    }
+
+    void FixedUpdate()
+    {
+        CheckMove();
+
+        Vector2 moveDir = moveTowards - rb.position;
+
+        Vector2 deltaPos = moveDir.normalized * speed * Time.fixedDeltaTime;
+        if (moveDir.magnitude > 0.1f)
+        {
+            rb.MovePosition(rb.position + deltaPos);
+
+            if (moveDir.x > 0) spriteRenderer.flipX = true;
+            else if (moveDir.x < 0) spriteRenderer.flipX = false;
+        }
+        else
+        {
+            rb.MovePosition(moveTowards);
+        }
+    }
+}

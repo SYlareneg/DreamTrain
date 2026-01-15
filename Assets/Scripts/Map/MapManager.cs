@@ -33,7 +33,7 @@ public class MapManager : MonoBehaviour
 
     public GameObject player;
     public MapCamera mapCamera;
-    public bool player_moveable = true;
+    public bool player_moveable = false;
     [HideInInspector] public MapNode curNode = null;
 
     public MapNodeObject lookatNode = null;
@@ -321,5 +321,10 @@ public class MapManager : MonoBehaviour
         {
             SetNewMap();
         }
+
+        SceneChangeManager.Inst.SceneFadeIn(() =>
+        {
+            player_moveable = true;
+        });
     }
 }

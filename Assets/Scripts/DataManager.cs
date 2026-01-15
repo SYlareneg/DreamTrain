@@ -47,6 +47,14 @@ public class DataManager : MonoBehaviour
 
     public void LoadDeveloperData()
     {
+        itemDataSO = new ItemDataSO();
+        dreamPieceDataSO = new DreamPieceDataSO();
+        enemyDataSO = new EnemyDataSO();
+        relicDataSO = new RelicDataSO();
+        keywordSO = new KeywordSO();
+        showBuffDataSO = new ShowBuffDataSO();
+        useableItemDataSO = new UseableItemDataSO();
+        actDataSO = new ActDataSO();
         Utils.LoadData(itemDataSO, "card.json");
         Utils.LoadData(dreamPieceDataSO, "dreampiece.json");
         Utils.LoadData(enemyDataSO, "enemy.json");
@@ -137,6 +145,13 @@ public class DataManager : MonoBehaviour
             encInfo.isEssential = enc.isEssential;
             encounterDatabaseSO.masterTable.Add(encInfo);
         }
+    }
+
+    public void InitPlayerData()
+    {
+        Utils.LoadData(playerDataSO, "player_data_start.json");
+        Utils.SaveData(playerDataSO, "player_data.json");
+        LoadPlayerData();
     }
 
     public void LoadPlayerData()

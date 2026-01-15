@@ -1,8 +1,8 @@
 {
     "maxHealth": 60,
-    "curHealth": 55,
-    "dreamDust": 990,
-    "leftPassengers": 2,
+    "curHealth": 60,
+    "dreamDust": 0,
+    "leftPassengers": 0,
     "personaPiece": "고양이의 꿈",
     "isPersonaEnhanced": false,
     "personaCards": [
@@ -67,19 +67,67 @@
             "num": 1
         }
     ],
-    "shadowPiece": "눈사람의 꿈",
+    "shadowPiece": "고양이의 꿈",
     "isShadowEnhanced": false,
     "shadowCards": [
         {
-            "cardName": "꽁꽁 얼리기",
+            "cardName": "발톱 세우기",
             "num": 1
         },
         {
-            "cardName": "차가운 악수",
+            "cardName": "알뜰한 사냥꾼",
             "num": 1
         },
         {
-            "cardName": "눈싸움",
+            "cardName": "마구 할퀴기",
+            "num": 1
+        },
+        {
+            "cardName": "발톱 손질",
+            "num": 1
+        },
+        {
+            "cardName": "소심한 할퀴기",
+            "num": 1
+        },
+        {
+            "cardName": "날카로운 발톱",
+            "num": 1
+        },
+        {
+            "cardName": "고양이의 시간",
+            "num": 1
+        },
+        {
+            "cardName": "기민함",
+            "num": 1
+        },
+        {
+            "cardName": "실뭉치",
+            "num": 1
+        },
+        {
+            "cardName": "고양이걸음",
+            "num": 1
+        },
+        {
+            "cardName": "실 풀기",
+            "num": 1
+        },
+        {
+            "cardName": "놀이 시간",
+            "num": 1
+        },
+        {
+            "cardName": "숨기",
+            "num": 1
+        },
+        {
+            "cardName": "그루밍",
+            "num": 1
+        },
+        {
+            "cardName": "간식 시간",
             "num": 1
         }
     ],
@@ -90,39 +138,16 @@
         },
         {
             "cardName": "회전 카드 2",
-            "num": 3
+            "num": 2
         },
         {
             "cardName": "회전 카드 3",
-            "num": 3
+            "num": 2
         }
     ],
-    "relics": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7
-    ],
-    "relicEnhancements": [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-    ],
-    "useableItems": [
-        "화살",
-        "나무 방패",
-        "레테의 눈물",
-        "오염된 주사바늘"
-    ],
+    "relics": [],
+    "relicEnhancements": [],
+    "useableItems": [],
     "courage": 1,
     "wisdom": 1,
     "luck": 1,
@@ -131,7 +156,7 @@
         {
             "locationID": "START",
             "selectedEncounterPool": [],
-            "ID": "e8de626e6ec74b8aad5f0ec30b0f6de7",
+            "ID": "9b8454efab9a4599ae9ad0871bfe2d2c",
             "level": 0,
             "pos": 0,
             "screenPos": {
@@ -140,7 +165,7 @@
                 "z": 0.0
             },
             "childNodes": [
-                "633fdbdbb7ee414495f8ab40603e1956"
+                "721e5bccf4e2478c8157b3b8dcd6d5ba"
             ]
         },
         {
@@ -148,99 +173,99 @@
             "selectedEncounterPool": [
                 "ACT1_WHITE_RABBIT"
             ],
-            "ID": "633fdbdbb7ee414495f8ab40603e1956",
+            "ID": "721e5bccf4e2478c8157b3b8dcd6d5ba",
             "level": 1,
             "pos": 0,
             "screenPos": {
                 "x": -15.5,
-                "y": 0.12114667147397995,
+                "y": -0.08623018115758896,
                 "z": 0.0
             },
             "childNodes": [
-                "cd10abc6942145dba8ba7c2bca5b9dfe",
-                "9f647707dfb2454da0d1491b6f3dbd51"
-            ]
-        },
-        {
-            "locationID": "MERRY_GO_ROUND",
-            "selectedEncounterPool": [],
-            "ID": "cd10abc6942145dba8ba7c2bca5b9dfe",
-            "level": 2,
-            "pos": 0,
-            "screenPos": {
-                "x": -11.5,
-                "y": -0.06902969628572464,
-                "z": 0.0
-            },
-            "childNodes": [
-                "b9806ef658fe4d58ab3b49e71d0f5294",
-                "63227f22eb314fb0966ad53cfb6d69d6"
-            ]
-        },
-        {
-            "locationID": "GHOST_HOUSE",
-            "selectedEncounterPool": [],
-            "ID": "9f647707dfb2454da0d1491b6f3dbd51",
-            "level": 2,
-            "pos": -2,
-            "screenPos": {
-                "x": -11.5,
-                "y": -1.7625181674957276,
-                "z": 0.0
-            },
-            "childNodes": [
-                "96572068462a4875a90d2882ade8b196"
+                "1e925e5ae71946f3b8663299da390ff9",
+                "1269f6547fce4fa2ad0f571da4a29b8d",
+                "1d4e97af8edb4f2880dfeb2be8e7d43b"
             ]
         },
         {
             "locationID": "TEA_CUPS",
             "selectedEncounterPool": [],
-            "ID": "b9806ef658fe4d58ab3b49e71d0f5294",
-            "level": 3,
-            "pos": 1,
+            "ID": "1e925e5ae71946f3b8663299da390ff9",
+            "level": 2,
+            "pos": 2,
             "screenPos": {
-                "x": -7.5,
-                "y": 0.9733527898788452,
+                "x": -11.5,
+                "y": 1.7853235006332398,
                 "z": 0.0
             },
             "childNodes": [
-                "63227f22eb314fb0966ad53cfb6d69d6"
+                "670b51b0020b439eb36a0adefdd13db6"
+            ]
+        },
+        {
+            "locationID": "MERRY_GO_ROUND",
+            "selectedEncounterPool": [],
+            "ID": "1269f6547fce4fa2ad0f571da4a29b8d",
+            "level": 2,
+            "pos": -2,
+            "screenPos": {
+                "x": -11.5,
+                "y": -1.7453910112380982,
+                "z": 0.0
+            },
+            "childNodes": [
+                "d8fc4e7e518f4795b13f1c4d23230d50"
+            ]
+        },
+        {
+            "locationID": "GHOST_HOUSE",
+            "selectedEncounterPool": [],
+            "ID": "1d4e97af8edb4f2880dfeb2be8e7d43b",
+            "level": 2,
+            "pos": 1,
+            "screenPos": {
+                "x": -11.5,
+                "y": 0.975103497505188,
+                "z": 0.0
+            },
+            "childNodes": [
+                "670b51b0020b439eb36a0adefdd13db6"
             ]
         },
         {
             "locationID": "MAZE_GARDEN",
             "selectedEncounterPool": [],
-            "ID": "96572068462a4875a90d2882ade8b196",
+            "ID": "d8fc4e7e518f4795b13f1c4d23230d50",
             "level": 3,
-            "pos": -2,
+            "pos": -1,
             "screenPos": {
                 "x": -7.5,
-                "y": -1.7595800161361695,
+                "y": -0.9394293427467346,
                 "z": 0.0
             },
             "childNodes": [
-                "63227f22eb314fb0966ad53cfb6d69d6"
+                "670b51b0020b439eb36a0adefdd13db6"
             ]
         },
         {
             "locationID": "ICECREAM_CART",
             "selectedEncounterPool": [],
-            "ID": "63227f22eb314fb0966ad53cfb6d69d6",
+            "ID": "670b51b0020b439eb36a0adefdd13db6",
             "level": 4,
             "pos": 0,
             "screenPos": {
                 "x": -3.5,
-                "y": -0.04409143328666687,
+                "y": -0.09833722561597824,
                 "z": 0.0
             },
             "childNodes": [
-                "0658a3e75d9d49ad815b00d0099f198c"
+                "679ffdad43b842cfb8fe7a87c5c67d80"
             ]
         },
         {
             "locationID": "END",
             "selectedEncounterPool": [],
-            "ID": "0658a3e75d9d49ad815b00d0099f198c",
+            "ID": "679ffdad43b842cfb8fe7a87c5c67d80",
             "level": 5,
             "pos": 0,
             "screenPos": {
@@ -253,14 +278,14 @@
     ],
     "totalLevel": 6,
     "visitedNodeIDList": [
-        "e8de626e6ec74b8aad5f0ec30b0f6de7",
-        "633fdbdbb7ee414495f8ab40603e1956"
+        "9b8454efab9a4599ae9ad0871bfe2d2c",
+        "721e5bccf4e2478c8157b3b8dcd6d5ba"
     ],
     "curNodeIndex": 1,
     "curNodeLocationID": "AMUSEMENT_PARK_ENTRANCE",
     "lastEncounterType": 0,
     "encounterQueue": [],
     "currentStepID": "",
-    "currentEncounterID": "ACT1_FASTEST_HORSE",
-    "enemyName": "대장 컵"
+    "currentEncounterID": "",
+    "enemyName": ""
 }

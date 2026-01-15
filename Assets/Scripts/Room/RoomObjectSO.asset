@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc705c8908c15b8429ad57f7a0120531, type: 3}
+  m_Name: RoomObjectSO
+  m_EditorClassIdentifier: Assembly-CSharp::RoomObjectSO
+  roomObjects:
+  - objectName: "\uACE0\uC591\uC774"
+    objectSprite: {fileID: 21300000, guid: 0235240c2cb979d42b96ec9e8297e414, type: 3}
+    objectStates:
+    - stateName: default
+      dialogueLines:
+      - speakerName: 
+        text: "\uAC80\uC740 \uACE0\uC591\uC774\uB2E4. \uC6B8\uC74C\uC18C\uB9AC\uAC00
+          \uC660\uC9C0 \uBAA8\uB974\uAC8C \uC775\uC219\uD558\uB2E4."
+        speakerSprite: {fileID: 0}
+        sound: {fileID: 0}
+    - stateName: awake
+      dialogueLines:
+      - speakerName: "\uC9C0\uC9C0"
+        text: "\uC568\uB9AC\uC2A4, \uB4DC\uB514\uC5B4 \uC900\uBE44\uAC00 \uB410\uC5B4?"
+        speakerSprite: {fileID: 0}
+        sound: {fileID: 0}
+      - speakerName: "\uC568\uB9AC\uC2A4"
+        text: ...?
+        speakerSprite: {fileID: 0}
+        sound: {fileID: 0}
+      - speakerName: "\uC9C0\uC9C0"
+        text: "\uC124\uB9C8 \uC78A\uC740 \uAC74 \uC544\uB2C8\uC9C0? \uC624\uB298
+          \uBB38 \uBC16\uC73C\uB85C \uB098\uAC00\uAE30\uB85C \uD588\uC796\uC544!"
+        speakerSprite: {fileID: 0}
+        sound: {fileID: 0}
+      - speakerName: "\uC568\uB9AC\uC2A4"
+        text: " \u2026\uD558\uC9C0\uB9CC \uC5EC\uAE30\uC5D4 \uC774\uC81C \uBB38\uC774
+          \uC5C6\uB294\uAC78."
+        speakerSprite: {fileID: 0}
+        sound: {fileID: 0}
+      - speakerName: "\uC9C0\uC9C0"
+        text: "\uAC70\uC6B8 \uC548\uC73C\uB85C \uB4E4\uC5B4\uAC00\uBA74 \uB418\uB294\uB370
+          \uBB34\uC2A8 \uAC71\uC815\uC774\uC57C?"
+        speakerSprite: {fileID: 0}
+        sound: {fileID: 0}
+      - speakerName: "\uC568\uB9AC\uC2A4"
+        text: "\uAC70\uC6B8 \uC548\uC73C\uB85C?"
+        speakerSprite: {fileID: 0}
+        sound: {fileID: 0}
+      - speakerName: "\uC9C0\uC9C0"
+        text: "\uC790, \uC774\uC81C \uCD9C\uBC1C\uD558\uC790\uACE0! \uBE68\uB9AC
+          \uAC70\uC6B8 \uC55E\uC5D0 \uAC00\uBD10!"
+        speakerSprite: {fileID: 0}
+        sound: {fileID: 0}
+  - objectName: "\uAC70\uC6B8"
+    objectSprite: {fileID: 21300000, guid: 0235240c2cb979d42b96ec9e8297e414, type: 3}
+    objectStates: []
