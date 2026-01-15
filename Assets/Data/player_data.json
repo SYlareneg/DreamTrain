@@ -11,138 +11,29 @@
             "num": 1
         },
         {
-            "cardName": "알뜰한 사냥꾼",
-            "num": 1
-        },
-        {
-            "cardName": "마구 할퀴기",
-            "num": 1
-        },
-        {
-            "cardName": "발톱 손질",
-            "num": 1
-        },
-        {
-            "cardName": "소심한 할퀴기",
-            "num": 1
-        },
-        {
-            "cardName": "날카로운 발톱",
-            "num": 1
-        },
-        {
-            "cardName": "고양이의 시간",
-            "num": 1
-        },
-        {
-            "cardName": "기민함",
-            "num": 1
-        },
-        {
-            "cardName": "실뭉치",
-            "num": 1
-        },
-        {
             "cardName": "고양이걸음",
-            "num": 1
-        },
-        {
-            "cardName": "실 풀기",
-            "num": 1
-        },
-        {
-            "cardName": "놀이 시간",
-            "num": 1
+            "num": 2
         },
         {
             "cardName": "숨기",
-            "num": 1
+            "num": 2
         },
         {
-            "cardName": "그루밍",
-            "num": 1
-        },
-        {
-            "cardName": "간식 시간",
+            "cardName": "소심한 할퀴기",
             "num": 1
         }
     ],
     "shadowPiece": "고양이의 꿈",
     "isShadowEnhanced": false,
-    "shadowCards": [
-        {
-            "cardName": "발톱 세우기",
-            "num": 1
-        },
-        {
-            "cardName": "알뜰한 사냥꾼",
-            "num": 1
-        },
-        {
-            "cardName": "마구 할퀴기",
-            "num": 1
-        },
-        {
-            "cardName": "발톱 손질",
-            "num": 1
-        },
-        {
-            "cardName": "소심한 할퀴기",
-            "num": 1
-        },
-        {
-            "cardName": "날카로운 발톱",
-            "num": 1
-        },
-        {
-            "cardName": "고양이의 시간",
-            "num": 1
-        },
-        {
-            "cardName": "기민함",
-            "num": 1
-        },
-        {
-            "cardName": "실뭉치",
-            "num": 1
-        },
-        {
-            "cardName": "고양이걸음",
-            "num": 1
-        },
-        {
-            "cardName": "실 풀기",
-            "num": 1
-        },
-        {
-            "cardName": "놀이 시간",
-            "num": 1
-        },
-        {
-            "cardName": "숨기",
-            "num": 1
-        },
-        {
-            "cardName": "그루밍",
-            "num": 1
-        },
-        {
-            "cardName": "간식 시간",
-            "num": 1
-        }
-    ],
+    "shadowCards": [],
     "normalCards": [
         {
-            "cardName": "회전 카드 1",
-            "num": 2
-        },
-        {
             "cardName": "회전 카드 2",
-            "num": 2
+            "num": 3
         },
         {
             "cardName": "회전 카드 3",
-            "num": 2
+            "num": 3
         }
     ],
     "relics": [],
@@ -150,16 +41,155 @@
     "useableItems": [],
     "courage": 1,
     "wisdom": 1,
-    "luck": 1,
+    "luck": 0,
     "currentActNum": 1,
+<<<<<<< HEAD
+    "mapNodes": [
+        {
+            "locationID": "START",
+            "selectedEncounterPool": [],
+            "ID": "54f4e33989b8447098dc79a7e766e3c3",
+            "level": 0,
+            "pos": 0,
+            "screenPos": {
+                "x": -19.5,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "childNodes": [
+                "97807ef763b64e8fae89459e73eca384"
+            ]
+        },
+        {
+            "locationID": "AMUSEMENT_PARK_ENTRANCE",
+            "selectedEncounterPool": [
+                "ACT1_WHITE_RABBIT"
+            ],
+            "ID": "97807ef763b64e8fae89459e73eca384",
+            "level": 1,
+            "pos": 0,
+            "screenPos": {
+                "x": -15.5,
+                "y": -0.07025856524705887,
+                "z": 0.0
+            },
+            "childNodes": [
+                "a0afa74bed9443d9afabbc8ad4da9cfc",
+                "931550a6c3a44aa0894d990e0e60f0ed",
+                "1387828ef4324ae6ba865ec33a9e320e"
+            ]
+        },
+        {
+            "locationID": "TEA_CUPS",
+            "selectedEncounterPool": [],
+            "ID": "a0afa74bed9443d9afabbc8ad4da9cfc",
+            "level": 2,
+            "pos": 0,
+            "screenPos": {
+                "x": -11.5,
+                "y": -0.011640511453151703,
+                "z": 0.0
+            },
+            "childNodes": [
+                "296fd6758dc44ed6afa10754d2668e2c",
+                "e99586f2b5d24b2b8dbda20ec306a0cf"
+            ]
+        },
+        {
+            "locationID": "MERRY_GO_ROUND",
+            "selectedEncounterPool": [],
+            "ID": "931550a6c3a44aa0894d990e0e60f0ed",
+            "level": 2,
+            "pos": 2,
+            "screenPos": {
+                "x": -11.5,
+                "y": 1.747387170791626,
+                "z": 0.0
+            },
+            "childNodes": [
+                "296fd6758dc44ed6afa10754d2668e2c"
+            ]
+        },
+        {
+            "locationID": "MAZE_GARDEN",
+            "selectedEncounterPool": [],
+            "ID": "1387828ef4324ae6ba865ec33a9e320e",
+            "level": 2,
+            "pos": -1,
+            "screenPos": {
+                "x": -11.5,
+                "y": -0.9741097092628479,
+                "z": 0.0
+            },
+            "childNodes": [
+                "e99586f2b5d24b2b8dbda20ec306a0cf"
+            ]
+        },
+        {
+            "locationID": "GHOST_HOUSE",
+            "selectedEncounterPool": [],
+            "ID": "296fd6758dc44ed6afa10754d2668e2c",
+            "level": 3,
+            "pos": 1,
+            "screenPos": {
+                "x": -7.5,
+                "y": 0.95652174949646,
+                "z": 0.0
+            },
+            "childNodes": [
+                "e99586f2b5d24b2b8dbda20ec306a0cf"
+            ]
+        },
+        {
+            "locationID": "ICECREAM_CART",
+            "selectedEncounterPool": [],
+            "ID": "e99586f2b5d24b2b8dbda20ec306a0cf",
+            "level": 4,
+            "pos": 0,
+            "screenPos": {
+                "x": -3.5,
+                "y": 0.027463413774967195,
+                "z": 0.0
+            },
+            "childNodes": [
+                "37e3d850573840718afb8e9c357b0d1a"
+            ]
+        },
+        {
+            "locationID": "END",
+            "selectedEncounterPool": [],
+            "ID": "37e3d850573840718afb8e9c357b0d1a",
+            "level": 5,
+            "pos": 0,
+            "screenPos": {
+                "x": 0.5,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "childNodes": []
+        }
+    ],
+    "totalLevel": 6,
+    "visitedNodeIDList": [
+        "54f4e33989b8447098dc79a7e766e3c3",
+        "97807ef763b64e8fae89459e73eca384"
+    ],
+    "curNodeIndex": 1,
+    "curNodeLocationID": "AMUSEMENT_PARK_ENTRANCE",
+=======
     "mapNodes": [],
     "totalLevel": 0,
     "visitedNodeIDList": [],
     "curNodeIndex": 0,
     "curNodeLocationID": "",
+>>>>>>> 0724eacd9e8e29857dbdb4eacce930a290b66e91
     "lastEncounterType": 0,
     "encounterQueue": [],
     "currentStepID": "",
     "currentEncounterID": "",
+<<<<<<< HEAD
+    "enemyName": "뱀파이어 폴"
+=======
     "enemyName": ""
+>>>>>>> 0724eacd9e8e29857dbdb4eacce930a290b66e91
 }

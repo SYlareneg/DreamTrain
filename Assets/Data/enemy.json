@@ -1,3454 +1,3454 @@
 {
-    "enemies": [
+  "enemies": [
+    {
+      "name": "뱀파이어 폴",
+      "id": "Vamp",
+      "health": 70,
+      "triggerNum": 2,
+      "phase": [
         {
-            "name": "뱀파이어 폴",
-            "id": "Vamp",
-            "health": 70,
-            "triggerNum": 2,
-            "phase": [
+          "name": "빈혈",
+          "text": "피가 부족한 상태입니다. 흡혈로 체력을 2번 회복하면 '각성:뱀파이어' 패턴으로 전환합니다.",
+          "patterns": [
+            {
+              "pattern": [
                 {
-                    "name": "빈혈",
-                    "text": "피가 부족한 상태입니다. 흡혈로 체력을 2번 회복하면 '각성:뱀파이어' 패턴으로 전환합니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": 3,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 6,
-                                    "typeNum": 0,
-                                    "val": 5,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 3,
-                                    "typeNum": 0,
-                                    "val": 4,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 6,
-                                    "typeNum": 0,
-                                    "val": 5,
-                                    "isTrigger": false
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": true,
-                    "sprite": "Enemy_Vampire"
-                },
-                {
-                    "name": "각성:뱀파이어",
-                    "text": "충분한 피를 흡수하여 뱀파이어의 본능이 꺠어났습니다. 흡혈로 체력을 회복할 때마다 12번 슬롯을 트리거합니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 5,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": 3,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 6,
-                                    "typeNum": 0,
-                                    "val": 5,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": 3,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 4,
-                                    "typeNum": 0,
-                                    "val": 1,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": -3,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": 3,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": 3,
-                                    "isTrigger": false
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": true,
-                    "sprite": "Enemy_Vampire"
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 3,
+                  "isTrigger": false
                 }
-            ],
-            "triggerPhase": [
+              ]
+            },
+            {
+              "pattern": [
                 {
-                    "name": "뱀파이어:트리거",
-                    "text": "뱀파이어가 트리거 상태입니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 6,
-                                    "typeNum": 0,
-                                    "val": 5,
-                                    "isTrigger": true
-                                },
-                                {
-                                    "type": 6,
-                                    "typeNum": 0,
-                                    "val": 5,
-                                    "isTrigger": true
-                                },
-                                {
-                                    "type": 6,
-                                    "typeNum": 0,
-                                    "val": 5,
-                                    "isTrigger": true
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": false,
-                    "sprite": "Enemy_Vampire"
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 5,
+                  "isTrigger": false
                 }
-            ],
-            "roulettePattern": [
+              ]
+            },
+            {
+              "pattern": [
                 {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 3,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 3,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 2,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 2
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
+                  "type": 3,
+                  "typeNum": 0,
+                  "val": 4,
+                  "isTrigger": false
                 }
-            ],
-            "enemySpecialRoulettes": [
+              ]
+            },
+            {
+              "pattern": [
                 {
-                    "sprite": "Roulette_Drain",
-                    "title": "흡혈",
-                    "text": "값만큼 대상에게 피해를 주고, 입힌 피해만큼 뱀파이어의 체력이 회복되고, 흡혈 카운트를 1 얻습니다.",
-                    "baseVal": 5,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 5,
+                  "isTrigger": false
                 }
-            ],
-            "enemySpecialActions": [
-                {
-                    "sprite": "EnemyAction_Drain",
-                    "title": "흡혈",
-                    "text": "피해를 값만큼 주고, 입힌 피해만큼 뱀파이어의 체력이 회복되고, 흡혈 카운트를 1 얻습니다."
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                }
-            ],
-            "subEnemies": [],
-            "subEnemies_Spawn": []
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": true,
+          "sprite": "Enemy_Vampire"
         },
         {
-            "name": "박쥐",
-            "id": "Bat",
-            "health": 68,
-            "triggerNum": 12,
-            "phase": [
+          "name": "각성:뱀파이어",
+          "text": "충분한 피를 흡수하여 뱀파이어의 본능이 꺠어났습니다. 흡혈로 체력을 회복할 때마다 12번 슬롯을 트리거합니다.",
+          "patterns": [
+            {
+              "pattern": [
                 {
-                    "name": "길들여짐",
-                    "text": "턴 종료 시 트리거 게이지를 1 얻습니다. 이번 턴에 룰렛으로 인한 피해를 입었다면 3의 추가 게이지를 얻습니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 6,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": -3,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 6,
-                                    "typeNum": 0,
-                                    "val": 4,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 3,
-                                    "typeNum": 0,
-                                    "val": 6,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": -4,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": -4,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 6,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 6,
-                                    "typeNum": 0,
-                                    "val": 4,
-                                    "isTrigger": false
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": true,
-                    "sprite": "Enemy_Vampire"
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 5,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 3,
+                  "isTrigger": false
                 }
-            ],
-            "triggerPhase": [
+              ]
+            },
+            {
+              "pattern": [
                 {
-                    "name": "박쥐:트리거",
-                    "text": "트리거 상태입니다. 트리거 패턴이 추가되며 트리거 패턴으로 피해를 입히지 못할 경우 트리거 상태가 해제됩니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 6,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": -3,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 6,
-                                    "typeNum": 1,
-                                    "val": 4,
-                                    "isTrigger": true
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 6,
-                                    "typeNum": 0,
-                                    "val": 4,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 3,
-                                    "typeNum": 0,
-                                    "val": 6,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 6,
-                                    "typeNum": 1,
-                                    "val": 4,
-                                    "isTrigger": true
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": -4,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": -4,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 6,
-                                    "typeNum": 1,
-                                    "val": 4,
-                                    "isTrigger": true
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 6,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 6,
-                                    "typeNum": 0,
-                                    "val": 4,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 6,
-                                    "typeNum": 1,
-                                    "val": 4,
-                                    "isTrigger": true
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": true,
-                    "sprite": "Enemy_Vampire"
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 5,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 3,
+                  "isTrigger": false
                 }
-            ],
-            "roulettePattern": [
+              ]
+            },
+            {
+              "pattern": [
                 {
-                    "rtype": {
-                        "type": 3,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
+                  "type": 4,
+                  "typeNum": 0,
+                  "val": 1,
+                  "isTrigger": false
                 },
                 {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 4
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 4
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 3,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": -3,
+                  "isTrigger": false
                 }
-            ],
-            "enemySpecialRoulettes": [
+              ]
+            },
+            {
+              "pattern": [
                 {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 3,
+                  "isTrigger": false
                 },
                 {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 3,
+                  "isTrigger": false
                 }
-            ],
-            "enemySpecialActions": [
-                {
-                    "sprite": "EnemyAction_Drain",
-                    "title": "흡혈",
-                    "text": "피해를 값만큼 주고, 입힌 피해만큼 박쥐의 체력이 회복되고, 흡혈 카운트를 1 얻습니다."
-                },
-                {
-                    "sprite": "EnemyAction_Drain",
-                    "title": "흡혈+",
-                    "text": "피해를 값만큼 주고, 입힌 피해만큼 박쥐의 체력이 회복됩니다."
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                }
-            ],
-            "subEnemies": [],
-            "subEnemies_Spawn": []
-        },
-        {
-            "name": "비둘기",
-            "id": "Dove",
-            "health": 49,
-            "triggerNum": 10,
-            "phase": [
-                {
-                    "name": "마술 준비",
-                    "text": "마술 모자가 자신의 효과 존을 지나갈 때마다 트리거 게이지와 방어도를 5 얻습니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 3,
-                                    "typeNum": 0,
-                                    "val": 5,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 4,
-                                    "typeNum": 0,
-                                    "val": 1,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 5,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 4,
-                                    "typeNum": 0,
-                                    "val": 1,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 4,
-                                    "typeNum": 0,
-                                    "val": 1,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": -7,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 6,
-                                    "isTrigger": false
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": true,
-                    "sprite": "Enemy_Vampire"
-                }
-            ],
-            "triggerPhase": [
-                {
-                    "name": "비둘기:트리거",
-                    "text": "비둘기가 트리거 상태입니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 6,
-                                    "typeNum": 0,
-                                    "val": 0,
-                                    "isTrigger": true
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": false,
-                    "sprite": "Enemy_Vampire"
-                }
-            ],
-            "roulettePattern": [
-                {
-                    "rtype": {
-                        "type": 3,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 2,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 3
-                }
-            ],
-            "enemySpecialRoulettes": [
-                {
-                    "sprite": "Roulette_MagicBox",
-                    "title": "마술 모자",
-                    "text": "마술에 쓰이는 비밀스러운 모자입니다. 플레이어 존에서 룰렛의 효과가 발동하면 소멸합니다.마술에 쓰이는 비밀스러운 모자입니다. 플레이어 존에서 룰렛의 효과가 발동하면 소멸합니다.",
-                    "baseVal": 1,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                }
-            ],
-            "enemySpecialActions": [
-                {
-                    "sprite": "EnemyAction_Attack",
-                    "title": "모자 폭발",
-                    "text": "룰렛에 존재하는 마술 모자를 모두 제거하고, 제거한 마술 모자 개수X5의 피해를 줍니다."
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                }
-            ],
-            "subEnemies": [],
-            "subEnemies_Spawn": []
-        },
-        {
-            "name": "망령 1",
-            "id": "GuestOrGhost",
-            "health": 52,
-            "triggerNum": 6,
-            "phase": [
-                {
-                    "name": "지워지지 않는",
-                    "text": "체력을 잃을 때마다 트리거 게이지를 1 얻습니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 4,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": -3,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 6,
-                                    "typeNum": 0,
-                                    "val": 0,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 2,
-                                    "typeNum": 0,
-                                    "val": 2,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 3,
-                                    "typeNum": 0,
-                                    "val": 8,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": -3,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 8,
-                                    "isTrigger": false
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": true,
-                    "sprite": "Enemy_Vampire"
-                }
-            ],
-            "triggerPhase": [
-                {
-                    "name": "망령 1:트리거",
-                    "text": "망령 1이 트리거 상태입니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 2,
-                                    "typeNum": 0,
-                                    "val": 14,
-                                    "isTrigger": true
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 2,
-                                    "typeNum": 0,
-                                    "val": 14,
-                                    "isTrigger": true
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": false,
-                    "sprite": "Enemy_Vampire"
-                }
-            ],
-            "roulettePattern": [
-                {
-                    "rtype": {
-                        "type": 3,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 3,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 2,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 2
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 3,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                }
-            ],
-            "enemySpecialRoulettes": [
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                }
-            ],
-            "enemySpecialActions": [
-                {
-                    "sprite": "EnemyAction_Enchant",
-                    "title": "공격 부여",
-                    "text": "무작위 빈 룰렛 칸에 '공격' 룰렛을 부여합니다. 빈 칸이 없을 경우 무작위 칸에 부여합니다."
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                }
-            ],
-            "subEnemies": [],
-            "subEnemies_Spawn": []
-        },
-        {
-            "name": "망령 2",
-            "id": "",
-            "health": 52,
-            "triggerNum": 6,
-            "phase": [
-                {
-                    "name": "장난꾸러기",
-                    "text": "룰렛이 회전할 때마다 트리거 게이지를 1 얻습니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 4,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": -3,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 6,
-                                    "typeNum": 0,
-                                    "val": 1,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 2,
-                                    "typeNum": 0,
-                                    "val": 2,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 4,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": -3,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 4,
-                                    "isTrigger": false
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": true,
-                    "sprite": "Enemy_Vampire"
-                }
-            ],
-            "triggerPhase": [
-                {
-                    "name": "망령 2:트리거",
-                    "text": "망령 2가 트리거 상태입니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 6,
-                                    "typeNum": 1,
-                                    "val": 3,
-                                    "isTrigger": false
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": false,
-                    "sprite": "Enemy_Vampire"
-                }
-            ],
-            "roulettePattern": [
-                {
-                    "rtype": {
-                        "type": 3,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 3,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 2,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 2
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                }
-            ],
-            "enemySpecialRoulettes": [
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                }
-            ],
-            "enemySpecialActions": [
-                {
-                    "sprite": "EnemyAction_Enchant",
-                    "title": "공격 부여",
-                    "text": "무작위 빈 룰렛 칸에 '공격' 룰렛을 부여합니다. 빈 칸이 없을 경우 무작위 칸에 부여합니다."
-                },
-                {
-                    "sprite": "EnemyAction_Enchant",
-                    "title": "회전 봉인",
-                    "text": "플레이어에게 '회전 봉인' 디버프를 값턴동안 부여합니다."
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                }
-            ],
-            "subEnemies": [],
-            "subEnemies_Spawn": []
-        },
-        {
-            "name": "마술사",
-            "id": "",
-            "health": 84,
-            "triggerNum": 3,
-            "phase": [
-                {
-                    "name": "쇼타임",
-                    "text": "마술에 3번 실패하면 그의 비밀이 드러납니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": -3,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 4,
-                                    "typeNum": 0,
-                                    "val": 1,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 6,
-                                    "typeNum": 0,
-                                    "val": 0,
-                                    "isTrigger": false
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": false,
-                    "sprite": "Enemy_Vampire"
-                },
-                {
-                    "name": "쇼타임",
-                    "text": "마술에 3번 실패하면 그의 비밀이 드러납니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 5,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 4,
-                                    "typeNum": 0,
-                                    "val": 1,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 6,
-                                    "typeNum": 1,
-                                    "val": 0,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 2,
-                                    "typeNum": 0,
-                                    "val": 3,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 4,
-                                    "typeNum": 0,
-                                    "val": 1,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 4,
-                                    "typeNum": 0,
-                                    "val": 1,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 6,
-                                    "typeNum": 0,
-                                    "val": 0,
-                                    "isTrigger": false
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": true,
-                    "sprite": "Enemy_Vampire"
-                }
-            ],
-            "triggerPhase": [
-                {
-                    "name": "마술사:트리거",
-                    "text": "마술사는 트리거 상태입니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 6,
-                                    "typeNum": 2,
-                                    "val": 0,
-                                    "isTrigger": true
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 6,
-                                    "typeNum": 3,
-                                    "val": 0,
-                                    "isTrigger": true
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": false,
-                    "sprite": "Enemy_Vampire"
-                }
-            ],
-            "roulettePattern": [
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 3,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 3,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                }
-            ],
-            "enemySpecialRoulettes": [
-                {
-                    "sprite": "Roulette_MagicBox",
-                    "title": "마술 모자",
-                    "text": "마술에 쓰이는 비밀스러운 모자입니다. 플레이어 존에서 룰렛의 효과가 발동하면 소멸합니다.",
-                    "baseVal": 1,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                }
-            ],
-            "enemySpecialActions": [
-                {
-                    "sprite": "EnemyAction_Drain",
-                    "title": "마술-불꽃",
-                    "text": "턴x2+마술 모자 개수x5 의 피해를 줍니다. 마술 모자가 하나도 없다면 마술에 실패합니다."
-                },
-                {
-                    "sprite": "EnemyAction_Drain",
-                    "title": "마술-환영",
-                    "text": "마술 모자 1개당 1의 환영 버프를 얻습니다. 마술 모자가 하나도 없다면 마술에 실패합니다."
-                },
-                {
-                    "sprite": "EnemyAction_Drain",
-                    "title": "마술 준비-쇼타임",
-                    "text": "공격, 수비 룰렛을 제외한 모든 룰렛에 마술 모자를 부여합니다."
-                },
-                {
-                    "sprite": "EnemyAction_Drain",
-                    "title": "마술-쇼타임",
-                    "text": "턴x1+마술 모자 개수x1 의 피해를 줍니다."
-                }
-            ],
-            "subEnemies": [],
-            "subEnemies_Spawn": []
-        },
-        {
-            "name": "귀신들린 인형",
-            "id": "DevilDoll",
-            "health": 144,
-            "triggerNum": 4,
-            "phase": [
-                {
-                    "name": "인형의 저주",
-                    "text": "저주 인형이 존재한다면, 자신이 공격받을 때 트리거 게이지를 1 얻고 저주 인형이 피해를 대신 받습니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 5,
-                                    "typeNum": 0,
-                                    "val": 1,
-                                    "isTrigger": false
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": false,
-                    "sprite": "Enemy_Vampire"
-                },
-                {
-                    "name": "인형의 저주",
-                    "text": "저주 인형이 존재한다면, 자신이 공격받을 때 트리거 게이지를 1 얻고 저주 인형이 피해를 대신 받습니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 8,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": 3,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 4,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 6,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 6,
-                                    "isTrigger": false
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": true,
-                    "sprite": "Enemy_Vampire"
-                }
-            ],
-            "triggerPhase": [
-                {
-                    "name": "귀신들린 인형:트리거",
-                    "text": "귀신들린 인형이 트리거 상태입니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 6,
-                                    "typeNum": 0,
-                                    "val": 0,
-                                    "isTrigger": true
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": false,
-                    "sprite": "Enemy_Vampire"
-                }
-            ],
-            "roulettePattern": [
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 4
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 4
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 4
-                }
-            ],
-            "enemySpecialRoulettes": [
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                }
-            ],
-            "enemySpecialActions": [
-                {
-                    "sprite": "EnemyAction_Drain",
-                    "title": "인형 흡수",
-                    "text": "저주 인형이 존재한다면, 저주 인형의 현재 체력만큼 자신의 체력을 회복하고 저주 인형은 소멸시킵니다. 저주 인형이 없으면 자신의 체력이 4 가 됩니다."
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                }
-            ],
-            "subEnemies": [],
-            "subEnemies_Spawn": [
-                "저주 인형"
-            ]
-        },
-        {
-            "name": "대장 컵",
-            "id": "Cups",
-            "health": 55,
-            "triggerNum": 24,
-            "phase": [
-                {
-                    "name": "빙그르르",
-                    "text": "룰렛이 시계 방향으로 회전하면 회전한 칸 수만큼 트리거 게이지와 방어도를 얻습니다. 만약 트리거 상태라면 턴 시작시 룰렛을 랜덤하게 회전시킵니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 6,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": 6,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 3,
-                                    "typeNum": 0,
-                                    "val": 8,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": 6,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 10,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": 6,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 2,
-                                    "typeNum": 0,
-                                    "val": 6,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 0,
-                                    "typeNum": 6,
-                                    "val": 12,
-                                    "isTrigger": false
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": true,
-                    "sprite": "Enemy_Vampire"
-                }
-            ],
-            "triggerPhase": [],
-            "roulettePattern": [
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 3,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 2,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 3
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                }
-            ],
-            "enemySpecialRoulettes": [
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                }
-            ],
-            "enemySpecialActions": [
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                }
-            ],
-            "subEnemies": [
-                "부하 컵 1",
-                "부하 컵 2"
-            ],
-            "subEnemies_Spawn": []
-        },
-        {
-            "name": "흰 토끼",
-            "id": "WhiteRabbit",
-            "health": 40,
-            "triggerNum": 2,
-            "phase": [
-                {
-                    "name": "깡총?",
-                    "text": "턴 시작 시 트리거를 1 얻습니다. 트리거 상태에서는 두 번 행동합니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 5,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 3,
-                                    "typeNum": 0,
-                                    "val": 5,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": 3,
-                                    "isTrigger": false
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": true,
-                    "sprite": "Enemy_Vampire"
-                }
-            ],
-            "triggerPhase": [
-                {
-                    "name": "흰 토끼:트리거",
-                    "text": "흰 토끼는 트리거 상태입니다. 트리거 상태에서는 공격 행동을 두 번 수행합니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 3,
-                                    "isTrigger": true
-                                },
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 3,
-                                    "isTrigger": true
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": false,
-                    "sprite": "Enemy_Vampire"
-                }
-            ],
-            "roulettePattern": [
-                {
-                    "rtype": {
-                        "type": 3,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 3,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                }
-            ],
-            "enemySpecialRoulettes": [
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                }
-            ],
-            "enemySpecialActions": [
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                }
-            ],
-            "subEnemies": [],
-            "subEnemies_Spawn": []
-        },
-        {
-            "name": "말",
-            "id": "horse",
-            "health": 56,
-            "triggerNum": 2,
-            "phase": [
-                {
-                    "name": "전력질주",
-                    "text": "수비 행동 시 트리거를 1 얻습니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 4,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 3,
-                                    "typeNum": 0,
-                                    "val": 5,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 4,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": 3,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 3,
-                                    "typeNum": 0,
-                                    "val": 10,
-                                    "isTrigger": false
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": true,
-                    "sprite": "Enemy_Vampire"
-                }
-            ],
-            "triggerPhase": [
-                {
-                    "name": "말:트리거",
-                    "text": "말은 트리거 상태입니다. '전력질주'를 사용합니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 6,
-                                    "typeNum": 0,
-                                    "val": 5,
-                                    "isTrigger": true
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": false,
-                    "sprite": "Enemy_Vampire"
-                }
-            ],
-            "roulettePattern": [
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 3,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 10
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 3,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 10
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                }
-            ],
-            "enemySpecialRoulettes": [
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                }
-            ],
-            "enemySpecialActions": [
-                {
-                    "sprite": "EnemyAction_Drain",
-                    "title": "전력질주",
-                    "text": "값의 피해를 줍니다. 앨리스에게 방어도가 있다면 피해가 절반으로 감소합니다."
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                }
-            ],
-            "subEnemies": [],
-            "subEnemies_Spawn": []
-        },
-        {
-            "name": "식인 꽃",
-            "id": "CruelFlower",
-            "health": 48,
-            "triggerNum": 12,
-            "phase": [
-                {
-                    "name": "벌레잡이",
-                    "text": "흡혈로 회복한 체력만큼 트리거를 얻습니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 5,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 6,
-                                    "typeNum": 0,
-                                    "val": 5,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 3,
-                                    "typeNum": 0,
-                                    "val": 8,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": 3,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 6,
-                                    "typeNum": 0,
-                                    "val": 2,
-                                    "isTrigger": false
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": true,
-                    "sprite": "Enemy_Vampire"
-                }
-            ],
-            "triggerPhase": [
-                {
-                    "name": "식인 꽃:트리거",
-                    "text": "식인 꽃은 트리거 상태입니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 3,
-                                    "typeNum": 0,
-                                    "val": 16,
-                                    "isTrigger": true
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 2,
-                                    "typeNum": 0,
-                                    "val": 24,
-                                    "isTrigger": true
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": false,
-                    "sprite": "Enemy_Vampire"
-                }
-            ],
-            "roulettePattern": [
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 8
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 3,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 8
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 3,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 5
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                }
-            ],
-            "enemySpecialRoulettes": [
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                }
-            ],
-            "enemySpecialActions": [
-                {
-                    "sprite": "EnemyAction_Drain",
-                    "title": "흡혈",
-                    "text": "값의 피해를 줍니다. 입힌 피해만큼 체력을 회복합니다."
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                }
-            ],
-            "subEnemies": [],
-            "subEnemies_Spawn": []
-        },
-        {
-            "name": "무서운 고양이",
-            "id": "ScaryCat",
-            "health": 59,
-            "triggerNum": 6,
-            "phase": [
-                {
-                    "name": "무섭게 할퀴기",
-                    "text": "룰렛에 의한 피해를 입을 때마다 트리거를 1 얻습니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 6,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 3,
-                                    "typeNum": 0,
-                                    "val": 8,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 0,
-                                    "typeNum": 2,
-                                    "val": 6,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 8,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 6,
-                                    "typeNum": 1,
-                                    "val": 1,
-                                    "isTrigger": false
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": true,
-                    "sprite": "Enemy_Vampire"
-                }
-            ],
-            "triggerPhase": [
-                {
-                    "name": "무서운 고양이:트리거",
-                    "text": "무서운 고양이는 트리거 상태입니다. '무섭게 할퀴기'를 사용합니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 6,
-                                    "typeNum": 0,
-                                    "val": 24,
-                                    "isTrigger": true
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": false,
-                    "sprite": "Enemy_Vampire"
-                }
-            ],
-            "roulettePattern": [
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 6
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 6
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 3,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 6
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 6
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                }
-            ],
-            "enemySpecialRoulettes": [
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                }
-            ],
-            "enemySpecialActions": [
-                {
-                    "sprite": "EnemyAction_Drain",
-                    "title": "무섭게 할퀴기",
-                    "text": "값의 피해를 줍니다. 트리거 상태에서 고양이가 받은 피해 1 당 이 공격의 피해량도 1 감소합니다."
-                },
-                {
-                    "sprite": "EnemyAction_Enchant",
-                    "title": "디버프 부여",
-                    "text": "플레이어와 룰렛에 '주저함'을 값씩 부여합니다."
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                }
-            ],
-            "subEnemies": [],
-            "subEnemies_Spawn": []
-        },
-        {
-            "name": "우는 와인",
-            "id": "Wine",
-            "health": 60,
-            "triggerNum": 30,
-            "phase": [
-                {
-                    "name": "와인의 눈물",
-                    "text": "피해를 받을 때마다, 잃은 체력만큼 트리거를 얻습니다. 트리거 시 취약을 1 얻습니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 4,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 3,
-                                    "typeNum": 0,
-                                    "val": 8,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 2,
-                                    "typeNum": 0,
-                                    "val": 4,
-                                    "isTrigger": false
-                                },
-                                {
-                                    "type": 0,
-                                    "typeNum": 0,
-                                    "val": 3,
-                                    "isTrigger": false
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": true,
-                    "sprite": "Enemy_Vampire"
-                }
-            ],
-            "triggerPhase": [
-                {
-                    "name": "우는 와인:트리거",
-                    "text": "우는 와인은 트리거 상태입니다. '와인의 눈물'을 사용합니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 6,
-                                    "typeNum": 0,
-                                    "val": 30,
-                                    "isTrigger": true
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": false,
-                    "sprite": "Enemy_Vampire"
-                }
-            ],
-            "roulettePattern": [
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 4
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 3,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 6
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 1,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 4
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 3,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 6
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                },
-                {
-                    "rtype": {
-                        "type": 0,
-                        "specialTypeIdx": 0,
-                        "enemyIdx": 0
-                    },
-                    "value": 0
-                }
-            ],
-            "enemySpecialRoulettes": [
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                }
-            ],
-            "enemySpecialActions": [
-                {
-                    "sprite": "EnemyAction_Drain",
-                    "title": "와인의 눈물",
-                    "text": "모두에게 값의 피해를 줍니다."
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                }
-            ],
-            "subEnemies": [],
-            "subEnemies_Spawn": []
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": true,
+          "sprite": "Enemy_Vampire"
         }
-    ],
-    "subEnemies": [
+      ],
+      "triggerPhase": [
         {
-            "name": "저주 인형",
-            "health": 44,
-            "roulettePos": 1,
-            "phase": [
+          "name": "뱀파이어:트리거",
+          "text": "뱀파이어가 트리거 상태입니다.",
+          "patterns": [
+            {
+              "pattern": [
                 {
-                    "name": "저주 인형",
-                    "text": "귀신들린 인형의 피해를 대신 입습니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 3,
-                                    "typeNum": 0,
-                                    "val": 1,
-                                    "isTrigger": false
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": true,
-                    "sprite": "Enemy_Vampire"
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 5,
+                  "isTrigger": true
+                },
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 5,
+                  "isTrigger": true
+                },
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 5,
+                  "isTrigger": true
                 }
-            ],
-            "enemySpecialRoulettes": [
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                }
-            ],
-            "enemySpecialActions": [
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                }
-            ]
-        },
-        {
-            "name": "부하 컵 1",
-            "health": 22,
-            "roulettePos": 1,
-            "phase": [
-                {
-                    "name": "부하 컵 1",
-                    "text": "대장 컵의 부하입니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 5,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 3,
-                                    "typeNum": 0,
-                                    "val": 5,
-                                    "isTrigger": false
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": true,
-                    "sprite": "Enemy_Vampire"
-                }
-            ],
-            "enemySpecialRoulettes": [
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                }
-            ],
-            "enemySpecialActions": [
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                }
-            ]
-        },
-        {
-            "name": "부하 컵 2",
-            "health": 33,
-            "roulettePos": 9,
-            "phase": [
-                {
-                    "name": "부하 컵 2",
-                    "text": "대장 컵의 부하입니다.",
-                    "patterns": [
-                        {
-                            "pattern": [
-                                {
-                                    "type": 3,
-                                    "typeNum": 0,
-                                    "val": 6,
-                                    "isTrigger": false
-                                }
-                            ]
-                        },
-                        {
-                            "pattern": [
-                                {
-                                    "type": 1,
-                                    "typeNum": 0,
-                                    "val": 6,
-                                    "isTrigger": false
-                                }
-                            ]
-                        }
-                    ],
-                    "phaseClear": false,
-                    "phaseRepeat": true,
-                    "sprite": "Enemy_Vampire"
-                }
-            ],
-            "enemySpecialRoulettes": [
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": "",
-                    "baseVal": 0,
-                    "title_enhanced": "",
-                    "text_enhanced": "",
-                    "baseVal_enhanced": 0
-                }
-            ],
-            "enemySpecialActions": [
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                },
-                {
-                    "sprite": "",
-                    "title": "",
-                    "text": ""
-                }
-            ]
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": false,
+          "sprite": "Enemy_Vampire"
         }
-    ]
+      ],
+      "roulettePattern": [
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 2,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 2
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        }
+      ],
+      "enemySpecialRoulettes": [
+        {
+          "sprite": "Roulette_Drain",
+          "title": "흡혈",
+          "text": "값만큼 대상에게 피해를 주고, 입힌 피해만큼 뱀파이어의 체력이 회복되고, 흡혈 카운트를 1 얻습니다.",
+          "baseVal": 5,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "enemySpecialActions": [
+        {
+          "sprite": "EnemyAction_Drain",
+          "title": "흡혈",
+          "text": "피해를 값만큼 주고, 입힌 피해만큼 뱀파이어의 체력이 회복되고, 흡혈 카운트를 1 얻습니다."
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        }
+      ],
+      "subEnemies": [],
+      "subEnemies_Spawn": []
+    },
+    {
+      "name": "박쥐",
+      "id": "Bat",
+      "health": 68,
+      "triggerNum": 12,
+      "phase": [
+        {
+          "name": "길들여짐",
+          "text": "턴 종료 시 트리거 게이지를 1 얻습니다. 이번 턴에 룰렛으로 인한 피해를 입었다면 3의 추가 게이지를 얻습니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": -3,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 4,
+                  "isTrigger": false
+                },
+                {
+                  "type": 3,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": -4,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": -4,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                },
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 4,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": true,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "triggerPhase": [
+        {
+          "name": "박쥐:트리거",
+          "text": "트리거 상태입니다. 트리거 패턴이 추가되며 트리거 패턴으로 피해를 입히지 못할 경우 트리거 상태가 해제됩니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": -3,
+                  "isTrigger": false
+                },
+                {
+                  "type": 6,
+                  "typeNum": 1,
+                  "val": 4,
+                  "isTrigger": true
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 4,
+                  "isTrigger": false
+                },
+                {
+                  "type": 3,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                },
+                {
+                  "type": 6,
+                  "typeNum": 1,
+                  "val": 4,
+                  "isTrigger": true
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": -4,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": -4,
+                  "isTrigger": false
+                },
+                {
+                  "type": 6,
+                  "typeNum": 1,
+                  "val": 4,
+                  "isTrigger": true
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                },
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 4,
+                  "isTrigger": false
+                },
+                {
+                  "type": 6,
+                  "typeNum": 1,
+                  "val": 4,
+                  "isTrigger": true
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": true,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "roulettePattern": [
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 4
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 4
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        }
+      ],
+      "enemySpecialRoulettes": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "enemySpecialActions": [
+        {
+          "sprite": "EnemyAction_Drain",
+          "title": "흡혈",
+          "text": "피해를 값만큼 주고, 입힌 피해만큼 박쥐의 체력이 회복되고, 흡혈 카운트를 1 얻습니다."
+        },
+        {
+          "sprite": "EnemyAction_Drain",
+          "title": "흡혈+",
+          "text": "피해를 값만큼 주고, 입힌 피해만큼 박쥐의 체력이 회복됩니다."
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        }
+      ],
+      "subEnemies": [],
+      "subEnemies_Spawn": []
+    },
+    {
+      "name": "비둘기",
+      "id": "Dove",
+      "health": 49,
+      "triggerNum": 10,
+      "phase": [
+        {
+          "name": "마술 준비",
+          "text": "마술 모자가 자신의 효과 존을 지나갈 때마다 트리거 게이지와 방어도를 5 얻습니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 3,
+                  "typeNum": 0,
+                  "val": 5,
+                  "isTrigger": false
+                },
+                {
+                  "type": 4,
+                  "typeNum": 0,
+                  "val": 1,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 5,
+                  "isTrigger": false
+                },
+                {
+                  "type": 4,
+                  "typeNum": 0,
+                  "val": 1,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 4,
+                  "typeNum": 0,
+                  "val": 1,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": -7,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": true,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "triggerPhase": [
+        {
+          "name": "비둘기:트리거",
+          "text": "비둘기가 트리거 상태입니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 0,
+                  "isTrigger": true
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": false,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "roulettePattern": [
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 2,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 3
+        }
+      ],
+      "enemySpecialRoulettes": [
+        {
+          "sprite": "Roulette_MagicBox",
+          "title": "마술 모자",
+          "text": "마술에 쓰이는 비밀스러운 모자입니다. 플레이어 존에서 룰렛의 효과가 발동하면 소멸합니다.마술에 쓰이는 비밀스러운 모자입니다. 플레이어 존에서 룰렛의 효과가 발동하면 소멸합니다.",
+          "baseVal": 1,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "enemySpecialActions": [
+        {
+          "sprite": "EnemyAction_Attack",
+          "title": "모자 폭발",
+          "text": "룰렛에 존재하는 마술 모자를 모두 제거하고, 제거한 마술 모자 개수X5의 피해를 줍니다."
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        }
+      ],
+      "subEnemies": [],
+      "subEnemies_Spawn": []
+    },
+    {
+      "name": "망령 1",
+      "id": "GuestOrGhost",
+      "health": 52,
+      "triggerNum": 6,
+      "phase": [
+        {
+          "name": "지워지지 않는",
+          "text": "체력을 잃을 때마다 트리거 게이지를 1 얻습니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 4,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": -3,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 0,
+                  "isTrigger": false
+                },
+                {
+                  "type": 2,
+                  "typeNum": 0,
+                  "val": 2,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 3,
+                  "typeNum": 0,
+                  "val": 8,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": -3,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 8,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": true,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "triggerPhase": [
+        {
+          "name": "망령 1:트리거",
+          "text": "망령 1이 트리거 상태입니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 2,
+                  "typeNum": 0,
+                  "val": 14,
+                  "isTrigger": true
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 2,
+                  "typeNum": 0,
+                  "val": 14,
+                  "isTrigger": true
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": false,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "roulettePattern": [
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 2,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 2
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        }
+      ],
+      "enemySpecialRoulettes": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "enemySpecialActions": [
+        {
+          "sprite": "EnemyAction_Enchant",
+          "title": "공격 부여",
+          "text": "무작위 빈 룰렛 칸에 '공격' 룰렛을 부여합니다. 빈 칸이 없을 경우 무작위 칸에 부여합니다."
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        }
+      ],
+      "subEnemies": [],
+      "subEnemies_Spawn": []
+    },
+    {
+      "name": "망령 2",
+      "id": "",
+      "health": 52,
+      "triggerNum": 6,
+      "phase": [
+        {
+          "name": "장난꾸러기",
+          "text": "룰렛이 회전할 때마다 트리거 게이지를 1 얻습니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 4,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": -3,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 1,
+                  "isTrigger": false
+                },
+                {
+                  "type": 2,
+                  "typeNum": 0,
+                  "val": 2,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 4,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": -3,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 4,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": true,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "triggerPhase": [
+        {
+          "name": "망령 2:트리거",
+          "text": "망령 2가 트리거 상태입니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 1,
+                  "val": 3,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": false,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "roulettePattern": [
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 2,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 2
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        }
+      ],
+      "enemySpecialRoulettes": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "enemySpecialActions": [
+        {
+          "sprite": "EnemyAction_Enchant",
+          "title": "공격 부여",
+          "text": "무작위 빈 룰렛 칸에 '공격' 룰렛을 부여합니다. 빈 칸이 없을 경우 무작위 칸에 부여합니다."
+        },
+        {
+          "sprite": "EnemyAction_Enchant",
+          "title": "회전 봉인",
+          "text": "플레이어에게 '회전 봉인' 디버프를 값턴동안 부여합니다."
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        }
+      ],
+      "subEnemies": [],
+      "subEnemies_Spawn": []
+    },
+    {
+      "name": "마술사",
+      "id": "",
+      "health": 84,
+      "triggerNum": 3,
+      "phase": [
+        {
+          "name": "쇼타임",
+          "text": "마술에 3번 실패하면 그의 비밀이 드러납니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": -3,
+                  "isTrigger": false
+                },
+                {
+                  "type": 4,
+                  "typeNum": 0,
+                  "val": 1,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 0,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": false,
+          "sprite": "Enemy_Vampire"
+        },
+        {
+          "name": "쇼타임",
+          "text": "마술에 3번 실패하면 그의 비밀이 드러납니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 5,
+                  "isTrigger": false
+                },
+                {
+                  "type": 4,
+                  "typeNum": 0,
+                  "val": 1,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 1,
+                  "val": 0,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 2,
+                  "typeNum": 0,
+                  "val": 3,
+                  "isTrigger": false
+                },
+                {
+                  "type": 4,
+                  "typeNum": 0,
+                  "val": 1,
+                  "isTrigger": false
+                },
+                {
+                  "type": 4,
+                  "typeNum": 0,
+                  "val": 1,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 0,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": true,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "triggerPhase": [
+        {
+          "name": "마술사:트리거",
+          "text": "마술사는 트리거 상태입니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 2,
+                  "val": 0,
+                  "isTrigger": true
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 3,
+                  "val": 0,
+                  "isTrigger": true
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": false,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "roulettePattern": [
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        }
+      ],
+      "enemySpecialRoulettes": [
+        {
+          "sprite": "Roulette_MagicBox",
+          "title": "마술 모자",
+          "text": "마술에 쓰이는 비밀스러운 모자입니다. 플레이어 존에서 룰렛의 효과가 발동하면 소멸합니다.",
+          "baseVal": 1,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "enemySpecialActions": [
+        {
+          "sprite": "EnemyAction_Drain",
+          "title": "마술-불꽃",
+          "text": "턴x2+마술 모자 개수x5 의 피해를 줍니다. 마술 모자가 하나도 없다면 마술에 실패합니다."
+        },
+        {
+          "sprite": "EnemyAction_Drain",
+          "title": "마술-환영",
+          "text": "마술 모자 1개당 1의 환영 버프를 얻습니다. 마술 모자가 하나도 없다면 마술에 실패합니다."
+        },
+        {
+          "sprite": "EnemyAction_Drain",
+          "title": "마술 준비-쇼타임",
+          "text": "공격, 수비 룰렛을 제외한 모든 룰렛에 마술 모자를 부여합니다."
+        },
+        {
+          "sprite": "EnemyAction_Drain",
+          "title": "마술-쇼타임",
+          "text": "턴x1+마술 모자 개수x1 의 피해를 줍니다."
+        }
+      ],
+      "subEnemies": [],
+      "subEnemies_Spawn": []
+    },
+    {
+      "name": "귀신들린 인형",
+      "id": "DevilDoll",
+      "health": 144,
+      "triggerNum": 4,
+      "phase": [
+        {
+          "name": "인형의 저주",
+          "text": "저주 인형이 존재한다면, 자신이 공격받을 때 트리거 게이지를 1 얻고 저주 인형이 피해를 대신 받습니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 5,
+                  "typeNum": 0,
+                  "val": 1,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": false,
+          "sprite": "Enemy_Vampire"
+        },
+        {
+          "name": "인형의 저주",
+          "text": "저주 인형이 존재한다면, 자신이 공격받을 때 트리거 게이지를 1 얻고 저주 인형이 피해를 대신 받습니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 8,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 3,
+                  "isTrigger": false
+                },
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 4,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                },
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": true,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "triggerPhase": [
+        {
+          "name": "귀신들린 인형:트리거",
+          "text": "귀신들린 인형이 트리거 상태입니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 0,
+                  "isTrigger": true
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": false,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "roulettePattern": [
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 4
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 4
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 4
+        }
+      ],
+      "enemySpecialRoulettes": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "enemySpecialActions": [
+        {
+          "sprite": "EnemyAction_Drain",
+          "title": "인형 흡수",
+          "text": "저주 인형이 존재한다면, 저주 인형의 현재 체력만큼 자신의 체력을 회복하고 저주 인형은 소멸시킵니다. 저주 인형이 없으면 자신의 체력이 4 가 됩니다."
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        }
+      ],
+      "subEnemies": [],
+      "subEnemies_Spawn": [
+        "저주 인형"
+      ]
+    },
+    {
+      "name": "대장 컵",
+      "id": "Cups",
+      "health": 55,
+      "triggerNum": 24,
+      "phase": [
+        {
+          "name": "빙그르르",
+          "text": "룰렛이 시계 방향으로 회전하면 회전한 칸 수만큼 트리거 게이지와 방어도를 얻습니다. 만약 트리거 상태라면 턴 시작시 룰렛을 랜덤하게 회전시킵니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 3,
+                  "typeNum": 0,
+                  "val": 8,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 10,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 2,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": 6,
+                  "val": 12,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": true,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "triggerPhase": [],
+      "roulettePattern": [
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 2,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 3
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        }
+      ],
+      "enemySpecialRoulettes": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "enemySpecialActions": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        }
+      ],
+      "subEnemies": [
+        "부하 컵 1",
+        "부하 컵 2"
+      ],
+      "subEnemies_Spawn": []
+    },
+    {
+      "name": "흰 토끼",
+      "id": "WhiteRabbit",
+      "health": 32,
+      "triggerNum": 3,
+      "phase": [
+        {
+          "name": "깡총?",
+          "text": "턴 시작 시 트리거를 1 얻습니다. 트리거 상태에서는 두 번 행동합니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 3,
+                  "typeNum": 0,
+                  "val": 5,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 7,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 3,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": true,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "triggerPhase": [
+        {
+          "name": "흰 토끼:트리거",
+          "text": "흰 토끼는 트리거 상태입니다. 트리거 상태에서는 공격 행동을 두 번 수행합니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 4,
+                  "isTrigger": true
+                },
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 4,
+                  "isTrigger": true
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": false,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "roulettePattern": [
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 7
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        }
+      ],
+      "enemySpecialRoulettes": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "enemySpecialActions": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        }
+      ],
+      "subEnemies": [],
+      "subEnemies_Spawn": []
+    },
+    {
+      "name": "말",
+      "id": "horse",
+      "health": 56,
+      "triggerNum": 2,
+      "phase": [
+        {
+          "name": "전력질주",
+          "text": "수비 행동 시 트리거를 1 얻습니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 4,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 3,
+                  "typeNum": 0,
+                  "val": 5,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 4,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 3,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 3,
+                  "typeNum": 0,
+                  "val": 10,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": true,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "triggerPhase": [
+        {
+          "name": "말:트리거",
+          "text": "말은 트리거 상태입니다. '전력질주'를 사용합니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 5,
+                  "isTrigger": true
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": false,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "roulettePattern": [
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 10
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 10
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        }
+      ],
+      "enemySpecialRoulettes": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "enemySpecialActions": [
+        {
+          "sprite": "EnemyAction_Drain",
+          "title": "전력질주",
+          "text": "값의 피해를 줍니다. 앨리스에게 방어도가 있다면 피해가 절반으로 감소합니다."
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        }
+      ],
+      "subEnemies": [],
+      "subEnemies_Spawn": []
+    },
+    {
+      "name": "식인 꽃",
+      "id": "CruelFlower",
+      "health": 48,
+      "triggerNum": 12,
+      "phase": [
+        {
+          "name": "벌레잡이",
+          "text": "흡혈로 회복한 체력만큼 트리거를 얻습니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 5,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 5,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 3,
+                  "typeNum": 0,
+                  "val": 8,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 3,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 2,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": true,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "triggerPhase": [
+        {
+          "name": "식인 꽃:트리거",
+          "text": "식인 꽃은 트리거 상태입니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 3,
+                  "typeNum": 0,
+                  "val": 16,
+                  "isTrigger": true
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 2,
+                  "typeNum": 0,
+                  "val": 24,
+                  "isTrigger": true
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": false,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "roulettePattern": [
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 8
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 8
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        }
+      ],
+      "enemySpecialRoulettes": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "enemySpecialActions": [
+        {
+          "sprite": "EnemyAction_Drain",
+          "title": "흡혈",
+          "text": "값의 피해를 줍니다. 입힌 피해만큼 체력을 회복합니다."
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        }
+      ],
+      "subEnemies": [],
+      "subEnemies_Spawn": []
+    },
+    {
+      "name": "무서운 고양이",
+      "id": "ScaryCat",
+      "health": 59,
+      "triggerNum": 6,
+      "phase": [
+        {
+          "name": "무섭게 할퀴기",
+          "text": "룰렛에 의한 피해를 입을 때마다 트리거를 1 얻습니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 3,
+                  "typeNum": 0,
+                  "val": 8,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": 2,
+                  "val": 6,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 8,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 1,
+                  "val": 1,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": true,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "triggerPhase": [
+        {
+          "name": "무서운 고양이:트리거",
+          "text": "무서운 고양이는 트리거 상태입니다. '무섭게 할퀴기'를 사용합니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 24,
+                  "isTrigger": true
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": false,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "roulettePattern": [
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        }
+      ],
+      "enemySpecialRoulettes": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "enemySpecialActions": [
+        {
+          "sprite": "EnemyAction_Drain",
+          "title": "무섭게 할퀴기",
+          "text": "값의 피해를 줍니다. 트리거 상태에서 고양이가 받은 피해 1 당 이 공격의 피해량도 1 감소합니다."
+        },
+        {
+          "sprite": "EnemyAction_Enchant",
+          "title": "디버프 부여",
+          "text": "플레이어와 룰렛에 '주저함'을 값씩 부여합니다."
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        }
+      ],
+      "subEnemies": [],
+      "subEnemies_Spawn": []
+    },
+    {
+      "name": "우는 와인",
+      "id": "Wine",
+      "health": 60,
+      "triggerNum": 30,
+      "phase": [
+        {
+          "name": "와인의 눈물",
+          "text": "피해를 받을 때마다, 잃은 체력만큼 트리거를 얻습니다. 트리거 시 취약을 1 얻습니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 4,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 3,
+                  "typeNum": 0,
+                  "val": 8,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 2,
+                  "typeNum": 0,
+                  "val": 4,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 3,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": true,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "triggerPhase": [
+        {
+          "name": "우는 와인:트리거",
+          "text": "우는 와인은 트리거 상태입니다. '와인의 눈물'을 사용합니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 30,
+                  "isTrigger": true
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": false,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "roulettePattern": [
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 4
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 4
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        }
+      ],
+      "enemySpecialRoulettes": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "enemySpecialActions": [
+        {
+          "sprite": "EnemyAction_Drain",
+          "title": "와인의 눈물",
+          "text": "모두에게 값의 피해를 줍니다."
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        }
+      ],
+      "subEnemies": [],
+      "subEnemies_Spawn": []
+    }
+  ],
+  "subEnemies": [
+    {
+      "name": "저주 인형",
+      "health": 44,
+      "roulettePos": 1,
+      "phase": [
+        {
+          "name": "저주 인형",
+          "text": "귀신들린 인형의 피해를 대신 입습니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 3,
+                  "typeNum": 0,
+                  "val": 1,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": true,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "enemySpecialRoulettes": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "enemySpecialActions": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "name": "부하 컵 1",
+      "health": 22,
+      "roulettePos": 1,
+      "phase": [
+        {
+          "name": "부하 컵 1",
+          "text": "대장 컵의 부하입니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 5,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 3,
+                  "typeNum": 0,
+                  "val": 5,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": true,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "enemySpecialRoulettes": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "enemySpecialActions": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "name": "부하 컵 2",
+      "health": 33,
+      "roulettePos": 9,
+      "phase": [
+        {
+          "name": "부하 컵 2",
+          "text": "대장 컵의 부하입니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 3,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": true,
+          "sprite": "Enemy_Vampire"
+        }
+      ],
+      "enemySpecialRoulettes": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "enemySpecialActions": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        }
+      ]
+    }
+  ]
 }
