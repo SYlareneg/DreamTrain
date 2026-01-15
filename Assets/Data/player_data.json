@@ -161,8 +161,8 @@
             "pos": 0,
             "screenPos": {
                 "x": -19.5,
-                "y": 0.0,
-                "z": 0.0
+                "y": 0,
+                "z": 0
             },
             "childNodes": [
                 "721e5bccf4e2478c8157b3b8dcd6d5ba"
@@ -179,7 +179,7 @@
             "screenPos": {
                 "x": -15.5,
                 "y": -0.08623018115758896,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "1e925e5ae71946f3b8663299da390ff9",
@@ -195,8 +195,8 @@
             "pos": 2,
             "screenPos": {
                 "x": -11.5,
-                "y": 1.7853235006332398,
-                "z": 0.0
+                "y": 1.7853235006332397,
+                "z": 0
             },
             "childNodes": [
                 "670b51b0020b439eb36a0adefdd13db6"
@@ -210,8 +210,8 @@
             "pos": -2,
             "screenPos": {
                 "x": -11.5,
-                "y": -1.7453910112380982,
-                "z": 0.0
+                "y": -1.7453910112380981,
+                "z": 0
             },
             "childNodes": [
                 "d8fc4e7e518f4795b13f1c4d23230d50"
@@ -226,7 +226,7 @@
             "screenPos": {
                 "x": -11.5,
                 "y": 0.975103497505188,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "670b51b0020b439eb36a0adefdd13db6"
@@ -241,7 +241,7 @@
             "screenPos": {
                 "x": -7.5,
                 "y": -0.9394293427467346,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "670b51b0020b439eb36a0adefdd13db6"
@@ -256,7 +256,7 @@
             "screenPos": {
                 "x": -3.5,
                 "y": -0.09833722561597824,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "679ffdad43b842cfb8fe7a87c5c67d80"
@@ -270,8 +270,8 @@
             "pos": 0,
             "screenPos": {
                 "x": 0.5,
-                "y": 0.0,
-                "z": 0.0
+                "y": 0,
+                "z": 0
             },
             "childNodes": []
         }
@@ -286,6 +286,6 @@
     "lastEncounterType": 0,
     "encounterQueue": [],
     "currentStepID": "",
-    "currentEncounterID": "",
-    "enemyName": ""
+    "currentEncounterID": "ACT1_WHITE_RABBIT",
+    "enemyName": "뱀파이어 폴"
 }
