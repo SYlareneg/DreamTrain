@@ -127,7 +127,8 @@ public class GameManager : MonoBehaviour
     {
         costTMP.text = TurnManager.Inst.nowCost.ToString() + "/" + TurnManager.Inst.turnCost.ToString();
         healthTMP.text = TurnManager.Inst.curHealth.ToString() + "/" + TurnManager.Inst.maxHealth.ToString();
-        healthImg.fillAmount = (float)TurnManager.Inst.curHealth / TurnManager.Inst.maxHealth;
+        healthImg.fillAmount = (float)TurnManager.Inst.curHealth / (TurnManager.Inst.maxHealth + TurnManager.Inst.shieldHealth);
+        shieldImg.fillAmount = (float)(TurnManager.Inst.curHealth + TurnManager.Inst.shieldHealth) / (TurnManager.Inst.maxHealth + TurnManager.Inst.shieldHealth);
         if(TurnManager.Inst.shieldHealth > 0) shieldTMP.text = "+" + TurnManager.Inst.shieldHealth.ToString();
         else shieldTMP.text = "";
         triggerCountTMP.text = TurnManager.Inst.playerTriggerCnt.ToString() + "/" + TurnManager.Inst.playerTriggerMaxCnt.ToString();
@@ -143,7 +144,8 @@ public class GameManager : MonoBehaviour
         {
             if(enemyHealthTMP[i] == null) continue;
             enemyHealthTMP[i].text = TurnManager.Inst.enemyCurHealth[i].ToString() + "/" + TurnManager.Inst.enemyMaxHealth[i].ToString();
-            enemyHealthImg[i].fillAmount = (float)TurnManager.Inst.enemyCurHealth[i] / TurnManager.Inst.enemyMaxHealth[i];
+            enemyHealthImg[i].fillAmount = (float)TurnManager.Inst.enemyCurHealth[i] / (TurnManager.Inst.enemyMaxHealth[i] + TurnManager.Inst.enemyShieldHealth[i]);
+            enemyShieldImg[i].fillAmount = (float)(TurnManager.Inst.enemyCurHealth[i] + TurnManager.Inst.enemyShieldHealth[i]) / (TurnManager.Inst.enemyMaxHealth[i] + TurnManager.Inst.enemyShieldHealth[i]);
             if(TurnManager.Inst.enemyShieldHealth[i] > 0) enemyShieldTMP[i].text = "+" + TurnManager.Inst.enemyShieldHealth[i].ToString();
             else enemyShieldTMP[i].text = "";
         }
@@ -163,6 +165,7 @@ public class GameManager : MonoBehaviour
         enemyHealthTMP[subEnemyIdx + 1] = subEnemyTransform.Find("SubEnemyUI/Values/Health/HealthTMP").GetComponent<TMP_Text>();
         enemyHealthImg[subEnemyIdx + 1] = subEnemyTransform.Find("SubEnemyUI/Values/Health/HealthBar/HealthBarFront").GetComponent<Image>();
         enemyShieldTMP[subEnemyIdx + 1] = subEnemyTransform.Find("SubEnemyUI/Values/Health/ShieldTMP").GetComponent<TMP_Text>();
+        enemyShieldImg[subEnemyIdx + 1] = subEnemyTransform.Find("SubEnemyUI/Values/Health/HealthBar/ShieldBar").GetComponent<Image>();
         RectTransform buffPosRect = subEnemyTransform.Find("SubEnemyUI/BuffPos").GetComponent<RectTransform>();
         enemyBuffPos[subEnemyIdx + 1] = RectTransformUtility.WorldToScreenPoint(Camera.main, buffPosRect.position) - new Vector2(Screen.width / 2, Screen.height / 2);
         enemyBuffUIView[subEnemyIdx + 1] = subEnemyTransform.Find("SubEnemyUI/Buffs").gameObject;

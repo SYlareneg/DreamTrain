@@ -3,6 +3,7 @@
     "curHealth": 60,
     "dreamDust": 1000,
     "leftPassengers": 0,
+    "isTutorial": true,
     "personaPiece": "고양이의 꿈",
     "isPersonaEnhanced": false,
     "personaCards": [
@@ -212,5 +213,5 @@
     "encounterQueue": [],
     "currentStepID": "",
     "currentEncounterID": "",
-    "enemyName": "Cups"
+    "enemyName": "흰 토끼"
 }

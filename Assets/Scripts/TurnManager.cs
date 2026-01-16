@@ -50,7 +50,7 @@ public class TurnManager : MonoBehaviour
     [Tooltip("적 리스트")] public EnemySO enemySO;
 
     // 로딩 여부. 로딩중일 경우 인터랙션 불가.
-    [HideInInspector] public bool isLoading;
+    public bool isLoading;
 
     WaitForSeconds delay05 = new WaitForSeconds(0.5f);
 
@@ -119,6 +119,7 @@ public class TurnManager : MonoBehaviour
         // 플레이어 정보 적용
         maxHealth = characterSO.maxHealth;
         curHealth = characterSO.curHealth;
+        playerTriggerCnt = 0;
         // 적 정보 적용
         EnemyManager.Inst.InitEnemy();
     }
@@ -152,6 +153,10 @@ public class TurnManager : MonoBehaviour
         OnGameStart?.Invoke();
         // BuffManager.Inst.AddShowBuff("회전 봉인", EBuffAffectType.Enemy, 2, false);
         // BuffManager.Inst.AddShowBuff("강화", EBuffAffectType.Enemy, 2, false);
+        if(characterSO.isTutorial && characterSO.personaPiece.persona.dreamPieceNum == 3)
+        {
+            playerTriggerCnt = 8;
+        }
         turnDraw = drawCardCount;
         // startCardCount만큼 카드를 뽑고, StartPlayerTurn 호출
         StartCoroutine(Draw(startCardCount, StartPlayerTurn));
@@ -177,8 +182,41 @@ public class TurnManager : MonoBehaviour
         // 플레이어 턴 시작 시 호출해야 할 액션(함수) 목록 모두 호출
         Utils.AllignActions(ref OnPlayerTurnStart, typeof(ShowBuff), typeof(RelicManager));
         OnPlayerTurnStart?.Invoke();
+
+        if(characterSO.isTutorial)
+        {
+            if(turnNum == 1)
+            {
+                // 튜토리얼 모드일 때, 1턴차에만 튜토리얼 실행
+                Item item_turn2 = new Item(CardManager.Inst.itemDeck.Find(card => card.name == "회전 카드 2"));
+                CardManager.Inst.itemDeck.Add(item_turn2);
+                CardManager.Inst.itemDraw.Insert(turnDraw - 1, item_turn2);
+                TutorialManager.Inst.ShowTutorialBox(1, 1);
+            }
+            else if(turnNum == 2)
+            {
+                // 튜토리얼 모드일 때, 2턴차에만 튜토리얼 실행
+                Item item_turn3 = new Item(CardManager.Inst.itemDeck.Find(card => card.name == "회전 카드 3"));
+                CardManager.Inst.itemDeck.Add(item_turn3);
+                CardManager.Inst.itemDraw.Insert(turnDraw - 1, item_turn3);
+                TutorialManager.Inst.ShowTutorialBox(2, 1);
+            }
+            else if(turnNum == 3)
+            {
+                // 튜토리얼 모드일 때, 3턴차에만 튜토리얼 실행
+                Item item_hide = new Item(CardManager.Inst.itemDeck.Find(card => card.name == "숨기"));
+                CardManager.Inst.itemDeck.Add(item_hide);
+                CardManager.Inst.itemDraw.Insert(turnDraw - 1, item_hide);
+                TutorialManager.Inst.ShowTutorialBox(3, 1);
+            }
+            else if(turnNum == 4)
+            {
+                // 튜토리얼 모드일 때, 4턴차에만 튜토리얼 실행
+                TutorialManager.Inst.ShowTutorialBox(4, 1);
+            }
+        }
         // turnDraw만큼 카드를 뽑고, 로딩을 종료 (플레이어 인터랙션 가능)
-        StartCoroutine(Draw(turnDraw, () => isLoading = false));
+        StartCoroutine(Draw(turnDraw, () => isLoading = characterSO.isTutorial));
     }
 
     // 플레이어 턴 종료

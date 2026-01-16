@@ -14,7 +14,7 @@ public class TurnEnd : MonoBehaviour
 
     void Update()
     {
-        if(TurnManager.Inst.isLoading)
+        if(TurnManager.Inst.isLoading && (TurnManager.Inst.characterSO.isTutorial == false || TutorialManager.Inst.endTurnActivate == false))
         {
             button.interactable = false;
         }

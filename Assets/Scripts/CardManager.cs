@@ -33,7 +33,7 @@ public class CardManager : MonoBehaviour
     enum ECardState { Nothing, CanMouseOver, CanMouseDrag }
 
     [Header("핸드, 덱, 드로우, 무덤")]
-    [Tooltip("플레이어 핸드")][ReadOnly, SerializeField] List<Card> myCards;
+    [Tooltip("플레이어 핸드")][ReadOnly, SerializeField] public List<Card> myCards;
     [Tooltip("핸드 맨 왼쪽 카드 위치")][SerializeField] Transform myCardLeft;
     [Tooltip("핸드 맨 오른쪽 카드 위치")][SerializeField] Transform myCardRight;
     [Tooltip("덱에 있는 카드 목록")] public List<Item> itemDeck;
@@ -449,6 +449,12 @@ public class CardManager : MonoBehaviour
         // 카드를 놓은 지점이 MyCardArea 외부(복수 적일 경우 추가로 적 카드 적용 범위 내부)일 경우, 카드 사용
         if (!onMyCardArea)
         {
+            if(TurnManager.Inst.characterSO.isTutorial == true && TutorialManager.Inst.cardActivate == true && TutorialManager.Inst.activateCardName != "tutorial_allcards" && TutorialManager.Inst.activateCardName != card.item.name)
+            {
+                EnlargeCard(false, selectedCard);
+                selectedCard = null;
+                return;
+            }
             if(selectedCard.item.isSingleTarget == true && onEnemyCardArea == -1)
             {
                 EnlargeCard(false, selectedCard);
@@ -581,7 +587,7 @@ public class CardManager : MonoBehaviour
         {
             return;
         }
-        if (TurnManager.Inst.isLoading)
+        if (TurnManager.Inst.isLoading && (TurnManager.Inst.characterSO.isTutorial == false || TutorialManager.Inst.cardActivate == false))
         {
             eCardState = ECardState.Nothing;
         }

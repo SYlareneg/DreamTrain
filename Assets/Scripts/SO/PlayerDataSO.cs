@@ -9,6 +9,7 @@ public class PlayerDataSO : ScriptableObject
     public int curHealth;
     public int dreamDust;
     public int leftPassengers;
+    public bool isTutorial;
     [Header("카드 데이터")]
     public string personaPiece;
     public bool isPersonaEnhanced;

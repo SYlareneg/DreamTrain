@@ -155,6 +155,7 @@ public class DataManager : MonoBehaviour
         characterSO.curHealth = playerDataSO.curHealth;
         characterSO.dreamDust = playerDataSO.dreamDust;
         characterSO.leftPassengers = playerDataSO.leftPassengers;
+        characterSO.isTutorial = playerDataSO.isTutorial;
         // 카드 데이터
         if (playerDataSO.personaPiece != "")
         {
@@ -232,6 +233,7 @@ public class DataManager : MonoBehaviour
         playerDataSO.curHealth = characterSO.curHealth;
         playerDataSO.dreamDust = characterSO.dreamDust;
         playerDataSO.leftPassengers = characterSO.leftPassengers;
+        playerDataSO.isTutorial = characterSO.isTutorial;
         // 카드 데이터
         playerDataSO.personaPiece = characterSO.personaPiece != null ? characterSO.personaPiece.name : "";
         playerDataSO.isPersonaEnhanced = characterSO.personaPiece != null ? characterSO.personaPiece.persona.isEnhanced : false;

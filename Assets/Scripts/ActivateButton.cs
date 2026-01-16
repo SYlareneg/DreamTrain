@@ -69,6 +69,7 @@ public class ActivateButton : MonoBehaviour
     // "버튼 클릭"으로 인정될 때 (눌렀다가 같은 오브젝트 위에서 뗐을 때만 실행)
     private void OnMouseUpAsButton()
     {
+        if(TurnManager.Inst.isLoading && (TurnManager.Inst.characterSO.isTutorial == false || TutorialManager.Inst.rouletteActivate == false)) return;
         if (TurnManager.Inst.nowCost >= useCost)
         {
             RouletteManager.Inst.ActivateRoulette();
