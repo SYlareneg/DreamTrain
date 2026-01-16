@@ -37,7 +37,7 @@ public class ActivateButton : MonoBehaviour
     private void OnMouseEnter()
     {
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        Color color = Color.red;
+        Color color = Color.white;
         color.r *= 0.9f;
         sr.color = color;
     }
@@ -45,7 +45,7 @@ public class ActivateButton : MonoBehaviour
     private void OnMouseExit()
     {
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        sr.color = Color.red;
+        sr.color = Color.white;
     }
 
     // 마우스 버튼을 눌렀을 때
