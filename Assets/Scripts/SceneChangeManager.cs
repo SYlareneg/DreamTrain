@@ -15,6 +15,7 @@ public class SceneChangeManager : MonoBehaviour
     {
         fadeoutScreen.color = new Color(Color.black.r, Color.black.g, Color.black.b, 0f);
         fadeoutScreen.gameObject.SetActive(true);
+        DataManager.Inst.SavePlayerData();
         Sequence fadeout = DOTween.Sequence();
         fadeout.Append(fadeoutScreen.DOFade(1f, 1f).OnComplete(() =>
         {

@@ -224,15 +224,17 @@
       ],
       "name_enhanced": "피는 나의 힘+",
       "cost_enhanced": 0,
-      "text_enhanced": "체력을 <color=red>1</color> 잃고, 행동력을 1<특수> 얻습니다.",
+      "text_enhanced": "체력을 <color=red>1<특수></color> 잃고, 행동력을 1<특수> 얻습니다.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": false,
       "cardValues_enhanced": [
+        1,
         1
       ],
       "cardValueTypes_enhanced": [
+        3,
         3
       ]
     },
@@ -440,8 +442,12 @@
       "isRemain": false,
       "isSingleTarget": true,
       "rarity": 0,
-      "cardValues": [],
-      "cardValueTypes": [],
+      "cardValues": [
+        1
+      ],
+      "cardValueTypes": [
+        0
+      ],
       "name_enhanced": "마술-비둘기+",
       "cost_enhanced": 1,
       "text_enhanced": "<color=red>3<피해></color>데미지를 주고, 마술을 펼쳐 적의 다음 턴 첫번째 행동을 방해합니다. 적의 효과 존에 마술 상자가 없다면 마술은 실패합니다.",
@@ -449,8 +455,12 @@
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": true,
-      "cardValues_enhanced": [],
-      "cardValueTypes_enhanced": []
+      "cardValues_enhanced": [
+        3
+      ],
+      "cardValueTypes_enhanced": [
+        0
+      ]
     },
     {
       "name": "마술-카드",
@@ -496,8 +506,12 @@
       "isRemain": false,
       "isSingleTarget": true,
       "rarity": 0,
-      "cardValues": [],
-      "cardValueTypes": [],
+      "cardValues": [
+        2
+      ],
+      "cardValueTypes": [
+        0
+      ],
       "name_enhanced": "마술-절단+",
       "cost_enhanced": 2,
       "text_enhanced": "<color=red>마술을 펼쳐 방어도를 모두 파괴하고, 4<피해>데미지를 줍니다.</color> 적의 효과 존에 마술 상자가 없다면 실패합니다.",
@@ -505,8 +519,12 @@
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": true,
-      "cardValues_enhanced": [],
-      "cardValueTypes_enhanced": []
+      "cardValues_enhanced": [
+        4
+      ],
+      "cardValueTypes_enhanced": [
+        0
+      ]
     },
     {
       "name": "마술-순간이동",
@@ -514,7 +532,7 @@
       "type": 0,
       "dreamPieceNum": 1,
       "sprite": "Cold Handshake",
-      "text": "룰렛을 시계방향으로 2<특수>칸 회전시키고, 마술을 펼쳐 방어도를 1<특수>2<수비> 부여합니다. 플레이어의 효과 존에 마술 상자가 없다면 마술은 실패합니다. ",
+      "text": "룰렛을 시계방향으로 2<특수>칸 회전시키고, 마술을 펼쳐 방어도를 12<수비> 부여합니다. 플레이어의 효과 존에 마술 상자가 없다면 마술은 실패합니다. ",
       "isVolatile": false,
       "isVanish": false,
       "isRemain": false,
@@ -522,28 +540,24 @@
       "rarity": 0,
       "cardValues": [
         2,
-        1,
-        2
+        12
       ],
       "cardValueTypes": [
-        3,
         3,
         2
       ],
       "name_enhanced": "마술-순간이동+",
       "cost_enhanced": 2,
-      "text_enhanced": "룰렛을 시계방향으로 2<특수>칸 회전시키고, 마술을 펼쳐 방어도를 <color=red>1<특수>6<수비></color> 부여합니다. 플레이어의 효과 존에 마술 상자가 없다면 마술은 실패합니다. ",
+      "text_enhanced": "룰렛을 시계방향으로 2<특수>칸 회전시키고, 마술을 펼쳐 방어도를 <color=red>16<수비></color> 부여합니다. 플레이어의 효과 존에 마술 상자가 없다면 마술은 실패합니다. ",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": false,
       "cardValues_enhanced": [
         2,
-        1,
-        6
+        16
       ],
       "cardValueTypes_enhanced": [
-        3,
         3,
         2
       ]
@@ -798,10 +812,12 @@
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": false,
       "cardValues_enhanced": [
+        2,
         2
       ],
       "cardValueTypes_enhanced": [
-        3
+        3,
+        0
       ]
     },
     {
@@ -960,20 +976,24 @@
       "isRemain": false,
       "isSingleTarget": false,
       "rarity": 0,
-      "cardValues": [],
-      "cardValueTypes": [],
+      "cardValues": [
+        8
+      ],
+      "cardValueTypes": [
+        0
+      ],
       "name_enhanced": "얼음 깨기+",
       "cost_enhanced": 2,
-      "text_enhanced": "모든 꽁꽁 룰렛의 효과를 해제합니다. 적의 효과 존 룰렛이 꽁꽁 룰렛이었다면 피해를 <color=red>1<특수>2<피해></color> 줍니다.",
+      "text_enhanced": "모든 꽁꽁 룰렛의 효과를 해제합니다. 적의 효과 존 룰렛이 꽁꽁 룰렛이었다면 피해를 <color=red>12<피해></color> 줍니다.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": false,
       "cardValues_enhanced": [
-        1
+        12
       ],
       "cardValueTypes_enhanced": [
-        3
+        0
       ]
     },
     {
@@ -988,8 +1008,12 @@
       "isRemain": false,
       "isSingleTarget": true,
       "rarity": 0,
-      "cardValues": [],
-      "cardValueTypes": [],
+      "cardValues": [
+        4
+      ],
+      "cardValueTypes": [
+        0
+      ],
       "name_enhanced": "눈싸움+",
       "cost_enhanced": 3,
       "text_enhanced": "적에게 꽁꽁 룰렛의 개수 x <color=red>6<피해></color>의 피해를 줍니다.",
@@ -997,8 +1021,12 @@
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": true,
-      "cardValues_enhanced": [],
-      "cardValueTypes_enhanced": []
+      "cardValues_enhanced": [
+        6
+      ],
+      "cardValueTypes_enhanced": [
+        0
+      ]
     },
     {
       "name": "폭설",
