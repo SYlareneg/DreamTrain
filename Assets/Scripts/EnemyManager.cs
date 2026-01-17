@@ -902,9 +902,6 @@ public class EnemyManager : MonoBehaviour
 
         Vector3 subActionPrefabWidthVec = new Vector3(subActionPrefab.transform.localScale.x / 2 + subActionMargin, 0, 0);
         float subActionPrefabScreenWidth = Camera.main.WorldToScreenPoint(subActionPrefabWidthVec).x - Camera.main.WorldToScreenPoint(Vector3.zero).x;
-        var sortedSubEnemies = subEnemies.Where(x => x != null && x.name != null).OrderBy(x => x.roulettePos).ToArray();
-        var subActionPos = enemyActionPos.position + new Vector3(actionList.Count * (mainActionPrefab.transform.localScale.x / 2 + actionMargin) + (subActionMargin - 2 * actionMargin), 0, 0);
-        var subActionTooltipPos = mainActionPrefabScreenWidth * actionList.Count;
 
         for(int i = 0; i < subEnemies.Length; i++)
         {
@@ -916,29 +913,10 @@ public class EnemyManager : MonoBehaviour
                 if (subEnemyActionList[i][j].transform.position != targetPos)
                 {
                     subEnemyActionList[i][j].transform.DOMove(targetPos, 0.7f);
-                    subEnemyActionList[i][j].tooltipPos.x += subActionTooltipPos + j * subActionPrefabScreenWidth;
+                    subEnemyActionList[i][j].tooltipPos.x += j * subActionPrefabScreenWidth;
                 }
             }
         }
-
-        // for(int i = 0; i < sortedSubEnemies.Length; i++)
-        // {
-        //     if(sortedSubEnemies[i] == null || sortedSubEnemies[i].name == null) continue;
-        //     int subEnemyIdx = Array.FindIndex(subEnemies, x => x == sortedSubEnemies[i]);
-        //     for (int j = 0; j < subEnemyActionList[subEnemyIdx].Count; j++)
-        //     {
-        //         int tempIdx = Array.FindIndex(subEnemyCanvasPos_roulettePos, x => x == sortedSubEnemies[i].roulettePos);
-        //         if(tempIdx == -1) continue;
-        //         var targetPos = subActionPos;
-        //         targetPos.x += subActionCnt * (subActionPrefab[tempIdx].transform.localScale.x / 2 + subActionMargin);
-        //         if (subEnemyActionList[subEnemyIdx][j].transform.position != targetPos)
-        //         {
-        //             subEnemyActionList[subEnemyIdx][j].transform.DOMove(targetPos, 0.7f);
-        //             subEnemyActionList[subEnemyIdx][j].tooltipPos.x += subActionTooltipPos + subActionCnt * subActionPrefabScreenWidth;
-        //         }
-        //         subActionCnt++;
-        //     }
-        // }
     }
 
     // 적 트리거 발동.

@@ -574,6 +574,7 @@ public class CardManager : MonoBehaviour
         else
         {
             card.MoveTransform(card.originPRS, false);
+            card.highlight.enabled = false;
         }
 
         // 확대했을 경우 카드의 order를 핸드에서 맨 앞에 오도록 설정

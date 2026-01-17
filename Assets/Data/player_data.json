@@ -41,8 +41,12 @@
             "num": 1
         }
     ],
-    "relics": [],
-    "relicEnhancements": [],
+    "relics": [
+        7
+    ],
+    "relicEnhancements": [
+        false
+    ],
     "useableItems": [],
     "courage": 1,
     "wisdom": 3,

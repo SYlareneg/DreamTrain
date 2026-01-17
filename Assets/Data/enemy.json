@@ -2147,7 +2147,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire"
+          "sprite": "적 초상화"
         }
       ],
       "triggerPhase": [
@@ -2174,7 +2174,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Enemy_Vampire"
+          "sprite": "적 초상화"
         }
       ],
       "roulettePattern": [
