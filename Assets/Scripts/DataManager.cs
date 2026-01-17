@@ -47,6 +47,14 @@ public class DataManager : MonoBehaviour
 
     public void LoadDeveloperData()
     {
+        if(itemDataSO == null) itemDataSO = ScriptableObject.CreateInstance<ItemDataSO>();
+        if(dreamPieceDataSO == null) dreamPieceDataSO = ScriptableObject.CreateInstance<DreamPieceDataSO>();
+        if(enemyDataSO == null) enemyDataSO = ScriptableObject.CreateInstance<EnemyDataSO>();
+        if(keywordSO == null) keywordSO = ScriptableObject.CreateInstance<KeywordSO>();
+        if(relicDataSO == null) relicDataSO = ScriptableObject.CreateInstance<RelicDataSO>();
+        if(showBuffDataSO == null) showBuffDataSO = ScriptableObject.CreateInstance<ShowBuffDataSO>();
+        if(useableItemDataSO == null) useableItemDataSO = ScriptableObject.CreateInstance<UseableItemDataSO>();
+        if(actDataSO == null) actDataSO = ScriptableObject.CreateInstance<ActDataSO>();
         Utils.LoadData(itemDataSO, "card.json");
         Utils.LoadData(dreamPieceDataSO, "dreampiece.json");
         Utils.LoadData(enemyDataSO, "enemy.json");

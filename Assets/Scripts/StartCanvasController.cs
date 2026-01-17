@@ -65,7 +65,7 @@ public class StartCanvasController : MonoBehaviour
     {
         StartCoroutine(ClickScaleRoutine(btn.transform));
         if (!isLoading)
-            StartCoroutine(BlackAndLoad("MapScene"));
+            StartCoroutine(BlackAndLoad("RoomScene"));
     }
 
     public void OnLoadGameClicked(Button btn)
