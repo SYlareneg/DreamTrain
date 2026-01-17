@@ -5,7 +5,7 @@
       "persona": {
         "type": 1,
         "dreamPieceNum": 3,
-        "sprite": "고양이_꿈조각",
+        "sprite": "꿈조각_고양이_01",
         "name": "사냥 본능",
         "text": "카드를 사용할 때마다 트리거를 1  얻습니다.\n트리거 효과: 모든 적에게 24의 데미지를 줍니다.",
         "name_enhanced": "사냥 본능+",
@@ -14,7 +14,7 @@
       "shadow": {
         "type": 2,
         "dreamPieceNum": 3,
-        "sprite": "고양이_꿈조각",
+        "sprite": "꿈조각_고양이_01",
         "name": "영역 본능",
         "text": "전투 시작 시 무작위 1칸에 발톱 룰렛을 부여합니다.",
         "name_enhanced": "영역 본능+",

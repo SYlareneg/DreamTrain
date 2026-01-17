@@ -18,9 +18,13 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] GameObject hideScreen;
     [SerializeField] TMP_Text hideScreenTitle;
     [SerializeField] TMP_Text hideScreenText;
+    [SerializeField] GameObject pointerIcon;
     private InputSystem_Actions input;
     public static Action nextTutorial;
     public static Action nextTutorial_Button;
+    public static Vector3 rouletteButtonPos = new Vector3(3.18f, -3.49f, 0f);
+    public static Vector3 endTurnButtonPos = new Vector3(22.57f, -1.06f, 0f);
+    public static Vector3 rightCardPos = new Vector3(12f, -13f, 0f);
 
     public int tutorialTurn;
     public int tutorialStep;
@@ -107,11 +111,16 @@ public class TutorialManager : MonoBehaviour
                         nextTutorial = () =>
                         {
                             HideTutorialBox();
+
+                            GameObject pointer = Instantiate(pointerIcon, endTurnButtonPos, Utils.QI);
+                            pointer.SetActive(true);
+
                             Action setNextTutorial_2_2 = null;
                             setNextTutorial_2_2 = () =>
                             {
                                 TurnManager.OnPlayerTurnEnd -= setNextTutorial_2_2;
                                 endTurnActivate = false;
+                                Destroy(pointer);
                                 nextTutorial = null;
                                 nextTutorial_Button = null;
                             };
@@ -158,6 +167,9 @@ public class TutorialManager : MonoBehaviour
                                     cardExample.transform.position = new Vector3(7.5f, -14f, 0f);
                                 }).SetLoops(-1);
 
+                            GameObject pointer = Instantiate(pointerIcon, rightCardPos, Utils.QI);
+                            pointer.SetActive(true);
+
                             cardActivate = true;
                             activateCardName = "숨기";
                             cardExample.SetActive(true);
@@ -171,6 +183,9 @@ public class TutorialManager : MonoBehaviour
                                 activateCardName = "";
                                 Destroy(cardExample);
                                 exampleCardSequence.Kill();
+                                Destroy(pointer);
+                                pointer = Instantiate(pointerIcon, rouletteButtonPos, Utils.QI);
+                                pointer.SetActive(true);
                                 rouletteActivate = true;
                             };
                             TurnManager.OnUseCard += setNextTutorial_3_2_card;
@@ -184,6 +199,9 @@ public class TutorialManager : MonoBehaviour
                                 HideTutorialBox();
                                 TurnManager.OnRouletteActivate -= setNextTutorial_3_2_roulette;
                                 rouletteActivate = false;
+                                Destroy(pointer);
+                                pointer = Instantiate(pointerIcon, endTurnButtonPos, Utils.QI);
+                                pointer.SetActive(true);
                                 endTurnActivate = true;
                             };
                             TurnManager.OnRouletteActivate += setNextTutorial_3_2_roulette;
@@ -192,6 +210,7 @@ public class TutorialManager : MonoBehaviour
                             setNextTutorial_3_2_endTurn = () =>
                             {
                                 TurnManager.OnPlayerTurnEnd -= setNextTutorial_3_2_endTurn;
+                                Destroy(pointer);
                                 endTurnActivate = false;
                             };
                             TurnManager.OnPlayerTurnEnd += setNextTutorial_3_2_endTurn;
@@ -218,11 +237,16 @@ public class TutorialManager : MonoBehaviour
                             nextTutorial = null;
                             nextTutorial_Button = null;
 
+                            GameObject pointer = Instantiate(pointerIcon, rouletteButtonPos, Utils.QI);
+                            pointer.SetActive(true);
+
                             Action setNextTutorial_4_2 = null;
                             setNextTutorial_4_2 = () =>
                             {
                                 TurnManager.OnRouletteActivate -= setNextTutorial_4_2;
                                 rouletteActivate = false;
+                                Destroy(pointer);
+                                DataManager.Inst.characterSO.isTutorial = false;
                                 TurnManager.Inst.isLoading = false;
                             };
                             TurnManager.OnRouletteActivate += setNextTutorial_4_2;
@@ -274,6 +298,9 @@ public class TutorialManager : MonoBehaviour
                                 cardExample.transform.position = new Vector3(7.5f, -14f, 0f);
                             }).SetLoops(-1);
 
+                        GameObject pointer = Instantiate(pointerIcon, rightCardPos, Utils.QI);
+                        pointer.SetActive(false);
+
                         Action<Card> setNextTutorial_1_1 = null;
                         setNextTutorial_1_1 = (card) =>
                         {
@@ -283,6 +310,7 @@ public class TutorialManager : MonoBehaviour
                             activateCardName = "";
                             Destroy(cardExample);
                             exampleCardSequence.Kill();
+                            Destroy(pointer);
                         };
                         TurnManager.OnUseCard += setNextTutorial_1_1;
 
@@ -292,12 +320,16 @@ public class TutorialManager : MonoBehaviour
                             activateCardName = "회전 카드 2";
                             cardExample.SetActive(true);
                             exampleCardSequence.Play();
-                            // var card = Instantiate
+                            pointer.SetActive(true);
                         };
                         break;
                     case 2:
                         hideScreenTitle.text = "룰렛의 발동";
                         hideScreenText.text = "룰렛 중앙의 버튼을 클릭하면 룰렛의 효과가 발동합니다.\n\n적 앞(12시 방향)의 룰렛은 적에게, 앨리스 앞(6시 방향)의 룰렛은 앨리스에게 효과를 적용합니다.\n\n룰렛을 발동하는 데에는 코스트가 소모되며, 같은 룰렛을 연속으로 발동하려면 더 많은 코스트가 필요합니다.";
+                        
+                        pointer = Instantiate(pointerIcon, rouletteButtonPos, Utils.QI);
+                        pointer.SetActive(false);
+
                         Action setNextTutorial_1_2 = null;
                         int tempCounter = 0;
                         setNextTutorial_1_2 = () =>
@@ -307,26 +339,34 @@ public class TutorialManager : MonoBehaviour
                             ShowTutorialBox(1, 3);
                             TurnManager.OnRouletteActivate -= setNextTutorial_1_2;
                             rouletteActivate = false;
+                            Destroy(pointer);
                         };
                         TurnManager.OnRouletteActivate += setNextTutorial_1_2;
                         nextTutorial_Button = () =>
                         {
                             rouletteActivate = true;
+                            pointer.SetActive(true);
                         };
                         break;
                     case 3:
                         hideScreenTitle.text = "코스트, 턴 종료";
                         hideScreenText.text = "룰렛을 발동하거나 카드를 사용하면 코스트가 소모되며, 코스트가 부족하면 더 이상 행동할 수 없습니다.\n\n코스트를 모두 소모하여 턴을 종료할 준비가 됐다면, 턴 종료 버튼을 눌러 턴을 종료하세요!";
+
+                        pointer = Instantiate(pointerIcon, endTurnButtonPos, Utils.QI);
+                        pointer.SetActive(false);
+
                         Action setNextTutorial_1_3 = null;
                         setNextTutorial_1_3 = () =>
                         {
                             TurnManager.OnPlayerTurnEnd -= setNextTutorial_1_3;
                             endTurnActivate = false;
+                            Destroy(pointer);
                         };
                         TurnManager.OnPlayerTurnEnd += setNextTutorial_1_3;
                         nextTutorial_Button = () =>
                         {
                             endTurnActivate = true;
+                            pointer.SetActive(true);
                         };
                         break;
                 }
@@ -356,12 +396,16 @@ public class TutorialManager : MonoBehaviour
                                 cardExample.transform.position = new Vector3(7.5f, -14f, 0f);
                             }).SetLoops(-1);
 
+                        GameObject pointer = Instantiate(pointerIcon, rightCardPos, Utils.QI);
+                        pointer.SetActive(false);
+
                         nextTutorial_Button = () =>
                         {
                             cardActivate = true;
                             activateCardName = "회전 카드 3";
                             cardExample.SetActive(true);
                             exampleCardSequence.Play();
+                            pointer.SetActive(true);
                         };
 
                         Action<Card> setNextTutorial_2_1_card = null;
@@ -372,6 +416,9 @@ public class TutorialManager : MonoBehaviour
                             activateCardName = "";
                             Destroy(cardExample);
                             exampleCardSequence.Kill();
+                            Destroy(pointer);
+                            pointer = Instantiate(pointerIcon, rouletteButtonPos, Utils.QI);
+                            pointer.SetActive(true);
                             rouletteActivate = true;
                         };
 
@@ -384,6 +431,7 @@ public class TutorialManager : MonoBehaviour
                             ShowTutorialBox(2, 2);
                             TurnManager.OnRouletteActivate -= setNextTutorial_2_1_roulette;
                             rouletteActivate = false;
+                            Destroy(pointer);
                         };
                         
                         TurnManager.OnRouletteActivate += setNextTutorial_2_1_roulette;
@@ -431,10 +479,14 @@ public class TutorialManager : MonoBehaviour
                                     cardExample.transform.position = new Vector3(7.5f, -14f, 0f);
                                 }).SetLoops(-1);
 
+                            GameObject pointer = Instantiate(pointerIcon, rightCardPos, Utils.QI);
+                            pointer.SetActive(false);
+
                             cardActivate = true;
                             activateCardName = "tutorial_allcards";
                             cardExample.SetActive(true);
                             exampleCardSequence.Play();
+                            pointer.SetActive(true);
 
                             Action<Card> setNextTutorial_4_1_card = null;
                             setNextTutorial_4_1_card = (card) =>
@@ -444,6 +496,7 @@ public class TutorialManager : MonoBehaviour
                                 activateCardName = "";
                                 Destroy(cardExample);
                                 exampleCardSequence.Kill();
+                                Destroy(pointer);
                                 ShowTutorialBox(4, 2);
                             };
                             TurnManager.OnUseCard += setNextTutorial_4_1_card;
