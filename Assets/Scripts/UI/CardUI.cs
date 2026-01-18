@@ -54,19 +54,19 @@ public class CardUI : MonoBehaviour
                 break;
         }
 
-        if(this.item.dreamPieceNum >= 0 && this.item.dreamPieceNum == TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum)
+        if(this.item.dreamPieceNum >= 0 && this.item.dreamPieceNum == DataManager.Inst.characterSO.personaPiece.persona.dreamPieceNum)
         {
-            cardImg.sprite = TurnManager.Inst.characterSO.personaPiece.cardBackgrounds[(int)this.item.rarity];
-            typeTMP.color = TurnManager.Inst.characterSO.personaPiece.textColors[0];
-            nameTMP.color = TurnManager.Inst.characterSO.personaPiece.textColors[1];
-            textTMP.color = TurnManager.Inst.characterSO.personaPiece.textColors[2];
+            cardImg.sprite = DataManager.Inst.characterSO.personaPiece.cardBackgrounds[(int)this.item.rarity];
+            typeTMP.color = DataManager.Inst.characterSO.personaPiece.textColors[0];
+            nameTMP.color = DataManager.Inst.characterSO.personaPiece.textColors[1];
+            textTMP.color = DataManager.Inst.characterSO.personaPiece.textColors[2];
         }
-        else if(this.item.dreamPieceNum >= 0 && this.item.dreamPieceNum == TurnManager.Inst.characterSO.shadowPiece.shadow.dreamPieceNum)
+        else if(this.item.dreamPieceNum >= 0 && this.item.dreamPieceNum == DataManager.Inst.characterSO.shadowPiece.shadow.dreamPieceNum)
         {
-            cardImg.sprite = TurnManager.Inst.characterSO.shadowPiece.cardBackgrounds[(int)this.item.rarity];
-            typeTMP.color = TurnManager.Inst.characterSO.shadowPiece.textColors[0];
-            nameTMP.color = TurnManager.Inst.characterSO.shadowPiece.textColors[1];
-            textTMP.color = TurnManager.Inst.characterSO.shadowPiece.textColors[2];
+            cardImg.sprite = DataManager.Inst.characterSO.shadowPiece.cardBackgrounds[(int)this.item.rarity];
+            typeTMP.color = DataManager.Inst.characterSO.shadowPiece.textColors[0];
+            nameTMP.color = DataManager.Inst.characterSO.shadowPiece.textColors[1];
+            textTMP.color = DataManager.Inst.characterSO.shadowPiece.textColors[2];
         }
         else
         {

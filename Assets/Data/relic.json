@@ -45,7 +45,7 @@
     {
       "relicName": "영원한 웃음",
       "relicTxt": "지혜가 1로 고정됩니다. 전투 시작 시 보호를 2 얻습니다.",
-      "relicSprite": "noble",
+      "relicSprite": "오브제_영원한 웃음",
       "relicOwner": 3,
       "relicVal": [
         1,
@@ -91,7 +91,7 @@
     {
       "relicName": "와인의 눈물",
       "relicTxt": "체력이 50% 이하이면 활력 버프를 1 얻습니다.",
-      "relicSprite": "noble",
+      "relicSprite": "오브제_와인의 눈물",
       "relicOwner": 6,
       "relicVal": [
         50,
@@ -107,7 +107,7 @@
     {
       "relicName": "찻잔",
       "relicTxt": "턴 시작 시 1의 체력을 회복합니다.",
-      "relicSprite": "noble",
+      "relicSprite": "오브제_찻잔",
       "relicOwner": 7,
       "relicVal": [
         1

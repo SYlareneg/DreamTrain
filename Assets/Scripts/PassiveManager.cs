@@ -847,8 +847,15 @@ public class PassiveManager : MonoBehaviour
                 // 패시브 효과 설정
                 TurnManager.OnGameStart += () =>
                 {
-                    EnemyAction.EnchantAction(new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 0)), playerSpecialRoulettes[GetSpecialRouletteIdx(false, 0)].baseVal);
-                    if(shadowName == "영역 본능+") EnemyAction.EnchantAction(new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 0)), playerSpecialRoulettes[GetSpecialRouletteIdx(false, 0)].baseVal);
+                    if (DataManager.Inst.characterSO.isTutorial)
+                    {
+                        RouletteManager.Inst.EnchantRoulettePiece(8, new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 0)), playerSpecialRoulettes[GetSpecialRouletteIdx(false, 0)].baseVal);
+                    }
+                    else
+                    {
+                        EnemyAction.EnchantAction(new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 0)), playerSpecialRoulettes[GetSpecialRouletteIdx(false, 0)].baseVal);
+                        if(shadowName == "영역 본능+") EnemyAction.EnchantAction(new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 0)), playerSpecialRoulettes[GetSpecialRouletteIdx(false, 0)].baseVal);
+                    }
                 };
                 break;
         }

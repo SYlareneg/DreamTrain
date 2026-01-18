@@ -11,6 +11,7 @@ public class CharacterSO : ScriptableObject
     [Tooltip("플레이어 남은 체력")] public int curHealth;
     public int dreamDust;
     public int leftPassengers;
+    public bool isTutorial;
 
     public DreamPiece_Player personaPiece;
     public DreamPiece_Player shadowPiece;

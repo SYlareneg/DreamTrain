@@ -37,7 +37,7 @@ public class ActivateButton : MonoBehaviour
     private void OnMouseEnter()
     {
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        Color color = Color.red;
+        Color color = Color.white;
         color.r *= 0.9f;
         sr.color = color;
     }
@@ -45,7 +45,7 @@ public class ActivateButton : MonoBehaviour
     private void OnMouseExit()
     {
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        sr.color = Color.red;
+        sr.color = Color.white;
     }
 
     // 마우스 버튼을 눌렀을 때
@@ -69,6 +69,7 @@ public class ActivateButton : MonoBehaviour
     // "버튼 클릭"으로 인정될 때 (눌렀다가 같은 오브젝트 위에서 뗐을 때만 실행)
     private void OnMouseUpAsButton()
     {
+        if(TurnManager.Inst.isLoading && (TurnManager.Inst.characterSO.isTutorial == false || TutorialManager.Inst.rouletteActivate == false)) return;
         if (TurnManager.Inst.nowCost >= useCost)
         {
             RouletteManager.Inst.ActivateRoulette();

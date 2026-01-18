@@ -47,6 +47,14 @@ public class DataManager : MonoBehaviour
 
     public void LoadDeveloperData()
     {
+        if(itemDataSO == null) itemDataSO = ScriptableObject.CreateInstance<ItemDataSO>();
+        if(dreamPieceDataSO == null) dreamPieceDataSO = ScriptableObject.CreateInstance<DreamPieceDataSO>();
+        if(enemyDataSO == null) enemyDataSO = ScriptableObject.CreateInstance<EnemyDataSO>();
+        if(keywordSO == null) keywordSO = ScriptableObject.CreateInstance<KeywordSO>();
+        if(relicDataSO == null) relicDataSO = ScriptableObject.CreateInstance<RelicDataSO>();
+        if(showBuffDataSO == null) showBuffDataSO = ScriptableObject.CreateInstance<ShowBuffDataSO>();
+        if(useableItemDataSO == null) useableItemDataSO = ScriptableObject.CreateInstance<UseableItemDataSO>();
+        if(actDataSO == null) actDataSO = ScriptableObject.CreateInstance<ActDataSO>();
         Utils.LoadData(itemDataSO, "card.json");
         Utils.LoadData(dreamPieceDataSO, "dreampiece.json");
         Utils.LoadData(enemyDataSO, "enemy.json");
@@ -155,6 +163,7 @@ public class DataManager : MonoBehaviour
         characterSO.curHealth = playerDataSO.curHealth;
         characterSO.dreamDust = playerDataSO.dreamDust;
         characterSO.leftPassengers = playerDataSO.leftPassengers;
+        characterSO.isTutorial = playerDataSO.isTutorial;
         // 카드 데이터
         if (playerDataSO.personaPiece != "")
         {
@@ -232,6 +241,7 @@ public class DataManager : MonoBehaviour
         playerDataSO.curHealth = characterSO.curHealth;
         playerDataSO.dreamDust = characterSO.dreamDust;
         playerDataSO.leftPassengers = characterSO.leftPassengers;
+        playerDataSO.isTutorial = characterSO.isTutorial;
         // 카드 데이터
         playerDataSO.personaPiece = characterSO.personaPiece != null ? characterSO.personaPiece.name : "";
         playerDataSO.isPersonaEnhanced = characterSO.personaPiece != null ? characterSO.personaPiece.persona.isEnhanced : false;

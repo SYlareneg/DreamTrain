@@ -32,7 +32,7 @@ public class EnemyManager : MonoBehaviour
     [Header("Prefabs")]
     [SerializeField][Tooltip("액션 심볼 Prefab")] GameObject actionPrefab;
     [SerializeField][Tooltip("액션 심볼 Prefab")] GameObject mainActionPrefab;
-    [SerializeField][Tooltip("액션 심볼 Prefab")] GameObject[] subActionPrefab = new GameObject[Enemy.maxSubEnemyNum];
+    [SerializeField][Tooltip("액션 심볼 Prefab")] GameObject subActionPrefab;
     [SerializeField][Tooltip("서브 적 Prefab")] GameObject subEnemyPrefab;
     [SerializeField][Tooltip("서브 적 캔버스")] Canvas subEnemyCanvas;
     [SerializeField][Tooltip("서브 적 룰렛 위치에 따른 캔버스 위치")] int[] subEnemyCanvasPos_roulettePos = new int[Enemy.maxSubEnemyNum];
@@ -53,6 +53,8 @@ public class EnemyManager : MonoBehaviour
 
     [SerializeField] GameObject enemyImg;
     [SerializeField] GameObject[] subEnemyImg;
+    [SerializeField] GameObject enemyThumbnail;
+    [SerializeField] GameObject[] subEnemyThumbnail;
     [SerializeField] TMP_Text enemyName;
     public List<EnemyAction> actionList;
     public List<EnemyAction>[] subEnemyActionList = new List<EnemyAction>[Enemy.maxSubEnemyNum];
@@ -119,6 +121,9 @@ public class EnemyManager : MonoBehaviour
         enemyImg.GetComponent<SpriteRenderer>().sprite = enemy.phase[0].sprite;
         enemyImg.GetComponent<Tooltip>().tooltipTitle = enemy.phase[0].name;
         enemyImg.GetComponent<Tooltip>().tooltipTxt = enemy.phase[0].text;
+        enemyThumbnail.transform.Find("ImageMask/Image").GetComponent<Image>().sprite = enemy.phase[0].sprite;
+        enemyThumbnail.GetComponent<Tooltip>().tooltipTitle = enemy.phase[0].name;
+        enemyThumbnail.GetComponent<Tooltip>().tooltipTxt = enemy.phase[0].text;
 
         enemySpecialRoulettes = new List<SpecialRoulette>();
         for(int i = 0; i < enemy.enemySpecialRoulettes.Length; i++)
@@ -642,6 +647,7 @@ public class EnemyManager : MonoBehaviour
         int tempIdx = Array.FindIndex(subEnemyCanvasPos_roulettePos, x => x == subEnemies[subEnemyIdx].roulettePos);
         if(tempIdx == -1) return;
         GameObject subEnemyObj = subEnemyCanvasPos_gameobject[tempIdx];
+        subEnemyObj.transform.Find("SubEnemyUI/Values/Name").GetComponent<TMP_Text>().text = subEnemy.name;
         subEnemyObj.SetActive(true);
         subEnemyCanvasPos_rouletteMarker[tempIdx].SetActive(true);
         subEnemyCanvasPos_enemyRouletteBackground[tempIdx].SetActive(true);
@@ -649,7 +655,7 @@ public class EnemyManager : MonoBehaviour
         subEnemyActionPos[subEnemyIdx] = subEnemyObj.transform.Find("EnemyActionPos");
         subEnemyExecutePos[subEnemyIdx] = subEnemyObj.transform.Find("EnemyExecutePos");
         subEnemyImg[subEnemyIdx] = subEnemyObj.transform.Find("EnemyImg").gameObject;
-        subEnemyImg[subEnemyIdx].GetComponent<Tooltip>().tooltipPos = new Vector2(subEnemyObj.transform.position.x + 87, subEnemyObj.transform.position.y - 38.8f);
+        subEnemyThumbnail[subEnemyIdx] = subEnemyObj.transform.Find("SubEnemyUI/EnemyThumbnail").gameObject;
         GameManager.Inst.SetSubEnemyUI(subEnemyIdx, subEnemyObj.transform);
 
         phaseNum_SE[subEnemyIdx] = 0;
@@ -662,6 +668,9 @@ public class EnemyManager : MonoBehaviour
         subEnemyImg[subEnemyIdx].GetComponent<SpriteRenderer>().sprite = subEnemy.phase[0].sprite;
         subEnemyImg[subEnemyIdx].GetComponent<Tooltip>().tooltipTitle = subEnemy.phase[0].name;
         subEnemyImg[subEnemyIdx].GetComponent<Tooltip>().tooltipTxt = subEnemy.phase[0].text;
+        subEnemyThumbnail[subEnemyIdx].transform.Find("ImageMask/Image").GetComponent<Image>().sprite = subEnemy.phase[0].sprite;
+        subEnemyThumbnail[subEnemyIdx].GetComponent<Tooltip>().tooltipTitle = subEnemy.phase[0].name;
+        subEnemyThumbnail[subEnemyIdx].GetComponent<Tooltip>().tooltipTxt = subEnemy.phase[0].text;
         subEnemyActionList[subEnemyIdx] = new List<EnemyAction>();
 
         List<SpecialRoulette> specialRoulettes = new List<SpecialRoulette>();
@@ -721,6 +730,9 @@ public class EnemyManager : MonoBehaviour
             enemyImg.GetComponent<SpriteRenderer>().sprite = enemy.phase[phaseNum].sprite;
             enemyImg.GetComponent<Tooltip>().tooltipTitle = enemy.phase[phaseNum].name;
             enemyImg.GetComponent<Tooltip>().tooltipTxt = enemy.phase[phaseNum].text;
+            enemyThumbnail.transform.Find("ImageMask/Image").GetComponent<Image>().sprite = enemy.phase[phaseNum].sprite;
+            enemyThumbnail.GetComponent<Tooltip>().tooltipTitle = enemy.phase[phaseNum].name;
+            enemyThumbnail.GetComponent<Tooltip>().tooltipTxt = enemy.phase[phaseNum].text;
         }
         else if (isTriggerActivated && enemy.triggerPhase[triggerPhaseNum].phaseClear)
         {
@@ -730,6 +742,9 @@ public class EnemyManager : MonoBehaviour
             enemyImg.GetComponent<SpriteRenderer>().sprite = enemy.triggerPhase[triggerPhaseNum].sprite;
             enemyImg.GetComponent<Tooltip>().tooltipTitle = enemy.triggerPhase[triggerPhaseNum].name;
             enemyImg.GetComponent<Tooltip>().tooltipTxt = enemy.triggerPhase[triggerPhaseNum].text;
+            enemyThumbnail.transform.Find("ImageMask/Image").GetComponent<Image>().sprite = enemy.triggerPhase[triggerPhaseNum].sprite;
+            enemyThumbnail.GetComponent<Tooltip>().tooltipTitle = enemy.triggerPhase[triggerPhaseNum].name;
+            enemyThumbnail.GetComponent<Tooltip>().tooltipTxt = enemy.triggerPhase[triggerPhaseNum].text;
         }
 
         // 서브 적 페이즈 전환
@@ -744,6 +759,9 @@ public class EnemyManager : MonoBehaviour
                 subEnemyImg[i].GetComponent<SpriteRenderer>().sprite = subEnemies[i].phase[phaseNum_SE[i]].sprite;
                 subEnemyImg[i].GetComponent<Tooltip>().tooltipTitle = subEnemies[i].phase[phaseNum_SE[i]].name;
                 subEnemyImg[i].GetComponent<Tooltip>().tooltipTxt = subEnemies[i].phase[phaseNum_SE[i]].text;
+                subEnemyThumbnail[i].transform.Find("ImageMask/Image").GetComponent<Image>().sprite = subEnemies[i].phase[phaseNum_SE[i]].sprite;
+                subEnemyThumbnail[i].GetComponent<Tooltip>().tooltipTitle = subEnemies[i].phase[phaseNum_SE[i]].name;
+                subEnemyThumbnail[i].GetComponent<Tooltip>().tooltipTxt = subEnemies[i].phase[phaseNum_SE[i]].text;
             }
         }
     }
@@ -757,6 +775,9 @@ public class EnemyManager : MonoBehaviour
         enemyImg.GetComponent<SpriteRenderer>().sprite = enemy.phase[phaseNum].sprite;
         enemyImg.GetComponent<Tooltip>().tooltipTitle = enemy.phase[phaseNum].name;
         enemyImg.GetComponent<Tooltip>().tooltipTxt = enemy.phase[phaseNum].text;
+        enemyThumbnail.transform.Find("ImageMask/Image").GetComponent<Image>().sprite = enemy.phase[phaseNum].sprite;
+        enemyThumbnail.GetComponent<Tooltip>().tooltipTitle = enemy.phase[phaseNum].name;
+        enemyThumbnail.GetComponent<Tooltip>().tooltipTxt = enemy.phase[phaseNum].text;
     }
 
     // 액션 리스트 초기화. 랜덤한 액션을 actionNum 개수만큼 생성
@@ -826,12 +847,13 @@ public class EnemyManager : MonoBehaviour
         // 메인 적 액션 생성
         for (int i = 0; i < currentPattern.Count; i++)
         {
-            var newActionObj = Instantiate(mainActionPrefab, enemyPos, false);
+            var newActionObj = Instantiate(mainActionPrefab, enemyThumbnail.transform, false);
+            newActionObj.transform.SetParent(enemyPos);
             newActionObj.transform.localScale = mainActionPrefab.transform.localScale;
             var newAction = newActionObj.GetComponent<EnemyAction>();
 
             newAction.SetAction(currentPattern[i], 0);
-            newAction.tooltipPos = enemyImg.GetComponent<Tooltip>().tooltipPos;
+            newAction.tooltipPos = Camera.main.WorldToScreenPoint(enemyActionPos.position) - Camera.main.WorldToScreenPoint(Vector3.zero);
 
             actionList.Add(newAction);
         }
@@ -840,17 +862,15 @@ public class EnemyManager : MonoBehaviour
         for(int i = 0; i < subEnemies.Length; i++)
         {
             if(subEnemies[i] == null || subEnemies[i].name == null) continue;
-            int tempIdx = Array.FindIndex(subEnemyCanvasPos_roulettePos, x => x == subEnemies[i].roulettePos);
-            if(tempIdx == -1) continue;
             for (int j = 0; j < currentPattern_SE[i].Count; j++)
             {
-                var newActionObj = Instantiate(subActionPrefab[tempIdx], enemyPos, false);
+                var newActionObj = Instantiate(subActionPrefab, subEnemyThumbnail[i].transform, false);
                 newActionObj.transform.SetParent(subEnemyPos[i]);
-                newActionObj.transform.localScale = subActionPrefab[tempIdx].transform.localScale;
+                newActionObj.transform.localScale = subActionPrefab.transform.localScale;
                 var newAction = newActionObj.GetComponent<EnemyAction>();
 
                 newAction.SetAction(currentPattern_SE[i][j], i + 1);
-                newAction.tooltipPos = enemyImg.GetComponent<Tooltip>().tooltipPos;
+                newAction.tooltipPos = Camera.main.WorldToScreenPoint(subEnemyActionPos[i].position) - Camera.main.WorldToScreenPoint(Vector3.zero);
 
                 subEnemyActionList[i].Add(newAction);
             }
@@ -880,29 +900,21 @@ public class EnemyManager : MonoBehaviour
             }
         }
 
-        Vector3 subActionPrefabWidthVec = new Vector3(subActionPrefab[0].transform.localScale.x / 2 + subActionMargin, 0, 0);
+        Vector3 subActionPrefabWidthVec = new Vector3(subActionPrefab.transform.localScale.x / 2 + subActionMargin, 0, 0);
         float subActionPrefabScreenWidth = Camera.main.WorldToScreenPoint(subActionPrefabWidthVec).x - Camera.main.WorldToScreenPoint(Vector3.zero).x;
-        var sortedSubEnemies = subEnemies.Where(x => x != null && x.name != null).OrderBy(x => x.roulettePos).ToArray();
-        var subActionPos = enemyActionPos.position + new Vector3(actionList.Count * (mainActionPrefab.transform.localScale.x / 2 + actionMargin) + (subActionMargin - 2 * actionMargin), 0, 0);
-        var subActionTooltipPos = mainActionPrefabScreenWidth * actionList.Count;
-        int subActionCnt = 0;
 
-        for(int i = 0; i < sortedSubEnemies.Length; i++)
+        for(int i = 0; i < subEnemies.Length; i++)
         {
-            if(sortedSubEnemies[i] == null || sortedSubEnemies[i].name == null) continue;
-            int subEnemyIdx = Array.FindIndex(subEnemies, x => x == sortedSubEnemies[i]);
-            for (int j = 0; j < subEnemyActionList[subEnemyIdx].Count; j++)
+            if(subEnemies[i] == null || subEnemies[i].name == null) continue;
+            for(int j = 0; j < subEnemyActionList[i].Count; j++)
             {
-                int tempIdx = Array.FindIndex(subEnemyCanvasPos_roulettePos, x => x == sortedSubEnemies[i].roulettePos);
-                if(tempIdx == -1) continue;
-                var targetPos = subActionPos;
-                targetPos.x += subActionCnt * (subActionPrefab[tempIdx].transform.localScale.x / 2 + subActionMargin);
-                if (subEnemyActionList[subEnemyIdx][j].transform.position != targetPos)
+                var targetPos = subEnemyActionPos[i].position;
+                targetPos.x += j * (subActionPrefab.transform.localScale.x / 2 + subActionMargin);
+                if (subEnemyActionList[i][j].transform.position != targetPos)
                 {
-                    subEnemyActionList[subEnemyIdx][j].transform.DOMove(targetPos, 0.7f);
-                    subEnemyActionList[subEnemyIdx][j].tooltipPos.x += subActionTooltipPos + subActionCnt * subActionPrefabScreenWidth;
+                    subEnemyActionList[i][j].transform.DOMove(targetPos, 0.7f);
+                    subEnemyActionList[i][j].tooltipPos.x += j * subActionPrefabScreenWidth;
                 }
-                subActionCnt++;
             }
         }
     }

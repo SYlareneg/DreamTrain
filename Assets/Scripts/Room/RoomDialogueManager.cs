@@ -26,6 +26,8 @@ public class RoomDialogueManager : MonoBehaviour
     }
 
     [SerializeField] GameObject dialoguePanel;
+    [SerializeField] GameObject dialogue;
+    [SerializeField] float dialogueAnchorMaxPivotX = 0.79f;
     [SerializeField] GameObject dialogueSpeakerName;
     [SerializeField] GameObject dialogueText;
     [SerializeField] GameObject dialogueSpeakerSprite;
@@ -65,29 +67,23 @@ public class RoomDialogueManager : MonoBehaviour
     public void ShowDialogue(DialogueLine line)
     {
         dialoguePanel.SetActive(true);
-        dialogueSpeakerName.GetComponentInChildren<TMP_Text>().text = line.speakerName;
-        if(line.speakerName == null || line.speakerName == "")
+        dialogueSpeakerName.GetComponent<TMP_Text>().text = line.speakerName;
+        dialogueSpeakerSprite.GetComponent<Image>().sprite = line.speakerSprite;
+        if(line.speakerSprite == null)
         {
-            dialogueSpeakerName.SetActive(false);
+            dialogueSpeakerSprite.SetActive(false);
+            dialogue.GetComponent<RectTransform>().anchorMax = new Vector2(1f, 0f);
         }
         else
         {
-            dialogueSpeakerName.SetActive(true);
+            dialogueSpeakerSprite.SetActive(true);
+            dialogue.GetComponent<RectTransform>().anchorMax = new Vector2(dialogueAnchorMaxPivotX, 0f);
         }
         if (typingCoroutine != null)
         {
             StopCoroutine(typingCoroutine);
         } 
         typingCoroutine = StartCoroutine(ShowTextGradually(line.text, 0.02f));
-        dialogueSpeakerSprite.GetComponent<Image>().sprite = line.speakerSprite;
-        if(line.speakerSprite == null)
-        {
-            dialogueSpeakerSprite.SetActive(false);
-        }
-        else
-        {
-            dialogueSpeakerSprite.SetActive(true);
-        }
 
         if(line.sound != null)
         {
@@ -98,13 +94,13 @@ public class RoomDialogueManager : MonoBehaviour
 
     public IEnumerator ShowTextGradually(string fullText, float delayPerCharacter)
     {
-        dialogueText.GetComponentInChildren<TMP_Text>().text = fullText;
-        dialogueText.GetComponentInChildren<TMP_Text>().maxVisibleCharacters = 0;
+        dialogueText.GetComponent<TMP_Text>().text = fullText;
+        dialogueText.GetComponent<TMP_Text>().maxVisibleCharacters = 0;
         doneBlinkSequence.Pause();
         dialogueDone.color = new Color(dialogueDone.color.r, dialogueDone.color.g, dialogueDone.color.b, 0.3f);
         foreach(char c in fullText)
         {
-            dialogueText.GetComponentInChildren<TMP_Text>().maxVisibleCharacters++;
+            dialogueText.GetComponent<TMP_Text>().maxVisibleCharacters++;
             yield return new WaitForSeconds(delayPerCharacter);
         }
         dialogueDone.color = new Color(dialogueDone.color.r, dialogueDone.color.g, dialogueDone.color.b, 1f);
@@ -147,7 +143,7 @@ public class RoomDialogueManager : MonoBehaviour
         if(typingCoroutine != null)
         {
             StopCoroutine(typingCoroutine);
-            dialogueText.GetComponentInChildren<TMP_Text>().maxVisibleCharacters = dialogueText.GetComponentInChildren<TMP_Text>().text.Length;
+            dialogueText.GetComponent<TMP_Text>().maxVisibleCharacters = dialogueText.GetComponent<TMP_Text>().text.Length;
             dialogueDone.color = new Color(dialogueDone.color.r, dialogueDone.color.g, dialogueDone.color.b, 1f);
             doneBlinkSequence.Restart();
             typingCoroutine = null;

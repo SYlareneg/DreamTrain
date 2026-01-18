@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     [SerializeField][Tooltip("플레이어 행동력 값 텍스트")] TMP_Text costTMP;
     [SerializeField][Tooltip("플레이어 체력 값 텍스트")] TMP_Text healthTMP;
     [SerializeField][Tooltip("플레이어 체력 바")] Image healthImg;
-    [SerializeField][Tooltip("플레이어 실드 UI")] GameObject shieldObj;
+    [SerializeField][Tooltip("플레이어 실드 바")] Image shieldImg;
     [SerializeField][Tooltip("플레이어 실드 값 텍스트")] TMP_Text shieldTMP;
     [SerializeField][Tooltip("플레이어 트리거 조건 텍스트")] TMP_Text triggerCountTMP;
     [SerializeField][Tooltip("플레이어 트리거 조건 바")] Image triggerCntImg;
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     [Header("적 UI")]
     [SerializeField][Tooltip("적 체력 값 텍스트")] TMP_Text[] enemyHealthTMP;
     [SerializeField][Tooltip("적 체력 바")] Image[] enemyHealthImg;
-    [SerializeField][Tooltip("적 실드 UI")] GameObject[] enemyShieldObj;
+    [SerializeField][Tooltip("적 실드 바")] Image[] enemyShieldImg;
     [SerializeField][Tooltip("적 실드 값 텍스트")] TMP_Text[] enemyShieldTMP;
     [SerializeField][Tooltip("적 트리거 조건 텍스트")] TMP_Text enemyTriggerCountTMP;
     [SerializeField][Tooltip("적 트리거 조건 바")] Image enemyTriggerCntImg;
@@ -127,16 +127,10 @@ public class GameManager : MonoBehaviour
     {
         costTMP.text = TurnManager.Inst.nowCost.ToString() + "/" + TurnManager.Inst.turnCost.ToString();
         healthTMP.text = TurnManager.Inst.curHealth.ToString() + "/" + TurnManager.Inst.maxHealth.ToString();
-        healthImg.fillAmount = (float)TurnManager.Inst.curHealth / TurnManager.Inst.maxHealth;
-        if (TurnManager.Inst.shieldHealth > 0)
-        {
-            shieldObj.SetActive(true);
-        }
-        else
-        {
-            shieldObj.SetActive(false);
-        }
-        shieldTMP.text = TurnManager.Inst.shieldHealth.ToString();
+        healthImg.fillAmount = (float)TurnManager.Inst.curHealth / (TurnManager.Inst.maxHealth + TurnManager.Inst.shieldHealth);
+        shieldImg.fillAmount = (float)(TurnManager.Inst.curHealth + TurnManager.Inst.shieldHealth) / (TurnManager.Inst.maxHealth + TurnManager.Inst.shieldHealth);
+        if(TurnManager.Inst.shieldHealth > 0) shieldTMP.text = "+" + TurnManager.Inst.shieldHealth.ToString();
+        else shieldTMP.text = "";
         triggerCountTMP.text = TurnManager.Inst.playerTriggerCnt.ToString() + "/" + TurnManager.Inst.playerTriggerMaxCnt.ToString();
         if (TurnManager.Inst.playerTriggerMaxCnt == 0)
         {
@@ -149,18 +143,11 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < enemyHealthTMP.Length; i++)
         {
             if(enemyHealthTMP[i] == null) continue;
-            if(i == 0) enemyHealthTMP[i].text = TurnManager.Inst.enemyCurHealth[i].ToString() + "/" + TurnManager.Inst.enemyMaxHealth[i].ToString();
-            else enemyHealthTMP[i].text = TurnManager.Inst.enemyCurHealth[i].ToString();
-            enemyHealthImg[i].fillAmount = (float)TurnManager.Inst.enemyCurHealth[i] / TurnManager.Inst.enemyMaxHealth[i];
-            if(TurnManager.Inst.enemyShieldHealth[i] > 0)
-            {
-                enemyShieldObj[i].SetActive(true);
-            }
-            else
-            {
-                enemyShieldObj[i].SetActive(false);
-            }
-            enemyShieldTMP[i].text = TurnManager.Inst.enemyShieldHealth[i].ToString();
+            enemyHealthTMP[i].text = TurnManager.Inst.enemyCurHealth[i].ToString() + "/" + TurnManager.Inst.enemyMaxHealth[i].ToString();
+            enemyHealthImg[i].fillAmount = (float)TurnManager.Inst.enemyCurHealth[i] / (TurnManager.Inst.enemyMaxHealth[i] + TurnManager.Inst.enemyShieldHealth[i]);
+            enemyShieldImg[i].fillAmount = (float)(TurnManager.Inst.enemyCurHealth[i] + TurnManager.Inst.enemyShieldHealth[i]) / (TurnManager.Inst.enemyMaxHealth[i] + TurnManager.Inst.enemyShieldHealth[i]);
+            if(TurnManager.Inst.enemyShieldHealth[i] > 0) enemyShieldTMP[i].text = "+" + TurnManager.Inst.enemyShieldHealth[i].ToString();
+            else enemyShieldTMP[i].text = "";
         }
         enemyTriggerCountTMP.text = TurnManager.Inst.enemyTriggerCnt.ToString() + "/" + TurnManager.Inst.enemyTriggerMaxCnt.ToString();
         if (TurnManager.Inst.enemyTriggerMaxCnt == 0)
@@ -177,8 +164,8 @@ public class GameManager : MonoBehaviour
     {
         enemyHealthTMP[subEnemyIdx + 1] = subEnemyTransform.Find("SubEnemyUI/Values/Health/HealthTMP").GetComponent<TMP_Text>();
         enemyHealthImg[subEnemyIdx + 1] = subEnemyTransform.Find("SubEnemyUI/Values/Health/HealthBar/HealthBarFront").GetComponent<Image>();
-        enemyShieldObj[subEnemyIdx + 1] = subEnemyTransform.Find("SubEnemyUI/Values/Health/Icon/ShieldIcon").gameObject;
-        enemyShieldTMP[subEnemyIdx + 1] = subEnemyTransform.Find("SubEnemyUI/Values/Health/Icon/ShieldIcon/ShieldTMP").GetComponent<TMP_Text>();
+        enemyShieldTMP[subEnemyIdx + 1] = subEnemyTransform.Find("SubEnemyUI/Values/Health/ShieldTMP").GetComponent<TMP_Text>();
+        enemyShieldImg[subEnemyIdx + 1] = subEnemyTransform.Find("SubEnemyUI/Values/Health/HealthBar/ShieldBar").GetComponent<Image>();
         RectTransform buffPosRect = subEnemyTransform.Find("SubEnemyUI/BuffPos").GetComponent<RectTransform>();
         enemyBuffPos[subEnemyIdx + 1] = RectTransformUtility.WorldToScreenPoint(Camera.main, buffPosRect.position) - new Vector2(Screen.width / 2, Screen.height / 2);
         enemyBuffUIView[subEnemyIdx + 1] = subEnemyTransform.Find("SubEnemyUI/Buffs").gameObject;
@@ -188,7 +175,7 @@ public class GameManager : MonoBehaviour
     {
         enemyHealthTMP[subEnemyIdx + 1] = null;
         enemyHealthImg[subEnemyIdx + 1] = null;
-        enemyShieldObj[subEnemyIdx + 1] = null;
+        enemyShieldImg[subEnemyIdx + 1] = null;
         enemyShieldTMP[subEnemyIdx + 1] = null;
         enemyBuffPos[subEnemyIdx + 1] = new Vector2(0, 0);
         enemyBuffUIView[subEnemyIdx + 1] = null;

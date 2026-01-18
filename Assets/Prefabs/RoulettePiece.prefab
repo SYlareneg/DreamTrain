@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1.7, y: 1.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3857257479739969034}
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1579775890662008003, guid: 3144cdc1f3632ba40bef378c2038322c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c08bdfd0b4aa4454a962240b259d3d07, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -92,7 +92,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &5668914283684189758
 MonoBehaviour:
@@ -109,10 +109,10 @@ MonoBehaviour:
   roulettePiece: {fileID: 8049098143791841213}
   rouletteValueTMP: {fileID: 7409682080955745942}
   rouletteTypeSprites:
-  - {fileID: 1579775890662008003, guid: 3144cdc1f3632ba40bef378c2038322c, type: 3}
-  - {fileID: 5301150221465536405, guid: c53e46bb395a59c42a367fa17a77f66b, type: 3}
-  - {fileID: 3375822314222703638, guid: a041ada8be0eb6d499c201160f5fa148, type: 3}
-  - {fileID: -1603803061443464624, guid: 73435535910bf8244a026492dc76623c, type: 3}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: b2a4c819523f82f4c9c700f7a0a48cd0, type: 3}
+  - {fileID: 21300000, guid: 45f0939c71c3a234ba8072f7fa1b2198, type: 3}
+  - {fileID: 21300000, guid: c08bdfd0b4aa4454a962240b259d3d07, type: 3}
   - {fileID: -4545485791306845479, guid: 4680280636d46ce49aa113784c38893e, type: 3}
   originalSprite: {fileID: 0}
   originalTooltipTitle: 
@@ -162,8 +162,8 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 1.48, y: 2.96}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 2.6167216, y: 4.094}
     newSize: {x: 1.48, y: 2.96}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -226,17 +226,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7079689124317470329}
-  m_LocalRotation: {x: 0, y: 0, z: -0.13052624, w: 0.9914449}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4622580223586936568}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -15}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.7, y: 2.6}
-  m_SizeDelta: {x: 1, y: 0.4}
+  m_AnchoredPosition: {x: 0, y: 3.41}
+  m_SizeDelta: {x: 2, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &6764942881716337190
 MeshRenderer:
@@ -263,7 +263,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: 8369906880369458792, guid: d4f11fc392ee6cf48b4d45338994bc9b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -308,8 +308,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 5
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d4f11fc392ee6cf48b4d45338994bc9b, type: 2}
+  m_sharedMaterial: {fileID: 8369906880369458792, guid: d4f11fc392ee6cf48b4d45338994bc9b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -333,8 +333,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 3
-  m_fontSizeBase: 3
+  m_fontSize: 7
+  m_fontSizeBase: 7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

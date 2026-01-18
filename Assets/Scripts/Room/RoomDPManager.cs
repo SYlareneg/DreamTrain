@@ -177,7 +177,7 @@ public class RoomDPManager : MonoBehaviour
         playerStatsSO.courage += playerCharacterSO.shadowPiece.courageStat;
         playerStatsSO.wisdom += playerCharacterSO.shadowPiece.wisdomStat;
         playerStatsSO.luck += playerCharacterSO.shadowPiece.luckStat;
-        DataManager.Inst.SavePlayerData();
+        Debug.Log(playerStatsSO.courage + ", " + playerStatsSO.wisdom + ", " + playerStatsSO.luck);
         SceneChangeManager.Inst.SceneFadeOut("MapScene");
     }
 
