@@ -10,7 +10,7 @@ public class EncounterMetaInfo
     public string nameKO;
     public EncounterType type;
     public string imageName;
-    public string filePath;
+    public string textPath;
     public int order;
     public bool isEssential;
     public TextAsset sourceCsvFile;

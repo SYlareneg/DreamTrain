@@ -324,8 +324,8 @@ public class EncounterManager : MonoBehaviour
 
         EncounterMetaInfo meta = masterDatabase[encounterID];
         TextAsset csvAsset = null;
-        string resourcePath = $"Encounters/{encounterID}"; 
-
+        string resourcePath = $"Encounters/{meta.textPath}"; 
+        Debug.Log(resourcePath);
         // 1차 시도: ID 그대로 로드
         csvAsset = Resources.Load<TextAsset>(resourcePath);
 
@@ -384,7 +384,7 @@ public class EncounterManager : MonoBehaviour
             string nextId = row[3];
             string functionCall = row[4];
             string condition = (row.Count > 5) ? row[5] : "DEFAULT";
-            Debug.Log($"id: {id}");
+            //Debug.Log($"id: {id}");
             if (!stepDictionary.ContainsKey(id))
             {
                 stepDictionary.Add(id, new EncounterStep
@@ -462,26 +462,25 @@ public class EncounterManager : MonoBehaviour
 
     void UpdateOptionsUI()
     {
-        // 1. 기존 버튼들 및 컨테이너 초기화
         ResetChoiceContainers();
-
-        // 2. 생성할 버튼 정보 수집
         List<TempOptionData> buttonsToCreate = new List<TempOptionData>();
 
         if (currentStep.options != null && currentStep.options.Count > 0)
         {
             foreach (var option in currentStep.options)
             {
-                if (!CheckCondition(option.condition)) continue; 
-                buttonsToCreate.Add(new TempOptionData(option.text, option.nextStepId, option.functionCall));
+                bool isConditionMet = CheckCondition(option.condition);
+                Debug.Log(isConditionMet);
+                // 조건 만족 여부(isConditionMet)를 함께 전달
+                buttonsToCreate.Add(new TempOptionData(option.text, option.nextStepId, option.functionCall, isConditionMet));
             }
         }
         else 
         {
-            // 옵션이 없는 경우 (기본 버튼)
-            if (IsWaitState(currentStep.nextStepId)) { /* 대기 상태면 버튼 없음 */ }
-            else if (currentStep.nextStepId == "END") buttonsToCreate.Add(new TempOptionData("떠난다", "END", null));
-            else buttonsToCreate.Add(new TempOptionData("다음", currentStep.nextStepId, null));
+            // 옵션이 없는 경우 (기본 버튼) - 항상 활성화(true)
+            if (IsWaitState(currentStep.nextStepId)) { }
+            else if (currentStep.nextStepId == "END") buttonsToCreate.Add(new TempOptionData("떠난다", "END", null, true));
+            else buttonsToCreate.Add(new TempOptionData("다음", currentStep.nextStepId, null, true));
         }
 
         int count = buttonsToCreate.Count;
@@ -511,8 +510,14 @@ public class EncounterManager : MonoBehaviour
         public string text;
         public string nextId;
         public string func;
-        public TempOptionData(string t, string n, string f) { text = t; nextId = n; func = f; }
-    }
+        public bool isValid;
+        public TempOptionData(string t, string n, string f, bool v) 
+        { 
+            text = t; 
+            nextId = n; 
+            func = f; 
+            isValid = v; 
+        }    }
     void ResetChoiceContainers()
     {
         // 모든 컨테이너 비활성화 및 기존 생성된 버튼 삭제
@@ -554,15 +559,25 @@ public class EncounterManager : MonoBehaviour
         }
         
         Button btn = btnObj.GetComponent<Button>();
+        if (!data.isValid)
+        {
+            CanvasGroup cg = btnObj.GetComponent<CanvasGroup>();
+            if (cg == null) cg = btnObj.AddComponent<CanvasGroup>();
+            cg.blocksRaycasts = false; 
+            cg.interactable = false;
+
+            cg.alpha = 0.4f; 
+            btn.interactable = false;
+            return; 
+        }
+        
         btn.onClick.AddListener(() => 
         {
-            // [수정 1] 함수(StartBattle 등)를 먼저 실행하여 isSceneLoading 상태를 갱신
             if (IsValidFunction(data.func))
             {
                 ParseAndExecuteFunctions(data.func);
             }
 
-            // [수정 2] 함수 실행 후 씬 로딩 중이 아닐 때만 다음 스텝을 즉시 재생
             if (!isSceneLoading)
             {
                 if (IsWaitState(data.nextId)) { } 
@@ -571,8 +586,6 @@ public class EncounterManager : MonoBehaviour
             }
             else
             {
-                // [수정 3] 씬 이동 중이라면(전투 진입), 화면은 갱신하지 않지만
-                // 전투가 끝나고 돌아왔을 때 진행할 스텝(NextID)은 미리 저장해야 함
                 if (actData != null && !string.IsNullOrEmpty(data.nextId) && data.nextId != "END")
                 {
                     actData.currentStepID = data.nextId;
@@ -593,12 +606,13 @@ public class EncounterManager : MonoBehaviour
         string argsRaw = "";
         Match match = Regex.Match(condition, @"\(([^)]*)\)");
         if (match.Success) argsRaw = match.Groups[1].Value.Trim();
-
+        Debug.Log(condName);
         switch (condName)
         {
             case "NeedKey":
                 if (actData != null && actData.earnedKeys != null)
                 {
+                    Debug.Log("contain: "+actData.earnedKeys.Contains(argsRaw));
                     return actData.earnedKeys.Contains(argsRaw);
                 }
                 return false;

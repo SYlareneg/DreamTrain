@@ -17,51 +17,18 @@ MonoBehaviour:
     nameKO: "\uD558\uC580 \uD1A0\uB07C"
     type: 0
     imageName: "\uC774\uC0C1\uD55C \uD1A0\uB07C"
-    filePath: White_Rabbit
+    textPath: White_Rabbit
     order: 0
     isEssential: 1
     sourceCsvFile: {fileID: 0}
     encounterContext:
-      csvRawData: "Page_ID,Type,Text_Content,Next_Page_ID,Call_Function,Constraint,\nP1,DESC,\"\uBC29\uBB38\uC744
-        \uC5F4\uACE0 \uB098\uC628 \uB2F9\uC2E0\uC758 \uAC78\uC74C\uC740 \uAC70\uB300\uD55C
-        \uB180\uC774\uACF5\uC6D0\uC758 \uC785\uAD6C \uC55E\uC5D0\uC11C \uBA48\uCDA5\uB2C8\uB2E4.
-        \uCC98\uC74C \uBCF4\uB294 \uAC83\uB4E4\uB85C \uAC00\uB4DD\uD55C\uB370\uB3C4
-        \uB2F9\uC2E0\uC740 \uC5B4\uB518\uAC00 \uC775\uC219\uD55C \uB290\uB08C\uC774
-        \uB4ED\uB2C8\uB2E4. \n\"\"\uC774\uB7F0! \uC774\uB7EC\uB2E4 \uB2A6\uACA0\uC5B4!\"\"\n\",,,\nP1,BRANCH,\uB2E4\uC74C,P2,,\nP2,DESC,\"\uD68C\uC911\uC2DC\uACC4\uB97C
-        \uC190\uC5D0 \uB4E0 \uD1A0\uB07C\uAC00 \uAE09\uD55C \uBAA9\uC18C\uB9AC\uB85C
-        \uB2F9\uC2E0\uC5D0\uAC8C \uB3C4\uC6C0\uC744 \uAD6C\uD569\uB2C8\uB2E4. \n\"\"\uD2F0\uCF13!
-        \uB098\uB294 \uD2F0\uCF13\uC774 \uD544\uC694\uD574.\"\"\n'\uD558\uC9C0\uB9CC
-        \uB098\uB3C4 \uD2F0\uCF13\uC774 \uC5C6\uB294\uAC78.'\n\uB2F9\uC2E0\uC740
-        \uC18D\uC73C\uB85C \uC0DD\uAC01\uD558\uC9C0\uB9CC, \uD1A0\uB07C\uB294 \uB2F9\uC2E0\uC758
-        \uC18D\uB9C8\uC74C\uC744 \uC77D\uC740 \uB4EF\uC774 \uC774\uC57C\uAE30\uD569\uB2C8\uB2E4.
-        \n\"\"\uC544\uB2C8\uC57C! \uB108\uB294 \uC790\uACA9\uC774 \uC788\uC73C\uB2C8
-        \uB4E4\uC5B4\uAC08 \uC218 \uC788\uC5B4. \uADF8\uB7EC\uB2C8 \uB108\uC758 \uD589\uC6B4\uC744
-        \uB098\uC5D0\uAC8C \uC870\uAE08\uB9CC \uB098\uB220\uC918. \uADF8\uB7FC \uB098\uB3C4
-        \uBD84\uBA85 \uB180\uC774\uACF5\uC6D0\uC5D0 \uB4E4\uC5B4\uAC08 \uC218 \uC788\uC744
-        \uAC70\uC57C.\"\"\n\n\n\",,,\nP2,BRANCH,\uD589\uC6B4\uC744 \uB098\uB220\uC8FC\uC9C0
-        \uC54A\uB294\uB2E4. (\uC804\uD22C),P_AFTER_BATTLE,StartBattle(WhiteRabbit),\nP2,BRANCH,\uD589\uC6B4\uC744
-        \uB098\uB220\uC900\uB2E4. (\uD589\uC6B4 -1),P_LOSE_LUCK,\"DownStatus(Luck,
-        1)\",\nP_AFTER_BATTLE,DESC,\"\"\"\uC548 \uB3FC\u2026\uAF2D \uB4E4\uC5B4\uAC00\uC57C
-        \uD558\uB294\uB370\u2026\"\"\n\uD1A0\uB07C\uB294 \uCCB4\uB825\uC774 \uB2E4\uD588\uB294\uC9C0
-        \uADF8 \uC790\uB9AC\uC5D0 \uC4F0\uB7EC\uC9D1\uB2C8\uB2E4. \n\uB2F9\uC2E0\uC740
-        \uC4F0\uB7EC\uC9C4 \uD1A0\uB07C\uB97C \uB4A4\uB85C \uD558\uACE0 \uB180\uC774\uACF5\uC6D0
-        \uC785\uAD6C\uB85C \uB4E4\uC5B4\uAC11\uB2C8\uB2E4.\",,,\nP_AFTER_BATTLE,BRANCH,\uB5A0\uB09C\uB2E4,END,,\nP_LOSE_LUCK,DESC,\"\"\"\uACE0\uB9C8\uC6CC!
-        \uB2F5\uB840\uB85C \uC774\uAC78 \uC904\uAC8C!\"\"\n\uD1A0\uB07C\uB294 \uC544\uC8FC
-        \uC2E0\uC774 \uB09C \uB4EF \uAE61\uCD1D\uAE61\uCD1D \uB701\uB2C8\uB2E4.\n\"\"\uB4DC\uB514\uC5B4
-        \uB098\uB3C4 \uB180\uC774\uACF5\uC6D0\uC5D0 \uB4E4\uC5B4\uAC08 \uC218 \uC788\uC5B4!
-        \uB2E4\uC74C\uC5D0\uB294 \uC548\uC5D0\uC11C \uBCF4\uC790\uAD6C.\"\"\n\n\uD1A0\uB07C\uB294
-        \uC21C\uC2DD\uAC04\uC5D0 \uC0AC\uB77C\uC838 \uBC84\uB838\uC2B5\uB2C8\uB2E4.\n\"\"\uC815\uB9D0
-        \uC815\uC2E0\uC5C6\uB294 \uD1A0\uB07C\uC778\uAC78.\"\"\n\uC9C0\uC9C0\uB294
-        \uC2DC\uB044\uB7EC\uC6B4 \uD1A0\uB07C\uAC00 \uB9C8\uC74C\uC5D0 \uB4E4\uC9C0
-        \uC54A\uB294\uB2E4\uB294 \uB4EF\uC774 \uD22C\uB35C\uB311\uB2C8\uB2E4.\n\n\uB2F9\uC2E0\uC740
-        \uD1A0\uB07C\uAC00 \uB5A0\uB09C \uBC29\uD5A5\uC744 \uB530\uB77C \uB180\uC774\uACF5\uC6D0\uC758
-        \uC785\uAD6C\uB85C \uB4E4\uC5B4\uAC11\uB2C8\uB2E4. \n\n\n\",,,\nP_LOSE_LUCK,BRANCH,\uB5A0\uB09C\uB2E4,END,,\n"
+      csvRawData: 
       PathID: 
   - id: ACT1_FASTEST_HORSE
     nameKO: "\uAC00\uC7A5 \uBE60\uB978 \uB9D0"
     type: 0
     imageName: Horse
-    filePath: Fastest_Horse
+    textPath: 
     order: 0
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -93,7 +60,7 @@ MonoBehaviour:
     nameKO: "\uAC8C\uC73C\uB978 \uB9D0"
     type: 0
     imageName: Horse
-    filePath: Lazy_Horse
+    textPath: 
     order: 1
     isEssential: 1
     sourceCsvFile: {fileID: 0}
@@ -128,7 +95,7 @@ MonoBehaviour:
     nameKO: "\uAC00\uC7A5 \uC88B\uC740 \uB9D0"
     type: 4
     imageName: Best_Horse
-    filePath: Best_Horse
+    textPath: 
     order: 2
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -174,7 +141,7 @@ MonoBehaviour:
     nameKO: "\uBE59\uAE00\uBE59\uAE00"
     type: 0
     imageName: "\uBE59\uAE00\uBE59\uAE00"
-    filePath: Spinning_Cup
+    textPath: 
     order: 0
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -213,7 +180,7 @@ MonoBehaviour:
     nameKO: "\uCC3B\uC794\uACFC \uC640\uC778\uC794"
     type: 0
     imageName: "\uCC3B\uC794\uACFC \uC640\uC778\uC794"
-    filePath: Wine_in_Cup
+    textPath: 
     order: 0
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -262,7 +229,7 @@ MonoBehaviour:
     nameKO: "\uD2F0\uD0C0\uC784"
     type: 6
     imageName: Tea_Time
-    filePath: Tea_Time
+    textPath: 
     order: 1
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -307,7 +274,7 @@ MonoBehaviour:
     nameKO: "\uC0AC\uB77C\uC9C4 \uC9C0\uC9C0"
     type: 0
     imageName: 
-    filePath: Missing_Zizi
+    textPath: 
     order: 0
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -357,7 +324,7 @@ MonoBehaviour:
     nameKO: "\uADC0\uC2E0\uB4E4\uB9B0 \uC778\uD615"
     type: 0
     imageName: "\uADC0\uC2E0 \uB4E4\uB9B0 \uC778\uD615"
-    filePath: Devil_Doll
+    textPath: 
     order: 3
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -410,7 +377,7 @@ MonoBehaviour:
     nameKO: "\uC720\uB839\uC774 \uB41C \uC190\uB2D8"
     type: 0
     imageName: "\uC720\uB839\uC774 \uB41C \uC190\uB2D8"
-    filePath: Guest_or_Ghost
+    textPath: 
     order: 2
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -468,7 +435,7 @@ MonoBehaviour:
     nameKO: "\uBC15\uC950\uC758 \uC2B5\uACA9"
     type: 0
     imageName: 
-    filePath: Bat_Attack
+    textPath: 
     order: 1
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -497,7 +464,7 @@ MonoBehaviour:
     nameKO: "\uBC40\uD30C\uC774\uC5B4\uC758 \uCD08\uB300"
     type: 1
     imageName: 
-    filePath: Vamp_Invitation
+    textPath: 
     order: 4
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -572,7 +539,7 @@ MonoBehaviour:
     nameKO: "\uAE38\uC744 \uC783\uC740 \uC0C1\uC778"
     type: 4
     imageName: 
-    filePath: Sheep_in_Maze
+    textPath: 
     order: 0
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -625,7 +592,7 @@ MonoBehaviour:
     nameKO: "\uD55C\uAC00\uB85C\uC6B4 \uC624\uD6C4"
     type: 5
     imageName: 
-    filePath: Sunny_Afternoon
+    textPath: 
     order: 3
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -646,7 +613,7 @@ MonoBehaviour:
     nameKO: "\uBE44\uB458\uAE30\uB294 \uC5B4\uB514\uC5D0\uC11C \uC654\uC744\uAE4C?"
     type: 3
     imageName: 
-    filePath: Where_Dove_From
+    textPath: 
     order: 1
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -673,7 +640,7 @@ MonoBehaviour:
     nameKO: "\uC2DD\uC778 \uAF43\uC758 \uC2B5\uACA9"
     type: 0
     imageName: 
-    filePath: Flower_Attack
+    textPath: 
     order: 2
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -700,7 +667,7 @@ MonoBehaviour:
     nameKO: "\uC2DC\uB4E0 \uAF43\uC5D0 \uBB3C\uC744"
     type: 3
     imageName: 
-    filePath: Water_on_Flower
+    textPath: 
     order: 4
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -735,7 +702,7 @@ MonoBehaviour:
     nameKO: "\uBBF8\uB85C \uD0C8\uCD9C"
     type: 3
     imageName: 
-    filePath: Escape_Maze
+    textPath: 
     order: 5
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -827,7 +794,7 @@ MonoBehaviour:
     nameKO: "\uB2E8 \uAC83"
     type: 5
     imageName: 
-    filePath: Sweet_Thing
+    textPath: 
     order: 0
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -850,7 +817,7 @@ MonoBehaviour:
     nameKO: "\uAE30\uB150\uD488\uC744 \uACE0\uB974\uC790"
     type: 4
     imageName: 
-    filePath: Souvenir
+    textPath: 
     order: 0
     isEssential: 0
     sourceCsvFile: {fileID: 0}

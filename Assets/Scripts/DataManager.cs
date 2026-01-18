@@ -140,7 +140,7 @@ public class DataManager : MonoBehaviour
             encInfo.nameKO = enc.nameKO;
             encInfo.type = enc.type;
             encInfo.imageName = enc.imageName;
-            encInfo.filePath = enc.filePath;
+            encInfo.textPath = enc.textPath;
             encInfo.order = enc.order;
             encInfo.isEssential = enc.isEssential;
             encInfo.encounterContext = enc.encounterContext;
