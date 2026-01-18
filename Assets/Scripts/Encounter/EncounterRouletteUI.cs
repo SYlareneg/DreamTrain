@@ -105,7 +105,7 @@ public class EncounterRouletteUI : MonoBehaviour
 
         int diff = currentStatVal - requiredStat;
 
-        if (diff > 0) // 플레이어 스탯이 더 높음 [cite: 154]
+        if (diff > 0) 
         {
             // 차이만큼 실패 -> 성공
             int convertToSuccess = Mathf.Min(failCount - 1, diff); // 실패는 최소 1개 남아야 함 [cite: 157]

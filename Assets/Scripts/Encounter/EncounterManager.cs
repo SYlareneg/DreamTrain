@@ -312,23 +312,52 @@ public class EncounterManager : MonoBehaviour
         if (!masterDatabase.ContainsKey(encounterID)) return;
 
         EncounterMetaInfo meta = masterDatabase[encounterID];
+        TextAsset csvAsset = new TextAsset();
+        Debug.Log(encounterID);
         
-        if (string.IsNullOrEmpty(meta.encounterContext.csvRawData))
+        if (encounterID.Contains("ACT1_"))
         {
-            Debug.LogError($"[EncounterManager] {encounterID}의 CSV 데이터가 비어있습니다. SO에 CSV 파일을 연결했는지 확인하세요.");
+            string fileNameOnly = encounterID.Substring(encounterID.IndexOf('_') + 1);
+            string resourcePath = $"Encounters/{fileNameOnly}";
+            
+            csvAsset = Resources.Load<TextAsset>(resourcePath);
+            
+            if (csvAsset != null)
+            {
+                Debug.Log($"[EncounterManager] '{encounterID}' 대신 '{fileNameOnly}' 파일을 로드했습니다.");
+            }
+        }
+        else
+        {
+            string resourcePath = $"Encounters/{encounterID}"; 
+            csvAsset = Resources.Load<TextAsset>(resourcePath);
+            Debug.Log("success");
+        }
+
+        // 3. 여전히 파일이 없다면 에러 출력
+        if (csvAsset == null)
+        {
+            Debug.LogError($"[EncounterManager] 파일을 찾을 수 없습니다. 경로를 확인하세요.\n" +
+                           $"1차 시도: Resources/Encounters/{encounterID}\n" +
+                           $"2차 시도(접두사 제거): Resources/Encounters/{(encounterID.Contains("_") ? encounterID.Substring(encounterID.IndexOf('_') + 1) : "해당 없음")}");
             return;
         }
+
+        // 텍스트 내용 가져오기
+        string csvText = csvAsset.text;
             
         if (!string.IsNullOrEmpty(meta.imagePath))
         {
             string imgName = Path.GetFileNameWithoutExtension(meta.imagePath);
-            Sprite img = Resources.Load<Sprite>($"Images/{imgName}");
+            Sprite img = Resources.Load<Sprite>($"Encounters/Images/{imgName}");
             if (img == null) img = Resources.Load<Sprite>(imgName);
             if (img != null) illustrationImage.sprite = img;
         }
 
         if (titleText != null) titleText.text = meta.nameKO;
-        ParseEncounterCSV(meta.encounterContext.csvRawData);
+        
+        // CSV 파싱 실행
+        ParseEncounterCSV(csvText);
     }
 
     void ParseEncounterCSV(string csvText)
@@ -576,50 +605,33 @@ public class EncounterManager : MonoBehaviour
         {
             case "StartRoulette":
             case "StartRoullete":
-                Debug.Log("rouleeeee");
-                 if (args.Length >= 2 && rouletteUI != null)
-                 {
-                     string statName = args[0];
-                     int difficulty = int.Parse(args[1]);
-                     string winPage = (args.Length > 3) ? args[3] : "P_WIN"; 
-                     string losePage = (args.Length > 4) ? args[4] : "P_LOSE";
-                     int currentStat = 0;
-                     switch (statName)
-                     {
-                        case "Wisdom": 
-                            currentStat = playerStats.wisdom;
-                            break;
-                        case "Luck": 
-                            currentStat = playerStats.luck;
-                            break;
-                        case "Courage": 
-                            currentStat = playerStats.courage;
-                            break;
-                        default:
-                            Debug.Log("Name ERror!");
-                            break;
-                            
-                     }
+                if (args.Length >= 2 && rouletteUI != null)
+                {
+                    int difficulty = int.Parse(args[1]);
+                    string statName = args[0];
+                    string winPage = (args.Length > 3) ? args[3] : "P_WIN";
+                    string losePage = (args.Length > 4) ? args[4] : "P_LOSE";
+                    roulettePanel.SetActive(true);
+                    rouletteUI.Open(statName, difficulty, (result) =>
+                    {
+                        if (result == RouletteResultType.Success || result == RouletteResultType.GreatSuccess)
+                        {
+                            PlayStep(winPage);
+                            Debug.Log("성공");
+                        }
+                        else
+                        {
+                            PlayStep(losePage);
+                            Debug.Log("실패");
+                        }
 
-                     if (currentStat > difficulty)
-                     {
-                         Debug.Log($"Roullete Start: {statName} ({currentStat} > {difficulty})");
-                         roulettePanel.SetActive(true);
-                         rouletteUI.Open(statName, difficulty, (result) => 
-                         {
-                             if (result == RouletteResultType.Success || result == RouletteResultType.GreatSuccess)
-                             {PlayStep(winPage); Debug.Log("성공");}
-                             else {PlayStep(losePage); Debug.Log("실패");}
-                         
-                             roulettePanel.SetActive(false);
-                             encounterPanel.SetActive(true);
-                             
-                         });
-                     }
-                     else Debug.Log($"{statName}가 부족합니다! (현재: {currentStat} < 필요: {difficulty})");
-                     
-                 }
-                 break;
+                        roulettePanel.SetActive(false);
+                        encounterPanel.SetActive(true);
+
+                    });
+                }
+
+                break;
             
             case "GetObjet":
                 if (args.Length >= 1) descriptionText.text += $"\n<color=#77B0FF>오브제 {args[0]} 획득!</color>";

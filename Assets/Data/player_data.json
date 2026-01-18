@@ -1,6 +1,6 @@
 {
     "maxHealth": 60,
-    "curHealth": 10,
+    "curHealth": 5,
     "dreamDust": 1000,
     "leftPassengers": 0,
     "personaPiece": "고양이의 꿈",
@@ -29,7 +29,7 @@
     "normalCards": [
         {
             "cardName": "회전 카드 2",
-            "num": 3
+            "num": 4
         },
         {
             "cardName": "회전 카드 3",
@@ -204,13 +204,18 @@
         "cfa5ee94be14426c8d8045a514e503d7",
         "cfa5ee94be14426c8d8045a514e503d7",
         "123d019361d546d2813fa3dc7afda677",
-        "d4a03d5bae154560b1cd036da8451f52"
+        "d4a03d5bae154560b1cd036da8451f52",
+        "25c94d840c2541a19a800c3240c83d72",
+        "cfa5ee94be14426c8d8045a514e503d7",
+        "25c94d840c2541a19a800c3240c83d72",
+        "25c94d840c2541a19a800c3240c83d72",
+        "873466aee32a49e4867ec60df5938673"
     ],
-    "curNodeIndex": 6,
-    "curNodeLocationID": "ICECREAM_CART",
+    "curNodeIndex": 4,
+    "curNodeLocationID": "GHOST_HOUSE",
     "lastEncounterType": 3,
     "encounterQueue": [],
     "currentStepID": "",
     "currentEncounterID": "",
-    "enemyName": "Cups"
+    "enemyName": "박쥐"
 }

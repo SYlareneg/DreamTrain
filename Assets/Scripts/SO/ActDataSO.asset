@@ -139,8 +139,8 @@ MonoBehaviour:
   - id: ACT1_WHITE_RABBIT
     nameKO: "\uD558\uC580 \uD1A0\uB07C"
     type: 0
-    imagePath: Assets/Sprites/Encounter/White_Rabbit.png
-    filePath: Assets/Scripts/Act1_Encounter/White_Rabbit
+    imagePath: "\uC774\uC0C1\uD55C \uD1A0\uB07C"
+    filePath: White_Rabbit
     order: 0
     isEssential: 1
     sourceCsvFile: {fileID: 0}
