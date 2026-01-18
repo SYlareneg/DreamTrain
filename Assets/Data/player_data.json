@@ -55,13 +55,147 @@
     "useableItems": [],
     "courage": 1,
     "wisdom": 1,
-    "luck": 1,
+    "luck": 0,
     "currentActNum": 1,
-    "mapNodes": [],
-    "totalLevel": 0,
-    "visitedNodeIDList": [],
-    "curNodeIndex": 0,
-    "curNodeLocationID": "",
+    "mapNodes": [
+        {
+            "locationID": "START",
+            "selectedEncounterPool": [],
+            "ID": "bee57f6dcc37442dad9d09cd1d78601b",
+            "level": 0,
+            "pos": 0,
+            "screenPos": {
+                "x": -19.5,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "childNodes": [
+                "e3a4c59b1c244d7884992a43147b5154"
+            ]
+        },
+        {
+            "locationID": "AMUSEMENT_PARK_ENTRANCE",
+            "selectedEncounterPool": [
+                "ACT1_WHITE_RABBIT"
+            ],
+            "ID": "e3a4c59b1c244d7884992a43147b5154",
+            "level": 1,
+            "pos": 0,
+            "screenPos": {
+                "x": -15.5,
+                "y": -0.0634804293513298,
+                "z": 0.0
+            },
+            "childNodes": [
+                "9ba4973960894ee0a3e1bc708d12be83",
+                "43101df7a2da4c2a83ebaafb68beb32b"
+            ]
+        },
+        {
+            "locationID": "MERRY_GO_ROUND",
+            "selectedEncounterPool": [
+                "ACT1_LAZY_HORSE",
+                "ACT1_BEST_HORSE"
+            ],
+            "ID": "9ba4973960894ee0a3e1bc708d12be83",
+            "level": 2,
+            "pos": 0,
+            "screenPos": {
+                "x": -11.5,
+                "y": 0.047731392085552219,
+                "z": 0.0
+            },
+            "childNodes": [
+                "7022366652364f5b946ee7beaad7c918",
+                "76e659f129f54b799e155c86b374f585"
+            ]
+        },
+        {
+            "locationID": "MAZE_GARDEN",
+            "selectedEncounterPool": [
+                "ACT1_SHEEP_IN_MAZE",
+                "ACT1_WHERE_DOVE_FROM",
+                "ACT1_FLOWER_ATTACK"
+            ],
+            "ID": "43101df7a2da4c2a83ebaafb68beb32b",
+            "level": 2,
+            "pos": -1,
+            "screenPos": {
+                "x": -11.5,
+                "y": -0.9320005178451538,
+                "z": 0.0
+            },
+            "childNodes": [
+                "6d8f5aab09da4958bed256a4884c27b4"
+            ]
+        },
+        {
+            "locationID": "TEA_CUPS",
+            "selectedEncounterPool": [],
+            "ID": "6d8f5aab09da4958bed256a4884c27b4",
+            "level": 3,
+            "pos": -2,
+            "screenPos": {
+                "x": -7.5,
+                "y": -1.7171019315719605,
+                "z": 0.0
+            },
+            "childNodes": [
+                "76e659f129f54b799e155c86b374f585"
+            ]
+        },
+        {
+            "locationID": "GHOST_HOUSE",
+            "selectedEncounterPool": [],
+            "ID": "7022366652364f5b946ee7beaad7c918",
+            "level": 3,
+            "pos": 2,
+            "screenPos": {
+                "x": -7.5,
+                "y": 1.7767665386199952,
+                "z": 0.0
+            },
+            "childNodes": [
+                "76e659f129f54b799e155c86b374f585"
+            ]
+        },
+        {
+            "locationID": "ICECREAM_CART",
+            "selectedEncounterPool": [],
+            "ID": "76e659f129f54b799e155c86b374f585",
+            "level": 4,
+            "pos": 0,
+            "screenPos": {
+                "x": -3.5,
+                "y": 0.0384458526968956,
+                "z": 0.0
+            },
+            "childNodes": [
+                "efc0f785c2784896ba4a01cbddc41cd3"
+            ]
+        },
+        {
+            "locationID": "END",
+            "selectedEncounterPool": [],
+            "ID": "efc0f785c2784896ba4a01cbddc41cd3",
+            "level": 5,
+            "pos": 0,
+            "screenPos": {
+                "x": 0.5,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "childNodes": []
+        }
+    ],
+    "totalLevel": 6,
+    "visitedNodeIDList": [
+        "bee57f6dcc37442dad9d09cd1d78601b",
+        "e3a4c59b1c244d7884992a43147b5154",
+        "43101df7a2da4c2a83ebaafb68beb32b"
+    ],
+    "curNodeIndex": 3,
+    "curNodeLocationID": "MAZE_GARDEN",
     "lastEncounterType": 0,
     "encounterQueue": [],
     "currentStepID": "",
