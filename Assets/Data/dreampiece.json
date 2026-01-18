@@ -2,10 +2,6 @@
   "dreamPieces": [
     {
       "name": "고양이의 꿈",
-      "description": "검고 귀여운 고양이입니다. 날카로운 발톱과 민첩한 몸놀림으로 위험을 돌파합니다.",
-      "courageStat": 0,
-      "wisdomStat": 0,
-      "luckStat": 1,
       "persona": {
         "type": 1,
         "dreamPieceNum": 3,
@@ -25,30 +21,6 @@
         "text_enhanced": "전투 시작 시 무작위 <color=red>2</color>칸에 발톱 룰렛을 부여합니다."
       },
       "triggerSprite": "Snowman_Trigger",
-      "cardBackgrounds": [
-        "고양이_일반",
-        "고양이_희귀"
-      ],
-      "textColors": [
-        {
-          "r": 0.6509804129600525,
-          "g": 0.6274510025978088,
-          "b": 0.6274510025978088,
-          "a": 1
-        },
-        {
-          "r": 0.14901961386203766,
-          "g": 0.14901961386203766,
-          "b": 0.14901961386203766,
-          "a": 1
-        },
-        {
-          "r": 0.21568627655506134,
-          "g": 0.21568627655506134,
-          "b": 0.21568627655506134,
-          "a": 1
-        }
-      ],
       "playerSpecialRoulettes": [
         {
           "sprite": "룰렛_발톱",
@@ -222,10 +194,6 @@
     },
     {
       "name": "뱀파이어의 꿈",
-      "description": "",
-      "courageStat": 0,
-      "wisdomStat": 0,
-      "luckStat": 0,
       "persona": {
         "type": 1,
         "dreamPieceNum": 0,
@@ -245,30 +213,6 @@
         "text_enhanced": "공격 룰렛으로 입힌 피해의 50%만큼 체력을 회복합니다. (소수점 내림)"
       },
       "triggerSprite": "Vampire_Trigger",
-      "cardBackgrounds": [
-        "뱀파이어_일반",
-        "뱀파이어_희귀"
-      ],
-      "textColors": [
-        {
-          "r": 0.7098039388656616,
-          "g": 0.6392157077789307,
-          "b": 0.6392157077789307,
-          "a": 1
-        },
-        {
-          "r": 0.14901961386203766,
-          "g": 0.12156862765550613,
-          "b": 0.12156862765550613,
-          "a": 1
-        },
-        {
-          "r": 0.20000000298023224,
-          "g": 0.16078431904315948,
-          "b": 0.16078431904315948,
-          "a": 1
-        }
-      ],
       "playerSpecialRoulettes": [
         {
           "sprite": "Roulette_Lifesteal",
@@ -339,10 +283,6 @@
     },
     {
       "name": "마술사의 꿈",
-      "description": "",
-      "courageStat": 0,
-      "wisdomStat": 0,
-      "luckStat": 0,
       "persona": {
         "type": 1,
         "dreamPieceNum": 1,
@@ -362,30 +302,6 @@
         "text_enhanced": "카드를 2장 사용하면 즉시 카드를 1장 드로우합니다."
       },
       "triggerSprite": "Magician_Trigger",
-      "cardBackgrounds": [
-        "공용_일반",
-        "공용_희귀"
-      ],
-      "textColors": [
-        {
-          "r": 0,
-          "g": 0,
-          "b": 0,
-          "a": 0
-        },
-        {
-          "r": 0,
-          "g": 0,
-          "b": 0,
-          "a": 0
-        },
-        {
-          "r": 0,
-          "g": 0,
-          "b": 0,
-          "a": 0
-        }
-      ],
       "playerSpecialRoulettes": [
         {
           "sprite": "Roulette_MagicBox",
@@ -457,10 +373,6 @@
     },
     {
       "name": "눈사람의 꿈",
-      "description": "",
-      "courageStat": 0,
-      "wisdomStat": 0,
-      "luckStat": 0,
       "persona": {
         "type": 1,
         "dreamPieceNum": 2,
@@ -480,30 +392,6 @@
         "text_enhanced": "짝수 턴 시작 시 8의 방어도를 얻습니다."
       },
       "triggerSprite": "Snowman_Trigger",
-      "cardBackgrounds": [
-        "눈사람_일반",
-        "눈사람_희귀"
-      ],
-      "textColors": [
-        {
-          "r": 0.250980406999588,
-          "g": 0.30980393290519714,
-          "b": 0.3490196168422699,
-          "a": 1
-        },
-        {
-          "r": 0.12156862765550613,
-          "g": 0.13725490868091583,
-          "b": 0.14901961386203766,
-          "a": 1
-        },
-        {
-          "r": 0.16078431904315948,
-          "g": 0.18431372940540314,
-          "b": 0.20000000298023224,
-          "a": 1
-        }
-      ],
       "playerSpecialRoulettes": [
         {
           "sprite": "freeze",

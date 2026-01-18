@@ -75,6 +75,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     void OnMouseEnter()
     {
+        if(TurnManager.Inst == null || TurnManager.Inst.isLoading) return;
         if (objectEnter) return;
         SetupTooltip();
         objectEnter = true;

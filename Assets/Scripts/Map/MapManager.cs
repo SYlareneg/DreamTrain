@@ -250,8 +250,10 @@ public class MapManager : MonoBehaviour
             sr.sortingOrder = 2;
             DOTween.To(() => sr.size, x => sr.size = x, new Vector2(moveRoad.GetComponent<SpriteRenderer>().size.x, 1f), 3f);
         }
+        player.GetComponent<Animator>().SetBool("isMove", true);
         player.transform.DOMove(mapNodeScreenPos[mapNode.ID], 3f).OnComplete(() =>
         {
+            player.GetComponent<Animator>().SetBool("isMove", false);
             curNode = mapNode;
             actSO.visitedNodeIDList.Add(mapNode.ID);
             actSO.curNodeIndex = map.sortedMapNodeList.IndexOf(mapNode);
