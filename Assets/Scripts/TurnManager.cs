@@ -151,8 +151,12 @@ public class TurnManager : MonoBehaviour
     {
         Utils.AllignActions(ref OnGameStart, typeof(ShowBuff), typeof(RelicManager));
         OnGameStart?.Invoke();
-        // BuffManager.Inst.AddShowBuff("회전 봉인", EBuffAffectType.Enemy, 2, false);
         // BuffManager.Inst.AddShowBuff("강화", EBuffAffectType.Enemy, 2, false);
+        // BuffManager.Inst.AddShowBuff("보호", EBuffAffectType.Enemy, 2, false);
+        // BuffManager.Inst.AddShowBuff("활력", EBuffAffectType.Enemy, 2, false);
+        // BuffManager.Inst.AddShowBuff("주저함", EBuffAffectType.Enemy, 2, false);
+        // BuffManager.Inst.AddShowBuff("환영", EBuffAffectType.Enemy, 2, false);
+        // BuffManager.Inst.AddShowBuff("놀이 시간", EBuffAffectType.Player, 2, false);
         if(characterSO.isTutorial && characterSO.personaPiece.persona.dreamPieceNum == 3)
         {
             playerTriggerCnt = 8;

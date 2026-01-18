@@ -1,9 +1,9 @@
 {
     "maxHealth": 60,
     "curHealth": 60,
-    "dreamDust": 1000,
+    "dreamDust": 0,
     "leftPassengers": 0,
-    "isTutorial": true,
+    "isTutorial": false,
     "personaPiece": "고양이의 꿈",
     "isPersonaEnhanced": false,
     "personaCards": [
@@ -12,51 +12,152 @@
             "num": 1
         },
         {
-            "cardName": "고양이걸음",
-            "num": 2
+            "cardName": "알뜰한 사냥꾼",
+            "num": 1
         },
         {
-            "cardName": "숨기",
-            "num": 2
+            "cardName": "마구 할퀴기",
+            "num": 1
+        },
+        {
+            "cardName": "발톱 손질",
+            "num": 1
         },
         {
             "cardName": "소심한 할퀴기",
+            "num": 1
+        },
+        {
+            "cardName": "날카로운 발톱",
+            "num": 1
+        },
+        {
+            "cardName": "고양이의 시간",
+            "num": 1
+        },
+        {
+            "cardName": "기민함",
+            "num": 1
+        },
+        {
+            "cardName": "실뭉치",
+            "num": 1
+        },
+        {
+            "cardName": "고양이걸음",
+            "num": 1
+        },
+        {
+            "cardName": "실 풀기",
+            "num": 1
+        },
+        {
+            "cardName": "놀이 시간",
+            "num": 1
+        },
+        {
+            "cardName": "숨기",
+            "num": 1
+        },
+        {
+            "cardName": "그루밍",
+            "num": 1
+        },
+        {
+            "cardName": "간식 시간",
             "num": 1
         }
     ],
     "shadowPiece": "고양이의 꿈",
     "isShadowEnhanced": false,
-    "shadowCards": [],
-    "normalCards": [
+    "shadowCards": [
         {
-            "cardName": "회전 카드 2",
-            "num": 3
+            "cardName": "발톱 세우기",
+            "num": 1
         },
         {
-            "cardName": "회전 카드 3",
-            "num": 3
+            "cardName": "알뜰한 사냥꾼",
+            "num": 1
         },
         {
-            "cardName": "회전 카드 5",
+            "cardName": "마구 할퀴기",
+            "num": 1
+        },
+        {
+            "cardName": "발톱 손질",
+            "num": 1
+        },
+        {
+            "cardName": "소심한 할퀴기",
+            "num": 1
+        },
+        {
+            "cardName": "날카로운 발톱",
+            "num": 1
+        },
+        {
+            "cardName": "고양이의 시간",
+            "num": 1
+        },
+        {
+            "cardName": "기민함",
+            "num": 1
+        },
+        {
+            "cardName": "실뭉치",
+            "num": 1
+        },
+        {
+            "cardName": "고양이걸음",
+            "num": 1
+        },
+        {
+            "cardName": "실 풀기",
+            "num": 1
+        },
+        {
+            "cardName": "놀이 시간",
+            "num": 1
+        },
+        {
+            "cardName": "숨기",
+            "num": 1
+        },
+        {
+            "cardName": "그루밍",
+            "num": 1
+        },
+        {
+            "cardName": "간식 시간",
             "num": 1
         }
     ],
-    "relics": [
-        7
+    "normalCards": [
+        {
+            "cardName": "회전 카드 1",
+            "num": 2
+        },
+        {
+            "cardName": "회전 카드 2",
+            "num": 2
+        },
+        {
+            "cardName": "회전 카드 3",
+            "num": 2
+        }
     ],
-    "relicEnhancements": [
-        false
-    ],
+    "relics": [],
+    "relicEnhancements": [],
     "useableItems": [],
     "courage": 1,
-    "wisdom": 3,
-    "luck": 0,
-    "currentActNum": 2,
+    "wisdom": 1,
+    "luck": 3,
+    "currentActNum": 1,
     "mapNodes": [
         {
             "locationID": "START",
             "selectedEncounterPool": [],
-            "ID": "211c36f8f03e4ebf829b05dc91e765c5",
+            "ID": "017df60b86124c7c8d68a225ef30f0c1",
             "level": 0,
             "pos": 0,
             "screenPos": {
@@ -65,7 +166,7 @@
                 "z": 0.0
             },
             "childNodes": [
-                "25c94d840c2541a19a800c3240c83d72"
+                "bbb394ab0e104c228193e40d45314d83"
             ]
         },
         {
@@ -73,36 +174,18 @@
             "selectedEncounterPool": [
                 "ACT1_WHITE_RABBIT"
             ],
-            "ID": "25c94d840c2541a19a800c3240c83d72",
+            "ID": "bbb394ab0e104c228193e40d45314d83",
             "level": 1,
             "pos": 0,
             "screenPos": {
                 "x": -15.5,
-                "y": -0.04909485951066017,
+                "y": -0.017109952867031099,
                 "z": 0.0
             },
             "childNodes": [
-                "9c0689f3fdd748179a6da38f94238342",
-                "cfa5ee94be14426c8d8045a514e503d7",
-                "873466aee32a49e4867ec60df5938673"
-            ]
-        },
-        {
-            "locationID": "MERRY_GO_ROUND",
-            "selectedEncounterPool": [
-                "ACT1_FASTEST_HORSE",
-                "ACT1_LAZY_HORSE"
-            ],
-            "ID": "9c0689f3fdd748179a6da38f94238342",
-            "level": 2,
-            "pos": -2,
-            "screenPos": {
-                "x": -11.5,
-                "y": -1.7284736633300782,
-                "z": 0.0
-            },
-            "childNodes": [
-                "d4a03d5bae154560b1cd036da8451f52"
+                "2e7b34acded54abb865ccb6fbc6c03e9",
+                "0b18ed61ef834365b0e7c21076c825f7",
+                "5ff2d372832b4c4ba6c469fe0175ab45"
             ]
         },
         {
@@ -111,77 +194,95 @@
                 "ACT1_SPINNING_CUP",
                 "ACT1_TEA_TIME"
             ],
-            "ID": "cfa5ee94be14426c8d8045a514e503d7",
+            "ID": "2e7b34acded54abb865ccb6fbc6c03e9",
             "level": 2,
-            "pos": 0,
+            "pos": 2,
             "screenPos": {
                 "x": -11.5,
-                "y": 0.06279196590185166,
+                "y": 1.7994372844696046,
                 "z": 0.0
             },
             "childNodes": [
-                "123d019361d546d2813fa3dc7afda677"
+                "1d659d937d064a59ab5d598da5e57e19"
             ]
         },
         {
             "locationID": "GHOST_HOUSE",
             "selectedEncounterPool": [
                 "ACT1_MISSING_ZIZI",
-                "ACT1_BAT_ATTACK",
-                "ACT1_DEVIL_DOLL"
+                "ACT1_DEVIL_DOLL",
+                "ACT1_VAMP_INVITATION"
             ],
-            "ID": "873466aee32a49e4867ec60df5938673",
+            "ID": "0b18ed61ef834365b0e7c21076c825f7",
             "level": 2,
-            "pos": 1,
+            "pos": -2,
             "screenPos": {
                 "x": -11.5,
-                "y": 0.9430440664291382,
+                "y": -1.7352943420410157,
                 "z": 0.0
             },
             "childNodes": [
-                "d4a03d5bae154560b1cd036da8451f52"
+                "6d107765b6654d18a09bb46572922ee6"
             ]
         },
         {
             "locationID": "MAZE_GARDEN",
             "selectedEncounterPool": [
                 "ACT1_SHEEP_IN_MAZE",
-                "ACT1_SUNNY_AFTERNOON",
-                "ACT1_WATER_ON_FLOWER"
+                "ACT1_FLOWER_ATTACK",
+                "ACT1_SUNNY_AFTERNOON"
             ],
-            "ID": "123d019361d546d2813fa3dc7afda677",
-            "level": 3,
+            "ID": "5ff2d372832b4c4ba6c469fe0175ab45",
+            "level": 2,
             "pos": 0,
             "screenPos": {
-                "x": -7.5,
-                "y": 0.09049632400274277,
+                "x": -11.5,
+                "y": 0.01982186734676361,
                 "z": 0.0
             },
             "childNodes": [
-                "d4a03d5bae154560b1cd036da8451f52"
+                "1d659d937d064a59ab5d598da5e57e19"
+            ]
+        },
+        {
+            "locationID": "MERRY_GO_ROUND",
+            "selectedEncounterPool": [
+                "ACT1_FASTEST_HORSE",
+                "ACT1_LAZY_HORSE"
+            ],
+            "ID": "6d107765b6654d18a09bb46572922ee6",
+            "level": 3,
+            "pos": -2,
+            "screenPos": {
+                "x": -7.5,
+                "y": -1.7610726356506348,
+                "z": 0.0
+            },
+            "childNodes": [
+                "1d659d937d064a59ab5d598da5e57e19"
             ]
         },
         {
             "locationID": "ICECREAM_CART",
             "selectedEncounterPool": [
-                "ACT1_SWEET_THING"
+                "ACT1_SOUVENIR"
             ],
-            "ID": "d4a03d5bae154560b1cd036da8451f52",
+            "ID": "1d659d937d064a59ab5d598da5e57e19",
             "level": 4,
             "pos": 0,
             "screenPos": {
                 "x": -3.5,
-                "y": -0.04638754576444626,
+                "y": 0.06012123078107834,
                 "z": 0.0
             },
             "childNodes": [
-                "96845604825040de8f1247854138fba0"
+                "f5731c099aaa4e708de280531804753c"
             ]
         },
         {
             "locationID": "END",
             "selectedEncounterPool": [],
-            "ID": "96845604825040de8f1247854138fba0",
+            "ID": "f5731c099aaa4e708de280531804753c",
             "level": 5,
             "pos": 0,
             "screenPos": {
@@ -194,28 +295,17 @@
     ],
     "totalLevel": 6,
     "visitedNodeIDList": [
-        "211c36f8f03e4ebf829b05dc91e765c5",
-        "25c94d840c2541a19a800c3240c83d72",
-        "873466aee32a49e4867ec60df5938673",
-        "d4a03d5bae154560b1cd036da8451f52",
-        "96845604825040de8f1247854138fba0",
-        "25c94d840c2541a19a800c3240c83d72",
-        "cfa5ee94be14426c8d8045a514e503d7",
-        "123d019361d546d2813fa3dc7afda677",
-        "25c94d840c2541a19a800c3240c83d72",
-        "cfa5ee94be14426c8d8045a514e503d7",
-        "123d019361d546d2813fa3dc7afda677",
-        "123d019361d546d2813fa3dc7afda677",
-        "cfa5ee94be14426c8d8045a514e503d7",
-        "cfa5ee94be14426c8d8045a514e503d7",
-        "123d019361d546d2813fa3dc7afda677",
-        "d4a03d5bae154560b1cd036da8451f52"
+        "017df60b86124c7c8d68a225ef30f0c1",
+        "bbb394ab0e104c228193e40d45314d83",
+        "0b18ed61ef834365b0e7c21076c825f7",
+        "6d107765b6654d18a09bb46572922ee6",
+        "1d659d937d064a59ab5d598da5e57e19"
     ],
     "curNodeIndex": 6,
     "curNodeLocationID": "ICECREAM_CART",
-    "lastEncounterType": 3,
+    "lastEncounterType": 0,
     "encounterQueue": [],
     "currentStepID": "",
     "currentEncounterID": "",
-    "enemyName": "흰 토끼"
+    "enemyName": "horse"
 }

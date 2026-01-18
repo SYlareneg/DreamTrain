@@ -288,8 +288,8 @@ public class RouletteManager : MonoBehaviour
 
         for (int i = 0; i < rouletteNum; i++)
         {
-            var roulettePiece = Instantiate(roulettePiecePrefab, Vector3.zero, Utils.QI);
-            roulettePiece.transform.rotation *= Quaternion.Euler(0f, 0f, -180f / rouletteNum - 360f * i / rouletteNum);
+            var roulettePiece = Instantiate(roulettePiecePrefab, new Vector3(1.89f * Mathf.Sin((30 + 360f * i / rouletteNum) * Mathf.Deg2Rad), 1.89f * Mathf.Cos((30 + 360f * i / rouletteNum) * Mathf.Deg2Rad), 0f), Utils.QI);
+            roulettePiece.transform.rotation *= Quaternion.Euler(0f, 0f, -30 - 360f * i / rouletteNum);
             roulettePiece.transform.SetParent(rouletteArea.transform.parent, false);
             roulettePieces[i] = roulettePiece.GetComponent<RoulettePiece>();
             roulettePieces[i].Setup(EnemyManager.Inst.enemy.roulettePattern[i]);

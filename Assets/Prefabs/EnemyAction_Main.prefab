@@ -144,11 +144,11 @@ MonoBehaviour:
   enemyActionTMP: {fileID: 2747324800066987363}
   enemyActionSprites:
   - {fileID: 5904909229579441647, guid: d9d90f4fdacbc1641bc089f578d3fc05, type: 3}
-  - {fileID: -503537775607994396, guid: e6516cbe38e9c54488c3fa3a7ae338cf, type: 3}
-  - {fileID: -503537775607994396, guid: e6516cbe38e9c54488c3fa3a7ae338cf, type: 3}
-  - {fileID: 21300000, guid: 09ca13c9a1d05fa4b8d6c4b7cfea1651, type: 3}
-  - {fileID: -9072811048990575798, guid: ddae0aa653d142d4aa972d46d0908c0d, type: 3}
-  - {fileID: 4760986240223711845, guid: 08f886e1f88bc6a42bfc4541c1aaf99d, type: 3}
+  - {fileID: 21300000, guid: 88224f1d9ed542546926f7c1b1b3e09c, type: 3}
+  - {fileID: 21300000, guid: 74699a2939aa62e45949e23161d2287e, type: 3}
+  - {fileID: 21300000, guid: 68a2f5c14cdc49a4d81d9216451d4bc9, type: 3}
+  - {fileID: 21300000, guid: 70fef8152fee4a44f9f25127be0a2943, type: 3}
+  - {fileID: 21300000, guid: fd3999e04658e9e44a7fc204b8b02028, type: 3}
   - {fileID: -9202054676734628973, guid: 2a52294a21365ef449b22a23d4a355a6, type: 3}
   - {fileID: -9202054676734628973, guid: 2a52294a21365ef449b22a23d4a355a6, type: 3}
   actionType: 0
@@ -291,13 +291,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3917703137800477427}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.17364816, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.18, y: 0.18, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.31, y: -0.18, z: 0}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7492890483313196873}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 20}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2927936166637329159
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -345,7 +345,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -3
-  m_Sprite: {fileID: 21300000, guid: 09ca13c9a1d05fa4b8d6c4b7cfea1651, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 70fef8152fee4a44f9f25127be0a2943, type: 3}
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FlipX: 0
   m_FlipY: 0

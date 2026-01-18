@@ -83,7 +83,7 @@
     {
       "name": "환영",
       "text": "받는 피해를 0으로 만듭니다. 효과 발동 시 횟수를 소모합니다.\n남은 횟수: 값",
-      "icon": "BuffIcon_Example",
+      "icon": "버프_환영",
       "type": 2,
       "effectType": 0,
       "defaultVal": [
@@ -121,7 +121,7 @@
     {
       "name": "놀이 시간",
       "text": "회전 카드를 사용할 때마다 행동력을 1 얻습니다.\n지속 턴수: 값턴",
-      "icon": "BuffIcon_Example",
+      "icon": "버프_놀이시간",
       "type": 1,
       "effectType": 0,
       "defaultVal": [

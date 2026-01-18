@@ -22,7 +22,7 @@ public class MapNodeTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void SetupTooltip()
     {
         if (tooltip != null || tooltipDisable == true) return;
-        Vector3 tooltipScreenPos = Camera.main.WorldToScreenPoint(tooltipPos + MapManager.Inst.tooltipOffset) - Camera.main.WorldToScreenPoint(Camera.main.transform.position);
+        Vector3 tooltipScreenPos = Camera.main.WorldToScreenPoint(tooltipPos + MapManager.Inst.tooltipOffset) - Camera.main.WorldToScreenPoint(new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 0));
         Vector3 newPos = new Vector3(tooltipScreenPos.x, tooltipScreenPos.y, 0);
         tooltip = Instantiate(tooltipPrefab, newPos, Utils.QI);
         Canvas canvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
@@ -45,16 +45,12 @@ public class MapNodeTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         if (outRight)
         {
             pivot.x = 1;
-            tooltip.transform.position += Camera.main.WorldToScreenPoint(new Vector3(MapManager.Inst.tooltipOffset.x * -2, 0, 0)) - Camera.main.WorldToScreenPoint(Vector3.zero);
-            tooltipRect.anchoredPosition += new Vector2(MapManager.Inst.tooltipOffset.x * -2, 0);
         }
         else if (outLeft) pivot.x = 0;
         if (outTop) pivot.y = 1;
         else if (outBottom)
         {
             pivot.y = 0;
-            tooltip.transform.position += Camera.main.WorldToScreenPoint(new Vector3(0, MapManager.Inst.tooltipOffset.y * -2, 0)) - Camera.main.WorldToScreenPoint(Vector3.zero);
-            tooltipRect.anchoredPosition += new Vector2(0, MapManager.Inst.tooltipOffset.y * -2);
         }
         tooltipRect.pivot = pivot;
 
@@ -62,12 +58,12 @@ public class MapNodeTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         tooltipTMP[0].text = tooltipTitle;
         tooltipTMP[1].text = tooltipTxt;
 
-        Transform mapNodeType = tooltip.transform.Find("TooltipTitle/MapNodeType");
+        Transform mapNodeType = tooltip.transform.Find("MapTooltip/TooltipTitle/MapNodeType");
         if (mapNodeType != null)
         {
             List<string> nextNodeIDs = MapManager.Inst.curNode.childNodes;
             MapNode thisNode = GetComponent<MapNodeObject>().mapNode;
-            if (nextNodeIDs.Contains(thisNode.ID) == false)
+            if (nextNodeIDs.Contains(thisNode.ID) == false && DataManager.Inst.actSO.visitedNodeIDList.Contains(thisNode.ID) == false)
             {
                 for(int i = 0; i < thisNode.encounterNum; i++)
                 {

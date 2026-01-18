@@ -9,7 +9,6 @@ public class MapNodeObject : MonoBehaviour
     [SerializeField] float expandSize = 1.1f;
     [SerializeField] float blinkInterval = 1f;
     Vector3 originScale;
-    Tooltip tooltip;
     Sequence blinkSeq;
     
     private void OnMouseEnter()
@@ -63,7 +62,6 @@ public class MapNodeObject : MonoBehaviour
 
     private void Start()
     {
-        tooltip = GetComponent<Tooltip>();
         originScale = transform.localScale;
         // Color color = spriteRenderer.color;
         // color.a = 0.5f;
@@ -86,13 +84,6 @@ public class MapNodeObject : MonoBehaviour
             // Color color = spriteRenderer.color;
             // color.a = 1f;
             // spriteRenderer.color = color;
-        }
-        if(tooltip != null)
-        {
-            tooltip.tooltipTitle = mapNode.title;
-            tooltip.tooltipTxt = mapNode.text;
-            tooltip.tooltipPos = Camera.main.WorldToScreenPoint(transform.position) - Camera.main.WorldToScreenPoint(Vector3.zero);
-            tooltip.tooltipPos += MapManager.Inst.tooltipOffset;
         }
 
         if(MapManager.Inst.curNode.childNodes.Find(x => x == mapNode.ID) == null && blinkSeq.IsActive())
