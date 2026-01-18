@@ -6154,7 +6154,7 @@ MonoBehaviour:
   cardDatabase: {fileID: 11400000, guid: 200e71a8166738b4a98d746fa337adde, type: 2}
   sofaManager: {fileID: 1493062490}
   cardGetUI: {fileID: 2090230963}
-  isDebuging: 1
+  isDebuging: 0
   debuggerID: ACT1_SOUVENIR
   cardGetPanel: {fileID: 2012552559}
   cardGetConfirmBtn: {fileID: 1589231635}
