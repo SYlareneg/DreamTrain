@@ -2,10 +2,14 @@
   "dreamPieces": [
     {
       "name": "고양이의 꿈",
+      "description": "검고 귀여운 고양이입니다. 날카로운 발톱과 민첩한 몸놀림으로 위험을 돌파합니다.",
+      "courageStat": 0,
+      "wisdomStat": 0,
+      "luckStat": 1,
       "persona": {
         "type": 1,
         "dreamPieceNum": 3,
-        "sprite": "꿈조각_고양이_01",
+        "sprite": "꿈조각_고양이_02",
         "name": "사냥 본능",
         "text": "카드를 사용할 때마다 트리거를 1  얻습니다.\n트리거 효과: 모든 적에게 24의 데미지를 줍니다.",
         "name_enhanced": "사냥 본능+",
@@ -14,13 +18,13 @@
       "shadow": {
         "type": 2,
         "dreamPieceNum": 3,
-        "sprite": "꿈조각_고양이_01",
+        "sprite": "꿈조각_고양이_02",
         "name": "영역 본능",
         "text": "전투 시작 시 무작위 1칸에 발톱 룰렛을 부여합니다.",
         "name_enhanced": "영역 본능+",
         "text_enhanced": "전투 시작 시 무작위 <color=red>2</color>칸에 발톱 룰렛을 부여합니다."
       },
-      "triggerSprite": "Snowman_Trigger",
+      "triggerSprite": "DP_illust_고양이_1",
       "playerSpecialRoulettes": [
         {
           "sprite": "룰렛_발톱",
@@ -194,6 +198,10 @@
     },
     {
       "name": "뱀파이어의 꿈",
+      "description": "",
+      "courageStat": 0,
+      "wisdomStat": 0,
+      "luckStat": 0,
       "persona": {
         "type": 1,
         "dreamPieceNum": 0,
@@ -283,6 +291,10 @@
     },
     {
       "name": "마술사의 꿈",
+      "description": "",
+      "courageStat": 0,
+      "wisdomStat": 0,
+      "luckStat": 0,
       "persona": {
         "type": 1,
         "dreamPieceNum": 1,
@@ -373,6 +385,10 @@
     },
     {
       "name": "눈사람의 꿈",
+      "description": "",
+      "courageStat": 0,
+      "wisdomStat": 0,
+      "luckStat": 0,
       "persona": {
         "type": 1,
         "dreamPieceNum": 2,

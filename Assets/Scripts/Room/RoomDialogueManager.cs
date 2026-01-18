@@ -178,10 +178,11 @@ public class RoomDialogueManager : MonoBehaviour
             speakerSprite = null,
             sound = null
         };
-        SceneChangeManager.Inst.SceneFadeIn(() => { 
-            RoomPlayer.Inst.isInteractable = false;
+        RoomPlayer.Inst.isInteractable = false;
+        SceneChangeManager.Inst.SceneFadeIn(() => {
             currentDialogueLines = new List<DialogueLine>() { startLine1, startLine2 };
             currentLineIndex = -1;
+            RoomPlayer.Inst.isInteractable = false;
             ShowNextDialogue(new InputAction.CallbackContext());
         });
     }

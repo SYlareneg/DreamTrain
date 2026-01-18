@@ -32,7 +32,7 @@ public class RoomDPManager : MonoBehaviour
     [SerializeField] RoomDPSlider backSlider;
     [SerializeField] RoomDPMarker dpMarker1;
     [SerializeField] RoomDPMarker dpMarker2;
-    [SerializeField] RoomDPSlider startSlider;
+    [SerializeField] RoomDPChain startSlider;
 
     public bool isShowingPersona = true;
     public DreamPiece_Reference currentDreamPiece;
@@ -177,7 +177,6 @@ public class RoomDPManager : MonoBehaviour
         playerStatsSO.courage += playerCharacterSO.shadowPiece.courageStat;
         playerStatsSO.wisdom += playerCharacterSO.shadowPiece.wisdomStat;
         playerStatsSO.luck += playerCharacterSO.shadowPiece.luckStat;
-        Debug.Log(playerStatsSO.courage + ", " + playerStatsSO.wisdom + ", " + playerStatsSO.luck);
         SceneChangeManager.Inst.SceneFadeOut("MapScene");
     }
 
