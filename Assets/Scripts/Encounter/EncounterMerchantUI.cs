@@ -255,7 +255,6 @@ public class EncounterMerchantUI : MonoBehaviour
 
         foreach (var obj in selectedObjets)
         {
-            // RelicItem_Data 자체에 cost가 있으므로 그것을 사용
             stageSO.merchantSellObjets.Add(new SellObjet 
             { 
                 objetItem = obj, 

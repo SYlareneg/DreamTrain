@@ -29,6 +29,7 @@ public class EncounterRouletteUI : MonoBehaviour
 
     private List<RouletteResultType> currentSegments = new List<RouletteResultType>();
     private bool isSpinning = false;
+    public TextMeshProUGUI resultText;
     
     // 콜백: 결과가 나왔을 때 실행할 함수 (성공여부 반환)
     private System.Action<RouletteResultType> onCompleteCallback;
@@ -42,6 +43,7 @@ public class EncounterRouletteUI : MonoBehaviour
 
     public void Open(string statName, int difficulty, System.Action<RouletteResultType> onComplete)
     {
+        resultText.text = "";
         panelRoot.SetActive(true);
         Debug.Log(statName);
         this.onCompleteCallback = onComplete;
@@ -238,9 +240,14 @@ public class EncounterRouletteUI : MonoBehaviour
         // 컨테이너가 30도(시계) 돌면 12시엔 11번 인덱스(반시계 방향 인덱스)가 옴.
         // 단순하게 Random.Range로 정한 targetIndex를 그대로 결과로 써도 무방함 (시각적 싱크만 맞다면)
         RouletteResultType result = currentSegments[targetIndex]; // 미리 정한 결과 사용
-        
+        yield return new WaitForSeconds(0.5f); // 결과 확인 대기
+        switch (result){
+            case (RouletteResultType.Success): resultText.text = "성 공 !"; break;
+            case (RouletteResultType.GreatSuccess): resultText.text = "대 성 공 !"; break;
+            case (RouletteResultType.Fail): resultText.text = "실 패 !"; break;
+        }
         yield return new WaitForSeconds(1f); // 결과 확인 대기
-
+        resultText.text = "";
         if (playerStats != null)
         {
             playerStats.EvaluateRouletteResult(result);

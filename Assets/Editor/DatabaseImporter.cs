@@ -84,7 +84,7 @@ public class DatabaseImporter : EditorWindow
                 info.type = EncounterType.Battle;
             }
 
-            info.imagePath = row[3].Trim();
+            info.imageName = row[3].Trim();
             
             info.filePath = row[4].Trim();
 

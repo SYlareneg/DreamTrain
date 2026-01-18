@@ -1,7 +1,7 @@
 {
     "maxHealth": 60,
-    "curHealth": 60,
-    "dreamDust": 0,
+    "curHealth": 24,
+    "dreamDust": 1,
     "leftPassengers": 0,
     "isTutorial": false,
     "personaPiece": "고양이의 꿈",
@@ -139,7 +139,7 @@
         },
         {
             "cardName": "회전 카드 2",
-            "num": 2
+            "num": 1
         },
         {
             "cardName": "회전 카드 3",
@@ -150,9 +150,9 @@
     "relicEnhancements": [],
     "useableItems": [],
     "courage": 1,
-    "wisdom": 1,
-    "luck": 3,
-    "currentActNum": 1,
+    "wisdom": 2,
+    "luck": 1,
+    "currentActNum": 2,
     "mapNodes": [
         {
             "locationID": "START",
@@ -299,13 +299,20 @@
         "bbb394ab0e104c228193e40d45314d83",
         "0b18ed61ef834365b0e7c21076c825f7",
         "6d107765b6654d18a09bb46572922ee6",
-        "1d659d937d064a59ab5d598da5e57e19"
+        "1d659d937d064a59ab5d598da5e57e19",
+        "bbb394ab0e104c228193e40d45314d83",
+        "2e7b34acded54abb865ccb6fbc6c03e9",
+        "bbb394ab0e104c228193e40d45314d83",
+        "5ff2d372832b4c4ba6c469fe0175ab45",
+        "bbb394ab0e104c228193e40d45314d83",
+        "bbb394ab0e104c228193e40d45314d83",
+        "5ff2d372832b4c4ba6c469fe0175ab45"
     ],
-    "curNodeIndex": 6,
-    "curNodeLocationID": "ICECREAM_CART",
-    "lastEncounterType": 0,
+    "curNodeIndex": 4,
+    "curNodeLocationID": "MAZE_GARDEN",
+    "lastEncounterType": 5,
     "encounterQueue": [],
     "currentStepID": "",
     "currentEncounterID": "",
-    "enemyName": "horse"
+    "enemyName": "DevilDoll"
 }

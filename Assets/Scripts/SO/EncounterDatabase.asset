@@ -16,8 +16,8 @@ MonoBehaviour:
   - id: ACT1_WHITE_RABBIT
     nameKO: "\uD558\uC580 \uD1A0\uB07C"
     type: 0
-    imagePath: Assets/Sprites/Encounter/White_Rabbit.png
-    filePath: Assets/Scripts/Act1_Encounter/White_Rabbit
+    imageName: "\uC774\uC0C1\uD55C \uD1A0\uB07C"
+    filePath: White_Rabbit
     order: 0
     isEssential: 1
     sourceCsvFile: {fileID: 0}
@@ -60,8 +60,8 @@ MonoBehaviour:
   - id: ACT1_FASTEST_HORSE
     nameKO: "\uAC00\uC7A5 \uBE60\uB978 \uB9D0"
     type: 0
-    imagePath: Assets/Sprites/Encounter/Fastest_Horse.png
-    filePath: Assets/Scripts/Act1_Encounter/Fastest_Horse
+    imageName: Horse
+    filePath: Fastest_Horse
     order: 0
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -92,8 +92,8 @@ MonoBehaviour:
   - id: ACT1_LAZY_HORSE
     nameKO: "\uAC8C\uC73C\uB978 \uB9D0"
     type: 0
-    imagePath: Assets/Sprites/Encounter/Lazy_Horse.png
-    filePath: Assets/Scripts/Act1_Encounter/Lazy_Horse
+    imageName: Horse
+    filePath: Lazy_Horse
     order: 1
     isEssential: 1
     sourceCsvFile: {fileID: 0}
@@ -127,8 +127,8 @@ MonoBehaviour:
   - id: ACT1_BEST_HORSE
     nameKO: "\uAC00\uC7A5 \uC88B\uC740 \uB9D0"
     type: 4
-    imagePath: Assets/Sprites/Encounter/Best_Horse.png
-    filePath: Assets/Scripts/Act1_Encounter/Best_Horse
+    imageName: Best_Horse
+    filePath: Best_Horse
     order: 2
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -173,8 +173,8 @@ MonoBehaviour:
   - id: ACT1_SPINNING_CUP
     nameKO: "\uBE59\uAE00\uBE59\uAE00"
     type: 0
-    imagePath: Assets/Sprites/Encounter/Spinning_Cup.png
-    filePath: Assets/Scripts/Act1_Encounter/Spinning_Cup
+    imageName: "\uBE59\uAE00\uBE59\uAE00"
+    filePath: Spinning_Cup
     order: 0
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -212,8 +212,8 @@ MonoBehaviour:
   - id: ACT1_WINE_IN_CUP
     nameKO: "\uCC3B\uC794\uACFC \uC640\uC778\uC794"
     type: 0
-    imagePath: Assets/Sprites/Encounter/Wine_in_Cup.png
-    filePath: Assets/Scripts/Act1_Encounter/Wine_in_Cup
+    imageName: "\uCC3B\uC794\uACFC \uC640\uC778\uC794"
+    filePath: Wine_in_Cup
     order: 0
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -261,8 +261,8 @@ MonoBehaviour:
   - id: ACT1_TEA_TIME
     nameKO: "\uD2F0\uD0C0\uC784"
     type: 6
-    imagePath: Assets/Sprites/Encounter/Tea_Time.png
-    filePath: Assets/Scripts/Act1_Encounter/Tea_Time
+    imageName: Tea_Time
+    filePath: Tea_Time
     order: 1
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -306,8 +306,8 @@ MonoBehaviour:
   - id: ACT1_MISSING_ZIZI
     nameKO: "\uC0AC\uB77C\uC9C4 \uC9C0\uC9C0"
     type: 0
-    imagePath: Assets/Sprites/Encounter/Missing_Zizi.png
-    filePath: Assets/Scripts/Act1_Encounter/Missing_Zizi
+    imageName: 
+    filePath: Missing_Zizi
     order: 0
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -356,8 +356,8 @@ MonoBehaviour:
   - id: ACT1_DEVIL_DOLL
     nameKO: "\uADC0\uC2E0\uB4E4\uB9B0 \uC778\uD615"
     type: 0
-    imagePath: Assets/Sprites/Encounter/Devil_Doll.png
-    filePath: Assets/Scripts/Act1_Encounter/Devil_Doll
+    imageName: "\uADC0\uC2E0 \uB4E4\uB9B0 \uC778\uD615"
+    filePath: Devil_Doll
     order: 3
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -409,8 +409,8 @@ MonoBehaviour:
   - id: ACT1_GUEST_OR_GHOST
     nameKO: "\uC720\uB839\uC774 \uB41C \uC190\uB2D8"
     type: 0
-    imagePath: Assets/Sprites/Encounter/Guest_or_Ghost.png
-    filePath: Assets/Scripts/Act1_Encounter/Guest_or_Ghost
+    imageName: "\uC720\uB839\uC774 \uB41C \uC190\uB2D8"
+    filePath: Guest_or_Ghost
     order: 2
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -467,8 +467,8 @@ MonoBehaviour:
   - id: ACT1_BAT_ATTACK
     nameKO: "\uBC15\uC950\uC758 \uC2B5\uACA9"
     type: 0
-    imagePath: Assets/Sprites/Encounter/Bat_Attack.png
-    filePath: Assets/Scripts/Act1_Encounter/Bat_Attack
+    imageName: 
+    filePath: Bat_Attack
     order: 1
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -496,8 +496,8 @@ MonoBehaviour:
   - id: ACT1_VAMP_INVITATION
     nameKO: "\uBC40\uD30C\uC774\uC5B4\uC758 \uCD08\uB300"
     type: 1
-    imagePath: Assets/Sprites/Encounter/Vamp_Invitation.png
-    filePath: Assets/Scripts/Act1_Encounter/Vamp_Invitation
+    imageName: 
+    filePath: Vamp_Invitation
     order: 4
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -571,60 +571,61 @@ MonoBehaviour:
   - id: ACT1_SHEEP_IN_MAZE
     nameKO: "\uAE38\uC744 \uC783\uC740 \uC0C1\uC778"
     type: 4
-    imagePath: Assets/Sprites/Encounter/Sheep_in_Maze.png
-    filePath: Assets/Scripts/Act1_Encounter/Sheep_in_Maze
+    imageName: 
+    filePath: Sheep_in_Maze
     order: 0
     isEssential: 0
     sourceCsvFile: {fileID: 0}
     encounterContext:
-      csvRawData: "Page_ID,Type,Text_Content,Next_Page_ID,Call_Function,Constraint,\nP1,DESC,\"\"\"\uC774\uAC70
+      csvRawData: "Page_ID,Type,Text_Content,Next_Page_ID,Call_Function,Constraint\r\nP1,DESC,\"\"\"\uC774\uAC70
         \uC815\uB9D0 \uD070\uC77C\uC778\uAC78. \uC774\uB7F0 \uACF3\uC5D0\uC11C \uAE38\uC744
-        \uC783\uAC8C \uB418\uB2E4\uB2C8.\"\"\n\n\uBCF4\uB530\uB9AC\uB97C \uC794\uB729
+        \uC783\uAC8C \uB418\uB2E4\uB2C8.\"\"\r\n\r\n\uBCF4\uB530\uB9AC\uB97C \uC794\uB729
         \uB4F1\uC5D0 \uC774\uACE0 \uC788\uB294 \uC591 \uC0C1\uC778\uC774 \uBB38\uC81C\uC5D0
-        \uBE60\uC9C4 \uAC83 \uAC19\uC2B5\uB2C8\uB2E4. \n\n\"\"\uBBF8\uB85C\uAC00
+        \uBE60\uC9C4 \uAC83 \uAC19\uC2B5\uB2C8\uB2E4. \r\n\r\n\"\"\uBBF8\uB85C\uAC00
         \uB108\uBB34 \uBCF5\uC7A1\uD574\uC11C \uAE38\uC744 \uC783\uC5B4\uBC84\uB838\uC9C0
         \uBB50\uC57C. \uC544\uBB34\uB798\uB3C4 \uBBF8\uB85C\uAC00 \uC544\uB2C8\uB77C
         \uB2E4\uB978 \uACF3\uC73C\uB85C \uC9C0\uB098\uAC00\uB294 \uAC8C \uC88B\uACA0\uC5B4.
         \uC544\uC774\uC57C, \uD639\uC2DC \uB098\uAC00\uB294 \uAE38\uC744 \uC54C\uACE0
-        \uC788\uB2C8?\"\"\",,,\nP1,BRANCH,\uC548\uB2E4   (\uC9C0\uD61C>3),R,\"StartRoullete(Wisdom,
-        3, upper,P2_S,P2_GS,P2_F) \",\nP1,BRANCH,\uBAA8\uB978\uB2E4,P_MERCHANT,,\nP2_S,DESC,\"\uB2F9\uC2E0\uC740
+        \uC788\uB2C8?\"\"\",,,\r\nP1,BRANCH,\uC548\uB2E4   (\uC9C0\uD61C>3),R,\"StartRoullete(Wisdom,
+        3, upper,P2_S,P2_GS,P2_F) \",\r\nP1,BRANCH,\uBAA8\uB978\uB2E4,P_MERCHANT,,\r\nP2_S,DESC,\"\uB2F9\uC2E0\uC740
         \uAE30\uC5B5\uC744 \uB354\uB4EC\uC5B4 \uC785\uAD6C \uBC29\uD5A5\uC774 \uC5B4\uB514\uC600\uB294\uC9C0\uB97C
-        \uAE30\uC5B5\uD574\uB0C5\uB2C8\uB2E4. \n\n\"\"\uADF8\uB807\uAD6C\uB098. \uADF8
-        \uC815\uB3C4\uBA74 \uC5B4\uB5BB\uAC8C\uB4E0 \uCC3E\uC544\uAC08 \uC218 \uC788\uACA0\uC5B4.
-        \uACE0\uB9C8\uC6CC!\"\"\n\n\uC591 \uC0C1\uC778\uC740 \uB2F9\uC2E0\uC5D0\uAC8C
-        \uB2F5\uB840\uB97C \uCC59\uACA8\uC900 \uD6C4, \uBCF4\uB530\uB9AC\uB97C \uB4E4\uACE0
-        \uB2F9\uC2E0\uC774 \uC54C\uB824\uC900 \uBC29\uD5A5\uC73C\uB85C \uD5A5\uD569\uB2C8\uB2E4.\n\n\uB2F9\uC2E0\uB3C4
-        \uB2E4\uC2DC \uCD9C\uAD6C\uB97C \uCC3E\uC544\uB098\uC12D\uB2C8\uB2E4.  \n\",,,\nP2_S,BRANCH,\uB5A0\uB09C\uB2E4,END,GetDebris(1),\nP2_GS,DESC,\"\uB2F9\uC2E0\uC740
+        \uAE30\uC5B5\uD574\uB0C5\uB2C8\uB2E4. \r\n\r\n\"\"\uADF8\uB807\uAD6C\uB098.
+        \uADF8 \uC815\uB3C4\uBA74 \uC5B4\uB5BB\uAC8C\uB4E0 \uCC3E\uC544\uAC08 \uC218
+        \uC788\uACA0\uC5B4. \uACE0\uB9C8\uC6CC!\"\"\r\n\r\n\uC591 \uC0C1\uC778\uC740
+        \uB2F9\uC2E0\uC5D0\uAC8C \uB2F5\uB840\uB97C \uCC59\uACA8\uC900 \uD6C4, \uBCF4\uB530\uB9AC\uB97C
+        \uB4E4\uACE0 \uB2F9\uC2E0\uC774 \uC54C\uB824\uC900 \uBC29\uD5A5\uC73C\uB85C
+        \uD5A5\uD569\uB2C8\uB2E4.\r\n\r\n\uB2F9\uC2E0\uB3C4 \uB2E4\uC2DC \uCD9C\uAD6C\uB97C
+        \uCC3E\uC544\uB098\uC12D\uB2C8\uB2E4.  \r\n\",,,\r\nP2_S,BRANCH,\uB5A0\uB09C\uB2E4,END,GetDebris(1),\r\nP2_GS,DESC,\"\uB2F9\uC2E0\uC740
         \uB6F0\uC5B4\uB09C \uAE30\uC5B5\uB825\uC73C\uB85C \uC785\uAD6C \uBC29\uD5A5\uC774
         \uC5B4\uB514\uC600\uB294\uC9C0\uB97C \uC815\uD655\uD558\uAC8C \uC54C\uB824\uC8FC\uC5C8\uC2B5\uB2C8\uB2E4.
-        \n\n\"\"\uADF8\uB807\uAD6C\uB098. \uC774 \uBC29\uD5A5\uC73C\uB85C \uAC00\uBA74
-        \uD655\uC2E4\uD788 \uC785\uAD6C\uAC00 \uB098\uC624\uACA0\uC5B4!\"\"\n\n\uC591
+        \r\n\r\n\"\"\uADF8\uB807\uAD6C\uB098. \uC774 \uBC29\uD5A5\uC73C\uB85C \uAC00\uBA74
+        \uD655\uC2E4\uD788 \uC785\uAD6C\uAC00 \uB098\uC624\uACA0\uC5B4!\"\"\r\n\r\n\uC591
         \uC0C1\uC778\uC740 \uB2F9\uC2E0\uC5D0\uAC8C \uD6C4\uD55C \uB2F5\uB840\uB97C
         \uCC59\uACA8\uC900 \uD6C4, \uBCF4\uB530\uB9AC\uB97C \uB4E4\uACE0 \uB2F9\uC2E0\uC774
-        \uC54C\uB824\uC900 \uBC29\uD5A5\uC73C\uB85C \uD5A5\uD569\uB2C8\uB2E4.\n\n\uB2F9\uC2E0\uB3C4
-        \uB2E4\uC2DC \uCD9C\uAD6C\uB97C \uCC3E\uC544\uB098\uC12D\uB2C8\uB2E4.  \n\",,,\nP2_GS,BRANCH,\uB5A0\uB09C\uB2E4,END,GetDebris(2),\nP2_F,DESC,\"\uB2F9\uC2E0\uC740
+        \uC54C\uB824\uC900 \uBC29\uD5A5\uC73C\uB85C \uD5A5\uD569\uB2C8\uB2E4.\r\n\r\n\uB2F9\uC2E0\uB3C4
+        \uB2E4\uC2DC \uCD9C\uAD6C\uB97C \uCC3E\uC544\uB098\uC12D\uB2C8\uB2E4.  \r\n\",,,\r\nP2_GS,BRANCH,\uB5A0\uB09C\uB2E4,END,GetDebris(2),\r\nP2_F,DESC,\"\uB2F9\uC2E0\uC740
         \uC785\uAD6C\uAC00 \uC5B4\uB514\uC600\uB294\uC9C0 \uCD5C\uC120\uC744 \uB2E4\uD574
         \uAE30\uC5B5\uD574\uBCF4\uB824 \uD558\uC9C0\uB9CC, \uC548\uD0C0\uAE5D\uAC8C\uB3C4
         \uB2F9\uC2E0\uC758 \uBA38\uB9AC \uB610\uD55C \uBBF8\uB85C \uC18D\uC5D0\uC11C
-        \uD63C\uB780\uC2A4\uB7FD\uAE30\uB9CC \uD569\uB2C8\uB2E4.\n\n\"\"\uC73C\uC74C!
-        \uB108\uB3C4 \uAE38\uC744 \uC783\uC5C8\uAD6C\uB098!\"\"\n\n\uC591 \uC0C1\uC778\uC740
+        \uD63C\uB780\uC2A4\uB7FD\uAE30\uB9CC \uD569\uB2C8\uB2E4.\r\n\r\n\"\"\uC73C\uC74C!
+        \uB108\uB3C4 \uAE38\uC744 \uC783\uC5C8\uAD6C\uB098!\"\"\r\n\r\n\uC591 \uC0C1\uC778\uC740
         \uD638\uD638 \uC6C3\uC74C\uC744 \uC9C0\uC740 \uB4A4, \uBCF4\uB530\uB9AC\uB97C
-        \uB4E4\uACE0 \uCD9C\uAD6C\uB97C \uCC3E\uC544 \uB5A0\uB0A9\uB2C8\uB2E4.\n\n\uB2F9\uC2E0\uB3C4
+        \uB4E4\uACE0 \uCD9C\uAD6C\uB97C \uCC3E\uC544 \uB5A0\uB0A9\uB2C8\uB2E4.\r\n\r\n\uB2F9\uC2E0\uB3C4
         \uC815\uB9D0\uB85C \uAE38\uC744 \uC783\uAE30 \uC804\uC5D0 \uBE68\uB9AC \uCD9C\uAD6C\uB97C
-        \uCC3E\uC544\uC57C\uACA0\uB2E4\uB294 \uC0DD\uAC01\uC774 \uB4ED\uB2C8\uB2E4.\n\",,,\nP2_F,BRANCH,\uB5A0\uB09C\uB2E4,END,\"DownStatus(Courage,1)\",\nP_MERCHANT,DESC,\"\"\"\uC5B4\uCA54
+        \uCC3E\uC544\uC57C\uACA0\uB2E4\uB294 \uC0DD\uAC01\uC774 \uB4ED\uB2C8\uB2E4.\r\n\",,,\r\nP2_F,BRANCH,\uB5A0\uB09C\uB2E4,END,\"DownStatus(Courage,1)\",\r\nP_MERCHANT,DESC,\"\"\"\uC5B4\uCA54
         \uC218 \uC5C6\uC9C0. \uADF8\uB7FC \uB9CC\uB09C \uAE40\uC5D0 \uB3C4\uC6C0\uC774
-        \uB420 \uBB3C\uAC74\uC774\uB098 \uD55C \uBC88 \uACE8\uB77C\uBD10!\"\"\n\",,,\nP_MERCHANT,BRANCH,\"\uC0C1\uC810\uC744
-        \uB458\uB7EC\uBCF8\uB2E4\n\n\",P_AFTER_MERCHANT,meetMerchant(),\nP_AFTER_MERCHANT,DESC,\"\"\"\uADF8\uB798,
-        \uADF8\uB7FC \uB2E4\uC74C\uC5D0 \uB610 \uBCF4\uC790\uAD6C.\"\"\n\uC591\uC740
+        \uB420 \uBB3C\uAC74\uC774\uB098 \uD55C \uBC88 \uACE8\uB77C\uBD10!\"\"\r\n\",,,\r\nP_MERCHANT,BRANCH,\"\uC0C1\uC810\uC744
+        \uB458\uB7EC\uBCF8\uB2E4\r\n\r\n\",P_AFTER_MERCHANT,meetMerchant(),\r\nP_AFTER_MERCHANT,DESC,\"\"\"\uADF8\uB798,
+        \uADF8\uB7FC \uB2E4\uC74C\uC5D0 \uB610 \uBCF4\uC790\uAD6C.\"\"\r\n\uC591\uC740
         \uB2F9\uC2E0\uC5D0\uAC8C \uC778\uC0AC\uB97C \uAC74\uB124\uACE0 \uAC08 \uAE38\uC744
-        \uB5A0\uB0A9\uB2C8\uB2E4.\n\n\uB2F9\uC2E0\uB3C4 \uCD9C\uAD6C\uB97C \uCC3E\uC544
-        \uB5A0\uB0A9\uB2C8\uB2E4.\n\",,,\nP_AFTER_MERCHANT,BRANCH,\uB5A0\uB09C\uB2E4,END,,\n,,,,,\n,,,,,\n"
+        \uB5A0\uB0A9\uB2C8\uB2E4.\r\n\r\n\uB2F9\uC2E0\uB3C4 \uCD9C\uAD6C\uB97C \uCC3E\uC544
+        \uB5A0\uB0A9\uB2C8\uB2E4.\r\n\",,,\r\nP_AFTER_MERCHANT,BRANCH,\uB5A0\uB09C\uB2E4,END,,\r\n,,,,,\r\n,,,,,\r\n"
       PathID: 
   - id: ACT1_SUNNY_AFTERNOON
     nameKO: "\uD55C\uAC00\uB85C\uC6B4 \uC624\uD6C4"
     type: 5
-    imagePath: Assets/Sprites/Encounter/Sunny_Afternoon.png
-    filePath: Assets/Scripts/Act1_Encounter/Sunny_Afternoon
+    imageName: 
+    filePath: Sunny_Afternoon
     order: 3
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -644,8 +645,8 @@ MonoBehaviour:
   - id: ACT1_WHERE_DOVE_FROM
     nameKO: "\uBE44\uB458\uAE30\uB294 \uC5B4\uB514\uC5D0\uC11C \uC654\uC744\uAE4C?"
     type: 3
-    imagePath: Assets/Sprites/Encounter/Where_Dove_From.png
-    filePath: Assets/Scripts/Act1_Encounter/Where_Dove_From
+    imageName: 
+    filePath: Where_Dove_From
     order: 1
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -671,8 +672,8 @@ MonoBehaviour:
   - id: ACT1_FLOWER_ATTACK
     nameKO: "\uC2DD\uC778 \uAF43\uC758 \uC2B5\uACA9"
     type: 0
-    imagePath: Assets/Sprites/Encounter/Flower_Attack.png
-    filePath: Assets/Scripts/Act1_Encounter/Flower_Attack
+    imageName: 
+    filePath: Flower_Attack
     order: 2
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -698,8 +699,8 @@ MonoBehaviour:
   - id: ACT1_WATER_ON_FLOWER
     nameKO: "\uC2DC\uB4E0 \uAF43\uC5D0 \uBB3C\uC744"
     type: 3
-    imagePath: Assets/Sprites/Encounter/Water_on_Flower.png
-    filePath: Assets/Scripts/Act1_Encounter/Water_on_Flower
+    imageName: 
+    filePath: Water_on_Flower
     order: 4
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -733,8 +734,8 @@ MonoBehaviour:
   - id: ACT1_ESCAPE_MAZE
     nameKO: "\uBBF8\uB85C \uD0C8\uCD9C"
     type: 3
-    imagePath: Assets/Sprites/Encounter/Escape_Maze.png
-    filePath: Assets/Scripts/Act1_Encounter/Escape_Maze
+    imageName: 
+    filePath: Escape_Maze
     order: 5
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -825,8 +826,8 @@ MonoBehaviour:
   - id: ACT1_SWEET_THING
     nameKO: "\uB2E8 \uAC83"
     type: 5
-    imagePath: Assets/Sprites/Encounter/Sweet_Thing.png
-    filePath: Assets/Scripts/Act1_Encounter/Sweet_Thing
+    imageName: 
+    filePath: Sweet_Thing
     order: 0
     isEssential: 0
     sourceCsvFile: {fileID: 0}
@@ -848,8 +849,8 @@ MonoBehaviour:
   - id: ACT1_SOUVENIR
     nameKO: "\uAE30\uB150\uD488\uC744 \uACE0\uB974\uC790"
     type: 4
-    imagePath: Assets/Sprites/Encounter/Souvenir.png
-    filePath: Assets/Scripts/Act1_Encounter/Souvenir
+    imageName: 
+    filePath: Souvenir
     order: 0
     isEssential: 0
     sourceCsvFile: {fileID: 0}

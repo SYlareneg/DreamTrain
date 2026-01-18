@@ -14,7 +14,7 @@ public class DataManager : MonoBehaviour
         Inst = this;
         DontDestroyOnLoad(this.gameObject);
         
-        LoadDeveloperData();
+        //LoadDeveloperData();
         LoadPlayerData();
         // SavePlayerData();
     }
@@ -139,7 +139,7 @@ public class DataManager : MonoBehaviour
             encInfo.id = enc.id;
             encInfo.nameKO = enc.nameKO;
             encInfo.type = enc.type;
-            encInfo.imagePath = enc.imagePath;
+            encInfo.imageName = enc.imageName;
             encInfo.filePath = enc.filePath;
             encInfo.order = enc.order;
             encInfo.isEssential = enc.isEssential;

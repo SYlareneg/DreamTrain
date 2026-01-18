@@ -49,8 +49,13 @@ public class EncounterManager : MonoBehaviour
     public CharacterSO characterData;
     public PlayerStatsSo playerStats;
     public ActSO actData;
+    public RelicSO playerRelicSO;
+    public RelicDataSO relicDatabase;
+    public DreamPieceSO dreamPieceDatabase;
+    public ItemDataSO cardDatabase;
 
     public EncSofaManager sofaManager;
+    public CardUI cardGetUI;
 
     private Dictionary<string, EncounterMetaInfo> masterDatabase;
     private Dictionary<string, LocationMetaInfo> locationDatabase;
@@ -64,6 +69,11 @@ public class EncounterManager : MonoBehaviour
     public string debuggerID = "ACT1_Souvenir";
     
     private string currentLocID = "";
+    private bool changeScene = false; 
+    
+    [Header("Get Card UI References")] 
+    public GameObject cardGetPanel;    
+    public Button cardGetConfirmBtn;
 
     void Awake()
     {
@@ -164,6 +174,7 @@ public class EncounterManager : MonoBehaviour
     {
         if (scene.name == "EncounterScene")
         {
+            
             isSceneLoading = false;
             
             if (actData != null && masterDatabase != null && locationDatabase != null)
@@ -303,7 +314,7 @@ public class EncounterManager : MonoBehaviour
             Debug.Log("[System] 모든 인카운터 완료. MapScene 이동.");
             actData.currentEncounterID = "";
             actData.currentStepID = "";
-            SceneManager.LoadScene("MapScene");
+            SceneChangeManager.Inst.SceneFadeOut("MapScene");
         }
     }
     
@@ -312,52 +323,46 @@ public class EncounterManager : MonoBehaviour
         if (!masterDatabase.ContainsKey(encounterID)) return;
 
         EncounterMetaInfo meta = masterDatabase[encounterID];
-        TextAsset csvAsset = new TextAsset();
-        Debug.Log(encounterID);
-        
-        if (encounterID.Contains("ACT1_"))
+        TextAsset csvAsset = null;
+        string resourcePath = $"Encounters/{encounterID}"; 
+
+        // 1차 시도: ID 그대로 로드
+        csvAsset = Resources.Load<TextAsset>(resourcePath);
+
+        // 2차 시도: 실패했고 ID에 '_'가 있다면 접두사 제거 후 재시도 (예: ACT1_Rabbit -> Rabbit)
+        if (csvAsset == null && encounterID.Contains("_"))
         {
             string fileNameOnly = encounterID.Substring(encounterID.IndexOf('_') + 1);
-            string resourcePath = $"Encounters/{fileNameOnly}";
-            
-            csvAsset = Resources.Load<TextAsset>(resourcePath);
+            string alternativePath = $"Encounters/{fileNameOnly}";
+            csvAsset = Resources.Load<TextAsset>(alternativePath);
             
             if (csvAsset != null)
             {
                 Debug.Log($"[EncounterManager] '{encounterID}' 대신 '{fileNameOnly}' 파일을 로드했습니다.");
             }
         }
-        else
-        {
-            string resourcePath = $"Encounters/{encounterID}"; 
-            csvAsset = Resources.Load<TextAsset>(resourcePath);
-            Debug.Log("success");
-        }
 
-        // 3. 여전히 파일이 없다면 에러 출력
         if (csvAsset == null)
         {
-            Debug.LogError($"[EncounterManager] 파일을 찾을 수 없습니다. 경로를 확인하세요.\n" +
-                           $"1차 시도: Resources/Encounters/{encounterID}\n" +
-                           $"2차 시도(접두사 제거): Resources/Encounters/{(encounterID.Contains("_") ? encounterID.Substring(encounterID.IndexOf('_') + 1) : "해당 없음")}");
+             Debug.LogError($"[EncounterManager] CSV 파일을 찾을 수 없습니다.\n" +
+                           $"경로 1: Resources/Encounters/{encounterID}\n" +
+                           $"경로 2: (접두사 제외 시도함)");
             return;
         }
 
-        // 텍스트 내용 가져오기
-        string csvText = csvAsset.text;
-            
-        if (!string.IsNullOrEmpty(meta.imagePath))
+        meta.encounterContext.csvRawData = csvAsset.text;
+
+        if (!string.IsNullOrEmpty(meta.imageName)) 
         {
-            string imgName = Path.GetFileNameWithoutExtension(meta.imagePath);
-            Sprite img = Resources.Load<Sprite>($"Encounters/Images/{imgName}");
-            if (img == null) img = Resources.Load<Sprite>(imgName);
+            string imgName = Path.GetFileNameWithoutExtension(meta.imageName);
+            Sprite img = Resources.Load<Sprite>($"Encounters/Images/{imgName}"); // 경로가 Encounters/Images 라고 가정
+            if (img == null) img = Resources.Load<Sprite>(imgName); 
             if (img != null) illustrationImage.sprite = img;
         }
-
+        // 제목 설정
         if (titleText != null) titleText.text = meta.nameKO;
-        
-        // CSV 파싱 실행
-        ParseEncounterCSV(csvText);
+
+        ParseEncounterCSV(meta.encounterContext.csvRawData);
     }
 
     void ParseEncounterCSV(string csvText)
@@ -379,7 +384,7 @@ public class EncounterManager : MonoBehaviour
             string nextId = row[3];
             string functionCall = row[4];
             string condition = (row.Count > 5) ? row[5] : "DEFAULT";
-            Debug.Log($"id: {id}, content: {content}, nextID: {nextId}, functionCall: {functionCall},  condition: {condition}");
+            Debug.Log($"id: {id}");
             if (!stepDictionary.ContainsKey(id))
             {
                 stepDictionary.Add(id, new EncounterStep
@@ -432,11 +437,13 @@ public class EncounterManager : MonoBehaviour
     
     public void PlayStep(string id)
     {
-        Debug.Log($"[PlayStep] '{id}' 재생 시도..."); // 로그 추가
+        Debug.Log($"playstep: {isSceneLoading}");
+        if (isSceneLoading) return;
         if (!stepDictionary.ContainsKey(id)) return;
         
         currentStep = stepDictionary[id];
         if (actData != null) actData.currentStepID = id;
+        Debug.Log(id);
         if (currentStep.type == EncounterStepType.DESC)
         {
 
@@ -549,20 +556,73 @@ public class EncounterManager : MonoBehaviour
         Button btn = btnObj.GetComponent<Button>();
         btn.onClick.AddListener(() => 
         {
+            // [수정 1] 함수(StartBattle 등)를 먼저 실행하여 isSceneLoading 상태를 갱신
+            if (IsValidFunction(data.func))
+            {
+                ParseAndExecuteFunctions(data.func);
+            }
+
+            // [수정 2] 함수 실행 후 씬 로딩 중이 아닐 때만 다음 스텝을 즉시 재생
             if (!isSceneLoading)
             {
                 if (IsWaitState(data.nextId)) { } 
                 else if (data.nextId == "END") EndEncounter();
                 else PlayStep(data.nextId); 
             }
-            if (IsValidFunction(data.func))
-                ParseAndExecuteFunctions(data.func);
+            else
+            {
+                // [수정 3] 씬 이동 중이라면(전투 진입), 화면은 갱신하지 않지만
+                // 전투가 끝나고 돌아왔을 때 진행할 스텝(NextID)은 미리 저장해야 함
+                if (actData != null && !string.IsNullOrEmpty(data.nextId) && data.nextId != "END")
+                {
+                    actData.currentStepID = data.nextId;
+                    Debug.Log($"[EncounterManager] 씬 이동으로 인한 스텝 저장: {data.nextId}");
+                }
+            }
         });
     }
 
     bool IsWaitState(string id) => string.IsNullOrEmpty(id) || id == "-" || id == "R";
     bool IsValidFunction(string func) => !string.IsNullOrEmpty(func) && func != "-" && func != "DEFAULT";
-    bool CheckCondition(string condition) => true; 
+    
+    bool CheckCondition(string condition)
+    {
+        if (string.IsNullOrEmpty(condition) || condition == "DEFAULT" || condition == "-") return true;
+
+        string condName = condition.Split('(')[0].Trim();
+        string argsRaw = "";
+        Match match = Regex.Match(condition, @"\(([^)]*)\)");
+        if (match.Success) argsRaw = match.Groups[1].Value.Trim();
+
+        switch (condName)
+        {
+            case "NeedKey":
+                if (actData != null && actData.earnedKeys != null)
+                {
+                    return actData.earnedKeys.Contains(argsRaw);
+                }
+                return false;
+
+            case "HasObjet":
+                if (playerRelicSO != null && playerRelicSO.relicItems != null)
+                {
+                    bool hasRelic = playerRelicSO.relicItems.Exists(item => item.relicName == argsRaw);
+                    
+                    // Debug.Log($"[CheckCondition] HasObjet({argsRaw}) ? {hasRelic}");
+                    
+                    return hasRelic;
+                }
+                return false;
+            case "HasDreamPiece":
+                if (characterData != null && characterData.personaPiece != null)
+                {
+                    return characterData.personaPiece.name == argsRaw;
+                }
+                return false;
+        }
+
+        return true;
+    }
    
     public void EndEncounter()
     {
@@ -571,10 +631,9 @@ public class EncounterManager : MonoBehaviour
             actData.currentEncounterID = "";
             actData.currentStepID = "";
         }
-        
-        if (encounterPanel != null) encounterPanel.SetActive(false);
-        
-        PlayNextEncounterInQueue();
+        Debug.Log(actData.encounterQueue.Count);
+        if (actData.encounterQueue.Count > 0) PlayNextEncounterInQueue();
+        else SceneChangeManager.Inst.SceneFadeOut("MapScene");
     }
     
     
@@ -634,7 +693,57 @@ public class EncounterManager : MonoBehaviour
                 break;
             
             case "GetObjet":
-                if (args.Length >= 1) descriptionText.text += $"\n<color=#77B0FF>오브제 {args[0]} 획득!</color>";
+                // [수정됨] 이름으로 유물을 찾아 인벤토리에 추가하는 로직
+                if (args.Length >= 1)
+                {
+                    string objectName = args[0];
+                    if (relicDatabase == null || playerRelicSO == null)
+                    {
+                        Debug.LogError("[EncounterManager] RelicDatabase 또는 PlayerRelicSO가 Inspector에 연결되지 않았습니다!");
+                        return;
+                    }
+
+                    // 2. 전체 DB에서 이름(또는 ID)으로 유물 데이터 찾기
+                    // (CSV에 적힌 이름이 RelicName 혹은 RelicOwner와 일치해야 함)
+                    RelicItem_Data foundData = relicDatabase.relicItems.Find(x => x.relicName == objectName);
+
+                    if (foundData != null)
+                    {
+                        // 3. 중복 보유 체크 (MerchantUI 로직 참고)
+                        bool hasRelic = playerRelicSO.relicItems.Exists(r => r.relicOwner == foundData.relicOwner);
+
+                        if (!hasRelic)
+                        {
+                            // 4. RelicItem_Enhanceable로 변환하여 추가 (MerchantUI 로직과 동일)
+                            RelicItem_Enhanceable newRelic = new RelicItem_Enhanceable(foundData);
+                            playerRelicSO.relicItems.Add(newRelic);
+
+                            // 5. 텍스트 출력
+                            if (descriptionText != null)
+                            {
+                                descriptionText.text += $"\n<color=#77B0FF>오브제 [{foundData.relicName}] 획득!</color>";
+                    
+                                // 스크롤 갱신
+                                ResetScrollPosition(false);
+                                Canvas.ForceUpdateCanvases();
+                            }
+                            Debug.Log($"[Encounter] 오브제 획득 성공: {foundData.relicName}");
+                        }
+                        else
+                        {
+                            Debug.LogWarning($"[Encounter] 이미 보유한 오브제입니다: {objectName}");
+                            if (descriptionText != null)
+                            {
+                                descriptionText.text += $"\n<color=#FF0000>이미 보유한 오브제입니다 ({objectName})</color>";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogError($"[Encounter] DB에서 오브제를 찾을 수 없습니다: {objectName}. 이름을 확인해주세요.");
+                    }
+                
+                }
                 break;
 
             case "GetDebris":
@@ -680,9 +789,12 @@ public class EncounterManager : MonoBehaviour
             case "StartBattle": 
                 if (args.Length >= 1)
                 {
-                    encounterPanel.SetActive(false);
+                    //encounterPanel.SetActive(false);
+                    isSceneLoading = true;
+                    Debug.Log("Start Battle");
                     if (characterData != null) characterData.enemyName = args[0];
-                    SceneManager.LoadScene("BattleScene"); 
+                    SceneChangeManager.Inst.SceneFadeOut("BattleScene");
+
                 }
                 break;
             case "MeetMerchant":
@@ -729,8 +841,134 @@ public class EncounterManager : MonoBehaviour
                 Debug.Log("deleteCard");
                 sofaManager.SofaCardDelete();
                 break;
+            case "GetKey": 
+                if (args.Length >= 1 && actData != null)
+                {
+                    string keyToAdd = args[0];
+                    if (actData.earnedKeys == null) actData.earnedKeys = new List<string>();
+                    
+                    if (!actData.earnedKeys.Contains(keyToAdd))
+                    {
+                        actData.earnedKeys.Add(keyToAdd);
+                        Debug.Log($"[Encounter] Key 획득: {keyToAdd}");
+                    }
+                }
+                break;
+            case "IllustChange": // [추가] 일러스트 변경
+                if (args.Length >= 1)
+                {
+                    string path = args[0];
+                    Sprite newImg = Resources.Load<Sprite>($"Encounters/Images/{path}"); 
+                    if (newImg == null) newImg = Resources.Load<Sprite>(path);
+
+                    if (newImg != null) illustrationImage.sprite = newImg;
+                    else Debug.LogError($"[IllustChange] 이미지를 찾을 수 없음: {path}");
+                }
+                break;
+            case "GetCard": // [추가] 카드 획득 UI 오픈
+                if (args.Length >= 1)
+                {
+                    string cardName = args[0];
+                    OpenGetCardUI(cardName);
+                }
+                break;
+            case "SetDreamPiece": 
+                if (args.Length >= 1)
+                {
+                    string targetName = args[0];
+                    if (dreamPieceDatabase == null || characterData == null)
+                    {
+                        Debug.LogError("[Encounter] DreamPieceDatabase 또는 CharacterData가 연결되지 않았습니다.");
+                        return;
+                    }
+
+                    DreamPiece_Reference foundRef = dreamPieceDatabase.dreamPieces.Find(x => x.name == targetName);
+
+                    if (foundRef != null)
+                    {
+                        DreamPiece_Player newPiece = new DreamPiece_Player(foundRef);
+
+                        characterData.personaPiece = newPiece;
+
+                        if (descriptionText != null)
+                        {
+                            descriptionText.text += $"\n<color=#D4AF37>꿈 조각 {targetName}으로 교체!</color>";
+                            ResetScrollPosition(false);
+                        }
+                        Debug.Log($"[Encounter] 꿈조각 장착 완료: {targetName}");
+                    }
+                    else
+                    {
+                        Debug.LogError($"[Encounter] DB에서 꿈조각을 찾을 수 없습니다: {targetName}");
+                    }
+                }
+
+                break;
         }
     }
+    void OpenGetCardUI(string cardName)
+    {
+        if (cardGetPanel == null) return;
+
+        if (cardDatabase == null || characterData == null)
+        {
+            Debug.LogError("[Encounter] CardDatabase(ItemDataSO) 또는 CharacterData가 연결되지 않았습니다.");
+            return;
+        }
+        if (cardGetUI == null)
+        {
+            Debug.LogError("[Encounter] Inspector에서 'Card Get UI'에 CardUI 컴포넌트를 연결해주세요.");
+            return;
+        }
+
+        Item_Data foundData = cardDatabase.items.Find(x => x.name == cardName);
+
+        if (foundData != null)
+        {
+            // 3. UI 활성화
+            encounterPanel.SetActive(false); 
+            cardGetPanel.SetActive(true);
+            Item newCard = new Item(foundData, false); 
+            newCard.num = 1;
+
+            cardGetUI.Setup(newCard);
+
+            var existItem = characterData.normalCards.Find(x => x.name == newCard.name);
+            if (existItem == null)
+            {
+                characterData.normalCards.Add(newCard);
+                Debug.Log($"[GetCard] 신규 카드 획득: {cardName}");
+            }
+            else
+            {
+                existItem.num++;
+                Debug.Log($"[GetCard] 카드 중복 획득 (개수 증가): {cardName}");
+            }
+        }
+        else
+        {
+            Debug.LogError($"[Encounter] CardDB에서 카드를 찾을 수 없습니다: {cardName}. (이름 확인 필요)");
+            return; 
+        }
+    }
+
+    public void OnCardGetConfirmed()
+    {
+        if (cardGetPanel != null) cardGetPanel.SetActive(false);
+        encounterPanel.SetActive(true); // 인카운터 패널 다시 표시
+
+        // 카드 획득 후 다음 스텝으로 진행
+        if (currentStep != null)
+        {
+            // 카드 획득 후 바로 다음 스텝으로 넘어가거나, 현재 페이지 유지
+            string nextId = currentStep.nextStepId;
+            if (nextId == "END") EndEncounter();
+            else if (!string.IsNullOrEmpty(nextId) && nextId != "-" && nextId != "R") PlayStep(nextId);
+            // else PlayStep(currentStep.id); // 필요한 경우
+        }
+    }
+
+    
     void ResetScrollPosition(bool toTop)
     {
         if (descriptionScrollRect != null)

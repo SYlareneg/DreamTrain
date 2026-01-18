@@ -9,7 +9,7 @@ public class EncounterMetaInfo
     public string id;
     public string nameKO;
     public EncounterType type;
-    public string imagePath;
+    public string imageName;
     public string filePath;
     public int order;
     public bool isEssential;

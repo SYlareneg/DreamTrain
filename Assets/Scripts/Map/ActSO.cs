@@ -423,5 +423,16 @@ public class ActSO : ScriptableObject
     public List<string> encounterQueue = new List<string>(); 
     public string currentStepID;
     public string currentEncounterID;
-
+    public List<string> earnedKeys = new List<string>();
+    public bool HasKey(string key)
+    {
+        return earnedKeys.Contains(key);
+    }
+    public void AddKey(string key)
+    {
+        if (!earnedKeys.Contains(key))
+        {
+            earnedKeys.Add(key);
+        }
+    }
 }
