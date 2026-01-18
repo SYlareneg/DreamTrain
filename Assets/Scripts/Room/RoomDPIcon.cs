@@ -7,6 +7,7 @@ public class RoomDPIcon : MonoBehaviour, IPointerClickHandler
     public DreamPiece_Reference dreamPiece;
     [SerializeField] Image iconImage;
     [SerializeField] Image highlight;
+    [SerializeField] Sprite[] highlightSprites;
 
     public void Setup(DreamPiece_Reference dp)
     {
@@ -19,11 +20,17 @@ public class RoomDPIcon : MonoBehaviour, IPointerClickHandler
         {
             iconImage.sprite = dp.shadow.sprite;
         }
+        highlight.gameObject.SetActive(false);
+        highlight.sprite = highlightSprites[dp.persona.dreamPieceNum];
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if(dreamPiece.name != "고양이의 꿈") return;
+        foreach(var dpIcon in RoomDPManager.Inst.roomDPIcons)
+        {
+            dpIcon.highlight.gameObject.SetActive(false);
+        }
         highlight.gameObject.SetActive(true);
         RoomDPManager.Inst.SetDreamPieceView(dreamPiece);
     }

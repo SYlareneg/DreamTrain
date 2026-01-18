@@ -11,6 +11,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] GameObject tooltipPrefab;
     GameObject tooltip;
     RectTransform rect;
+    Collider2D col;
     public string tooltipTitle, tooltipTxt;
     public Vector2 tooltipPos;
     public Vector2 tooltipPivot = new Vector2(0, 1);
@@ -73,31 +74,46 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         objectEnter = false;
     }
 
-    void OnMouseEnter()
-    {
-        if(TurnManager.Inst == null || TurnManager.Inst.isLoading) return;
-        if (objectEnter) return;
-        SetupTooltip();
-        objectEnter = true;
-    }
+    // void OnMouseEnter()
+    // {
+    //     if(TurnManager.Inst == null || TurnManager.Inst.isLoading) return;
+    //     if (objectEnter) return;
+    //     SetupTooltip();
+    //     objectEnter = true;
+    // }
 
-    void OnMouseExit()
-    {
-        if (!objectEnter) return;
-        HideTooltip();
-        objectEnter = false;
-    }
+    // void OnMouseExit()
+    // {
+    //     if (!objectEnter) return;
+    //     HideTooltip();
+    //     objectEnter = false;
+    // }
 
     private void Start()
     {
         rect = GetComponent<RectTransform>();
+        col = GetComponent<Collider2D>();
         objectEnter = false;
     }
 
     private void Update()
     {
-        if (objectEnter) return;
-        if(tooltip != null) HideTooltip();
+        if(!objectEnter && tooltip != null) HideTooltip();
+        // if(TurnManager.Inst == null || TurnManager.Inst.isLoading) return;
+
+        if(col != null)
+        {
+            var mp = Input.mousePosition;
+            mp.z = -Camera.main.transform.position.z; // z=0 평면
+            Vector2 p = Camera.main.ScreenToWorldPoint(mp);
+
+            bool now = col.OverlapPoint(p);
+
+            if (!objectEnter && now) SetupTooltip();
+            if (objectEnter && !now) HideTooltip();
+
+            objectEnter = now;
+        }
     }
 
     private void OnDestroy()

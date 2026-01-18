@@ -2941,6 +2941,7 @@ Transform:
   - {fileID: 1536718859}
   - {fileID: 1442506726}
   - {fileID: 1232630076}
+  - {fileID: 669614160}
   - {fileID: 65436659}
   m_Father: {fileID: 1334374192}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -60}
@@ -6564,11 +6565,11 @@ Transform:
   m_GameObject: {fileID: 669614159}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: -11, y: -12, z: 0}
   m_LocalScale: {x: 150, y: 200, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1232630076}
+  m_Father: {fileID: 304780875}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &669614161
 SpriteRenderer:
@@ -7281,6 +7282,7 @@ Transform:
   - {fileID: 1472957325}
   - {fileID: 1874656295}
   - {fileID: 1552146882}
+  - {fileID: 802650990}
   m_Father: {fileID: 1334374192}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &722924044
@@ -8024,7 +8026,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &764592746
 Transform:
   m_ObjectHideFlags: 0
@@ -8535,12 +8537,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 802650989}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 20, y: 30, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -52.5, z: -20}
+  m_LocalScale: {x: 33.5, y: 33.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1552146882}
+  m_Father: {fileID: 722924043}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &802650991
 SpriteRenderer:
@@ -8588,8 +8590,8 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_SortingOrder: -5
+  m_Sprite: {fileID: 21300000, guid: 1213e1734ea24974da99ed3da14fb621, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -12826,8 +12828,7 @@ Transform:
   m_LocalPosition: {x: -11, y: -12, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 669614160}
+  m_Children: []
   m_Father: {fileID: 304780875}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1232630077
@@ -13255,6 +13256,7 @@ MonoBehaviour:
   rouletteSO: {fileID: 11400000, guid: 2c409a85d6ffa4b4a97e0959ed0d8757, type: 2}
   rouletteArea: {fileID: 2062499095}
   triggerSprite: {fileID: 764592747}
+  rouletteInnerFrame: {fileID: 1117502488}
   playerTriggerSprite: {fileID: 0}
   enemyTriggerSprite: {fileID: 0}
   roulettePieces:
@@ -16837,11 +16839,10 @@ Transform:
   m_GameObject: {fileID: 1552146881}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: -77, z: -10}
+  m_LocalPosition: {x: -4, y: -77, z: -20}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 802650990}
+  m_Children: []
   m_Father: {fileID: 722924043}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1552146883
@@ -22099,8 +22100,7 @@ Transform:
   m_LocalPosition: {x: 23.3, y: -16.3, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3475061587685289648}
+  m_Children: []
   m_Father: {fileID: 6264741504720648788}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1584025514543424839
@@ -22229,11 +22229,11 @@ Transform:
   m_GameObject: {fileID: 4806598736068474469}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 23.299992, y: -16.299994, z: 0}
   m_LocalScale: {x: 150, y: 200, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1572122419360853464}
+  m_Father: {fileID: 6264741504720648788}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3487699670397719905
 MonoBehaviour:
@@ -22529,6 +22529,7 @@ Transform:
   - {fileID: 7440174190914975959}
   - {fileID: 732249665}
   - {fileID: 1572122419360853464}
+  - {fileID: 3475061587685289648}
   - {fileID: 8167041991607815802}
   m_Father: {fileID: 1334374192}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 60}

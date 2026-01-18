@@ -77,59 +77,11 @@
           "num": 1
         },
         {
-          "cardName": "알뜰한 사냥꾼",
-          "num": 1
-        },
-        {
-          "cardName": "마구 할퀴기",
-          "num": 1
-        },
-        {
-          "cardName": "발톱 손질",
-          "num": 1
-        },
-        {
-          "cardName": "소심한 할퀴기",
-          "num": 1
-        },
-        {
-          "cardName": "날카로운 발톱",
-          "num": 1
-        },
-        {
-          "cardName": "고양이의 시간",
-          "num": 1
-        },
-        {
-          "cardName": "기민함",
-          "num": 1
-        },
-        {
-          "cardName": "실뭉치",
-          "num": 1
-        },
-        {
           "cardName": "고양이걸음",
           "num": 1
         },
         {
-          "cardName": "실 풀기",
-          "num": 1
-        },
-        {
-          "cardName": "놀이 시간",
-          "num": 1
-        },
-        {
           "cardName": "숨기",
-          "num": 1
-        },
-        {
-          "cardName": "그루밍",
-          "num": 1
-        },
-        {
-          "cardName": "간식 시간",
           "num": 1
         }
       ],
@@ -139,59 +91,11 @@
           "num": 1
         },
         {
-          "cardName": "알뜰한 사냥꾼",
-          "num": 1
-        },
-        {
-          "cardName": "마구 할퀴기",
-          "num": 1
-        },
-        {
-          "cardName": "발톱 손질",
-          "num": 1
-        },
-        {
-          "cardName": "소심한 할퀴기",
-          "num": 1
-        },
-        {
-          "cardName": "날카로운 발톱",
-          "num": 1
-        },
-        {
-          "cardName": "고양이의 시간",
-          "num": 1
-        },
-        {
-          "cardName": "기민함",
-          "num": 1
-        },
-        {
           "cardName": "실뭉치",
           "num": 1
         },
         {
-          "cardName": "고양이걸음",
-          "num": 1
-        },
-        {
           "cardName": "실 풀기",
-          "num": 1
-        },
-        {
-          "cardName": "놀이 시간",
-          "num": 1
-        },
-        {
-          "cardName": "숨기",
-          "num": 1
-        },
-        {
-          "cardName": "그루밍",
-          "num": 1
-        },
-        {
-          "cardName": "간식 시간",
           "num": 1
         }
       ]
@@ -205,7 +109,7 @@
       "persona": {
         "type": 1,
         "dreamPieceNum": 0,
-        "sprite": "Circle",
+        "sprite": "뱀파이어 아이콘",
         "name": "붉은 달",
         "text": "체력을 회복할 때마다 트리거 게이지를 얻습니다.\n트리거 효과: 현재 체력의 10%를 소모합니다. 소모한 체력의 3배만큼 적에게 피해를 줍니다.",
         "name_enhanced": "붉은 달+",
@@ -214,7 +118,7 @@
       "shadow": {
         "type": 2,
         "dreamPieceNum": 0,
-        "sprite": "Circle",
+        "sprite": "뱀파이어 아이콘",
         "name": "붉은 송곳니",
         "text": "공격 룰렛으로 입힌 피해의 33%만큼 체력을 회복합니다. (소수점 내림)",
         "name_enhanced": "붉은 송곳니+",
@@ -298,7 +202,7 @@
       "persona": {
         "type": 1,
         "dreamPieceNum": 1,
-        "sprite": "Circle",
+        "sprite": "마술사 아이콘",
         "name": "마술 해체",
         "text": "게임 시작 시 덱에 에이스 카드를 한 장 추가합니다. 에이스 카드를 사용하여 트리거합니다.\n트리거 효과: 모든 룰렛에 부여된 효과를 제거합니다.(공격, 수비 제외) 적에게 제 거한 효과 개수*7의 피해를 줍니다.",
         "name_enhanced": "마술 해체+",
@@ -307,7 +211,7 @@
       "shadow": {
         "type": 2,
         "dreamPieceNum": 1,
-        "sprite": "Circle",
+        "sprite": "마술사 아이콘",
         "name": "손기술",
         "text": "카드를 3장 사용하면 즉시 카드를 1장 드로우합니다.",
         "name_enhanced": "손기술+",
@@ -392,7 +296,7 @@
       "persona": {
         "type": 1,
         "dreamPieceNum": 2,
-        "sprite": "Circle",
+        "sprite": "눈사람 아이콘",
         "name": "겨울 바람",
         "text": "매 턴 시작 시 트리거 게이지를 3 얻습니다.\n트리거 효과: 모든 룰렛에 꽁꽁 효과를 2턴 부여하고, 적의 이번 턴 행동을 전부 방해합니다.",
         "name_enhanced": "겨울 바람+",
@@ -401,7 +305,7 @@
       "shadow": {
         "type": 2,
         "dreamPieceNum": 2,
-        "sprite": "Circle",
+        "sprite": "눈사람 아이콘",
         "name": "순환하는 계절",
         "text": "짝수 턴 시작 시 4의 방어도를 얻습니다.",
         "name_enhanced": "순환하는 계절+",

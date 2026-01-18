@@ -125,6 +125,11 @@ MonoBehaviour:
     baseCards_shadow: []
   iconImage: {fileID: 8636700079721486597}
   highlight: {fileID: 6762667017454266361}
+  highlightSprites:
+  - {fileID: 4117160903918163360, guid: 527659cac44dc7e47a2df6b864fa174a, type: 3}
+  - {fileID: 8214651944525835686, guid: 29df7263c65b75249b656d57178fd603, type: 3}
+  - {fileID: 4009884620041071519, guid: 022d6244774dcfd498aae0ea1bd32bda, type: 3}
+  - {fileID: -4485223881419026347, guid: af829253de677924e8a3682975515cbb, type: 3}
 --- !u!1 &5842486436327240968
 GameObject:
   m_ObjectHideFlags: 0

@@ -4911,6 +4911,12 @@ MonoBehaviour:
   dpMarker1: {fileID: 2129156821}
   dpMarker2: {fileID: 30346968}
   startSlider: {fileID: 499431939}
+  roomDPBackground:
+  - {fileID: 21300000, guid: 0039258f52a1d3e4b84064f2057b92c0, type: 3}
+  - {fileID: 21300000, guid: 158ab2106712e4a4ea92877d04d37c95, type: 3}
+  - {fileID: 21300000, guid: 3d64cd593d35fd04f8ca6c89147de254, type: 3}
+  - {fileID: 21300000, guid: 6225105912eac5f4f8822c6c4cbacef6, type: 3}
+  roomBackgroundImage: {fileID: 2058788354}
   isShowingPersona: 1
   currentDreamPiece:
     name: 

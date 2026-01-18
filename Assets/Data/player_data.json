@@ -12,59 +12,11 @@
             "num": 1
         },
         {
-            "cardName": "알뜰한 사냥꾼",
-            "num": 1
-        },
-        {
-            "cardName": "마구 할퀴기",
-            "num": 1
-        },
-        {
-            "cardName": "발톱 손질",
-            "num": 1
-        },
-        {
-            "cardName": "소심한 할퀴기",
-            "num": 1
-        },
-        {
-            "cardName": "날카로운 발톱",
-            "num": 1
-        },
-        {
-            "cardName": "고양이의 시간",
-            "num": 1
-        },
-        {
-            "cardName": "기민함",
-            "num": 1
-        },
-        {
-            "cardName": "실뭉치",
-            "num": 1
-        },
-        {
             "cardName": "고양이걸음",
             "num": 1
         },
         {
-            "cardName": "실 풀기",
-            "num": 1
-        },
-        {
-            "cardName": "놀이 시간",
-            "num": 1
-        },
-        {
             "cardName": "숨기",
-            "num": 1
-        },
-        {
-            "cardName": "그루밍",
-            "num": 1
-        },
-        {
-            "cardName": "간식 시간",
             "num": 1
         }
     ],
@@ -76,59 +28,11 @@
             "num": 1
         },
         {
-            "cardName": "알뜰한 사냥꾼",
-            "num": 1
-        },
-        {
-            "cardName": "마구 할퀴기",
-            "num": 1
-        },
-        {
-            "cardName": "발톱 손질",
-            "num": 1
-        },
-        {
-            "cardName": "소심한 할퀴기",
-            "num": 1
-        },
-        {
-            "cardName": "날카로운 발톱",
-            "num": 1
-        },
-        {
-            "cardName": "고양이의 시간",
-            "num": 1
-        },
-        {
-            "cardName": "기민함",
-            "num": 1
-        },
-        {
             "cardName": "실뭉치",
             "num": 1
         },
         {
-            "cardName": "고양이걸음",
-            "num": 1
-        },
-        {
             "cardName": "실 풀기",
-            "num": 1
-        },
-        {
-            "cardName": "놀이 시간",
-            "num": 1
-        },
-        {
-            "cardName": "숨기",
-            "num": 1
-        },
-        {
-            "cardName": "그루밍",
-            "num": 1
-        },
-        {
-            "cardName": "간식 시간",
             "num": 1
         }
     ],
@@ -151,7 +55,7 @@
     "useableItems": [],
     "courage": 1,
     "wisdom": 1,
-    "luck": 3,
+    "luck": 1,
     "currentActNum": 1,
     "mapNodes": [],
     "totalLevel": 0,
@@ -162,5 +66,5 @@
     "encounterQueue": [],
     "currentStepID": "",
     "currentEncounterID": "",
-    "enemyName": "흰 토끼"
+    "enemyName": ""
 }

@@ -33,6 +33,9 @@ public class RoomDPManager : MonoBehaviour
     [SerializeField] RoomDPMarker dpMarker1;
     [SerializeField] RoomDPMarker dpMarker2;
     [SerializeField] RoomDPChain startSlider;
+    [SerializeField] Sprite[] roomDPBackground;
+    [SerializeField] Image roomBackgroundImage;
+    public List<RoomDPIcon> roomDPIcons = new List<RoomDPIcon>();
 
     public bool isShowingPersona = true;
     public DreamPiece_Reference currentDreamPiece;
@@ -47,6 +50,7 @@ public class RoomDPManager : MonoBehaviour
         {
             var newDPIcon = Instantiate(dpIconPrefab, dpIconParent);
             newDPIcon.GetComponent<RoomDPIcon>().Setup(dp);
+            roomDPIcons.Add(newDPIcon.GetComponent<RoomDPIcon>());
         }
     }
 
@@ -86,6 +90,7 @@ public class RoomDPManager : MonoBehaviour
                 dpMarker2.Activate();
             }
         }
+        roomBackgroundImage.sprite = roomDPBackground[dp.persona.dreamPieceNum];
         currentDreamPiece = dp;
         dpName.text = dp.name;
         dpDescription.text = dp.description;

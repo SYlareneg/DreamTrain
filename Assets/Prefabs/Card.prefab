@@ -258,12 +258,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -3
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 973dae41c58c1044fb55c2cd899e8b8e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.15, y: 1.14}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -669,8 +669,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 55534ec9a21727544b270f6274574420, type: 3}
   - {fileID: 21300000, guid: 21e1ef3480126c54cbfc537d665205b9, type: 3}
   rarityTypes:
-  - {fileID: 21300000, guid: a1f690a3c04e26547ab1f00c678e2412, type: 3}
-  - {fileID: 21300000, guid: e26eeaaf91ce4e14cbdd21d4154d513c, type: 3}
+  - {fileID: 21300000, guid: 974691e6294d32d4284d8640601b572e, type: 3}
+  - {fileID: 21300000, guid: 51711c1ef7dc99543892c3733f4c9547, type: 3}
   costTypes:
   - {fileID: 21300000, guid: d8694763ed4ac764293b9545398ec097, type: 3}
   - {fileID: 21300000, guid: 0cdad0f94b202394290ae975fa954666, type: 3}
