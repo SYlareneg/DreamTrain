@@ -538,25 +538,25 @@ public class CardManager : MonoBehaviour
 
             if(isMyCardDrag && !onMyCardArea && selectedCard != null && selectedCard.item.isSingleTarget == true)
             {
-                enemyPos.Find("EnemyImg/EnemyHighlight").gameObject.SetActive(true);
+                enemyPos.Find("EnemyHighlight").gameObject.SetActive(true);
             }
         }
         else
         {
             onEnemyCardArea = 0;
-            EnemyManager.Inst.enemyPos.Find("EnemyImg/EnemyHighlight").gameObject.SetActive(false);
+            EnemyManager.Inst.enemyPos.Find("EnemyHighlight").gameObject.SetActive(false);
             for(int i = 0; i < Enemy.maxSubEnemyNum; i++)
             {
                 if(EnemyManager.Inst.subEnemies[i] != null && EnemyManager.Inst.subEnemies[i].name != null)
                 {
                     onEnemyCardArea = -1;
-                    EnemyManager.Inst.subEnemyPos[i].Find("EnemyImg/EnemyHighlight").gameObject.SetActive(false);
+                    EnemyManager.Inst.subEnemyPos[i].Find("EnemyHighlight").gameObject.SetActive(false);
                 }
             }
 
             if(isMyCardDrag && !onMyCardArea && selectedCard != null && selectedCard.item.isSingleTarget == true && onEnemyCardArea == 0)
             {
-                EnemyManager.Inst.enemyPos.Find("EnemyImg/EnemyHighlight").gameObject.SetActive(true);
+                EnemyManager.Inst.enemyPos.Find("EnemyHighlight").gameObject.SetActive(true);
             }
         }
     }

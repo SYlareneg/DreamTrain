@@ -32,7 +32,10 @@ public class RoomDPManager : MonoBehaviour
     [SerializeField] RoomDPSlider backSlider;
     [SerializeField] RoomDPMarker dpMarker1;
     [SerializeField] RoomDPMarker dpMarker2;
-    [SerializeField] RoomDPSlider startSlider;
+    [SerializeField] RoomDPChain startSlider;
+    [SerializeField] Sprite[] roomDPBackground;
+    [SerializeField] Image roomBackgroundImage;
+    public List<RoomDPIcon> roomDPIcons = new List<RoomDPIcon>();
 
     public bool isShowingPersona = true;
     public DreamPiece_Reference currentDreamPiece;
@@ -47,6 +50,7 @@ public class RoomDPManager : MonoBehaviour
         {
             var newDPIcon = Instantiate(dpIconPrefab, dpIconParent);
             newDPIcon.GetComponent<RoomDPIcon>().Setup(dp);
+            roomDPIcons.Add(newDPIcon.GetComponent<RoomDPIcon>());
         }
     }
 
@@ -86,6 +90,7 @@ public class RoomDPManager : MonoBehaviour
                 dpMarker2.Activate();
             }
         }
+        roomBackgroundImage.sprite = roomDPBackground[dp.persona.dreamPieceNum];
         currentDreamPiece = dp;
         dpName.text = dp.name;
         dpDescription.text = dp.description;
@@ -177,7 +182,6 @@ public class RoomDPManager : MonoBehaviour
         playerStatsSO.courage += playerCharacterSO.shadowPiece.courageStat;
         playerStatsSO.wisdom += playerCharacterSO.shadowPiece.wisdomStat;
         playerStatsSO.luck += playerCharacterSO.shadowPiece.luckStat;
-        Debug.Log(playerStatsSO.courage + ", " + playerStatsSO.wisdom + ", " + playerStatsSO.luck);
         SceneChangeManager.Inst.SceneFadeOut("MapScene");
     }
 

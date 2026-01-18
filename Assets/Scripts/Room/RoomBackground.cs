@@ -11,7 +11,6 @@ public class RoomBackground : MonoBehaviour
     {
         image = GetComponent<Image>();
         rectTransform = GetComponent<RectTransform>();
-        SceneChangeManager.Inst.SceneFadeIn(() => {});
     }
 
     void FixedUpdate()

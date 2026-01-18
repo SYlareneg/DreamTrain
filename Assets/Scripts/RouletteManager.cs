@@ -17,6 +17,7 @@ public class RouletteManager : MonoBehaviour
     [SerializeField] RouletteSO rouletteSO;
     [SerializeField] GameObject rouletteArea;
     public SpriteRenderer triggerSprite;
+    public GameObject rouletteInnerFrame;
     public Sprite playerTriggerSprite;
     public Sprite enemyTriggerSprite;
 
@@ -154,6 +155,7 @@ public class RouletteManager : MonoBehaviour
         isTriggerActivated = true;
         triggerSprite.sprite = playerTriggerSprite;
         triggerSprite.gameObject.SetActive(true);
+        rouletteInnerFrame.SetActive(false);
         for(int i = 0; i < rouletteNum; i++)
         {
             roulettePieces[i].Trigger(true);
@@ -173,6 +175,7 @@ public class RouletteManager : MonoBehaviour
             roulettePieces[i].Trigger(false);
         }
         triggerSprite.gameObject.SetActive(false);
+        rouletteInnerFrame.SetActive(true);
         BuffManager.Inst.rouletteBuff_Trigger.Clear();
     }
 

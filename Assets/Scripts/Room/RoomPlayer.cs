@@ -106,7 +106,6 @@ public class RoomPlayer : MonoBehaviour
     void Start()
     {
         moveTowards = rb.position;
-        isInteractable = true;
     }
 
     Vector2 lastPos;
