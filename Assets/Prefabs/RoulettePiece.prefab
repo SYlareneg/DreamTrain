@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: c08bdfd0b4aa4454a962240b259d3d07, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 069e7c6663e9069409e0acdf4cffcac3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -111,9 +111,9 @@ MonoBehaviour:
   rouletteValueTMP: {fileID: 7409682080955745942}
   rouletteTypeSprites:
   - {fileID: 0}
-  - {fileID: 21300000, guid: b2a4c819523f82f4c9c700f7a0a48cd0, type: 3}
-  - {fileID: 21300000, guid: 45f0939c71c3a234ba8072f7fa1b2198, type: 3}
-  - {fileID: 21300000, guid: c08bdfd0b4aa4454a962240b259d3d07, type: 3}
+  - {fileID: 21300000, guid: 0758ae092621a8f44929decca040389b, type: 3}
+  - {fileID: 21300000, guid: 0e51d7e8310c34d428fd960b6a9a5ce3, type: 3}
+  - {fileID: 21300000, guid: 069e7c6663e9069409e0acdf4cffcac3, type: 3}
   - {fileID: 0}
   originalSprite: {fileID: 0}
   originalTooltipTitle: 
@@ -182,7 +182,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 2.6167216, y: 4.094}
+    oldSize: {x: 2.5119998, y: 3.8421028}
     newSize: {x: 1.48, y: 2.96}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

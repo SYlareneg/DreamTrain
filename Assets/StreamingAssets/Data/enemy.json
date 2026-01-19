@@ -2523,7 +2523,7 @@
       ],
       "enemySpecialActions": [
         {
-          "sprite": "EnemyAction_Drain",
+          "sprite": "행동_전력질주",
           "title": "전력질주",
           "text": "값의 피해를 줍니다. 앨리스에게 방어도가 있다면 피해가 절반으로 감소합니다."
         },
@@ -3201,7 +3201,7 @@
       ],
       "enemySpecialActions": [
         {
-          "sprite": "EnemyAction_Drain",
+          "sprite": "행동_와인의눈물",
           "title": "와인의 눈물",
           "text": "모두에게 값의 피해를 줍니다."
         },

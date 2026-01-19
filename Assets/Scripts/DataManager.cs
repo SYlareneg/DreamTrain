@@ -14,7 +14,7 @@ public class DataManager : MonoBehaviour
         Inst = this;
         DontDestroyOnLoad(this.gameObject);
         
-        // LoadDeveloperData();
+        LoadDeveloperData();
         LoadPlayerData();
         // SavePlayerData();
     }
