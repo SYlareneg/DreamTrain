@@ -253,8 +253,8 @@ public class ShowBuff
                     Action<int, EDamageSource, int> noDamage = null;
                     noDamage = (value, source, enemyIdx) =>
                     {
-                        TurnManager.Inst.enemyShieldHealth[affectEnemyIdx] += value - baseVal[0];
-                        BuffManager.Inst.AddShowBuff("환영", affectType, -1, isSetOnEnemyTurn, baseVal, affectEnemyIdx);
+                        TurnManager.Inst.enemyShieldHealth[affectEnemyIdx] += value;
+                        BuffManager.Inst.AddShowBuff("환영", affectType, -baseVal[0], isSetOnEnemyTurn, baseVal, affectEnemyIdx);
                         if (this.val == 0)
                         {
                             BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Remove(this);
@@ -273,8 +273,8 @@ public class ShowBuff
                     Action<int, EDamageSource> noDamage = null;
                     noDamage = (value, source) =>
                     {
-                        TurnManager.Inst.shieldHealth += value - baseVal[0];
-                        BuffManager.Inst.AddShowBuff("환영", affectType, -1, isSetOnEnemyTurn, baseVal, affectEnemyIdx);
+                        TurnManager.Inst.shieldHealth += value;
+                        BuffManager.Inst.AddShowBuff("환영", affectType, -baseVal[0], isSetOnEnemyTurn, baseVal, affectEnemyIdx);
                         if (this.val == 0)
                         {
                             BuffManager.Inst.playerShowBuffs.Remove(this);

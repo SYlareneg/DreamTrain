@@ -1498,10 +1498,87 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    Sequence enemyDamageSeq;
+
     private void Start()
     {
         TurnManager.OnPlayerTurnStart += InitActionList;
         TurnManager.OnPlayerTurnStart += AllignActionList;
+
+        // TurnManager.OnEnemyDamaged += (damage, source, enemyIdx) =>
+        // {
+        //     Transform enemyDamageIcon = null;
+        //     if (enemyIdx == 0)
+        //     {
+        //         enemyDamageIcon = enemyImg.transform.Find("DamageIcon");
+        //     }
+        //     else
+        //     {
+        //         enemyDamageIcon = subEnemyImg[enemyIdx - 1].transform.Find("DamageIcon");
+        //     }
+        //     if (enemyDamageIcon != null)
+        //     {
+        //         var enemyDamageFilter = enemyImg.transform.Find("DamageFilter");
+        //         if(enemyDamageSeq != null && enemyDamageSeq.IsActive())
+        //         {
+        //             enemyDamageSeq.Kill();
+        //             enemyDamageIcon.gameObject.SetActive(false);
+        //             enemyDamageFilter?.gameObject.SetActive(false);
+        //         }
+        //         enemyDamageIcon.gameObject.SetActive(true);
+        //         enemyDamageSeq = DOTween.Sequence();
+        //         enemyDamageSeq.AppendInterval(0.7f);
+        //         enemyDamageSeq.AppendCallback(() =>
+        //         {
+        //             // enemyDamageIcon.gameObject.SetActive(false);
+        //             enemyDamageFilter?.gameObject.SetActive(true);
+        //         });
+        //         if(enemyDamageFilter != null)
+        //         {
+        //             enemyDamageSeq.Append(enemyDamageFilter.GetComponent<SpriteRenderer>().DOFade(0, 0.05f).SetLoops(6, LoopType.Yoyo).SetEase(Ease.Linear));
+        //             enemyDamageSeq.AppendCallback(() =>
+        //             {
+        //                 enemyDamageIcon.gameObject.SetActive(false);
+        //                 enemyDamageFilter.gameObject.SetActive(false);
+        //             });
+        //         }
+        //         enemyDamageSeq.Play();
+        //     }
+        // };
+
+        TurnManager.OnEnemyDamaged += (damage, source, enemyIdx) =>
+        {
+            Transform enemyDamageSprite = null;
+            if (enemyIdx == 0)
+            {
+                enemyDamageSprite = enemyImg.transform.Find("DamageSprite");
+            }
+            else
+            {
+                enemyDamageSprite = subEnemyImg[enemyIdx - 1].transform.Find("DamageSprite");
+            }
+            if (enemyDamageSprite != null)
+            {
+                Vector3 originalScale = enemyDamageSprite.localScale;
+                enemyDamageSprite.localScale = Vector3.zero;
+                enemyDamageSprite.Find("DamageTMP").GetComponent<TMP_Text>().text = "-" + damage.ToString();
+                enemyDamageSprite.gameObject.SetActive(true);
+                enemyDamageSprite.GetComponent<SpriteRenderer>().color = Color.white;
+                enemyDamageSprite.Find("DamageTMP").GetComponent<TMP_Text>().color = Color.white;
+                enemyDamageSeq?.Kill();
+                enemyDamageSeq = DOTween.Sequence();
+                enemyDamageSeq.Append(enemyDamageSprite.DOScale(originalScale * 1.5f, 0.2f))
+                .Append(enemyDamageSprite.DOScale(originalScale, 0.2f))
+                .Append(enemyDamageSprite.GetComponent<SpriteRenderer>().DOFade(0, 0.2f).SetDelay(0.5f))
+                .Join(enemyDamageSprite.Find("DamageTMP").GetComponent<TMP_Text>().DOFade(0, 0.2f))
+                .AppendCallback(() =>
+                {
+                    enemyDamageSprite.gameObject.SetActive(false);
+                    enemyDamageSprite.GetComponent<SpriteRenderer>().color = Color.white;
+                    enemyDamageSprite.Find("DamageTMP").GetComponent<TMP_Text>().color = Color.white;
+                });
+            }
+        };
     }
 
     private void OnDestroy()
