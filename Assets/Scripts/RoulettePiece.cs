@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System.Text.RegularExpressions;
 using System;
+using DG.Tweening;
 
 public class RoulettePiece : MonoBehaviour
 {
@@ -57,8 +58,8 @@ public class RoulettePiece : MonoBehaviour
                 break;
             case ERouletteType.Shield:
                 originalSprite = rouletteTypeSprites[3];
-                originalTooltipTitle = "실드 룰렛";
-                originalTooltipText = "실드를 값만큼 획득합니다.";
+                originalTooltipTitle = "수비 룰렛";
+                originalTooltipText = "방어도를 값만큼 부여합니다.";
                 break;
             case ERouletteType.Enemy_Special:
                 if(rlt.rtype.enemyIdx == 0)
@@ -223,6 +224,8 @@ public class RoulettePiece : MonoBehaviour
         }
     }
 
+    Sequence activateSeq;
+
     public void Activate(bool isEnemy, int enemyIdx = 0)
     {
         int totalVal = BuffManager.Inst.GetBuffedRouletteValue(this);
@@ -265,6 +268,23 @@ public class RoulettePiece : MonoBehaviour
             case ERouletteType.Player_Special:
                 PassiveManager.playerSpecialRouletteActivation[roulette.rtype.specialTypeIdx]?.Invoke(isEnemy, totalVal, enemyIdx, isEnhanced);
                 break;
+        }
+
+        if(activateSeq != null && activateSeq.IsActive())
+        {
+            activateSeq.Kill();
+        }
+        activateSeq = DOTween.Sequence();
+        Transform highlight = transform.Find("RouletteHighlight");
+        if (highlight != null)
+        {
+            highlight.gameObject.SetActive(true);
+            var highlightSR = highlight.GetComponent<SpriteRenderer>();
+            highlightSR.color = new Color(1f, 1f, 1f, 0f);
+            activateSeq.Append(highlightSR.DOFade(1f, 0.1f));
+            activateSeq.AppendInterval(0.2f);
+            activateSeq.Append(highlightSR.DOFade(0f, 0.1f));
+            activateSeq.OnComplete(() => { highlight.gameObject.SetActive(false); });
         }
     }
 

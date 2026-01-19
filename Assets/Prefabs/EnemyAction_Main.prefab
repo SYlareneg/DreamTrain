@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -4
-  m_Sprite: {fileID: 21300000, guid: ecfe6cfa9008956478fcbfa273a00ef3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f07113ada34506a4b94c8bb6146a34d7, type: 3}
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -255,7 +255,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: 21300000, guid: 925037fcc1d4d81428a592b434943a9b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 72ecf4cf9a655e24b98c925fa8db6a40, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -532,8 +532,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.52, y: 4}
-  m_SizeDelta: {x: 15, y: 5}
+  m_AnchoredPosition: {x: 1.52, y: 3.57}
+  m_SizeDelta: {x: 15, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &6768983451040758754
 MeshRenderer:
@@ -757,7 +757,7 @@ SpriteMask:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e6ee1467ea686b64da1a22f63402d3c1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eb20d48f198cd70428ba10efa6a5ec26, type: 3}
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: 0
   m_BackSortingLayerID: 0

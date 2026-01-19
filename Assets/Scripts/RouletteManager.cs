@@ -107,8 +107,10 @@ public class RouletteManager : MonoBehaviour
         {
             int totalVal = BuffManager.Inst.GetBuffedRouletteValue(triggerPiece);
             Debug.Log("trigger value: " + totalVal.ToString());
-            DeTriggerRoulette();
             TriggerActivation?.Invoke(isEnemyTrigger(), totalVal);
+            Utils.AllignActions(ref TurnManager.OnRouletteActivate, typeof(ShowBuff), typeof(RelicManager));
+            TurnManager.OnRouletteActivate?.Invoke();
+            DeTriggerRoulette();
         }
         else
         {
@@ -127,10 +129,9 @@ public class RouletteManager : MonoBehaviour
                 else if(rp_owner.owner == 0) roulettePieces[enemyLookat].Activate(true);
                 else rp_owner.rp.Activate(true, rp_owner.owner);
             }
+            Utils.AllignActions(ref TurnManager.OnRouletteActivate, typeof(ShowBuff), typeof(RelicManager));
+            TurnManager.OnRouletteActivate?.Invoke();
         }
-
-        Utils.AllignActions(ref TurnManager.OnRouletteActivate, typeof(ShowBuff), typeof(RelicManager));
-        TurnManager.OnRouletteActivate?.Invoke();
     }
 
     public void ActivateRoulettePiece(int index, bool isEnemy, int enemyIdx = 0)

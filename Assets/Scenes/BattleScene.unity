@@ -1142,6 +1142,11 @@ MonoBehaviour:
   cardListContent_Deck: {fileID: 249217477}
   cardListContent_Draw: {fileID: 681120262}
   cardListContent_Discard: {fileID: 1976917035}
+  deckListBtn: {fileID: 524821367}
+  drawListBtn: {fileID: 914109187}
+  discardListBtn: {fileID: 1300231025}
+  buttonPressedImg: {fileID: -9152226264453509441, guid: 276267fae0236c54ea2e19c1f82f35cd, type: 3}
+  buttonNormalImg: {fileID: 89881996876820253, guid: e8db9a210d452814e9b48a3b0657193c, type: 3}
   cardList_Deck: []
   cardList_Draw: []
   cardList_Discard: []
@@ -3304,7 +3309,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 6
-  m_Sprite: {fileID: 21300000, guid: d8486956c0ce6dd46add55fdfb2ab883, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2c5c1442cf2847249bcc0b98434fd245, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5570,7 +5575,6 @@ GameObject:
   - component: {fileID: 524821369}
   - component: {fileID: 524821368}
   - component: {fileID: 524821367}
-  - component: {fileID: 524821370}
   m_Layer: 5
   m_Name: Deck
   m_TagString: Untagged
@@ -5675,7 +5679,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 89881996876820253, guid: e8db9a210d452814e9b48a3b0657193c, type: 3}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -5692,21 +5696,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 524821365}
   m_CullTransparentMesh: 1
---- !u!114 &524821370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 524821365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40725c4cb5599194299649a66ad2d25c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Button_ChangeImage
-  normalSprite: {fileID: 89881996876820253, guid: e8db9a210d452814e9b48a3b0657193c, type: 3}
-  pressedSprite: {fileID: -9152226264453509441, guid: 276267fae0236c54ea2e19c1f82f35cd, type: 3}
-  buttonFont: {fileID: 11400000, guid: 1141f8f85cd31eb418112fc9273fca93, type: 2}
 --- !u!1 &547329214
 GameObject:
   m_ObjectHideFlags: 0
@@ -8454,8 +8443,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uBC84\uB9B0 \uCE74\uB4DC"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6ec235fe95b06ec4eb011f247f08c6e6, type: 2}
-  m_sharedMaterial: {fileID: 7605329132812957700, guid: 6ec235fe95b06ec4eb011f247f08c6e6, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1141f8f85cd31eb418112fc9273fca93, type: 2}
+  m_sharedMaterial: {fileID: -6274429614353513362, guid: 1141f8f85cd31eb418112fc9273fca93, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8479,7 +8468,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.5
+  m_fontSize: 31.5
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10267,7 +10256,6 @@ GameObject:
   - component: {fileID: 914109189}
   - component: {fileID: 914109188}
   - component: {fileID: 914109187}
-  - component: {fileID: 914109190}
   m_Layer: 5
   m_Name: Draw
   m_TagString: Untagged
@@ -10371,7 +10359,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 89881996876820253, guid: e8db9a210d452814e9b48a3b0657193c, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10389,21 +10377,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 914109185}
   m_CullTransparentMesh: 1
---- !u!114 &914109190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 914109185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40725c4cb5599194299649a66ad2d25c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Button_ChangeImage
-  normalSprite: {fileID: 89881996876820253, guid: e8db9a210d452814e9b48a3b0657193c, type: 3}
-  pressedSprite: {fileID: -9152226264453509441, guid: 276267fae0236c54ea2e19c1f82f35cd, type: 3}
-  buttonFont: {fileID: 11400000, guid: 1141f8f85cd31eb418112fc9273fca93, type: 2}
 --- !u!1 &917852836
 GameObject:
   m_ObjectHideFlags: 0
@@ -14135,7 +14108,6 @@ GameObject:
   - component: {fileID: 1300231027}
   - component: {fileID: 1300231026}
   - component: {fileID: 1300231025}
-  - component: {fileID: 1300231028}
   m_Layer: 5
   m_Name: Discard
   m_TagString: Untagged
@@ -14239,7 +14211,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 89881996876820253, guid: e8db9a210d452814e9b48a3b0657193c, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14257,21 +14229,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1300231023}
   m_CullTransparentMesh: 1
---- !u!114 &1300231028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1300231023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40725c4cb5599194299649a66ad2d25c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Button_ChangeImage
-  normalSprite: {fileID: 89881996876820253, guid: e8db9a210d452814e9b48a3b0657193c, type: 3}
-  pressedSprite: {fileID: -9152226264453509441, guid: 276267fae0236c54ea2e19c1f82f35cd, type: 3}
-  buttonFont: {fileID: 11400000, guid: 1141f8f85cd31eb418112fc9273fca93, type: 2}
 --- !u!1 &1300602955
 GameObject:
   m_ObjectHideFlags: 0
@@ -22466,8 +22423,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uBF51\uC744 \uCE74\uB4DC"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6ec235fe95b06ec4eb011f247f08c6e6, type: 2}
-  m_sharedMaterial: {fileID: 7605329132812957700, guid: 6ec235fe95b06ec4eb011f247f08c6e6, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1141f8f85cd31eb418112fc9273fca93, type: 2}
+  m_sharedMaterial: {fileID: -6274429614353513362, guid: 1141f8f85cd31eb418112fc9273fca93, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -22491,7 +22448,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.5
+  m_fontSize: 31.5
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1

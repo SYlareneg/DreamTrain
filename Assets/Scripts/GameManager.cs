@@ -27,6 +27,11 @@ public class GameManager : MonoBehaviour
     [Tooltip("카드 목록 content - 덱")] public GameObject cardListContent_Deck;
     [Tooltip("카드 목록 content - 드로우")] public GameObject cardListContent_Draw;
     [Tooltip("카드 목록 content - 무덤")] public GameObject cardListContent_Discard;
+    [SerializeField][Tooltip("카드 목록 버튼 - 덱")] Button deckListBtn;
+    [SerializeField][Tooltip("카드 목록 버튼 - 드로우")] Button drawListBtn;
+    [SerializeField][Tooltip("카드 목록 버튼 - 무덤")] Button discardListBtn;
+    [SerializeField][Tooltip("카드 목록 버튼 - pressed Image")] Sprite buttonPressedImg;
+    [SerializeField][Tooltip("카드 목록 버튼 - normal Image")] Sprite buttonNormalImg;
     [HideInInspector] public List<CardUI> cardList_Deck;
     [HideInInspector] public List<CardUI> cardList_Draw;
     [HideInInspector] public List<CardUI> cardList_Discard;
@@ -346,6 +351,14 @@ public class GameManager : MonoBehaviour
         cardScrollView_Deck.SetActive(true);
         cardScrollView_Draw.SetActive(false);
         cardScrollView_Discard.SetActive(false);
+
+        deckListBtn.image.sprite = buttonPressedImg;
+        drawListBtn.image.sprite = buttonNormalImg;
+        discardListBtn.image.sprite = buttonNormalImg;
+        
+        deckListBtn.GetComponentInChildren<TMP_Text>().color = Color.white;
+        drawListBtn.GetComponentInChildren<TMP_Text>().color = Color.black;
+        discardListBtn.GetComponentInChildren<TMP_Text>().color = Color.black;
     }
 
     // 드로우 풀 카드 목록 띄움
@@ -354,6 +367,14 @@ public class GameManager : MonoBehaviour
         cardScrollView_Deck.SetActive(false);
         cardScrollView_Draw.SetActive(true);
         cardScrollView_Discard.SetActive(false);
+
+        deckListBtn.image.sprite = buttonNormalImg;
+        drawListBtn.image.sprite = buttonPressedImg;
+        discardListBtn.image.sprite = buttonNormalImg;
+
+        deckListBtn.GetComponentInChildren<TMP_Text>().color = Color.black;
+        drawListBtn.GetComponentInChildren<TMP_Text>().color = Color.white;
+        discardListBtn.GetComponentInChildren<TMP_Text>().color = Color.black;
     }
 
     // 무덤 카드 목록 띄움
@@ -362,6 +383,14 @@ public class GameManager : MonoBehaviour
         cardScrollView_Deck.SetActive(false);
         cardScrollView_Draw.SetActive(false);
         cardScrollView_Discard.SetActive(true);
+
+        deckListBtn.image.sprite = buttonNormalImg;
+        drawListBtn.image.sprite = buttonNormalImg;
+        discardListBtn.image.sprite = buttonPressedImg;
+
+        deckListBtn.GetComponentInChildren<TMP_Text>().color = Color.black;
+        drawListBtn.GetComponentInChildren<TMP_Text>().color = Color.black;
+        discardListBtn.GetComponentInChildren<TMP_Text>().color = Color.white;
     }
 
     // 이드 목록 띄움
