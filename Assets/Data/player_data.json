@@ -3,7 +3,7 @@
     "curHealth": 60,
     "dreamDust": 0,
     "leftPassengers": 0,
-    "isTutorial": false,
+    "isTutorial": true,
     "personaPiece": "고양이의 꿈",
     "isPersonaEnhanced": false,
     "personaCards": [
@@ -53,7 +53,7 @@
     "relics": [],
     "relicEnhancements": [],
     "useableItems": [],
-    "courage": 2,
+    "courage": 1,
     "wisdom": 1,
     "luck": 3,
     "currentActNum": 1,
@@ -61,7 +61,7 @@
         {
             "locationID": "START",
             "selectedEncounterPool": [],
-            "ID": "7a0ac5c78c9d4ecc8463f453ab62c1b3",
+            "ID": "1c2ec1a3033e4082b1a133ffbad2a63a",
             "level": 0,
             "pos": 0,
             "screenPos": {
@@ -70,7 +70,7 @@
                 "z": 0.0
             },
             "childNodes": [
-                "7db3e4be88594f57b6fabdd4a604887a"
+                "ea3f37192d124a668ef40bacf737a801"
             ]
         },
         {
@@ -78,111 +78,99 @@
             "selectedEncounterPool": [
                 "ACT1_WHITE_RABBIT"
             ],
-            "ID": "7db3e4be88594f57b6fabdd4a604887a",
+            "ID": "ea3f37192d124a668ef40bacf737a801",
             "level": 1,
             "pos": 0,
             "screenPos": {
                 "x": -15.5,
-                "y": -0.03480628877878189,
+                "y": 0.021937981247901918,
                 "z": 0.0
             },
             "childNodes": [
-                "a1145263edc34d8b84b380e16313e9db",
-                "2205cf7905364fe3b5d6611d7165f89a",
-                "85539a3617764ed18d4e55e6c234a83b"
-            ]
-        },
-        {
-            "locationID": "MERRY_GO_ROUND",
-            "selectedEncounterPool": [
-                "ACT1_LAZY_HORSE",
-                "ACT1_BEST_HORSE"
-            ],
-            "ID": "a1145263edc34d8b84b380e16313e9db",
-            "level": 2,
-            "pos": -1,
-            "screenPos": {
-                "x": -11.5,
-                "y": -0.984501838684082,
-                "z": 0.0
-            },
-            "childNodes": [
-                "a0ee8c3aeac4424fb2810c46c9911432"
+                "e899d0bc0efb46ea9b167ea91988ab68",
+                "76d2341e8b554bda9128c90b4af2b650",
+                "3d492771cc0f41ca8c26137960a1d155"
             ]
         },
         {
             "locationID": "TEA_CUPS",
-            "selectedEncounterPool": [
-                "ACT1_SPINNING_CUP",
-                "ACT1_TEA_TIME"
-            ],
-            "ID": "2205cf7905364fe3b5d6611d7165f89a",
+            "selectedEncounterPool": [],
+            "ID": "e899d0bc0efb46ea9b167ea91988ab68",
             "level": 2,
-            "pos": 0,
+            "pos": 2,
             "screenPos": {
                 "x": -11.5,
-                "y": 0.07394418865442276,
+                "y": 1.7194856405258179,
                 "z": 0.0
             },
             "childNodes": [
-                "a0ee8c3aeac4424fb2810c46c9911432"
+                "07fe93082ae14563814d2ccb0dbf8b65"
             ]
         },
         {
-            "locationID": "GHOST_HOUSE",
-            "selectedEncounterPool": [
-                "ACT1_MISSING_ZIZI",
-                "ACT1_GUEST_OR_GHOST",
-                "ACT1_DEVIL_DOLL"
-            ],
-            "ID": "85539a3617764ed18d4e55e6c234a83b",
+            "locationID": "MERRY_GO_ROUND",
+            "selectedEncounterPool": [],
+            "ID": "76d2341e8b554bda9128c90b4af2b650",
             "level": 2,
             "pos": 1,
             "screenPos": {
                 "x": -11.5,
-                "y": 0.9708551168441773,
+                "y": 0.9781187772750855,
                 "z": 0.0
             },
             "childNodes": [
-                "ba0e4996b8714b5284fb1e5bfd61bab4"
+                "07fe93082ae14563814d2ccb0dbf8b65"
             ]
         },
         {
             "locationID": "MAZE_GARDEN",
             "selectedEncounterPool": [],
-            "ID": "ba0e4996b8714b5284fb1e5bfd61bab4",
-            "level": 3,
-            "pos": 2,
+            "ID": "3d492771cc0f41ca8c26137960a1d155",
+            "level": 2,
+            "pos": -2,
             "screenPos": {
-                "x": -7.5,
-                "y": 1.7642922401428223,
+                "x": -11.5,
+                "y": -1.7984404563903809,
                 "z": 0.0
             },
             "childNodes": [
-                "a0ee8c3aeac4424fb2810c46c9911432"
+                "35d5bb58b7f34be893aca656e425b070"
+            ]
+        },
+        {
+            "locationID": "GHOST_HOUSE",
+            "selectedEncounterPool": [],
+            "ID": "07fe93082ae14563814d2ccb0dbf8b65",
+            "level": 3,
+            "pos": 1,
+            "screenPos": {
+                "x": -7.5,
+                "y": 0.9171751737594605,
+                "z": 0.0
+            },
+            "childNodes": [
+                "35d5bb58b7f34be893aca656e425b070"
             ]
         },
         {
             "locationID": "ICECREAM_CART",
-            "selectedEncounterPool": [
-                "ACT1_SWEET_THING"
-            ],
-            "ID": "a0ee8c3aeac4424fb2810c46c9911432",
+            "selectedEncounterPool": [],
+            "ID": "35d5bb58b7f34be893aca656e425b070",
             "level": 4,
             "pos": 0,
             "screenPos": {
                 "x": -3.5,
-                "y": -0.07470221072435379,
+                "y": -0.006388440728187561,
                 "z": 0.0
             },
             "childNodes": [
-                "ce412ae98cf940d9b6dc3faf8fd59d50"
+                "c5b658043d964cf895127d7f470df5e5"
             ]
         },
         {
             "locationID": "END",
             "selectedEncounterPool": [],
-            "ID": "ce412ae98cf940d9b6dc3faf8fd59d50",
+            "ID": "c5b658043d964cf895127d7f470df5e5",
             "level": 5,
             "pos": 0,
             "screenPos": {
@@ -195,16 +183,14 @@
     ],
     "totalLevel": 6,
     "visitedNodeIDList": [
-        "7a0ac5c78c9d4ecc8463f453ab62c1b3",
-        "7db3e4be88594f57b6fabdd4a604887a",
-        "a1145263edc34d8b84b380e16313e9db",
-        "a0ee8c3aeac4424fb2810c46c9911432"
+        "1c2ec1a3033e4082b1a133ffbad2a63a",
+        "ea3f37192d124a668ef40bacf737a801"
     ],
-    "curNodeIndex": 6,
-    "curNodeLocationID": "ICECREAM_CART",
-    "lastEncounterType": 4,
+    "curNodeIndex": 1,
+    "curNodeLocationID": "AMUSEMENT_PARK_ENTRANCE",
+    "lastEncounterType": 0,
     "encounterQueue": [],
-    "currentStepID": "",
-    "currentEncounterID": "",
+    "currentStepID": "P2",
+    "currentEncounterID": "ACT1_WHITE_RABBIT",
     "enemyName": "WhiteRabbit"
 }

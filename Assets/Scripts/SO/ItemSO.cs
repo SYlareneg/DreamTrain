@@ -36,6 +36,7 @@
             isVolatile = item.isVolatile;
             isVanish = item.isVanish;
             isRemain = item.isRemain;
+            isSingleTarget = item.isSingleTarget;
             sprite = item.sprite;
             text = item.text;
             cardValues.Clear();
