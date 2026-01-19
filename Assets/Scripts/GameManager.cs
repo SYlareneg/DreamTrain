@@ -122,13 +122,36 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    [SerializeField] float barFillTime = 1f;
+    Tween playerHealthbarSeq;
+    float playerHealthbarTargetFill;
+    Tween playerShieldbarSeq;
+    float playerShieldbarTargetFill;
+    Tween playerTriggerbarSeq;
+    float playerTriggerbarTargetFill;
+    Tween[] enemyHealthbarSeq = new Tween[5];
+    float[] enemyHealthbarTargetFill = new float[5];
+    Tween[] enemyShieldbarSeq = new Tween[5];
+    float[] enemyShieldbarTargetFill = new float[5];
+    Tween enemyTriggerbarSeq;
+    float enemyTriggerbarTargetFill;
     // UI 텍스트, 숨김 여부 설정
     void UpdateUIState()
     {
         costTMP.text = TurnManager.Inst.nowCost.ToString() + "/" + TurnManager.Inst.turnCost.ToString();
         healthTMP.text = TurnManager.Inst.curHealth.ToString() + "/" + TurnManager.Inst.maxHealth.ToString();
-        healthImg.fillAmount = (float)TurnManager.Inst.curHealth / (TurnManager.Inst.maxHealth + TurnManager.Inst.shieldHealth);
-        shieldImg.fillAmount = (float)(TurnManager.Inst.curHealth + TurnManager.Inst.shieldHealth) / (TurnManager.Inst.maxHealth + TurnManager.Inst.shieldHealth);
+        if(!Mathf.Approximately(playerHealthbarTargetFill, (float)TurnManager.Inst.curHealth / (TurnManager.Inst.maxHealth + TurnManager.Inst.shieldHealth)))
+        {
+            playerHealthbarTargetFill = (float)TurnManager.Inst.curHealth / (TurnManager.Inst.maxHealth + TurnManager.Inst.shieldHealth);
+            playerHealthbarSeq?.Kill();
+            playerHealthbarSeq = healthImg.DOFillAmount(playerHealthbarTargetFill, barFillTime).SetEase(Ease.OutCubic);
+        }
+        if(!Mathf.Approximately(playerShieldbarTargetFill, (float)(TurnManager.Inst.curHealth + TurnManager.Inst.shieldHealth) / (TurnManager.Inst.maxHealth + TurnManager.Inst.shieldHealth)))
+        {
+            playerShieldbarTargetFill = (float)(TurnManager.Inst.curHealth + TurnManager.Inst.shieldHealth) / (TurnManager.Inst.maxHealth + TurnManager.Inst.shieldHealth);
+            playerShieldbarSeq?.Kill();
+            playerShieldbarSeq = shieldImg.DOFillAmount(playerShieldbarTargetFill, barFillTime).SetEase(Ease.OutCubic);
+        }
         if(TurnManager.Inst.shieldHealth > 0) shieldTMP.text = "+" + TurnManager.Inst.shieldHealth.ToString();
         else shieldTMP.text = "";
         triggerCountTMP.text = TurnManager.Inst.playerTriggerCnt.ToString() + "/" + TurnManager.Inst.playerTriggerMaxCnt.ToString();
@@ -138,14 +161,29 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            triggerCntImg.fillAmount = (float)TurnManager.Inst.playerTriggerCnt / TurnManager.Inst.playerTriggerMaxCnt;
+            if(!Mathf.Approximately(playerTriggerbarTargetFill, (float)TurnManager.Inst.playerTriggerCnt / TurnManager.Inst.playerTriggerMaxCnt))
+            {
+                playerTriggerbarTargetFill = (float)TurnManager.Inst.playerTriggerCnt / TurnManager.Inst.playerTriggerMaxCnt;
+                playerTriggerbarSeq?.Kill();
+                playerTriggerbarSeq = triggerCntImg.DOFillAmount(playerTriggerbarTargetFill, barFillTime).SetEase(Ease.OutCubic);
+            }
         }
         for(int i = 0; i < enemyHealthTMP.Length; i++)
         {
             if(enemyHealthTMP[i] == null) continue;
             enemyHealthTMP[i].text = TurnManager.Inst.enemyCurHealth[i].ToString() + "/" + TurnManager.Inst.enemyMaxHealth[i].ToString();
-            enemyHealthImg[i].fillAmount = (float)TurnManager.Inst.enemyCurHealth[i] / (TurnManager.Inst.enemyMaxHealth[i] + TurnManager.Inst.enemyShieldHealth[i]);
-            enemyShieldImg[i].fillAmount = (float)(TurnManager.Inst.enemyCurHealth[i] + TurnManager.Inst.enemyShieldHealth[i]) / (TurnManager.Inst.enemyMaxHealth[i] + TurnManager.Inst.enemyShieldHealth[i]);
+            if(!Mathf.Approximately(enemyHealthbarTargetFill[i], (float)TurnManager.Inst.enemyCurHealth[i] / (TurnManager.Inst.enemyMaxHealth[i] + TurnManager.Inst.enemyShieldHealth[i])))
+            {
+                enemyHealthbarTargetFill[i] = (float)TurnManager.Inst.enemyCurHealth[i] / (TurnManager.Inst.enemyMaxHealth[i] + TurnManager.Inst.enemyShieldHealth[i]);
+                enemyHealthbarSeq[i]?.Kill();
+                enemyHealthbarSeq[i] = enemyHealthImg[i].DOFillAmount(enemyHealthbarTargetFill[i], barFillTime).SetEase(Ease.OutCubic);
+            }
+            if(!Mathf.Approximately(enemyShieldbarTargetFill[i], (float)(TurnManager.Inst.enemyCurHealth[i] + TurnManager.Inst.enemyShieldHealth[i]) / (TurnManager.Inst.enemyMaxHealth[i] + TurnManager.Inst.enemyShieldHealth[i])))
+            {
+                enemyShieldbarTargetFill[i] = (float)(TurnManager.Inst.enemyCurHealth[i] + TurnManager.Inst.enemyShieldHealth[i]) / (TurnManager.Inst.enemyMaxHealth[i] + TurnManager.Inst.enemyShieldHealth[i]);
+                enemyShieldbarSeq[i]?.Kill();
+                enemyShieldbarSeq[i] = enemyShieldImg[i].DOFillAmount(enemyShieldbarTargetFill[i], barFillTime).SetEase(Ease.OutCubic);
+            }
             if(TurnManager.Inst.enemyShieldHealth[i] > 0) enemyShieldTMP[i].text = "+" + TurnManager.Inst.enemyShieldHealth[i].ToString();
             else enemyShieldTMP[i].text = "";
         }
@@ -156,7 +194,12 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            enemyTriggerCntImg.fillAmount = (float)TurnManager.Inst.enemyTriggerCnt / TurnManager.Inst.enemyTriggerMaxCnt;
+            if(!Mathf.Approximately(enemyTriggerbarTargetFill, (float)TurnManager.Inst.enemyTriggerCnt / TurnManager.Inst.enemyTriggerMaxCnt))
+            {
+                enemyTriggerbarTargetFill = (float)TurnManager.Inst.enemyTriggerCnt / TurnManager.Inst.enemyTriggerMaxCnt;
+                enemyTriggerbarSeq?.Kill();
+                enemyTriggerbarSeq = enemyTriggerCntImg.DOFillAmount(enemyTriggerbarTargetFill, barFillTime).SetEase(Ease.OutCubic);
+            }
         }
     }
 
