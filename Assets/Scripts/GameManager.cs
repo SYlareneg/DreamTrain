@@ -286,6 +286,7 @@ public class GameManager : MonoBehaviour
         Utils.AllignActions(ref TurnManager.OnGameEnd, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnGameEnd?.Invoke(isMyWin);
         TurnManager.Inst.isLoading = true;
+        Tooltip.showTooltipSignal = false;
         endTurnBtn.SetActive(false);
         yield return new WaitForSeconds(0.5f);
 
@@ -305,7 +306,12 @@ public class GameManager : MonoBehaviour
     // 화면 중심 안내 UI 호출
     public void Notification(string title, string message, Action onComplete)
     {
+        Tooltip.showTooltipSignal = false;
         turnNotificationTMP.text = message;
+        onComplete += () =>
+        {
+            Tooltip.showTooltipSignal = true;
+        };
         notificationPanel.Show(title, onComplete);
     }
 
@@ -318,6 +324,7 @@ public class GameManager : MonoBehaviour
         if (cardListView.activeSelf == false)
         {
             TurnManager.Inst.isLoading = true;
+            Tooltip.showTooltipSignal = false;
             foreach (CardUI card in cardList_Deck)
             {
                 Destroy(card.gameObject);
@@ -341,6 +348,7 @@ public class GameManager : MonoBehaviour
         else
         {
             TurnManager.Inst.isLoading = false;
+            Tooltip.showTooltipSignal = true;
             cardListView.SetActive(false);
         }
     }
@@ -440,6 +448,8 @@ public class GameManager : MonoBehaviour
 
     public void ShowCardReward()
     {
+        TurnManager.Inst.isLoading = true;
+        Tooltip.showTooltipSignal = false;
         SetCardReward();
         rewardCardView.SetActive(true);
     }
@@ -449,18 +459,19 @@ public class GameManager : MonoBehaviour
         rewardCardView.SetActive(false);
         characterSO.maxHealth = TurnManager.Inst.maxHealth;
         characterSO.curHealth = TurnManager.Inst.curHealth;
-        if(characterSO.enemyName == stageSO.stageList[stageSO.currentStage].bossEnemy.enemyName)
-        {
-            stageSO.stageList[stageSO.currentStage].bossEnemy.isClear = true;
-            characterSO.dreamDust += stageSO.stageList[stageSO.currentStage].bossEnemy.dreamDustReward;
-            stageSO.stageList[stageSO.currentStage].stageClear = true;
-        }
-        StageEnemy stageEnemy = stageSO.stageList[stageSO.currentStage].stageEnemies.Find(x => x.enemyName == characterSO.enemyName);
-        if(stageEnemy != null)
-        {
-            stageEnemy.isClear = true;
-            characterSO.dreamDust += stageEnemy.dreamDustReward;
-        }
+        characterSO.dreamDust += 1;
+        // if(characterSO.enemyName == stageSO.stageList[stageSO.currentStage].bossEnemy.enemyName)
+        // {
+        //     stageSO.stageList[stageSO.currentStage].bossEnemy.isClear = true;
+        //     characterSO.dreamDust += stageSO.stageList[stageSO.currentStage].bossEnemy.dreamDustReward;
+        //     stageSO.stageList[stageSO.currentStage].stageClear = true;
+        // }
+        // StageEnemy stageEnemy = stageSO.stageList[stageSO.currentStage].stageEnemies.Find(x => x.enemyName == characterSO.enemyName);
+        // if(stageEnemy != null)
+        // {
+        //     stageEnemy.isClear = true;
+        //     characterSO.dreamDust += stageEnemy.dreamDustReward;
+        // }
         DataManager.Inst.SavePlayerData();
         SceneChangeManager.Inst.SceneFadeOut("EncounterScene");
     }

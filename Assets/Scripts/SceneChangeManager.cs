@@ -13,6 +13,7 @@ public class SceneChangeManager : MonoBehaviour
 
     public void SceneFadeOut(string toSceneName)
     {
+        Tooltip.showTooltipSignal = false;
         fadeoutScreen.color = new Color(Color.black.r, Color.black.g, Color.black.b, 0f);
         fadeoutScreen.gameObject.SetActive(true);
         DataManager.Inst.SavePlayerData();
@@ -52,6 +53,7 @@ public class SceneChangeManager : MonoBehaviour
         fadein.Append(fadeoutScreen.DOFade(0f, 1f).OnComplete(() => 
         {
             fadeoutScreen.gameObject.SetActive(false);
+            Tooltip.showTooltipSignal = true;
             callbackAction?.Invoke();
         }));
     }

@@ -17,6 +17,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Vector2 tooltipPivot = new Vector2(0, 1);
     public bool tooltipDisable = false;
     bool objectEnter;
+    public static bool showTooltipSignal = true;
 
     public void SetupTooltip()
     {
@@ -99,6 +100,11 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private void Update()
     {
         if(!objectEnter && tooltip != null) HideTooltip();
+        if(!showTooltipSignal)
+        {
+            HideTooltip();
+            return;
+        }
         // if(TurnManager.Inst == null || TurnManager.Inst.isLoading) return;
 
         if(col != null)
