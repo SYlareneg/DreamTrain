@@ -7,6 +7,8 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.IO;
+using UnityEngine.Networking;
+using System.Text;
 
 [System.Serializable]
 public class PRS
@@ -181,31 +183,60 @@ public class Utils
         return n.Contains("<>c") || n.Contains("DisplayClass");
     }
 
+	public static IEnumerator EnsureCopiedToPersistent(string relativePath)
+    {
+        var dst = Path.Combine(Application.persistentDataPath, "Data", relativePath);
+        var dir = Path.GetDirectoryName(dst);
+        if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
+
+        if (File.Exists(dst)) yield break; // 유저 파일이 이미 있으면 그대로 사용
+
+        var src = Path.Combine(Application.streamingAssetsPath, "Data", relativePath);
+
+        using (var req = UnityWebRequest.Get(src))
+        {
+            yield return req.SendWebRequest();
+
+#if UNITY_2020_2_OR_NEWER
+            if (req.result != UnityWebRequest.Result.Success)
+#else
+            if (req.isNetworkError || req.isHttpError)
+#endif
+            {
+                Debug.LogError($"Failed to read default json from StreamingAssets: {src}\n{req.error}");
+                yield break;
+            }
+
+            File.WriteAllBytes(dst, req.downloadHandler.data);
+            Debug.Log($"Copied default json -> persistent: {dst}");
+        }
+    }
+
 	public static void SaveData(ScriptableObject so, string fileName)
     {
         string json = JsonUtility.ToJson(so, true);   // pretty print
-        string path = Path.Combine(Application.dataPath, "Data");
-		path = Path.Combine(path, fileName);
+        string path = Path.Combine(Application.persistentDataPath, "Data", fileName);
 
         File.WriteAllText(path, json);
         Debug.Log($"Exported to: {path}");
     }
 
-	public static void LoadData(ScriptableObject target, string filePath)
+	public static IEnumerator LoadData(ScriptableObject target, string filePath)
     {
-		string path = Path.Combine(Application.dataPath, "Data");
-		filePath = Path.Combine(path, filePath);
-        if (!File.Exists(filePath))
+		string path = Path.Combine(Application.persistentDataPath, "Data", filePath);
+		if (!File.Exists(path))
+        	yield return EnsureCopiedToPersistent(filePath);
+        if (!File.Exists(path))
         {
-            Debug.LogError("JSON file not found: " + filePath);
-            return;
+            Debug.LogError("JSON file not found: " + path);
+            yield break;
         }
 
-        string json = File.ReadAllText(filePath);
+        string json = File.ReadAllText(path);
 
         JsonUtility.FromJsonOverwrite(json, target);
 
-        Debug.Log("Imported JSON to SO: " + filePath);
+        Debug.Log("Imported JSON to SO: " + path);
     }
 
 	static Dictionary<string, Sprite> spriteCache = new Dictionary<string, Sprite>();

@@ -404,10 +404,3 @@ public class EnemySO : ScriptableObject
     public List<Enemy> enemies;
     public List<SubEnemy> subEnemies;
 }
-
-[CreateAssetMenu(fileName = "EnemyDataSO", menuName = "Scriptable Objects/EnemyDataSO")]
-public class EnemyDataSO : ScriptableObject
-{
-    public List<Enemy_Data> enemies;
-    public List<SubEnemy_Data> subEnemies;
-}

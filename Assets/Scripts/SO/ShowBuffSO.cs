@@ -28,9 +28,3 @@ public class ShowBuffSO : ScriptableObject
 {
     public List<ShowBuff> showBuffs;
 }
-
-[CreateAssetMenu(fileName = "ShowBuffDataSO", menuName = "Scriptable Objects/ShowBuffDataSO")]
-public class ShowBuffDataSO : ScriptableObject
-{
-    public List<ShowBuff_Data> showBuffs;
-}

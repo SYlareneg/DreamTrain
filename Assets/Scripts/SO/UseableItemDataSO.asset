@@ -9,33 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 9a21f51fdfc17614e9ddbbdb2145c1f1, type: 3}
   m_Name: UseableItemDataSO
   m_EditorClassIdentifier: Assembly-CSharp::UseableItemDataSO
-  useableItems:
-  - name: "\uD654\uC0B4"
-    text: "\uC801\uC5D0\uAC8C \uD53C\uD574\uB97C 10 \uC90D\uB2C8\uB2E4."
-    sprite: cupIcon
-    rarity: 0
-    isSingleTarget: 1
-    useValue: 0a000000
-  - name: "\uB098\uBB34 \uBC29\uD328"
-    text: "\uC790\uC2E0\uC5D0\uAC8C 10 \uBC29\uC5B4\uB3C4\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4."
-    sprite: emptyIcon
-    rarity: 0
-    isSingleTarget: 0
-    useValue: 0a000000
-  - name: "\uB808\uD14C\uC758 \uB208\uBB3C"
-    text: "\uC790\uC2E0\uC5D0\uAC8C \uAC78\uB9B0 \uBAA8\uB4E0 \uBC84\uD504\uC640
-      \uB514\uBC84\uD504\uB97C \uC81C\uAC70\uD569\uB2C8\uB2E4."
-    sprite: hatIcon
-    rarity: 1
-    isSingleTarget: 0
-    useValue: 
-  - name: "\uC624\uC5FC\uB41C \uC8FC\uC0AC\uBC14\uB298"
-    text: "\uCCB4\uB825\uC744 12 \uD68C\uBCF5\uD558\uACE0 2\uD134\uAC04 '\uCDE8\uC57D'
-      \uC0C1\uD0DC\uAC00 \uB429\uB2C8\uB2E4."
-    sprite: UnivIcon
-    rarity: 0
-    isSingleTarget: 0
-    useValue: 0c00000002000000
+  useableItems: []

@@ -288,8 +288,3 @@ public class DreamPieceSO : ScriptableObject
     public List<DreamPiece_Reference> dreamPieces = new List<DreamPiece_Reference>();
 }
 
-[CreateAssetMenu(fileName = "DreamPieceDataSO", menuName = "Scriptable Objects/DreamPieceDataSO")]
-public class DreamPieceDataSO : ScriptableObject
-{
-    public List<DreamPiece_Data> dreamPieces;
-}

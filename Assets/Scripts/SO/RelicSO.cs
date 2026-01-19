@@ -115,9 +115,3 @@ public class RelicSO : ScriptableObject
 {
     public List<RelicItem_Enhanceable> relicItems;
 }
-
-[CreateAssetMenu(fileName = "RelicDataSO", menuName = "Scriptable Objects/RelicDataSO")]
-public class RelicDataSO : ScriptableObject
-{
-    public List<RelicItem_Data> relicItems;
-}

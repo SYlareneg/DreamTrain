@@ -14,7 +14,7 @@ public class DataManager : MonoBehaviour
         Inst = this;
         DontDestroyOnLoad(this.gameObject);
         
-        LoadDeveloperData();
+        // LoadDeveloperData();
         LoadPlayerData();
         // SavePlayerData();
     }
@@ -55,14 +55,14 @@ public class DataManager : MonoBehaviour
         if(showBuffDataSO == null) showBuffDataSO = ScriptableObject.CreateInstance<ShowBuffDataSO>();
         if(useableItemDataSO == null) useableItemDataSO = ScriptableObject.CreateInstance<UseableItemDataSO>();
         if(actDataSO == null) actDataSO = ScriptableObject.CreateInstance<ActDataSO>();
-        Utils.LoadData(itemDataSO, "card.json");
-        Utils.LoadData(dreamPieceDataSO, "dreampiece.json");
-        Utils.LoadData(enemyDataSO, "enemy.json");
-        Utils.LoadData(keywordSO, "keyword.json");
-        Utils.LoadData(relicDataSO, "relic.json");
-        Utils.LoadData(showBuffDataSO, "buff.json");
-        Utils.LoadData(useableItemDataSO, "item.json");
-        Utils.LoadData(actDataSO, "act.json");
+        StartCoroutine(Utils.LoadData(itemDataSO, "card.json"));
+        StartCoroutine(Utils.LoadData(dreamPieceDataSO, "dreampiece.json"));
+        StartCoroutine(Utils.LoadData(enemyDataSO, "enemy.json"));
+        StartCoroutine(Utils.LoadData(keywordSO, "keyword.json"));
+        StartCoroutine(Utils.LoadData(relicDataSO, "relic.json"));
+        StartCoroutine(Utils.LoadData(showBuffDataSO, "buff.json"));
+        StartCoroutine(Utils.LoadData(useableItemDataSO, "item.json"));
+        StartCoroutine(Utils.LoadData(actDataSO, "act.json"));
 
         dreamPieceSO.dreamPieces.Clear();
         foreach (var dp in dreamPieceDataSO.dreamPieces)
@@ -150,14 +150,14 @@ public class DataManager : MonoBehaviour
 
     public void InitPlayerData()
     {
-        Utils.LoadData(playerDataSO, "player_data_start.json");
+        StartCoroutine(Utils.LoadData(playerDataSO, "player_data_start.json"));
         Utils.SaveData(playerDataSO, "player_data.json");
         LoadPlayerData();
     }
 
     public void LoadPlayerData()
     {
-        Utils.LoadData(playerDataSO, "player_data.json");
+        StartCoroutine(Utils.LoadData(playerDataSO, "player_data.json"));
         // 전투 외적 데이터
         characterSO.maxHealth = playerDataSO.maxHealth;
         characterSO.curHealth = playerDataSO.curHealth;

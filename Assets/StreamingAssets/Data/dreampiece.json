@@ -1,0 +1,484 @@
+{
+  "dreamPieces": [
+    {
+      "name": "고양이의 꿈",
+      "description": "검고 귀여운 고양이입니다. 날카로운 발톱과 민첩한 몸놀림으로 위험을 돌파합니다.",
+      "courageStat": 0,
+      "wisdomStat": 0,
+      "luckStat": 1,
+      "persona": {
+        "type": 1,
+        "dreamPieceNum": 3,
+        "sprite": "꿈조각_고양이_02",
+        "name": "사냥 본능",
+        "text": "카드를 사용할 때마다 트리거를 1  얻습니다.\n트리거 효과: 모든 적에게 24의 데미지를 줍니다.",
+        "name_enhanced": "사냥 본능+",
+        "text_enhanced": "카드를 사용할 때마다 트리거를 1  얻습니다.\n트리거 효과: 모든 적에게 <color=red>33</color>의 데미지를 줍니다."
+      },
+      "shadow": {
+        "type": 2,
+        "dreamPieceNum": 3,
+        "sprite": "꿈조각_고양이_02",
+        "name": "영역 본능",
+        "text": "전투 시작 시 무작위 1칸에 발톱 룰렛을 부여합니다.",
+        "name_enhanced": "영역 본능+",
+        "text_enhanced": "전투 시작 시 무작위 <color=red>2</color>칸에 발톱 룰렛을 부여합니다."
+      },
+      "triggerSprite": "DP_illust_고양이_1",
+      "cardBackgrounds": [
+        "고양이_일반",
+        "고양이_희귀"
+      ],
+      "textColors": [
+        {
+          "r": 0.6509804129600525,
+          "g": 0.6274510025978088,
+          "b": 0.6274510025978088,
+          "a": 1.0
+        },
+        {
+          "r": 0.14901961386203767,
+          "g": 0.14901961386203767,
+          "b": 0.14901961386203767,
+          "a": 1.0
+        },
+        {
+          "r": 0.21568627655506135,
+          "g": 0.21568627655506135,
+          "b": 0.21568627655506135,
+          "a": 1.0
+        }
+      ],
+      "playerSpecialRoulettes": [
+        {
+          "sprite": "룰렛_발톱",
+          "title": "발톱",
+          "text": "값 피해를 줍니다. 효과를 적용할 때마다 위력이 3 감소하고, 0이 되면 사라집니다.",
+          "baseVal": 9,
+          "title_enhanced": "발톱+",
+          "text_enhanced": "값 피해를 줍니다. 효과를 적용할 때마다 위력이 3 감소하고, 0이 되면 사라집니다.",
+          "baseVal_enhanced": 12
+        },
+        {
+          "sprite": "룰렛_실뭉치",
+          "title": "실뭉치",
+          "text": "값 피해를 줍니다. 룰렛이 회전하면 회전한 칸 수 만큼 위력이 증가하고, 효과 발동시 제거됩니다.",
+          "baseVal": 1,
+          "title_enhanced": "실뭉치+",
+          "text_enhanced": "값 피해를 줍니다. 룰렛이 회전하면 회전한 칸 수x2 만큼 위력이 증가하고, 효과 발동시 제거됩니다.",
+          "baseVal_enhanced": 1
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "cards": [
+        "발톱 세우기",
+        "알뜰한 사냥꾼",
+        "마구 할퀴기",
+        "발톱 손질",
+        "소심한 할퀴기",
+        "날카로운 발톱",
+        "고양이의 시간",
+        "기민함",
+        "실뭉치",
+        "고양이걸음",
+        "실 풀기",
+        "놀이 시간",
+        "숨기",
+        "그루밍",
+        "간식 시간"
+      ],
+      "baseCards_persona": [
+        {
+          "cardName": "발톱 세우기",
+          "num": 1
+        },
+        {
+          "cardName": "고양이걸음",
+          "num": 1
+        },
+        {
+          "cardName": "숨기",
+          "num": 1
+        }
+      ],
+      "baseCards_shadow": [
+        {
+          "cardName": "발톱 세우기",
+          "num": 1
+        },
+        {
+          "cardName": "실뭉치",
+          "num": 1
+        },
+        {
+          "cardName": "실 풀기",
+          "num": 1
+        }
+      ]
+    },
+    {
+      "name": "뱀파이어의 꿈",
+      "description": "",
+      "courageStat": 0,
+      "wisdomStat": 0,
+      "luckStat": 0,
+      "persona": {
+        "type": 1,
+        "dreamPieceNum": 0,
+        "sprite": "뱀파이어 아이콘",
+        "name": "붉은 달",
+        "text": "체력을 회복할 때마다 트리거 게이지를 얻습니다.\n트리거 효과: 현재 체력의 10%를 소모합니다. 소모한 체력의 3배만큼 적에게 피해를 줍니다.",
+        "name_enhanced": "붉은 달+",
+        "text_enhanced": "체력을 회복할 때마다 트리거 게이지를 얻습니다.\n트리거 효과: 현재 체력의 10%를 소모합니다. 소모한 체력의 <color=red>4배</color>만큼 적에게 피해를 줍니다."
+      },
+      "shadow": {
+        "type": 2,
+        "dreamPieceNum": 0,
+        "sprite": "뱀파이어 아이콘",
+        "name": "붉은 송곳니",
+        "text": "공격 룰렛으로 입힌 피해의 33%만큼 체력을 회복합니다. (소수점 내림)",
+        "name_enhanced": "붉은 송곳니+",
+        "text_enhanced": "공격 룰렛으로 입힌 피해의 50%만큼 체력을 회복합니다. (소수점 내림)"
+      },
+      "triggerSprite": "Vampire_Trigger",
+      "cardBackgrounds": [
+        "뱀파이어_일반",
+        "뱀파이어_희귀"
+      ],
+      "textColors": [
+        {
+          "r": 0.7098039215686275,
+          "g": 0.6392156862745098,
+          "b": 0.6392156862745098,
+          "a": 1.0
+        },
+        {
+          "r": 0.1490196078431373,
+          "g": 0.1215686274509804,
+          "b": 0.1215686274509804,
+          "a": 1.0
+        },
+        {
+          "r": 0.2,
+          "g": 0.1607843137254902,
+          "b": 0.1607843137254902,
+          "a": 1.0
+        }
+      ],
+      "playerSpecialRoulettes": [
+        {
+          "sprite": "Roulette_Lifesteal",
+          "title": "생명력 흡수 룰렛",
+          "text": "피해를 값만큼 줍니다. 입힌 피해의 33%만큼 플레이어의 체력을 회복합니다.",
+          "baseVal": 6,
+          "title_enhanced": "생명력 흡수 룰렛+",
+          "text_enhanced": "피해를 값만큼 줍니다. 입힌 피해의 <color=red>50%</color>만큼 플레이어의 체력을 회복합니다.",
+          "baseVal_enhanced": 6
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "cards": [
+        "흡혈 부여",
+        "혈액 순환",
+        "피는 나의 힘",
+        "긴급 수혈",
+        "휴머니스트",
+        "블루 블러드",
+        "만찬 시간",
+        "핏빛 날개"
+      ],
+      "baseCards_persona": [
+        {
+          "cardName": "흡혈 부여",
+          "num": 1
+        },
+        {
+          "cardName": "피는 나의 힘",
+          "num": 1
+        },
+        {
+          "cardName": "블루 블러드",
+          "num": 1
+        }
+      ],
+      "baseCards_shadow": [
+        {
+          "cardName": "흡혈 부여",
+          "num": 1
+        },
+        {
+          "cardName": "피는 나의 힘",
+          "num": 1
+        },
+        {
+          "cardName": "만찬 시간",
+          "num": 1
+        }
+      ]
+    },
+    {
+      "name": "마술사의 꿈",
+      "description": "",
+      "courageStat": 0,
+      "wisdomStat": 0,
+      "luckStat": 0,
+      "persona": {
+        "type": 1,
+        "dreamPieceNum": 1,
+        "sprite": "마술사 아이콘",
+        "name": "마술 해체",
+        "text": "게임 시작 시 덱에 에이스 카드를 한 장 추가합니다. 에이스 카드를 사용하여 트리거합니다.\n트리거 효과: 모든 룰렛에 부여된 효과를 제거합니다.(공격, 수비 제외) 적에게 제 거한 효과 개수*7의 피해를 줍니다.",
+        "name_enhanced": "마술 해체+",
+        "text_enhanced": "게임 시작 시 덱에 에이스+ 카드를 한 장 추가합니다. 에이스 카드를 사용하여 트리거합니다.\n트리거 효과: 모든 룰렛에 부여된 효과를 제거합니다.(공격, 수비 제외) 적에게 제 거한 효과 개수*7의 피해를 줍니다. 6개 이상의 효과를 제거한 경우 50% 추가 피해를 줍니다. "
+      },
+      "shadow": {
+        "type": 2,
+        "dreamPieceNum": 1,
+        "sprite": "마술사 아이콘",
+        "name": "손기술",
+        "text": "카드를 3장 사용하면 즉시 카드를 1장 드로우합니다.",
+        "name_enhanced": "손기술+",
+        "text_enhanced": "카드를 2장 사용하면 즉시 카드를 1장 드로우합니다."
+      },
+      "triggerSprite": "Magician_Trigger",
+      "cardBackgrounds": [
+        "공용_일반",
+        "공용_희귀"
+      ],
+      "textColors": [
+        {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 0.0
+        }
+      ],
+      "playerSpecialRoulettes": [
+        {
+          "sprite": "Roulette_MagicBox",
+          "title": "마술상자 룰렛",
+          "text": "값의 카운터를 가지고 있습니다. 룰렛이 시계방향으로 회전할 때마다 카운트가 1 감소하고, 0이 되면 효과가 제거됩니다.",
+          "baseVal": 12,
+          "title_enhanced": "마술상자 룰렛+",
+          "text_enhanced": "값의 카운터를 가지고 있습니다. 룰렛이 시계방향으로 회전할 때마다 카운트가 1 감소하고, 0이 되면 효과가 제거됩니다.",
+          "baseVal_enhanced": 15
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "cards": [
+        "마술 상자",
+        "마술-비둘기",
+        "마술-카드",
+        "마술-절단",
+        "마술-순간이동",
+        "마술-예언",
+        "재빠른 손놀림",
+        "초능력-예언",
+        "초능력-염력"
+      ],
+      "baseCards_persona": [
+        {
+          "cardName": "마술 상자",
+          "num": 1
+        },
+        {
+          "cardName": "마술-순간이동",
+          "num": 1
+        },
+        {
+          "cardName": "재빠른 손놀림",
+          "num": 1
+        }
+      ],
+      "baseCards_shadow": [
+        {
+          "cardName": "마술 상자",
+          "num": 1
+        },
+        {
+          "cardName": "마술-절단",
+          "num": 1
+        },
+        {
+          "cardName": "초능력-염력",
+          "num": 1
+        }
+      ]
+    },
+    {
+      "name": "눈사람의 꿈",
+      "description": "",
+      "courageStat": 0,
+      "wisdomStat": 0,
+      "luckStat": 0,
+      "persona": {
+        "type": 1,
+        "dreamPieceNum": 2,
+        "sprite": "눈사람 아이콘",
+        "name": "겨울 바람",
+        "text": "매 턴 시작 시 트리거 게이지를 3 얻습니다.\n트리거 효과: 모든 룰렛에 꽁꽁 효과를 2턴 부여하고, 적의 이번 턴 행동을 전부 방해합니다.",
+        "name_enhanced": "겨울 바람+",
+        "text_enhanced": "매 턴 시작 시 트리거 게이지를 4 얻습니다.\n트리거 효과: 모든 룰렛에 꽁꽁 효과를 2턴 부여하고, 적의 이번 턴 행동을 전부 방해합니다."
+      },
+      "shadow": {
+        "type": 2,
+        "dreamPieceNum": 2,
+        "sprite": "눈사람 아이콘",
+        "name": "순환하는 계절",
+        "text": "짝수 턴 시작 시 4의 방어도를 얻습니다.",
+        "name_enhanced": "순환하는 계절+",
+        "text_enhanced": "짝수 턴 시작 시 8의 방어도를 얻습니다."
+      },
+      "triggerSprite": "Snowman_Trigger",
+      "cardBackgrounds": [
+        "눈사람_일반",
+        "눈사람_희귀"
+      ],
+      "textColors": [
+        {
+          "r": 0.2509803921568627,
+          "g": 0.3098039215686275,
+          "b": 0.3490196078431373,
+          "a": 1.0
+        },
+        {
+          "r": 0.1215686274509804,
+          "g": 0.1372549019607843,
+          "b": 0.1490196078431373,
+          "a": 1.0
+        },
+        {
+          "r": 0.1607843137254902,
+          "g": 0.1843137254901961,
+          "b": 0.2,
+          "a": 1.0
+        }
+      ],
+      "playerSpecialRoulettes": [
+        {
+          "sprite": "freeze",
+          "title": "꽁꽁",
+          "text": "값턴 얼어 있습니다. 얼어있는 동안 룰렛의 효과가 비활성화됩니다.",
+          "baseVal": 2,
+          "title_enhanced": "꽁꽁+",
+          "text_enhanced": "값턴 얼어 있습니다. 얼어있는 동안 룰렛의 효과가 비활성화됩니다.",
+          "baseVal_enhanced": 3
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "cards": [
+        "꽁꽁 얼리기",
+        "얼음 방패",
+        "나뭇가지 손",
+        "데굴데굴",
+        "차가운 악수",
+        "스노우볼링",
+        "녹아내리기",
+        "목도리",
+        "얼음 깨기",
+        "눈싸움",
+        "폭설",
+        "끝나지 않는 겨울"
+      ],
+      "baseCards_persona": [
+        {
+          "cardName": "꽁꽁 얼리기",
+          "num": 1
+        },
+        {
+          "cardName": "스노우볼링",
+          "num": 1
+        },
+        {
+          "cardName": "녹아내리기",
+          "num": 1
+        }
+      ],
+      "baseCards_shadow": [
+        {
+          "cardName": "꽁꽁 얼리기",
+          "num": 1
+        },
+        {
+          "cardName": "차가운 악수",
+          "num": 1
+        },
+        {
+          "cardName": "눈싸움",
+          "num": 1
+        }
+      ]
+    }
+  ]
+}
