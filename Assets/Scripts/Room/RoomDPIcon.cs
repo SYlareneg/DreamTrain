@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class RoomDPIcon : MonoBehaviour, IPointerClickHandler
 {
@@ -8,6 +9,8 @@ public class RoomDPIcon : MonoBehaviour, IPointerClickHandler
     [SerializeField] Image iconImage;
     [SerializeField] Image highlight;
     [SerializeField] Sprite[] highlightSprites;
+    [SerializeField] Image selectHover;
+    Sequence selectHoverSeq;
 
     public void Setup(DreamPiece_Reference dp)
     {
@@ -46,5 +49,32 @@ public class RoomDPIcon : MonoBehaviour, IPointerClickHandler
             }
         }
         highlight.gameObject.SetActive(false);
+
+        selectHoverSeq = DOTween.Sequence().SetLoops(-1, LoopType.Yoyo);
+        selectHoverSeq.Append(selectHover.DOFade(0.3f, 0.5f));
+        selectHoverSeq.Join(selectHover.transform.DOLocalMoveY(10f, 0.5f).SetRelative());
+        selectHoverSeq.Append(selectHover.DOFade(1f, 0.5f));
+        selectHoverSeq.Join(selectHover.transform.DOLocalMoveY(-10f, 0.5f).SetRelative());
+        selectHoverSeq.Pause();
+    }
+
+    void Update()
+    {
+        if(dreamPiece.name != "고양이의 꿈") return;
+        if (RoomDPManager.Inst.isInit)
+        {
+            selectHover.gameObject.SetActive(true);
+            selectHoverSeq.Play();
+        }
+        else
+        {
+            selectHover.gameObject.SetActive(false);
+            selectHoverSeq.Pause();
+        }
+    }
+
+    void OnDestroy()
+    {
+        selectHoverSeq.Kill();
     }
 }

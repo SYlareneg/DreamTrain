@@ -20,7 +20,7 @@ public class RoomDPManager : MonoBehaviour
     [SerializeField] GameObject dpPanel;
     [SerializeField] GameObject dpDetailPanel;
     [SerializeField] Image fadeoutScreen;
-    [SerializeField] TMP_Text initTMP;
+    [SerializeField] GameObject initView;
     [SerializeField] TMP_Text dpName;
     [SerializeField] TMP_Text dpDescription;
     [SerializeField] Image dpImage;
@@ -39,6 +39,7 @@ public class RoomDPManager : MonoBehaviour
 
     public bool isShowingPersona = true;
     public DreamPiece_Reference currentDreamPiece;
+    public bool isInit = true;
 
     public void ShowAllDreamPieces()
     {
@@ -46,6 +47,7 @@ public class RoomDPManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+        roomDPIcons.Clear();
         foreach(var dp in dreamPieceListSO.dreamPieces)
         {
             var newDPIcon = Instantiate(dpIconPrefab, dpIconParent);
@@ -65,7 +67,8 @@ public class RoomDPManager : MonoBehaviour
             isShowingPersona = false;
             dpSelectButton.GetComponentInChildren<TMP_Text>().text = "두번째 꿈 조각 선택";
             ClearDreamPieceView();
-            initTMP.gameObject.SetActive(true);
+            initView.SetActive(true);
+            isInit = true;
         }
         else
         {
@@ -90,7 +93,7 @@ public class RoomDPManager : MonoBehaviour
                 dpMarker2.Activate();
             }
         }
-        roomBackgroundImage.sprite = roomDPBackground[dp.persona.dreamPieceNum];
+        roomBackgroundImage.sprite = roomDPBackground[dp.persona.dreamPieceNum + 1];
         currentDreamPiece = dp;
         dpName.text = dp.name;
         dpDescription.text = dp.description;
@@ -131,7 +134,8 @@ public class RoomDPManager : MonoBehaviour
             passiveText.text = dp.shadow.name + ": " + dp.shadow.text;
         }
         dpDetailPanel.SetActive(true);
-        initTMP.gameObject.SetActive(false);
+        initView.SetActive(false);
+        isInit = false;
     }
 
     public void ClearDreamPieceView()
@@ -152,9 +156,11 @@ public class RoomDPManager : MonoBehaviour
             isShowingPersona = true;
             dpSelectButton.GetComponentInChildren<TMP_Text>().text = "첫번째 꿈 조각 선택";
             ClearDreamPieceView();
-            initTMP.gameObject.SetActive(true);
+            initView.SetActive(true);
+            isInit = true;
             ShowAllDreamPieces();
             backSlider.Activate();
+            roomBackgroundImage.sprite = roomDPBackground[0];
         }));
         fadeout.Append(fadeoutScreen.DOFade(0f, 1f).OnComplete(() =>
         {
