@@ -1,7 +1,35 @@
 {
   "items": [
     {
-      "name": "회전 카드 1",
+      "name": "3칸 역회전",
+      "cost": 0,
+      "type": 0,
+      "dreamPieceNum": -1,
+      "sprite": "CCW3",
+      "text": "룰렛을 반시계방향으로 3<특수>칸 회전시킵니다.",
+      "isVolatile": false,
+      "isVanish": false,
+      "isRemain": false,
+      "isSingleTarget": false,
+      "rarity": 0,
+      "cardValues": [
+        3
+      ],
+      "cardValueTypes": [
+        3
+      ],
+      "name_enhanced": "3칸 역회전+",
+      "cost_enhanced": 0,
+      "text_enhanced": "",
+      "isVolatile_enhanced": false,
+      "isVanish_enhanced": false,
+      "isRemain_enhanced": false,
+      "isSingleTarget_enhanced": false,
+      "cardValues_enhanced": [],
+      "cardValueTypes_enhanced": []
+    },
+    {
+      "name": "1칸 회전",
       "cost": 1,
       "type": 0,
       "dreamPieceNum": -1,
@@ -18,7 +46,7 @@
       "cardValueTypes": [
         3
       ],
-      "name_enhanced": "",
+      "name_enhanced": "1칸 회전+",
       "cost_enhanced": 0,
       "text_enhanced": "",
       "isVolatile_enhanced": false,
@@ -29,7 +57,7 @@
       "cardValueTypes_enhanced": []
     },
     {
-      "name": "회전 카드 2",
+      "name": "2칸 회전",
       "cost": 1,
       "type": 0,
       "dreamPieceNum": -1,
@@ -46,7 +74,7 @@
       "cardValueTypes": [
         3
       ],
-      "name_enhanced": "",
+      "name_enhanced": "2칸 회전+",
       "cost_enhanced": 0,
       "text_enhanced": "",
       "isVolatile_enhanced": false,
@@ -57,7 +85,7 @@
       "cardValueTypes_enhanced": []
     },
     {
-      "name": "회전 카드 3",
+      "name": "3칸 회전",
       "cost": 1,
       "type": 0,
       "dreamPieceNum": -1,
@@ -74,7 +102,7 @@
       "cardValueTypes": [
         3
       ],
-      "name_enhanced": "",
+      "name_enhanced": "3칸 회전+",
       "cost_enhanced": 0,
       "text_enhanced": "",
       "isVolatile_enhanced": false,
@@ -85,7 +113,35 @@
       "cardValueTypes_enhanced": []
     },
     {
-      "name": "회전 카드 4",
+      "name": "1칸 역회전",
+      "cost": 1,
+      "type": 0,
+      "dreamPieceNum": -1,
+      "sprite": "CCW1",
+      "text": "룰렛을 반시계방향으로 1<특수>칸 회전시킵니다.",
+      "isVolatile": false,
+      "isVanish": false,
+      "isRemain": false,
+      "isSingleTarget": false,
+      "rarity": 0,
+      "cardValues": [
+        1
+      ],
+      "cardValueTypes": [
+        3
+      ],
+      "name_enhanced": "1칸 역회전+",
+      "cost_enhanced": 0,
+      "text_enhanced": "",
+      "isVolatile_enhanced": false,
+      "isVanish_enhanced": false,
+      "isRemain_enhanced": false,
+      "isSingleTarget_enhanced": false,
+      "cardValues_enhanced": [],
+      "cardValueTypes_enhanced": []
+    },
+    {
+      "name": "2칸 역회전",
       "cost": 1,
       "type": 0,
       "dreamPieceNum": -1,
@@ -102,35 +158,7 @@
       "cardValueTypes": [
         3
       ],
-      "name_enhanced": "",
-      "cost_enhanced": 0,
-      "text_enhanced": "",
-      "isVolatile_enhanced": false,
-      "isVanish_enhanced": false,
-      "isRemain_enhanced": false,
-      "isSingleTarget_enhanced": false,
-      "cardValues_enhanced": [],
-      "cardValueTypes_enhanced": []
-    },
-    {
-      "name": "회전 카드 5",
-      "cost": 1,
-      "type": 0,
-      "dreamPieceNum": -1,
-      "sprite": "CCW3",
-      "text": "룰렛을 반시계방향으로 3<특수>칸 회전시킵니다.",
-      "isVolatile": false,
-      "isVanish": false,
-      "isRemain": false,
-      "isSingleTarget": false,
-      "rarity": 0,
-      "cardValues": [
-        3
-      ],
-      "cardValueTypes": [
-        3
-      ],
-      "name_enhanced": "",
+      "name_enhanced": "2칸 역회전+",
       "cost_enhanced": 0,
       "text_enhanced": "",
       "isVolatile_enhanced": false,
