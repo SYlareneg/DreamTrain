@@ -319,11 +319,12 @@ public class GameManager : MonoBehaviour
     {
         Tooltip.showTooltipSignal = false;
         turnNotificationTMP.text = message;
-        onComplete += () =>
+        Action callback = () =>
         {
             Tooltip.showTooltipSignal = true;
         };
-        notificationPanel.Show(title, onComplete);
+        callback += onComplete;
+        notificationPanel.Show(title, callback);
     }
 
     public enum ListType { Deck, Draw, Discard };
