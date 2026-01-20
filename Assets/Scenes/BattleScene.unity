@@ -2163,11 +2163,12 @@ RectTransform:
   m_Children:
   - {fileID: 583071089}
   - {fileID: 13452989}
-  - {fileID: 1981381803}
   - {fileID: 34925702}
   - {fileID: 401201884}
   - {fileID: 1985311735}
   - {fileID: 283044671}
+  - {fileID: 720831635}
+  - {fileID: 1981381803}
   - {fileID: 464756122}
   - {fileID: 656351732}
   - {fileID: 514841443}
@@ -7305,11 +7306,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1334374192}
+  m_Father: {fileID: 243048738}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 0, y: 0.25}
-  m_AnchoredPosition: {x: 33.899902, y: -93.70001}
+  m_AnchoredPosition: {x: 29, y: -86}
   m_SizeDelta: {x: 65.5, y: 90}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &720831636
@@ -10551,6 +10552,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 950750591}
+  - component: {fileID: 950750592}
   m_Layer: 5
   m_Name: TriggerBar
   m_TagString: Untagged
@@ -10580,6 +10582,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 1, y: 1}
+--- !u!114 &950750592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950750590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a00420b01652994990b4f0921a3d65a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tooltip
+  tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
+  tooltipTitle: 
+  tooltipTxt: 
+  tooltipPos: {x: -790, y: -346}
+  tooltipPivot: {x: 0, y: 0}
+  tooltipDisable: 0
 --- !u!1 &967740068
 GameObject:
   m_ObjectHideFlags: 0
@@ -14516,7 +14536,6 @@ RectTransform:
   - {fileID: 81694590}
   - {fileID: 6264741504720648788}
   - {fileID: 304780875}
-  - {fileID: 720831635}
   - {fileID: 1420406249}
   - {fileID: 62641916}
   m_Father: {fileID: 0}
@@ -14944,6 +14963,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  enemyTriggerBar: {fileID: 1463286428}
   enemyName: {fileID: 432007397}
   actionList: []
   executeActionList: []
@@ -15908,6 +15928,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1463286429}
+  - component: {fileID: 1463286430}
   m_Layer: 5
   m_Name: TriggerBar
   m_TagString: Untagged
@@ -15937,6 +15958,24 @@ RectTransform:
   m_AnchoredPosition: {x: -236.5752, y: -5.8359985}
   m_SizeDelta: {x: 260, y: 15}
   m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &1463286430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463286428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a00420b01652994990b4f0921a3d65a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tooltip
+  tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
+  tooltipTitle: 
+  tooltipTxt: 
+  tooltipPos: {x: -800, y: 400}
+  tooltipPivot: {x: 0, y: 1}
+  tooltipDisable: 0
 --- !u!1 &1466824686
 GameObject:
   m_ObjectHideFlags: 0
@@ -20198,7 +20237,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1855046141}
   - component: {fileID: 1855046142}
-  - component: {fileID: 1855046143}
   m_Layer: 0
   m_Name: EnemyThumbnail
   m_TagString: Untagged
@@ -20237,24 +20275,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1855046140}
   m_CullTransparentMesh: 1
---- !u!114 &1855046143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1855046140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a00420b01652994990b4f0921a3d65a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Tooltip
-  tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
-  tooltipTitle: 
-  tooltipTxt: 
-  tooltipPos: {x: -800, y: 400}
-  tooltipPivot: {x: 0, y: 1}
-  tooltipDisable: 0
 --- !u!1 &1869697163
 GameObject:
   m_ObjectHideFlags: 0

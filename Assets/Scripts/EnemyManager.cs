@@ -55,6 +55,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] GameObject[] subEnemyImg;
     [SerializeField] GameObject enemyThumbnail;
     [SerializeField] GameObject[] subEnemyThumbnail;
+    [SerializeField] GameObject enemyTriggerBar;
     [SerializeField] TMP_Text enemyName;
     public List<EnemyAction> actionList;
     public List<EnemyAction>[] subEnemyActionList = new List<EnemyAction>[Enemy.maxSubEnemyNum];
@@ -122,8 +123,12 @@ public class EnemyManager : MonoBehaviour
         enemyImg.GetComponent<Tooltip>().tooltipTitle = enemy.phase[0].name;
         enemyImg.GetComponent<Tooltip>().tooltipTxt = enemy.phase[0].text;
         enemyThumbnail.transform.Find("ImageMask/Image").GetComponent<Image>().sprite = enemy.phase[0].sprite;
-        enemyThumbnail.GetComponent<Tooltip>().tooltipTitle = enemy.phase[0].name;
-        enemyThumbnail.GetComponent<Tooltip>().tooltipTxt = enemy.phase[0].text;
+        if(enemy.triggerNum == 0) enemyTriggerBar.SetActive(false);
+        else enemyTriggerBar.SetActive(true);
+        enemyTriggerBar.GetComponent<Tooltip>().tooltipTitle = enemy.phase[0].name;
+        enemyTriggerBar.GetComponent<Tooltip>().tooltipTxt = enemy.phase[0].text;
+        // enemyThumbnail.GetComponent<Tooltip>().tooltipTitle = enemy.phase[0].name;
+        // enemyThumbnail.GetComponent<Tooltip>().tooltipTxt = enemy.phase[0].text;
 
         enemySpecialRoulettes = new List<SpecialRoulette>();
         for(int i = 0; i < enemy.enemySpecialRoulettes.Length; i++)
@@ -669,8 +674,8 @@ public class EnemyManager : MonoBehaviour
         subEnemyImg[subEnemyIdx].GetComponent<Tooltip>().tooltipTitle = subEnemy.phase[0].name;
         subEnemyImg[subEnemyIdx].GetComponent<Tooltip>().tooltipTxt = subEnemy.phase[0].text;
         subEnemyThumbnail[subEnemyIdx].transform.Find("ImageMask/Image").GetComponent<Image>().sprite = subEnemy.phase[0].sprite;
-        subEnemyThumbnail[subEnemyIdx].GetComponent<Tooltip>().tooltipTitle = subEnemy.phase[0].name;
-        subEnemyThumbnail[subEnemyIdx].GetComponent<Tooltip>().tooltipTxt = subEnemy.phase[0].text;
+        // subEnemyThumbnail[subEnemyIdx].GetComponent<Tooltip>().tooltipTitle = subEnemy.phase[0].name;
+        // subEnemyThumbnail[subEnemyIdx].GetComponent<Tooltip>().tooltipTxt = subEnemy.phase[0].text;
         subEnemyActionList[subEnemyIdx] = new List<EnemyAction>();
 
         List<SpecialRoulette> specialRoulettes = new List<SpecialRoulette>();
@@ -731,8 +736,10 @@ public class EnemyManager : MonoBehaviour
             enemyImg.GetComponent<Tooltip>().tooltipTitle = enemy.phase[phaseNum].name;
             enemyImg.GetComponent<Tooltip>().tooltipTxt = enemy.phase[phaseNum].text;
             enemyThumbnail.transform.Find("ImageMask/Image").GetComponent<Image>().sprite = enemy.phase[phaseNum].sprite;
-            enemyThumbnail.GetComponent<Tooltip>().tooltipTitle = enemy.phase[phaseNum].name;
-            enemyThumbnail.GetComponent<Tooltip>().tooltipTxt = enemy.phase[phaseNum].text;
+            enemyTriggerBar.GetComponent<Tooltip>().tooltipTitle = enemy.phase[phaseNum].name;
+            enemyTriggerBar.GetComponent<Tooltip>().tooltipTxt = enemy.phase[phaseNum].text;
+            // enemyThumbnail.GetComponent<Tooltip>().tooltipTitle = enemy.phase[phaseNum].name;
+            // enemyThumbnail.GetComponent<Tooltip>().tooltipTxt = enemy.phase[phaseNum].text;
         }
         else if (isTriggerActivated && enemy.triggerPhase[triggerPhaseNum].phaseClear)
         {
@@ -743,8 +750,10 @@ public class EnemyManager : MonoBehaviour
             enemyImg.GetComponent<Tooltip>().tooltipTitle = enemy.triggerPhase[triggerPhaseNum].name;
             enemyImg.GetComponent<Tooltip>().tooltipTxt = enemy.triggerPhase[triggerPhaseNum].text;
             enemyThumbnail.transform.Find("ImageMask/Image").GetComponent<Image>().sprite = enemy.triggerPhase[triggerPhaseNum].sprite;
-            enemyThumbnail.GetComponent<Tooltip>().tooltipTitle = enemy.triggerPhase[triggerPhaseNum].name;
-            enemyThumbnail.GetComponent<Tooltip>().tooltipTxt = enemy.triggerPhase[triggerPhaseNum].text;
+            enemyTriggerBar.GetComponent<Tooltip>().tooltipTitle = enemy.triggerPhase[triggerPhaseNum].name;
+            enemyTriggerBar.GetComponent<Tooltip>().tooltipTxt = enemy.triggerPhase[triggerPhaseNum].text;
+            // enemyThumbnail.GetComponent<Tooltip>().tooltipTitle = enemy.triggerPhase[triggerPhaseNum].name;
+            // enemyThumbnail.GetComponent<Tooltip>().tooltipTxt = enemy.triggerPhase[triggerPhaseNum].text;
         }
 
         // 서브 적 페이즈 전환
@@ -760,8 +769,8 @@ public class EnemyManager : MonoBehaviour
                 subEnemyImg[i].GetComponent<Tooltip>().tooltipTitle = subEnemies[i].phase[phaseNum_SE[i]].name;
                 subEnemyImg[i].GetComponent<Tooltip>().tooltipTxt = subEnemies[i].phase[phaseNum_SE[i]].text;
                 subEnemyThumbnail[i].transform.Find("ImageMask/Image").GetComponent<Image>().sprite = subEnemies[i].phase[phaseNum_SE[i]].sprite;
-                subEnemyThumbnail[i].GetComponent<Tooltip>().tooltipTitle = subEnemies[i].phase[phaseNum_SE[i]].name;
-                subEnemyThumbnail[i].GetComponent<Tooltip>().tooltipTxt = subEnemies[i].phase[phaseNum_SE[i]].text;
+                // subEnemyThumbnail[i].GetComponent<Tooltip>().tooltipTitle = subEnemies[i].phase[phaseNum_SE[i]].name;
+                // subEnemyThumbnail[i].GetComponent<Tooltip>().tooltipTxt = subEnemies[i].phase[phaseNum_SE[i]].text;
             }
         }
     }
@@ -776,8 +785,10 @@ public class EnemyManager : MonoBehaviour
         enemyImg.GetComponent<Tooltip>().tooltipTitle = enemy.phase[phaseNum].name;
         enemyImg.GetComponent<Tooltip>().tooltipTxt = enemy.phase[phaseNum].text;
         enemyThumbnail.transform.Find("ImageMask/Image").GetComponent<Image>().sprite = enemy.phase[phaseNum].sprite;
-        enemyThumbnail.GetComponent<Tooltip>().tooltipTitle = enemy.phase[phaseNum].name;
-        enemyThumbnail.GetComponent<Tooltip>().tooltipTxt = enemy.phase[phaseNum].text;
+        enemyTriggerBar.GetComponent<Tooltip>().tooltipTitle = enemy.phase[phaseNum].name;
+        enemyTriggerBar.GetComponent<Tooltip>().tooltipTxt = enemy.phase[phaseNum].text;
+        // enemyThumbnail.GetComponent<Tooltip>().tooltipTitle = enemy.phase[phaseNum].name;
+        // enemyThumbnail.GetComponent<Tooltip>().tooltipTxt = enemy.phase[phaseNum].text;
     }
 
     // 액션 리스트 초기화. 랜덤한 액션을 actionNum 개수만큼 생성

@@ -16,7 +16,7 @@
                 {
                   "type": 1,
                   "typeNum": 0,
-                  "val": 5,
+                  "val": 6,
                   "isTrigger": false
                 }
               ]
@@ -26,17 +26,7 @@
                 {
                   "type": 3,
                   "typeNum": 0,
-                  "val": 5,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 0,
-                  "typeNum": 0,
-                  "val": 3,
+                  "val": 6,
                   "isTrigger": false
                 }
               ]
@@ -47,6 +37,16 @@
                   "type": 2,
                   "typeNum": 0,
                   "val": 2,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 3,
                   "isTrigger": false
                 }
               ]
@@ -65,9 +65,9 @@
             {
               "pattern": [
                 {
-                  "type": 2,
+                  "type": 1,
                   "typeNum": 0,
-                  "val": 10,
+                  "val": 12,
                   "isTrigger": true
                 }
               ]
@@ -80,51 +80,35 @@
       "roulettePattern": [
         {
           "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
             "type": 3,
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
-          "value": 5
-        },
-        {
-          "rtype": {
-            "type": 0,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 0
-        },
-        {
-          "rtype": {
-            "type": 0,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 0
-        },
-        {
-          "rtype": {
-            "type": 0,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 0
-        },
-        {
-          "rtype": {
-            "type": 2,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 2
-        },
-        {
-          "rtype": {
-            "type": 0,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 0
+          "value": 6
         },
         {
           "rtype": {
@@ -156,7 +140,463 @@
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
-          "value": 5
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        }
+      ],
+      "enemySpecialRoulettes": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "enemySpecialActions": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        }
+      ],
+      "subEnemies": [],
+      "subEnemies_Spawn": []
+    },
+    {
+      "name": "카드 병정 2",
+      "id": "CardSoldier2",
+      "health": 25,
+      "triggerNum": 0,
+      "phase": [
+        {
+          "name": "전투 준비",
+          "sprite": "Enemy_Vampire",
+          "text": "턴 시작 시 트리거를 1 얻습니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 3,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 2,
+                  "typeNum": 0,
+                  "val": 2,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 3,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": true
+        }
+      ],
+      "triggerPhase": [
+        {
+          "name": "카드 병정: 트리거",
+          "sprite": "Enemy_Vampire",
+          "text": "카드 병정이 트리거 상태입니다. 턴 종료 시 트리거가 해제됩니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 12,
+                  "isTrigger": true
+                }
+              ]
+            }
+          ],
+          "phaseRepeat": false,
+          "phaseClear": false
+        }
+      ],
+      "roulettePattern": [
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        }
+      ],
+      "enemySpecialRoulettes": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "enemySpecialActions": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        }
+      ],
+      "subEnemies": [],
+      "subEnemies_Spawn": []
+    },
+    {
+      "name": "카드 병정 3",
+      "id": "CardSoldier3",
+      "health": 40,
+      "triggerNum": 3,
+      "phase": [
+        {
+          "name": "전투 준비",
+          "sprite": "Enemy_Vampire",
+          "text": "턴 시작 시 트리거를 1 얻습니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 3,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 2,
+                  "typeNum": 0,
+                  "val": 2,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 3,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": true
+        }
+      ],
+      "triggerPhase": [
+        {
+          "name": "카드 병정: 트리거",
+          "sprite": "Enemy_Vampire",
+          "text": "카드 병정이 트리거 상태입니다. 턴 종료 시 트리거가 해제됩니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 12,
+                  "isTrigger": true
+                }
+              ]
+            }
+          ],
+          "phaseRepeat": false,
+          "phaseClear": false
+        }
+      ],
+      "roulettePattern": [
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
         },
         {
           "rtype": {

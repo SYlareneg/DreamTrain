@@ -234,6 +234,7 @@ public class GameManager : MonoBehaviour
         if (TurnManager.Inst.characterSO.personaPiece != null)
         {
             Tooltip tooltip = personaImg.GetComponentInParent<Tooltip>();
+            Tooltip triggerBarTooltip = triggerCntImg.transform.parent.GetComponent<Tooltip>();
             if (TurnManager.Inst.characterSO.personaPiece.persona.isEnhanced)
             {
                 personaImg.sprite = TurnManager.Inst.characterSO.personaPiece.persona.enhancedPassive.sprite;
@@ -241,6 +242,11 @@ public class GameManager : MonoBehaviour
                 {
                     tooltip.tooltipTitle = TurnManager.Inst.characterSO.personaPiece.persona.enhancedPassive.name;
                     tooltip.tooltipTxt = TurnManager.Inst.characterSO.personaPiece.persona.enhancedPassive.text;
+                }
+                if(triggerBarTooltip)
+                {
+                    triggerBarTooltip.tooltipTitle = TurnManager.Inst.characterSO.personaPiece.persona.enhancedPassive.name;
+                    triggerBarTooltip.tooltipTxt = TurnManager.Inst.characterSO.personaPiece.persona.enhancedPassive.text;
                 }
             }
             else
@@ -250,6 +256,11 @@ public class GameManager : MonoBehaviour
                 {
                     tooltip.tooltipTitle = TurnManager.Inst.characterSO.personaPiece.persona.name;
                     tooltip.tooltipTxt = TurnManager.Inst.characterSO.personaPiece.persona.text;
+                }
+                if (triggerBarTooltip)
+                {
+                    triggerBarTooltip.tooltipTitle = TurnManager.Inst.characterSO.personaPiece.persona.name;
+                    triggerBarTooltip.tooltipTxt = TurnManager.Inst.characterSO.personaPiece.persona.text;
                 }
             }
         }
