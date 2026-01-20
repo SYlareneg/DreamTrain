@@ -25,7 +25,7 @@ public class CardManager : MonoBehaviour
     [Tooltip("카드 UI 프리팹")][SerializeField] GameObject cardUIPrefab;
     [Tooltip("카드 툴팁 프리팹")][SerializeField] GameObject cardTooltipPrefab;
     [Tooltip("현재 카드 매니저 상태(카드를 드래그 할 수 있는지)")][ReadOnly, SerializeField] ECardState eCardState;
-    [Tooltip("카드 드래그 여부")][ReadOnly, SerializeField] bool isMyCardDrag;
+    [Tooltip("카드 드래그 여부")][ReadOnly] public bool isMyCardDrag;
     [Tooltip("현재 드래그 중인 카드가 나의 핸드 범위에 위치하는지 확인")][ReadOnly, SerializeField] bool onMyCardArea; // false일 경우 카드 사용, true일 경우 카드 핸드로 복귀
     [Tooltip("현재 드래그 중인 카드가 적의 카드 적용 범위에 위치하는지 확인")][ReadOnly, SerializeField] int onEnemyCardArea; // 0 이상일 경우 카드 사용, -1일 경우 카드 핸드로 복귀
 
@@ -54,6 +54,8 @@ public class CardManager : MonoBehaviour
     [Tooltip("카드 선택 화면 모드 텍스트")][SerializeField] TMP_Text selectModeText;
     [Tooltip("카드 선택 버튼")][SerializeField] Button cardSelectButton;
     [Tooltip("보드 보기 버튼")][SerializeField] Button showBoardButton;
+    [Header("적 선택")]
+    [Tooltip("적 선택 화면")][SerializeField] GameObject enemySelectScreen;
 
     [Header("이드")]
     [Tooltip("총 사용한 카드 개수")] public int useCount; 
@@ -405,6 +407,7 @@ public class CardManager : MonoBehaviour
         }
         // 카드 드래그 시작
         isMyCardDrag = true;
+        if(selectedCard.item.isSingleTarget == true) onEnemyCardArea = -1;
     }
 
     // 카드에 마우스를 놓고 누른 후 뗐을 때 호출
@@ -433,8 +436,11 @@ public class CardManager : MonoBehaviour
             }
             if(selectedCard.item.isSingleTarget == true && onEnemyCardArea == -1)
             {
-                EnlargeCard(false, selectedCard);
-                selectedCard = null;
+                // EnlargeCard(false, selectedCard);
+                // selectedCard = null;
+                TurnManager.Inst.isLoading = true;
+                selectedCard.gameObject.SetActive(false);
+                StartCoroutine(CardEnemySelect());
                 return;
             }
             // 카드 사용
@@ -476,8 +482,137 @@ public class CardManager : MonoBehaviour
         else
         {
             EnlargeCard(false, selectedCard);
+            selectedCard.gameObject.SetActive(true);
             selectedCard = null;
         }
+    }
+
+    public IEnumerator CardEnemySelect()
+    {
+        enemySelectScreen.SetActive(true);
+        List<(GameObject enemy, int enemyIdx)> enemyPosList = new List<(GameObject enemy, int enemyIdx)>();
+        enemyPosList.Add((EnemyManager.Inst.enemyPos.gameObject, 0));
+        for(int i = 0; i < Enemy.maxSubEnemyNum; i++)
+        {
+            if(EnemyManager.Inst.subEnemies[i] != null && EnemyManager.Inst.subEnemies[i].name != null)
+            {
+                enemyPosList.Add((EnemyManager.Inst.subEnemyPos[i].gameObject, i + 1));
+            }
+        }
+        foreach(var (enemy, enemyIdx) in enemyPosList)
+        {
+            var enemyPos = Instantiate(enemy, enemySelectScreen.transform);
+            enemyPos.transform.SetParent(enemySelectScreen.transform, true);
+            enemyPos.transform.SetAsLastSibling();
+            foreach(Transform child in enemyPos.transform)
+            {
+                if(child.name == "EnemyImg")
+                {
+                    foreach(Transform grandChild in child)
+                    {
+                        Destroy(grandChild.gameObject);
+                    }
+                    var childSR = child.GetComponent<SpriteRenderer>();
+                    if(childSR != null) childSR.sortingOrder += enemySelectScreen.GetComponent<Canvas>().sortingOrder + 10;
+
+                    child.gameObject.AddComponent<Button>().onClick.AddListener(() =>
+                    {
+                        onEnemyCardArea = enemyIdx;
+                    });
+                }
+                else if(child.name == "EnemyHighlight")
+                {
+                    var childSR = child.GetComponent<SpriteRenderer>();
+                    if(childSR != null)
+                    {
+                        childSR.sortingOrder += enemySelectScreen.GetComponent<Canvas>().sortingOrder + 10;
+                        Sequence highlightBlinkSeq = DOTween.Sequence();
+                        highlightBlinkSeq.Append(childSR.DOFade(0f, 0.5f));
+                        highlightBlinkSeq.Append(childSR.DOFade(1f, 0.5f));
+                        highlightBlinkSeq.SetLoops(-1);
+                        highlightBlinkSeq.SetTarget(enemyPos);
+                    }
+                    child.gameObject.SetActive(true);
+                }
+                else if(child.name == "EnemyFrame")
+                {
+                    var childSRMask = child.GetComponent<SpriteMask>();
+                    if(childSRMask != null)
+                    {
+                        childSRMask.frontSortingOrder += enemySelectScreen.GetComponent<Canvas>().sortingOrder + 10;
+                        childSRMask.backSortingOrder += enemySelectScreen.GetComponent<Canvas>().sortingOrder + 10;
+                    }
+                }
+                else
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+
+            GameObject enemyRoulette = null;
+            if(enemyIdx == 0)
+            {
+                enemyRoulette = Instantiate(EnemyManager.Inst.mainEnemyRouletteBackground, enemySelectScreen.transform);
+                enemyRoulette.transform.SetParent(enemySelectScreen.transform, true);
+                enemyRoulette.transform.SetAsLastSibling();
+                enemyRoulette.transform.position = EnemyManager.Inst.mainEnemyRouletteBackground.transform.position;
+                enemyRoulette.transform.localScale = EnemyManager.Inst.mainEnemyRouletteBackground.transform.localScale * 30f * 1.085f;
+            }
+            else
+            {
+                int tempIdx = Array.FindIndex(EnemyManager.Inst.subEnemyCanvasPos_roulettePos, x => x == EnemyManager.Inst.subEnemies[enemyIdx - 1].roulettePos);
+                if(tempIdx >= 0) enemyRoulette = Instantiate(EnemyManager.Inst.subEnemyCanvasPos_enemyRouletteBackground[tempIdx], enemySelectScreen.transform);
+                enemyRoulette.transform.SetParent(enemySelectScreen.transform, true);
+                enemyRoulette.transform.SetAsLastSibling();
+                enemyRoulette.transform.position = EnemyManager.Inst.subEnemyCanvasPos_enemyRouletteBackground[tempIdx].transform.position;
+                enemyRoulette.transform.localScale = EnemyManager.Inst.subEnemyCanvasPos_enemyRouletteBackground[tempIdx].transform.localScale * 30f * 1.085f;
+            }
+            
+            foreach(Transform child in enemyRoulette.transform)
+            {
+                var childSR = child.GetComponent<SpriteRenderer>();
+                if(childSR != null) childSR.sortingOrder += enemySelectScreen.GetComponent<Canvas>().sortingOrder + 10;
+            }
+        }
+
+        var currentCard = Instantiate(selectedCard, enemySelectScreen.transform);
+        currentCard.transform.SetParent(enemySelectScreen.transform, true);
+        currentCard.transform.SetAsLastSibling();
+        currentCard.highlight.enabled = true;
+        Destroy(currentCard.GetComponent<Card>());
+        Destroy(currentCard.GetComponent<Order>());
+        currentCard.gameObject.SetActive(true);
+        currentCard.transform.position = Vector3.zero;
+        currentCard.transform.localScale = selectedCard.transform.localScale / 0.02777778f;
+        
+        yield return new WaitUntil(() => onEnemyCardArea >= 0);
+        eCardState = ECardState.CanMouseDrag;
+        enemySelectScreen.SetActive(false);
+        foreach(Transform child in enemySelectScreen.transform)
+        {
+            if(child.name == "FadeoutScreen" || child.name == "Cancel") continue;
+            DOTween.Kill(child.gameObject);
+            Destroy(child.gameObject);
+        }
+        TurnManager.Inst.isLoading = false;
+        CardMouseUp(selectedCard);
+    }
+
+    public void CancelEnemySelect()
+    {
+        onEnemyCardArea = -1;
+        eCardState = ECardState.CanMouseDrag;
+        enemySelectScreen.SetActive(false);
+        foreach(Transform child in enemySelectScreen.transform)
+        {
+            if(child.name == "FadeoutScreen" || child.name == "Cancel") continue;
+            DOTween.Kill(child.gameObject);
+            Destroy(child.gameObject);
+        }
+        TurnManager.Inst.isLoading = false;
+        selectedCard.gameObject.SetActive(true);
+        EnlargeCard(false, selectedCard);
+        selectedCard = null;
     }
 
     // 카드 드래그. 카드 위치를 마우스 위치로 이동
@@ -506,35 +641,35 @@ public class CardManager : MonoBehaviour
         int layerMask = LayerMask.GetMask("MyCardArea", "EnemyCardArea");
         RaycastHit2D[] hits = Physics2D.GetRayIntersectionAll(ray, Mathf.Infinity, layerMask);
         onMyCardArea = Array.Exists(hits, x => x.collider.gameObject.layer == mylayer);
-        var enemyHits = Array.Find(hits, x => x.collider.gameObject.layer == enemylayer);
-        if(enemyHits.collider != null)
-        {
-            Transform enemyPos = enemyHits.collider.transform;
-            onEnemyCardArea = EnemyManager.Inst.FindEnemyIdxByPos(enemyPos);
+        // var enemyHits = Array.Find(hits, x => x.collider.gameObject.layer == enemylayer);
+        // if(enemyHits.collider != null)
+        // {
+        //     Transform enemyPos = enemyHits.collider.transform;
+        //     onEnemyCardArea = EnemyManager.Inst.FindEnemyIdxByPos(enemyPos);
 
-            if(isMyCardDrag && !onMyCardArea && selectedCard != null && selectedCard.item.isSingleTarget == true)
-            {
-                enemyPos.Find("EnemyHighlight").gameObject.SetActive(true);
-            }
-        }
-        else
-        {
-            onEnemyCardArea = 0;
-            EnemyManager.Inst.enemyPos.Find("EnemyHighlight").gameObject.SetActive(false);
-            for(int i = 0; i < Enemy.maxSubEnemyNum; i++)
-            {
-                if(EnemyManager.Inst.subEnemies[i] != null && EnemyManager.Inst.subEnemies[i].name != null)
-                {
-                    onEnemyCardArea = -1;
-                    EnemyManager.Inst.subEnemyPos[i].Find("EnemyHighlight").gameObject.SetActive(false);
-                }
-            }
+        //     if(isMyCardDrag && !onMyCardArea && selectedCard != null && selectedCard.item.isSingleTarget == true)
+        //     {
+        //         enemyPos.Find("EnemyHighlight").gameObject.SetActive(true);
+        //     }
+        // }
+        // else
+        // {
+        //     onEnemyCardArea = 0;
+        //     EnemyManager.Inst.enemyPos.Find("EnemyHighlight").gameObject.SetActive(false);
+        //     for(int i = 0; i < Enemy.maxSubEnemyNum; i++)
+        //     {
+        //         if(EnemyManager.Inst.subEnemies[i] != null && EnemyManager.Inst.subEnemies[i].name != null)
+        //         {
+        //             onEnemyCardArea = -1;
+        //             EnemyManager.Inst.subEnemyPos[i].Find("EnemyHighlight").gameObject.SetActive(false);
+        //         }
+        //     }
 
-            if(isMyCardDrag && !onMyCardArea && selectedCard != null && selectedCard.item.isSingleTarget == true && onEnemyCardArea == 0)
-            {
-                EnemyManager.Inst.enemyPos.Find("EnemyHighlight").gameObject.SetActive(true);
-            }
-        }
+        //     if(isMyCardDrag && !onMyCardArea && selectedCard != null && selectedCard.item.isSingleTarget == true && onEnemyCardArea == 0)
+        //     {
+        //         EnemyManager.Inst.enemyPos.Find("EnemyHighlight").gameObject.SetActive(true);
+        //     }
+        // }
     }
 
     // 카드 확대/축소

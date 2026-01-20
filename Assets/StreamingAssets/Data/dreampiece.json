@@ -2,6 +2,10 @@
   "dreamPieces": [
     {
       "name": "고양이의 꿈",
+      "description": "검고 귀여운 고양이입니다. 날카로운 발톱과 민첩한 몸놀림으로 위험을 돌파합니다.",
+      "courageStat": 0,
+      "wisdomStat": 0,
+      "luckStat": 1,
       "persona": {
         "type": 1,
         "dreamPieceNum": 3,
@@ -21,9 +25,33 @@
         "text_enhanced": "전투 시작 시 무작위 <color=red>2</color>칸에 발톱 룰렛을 부여합니다."
       },
       "triggerSprite": "DP_illust_고양이_1",
+      "cardBackgrounds": [
+        "고양이_일반",
+        "고양이_희귀"
+      ],
+      "textColors": [
+        {
+          "r": 0.6509804129600525,
+          "g": 0.6274510025978088,
+          "b": 0.6274510025978088,
+          "a": 1
+        },
+        {
+          "r": 0.14901961386203766,
+          "g": 0.14901961386203766,
+          "b": 0.14901961386203766,
+          "a": 1
+        },
+        {
+          "r": 0.21568627655506134,
+          "g": 0.21568627655506134,
+          "b": 0.21568627655506134,
+          "a": 1
+        }
+      ],
       "playerSpecialRoulettes": [
         {
-          "sprite": "룰렛_발톱",
+          "sprite": "룰렛_발톱_1",
           "title": "발톱",
           "text": "값 피해를 줍니다. 효과를 적용할 때마다 위력이 3 감소하고, 0이 되면 사라집니다.",
           "baseVal": 9,
@@ -32,7 +60,7 @@
           "baseVal_enhanced": 12
         },
         {
-          "sprite": "룰렛_실뭉치",
+          "sprite": "룰렛_실뭉치_1",
           "title": "실뭉치",
           "text": "값 피해를 줍니다. 룰렛이 회전하면 회전한 칸 수 만큼 위력이 증가하고, 효과 발동시 제거됩니다.",
           "baseVal": 1,
@@ -98,6 +126,10 @@
     },
     {
       "name": "뱀파이어의 꿈",
+      "description": "",
+      "courageStat": 0,
+      "wisdomStat": 0,
+      "luckStat": 0,
       "persona": {
         "type": 1,
         "dreamPieceNum": 0,
@@ -117,6 +149,30 @@
         "text_enhanced": "공격 룰렛으로 입힌 피해의 50%만큼 체력을 회복합니다. (소수점 내림)"
       },
       "triggerSprite": "Vampire_Trigger",
+      "cardBackgrounds": [
+        "뱀파이어_일반",
+        "뱀파이어_희귀"
+      ],
+      "textColors": [
+        {
+          "r": 0.7098039215686275,
+          "g": 0.6392156862745098,
+          "b": 0.6392156862745098,
+          "a": 1
+        },
+        {
+          "r": 0.1490196078431373,
+          "g": 0.1215686274509804,
+          "b": 0.1215686274509804,
+          "a": 1
+        },
+        {
+          "r": 0.2,
+          "g": 0.1607843137254902,
+          "b": 0.1607843137254902,
+          "a": 1
+        }
+      ],
       "playerSpecialRoulettes": [
         {
           "sprite": "Roulette_Lifesteal",
@@ -187,6 +243,10 @@
     },
     {
       "name": "마술사의 꿈",
+      "description": "",
+      "courageStat": 0,
+      "wisdomStat": 0,
+      "luckStat": 0,
       "persona": {
         "type": 1,
         "dreamPieceNum": 1,
@@ -206,6 +266,30 @@
         "text_enhanced": "카드를 2장 사용하면 즉시 카드를 1장 드로우합니다."
       },
       "triggerSprite": "Magician_Trigger",
+      "cardBackgrounds": [
+        "공용_일반",
+        "공용_희귀"
+      ],
+      "textColors": [
+        {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 0
+        },
+        {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 0
+        },
+        {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 0
+        }
+      ],
       "playerSpecialRoulettes": [
         {
           "sprite": "Roulette_MagicBox",
@@ -277,6 +361,10 @@
     },
     {
       "name": "눈사람의 꿈",
+      "description": "",
+      "courageStat": 0,
+      "wisdomStat": 0,
+      "luckStat": 0,
       "persona": {
         "type": 1,
         "dreamPieceNum": 2,
@@ -296,6 +384,30 @@
         "text_enhanced": "짝수 턴 시작 시 8의 방어도를 얻습니다."
       },
       "triggerSprite": "Snowman_Trigger",
+      "cardBackgrounds": [
+        "눈사람_일반",
+        "눈사람_희귀"
+      ],
+      "textColors": [
+        {
+          "r": 0.2509803921568627,
+          "g": 0.3098039215686275,
+          "b": 0.3490196078431373,
+          "a": 1
+        },
+        {
+          "r": 0.1215686274509804,
+          "g": 0.1372549019607843,
+          "b": 0.1490196078431373,
+          "a": 1
+        },
+        {
+          "r": 0.1607843137254902,
+          "g": 0.1843137254901961,
+          "b": 0.2,
+          "a": 1
+        }
+      ],
       "playerSpecialRoulettes": [
         {
           "sprite": "freeze",

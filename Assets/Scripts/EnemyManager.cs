@@ -34,11 +34,13 @@ public class EnemyManager : MonoBehaviour
     [SerializeField][Tooltip("액션 심볼 Prefab")] GameObject mainActionPrefab;
     [SerializeField][Tooltip("액션 심볼 Prefab")] GameObject subActionPrefab;
     [SerializeField][Tooltip("서브 적 Prefab")] GameObject subEnemyPrefab;
+    [Header("Objects")]
+    [Tooltip("메인 적 배경")] public GameObject mainEnemyRouletteBackground;
     [SerializeField][Tooltip("서브 적 캔버스")] Canvas subEnemyCanvas;
-    [SerializeField][Tooltip("서브 적 룰렛 위치에 따른 캔버스 위치")] int[] subEnemyCanvasPos_roulettePos = new int[Enemy.maxSubEnemyNum];
+    [Tooltip("서브 적 룰렛 위치에 따른 캔버스 위치")] public int[] subEnemyCanvasPos_roulettePos = new int[Enemy.maxSubEnemyNum];
     [SerializeField][Tooltip("서브 적 룰렛 위치에 따른 캔버스 위치")] GameObject[] subEnemyCanvasPos_gameobject = new GameObject[Enemy.maxSubEnemyNum];
     [SerializeField][Tooltip("서브 적 룰렛 위치에 따른 룰렛 마커")] GameObject[] subEnemyCanvasPos_rouletteMarker = new GameObject[Enemy.maxSubEnemyNum];
-    [SerializeField][Tooltip("서브 적 룰렛 위치에 따른 적 배경")] GameObject[] subEnemyCanvasPos_enemyRouletteBackground = new GameObject[Enemy.maxSubEnemyNum];
+    [Tooltip("서브 적 룰렛 위치에 따른 적 배경")] public GameObject[] subEnemyCanvasPos_enemyRouletteBackground = new GameObject[Enemy.maxSubEnemyNum];
     [Header("Positions")]
     [Tooltip("액션 심볼 간격")] public float actionMargin = -0.4f;
     [Tooltip("서브 액션 심볼 간격")] public float subActionMargin = -0.7f;
@@ -51,8 +53,8 @@ public class EnemyManager : MonoBehaviour
     [Header("Data")]
     [Tooltip("액션별 최대 실행값\n(예: 2일 경우 회전 액션은 최대 2칸 회전)")] public int maxActionVal;
 
-    [SerializeField] GameObject enemyImg;
-    [SerializeField] GameObject[] subEnemyImg;
+    public GameObject enemyImg;
+    public GameObject[] subEnemyImg;
     [SerializeField] GameObject enemyThumbnail;
     [SerializeField] GameObject[] subEnemyThumbnail;
     [SerializeField] GameObject enemyTriggerBar;

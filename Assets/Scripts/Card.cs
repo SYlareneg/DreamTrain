@@ -238,7 +238,7 @@ public class Card : MonoBehaviour
                 break;
         }
 
-        if (item != null && textTMP != null && !tooltipCreated)
+        if (item != null && textTMP != null && !tooltipCreated && !CardManager.Inst.isMyCardDrag)
         {
             int tooltipCount = 0;
             foreach(Keyword keyword in DataManager.Inst.keywordSO.keywords)
@@ -300,6 +300,16 @@ public class Card : MonoBehaviour
                 CardManager.Inst.CardMouseDown(this);
                 break;
         }
+
+        if (tooltipCreated)
+        {
+            foreach(GameObject tooltipObj in activeTooltips)
+            {
+                Destroy(tooltipObj);
+            }
+            activeTooltips.Clear();
+            tooltipCreated = false;
+        }
     }
 
     private void OnMouseUp()
@@ -313,6 +323,16 @@ public class Card : MonoBehaviour
             case  SceneType.General:
                 CardManager.Inst.CardMouseUp(this);
                 break;
+        }
+
+        if (tooltipCreated)
+        {
+            foreach(GameObject tooltipObj in activeTooltips)
+            {
+                Destroy(tooltipObj);
+            }
+            activeTooltips.Clear();
+            tooltipCreated = false;
         }
     }
 
@@ -347,19 +367,22 @@ public class Card : MonoBehaviour
         bool isCardUsed = true;
         switch (item.name)
         {
-            case "회전 카드 1":
+            case "1칸 회전":
                 RouletteManager.Inst.Spin(true, 1);
                 break;
-            case "회전 카드 2":
+            case "2칸 회전":
                 RouletteManager.Inst.Spin(true, 2);
                 break;
-            case "회전 카드 3":
+            case "3칸 회전":
                 RouletteManager.Inst.Spin(true, 3);
                 break;
-            case "회전 카드 4":
+            case "1칸 역회전":
+                RouletteManager.Inst.Spin(false, 1);
+                break;
+            case "2칸 역회전":
                 RouletteManager.Inst.Spin(false, 2);
                 break;
-            case "회전 카드 5":
+            case "3칸 역회전":
                 RouletteManager.Inst.Spin(false, 3);
                 break;
             case "구원":
