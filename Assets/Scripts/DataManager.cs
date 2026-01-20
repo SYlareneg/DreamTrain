@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
+using System;
 
 public class DataManager : MonoBehaviour
 {
@@ -14,9 +16,8 @@ public class DataManager : MonoBehaviour
         Inst = this;
         DontDestroyOnLoad(this.gameObject);
         
-        LoadDeveloperData();
-        LoadPlayerData();
-        // SavePlayerData();
+        StartCoroutine(LoadDeveloperData());
+        StartCoroutine(LoadPlayerData());
     }
 
     [Header("Developer Data")]
@@ -45,7 +46,7 @@ public class DataManager : MonoBehaviour
     public UseableItemSO playerItemSO;
     public PlayerStatsSo playerStatsSO;
 
-    public void LoadDeveloperData()
+    public IEnumerator LoadDeveloperData()
     {
         if(itemDataSO == null) itemDataSO = ScriptableObject.CreateInstance<ItemDataSO>();
         if(dreamPieceDataSO == null) dreamPieceDataSO = ScriptableObject.CreateInstance<DreamPieceDataSO>();
@@ -55,15 +56,14 @@ public class DataManager : MonoBehaviour
         if(showBuffDataSO == null) showBuffDataSO = ScriptableObject.CreateInstance<ShowBuffDataSO>();
         if(useableItemDataSO == null) useableItemDataSO = ScriptableObject.CreateInstance<UseableItemDataSO>();
         if(actDataSO == null) actDataSO = ScriptableObject.CreateInstance<ActDataSO>();
-        StartCoroutine(Utils.LoadData(itemDataSO, "card.json"));
-        StartCoroutine(Utils.LoadData(dreamPieceDataSO, "dreampiece.json"));
-        StartCoroutine(Utils.LoadData(enemyDataSO, "enemy.json"));
-        StartCoroutine(Utils.LoadData(keywordSO, "keyword.json"));
-        StartCoroutine(Utils.LoadData(relicDataSO, "relic.json"));
-        StartCoroutine(Utils.LoadData(showBuffDataSO, "buff.json"));
-        StartCoroutine(Utils.LoadData(useableItemDataSO, "item.json"));
-        StartCoroutine(Utils.LoadData(actDataSO, "act.json"));
-
+        yield return Utils.LoadData(itemDataSO, "card.json");
+        yield return Utils.LoadData(dreamPieceDataSO, "dreampiece.json");
+        yield return Utils.LoadData(enemyDataSO, "enemy.json");
+        yield return Utils.LoadData(keywordSO, "keyword.json");
+        yield return Utils.LoadData(relicDataSO, "relic.json");
+        yield return Utils.LoadData(showBuffDataSO, "buff.json");
+        yield return Utils.LoadData(useableItemDataSO, "item.json");
+        yield return Utils.LoadData(actDataSO, "act.json");
         dreamPieceSO.dreamPieces.Clear();
         foreach (var dp in dreamPieceDataSO.dreamPieces)
         {
@@ -155,9 +155,9 @@ public class DataManager : MonoBehaviour
         LoadPlayerData();
     }
 
-    public void LoadPlayerData()
+    public IEnumerator LoadPlayerData()
     {
-        StartCoroutine(Utils.LoadData(playerDataSO, "player_data.json"));
+        yield return Utils.LoadData(playerDataSO, "player_data.json");
         // 전투 외적 데이터
         characterSO.maxHealth = playerDataSO.maxHealth;
         characterSO.curHealth = playerDataSO.curHealth;
@@ -188,7 +188,7 @@ public class DataManager : MonoBehaviour
         if(playerDataSO.relics.Count != playerDataSO.relicEnhancements.Count)
         {
             Debug.LogError("DataManager LoadPlayerData Error: relic count mismatch");
-            return;
+            yield break;
         }
         playerRelicSO.relicItems.Clear();
         for(int i = 0; i < playerDataSO.relics.Count; i++)

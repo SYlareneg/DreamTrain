@@ -24,7 +24,12 @@ public class Card : MonoBehaviour
 
     public Item item;
     public PRS originPRS;
-    public Transform tooltipPos;
+    bool tooltipCreated = false;
+    [SerializeField] GameObject cardUITooltipPrefab;
+    [SerializeField] Transform tooltipPos;
+    List<GameObject> activeTooltips = new List<GameObject>();
+    Canvas tooltipCanvas;
+
     
     public Action OnCardClicked; 
     public enum SceneType { Dialogue, Emotion, General };
@@ -232,6 +237,27 @@ public class Card : MonoBehaviour
                 CardManager.Inst.CardMouseOver(this);
                 break;
         }
+
+        if (item != null && textTMP != null && !tooltipCreated)
+        {
+            int tooltipCount = 0;
+            foreach(Keyword keyword in DataManager.Inst.keywordSO.keywords)
+            {
+                if(textTMP.text.Contains(keyword.word))
+                {
+                    var keywordTooltipObj = Instantiate(cardUITooltipPrefab, tooltipPos.position, Utils.QI);
+                    keywordTooltipObj.transform.SetParent(tooltipCanvas.transform, false);
+                    keywordTooltipObj.transform.SetAsLastSibling();
+                    keywordTooltipObj.transform.position = Camera.main.WorldToScreenPoint(tooltipPos.position);
+                    activeTooltips.Add(keywordTooltipObj);
+
+                    CardTooltip keywordTooltip = keywordTooltipObj.GetComponent<CardTooltip>();
+                    keywordTooltip.SetTooltip(keyword.word, keyword.explanation);
+                    tooltipCreated = true;
+                    tooltipCount++;
+                }
+            }
+        }
     }
 
     private void OnMouseExit()
@@ -248,6 +274,16 @@ public class Card : MonoBehaviour
             case  SceneType.General:
                 CardManager.Inst.CardMouseExit(this);
                 break;
+        }
+
+        if (tooltipCreated)
+        {
+            foreach(GameObject tooltipObj in activeTooltips)
+            {
+                Destroy(tooltipObj);
+            }
+            activeTooltips.Clear();
+            tooltipCreated = false;
         }
     }
 
@@ -808,6 +844,11 @@ public class Card : MonoBehaviour
             TurnManager.OnUseCard?.Invoke(this);
         }
         return isCardUsed;
+    }
+
+    private void Start()
+    {
+        tooltipCanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
     }
 
     private void Update()

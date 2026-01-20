@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Text.RegularExpressions;
 
-public class CardUI : MonoBehaviour
+public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] Image cardImg;
     [SerializeField] Image character;
@@ -22,6 +22,11 @@ public class CardUI : MonoBehaviour
     [SerializeField] Sprite[] costTypes;
 
     public Item item;
+    Vector3 originalScale;
+    bool tooltipCreated = false;
+    [SerializeField] GameObject cardUITooltipPrefab;
+    [SerializeField] Transform tooltipPos;
+    List<GameObject> activeTooltips = new List<GameObject>();
 
     public void Setup(Item item)
     {
@@ -155,6 +160,63 @@ public class CardUI : MonoBehaviour
             Color c = img.color;
             c.a = alpha;
             img.color = c;
+        }
+    }
+
+    void Start()
+    {
+        originalScale = this.transform.localScale;
+    }
+
+    public virtual void OnPointerEnter(PointerEventData eventData)
+    {
+        this.transform.localScale = originalScale * 1.3f;
+        if (item != null && textTMP != null && !tooltipCreated)
+        {
+            int tooltipCount = 0;
+            foreach(Keyword keyword in DataManager.Inst.keywordSO.keywords)
+            {
+                if(textTMP.text.Contains(keyword.word))
+                {
+                    var keywordTooltipObj = Instantiate(cardUITooltipPrefab, tooltipPos.position, Utils.QI);
+                    keywordTooltipObj.transform.SetParent(transform.parent.parent, true);
+                    keywordTooltipObj.transform.SetAsLastSibling();
+                    activeTooltips.Add(keywordTooltipObj);
+
+                    CardTooltip keywordTooltip = keywordTooltipObj.GetComponent<CardTooltip>();
+                    keywordTooltip.SetTooltip(keyword.word, keyword.explanation);
+                    tooltipCreated = true;
+                    tooltipCount++;
+                }
+            }
+        }
+    }
+
+    public virtual void OnPointerExit(PointerEventData eventData)
+    {
+        this.transform.localScale = originalScale;
+        if (tooltipCreated)
+        {
+            foreach(GameObject tooltipObj in activeTooltips)
+            {
+                Destroy(tooltipObj);
+            }
+            activeTooltips.Clear();
+            tooltipCreated = false;
+        }
+    }
+
+    void Update()
+    {
+        if (tooltipCreated)
+        {
+            Vector3 offset = Vector3.zero;
+            for(int i = 0; i < activeTooltips.Count; i++)
+            {
+                Vector3 screenPoint = tooltipPos.position - offset;
+                activeTooltips[i].transform.position = screenPoint;
+                offset.y += activeTooltips[i].GetComponent<RectTransform>().rect.height + 10;
+            }
         }
     }
 }

@@ -367,25 +367,6 @@ public class CardManager : MonoBehaviour
         {
             return;
         }
-        // 카드 텍스트에 따라 tooltip 설정
-        TMP_WordInfo[] wordInfos = card.textTMP.textInfo.wordInfo;
-        int tooltipCount = 0;
-        for(int i = 0; i < wordInfos.Length; i++)
-        {
-            // 단어별로 키워드 목록에 있는지 확인
-            if(wordInfos[i].characterCount == 0) continue;
-            string word = wordInfos[i].GetWord();
-            Keyword keyword = keywordSO.keywords.Find(x => x.word == word);
-            if(keyword != null)
-            {
-                var keywordTooltipObj = Instantiate(cardTooltipPrefab, card.tooltipPos);
-                keywordTooltipObj.transform.position = card.tooltipPos.position - new Vector3(0f, keywordTooltipObj.GetComponent<SpriteRenderer>().bounds.size.y * tooltipCount * 1.1f, 0f);
-                CardTooltip keywordTooltip = keywordTooltipObj.GetComponent<CardTooltip>();
-                keywordTooltip.SetTooltip(keyword.word, keyword.explanation);
-                tooltipCreated = true;
-                tooltipCount++;
-            }
-        }
     }
 
     // 카드에 마우스가 빠져나갔을 때 호출
@@ -404,11 +385,6 @@ public class CardManager : MonoBehaviour
         }
         // 확대했던 카드 축소
         EnlargeCard(false, card);
-        foreach(Transform child in card.tooltipPos)
-        {
-            Destroy(child.gameObject);
-        }
-        tooltipCreated = false;
     }
 
     // 카드에 마우스를 놓고 눌렀을 때 호출

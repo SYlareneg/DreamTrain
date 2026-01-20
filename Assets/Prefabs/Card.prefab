@@ -702,6 +702,7 @@ MonoBehaviour:
     pos: {x: 0, y: 0, z: 0}
     rot: {x: 0, y: 0, z: 0, w: 0}
     scale: {x: 0, y: 0, z: 0}
+  cardUITooltipPrefab: {fileID: 8800369096788391767, guid: b54acd7753ea2ac48af2b4a03610b3ef, type: 3}
   tooltipPos: {fileID: 4466361225483850152}
 --- !u!114 &5004873512213805021
 MonoBehaviour:
@@ -1077,7 +1078,7 @@ Transform:
   m_GameObject: {fileID: 6435418820409135012}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.05, y: 0.35, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -4,14 +4,6 @@ using DG.Tweening;
 
 public class CardUI_Reward : CardUI, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    public void OnPointerEnter(PointerEventData data)
-    {
-        this.transform.localScale *= 1.3f;
-    }
-    public void OnPointerExit(PointerEventData data)
-    {
-        this.transform.localScale /= 1.3f;
-    }
     public void OnPointerClick(PointerEventData data)
     {
         GameManager.Inst.AddCardReward(this.item);
