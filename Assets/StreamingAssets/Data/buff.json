@@ -1,6 +1,26 @@
 {
   "showBuffs": [
     {
+      "name": "현혹",
+      "text": "최근에 사용한 카드와 다른 타입의 카드를 사용할 때마다 행동력을 1 얻습니다.\n",
+      "icon": "BuffIcon_Example",
+      "type": 1,
+      "effectType": 0,
+      "defaultVal": [
+        1
+      ]
+    },
+    {
+      "name": "커튼콜",
+      "text": "사용하는 카드의 효과가 두 번 적용됩니다. 효과 발동 시 횟수를 1 소모합니다. \n",
+      "icon": "BuffIcon_Example",
+      "type": 2,
+      "effectType": 0,
+      "defaultVal": [
+        1
+      ]
+    },
+    {
       "name": "강화",
       "text": "공격이 값만큼 더 큰 피해를 줍니다.",
       "icon": "버프1_강화",
