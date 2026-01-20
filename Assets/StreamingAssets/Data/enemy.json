@@ -1,6 +1,226 @@
 {
   "enemies": [
     {
+      "name": "카드 병정",
+      "id": "CardSoldier1",
+      "health": 10,
+      "triggerNum": 0,
+      "phase": [
+        {
+          "name": "전투 준비",
+          "sprite": "Enemy_Vampire",
+          "text": "턴 시작 시 트리거를 1 얻습니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 5,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 3,
+                  "typeNum": 0,
+                  "val": 5,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 3,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 2,
+                  "typeNum": 0,
+                  "val": 2,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": true
+        }
+      ],
+      "triggerPhase": [
+        {
+          "name": "카드 병정: 트리거",
+          "sprite": "Enemy_Vampire",
+          "text": "카드 병정이 트리거 상태입니다. 턴 종료 시 트리거가 해제됩니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 2,
+                  "typeNum": 0,
+                  "val": 10,
+                  "isTrigger": true
+                }
+              ]
+            }
+          ],
+          "phaseRepeat": false,
+          "phaseClear": false
+        }
+      ],
+      "roulettePattern": [
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 2,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 2
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        }
+      ],
+      "enemySpecialRoulettes": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "enemySpecialActions": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        }
+      ],
+      "subEnemies": [],
+      "subEnemies_Spawn": []
+    },
+    {
       "name": "뱀파이어 폴",
       "id": "Vamp",
       "health": 70,

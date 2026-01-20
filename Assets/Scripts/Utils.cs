@@ -189,7 +189,7 @@ public class Utils
         var dir = Path.GetDirectoryName(dst);
         if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
 
-        if (File.Exists(dst)) yield break; // 유저 파일이 이미 있으면 그대로 사용
+        // if (File.Exists(dst)) yield break; // 유저 파일이 이미 있으면 그대로 사용
 
         var src = Path.Combine(Application.streamingAssetsPath, "Data", relativePath);
 
@@ -224,7 +224,7 @@ public class Utils
 	public static IEnumerator LoadData(ScriptableObject target, string filePath)
     {
 		string path = Path.Combine(Application.persistentDataPath, "Data", filePath);
-		if (!File.Exists(path))
+		// if (!File.Exists(path))
         	yield return EnsureCopiedToPersistent(filePath);
         if (!File.Exists(path))
         {
