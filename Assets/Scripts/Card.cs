@@ -855,5 +855,16 @@ public class Card : MonoBehaviour
     {
         if (currType == SceneType.General) ShowBuffedCost();
         ShowBuffedVal();
+
+        if (tooltipCreated)
+        {
+            Vector3 offset = Vector3.zero;
+            for(int i = 0; i < activeTooltips.Count; i++)
+            {
+                Vector3 screenPoint = Camera.main.WorldToScreenPoint(tooltipPos.position) - offset;
+                activeTooltips[i].transform.position = screenPoint;
+                offset.y += activeTooltips[i].GetComponent<RectTransform>().rect.height + 10;
+            }
+        }
     }
 }
