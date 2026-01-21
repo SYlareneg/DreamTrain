@@ -238,7 +238,6 @@ public class TutorialManager : MonoBehaviour
                                 Action<Card> onUseCard = null;
                                 onUseCard = (card) =>
                                 {
-                                    Debug.Log("다음 튜토리얼로 이동: 2-2-2");
                                     ShowTutorialBox(2, 2, 2);
                                     TurnManager.OnUseCard -= onUseCard;
                                 };
@@ -316,64 +315,73 @@ public class TutorialManager : MonoBehaviour
                             };
                             break;
                         case 2:
-                            tutorialText.text = "적의 강력한 공격을 막기 위해서 무언가 방법이 필요해... 숨기 카드를 활용해 볼까?";
+                            tutorialText.text = "적이 강력한 공격을 하려고 해... 적의 트리거 상태를 무사히 막아내야 해!";
                             nextTutorial = () =>
                             {
                                 HideTutorialBox();
-                                SetNextTutorial_Card("숨기", false);
-                                Action<Card> onUseCard = null;
-                                onUseCard = (card) =>
-                                {
-                                    ShowTutorialBox(3, 3, 3);
-                                    TurnManager.OnUseCard -= onUseCard;
-                                };
-                                TurnManager.OnUseCard += onUseCard;
+                                tutorialStage = 0;
+                                TurnManager.Inst.isLoading = false;
                             };
                             break;
-                        case 3:
-                            tutorialText.text = "좋았어! 숨기 카드를 사용해서 방어 룰렛을 우리 앞으로 가져왔어. 이제 룰렛을 발동시켜서 적의 공격을 막아보자!";
-                            nextTutorial = () =>
-                            {
-                                HideTutorialBox();
-                                SetNextTutorial_Roulette(false);
-                                Action onRouletteActivate = null;
-                                onRouletteActivate = () =>
-                                {
-                                    ShowTutorialBox(3, 3, 4);
-                                    TurnManager.OnRouletteActivate -= onRouletteActivate;
-                                };
-                                TurnManager.OnRouletteActivate += onRouletteActivate;
-                            };
-                            break;
-                        case 4:
-                            tutorialText.text = "한번 더 발동시키면 적의 공격을 완벽히 막을 수 있을 것 같아!";
-                            nextTutorial = () =>
-                            {
-                                HideTutorialBox();
-                                SetNextTutorial_Roulette(false);
-                                Action onRouletteActivate = null;
-                                onRouletteActivate = () =>
-                                {
-                                    ShowTutorialBox(3, 3, 5);
-                                    TurnManager.OnRouletteActivate -= onRouletteActivate;
-                                };
-                                TurnManager.OnRouletteActivate += onRouletteActivate;
-                            };
-                            break;
-                        case 5:
-                            tutorialText.text = "완벽해! 이제 턴을 종료하고 적이 공격하더라도 방어도가 공격으로 인한 피해를 막아줄거야.";
-                            nextTutorial = () =>
-                            {
-                                HideTutorialBox();
-                                SetNextTutorial_EndTurn(false);
-                                Action onPlayerTurnEnd = null;
-                                onPlayerTurnEnd = () =>
-                                {
-                                    TurnManager.OnPlayerTurnEnd -= onPlayerTurnEnd;
-                                };
-                                TurnManager.OnPlayerTurnEnd += onPlayerTurnEnd;
-                            };
-                            break;
+                        // case 2:
+                        //     tutorialText.text = "적의 강력한 공격을 막기 위해서 무언가 방법이 필요해... 숨기 카드를 활용해 볼까?";
+                        //     nextTutorial = () =>
+                        //     {
+                        //         HideTutorialBox();
+                        //         SetNextTutorial_Card("숨기", false);
+                        //         Action<Card> onUseCard = null;
+                        //         onUseCard = (card) =>
+                        //         {
+                        //             ShowTutorialBox(3, 3, 3);
+                        //             TurnManager.OnUseCard -= onUseCard;
+                        //         };
+                        //         TurnManager.OnUseCard += onUseCard;
+                        //     };
+                        //     break;
+                        // case 3:
+                        //     tutorialText.text = "좋았어! 숨기 카드를 사용해서 방어 룰렛을 우리 앞으로 가져왔어. 이제 룰렛을 발동시켜서 적의 공격을 막아보자!";
+                        //     nextTutorial = () =>
+                        //     {
+                        //         HideTutorialBox();
+                        //         SetNextTutorial_Roulette(false);
+                        //         Action onRouletteActivate = null;
+                        //         onRouletteActivate = () =>
+                        //         {
+                        //             ShowTutorialBox(3, 3, 4);
+                        //             TurnManager.OnRouletteActivate -= onRouletteActivate;
+                        //         };
+                        //         TurnManager.OnRouletteActivate += onRouletteActivate;
+                        //     };
+                        //     break;
+                        // case 4:
+                        //     tutorialText.text = "한번 더 발동시키면 적의 공격을 완벽히 막을 수 있을 것 같아!";
+                        //     nextTutorial = () =>
+                        //     {
+                        //         HideTutorialBox();
+                        //         SetNextTutorial_Roulette(false);
+                        //         Action onRouletteActivate = null;
+                        //         onRouletteActivate = () =>
+                        //         {
+                        //             ShowTutorialBox(3, 3, 5);
+                        //             TurnManager.OnRouletteActivate -= onRouletteActivate;
+                        //         };
+                        //         TurnManager.OnRouletteActivate += onRouletteActivate;
+                        //     };
+                        //     break;
+                        // case 5:
+                        //     tutorialText.text = "완벽해! 이제 턴을 종료하고 적이 공격하더라도 방어도가 공격으로 인한 피해를 막아줄거야.";
+                        //     nextTutorial = () =>
+                        //     {
+                        //         HideTutorialBox();
+                        //         SetNextTutorial_EndTurn(false);
+                        //         Action onPlayerTurnEnd = null;
+                        //         onPlayerTurnEnd = () =>
+                        //         {
+                        //             TurnManager.OnPlayerTurnEnd -= onPlayerTurnEnd;
+                        //         };
+                        //         TurnManager.OnPlayerTurnEnd += onPlayerTurnEnd;
+                        //     };
+                        //     break;
                     }
                     break;
                 case 4:

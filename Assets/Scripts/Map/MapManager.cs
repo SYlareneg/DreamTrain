@@ -262,13 +262,9 @@ public class MapManager : MonoBehaviour
             {
                 if(curNode.locationID == "TUTORIAL_END")
                 {
+                    StartCoroutine(DataManager.Inst.TutorialClearSave());
                     DataManager.Inst.characterSO.isTutorial = false;
-                    DataManager.Inst.characterSO.enemyName = "";
-                    SceneChangeManager.Inst.SceneFadeOut("RoomScene", () =>
-                    {
-                        DataManager.Inst.actSO.curActNum = 1;
-                        MapManager.Inst.SetNewMap();
-                    });
+                    SceneChangeManager.Inst.SceneFadeOut("RoomScene");
                     return;
                 }
 

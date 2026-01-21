@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using System;
+using UnityEngine.SceneManagement;
 
 public class DataManager : MonoBehaviour
 {
@@ -17,7 +18,10 @@ public class DataManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         
         StartCoroutine(LoadDeveloperData());
-        StartCoroutine(LoadPlayerData());
+        if(SceneManager.GetActiveScene().name == "RoomScene")
+        {
+            StartCoroutine(LoadPlayerData(true));
+        }
     }
 
     [Header("Developer Data")]
@@ -148,16 +152,24 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    public void InitPlayerData()
+    public IEnumerator TutorialClearSave()
     {
-        StartCoroutine(Utils.LoadData(playerDataSO, "player_data_start.json"));
-        Utils.SaveData(playerDataSO, "player_data.json");
-        LoadPlayerData();
+        yield return Utils.LoadData(playerDataSO, "player_data_start.json");
+        playerDataSO.isTutorial = false;
+        playerDataSO.currentActNum = 1;
+        Utils.SaveData(playerDataSO, "player_data_start.json");
     }
 
-    public IEnumerator LoadPlayerData()
+    public IEnumerator LoadPlayerData(bool forceInit = false)
     {
-        yield return Utils.LoadData(playerDataSO, "player_data.json");
+        if (forceInit)
+        {
+            yield return Utils.LoadData(playerDataSO, "player_data_start.json");
+        }
+        else
+        {
+            yield return Utils.LoadData(playerDataSO, "player_data.json");
+        }
         // 전투 외적 데이터
         characterSO.maxHealth = playerDataSO.maxHealth;
         characterSO.curHealth = playerDataSO.curHealth;

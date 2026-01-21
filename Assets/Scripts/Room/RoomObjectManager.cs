@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
 
 public class RoomObjectManager : MonoBehaviour
 {
@@ -30,5 +32,21 @@ public class RoomObjectManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    void Start()
+    {
+        RoomClickableObject cat = roomClickableObjects.OfType<RoomCat>().FirstOrDefault();
+        if(cat != null)
+        {
+            if(DataManager.Inst.characterSO.isTutorial)
+            {
+                cat.objectState = "tutorial";
+            }
+            else
+            {
+                cat.objectState = "awake";
+            }
+        }
     }
 }

@@ -821,8 +821,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoomObjectManager
   roomObjectSO: {fileID: 11400000, guid: 2860d6c411dd12e41ab65b8bf08b057b, type: 2}
   roomClickableObjects:
-  - {fileID: 8593023979163996445}
+  - {fileID: 9172449840073904466}
   - {fileID: 1485039723}
+  - {fileID: 1396057168}
 --- !u!4 &276744396
 Transform:
   m_ObjectHideFlags: 0
@@ -7422,8 +7423,8 @@ GameObject:
   - component: {fileID: 7782407025031728076}
   - component: {fileID: 8230800326973033183}
   - component: {fileID: 443468386220406678}
-  - component: {fileID: 8593023979163996445}
   - component: {fileID: 9172449840073904465}
+  - component: {fileID: 9172449840073904466}
   m_Layer: 0
   m_Name: Cat
   m_TagString: Untagged
@@ -7523,21 +7524,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.82608163, y: 0.43153536}
   m_EdgeRadius: 0
---- !u!114 &8593023979163996445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5364228895878708341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc970c007fe05f54395ab023807e4da0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RoomClickableObject
-  objectName: "\uACE0\uC591\uC774"
-  objectState: awake
-  isInteractable: 0
 --- !u!212 &9172449840073904464
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7618,6 +7604,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &9172449840073904466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5364228895878708341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 185f9011ca7fd644cb1a62c395d07296, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomCat
+  objectName: "\uACE0\uC591\uC774"
+  objectState: default
+  isInteractable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

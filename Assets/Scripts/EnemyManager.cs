@@ -625,6 +625,17 @@ public class EnemyManager : MonoBehaviour
                     }
                 };
                 break;
+            case "카드 병정 2":
+                bool decCost = false;
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    if (!decCost)
+                    {
+                        TurnManager.Inst.IncreaseCost(-1);
+                        decCost = true;
+                    }
+                };
+                break;
             case "카드 병정 3":
                 TurnManager.OnPlayerTurnStart += () =>
                 {

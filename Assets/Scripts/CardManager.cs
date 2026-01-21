@@ -407,7 +407,7 @@ public class CardManager : MonoBehaviour
         }
         // 카드 드래그 시작
         isMyCardDrag = true;
-        if(selectedCard.item.isSingleTarget == true) onEnemyCardArea = -1;
+        if(selectedCard != null && selectedCard.item.isSingleTarget == true) onEnemyCardArea = -1;
     }
 
     // 카드에 마우스를 놓고 누른 후 뗐을 때 호출

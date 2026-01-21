@@ -164,26 +164,53 @@ public class RoomDialogueManager : MonoBehaviour
 
     void Start()
     {
-        DialogueLine startLine1 = new DialogueLine()
+        if(DataManager.Inst.characterSO.isTutorial)
         {
-            speakerName = "앨리스",
-            text = "...여긴 어디지?",
-            speakerSprite = null,
-            sound = null
-        };
-        DialogueLine startLine2 = new DialogueLine()
-        {
-            speakerName = "",
-            text = "주위를 둘러보는게 좋을 것 같다.",
-            speakerSprite = null,
-            sound = null
-        };
-        RoomPlayer.Inst.isInteractable = false;
-        SceneChangeManager.Inst.SceneFadeIn(() => {
-            currentDialogueLines = new List<DialogueLine>() { startLine1, startLine2 };
-            currentLineIndex = -1;
+            DialogueLine startLine1 = new DialogueLine()
+            {
+                speakerName = "앨리스",
+                text = "...여긴 어디지?",
+                speakerSprite = null,
+                sound = null
+            };
+            DialogueLine startLine2 = new DialogueLine()
+            {
+                speakerName = "",
+                text = "주위를 둘러보는게 좋을 것 같다.",
+                speakerSprite = null,
+                sound = null
+            };
             RoomPlayer.Inst.isInteractable = false;
-            ShowNextDialogue(new InputAction.CallbackContext());
-        });
+            SceneChangeManager.Inst.SceneFadeIn(() => {
+                currentDialogueLines = new List<DialogueLine>() { startLine1, startLine2 };
+                currentLineIndex = -1;
+                RoomPlayer.Inst.isInteractable = false;
+                ShowNextDialogue(new InputAction.CallbackContext());
+            });
+        }
+        else
+        {
+            DialogueLine startLine1 = new DialogueLine()
+            {
+                speakerName = "",
+                text = "어딘가 익숙한 공간이다...",
+                speakerSprite = null,
+                sound = null
+            };
+            DialogueLine startLine2 = new DialogueLine()
+            {
+                speakerName = "",
+                text = "주위를 둘러보는게 좋을 것 같다.",
+                speakerSprite = null,
+                sound = null
+            };
+            RoomPlayer.Inst.isInteractable = false;
+            SceneChangeManager.Inst.SceneFadeIn(() => {
+                currentDialogueLines = new List<DialogueLine>() { startLine1, startLine2 };
+                currentLineIndex = -1;
+                RoomPlayer.Inst.isInteractable = false;
+                ShowNextDialogue(new InputAction.CallbackContext());
+            });
+        }
     }
 }

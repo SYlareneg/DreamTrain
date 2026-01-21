@@ -218,9 +218,14 @@ public class TurnManager : MonoBehaviour
                         CardManager.Inst.itemDraw.Insert(turnDraw - 1, item_turn2);
                         TutorialManager.Inst.ShowTutorialBox(1, 1, 1);
                     }
-                    else if(turnNum == 3)
+                    else if(turnNum == 2)
                     {
                         TutorialManager.Inst.ShowTutorialBox(0, 0, 0);
+                    }
+                    else
+                    {
+                        isLoading = false;
+                        TutorialManager.Inst.tutorialStage = 0;
                     }
                     break;
                 case "카드 병정 2":
@@ -243,6 +248,11 @@ public class TurnManager : MonoBehaviour
                     {
                         TutorialManager.Inst.ShowTutorialBox(0, 0, 0);
                     }
+                    else
+                    {
+                        isLoading = false;
+                        TutorialManager.Inst.tutorialStage = 0;
+                    }
                     break;
                 case "카드 병정 3":
                 case "CardSoldier3":
@@ -252,18 +262,23 @@ public class TurnManager : MonoBehaviour
                     }
                     else if(turnNum == 3)
                     {
-                        Item item_hide = new Item(CardManager.Inst.itemDeck.Find(card => card.name == "숨기"));
-                        CardManager.Inst.itemDeck.Add(item_hide);
-                        CardManager.Inst.itemDraw.Insert(turnDraw - 1, item_hide);
                         TutorialManager.Inst.ShowTutorialBox(3, 3, 1);
                     }
                     else if(turnNum == 4)
                     {
+                        Item item_hide = new Item(CardManager.Inst.itemDeck.Find(card => card.name == "숨기"));
+                        CardManager.Inst.itemDeck.Add(item_hide);
+                        CardManager.Inst.itemDraw.Insert(turnDraw - 1, item_hide);
                         TutorialManager.Inst.ShowTutorialBox(3, 4, 1);
                     }
                     else if(turnNum == 5)
                     {
                         TutorialManager.Inst.ShowTutorialBox(0, 0, 0);
+                    }
+                    else
+                    {
+                        isLoading = false;
+                        TutorialManager.Inst.tutorialStage = 0;
                     }
                     break;
             }
@@ -359,6 +374,15 @@ public class TurnManager : MonoBehaviour
         }
         else
         {
+            if(characterSO.isTutorial)
+            {
+                damage = curHealth - 1;
+                curHealth = 1;
+                shieldHealth = 0;
+                Utils.AllignActions(ref OnPlayerHealthChange, typeof(ShowBuff), typeof(RelicManager));
+                OnPlayerHealthChange?.Invoke(damage);
+                return damage;
+            }
             damage = curHealth;
             curHealth = 0;
             StartCoroutine(GameManager.Inst.GameOver(false));
