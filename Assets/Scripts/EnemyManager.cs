@@ -1540,7 +1540,7 @@ public class EnemyManager : MonoBehaviour
         }
         Utils.AllignActions(ref TurnManager.OnEnemyTurnEnd, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnEnemyTurnEnd?.Invoke();
-        RouletteManager.Inst.ActivateRoulette();
+        // RouletteManager.Inst.ActivateRoulette();
         if (GameManager.Inst.gameOverSignal == false)
         {
             TurnManager.Inst.StartPlayerTurn();
