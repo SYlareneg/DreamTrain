@@ -16,7 +16,7 @@
                 {
                   "type": 1,
                   "typeNum": 0,
-                  "val": 6,
+                  "val": 5,
                   "isTrigger": false
                 }
               ]
@@ -26,17 +26,7 @@
                 {
                   "type": 3,
                   "typeNum": 0,
-                  "val": 6,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 2,
-                  "typeNum": 0,
-                  "val": 2,
+                  "val": 5,
                   "isTrigger": false
                 }
               ]
@@ -47,6 +37,16 @@
                   "type": 0,
                   "typeNum": 0,
                   "val": 3,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 2,
+                  "typeNum": 0,
+                  "val": 2,
                   "isTrigger": false
                 }
               ]
@@ -65,9 +65,9 @@
             {
               "pattern": [
                 {
-                  "type": 1,
+                  "type": 2,
                   "typeNum": 0,
-                  "val": 12,
+                  "val": 10,
                   "isTrigger": true
                 }
               ]
@@ -80,35 +80,51 @@
       "roulettePattern": [
         {
           "rtype": {
-            "type": 1,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 6
-        },
-        {
-          "rtype": {
-            "type": 0,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 0
-        },
-        {
-          "rtype": {
-            "type": 0,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 0
-        },
-        {
-          "rtype": {
             "type": 3,
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
-          "value": 6
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 2,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 2
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
         },
         {
           "rtype": {
@@ -140,23 +156,7 @@
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
-          "value": 6
-        },
-        {
-          "rtype": {
-            "type": 0,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 0
-        },
-        {
-          "rtype": {
-            "type": 3,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 6
+          "value": 5
         },
         {
           "rtype": {
@@ -234,9 +234,19 @@
             {
               "pattern": [
                 {
+                  "type": 3,
+                  "typeNum": 0,
+                  "val": 5,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
                   "type": 1,
                   "typeNum": 0,
-                  "val": 6,
+                  "val": 10,
                   "isTrigger": false
                 }
               ]
@@ -246,7 +256,7 @@
                 {
                   "type": 3,
                   "typeNum": 0,
-                  "val": 6,
+                  "val": 5,
                   "isTrigger": false
                 }
               ]
@@ -257,16 +267,6 @@
                   "type": 2,
                   "typeNum": 0,
                   "val": 2,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 0,
-                  "typeNum": 0,
-                  "val": 3,
                   "isTrigger": false
                 }
               ]
@@ -285,9 +285,9 @@
             {
               "pattern": [
                 {
-                  "type": 1,
+                  "type": 2,
                   "typeNum": 0,
-                  "val": 12,
+                  "val": 10,
                   "isTrigger": true
                 }
               ]
@@ -304,7 +304,15 @@
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
-          "value": 6
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
         },
         {
           "rtype": {
@@ -328,7 +336,7 @@
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
-          "value": 6
+          "value": 5
         },
         {
           "rtype": {
@@ -356,14 +364,6 @@
         },
         {
           "rtype": {
-            "type": 1,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 6
-        },
-        {
-          "rtype": {
             "type": 0,
             "specialTypeIdx": 0,
             "enemyIdx": 0
@@ -372,11 +372,11 @@
         },
         {
           "rtype": {
-            "type": 3,
+            "type": 2,
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
-          "value": 6
+          "value": 2
         },
         {
           "rtype": {

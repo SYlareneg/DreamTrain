@@ -56,15 +56,94 @@
     "courage": 1,
     "wisdom": 1,
     "luck": 1,
-    "currentActNum": 1,
-    "mapNodes": [],
-    "totalLevel": 0,
-    "visitedNodeIDList": [],
-    "curNodeIndex": 0,
-    "curNodeLocationID": "",
+    "currentActNum": 0,
+    "mapNodes": [
+        {
+            "locationID": "TUTORIAL_START",
+            "selectedEncounterPool": [],
+            "ID": "b03dd2bf3987498990e960da99febe49",
+            "level": 0,
+            "pos": 0,
+            "screenPos": {
+                "x": -19.5,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "childNodes": [
+                "2b5703893859432081441a01dec972c5"
+            ]
+        },
+        {
+            "locationID": "TUTORIAL_1",
+            "selectedEncounterPool": [],
+            "ID": "2b5703893859432081441a01dec972c5",
+            "level": 1,
+            "pos": 0,
+            "screenPos": {
+                "x": -15.5,
+                "y": 0.019050493836402894,
+                "z": 0.0
+            },
+            "childNodes": [
+                "e28e9f85723d4c3d9c74a50572b29a6c"
+            ]
+        },
+        {
+            "locationID": "TUTORIAL_2",
+            "selectedEncounterPool": [],
+            "ID": "e28e9f85723d4c3d9c74a50572b29a6c",
+            "level": 2,
+            "pos": 0,
+            "screenPos": {
+                "x": -11.5,
+                "y": -0.00756441056728363,
+                "z": 0.0
+            },
+            "childNodes": [
+                "5b679e7279ea45c891ef55a163aaced3"
+            ]
+        },
+        {
+            "locationID": "TUTORIAL_3",
+            "selectedEncounterPool": [],
+            "ID": "5b679e7279ea45c891ef55a163aaced3",
+            "level": 3,
+            "pos": 0,
+            "screenPos": {
+                "x": -7.5,
+                "y": -0.009458839893341065,
+                "z": 0.0
+            },
+            "childNodes": [
+                "e5c2c3045c6d486c8950beef2d680093"
+            ]
+        },
+        {
+            "locationID": "TUTORIAL_END",
+            "selectedEncounterPool": [],
+            "ID": "e5c2c3045c6d486c8950beef2d680093",
+            "level": 4,
+            "pos": 0,
+            "screenPos": {
+                "x": -3.5,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "childNodes": []
+        }
+    ],
+    "totalLevel": 5,
+    "visitedNodeIDList": [
+        "b03dd2bf3987498990e960da99febe49",
+        "2b5703893859432081441a01dec972c5",
+        "e28e9f85723d4c3d9c74a50572b29a6c",
+        "e5c2c3045c6d486c8950beef2d680093"
+    ],
+    "curNodeIndex": 4,
+    "curNodeLocationID": "TUTORIAL_END",
     "lastEncounterType": 0,
     "encounterQueue": [],
     "currentStepID": "",
     "currentEncounterID": "",
-    "enemyName": "흰 토끼"
+    "enemyName": ""
 }

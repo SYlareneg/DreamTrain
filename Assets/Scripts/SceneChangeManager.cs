@@ -11,7 +11,7 @@ public class SceneChangeManager : MonoBehaviour
 
     [SerializeField] Image fadeoutScreen;
 
-    public void SceneFadeOut(string toSceneName)
+    public void SceneFadeOut(string toSceneName, Action callbackAction = null)
     {
         Tooltip.showTooltipSignal = false;
         fadeoutScreen.color = new Color(Color.black.r, Color.black.g, Color.black.b, 0f);
@@ -20,6 +20,7 @@ public class SceneChangeManager : MonoBehaviour
         Sequence fadeout = DOTween.Sequence();
         fadeout.Append(fadeoutScreen.DOFade(1f, 1f).OnComplete(() =>
         {
+            callbackAction?.Invoke();
             if(PlayerManager.Inst != null)
             {
                 string curSceneName = SceneManager.GetActiveScene().name;

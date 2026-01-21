@@ -59,7 +59,7 @@
       "encounterPool": [],
       "encounterNum": 0,
       "difficulty": 0,
-      "isNormalLocation": true
+      "isNormalLocation": false
     },
     {
       "id": "END",
@@ -81,7 +81,7 @@
       "encounterPool": [],
       "encounterNum": 0,
       "difficulty": 4,
-      "isNormalLocation": true
+      "isNormalLocation": false
     },
     {
       "id": "AMUSEMENT_PARK_ENTRANCE",
@@ -184,7 +184,7 @@
       "encounterPool": [],
       "encounterNum": 0,
       "difficulty": 1,
-      "isNormalLocation": true
+      "isNormalLocation": false
     },
     {
       "id": "TUTORIAL_2",
@@ -195,7 +195,7 @@
       "encounterPool": [],
       "encounterNum": 0,
       "difficulty": 2,
-      "isNormalLocation": true
+      "isNormalLocation": false
     },
     {
       "id": "TUTORIAL_3",
@@ -206,7 +206,7 @@
       "encounterPool": [],
       "encounterNum": 0,
       "difficulty": 3,
-      "isNormalLocation": true
+      "isNormalLocation": false
     }
   ],
   "encounterDataList": [

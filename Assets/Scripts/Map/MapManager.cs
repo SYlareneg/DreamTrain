@@ -258,8 +258,38 @@ public class MapManager : MonoBehaviour
             actSO.visitedNodeIDList.Add(mapNode.ID);
             actSO.curNodeIndex = map.sortedMapNodeList.IndexOf(mapNode);
             actSO.curNodeLocationID = mapNode.locationID;
-            DataManager.Inst.SavePlayerData();
-            SceneChangeManager.Inst.SceneFadeOut("EncounterScene");
+            if(DataManager.Inst.characterSO.isTutorial && DataManager.Inst.actSO.curActNum == 0)
+            {
+                if(curNode.locationID == "TUTORIAL_END")
+                {
+                    DataManager.Inst.characterSO.isTutorial = false;
+                    DataManager.Inst.characterSO.enemyName = "";
+                    SceneChangeManager.Inst.SceneFadeOut("RoomScene", () =>
+                    {
+                        DataManager.Inst.actSO.curActNum = 1;
+                        MapManager.Inst.SetNewMap();
+                    });
+                    return;
+                }
+
+                if(curNode.locationID == "TUTORIAL_1")
+                {
+                    DataManager.Inst.characterSO.enemyName = "CardSoldier1";
+                }
+                else if(curNode.locationID == "TUTORIAL_2")
+                {
+                    DataManager.Inst.characterSO.enemyName = "CardSoldier2";
+                }
+                else if(curNode.locationID == "TUTORIAL_3")
+                {
+                    DataManager.Inst.characterSO.enemyName = "CardSoldier3";
+                }
+                SceneChangeManager.Inst.SceneFadeOut("BattleScene");
+            }
+            else
+            {
+                SceneChangeManager.Inst.SceneFadeOut("EncounterScene");
+            }
         });
     }
 

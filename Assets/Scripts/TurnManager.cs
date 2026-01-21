@@ -157,10 +157,6 @@ public class TurnManager : MonoBehaviour
         // BuffManager.Inst.AddShowBuff("주저함", EBuffAffectType.Enemy, 2, false);
         // BuffManager.Inst.AddShowBuff("환영", EBuffAffectType.Enemy, 2, false);
         // BuffManager.Inst.AddShowBuff("놀이 시간", EBuffAffectType.Player, 2, false);
-        if(characterSO.isTutorial && characterSO.personaPiece.persona.dreamPieceNum == 3)
-        {
-            playerTriggerCnt = 8;
-        }
         turnDraw = drawCardCount;
         // startCardCount만큼 카드를 뽑고, StartPlayerTurn 호출
         StartCoroutine(Draw(startCardCount, StartPlayerTurn));
@@ -189,38 +185,91 @@ public class TurnManager : MonoBehaviour
 
         if(characterSO.isTutorial)
         {
-            if(turnNum == 1)
+            if(CardManager.Inst.itemDraw.Count < turnDraw)
             {
-                // 튜토리얼 모드일 때, 1턴차에만 튜토리얼 실행
-                Item item_turn2 = new Item(CardManager.Inst.itemDeck.Find(card => card.name == "회전 카드 2"));
-                CardManager.Inst.itemDeck.Add(item_turn2);
-                CardManager.Inst.itemDraw.Insert(turnDraw - 1, item_turn2);
-                TutorialManager.Inst.ShowTutorialBox(1, 1);
+                List<Item> tempCardList = new List<Item>();
+                for(int i = 0; i < CardManager.Inst.itemDraw.Count; i++)
+                {
+                    tempCardList.Add(CardManager.Inst.itemDraw[i]);
+                }
+                CardManager.Inst.itemDraw.Clear();
+                while(CardManager.Inst.itemDiscard.Count > 0)
+                {
+                    CardManager.Inst.itemDraw.Add(CardManager.Inst.itemDiscard[0]);
+                    CardManager.Inst.itemDiscard.RemoveAt(0);
+                }
+                CardManager.Inst.ShuffleDeck();
+                for(int i = 0; i < tempCardList.Count; i++)
+                {
+                    CardManager.Inst.itemDraw.Insert(i, tempCardList[i]);
+                }
             }
-            else if(turnNum == 2)
+            switch (characterSO.enemyName)
             {
-                // 튜토리얼 모드일 때, 2턴차에만 튜토리얼 실행
-                Item item_turn3 = new Item(CardManager.Inst.itemDeck.Find(card => card.name == "회전 카드 3"));
-                CardManager.Inst.itemDeck.Add(item_turn3);
-                CardManager.Inst.itemDraw.Insert(turnDraw - 1, item_turn3);
-                TutorialManager.Inst.ShowTutorialBox(2, 1);
-            }
-            else if(turnNum == 3)
-            {
-                // 튜토리얼 모드일 때, 3턴차에만 튜토리얼 실행
-                Item item_hide = new Item(CardManager.Inst.itemDeck.Find(card => card.name == "숨기"));
-                CardManager.Inst.itemDeck.Add(item_hide);
-                CardManager.Inst.itemDraw.Insert(turnDraw - 1, item_hide);
-                TutorialManager.Inst.ShowTutorialBox(3, 1);
-            }
-            else if(turnNum == 4)
-            {
-                // 튜토리얼 모드일 때, 4턴차에만 튜토리얼 실행
-                TutorialManager.Inst.ShowTutorialBox(4, 1);
+                case "카드 병정":
+                case "CardSoldier1":
+                    if(turnNum == 1)
+                    {
+                        Item item_turn2 = new Item(CardManager.Inst.itemDeck.Find(card => card.name == "2칸 회전"));
+                        Item item_turn3 = new Item(CardManager.Inst.itemDeck.Find(card => card.name == "3칸 회전"));
+                        CardManager.Inst.itemDeck.Add(item_turn2);
+                        CardManager.Inst.itemDeck.Add(item_turn3);
+                        CardManager.Inst.itemDraw.Insert(turnDraw - 2, item_turn3);
+                        CardManager.Inst.itemDraw.Insert(turnDraw - 1, item_turn2);
+                        TutorialManager.Inst.ShowTutorialBox(1, 1, 1);
+                    }
+                    else if(turnNum == 3)
+                    {
+                        TutorialManager.Inst.ShowTutorialBox(0, 0, 0);
+                    }
+                    break;
+                case "카드 병정 2":
+                case "CardSoldier2":
+                    if(turnNum == 1)
+                    {
+                        Item item_claw = new Item(CardManager.Inst.itemDeck.Find(card => card.name == "발톱 세우기"));
+                        CardManager.Inst.itemDeck.Add(item_claw);
+                        CardManager.Inst.itemDraw.Insert(turnDraw - 1, item_claw);
+                        TutorialManager.Inst.ShowTutorialBox(2, 1, 1);
+                    }
+                    else if(turnNum == 2)
+                    {
+                        Item item_turn1 = new Item(CardManager.Inst.itemDeck.Find(card => card.name == "1칸 회전"));
+                        CardManager.Inst.itemDeck.Add(item_turn1);
+                        CardManager.Inst.itemDraw.Insert(turnDraw - 1, item_turn1);
+                        TutorialManager.Inst.ShowTutorialBox(2, 2, 1);
+                    }
+                    else if(turnNum == 3)
+                    {
+                        TutorialManager.Inst.ShowTutorialBox(0, 0, 0);
+                    }
+                    break;
+                case "카드 병정 3":
+                case "CardSoldier3":
+                    if(turnNum == 1)
+                    {
+                        TutorialManager.Inst.ShowTutorialBox(3, 1, 1);
+                    }
+                    else if(turnNum == 3)
+                    {
+                        Item item_hide = new Item(CardManager.Inst.itemDeck.Find(card => card.name == "숨기"));
+                        CardManager.Inst.itemDeck.Add(item_hide);
+                        CardManager.Inst.itemDraw.Insert(turnDraw - 1, item_hide);
+                        TutorialManager.Inst.ShowTutorialBox(3, 3, 1);
+                    }
+                    else if(turnNum == 4)
+                    {
+                        TutorialManager.Inst.ShowTutorialBox(3, 4, 1);
+                    }
+                    else if(turnNum == 5)
+                    {
+                        TutorialManager.Inst.ShowTutorialBox(0, 0, 0);
+                    }
+                    break;
             }
         }
         // turnDraw만큼 카드를 뽑고, 로딩을 종료 (플레이어 인터랙션 가능)
-        StartCoroutine(Draw(turnDraw, () => isLoading = characterSO.isTutorial));
+        StartCoroutine(Draw(turnDraw, () => isLoading = characterSO.isTutorial && TutorialManager.Inst.tutorialStage > 0));
     }
 
     // 플레이어 턴 종료

@@ -311,7 +311,15 @@ public class GameManager : MonoBehaviour
         {
             Notification("승리", "", () =>
             {
-                ShowCardReward();
+                if(characterSO.isTutorial)
+                {
+                    characterSO.curHealth = TurnManager.Inst.maxHealth;
+                    SceneChangeManager.Inst.SceneFadeOut("MapScene");
+                }
+                else
+                {
+                    ShowCardReward();
+                }
             });
         }
     }
@@ -486,7 +494,6 @@ public class GameManager : MonoBehaviour
         //     stageEnemy.isClear = true;
         //     characterSO.dreamDust += stageEnemy.dreamDustReward;
         // }
-        DataManager.Inst.SavePlayerData();
         SceneChangeManager.Inst.SceneFadeOut("EncounterScene");
     }
 

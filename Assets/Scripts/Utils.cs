@@ -215,8 +215,11 @@ public class Utils
 	public static void SaveData(ScriptableObject so, string fileName)
     {
         string json = JsonUtility.ToJson(so, true);   // pretty print
+#if UNITY_EDITOR
+		string path = Path.Combine(Application.dataPath, "StreamingAssets", "Data", fileName);
+#else
         string path = Path.Combine(Application.persistentDataPath, "Data", fileName);
-
+#endif
         File.WriteAllText(path, json);
         Debug.Log($"Exported to: {path}");
     }

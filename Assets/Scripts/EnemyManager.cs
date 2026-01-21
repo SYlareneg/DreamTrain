@@ -625,6 +625,12 @@ public class EnemyManager : MonoBehaviour
                     }
                 };
                 break;
+            case "카드 병정 3":
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    TurnManager.Inst.TriggerEnemyPassive(1);
+                };
+                break;
         }
 
         for(int i = 0; i < enemy.subEnemies.Count; i++)
@@ -1170,6 +1176,25 @@ public class EnemyManager : MonoBehaviour
                 }
                 break;
             case "우는 와인":
+                if(isTriggerActivated == false && phaseNum == 0)
+                {
+                    isTriggerActivated = true;
+                    triggerPhaseNum = 0;
+                    triggerPatternNum = 0;
+                    Action detrigger = null;
+                    detrigger = () =>
+                    {
+                        if(!isTriggerActivated)
+                        {
+                            phaseNum = 0;
+                            TurnManager.Inst.enemyTriggerCnt = 0;
+                            TurnManager.OnEnemyTurnEnd -= detrigger;
+                        }
+                    };
+                    TurnManager.OnEnemyTurnEnd += detrigger;
+                }
+                break;
+            case "카드 병정 3":
                 if(isTriggerActivated == false && phaseNum == 0)
                 {
                     isTriggerActivated = true;
