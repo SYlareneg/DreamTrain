@@ -44,13 +44,29 @@ public class EncounterCardUI_Sell : MonoBehaviour, IPointerClickHandler
         else
         {
             Debug.LogError($"[EncounterCardUI_Sell] CardUI가 연결되지 않았습니다! 프리팹을 확인하세요. ({gameObject.name})");
-        }
+        }   
 
-        // 3. 상점 전용 UI(가격표) 설정
         if (sellCostTMP != null)
         {
-            sellCostTMP.text = "<sprite=0>" + sellCard.cost.ToString();
-            UpdateColor(true); 
+            TMP_SpriteAsset newSpriteAsset = Resources.Load<TMP_SpriteAsset>("Cards/coin");
+
+            if (newSpriteAsset != null)
+            {
+                // TMP 컴포넌트의 spriteAsset 속성을 교체합니다.
+                sellCostTMP.spriteAsset = newSpriteAsset;
+                // 변경 사항을 즉시 반영하기 위해 업데이트를 호출합니다.
+                sellCostTMP.SetVerticesDirty();
+                sellCostTMP.SetMaterialDirty();
+            }
+            else
+            {
+                Debug.LogWarning("새로운 Sprite Asset을 찾을 수 없습니다. 경로를 확인하세요.");
+            }
+
+            // 텍스트 설정 (교체된 Asset의 0번 스프라이트가 나옵니다)
+            sellCostTMP.text = "<sprite=0>" + sellCard.cost;
+            
+            UpdateColor(true);
         }
 
         // 4. 유효성(재고 있음/없음)에 따른 활성화

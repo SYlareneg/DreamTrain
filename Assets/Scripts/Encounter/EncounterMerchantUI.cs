@@ -8,7 +8,10 @@ using System;
 using Random = UnityEngine.Random;
 
 public class EncounterMerchantUI : MonoBehaviour
-{   
+{
+    // 싱글톤 추가 (CardUI_Enhance가 찾아올 수 있게 하려면 필요할 수 있음)
+    public static EncounterMerchantUI Inst;
+
     [Header("Core References")]
     public GameObject panelRoot;            
     public CharacterSO characterSO;         
@@ -19,8 +22,8 @@ public class EncounterMerchantUI : MonoBehaviour
     public RelicSO playerRelicSO;
     
     [Header("Databases")]
-    public ItemSO normalItemListSO;         // [기존] 카드 DB
-    public UseableItemSO useableItemListSO; // [기존] 소모품 DB
+    public ItemDataSO normalItemDataListSO; 
+    public UseableItemSO useableItemListSO; 
     
     [Header("UI Containers")]
     public Transform cardContainer;   
@@ -29,23 +32,52 @@ public class EncounterMerchantUI : MonoBehaviour
     public GameObject objetSectionObj;
     public GameObject objetRareSectionObj;
     public Transform objetRareContainer;
-    public GameObject consumableSectionObj; // 소모품 UI 부모 오브젝트
+    public GameObject consumableSectionObj; 
     
     [Header("Prefabs")]
     public GameObject sellCardPrefab;       
     public GameObject objetPrefab;        
     public GameObject objetRarePrefab;      
 
-    [Header("Settings")]
-    public int[] sellCardCosts = new int[Enum.GetNames(typeof(CardRarity)).Length * 2 + 1];
-    public float[] sellCardWeights = new float[Enum.GetNames(typeof(CardRarity)).Length + 1];
-    [Range(0, 1)] public float enhanceProbability = 0.3f;
+    [Header("Card Enhance UI")]
+    public GameObject cardEnhanceScreen;        
+    public Transform cardEnhanceList;           
+    public GameObject enhanceCardPrefab;        
+    
+    public GameObject cardEnhanceConfirmScreen; 
+    public CardUI beforeEnhance_C;              
+    public CardUI afterEnhance_C;               
+    public TMP_Text cardEnhanceConfirmButtonTMP; 
+    
+    public int cardEnhanceCost = 100;           
+    private CardUI_Enhance currentSelectedCard; 
 
-    public int objetBaseCost = 100;
+    [Header("Relic Enhance UI")]
+    public RelicSO relicListSO;                 
+    public GameObject relicEnhanceScreen;       
+    public Transform relicEnhanceList;          
+    public GameObject enhanceRelicPrefab;       
+    
+    public GameObject relicEnhanceConfirmScreen;
+    public RelicUI beforeEnhance_R;             
+    public TMP_Text beforeEnhance_R_Name;       
+    public TMP_Text beforeEnhance_R_Text;
+    public RelicUI afterEnhance_R;              
+    public TMP_Text afterEnhance_R_Name;
+    public TMP_Text afterEnhance_R_Text;
+    public TMP_Text relicEnhanceConfirmButtonTMP;
+
+    public int relicEnhanceCost = 150;          
+    private RelicItem_Enhanceable currentEnhanceRelicItem; 
+    private RelicHalfUI_Enhance currentEnhanceRelicUI;     
+    
+    [Header("Settings")]
     public string currentShopId = "";
 
     void Awake()
     {
+        Inst = this; // 싱글톤 할당
+
         if (panelRoot == null) panelRoot = this.gameObject;
 
         if (cardContainer == null)
@@ -70,26 +102,187 @@ public class EncounterMerchantUI : MonoBehaviour
                 break;
             }
         }
-        int targetCostSize = Enum.GetNames(typeof(CardRarity)).Length * 2 + 1;
-        if (sellCardCosts == null || sellCardCosts.Length != targetCostSize)
-        {
-            sellCardCosts = new int[targetCostSize];
-        }
-        int targetWeightSize = Enum.GetNames(typeof(CardRarity)).Length + 1;
-        if (sellCardWeights == null || sellCardWeights.Length != targetWeightSize)
-        {
-            sellCardWeights = new float[targetWeightSize];
-        }
     }
 
     public void Open(string shopId = "")
     {
         currentShopId = shopId;
         panelRoot.SetActive(true);
-
+        if(cardEnhanceScreen != null) cardEnhanceScreen.SetActive(false);
+        if(relicEnhanceScreen != null) relicEnhanceScreen.SetActive(false);
+        if(cardEnhanceConfirmScreen != null) cardEnhanceConfirmScreen.SetActive(false);
+        if(relicEnhanceConfirmScreen != null) relicEnhanceConfirmScreen.SetActive(false);
         GenerateShopInventory();
         DrawShopUI();
     }
+    
+    // ==========================================
+    // 카드 강화 (원본 코드와 동일하게 복구)
+    // ==========================================
+    public void OpenEnhanceCardScreen()
+    {
+        SetEnhanceCardList();
+        cardEnhanceScreen.SetActive(true);
+        if(relicEnhanceScreen) relicEnhanceScreen.SetActive(false);
+    }
+
+    public void SetEnhanceCardList()
+    {
+        foreach (Transform child in cardEnhanceList)
+        {
+            Destroy(child.gameObject);
+        }
+
+        List<Item> allCardItemList = characterSO.normalCards
+            .Concat(characterSO.personaPiece.cards)
+            .Concat(characterSO.shadowPiece.cards)
+            .ToList();
+
+        foreach (Item item in allCardItemList)
+        {
+            if (item.isEnhanced == false && item.dreamPieceNum >= 0)
+            {
+                for(int i = 0; i < item.num; i++)
+                {
+                    var cardObj = Instantiate(enhanceCardPrefab, cardEnhanceList, false);
+                    // Instantiate 할 때 부모를 지정하지 않고, 여기서 transform.SetParent 사용 (원본 스타일)
+                    // (단, Instantiate(prefab, parent)가 더 깔끔하긴 합니다)
+                    cardObj.transform.SetParent(cardEnhanceList); 
+                    
+                    CardUI_Enhance cardUI = cardObj.GetComponent<CardUI_Enhance>();
+                    if (cardUI != null) cardUI.Setup(item);
+                }
+            }
+        }
+    }
+
+    public void EnhanceCardSelect(CardUI_Enhance cardUI)
+    {
+        Item_Enhanceable eItem = null;
+        if (cardUI.item.dreamPieceNum >= 0 && cardUI.item.dreamPieceNum < dreamPieceListSO.dreamPieces.Count)
+        {
+             eItem = dreamPieceListSO.dreamPieces[cardUI.item.dreamPieceNum].cards.Find(x => x.name == cardUI.item.name);
+        }
+
+        if (eItem == null) return;
+
+        currentSelectedCard = cardUI;
+
+        beforeEnhance_C.Setup(cardUI.item);
+        afterEnhance_C.Setup(eItem.enhancedItem);
+        
+        if(cardEnhanceConfirmButtonTMP)
+            cardEnhanceConfirmButtonTMP.text = "강화(<sprite=0>" + cardEnhanceCost.ToString() + ")";
+        
+        cardEnhanceConfirmScreen.SetActive(true);
+    }
+
+    public void EnhanceCardConfirm()
+    {
+        if (characterSO.dreamDust < cardEnhanceCost) return;
+
+        characterSO.dreamDust -= cardEnhanceCost;
+        
+        currentSelectedCard.item.num--;
+        if(currentSelectedCard.item.num == 0)
+        {
+            if(currentSelectedCard.item.dreamPieceNum < 0)
+            {
+                characterSO.normalCards.Remove(currentSelectedCard.item);
+            }
+            else if(dreamPieceListSO.dreamPieces[currentSelectedCard.item.dreamPieceNum].name == characterSO.personaPiece.name)
+            {
+                characterSO.personaPiece.cards.Remove(currentSelectedCard.item);
+            }
+            else if(dreamPieceListSO.dreamPieces[currentSelectedCard.item.dreamPieceNum].name == characterSO.shadowPiece.name)
+            {
+                characterSO.shadowPiece.cards.Remove(currentSelectedCard.item);
+            }
+        }
+
+        AddCardToInventory(afterEnhance_C.item);
+
+        Destroy(currentSelectedCard.gameObject);
+        cardEnhanceConfirmScreen.SetActive(false);
+    }
+
+    public void OpenEnhanceRelicScreen()
+    {
+        SetEnhanceRelicList();
+        relicEnhanceScreen.SetActive(true);
+        if(cardEnhanceScreen) cardEnhanceScreen.SetActive(false);
+    }
+
+    public void SetEnhanceRelicList()
+    {
+        foreach (Transform child in relicEnhanceList)
+        {
+            Destroy(child.gameObject);
+        }
+
+        List<RelicItem_Enhanceable> sortedRelicList = playerRelicSO.relicItems.OrderBy(x => x.relicOwner).ToList();
+        
+        for (int i = 0; i < sortedRelicList.Count; i++)
+        {
+            var relicObject = Instantiate(enhanceRelicPrefab, relicEnhanceList, false);
+            var relicUI = relicObject.GetComponent<RelicUI>();
+            
+            if (relicUI != null)
+            {
+                if (i < sortedRelicList.Count - 1 && sortedRelicList[i + 1].relicOwner == sortedRelicList[i].relicOwner)
+                {
+                    var relic1 = sortedRelicList[i].isEnhanced ? sortedRelicList[i].enhancedRelicItem : sortedRelicList[i];
+                    var relic2 = sortedRelicList[i + 1].isEnhanced ? sortedRelicList[i + 1].enhancedRelicItem : sortedRelicList[i + 1];
+                    relicUI.Setup(relic1, relic2);
+                    i++;
+                }
+                else
+                {
+                    var relic1 = sortedRelicList[i].isEnhanced ? sortedRelicList[i].enhancedRelicItem : sortedRelicList[i];
+                    relicUI.Setup(relic1, null);
+                }
+            }
+        }
+    }
+
+    public void EnhanceRelicSelect(RelicHalfUI_Enhance relicHalf)
+    {
+        RelicItem_Enhanceable rItem = relicListSO.relicItems.Find(x => x.relicName == relicHalf.relicItem.relicName);
+        if (rItem == null) return;
+
+        currentEnhanceRelicItem = rItem;
+        currentEnhanceRelicUI = relicHalf;
+
+        beforeEnhance_R.Setup(rItem, null);
+        beforeEnhance_R_Name.text = rItem.relicName;
+        beforeEnhance_R_Text.text = rItem.relicTxt;
+
+        afterEnhance_R.Setup(rItem.enhancedRelicItem, null);
+        afterEnhance_R_Name.text = rItem.enhancedRelicItem.relicName;
+        afterEnhance_R_Text.text = rItem.enhancedRelicItem.relicTxt;
+
+        if(relicEnhanceConfirmButtonTMP)
+            relicEnhanceConfirmButtonTMP.text = "강화(<sprite=0>" + relicEnhanceCost.ToString() + ")";
+        
+        relicEnhanceConfirmScreen.SetActive(true);
+    }
+
+    public void EnhanceRelicConfirm()
+    {
+        RelicItem_Enhanceable rItem = playerRelicSO.relicItems.Find(x => x.relicName == currentEnhanceRelicItem.relicName);
+        if (rItem == null) return;
+        
+        if (characterSO.dreamDust < relicEnhanceCost) return;
+
+        characterSO.dreamDust -= relicEnhanceCost;
+        rItem.isEnhanced = true;
+        
+        currentEnhanceRelicUI.SetRelicHalf(rItem.enhancedRelicItem);
+        
+        relicEnhanceConfirmScreen.SetActive(false);
+    }
+    
+    // ... (기존 상점 로직들: GenerateShopInventory 등은 그대로 유지) ...
     void GenerateShopInventory()
     {
         stageSO.merchantSellCards.Clear();
@@ -98,109 +291,98 @@ public class EncounterMerchantUI : MonoBehaviour
     
         if (currentShopId == "souvenir")
         {
-            cardSectionObj.SetActive(false);
-            consumableSectionObj.SetActive(false);
-            objetSectionObj.SetActive(false);
-            objetRareSectionObj.SetActive(true);
+            if(cardSectionObj) cardSectionObj.SetActive(false);
+            if(consumableSectionObj) consumableSectionObj.SetActive(false);
+            if(objetSectionObj) objetSectionObj.SetActive(false);
+            if(objetRareSectionObj) objetRareSectionObj.SetActive(true);
             GenerateSpecialShopInventory();
             DrawRareObjets();
         }
         else
         {
-            cardSectionObj.SetActive(true);
-            //consumableSectionObj.SetActive(true);
-            objetSectionObj.SetActive(true);
-            objetRareSectionObj.SetActive(false);
+            if(cardSectionObj) cardSectionObj.SetActive(true);
+            if(objetSectionObj) objetSectionObj.SetActive(true);
+            if(objetRareSectionObj) objetRareSectionObj.SetActive(false);
             
             GenerateCardInventory();
             GenerateConsumableInventory();
             GenerateObjetInventory();      
         }
     }
+
     void GenerateCardInventory()
     {
-        Debug.Log("called card inventory");
-        List<Item> normalCards = new List<Item>(normalItemListSO.items);
-        List<Item>[] dreamCards = new List<Item>[Enum.GetNames(typeof(CardRarity)).Length];
-        List<Item>[] dreamCards_enhanced = new List<Item>[Enum.GetNames(typeof(CardRarity)).Length];
+        Debug.Log("called card inventory (Auto Price Logic + Fixed Count)");
 
-        for (int i = 0; i < dreamCards.Length; i++)
+        List<Item> poolCommon = new List<Item>();
+        if (normalItemDataListSO != null && normalItemDataListSO.items != null)
         {
-            dreamCards[i] = new List<Item>();
-            dreamCards_enhanced[i] = new List<Item>();
+            foreach (var itemData in normalItemDataListSO.items)
+            {
+                Item_Enhanceable newItem = new Item_Enhanceable(itemData);
+                poolCommon.Add(newItem);
+            }
         }
+
+        List<Item> poolPersona = new List<Item>();
+        List<Item> poolShadow = new List<Item>();
 
         DreamPiece_Reference persona_ref = dreamPieceListSO.dreamPieces.Find(x => x.name == characterSO.personaPiece.name);
         DreamPiece_Reference shadow_ref = dreamPieceListSO.dreamPieces.Find(x => x.name == characterSO.shadowPiece.name);
 
-        if (persona_ref != null)
+        if (persona_ref != null) foreach (var card in persona_ref.cards) poolPersona.Add(card);
+        if (shadow_ref != null) foreach (var card in shadow_ref.cards) poolShadow.Add(card);
+
+        if (poolCommon.Count == 0 && poolPersona.Count == 0 && poolShadow.Count == 0) return;
+
+        int targetCount = 4;
+        int safetyLoop = 0; 
+
+        while (stageSO.merchantSellCards.Count < targetCount && safetyLoop < 100)
         {
-            foreach (Item_Enhanceable item in persona_ref.cards)
+            safetyLoop++;
+
+            float r = Random.value; 
+            List<Item> selectedPool = null;
+
+            if (r < 0.2f) selectedPool = poolCommon; 
+            else if (r < 0.6f) selectedPool = poolPersona;
+            else selectedPool = poolShadow;
+
+            if (selectedPool == null || selectedPool.Count == 0)
             {
-                dreamCards[(int)item.rarity].Add(item);
-                dreamCards_enhanced[(int)item.rarity].Add(item.enhancedItem);
+                if (poolCommon.Count > 0) selectedPool = poolCommon;
+                else if (poolPersona.Count > 0) selectedPool = poolPersona;
+                else if (poolShadow.Count > 0) selectedPool = poolShadow;
+            }
+
+            if (selectedPool == null || selectedPool.Count == 0) continue;
+
+            Item pickedCard = SelectCardWithWeight(selectedPool);
+
+            if (pickedCard != null)
+            {
+                stageSO.merchantSellCards.Add(new SellCard 
+                { 
+                    cardItem = pickedCard, 
+                    cost = (pickedCard.rarity == CardRarity.Rare) ? 3 : 2,
+                    isValid = true 
+                });
             }
         }
-        if (shadow_ref != null)
-        {
-            foreach (Item_Enhanceable item in shadow_ref.cards)
-            {
-                dreamCards[(int)item.rarity].Add(item);
-                dreamCards_enhanced[(int)item.rarity].Add(item.enhancedItem);
-            }
-        }
-        Debug.Log(sellCardWeights.ToString());
-        int cardSlotCount = 4; 
-        for (int i = 0; i < cardSlotCount; i++)
-        {
-            float totalW = sellCardWeights.Sum();
-            float rPoint = Random.value * totalW;
-            int chooseCardPool = 0;
-            
-            for (int j = 0; j < sellCardWeights.Length; j++)
-            {
-                if (rPoint < sellCardWeights[j])
-                {
-                    chooseCardPool = j;
-                    break;
-                }
-                rPoint -= sellCardWeights[j];
-            }
+    }
 
-            List<Item> lookat = new List<Item>();
-            int sellCost = sellCardCosts[0];
-
-            if (chooseCardPool == 0) 
-            {
-                lookat = normalCards;
-                sellCost = sellCardCosts[0];
-            }
-            else 
-            {
-                bool isE = Random.value < enhanceProbability;
-                int rarityIndex = chooseCardPool - 1;
-
-                if (rarityIndex < dreamCards.Length)
-                {
-                    if (isE)
-                    {
-                        lookat = dreamCards_enhanced[rarityIndex];
-                        sellCost = sellCardCosts[chooseCardPool * 2];
-                    }
-                    else
-                    {
-                        lookat = dreamCards[rarityIndex];
-                        sellCost = sellCardCosts[chooseCardPool * 2 - 1];
-                    }
-                }
-            }
-
-            if (lookat.Count > 0)
-            {
-                int cardIdx = Random.Range(0, lookat.Count);
-                stageSO.merchantSellCards.Add(new SellCard { cardItem = lookat[cardIdx], cost = sellCost, isValid = true });
-            }
-        }
+    Item SelectCardWithWeight(List<Item> pool)
+    {
+        if (pool == null || pool.Count == 0) return null;
+        var normals = pool.Where(c => c.rarity == CardRarity.Normal).ToList();
+        var rares = pool.Where(c => c.rarity == CardRarity.Rare).ToList();
+        int totalWeight = (3 * normals.Count) + (1 * rares.Count);
+        if (totalWeight <= 0) return pool[0]; 
+        int randomPoint = Random.Range(0, totalWeight);
+        foreach (var card in normals) { if (randomPoint < 3) return card; randomPoint -= 3; }
+        foreach (var card in rares) { if (randomPoint < 1) return card; randomPoint -= 1; }
+        return pool[0]; 
     }
 
     void GenerateConsumableInventory()
@@ -212,8 +394,7 @@ public class EncounterMerchantUI : MonoBehaviour
             {
                 int uItemIdx = Random.Range(0, useableItemListSO.useableItems.Count);
                 var setUItem = useableItemListSO.useableItems[uItemIdx];
-                int cost = (sellCardCosts.Length > (int)setUItem.rarity) ? sellCardCosts[(int)setUItem.rarity] : 50; 
-                
+                int cost = 50; 
                 stageSO.merchantSellUItems.Add(new SellUItem { useItem = setUItem, cost = cost, isValid = true });
             }
         }
@@ -221,46 +402,20 @@ public class EncounterMerchantUI : MonoBehaviour
     
     void GenerateObjetInventory()
     {
-        Debug.Log("called objet inventory");
-        
-        // playerDataSO는 현재 Act 정보만 확인하는 용도
         int currentAct = playerDataSO.currentActNum;
-        
         List<RelicItem_Data> candidates = relicDataList.relicItems.Where(obj => 
         {
-            // 1. 소유 여부 확인: playerRelicSO 안에 같은 ID(relicOwner)가 있는지 확인
             bool hasRelic = playerRelicSO.relicItems.Exists(owned => owned.relicOwner == obj.relicOwner);
             if (hasRelic) return false;
-
-            // 2. 조건 확인 (RelicItem_Data 내부 변수 사용: rarity, relicAct)
-            bool isConditionMet = obj.rarity == CardRarity.Normal &&
-                                  obj.relicAct < currentAct &&
-                                  obj.relicAct > 0;
-            
-            return isConditionMet;
-
+            return (obj.rarity == CardRarity.Normal && obj.relicAct < currentAct);
         }).ToList();
-
         int slotCount = 3; 
-        List<RelicItem_Data> selectedObjets = new List<RelicItem_Data>();
-
         for (int i = 0; i < slotCount; i++)
         {
             if (candidates.Count <= 0) break;
-
             int rndIdx = Random.Range(0, candidates.Count);
-            selectedObjets.Add(candidates[rndIdx]);
+            stageSO.merchantSellObjets.Add(new SellObjet { objetItem = candidates[rndIdx], cost = candidates[rndIdx].cost, isValid = true });
             candidates.RemoveAt(rndIdx);
-        }
-
-        foreach (var obj in selectedObjets)
-        {
-            stageSO.merchantSellObjets.Add(new SellObjet 
-            { 
-                objetItem = obj, 
-                cost = obj.cost, 
-                isValid = true 
-            });
         }
     }
     
@@ -268,24 +423,13 @@ public class EncounterMerchantUI : MonoBehaviour
     {
         List<RelicItem_Data> selectedObjets = relicDataList.relicItems.Where(obj => 
         {
-            // 소유 여부 확인 (playerRelicSO 기준)
             bool hasRelic = playerRelicSO.relicItems.Exists(owned => owned.relicOwner == obj.relicOwner);
             if (hasRelic) return false;
-
-            // 레어 등급 필터링
-            bool isConditionMet = obj.rarity == CardRarity.Rare;
-            return isConditionMet;
-
+            return (obj.rarity == CardRarity.Rare);
         }).ToList();
-
         foreach (var obj in selectedObjets)
         {
-            stageSO.merchantSellObjets.Add(new SellObjet 
-            { 
-                objetItem = obj, 
-                cost = obj.cost, 
-                isValid = true 
-            });
+            stageSO.merchantSellObjets.Add(new SellObjet { objetItem = obj, cost = obj.cost, isValid = true });
         }
     }
     
@@ -294,18 +438,15 @@ public class EncounterMerchantUI : MonoBehaviour
         DrawCards();
         DrawObjets(); 
     }
-
     void DrawCards()
     {
         int dataCount = stageSO.merchantSellCards.Count;
         int currentChildCount = cardContainer.childCount;
-
         if (currentChildCount < dataCount)
         {
             int diff = dataCount - currentChildCount;
             for (int i = 0; i < diff; i++) Instantiate(sellCardPrefab, cardContainer);
         }
-
         for (int i = 0; i < cardContainer.childCount; i++)
         {
             Transform child = cardContainer.GetChild(i);
@@ -313,7 +454,6 @@ public class EncounterMerchantUI : MonoBehaviour
             {
                 var data = stageSO.merchantSellCards[i];
                 EncounterCardUI_Sell script = child.GetComponent<EncounterCardUI_Sell>();
-
                 if (script != null)
                 {
                     int index = i; 
@@ -321,24 +461,18 @@ public class EncounterMerchantUI : MonoBehaviour
                 }
                 child.gameObject.SetActive(data.isValid); 
             }
-            else
-            {
-                child.gameObject.SetActive(false);
-            }
+            else child.gameObject.SetActive(false);
         }
     }
-
     void DrawRareObjets()
     {
         int dataCount = stageSO.merchantSellObjets.Count;
         int currentChildCount = objetRareContainer.childCount;
-
         if (currentChildCount < dataCount)
         {
             int diff = dataCount - currentChildCount;
             for (int i = 0; i < diff; i++) Instantiate(objetRarePrefab, objetRareContainer);
         }
-
         for (int i = 0; i < objetRareContainer.childCount; i++)
         {
             Transform child = objetRareContainer.GetChild(i);
@@ -346,31 +480,25 @@ public class EncounterMerchantUI : MonoBehaviour
             {
                 var data = stageSO.merchantSellObjets[i];
                 EncounterObjetUI_Sell script = child.GetComponent<EncounterObjetUI_Sell>();
-
                 if (script != null)
                 {
                     int index = i;
                     script.Setup(data.objetItem, data.cost, data.isValid, characterSO, () => TryBuyObjet(index));
                 }
                 child.gameObject.SetActive(data.isValid); 
-                Debug.Log(data.isValid);
             }
-            else
-            {
-                child.gameObject.SetActive(false);
-            }
+            else child.gameObject.SetActive(false);
         }
-    }void DrawObjets()
+    }
+    void DrawObjets()
     {
         int dataCount = stageSO.merchantSellObjets.Count;
         int currentChildCount = objetContainer.childCount;
-
         if (currentChildCount < dataCount)
         {
             int diff = dataCount - currentChildCount;
             for (int i = 0; i < diff; i++) Instantiate(objetPrefab, objetContainer);
         }
-
         for (int i = 0; i < objetContainer.childCount; i++)
         {
             Transform child = objetContainer.GetChild(i);
@@ -378,7 +506,6 @@ public class EncounterMerchantUI : MonoBehaviour
             {
                 var data = stageSO.merchantSellObjets[i];
                 EncounterObjetUI_Sell script = child.GetComponent<EncounterObjetUI_Sell>();
-
                 if (script != null)
                 {
                     int index = i;
@@ -386,26 +513,20 @@ public class EncounterMerchantUI : MonoBehaviour
                 }
                 child.gameObject.SetActive(data.isValid); 
             }
-            else
-            {
-                child.gameObject.SetActive(false);
-            }
+            else child.gameObject.SetActive(false);
         }
     }
     public void TryBuyCard(int index)
     {
         var data = stageSO.merchantSellCards[index];
         if (!data.isValid) return; 
-
         if (characterSO.dreamDust >= data.cost)
         {
             characterSO.dreamDust -= data.cost;
             AddCardToInventory(data.cardItem);
-
             data.isValid = false;
             stageSO.merchantSellCards[index] = data; 
-            
-            DrawShopUI(); // UI 갱신
+            DrawShopUI(); 
             Debug.Log("카드 구매 성공!");
         }
     }
@@ -413,63 +534,29 @@ public class EncounterMerchantUI : MonoBehaviour
     {
         var data = stageSO.merchantSellObjets[index];
         if (!data.isValid) return false;
-
-        // 재화 체크
         if (characterSO.dreamDust >= data.cost)
         {
             characterSO.dreamDust -= data.cost;
-            
-            // [중요] RelicItem_Data를 인자로 넘겨서 인벤토리에 추가
             AddObjectToInventory(data.objetItem); 
-            
-            Debug.Log($"구매 시도 중... 현재 ShopID: '{currentShopId}'");
-
             data.isValid = false;
             stageSO.merchantSellObjets[index] = data; 
-            
-            if (currentShopId == "souvenir") DrawRareObjets();
-            else DrawShopUI();
-            
-            Debug.Log($"오브제 구매 성공: {data.objetItem.relicName}");
+            if (currentShopId == "souvenir") DrawRareObjets(); else DrawShopUI();
             return true;
         }
-        else
-        {
-            Debug.Log("돈이 부족합니다.");
-            return false;
-        }
+        return false;
     }
-
     void AddObjectToInventory(RelicItem_Data itemToAdd)
     {
-        if (itemToAdd == null)
-        {
-            Debug.LogError($"구매 오류: 데이터가 비어있습니다.");
-            return;
-        }
-
-        // 중복 체크 (혹시 모르니 한 번 더)
-        if (playerRelicSO.relicItems.Exists(r => r.relicOwner == itemToAdd.relicOwner))
-        {
-            Debug.LogWarning($"이미 보유 중인 유물입니다: {itemToAdd.relicName}");
-            return;
-        }
-
+        if (itemToAdd == null) return;
+        if (playerRelicSO.relicItems.Exists(r => r.relicOwner == itemToAdd.relicOwner)) return;
         RelicItem_Enhanceable newRelic = new RelicItem_Enhanceable(itemToAdd);
-
-        // playerRelicSO(인벤토리)에 추가
         playerRelicSO.relicItems.Add(newRelic);
-
-        Debug.Log($"오브제 획득 완료: {newRelic.relicName} -> PlayerRelicSO에 저장됨.");
     }
-    
-    
     void AddCardToInventory(Item itemToAdd)
     {
         Item newItem = new Item();
         newItem.SetItem(itemToAdd);
         newItem.num = 1;
-
         if (itemToAdd.dreamPieceNum < 0)
         {
             var existItem = characterSO.normalCards.Find(x => x.name == itemToAdd.name);
@@ -492,12 +579,7 @@ public class EncounterMerchantUI : MonoBehaviour
     public void OnClickExitButton()
     {
         panelRoot.SetActive(false);
-    
-        if (EncounterManager.Instance != null)
-        {
-            EncounterManager.Instance.OnMerchantClosed();
-        }
-    
+        if (EncounterManager.Instance != null) EncounterManager.Instance.OnMerchantClosed();
         currentShopId = ""; 
     }
 }

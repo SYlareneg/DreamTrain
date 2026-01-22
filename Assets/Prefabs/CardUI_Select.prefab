@@ -185,6 +185,8 @@ MonoBehaviour:
     cardValueTypes: 
     num: 0
     isEnhanced: 0
+  cardUITooltipPrefab: {fileID: 0}
+  tooltipPos: {fileID: 0}
 --- !u!1 &3243176688415947462
 GameObject:
   m_ObjectHideFlags: 0

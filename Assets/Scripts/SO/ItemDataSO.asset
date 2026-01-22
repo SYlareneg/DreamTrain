@@ -12,4 +12,1417 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 227bcac040b199144be11c83c8df06d4, type: 3}
   m_Name: ItemDataSO
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
-  items: []
+  items:
+  - name: "\uADF8\uB79C\uB4DC \uD53C\uB0A0\uB808"
+    cost: 3
+    type: 2
+    rarity: 1
+    dreamPieceNum: 1
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Tree Arm
+    text: "\uBAA8\uB4E0 \uC801\uC5D0\uAC8C 36<\uD53C\uD574>\uC758 \uD53C\uD574\uB97C
+      \uC90D\uB2C8\uB2E4. \uB8F0\uB81B\uC5D0 \uD074\uB85C\uBC84, \uB2E4\uC774\uC544\uBAAC\uB4DC,
+      \uD558\uD2B8, \uC2A4\uD398\uC774\uB4DC \uBB38\uC591\uC774 \uBAA8\uB450 \uC874\uC7AC\uD574\uC57C
+      \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+    cardValues: 24000000
+    cardValueTypes: 00000000
+    name_enhanced: "\uADF8\uB79C\uB4DC \uD53C\uB0A0\uB808+"
+    cost_enhanced: 3
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uBAA8\uB4E0 \uC801\uC5D0\uAC8C 54<\uD53C\uD574>\uC758 \uD53C\uD574\uB97C
+      \uC90D\uB2C8\uB2E4. \uB8F0\uB81B\uC5D0 \uD074\uB85C\uBC84, \uB2E4\uC774\uC544\uBAAC\uB4DC,
+      \uD558\uD2B8, \uC2A4\uD398\uC774\uB4DC \uBB38\uC591\uC774 \uBAA8\uB450 \uC874\uC7AC\uD574\uC57C
+      \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+    cardValues_enhanced: 36000000
+    cardValueTypes_enhanced: 00000000
+  - name: "\uD604\uD639"
+    cost: 3
+    type: 3
+    rarity: 1
+    dreamPieceNum: 1
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Tree Arm
+    text: "2<\uD2B9\uC218>\uD134 \uB3D9\uC548, \uCD5C\uADFC\uC5D0 \uC0AC\uC6A9\uD55C
+      \uCE74\uB4DC\uC640 \uB2E4\uB978 \uD0C0\uC785\uC758 \uCE74\uB4DC\uB97C \uC0AC\uC6A9\uD560
+      \uB54C\uB9C8\uB2E4 \uD589\uB3D9\uB825\uC744 1<\uD2B9\uC218> \uC5BB\uC2B5\uB2C8\uB2E4."
+    cardValues: 0200000001000000
+    cardValueTypes: 0300000003000000
+    name_enhanced: "\uD604\uD639+"
+    cost_enhanced: 3
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "3<\uD2B9\uC218>\uD134 \uB3D9\uC548, \uCD5C\uADFC\uC5D0 \uC0AC\uC6A9\uD55C
+      \uCE74\uB4DC\uC640 \uB2E4\uB978 \uD0C0\uC785\uC758 \uCE74\uB4DC\uB97C \uC0AC\uC6A9\uD560
+      \uB54C\uB9C8\uB2E4 \uD589\uB3D9\uB825\uC744 1<\uD2B9\uC218> \uC5BB\uC2B5\uB2C8\uB2E4."
+    cardValues_enhanced: 0300000001000000
+    cardValueTypes_enhanced: 0300000003000000
+  - name: "\uC218\uD2B8 \uCCB4\uC778\uC9C0"
+    cost: 2
+    type: 1
+    rarity: 0
+    dreamPieceNum: 1
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Tree Arm
+    text: "\uC790\uC2E0 \uC55E \uB9C8\uC220 \uCE74\uB4DC \uB8F0\uB81B\uC758 \uC218\uD2B8\uB97C
+      \uB2E4\uB978 \uC218\uD2B8\uB85C \uCCB4\uC778\uC9C0\uD569\uB2C8\uB2E4."
+    cardValues: 
+    cardValueTypes: 
+    name_enhanced: "\uC218\uD2B8 \uCCB4\uC778\uC9C0+"
+    cost_enhanced: 1
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uC790\uC2E0 \uC55E \uB9C8\uC220 \uCE74\uB4DC \uB8F0\uB81B\uC758
+      \uC218\uD2B8\uB97C \uB2E4\uB978 \uC218\uD2B8\uB85C \uCCB4\uC778\uC9C0\uD569\uB2C8\uB2E4."
+    cardValues_enhanced: 
+    cardValueTypes_enhanced: 
+  - name: "\uB9C8\uC220 \uCE74\uB4DC"
+    cost: 2
+    type: 1
+    rarity: 0
+    dreamPieceNum: 1
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Winter Witch
+    text: "\uC790\uC2E0 \uC55E \uB8F0\uB81B\uC5D0 \uB9C8\uC220\uCE74\uB4DC \uB8F0\uB81B\uC744
+      \uBD80\uC5EC\uD569\uB2C8\uB2E4. \uCD5C\uADFC\uC5D0 \uC0AC\uC6A9\uD55C \uCE74\uB4DC\uC758
+      \uD0C0\uC785\uC5D0 \uB530\uB77C \uBD80\uC5EC\uD558\uB294 \uBB38\uC591\uC774
+      \uB2EC\uB77C\uC9D1\uB2C8\uB2E4."
+    cardValues: 
+    cardValueTypes: 
+    name_enhanced: "\uB9C8\uC220 \uCE74\uB4DC+"
+    cost_enhanced: 1
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uC790\uC2E0 \uC55E \uB8F0\uB81B\uC5D0 \uAC15\uD654\uB41C \uB9C8\uC220\uCE74\uB4DC
+      \uB8F0\uB81B\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4. \uCD5C\uADFC\uC5D0 \uC0AC\uC6A9\uD55C
+      \uCE74\uB4DC\uC758 \uD0C0\uC785\uC5D0 \uB530\uB77C \uBD80\uC5EC\uD558\uB294
+      \uBB38\uC591\uC774 \uB2EC\uB77C\uC9D1\uB2C8\uB2E4."
+    cardValues_enhanced: 
+    cardValueTypes_enhanced: 
+  - name: "\uCEE4\uD2BC\uCF5C"
+    cost: 3
+    type: 3
+    rarity: 1
+    dreamPieceNum: 1
+    isVolatile: 0
+    isVanish: 1
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Tree Arm
+    text: "\uB2E4\uC74C\uC5D0 \uC0AC\uC6A9\uD558\uB294 \uCE74\uB4DC\uC758 \uD6A8\uACFC\uB294
+      \uB450 \uBC88 \uC801\uC6A9\uB429\uB2C8\uB2E4. \uC18C\uBA78."
+    cardValues: 
+    cardValueTypes: 
+    name_enhanced: "\uCEE4\uD2BC\uCF5C+"
+    cost_enhanced: 2
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uB2E4\uC74C\uC5D0 \uC0AC\uC6A9\uD558\uB294 \uCE74\uB4DC\uC758
+      \uD6A8\uACFC\uB294 \uB450 \uBC88 \uC801\uC6A9\uB429\uB2C8\uB2E4. "
+    cardValues_enhanced: 
+    cardValueTypes_enhanced: 
+  - name: "\uBC30\uB2C8\uC2F1"
+    cost: 2
+    type: 2
+    rarity: 0
+    dreamPieceNum: 1
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Tree Arm
+    text: "\uD328\uC5D0\uC11C \uCE74\uB4DC \uD55C \uC7A5\uC744 \uC120\uD0DD\uD574
+      \uC18C\uBA78\uC2DC\uD0B5\uB2C8\uB2E4. \uC18C\uBA78\uD55C \uCE74\uB4DC\uC758
+      \uCF54\uC2A4\uD2B8\uB9CC\uD07C \uD589\uB3D9\uB825\uC744 \uC5BB\uC2B5\uB2C8\uB2E4. "
+    cardValues: 
+    cardValueTypes: 
+    name_enhanced: "\uBC30\uB2C8\uC2F1+"
+    cost_enhanced: 1
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uD328\uC5D0\uC11C \uCE74\uB4DC \uD55C \uC7A5\uC744 \uC120\uD0DD\uD574
+      \uC18C\uBA78\uC2DC\uD0B5\uB2C8\uB2E4. \uC18C\uBA78\uD55C \uCE74\uB4DC\uC758
+      \uCF54\uC2A4\uD2B8\uB9CC\uD07C \uD589\uB3D9\uB825\uC744 \uC5BB\uC2B5\uB2C8\uB2E4."
+    cardValues_enhanced: 
+    cardValueTypes_enhanced: 
+  - name: "\uD3ED\uBC1C \uB9C8\uC220"
+    cost: 2
+    type: 2
+    rarity: 0
+    dreamPieceNum: 1
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 1
+    sprite: Snowballing
+    text: "3<\uD53C\uD574>\uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.\\n\uACE0\uAE09\uB9C8\uC220:
+      12<\uD53C\uD574>\uC758 \uD53C\uD574\uB97C \uCD94\uAC00\uB85C \uC785\uD788\uACE0
+      \uB9C8\uC220 \uC0C1\uC790\uB97C \uC81C\uAC70\uD569\uB2C8\uB2E4."
+    cardValues: 030000000c000000
+    cardValueTypes: 0000000000000000
+    name_enhanced: "\uD3ED\uBC1C \uB9C8\uC220+"
+    cost_enhanced: 2
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 1
+    text_enhanced: "3<\uD53C\uD574>\uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.\\n\uACE0\uAE09\uB9C8\uC220:
+      18<\uD53C\uD574>\uC758 \uD53C\uD574\uB97C \uCD94\uAC00\uB85C \uC785\uD788\uACE0
+      \uB9C8\uC220 \uC0C1\uC790\uB97C \uC81C\uAC70\uD569\uB2C8\uB2E4."
+    cardValues_enhanced: 0300000012000000
+    cardValueTypes_enhanced: 0000000000000000
+  - name: "\uD1A0\uB07C \uB9C8\uC220"
+    cost: 2
+    type: 0
+    rarity: 0
+    dreamPieceNum: 1
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Snowballing
+    text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 4<\uD2B9\uC218>\uCE78
+      \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4.\\n\uB9C8\uC220: 2<\uD2B9\uC218>\uCE78
+      \uB354 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
+    cardValues: 0400000002000000
+    cardValueTypes: 0300000003000000
+    name_enhanced: "\uD1A0\uB07C \uB9C8\uC220+"
+    cost_enhanced: 1
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 1
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 4<\uD2B9\uC218>\uCE78
+      \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4.\\n\uB9C8\uC220: 2<\uD2B9\uC218>\uCE78
+      \uB354 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4. \uC794\uB958."
+    cardValues_enhanced: 0400000002000000
+    cardValueTypes_enhanced: 0300000003000000
+  - name: "\uD658\uC601 \uB9C8\uC220"
+    cost: 3
+    type: 3
+    rarity: 1
+    dreamPieceNum: 1
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Snowballing
+    text: "\uD658\uC601\uC744 1<\uD2B9\uC218> \uC5BB\uC2B5\uB2C8\uB2E4 "
+    cardValues: 01000000
+    cardValueTypes: 03000000
+    name_enhanced: "\uD658\uC601 \uB9C8\uC220+"
+    cost_enhanced: 2
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uD658\uC601\uC744 1<\uD2B9\uC218> \uC5BB\uC2B5\uB2C8\uB2E4.\\n\uB9C8\uC220:
+      \uD589\uB3D9\uB825\uC744 1<\uD2B9\uC218> \uB3CC\uB824\uBC1B\uC2B5\uB2C8\uB2E4. "
+    cardValues_enhanced: 0100000001000000
+    cardValueTypes_enhanced: 0300000003000000
+  - name: "3\uCE78 \uC5ED\uD68C\uC804"
+    cost: 0
+    type: 0
+    rarity: 0
+    dreamPieceNum: -1
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: CCW3
+    text: "\uB8F0\uB81B\uC744 \uBC18\uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 3<\uD2B9\uC218>\uCE78
+      \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
+    cardValues: 03000000
+    cardValueTypes: 03000000
+    name_enhanced: "3\uCE78 \uC5ED\uD68C\uC804+"
+    cost_enhanced: 0
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: 
+    cardValues_enhanced: 
+    cardValueTypes_enhanced: 
+  - name: "1\uCE78 \uD68C\uC804"
+    cost: 1
+    type: 0
+    rarity: 0
+    dreamPieceNum: -1
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: CW1
+    text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 1<\uD2B9\uC218>\uCE78
+      \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
+    cardValues: 01000000
+    cardValueTypes: 03000000
+    name_enhanced: "1\uCE78 \uD68C\uC804+"
+    cost_enhanced: 0
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: 
+    cardValues_enhanced: 
+    cardValueTypes_enhanced: 
+  - name: "2\uCE78 \uD68C\uC804"
+    cost: 2
+    type: 0
+    rarity: 0
+    dreamPieceNum: -1
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: CW2
+    text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 2<\uD2B9\uC218>\uCE78
+      \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
+    cardValues: 02000000
+    cardValueTypes: 03000000
+    name_enhanced: "2\uCE78 \uD68C\uC804+"
+    cost_enhanced: 0
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: 
+    cardValues_enhanced: 
+    cardValueTypes_enhanced: 
+  - name: "3\uCE78 \uD68C\uC804"
+    cost: 2
+    type: 0
+    rarity: 0
+    dreamPieceNum: -1
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: CW3
+    text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 3<\uD2B9\uC218>\uCE78
+      \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
+    cardValues: 03000000
+    cardValueTypes: 03000000
+    name_enhanced: "3\uCE78 \uD68C\uC804+"
+    cost_enhanced: 0
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: 
+    cardValues_enhanced: 
+    cardValueTypes_enhanced: 
+  - name: "1\uCE78 \uC5ED\uD68C\uC804"
+    cost: 2
+    type: 0
+    rarity: 0
+    dreamPieceNum: -1
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: CCW1
+    text: "\uB8F0\uB81B\uC744 \uBC18\uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 1<\uD2B9\uC218>\uCE78
+      \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
+    cardValues: 01000000
+    cardValueTypes: 03000000
+    name_enhanced: "1\uCE78 \uC5ED\uD68C\uC804+"
+    cost_enhanced: 0
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: 
+    cardValues_enhanced: 
+    cardValueTypes_enhanced: 
+  - name: "2\uCE78 \uC5ED\uD68C\uC804"
+    cost: 2
+    type: 0
+    rarity: 0
+    dreamPieceNum: -1
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: CCW2
+    text: "\uB8F0\uB81B\uC744 \uBC18\uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 2<\uD2B9\uC218>\uCE78
+      \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
+    cardValues: 02000000
+    cardValueTypes: 03000000
+    name_enhanced: "2\uCE78 \uC5ED\uD68C\uC804+"
+    cost_enhanced: 0
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: 
+    cardValues_enhanced: 
+    cardValueTypes_enhanced: 
+  - name: "\uD761\uD608 \uBD80\uC5EC"
+    cost: 2
+    type: 1
+    rarity: 0
+    dreamPieceNum: 0
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 1
+    sprite: Cold Handshake
+    text: "\uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
+      '\uD761\uD608' \uD6A8\uACFC\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    cardValues: 
+    cardValueTypes: 
+    name_enhanced: "\uD761\uD608 \uBD80\uC5EC+"
+    cost_enhanced: 2
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 1
+    text_enhanced: "\uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC5D0
+      <color=red>\uAC15\uD654\uB41C</color> '\uD761\uD608' \uD6A8\uACFC\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    cardValues_enhanced: 
+    cardValueTypes_enhanced: 
+  - name: "\uD608\uC561 \uC21C\uD658"
+    cost: 2
+    type: 0
+    rarity: 0
+    dreamPieceNum: 0
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Cold Handshake
+    text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 1<\uD2B9\uC218>\uCE78
+      \uD68C\uC804\uC2DC\uD0A4\uACE0, \uCCB4\uB825\uC744 1<\uD2B9\uC218> \uC783\uC2B5\uB2C8\uB2E4.
+      \uC989\uC2DC \uCE74\uB4DC\uB97C \uBCF5\uC81C\uD574 \uC190\uD328\uC5D0 \uCD94\uAC00\uD569\uB2C8\uB2E4."
+    cardValues: 0100000001000000
+    cardValueTypes: 0300000003000000
+    name_enhanced: "\uD608\uC561 \uC21C\uD658+"
+    cost_enhanced: 0
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 1<\uD2B9\uC218>\uCE78
+      \uD68C\uC804\uC2DC\uD0A4\uACE0, \uCCB4\uB825\uC744 1<\uD2B9\uC218> \uC783\uC2B5\uB2C8\uB2E4.
+      \uC989\uC2DC \uCE74\uB4DC\uB97C <color=red>2<\uD2B9\uC218>\uC7A5</color> \uBCF5\uC81C\uD574
+      \uC190\uD328\uC5D0 \uCD94\uAC00\uD569\uB2C8\uB2E4."
+    cardValues_enhanced: 010000000100000002000000
+    cardValueTypes_enhanced: 030000000300000003000000
+  - name: "\uD53C\uB294 \uB098\uC758 \uD798"
+    cost: 0
+    type: 2
+    rarity: 0
+    dreamPieceNum: 0
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Cold Handshake
+    text: "\uCCB4\uB825\uC744 2<\uD2B9\uC218> \uC783\uACE0, \uD589\uB3D9\uB825\uC744
+      1<\uD2B9\uC218> \uC5BB\uC2B5\uB2C8\uB2E4."
+    cardValues: 0200000001000000
+    cardValueTypes: 0300000003000000
+    name_enhanced: "\uD53C\uB294 \uB098\uC758 \uD798+"
+    cost_enhanced: 0
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uCCB4\uB825\uC744 <color=red>1<\uD2B9\uC218></color> \uC783\uACE0,
+      \uD589\uB3D9\uB825\uC744 1<\uD2B9\uC218> \uC5BB\uC2B5\uB2C8\uB2E4."
+    cardValues_enhanced: 0100000001000000
+    cardValueTypes_enhanced: 0300000003000000
+  - name: "\uAE34\uAE09 \uC218\uD608"
+    cost: 1
+    type: 2
+    rarity: 0
+    dreamPieceNum: 0
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Cold Handshake
+    text: "\uCCB4\uB825\uC744 2<\uD68C\uBCF5> \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+    cardValues: 02000000
+    cardValueTypes: 01000000
+    name_enhanced: "\uAE34\uAE09 \uC218\uD608+"
+    cost_enhanced: 1
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uCCB4\uB825\uC744 <color=red>3<\uD68C\uBCF5></color> \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+    cardValues_enhanced: 03000000
+    cardValueTypes_enhanced: 01000000
+  - name: "\uD734\uBA38\uB2C8\uC2A4\uD2B8"
+    cost: 2
+    type: 2
+    rarity: 0
+    dreamPieceNum: 0
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Cold Handshake
+    text: "1<\uD2B9\uC218>\uD134 \uB3D9\uC548 \uC801\uACFC \uB8F0\uB81B\uC5D0\uAC8C
+      '\uC8FC\uC800\uD568'\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    cardValues: 01000000
+    cardValueTypes: 03000000
+    name_enhanced: "\uD734\uBA38\uB2C8\uC2A4\uD2B8+"
+    cost_enhanced: 2
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "<color=red>2<\uD2B9\uC218>\uD134</color> \uB3D9\uC548 \uC801\uACFC
+      \uB8F0\uB81B\uC5D0\uAC8C '\uC8FC\uC800\uD568'\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    cardValues_enhanced: 02000000
+    cardValueTypes_enhanced: 03000000
+  - name: "\uBE14\uB8E8 \uBE14\uB7EC\uB4DC"
+    cost: 3
+    type: 2
+    rarity: 0
+    dreamPieceNum: 0
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Cold Handshake
+    text: "2<\uD2B9\uC218>\uD134 \uB3D9\uC548 '\uD761\uD608' \uB8F0\uB81B\uC73C\uB85C
+      \uCCB4\uB825\uC744 \uD68C\uBCF5\uD560 \uC218 \uC5C6\uAC8C \uB418\uB294 \uB300\uC2E0,
+      \uAC00\uD558\uB294 \uB370\uBBF8\uC9C0\uAC00 3<\uD2B9\uC218>\uBC30\uAC00 \uB429\uB2C8\uB2E4."
+    cardValues: 0200000003000000
+    cardValueTypes: 0300000003000000
+    name_enhanced: "\uBE14\uB8E8 \uBE14\uB7EC\uB4DC+"
+    cost_enhanced: 2
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "2<\uD2B9\uC218>\uD134 \uB3D9\uC548 '\uD761\uD608' \uB8F0\uB81B\uC73C\uB85C
+      \uCCB4\uB825\uC744 \uD68C\uBCF5\uD560 \uC218 \uC5C6\uAC8C \uB418\uB294 \uB300\uC2E0,
+      \uAC00\uD558\uB294 \uB370\uBBF8\uC9C0\uAC00 3<\uD2B9\uC218>\uBC30\uAC00 \uB429\uB2C8\uB2E4."
+    cardValues_enhanced: 0200000003000000
+    cardValueTypes_enhanced: 0300000003000000
+  - name: "\uB9CC\uCC2C \uC2DC\uAC04"
+    cost: 3
+    type: 2
+    rarity: 0
+    dreamPieceNum: 0
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Cold Handshake
+    text: "2<\uD2B9\uC218>\uD134 \uB3D9\uC548 '\uD761\uD608' \uB8F0\uB81B\uC73C\uB85C
+      \uAC00\uD558\uB294 \uB370\uBBF8\uC9C0\uAC00 2<\uD2B9\uC218>\uBC30\uAC00 \uB429\uB2C8\uB2E4."
+    cardValues: 0200000002000000
+    cardValueTypes: 0300000003000000
+    name_enhanced: "\uB9CC\uCC2C \uC2DC\uAC04+"
+    cost_enhanced: 2
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "2<\uD2B9\uC218>\uD134 \uB3D9\uC548 '\uD761\uD608' \uB8F0\uB81B\uC73C\uB85C
+      \uAC00\uD558\uB294 \uB370\uBBF8\uC9C0\uAC00 2<\uD2B9\uC218>\uBC30\uAC00 \uB429\uB2C8\uB2E4."
+    cardValues_enhanced: 0200000002000000
+    cardValueTypes_enhanced: 0300000003000000
+  - name: "\uD54F\uBE5B \uB0A0\uAC1C"
+    cost: 2
+    type: 0
+    rarity: 0
+    dreamPieceNum: 0
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Cold Handshake
+    text: "\uB8F0\uB81B\uC744 \uBC18\uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 4<\uD2B9\uC218>\uCE78
+      \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4. \uC2A4\uD0AC\uC758 \uD68C\uC804\uC73C\uB85C
+      \uD761\uD608 \uB8F0\uB81B\uC774 \uC801\uC758 \uD6A8\uACFC \uC874\uC744 \uC9C0\uB098\uAC00\uB294
+      \uACBD\uC6B0 \uB8F0\uB81B\uC758 \uD6A8\uACFC\uB97C \uC989\uC2DC \uC801\uC6A9\uD569\uB2C8\uB2E4."
+    cardValues: 04000000
+    cardValueTypes: 03000000
+    name_enhanced: "\uD54F\uBE5B \uB0A0\uAC1C+"
+    cost_enhanced: 2
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uB8F0\uB81B\uC744 \uBC18\uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C
+      <color=red>5<\uD2B9\uC218>\uCE78</color> \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4.
+      \uC2A4\uD0AC\uC758 \uD68C\uC804\uC73C\uB85C \uD761\uD608 \uB8F0\uB81B\uC774
+      \uC801\uC758 \uD6A8\uACFC \uC874\uC744 \uC9C0\uB098\uAC00\uB294 \uACBD\uC6B0
+      \uB8F0\uB81B\uC758 \uD6A8\uACFC\uB97C \uC989\uC2DC \uC801\uC6A9\uD569\uB2C8\uB2E4."
+    cardValues_enhanced: 05000000
+    cardValueTypes_enhanced: 03000000
+  - name: "\uB9C8\uC220 \uC0C1\uC790"
+    cost: 1
+    type: 1
+    rarity: 0
+    dreamPieceNum: 1
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Cold Handshake
+    text: "\uC790\uC2E0 \uC55E \uB8F0\uB81B\uC5D0 \uB9C8\uC220\uC0C1\uC790\uB97C
+      \uBD80\uC5EC\uD569\uB2C8\uB2E4"
+    cardValues: 
+    cardValueTypes: 
+    name_enhanced: "\uB9C8\uC220 \uC0C1\uC790+"
+    cost_enhanced: 1
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uC790\uC2E0 \uC55E \uB8F0\uB81B\uC5D0 \uAC15\uD654\uB41C \uB9C8\uC220\uC0C1\uC790\uB97C
+      \uBD80\uC5EC\uD569\uB2C8\uB2E4"
+    cardValues_enhanced: 
+    cardValueTypes_enhanced: 
+  - name: "\uBE44\uB458\uAE30 \uB9C8\uC220"
+    cost: 1
+    type: 2
+    rarity: 0
+    dreamPieceNum: 1
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 1
+    sprite: Cold Handshake
+    text: "1<\uD53C\uD574>\uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.\\n\uACE0\uAE09\uB9C8\uC220:
+      \uC801\uC758 \uD589\uB3D9 \uD558\uB098\uB97C \uBD09\uC1C4\uD569\uB2C8\uB2E4."
+    cardValues: 01000000
+    cardValueTypes: 00000000
+    name_enhanced: "\uBE44\uB458\uAE30 \uB9C8\uC220+"
+    cost_enhanced: 1
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 1
+    text_enhanced: "3<\uD53C\uD574>\uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.\\n\uACE0\uAE09\uB9C8\uC220:
+      \uC801\uC758 \uD589\uB3D9 \uD558\uB098\uB97C \uBD09\uC1C4\uD569\uB2C8\uB2E4."
+    cardValues_enhanced: 03000000
+    cardValueTypes_enhanced: 00000000
+  - name: "\uBCF5\uC81C \uB9C8\uC220"
+    cost: 2
+    type: 2
+    rarity: 1
+    dreamPieceNum: 1
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Cold Handshake
+    text: "\uD328\uC758 \uCE74\uB4DC 1<\uD2B9\uC218>\uC7A5\uC744 \uC120\uD0DD\uD574
+      \uBCF5\uC81C\uD569\uB2C8\uB2E4.\\n\uB9C8\uC220:\uD589\uB3D9\uB825\uC744 1<\uD2B9\uC218>
+      \uB3CC\uB824\uBC1B\uC2B5\uB2C8\uB2E4."
+    cardValues: 0100000001000000
+    cardValueTypes: 0300000003000000
+    name_enhanced: "\uBCF5\uC81C \uB9C8\uC220+"
+    cost_enhanced: 2
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uD328\uC758 \uCE74\uB4DC 1<\uD2B9\uC218>\uC7A5\uC744 \uC120\uD0DD\uD574
+      \uBCF5\uC81C\uD569\uB2C8\uB2E4.\\n\uB9C8\uC220:\uD589\uB3D9\uB825\uC744 2<\uD2B9\uC218>
+      \uB3CC\uB824\uBC1B\uC2B5\uB2C8\uB2E4."
+    cardValues_enhanced: 0100000002000000
+    cardValueTypes_enhanced: 0300000003000000
+  - name: "\uC808\uB2E8 \uB9C8\uC220"
+    cost: 1
+    type: 2
+    rarity: 1
+    dreamPieceNum: 1
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 1
+    sprite: Cold Handshake
+    text: "\uC801\uC5D0\uAC8C 2<\uD53C\uD574>\uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.\\n\uACE0\uAE09\uB9C8\uC220:\uC801\uC758
+      \uBC29\uC5B4\uB3C4\uB97C \uBAA8\uB450 \uD30C\uAD34\uD569\uB2C8\uB2E4"
+    cardValues: 02000000
+    cardValueTypes: 00000000
+    name_enhanced: "\uC808\uB2E8 \uB9C8\uC220+"
+    cost_enhanced: 1
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 1
+    text_enhanced: "\uC801\uC5D0\uAC8C 6<\uD53C\uD574>\uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.\\n\uACE0\uAE09\uB9C8\uC220:\uC801\uC758
+      \uBC29\uC5B4\uB3C4\uB97C \uBAA8\uB450 \uD30C\uAD34\uD569\uB2C8\uB2E4"
+    cardValues_enhanced: 06000000
+    cardValueTypes_enhanced: 00000000
+  - name: "\uC21C\uAC04\uC774\uB3D9 \uB9C8\uC220"
+    cost: 1
+    type: 0
+    rarity: 0
+    dreamPieceNum: 1
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Cold Handshake
+    text: "\uB8F0\uB81B\uC744 \uBC18\uC2DC\uACC4 \uBC29\uD5A5\uC73C\uB85C 6<\uD2B9\uC218>\uCE78
+      \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4. \uB9C8\uC220 \uC0C1\uC790\uB97C \uB9CC\uB098\uBA74
+      \uD68C\uC804\uC744 \uC911\uB2E8\uD569\uB2C8\uB2E4. "
+    cardValues: 06000000
+    cardValueTypes: 03000000
+    name_enhanced: "\uC21C\uAC04\uC774\uB3D9 \uB9C8\uC220+"
+    cost_enhanced: 1
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 1
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uB8F0\uB81B\uC744 \uBC18\uC2DC\uACC4 \uBC29\uD5A5\uC73C\uB85C
+      6<\uD2B9\uC218>\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4. \uB9C8\uC220 \uC0C1\uC790\uB97C
+      \uB9CC\uB098\uBA74 \uD68C\uC804\uC744 \uC911\uB2E8\uD569\uB2C8\uB2E4. \uC794\uB958."
+    cardValues_enhanced: 06000000
+    cardValueTypes_enhanced: 03000000
+  - name: "\uC7AC\uBE60\uB978 \uC190\uB180\uB9BC"
+    cost: 1
+    type: 2
+    rarity: 1
+    dreamPieceNum: 1
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Cold Handshake
+    text: "\uB371\uC5D0\uC11C \uCE74\uB4DC\uB97C 1<\uD2B9\uC218>\uC7A5 \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
+    cardValues: 01000000
+    cardValueTypes: 03000000
+    name_enhanced: "\uC7AC\uBE60\uB978 \uC190\uB180\uB9BC+"
+    cost_enhanced: 1
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uB371\uC5D0\uC11C \uCE74\uB4DC\uB97C 2<\uD2B9\uC218>\uC7A5 \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
+    cardValues_enhanced: 02000000
+    cardValueTypes_enhanced: 03000000
+  - name: "\uB9C8\uC220 \uC900\uBE44"
+    cost: 1
+    type: 0
+    rarity: 0
+    dreamPieceNum: 1
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Cold Handshake
+    text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C \uD604\uC7AC \uD589\uB3D9\uB825
+      x 1<\uD2B9\uC218>\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4."
+    cardValues: 01000000
+    cardValueTypes: 03000000
+    name_enhanced: "\uB9C8\uC220 \uC900\uBE44+"
+    cost_enhanced: 1
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C \uD604\uC7AC
+      \uD589\uB3D9\uB825 x 1<\uD2B9\uC218>\uCE78 \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4.
+      3<\uD2B9\uC218>\uCE78 \uC774\uC0C1 \uD68C\uC804\uC2DC\uD0A8 \uACBD\uC6B0 \uBC29\uC5B4\uB3C4\uB97C
+      6<\uC218\uBE44> \uC5BB\uC2B5\uB2C8\uB2E4."
+    cardValues_enhanced: 010000000300000006000000
+    cardValueTypes_enhanced: 030000000300000002000000
+  - name: "\uAF41\uAF41 \uC5BC\uB9AC\uAE30"
+    cost: 2
+    type: 1
+    rarity: 0
+    dreamPieceNum: 2
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Freeze!
+    text: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC744
+      2<\uD2B9\uC218>\uD134\uAC04 \uAF41\uAF41 \uC5BC\uB9BD\uB2C8\uB2E4."
+    cardValues: 02000000
+    cardValueTypes: 03000000
+    name_enhanced: "\uAF41\uAF41 \uC5BC\uB9AC\uAE30+"
+    cost_enhanced: 2
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C
+      \uB8F0\uB81B\uC744 <color=red>3</color>\uD134\uAC04 \uAF41\uAF41 \uC5BC\uB9BD\uB2C8\uB2E4."
+    cardValues_enhanced: 
+    cardValueTypes_enhanced: 
+  - name: "\uC5BC\uC74C \uBC29\uD328"
+    cost: 1
+    type: 2
+    rarity: 0
+    dreamPieceNum: 2
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Ice Sheild
+    text: "2<\uC218\uBE44>\uC758 \uBC29\uC5B4\uB3C4\uB97C \uC5BB\uC2B5\uB2C8\uB2E4.
+      \uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uAF41\uAF41 \uB8F0\uB81B\uC774
+      \uC788\uB2E4\uBA74 4<\uC218\uBE44>\uC758 \uCD94\uAC00 \uBC29\uC5B4\uB3C4\uB97C
+      \uC5BB\uC2B5\uB2C8\uB2E4."
+    cardValues: 0200000004000000
+    cardValueTypes: 0200000002000000
+    name_enhanced: "\uC5BC\uC74C \uBC29\uD328+"
+    cost_enhanced: 1
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "2<\uC218\uBE44>\uC758 \uBC29\uC5B4\uB3C4\uB97C \uC5BB\uC2B5\uB2C8\uB2E4.
+      \uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC5D0 \uAF41\uAF41 \uB8F0\uB81B\uC774
+      \uC788\uB2E4\uBA74 <color=red>7<\uC218\uBE44></color>\uC758 \uCD94\uAC00 \uBC29\uC5B4\uB3C4\uB97C
+      \uC5BB\uC2B5\uB2C8\uB2E4."
+    cardValues_enhanced: 0200000007000000
+    cardValueTypes_enhanced: 0200000002000000
+  - name: "\uB098\uBB47\uAC00\uC9C0 \uC190"
+    cost: 1
+    type: 2
+    rarity: 0
+    dreamPieceNum: 2
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Tree Arm
+    text: "\uCE74\uB4DC\uB97C 2<\uD2B9\uC218>\uC7A5 \uB4DC\uB85C\uC6B0\uD558\uACE0,
+      \uD2B8\uB9AC\uAC70 \uAC8C\uC774\uC9C0\uB97C 1<\uD2B9\uC218> \uC783\uC2B5\uB2C8\uB2E4."
+    cardValues: 0200000001000000
+    cardValueTypes: 0300000003000000
+    name_enhanced: "\uB098\uBB47\uAC00\uC9C0 \uC190+"
+    cost_enhanced: 0
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uCE74\uB4DC\uB97C 2<\uD2B9\uC218>\uC7A5 \uB4DC\uB85C\uC6B0\uD558\uACE0,
+      \uD2B8\uB9AC\uAC70 \uAC8C\uC774\uC9C0\uB97C 1<\uD2B9\uC218> \uC783\uC2B5\uB2C8\uB2E4."
+    cardValues_enhanced: 0200000001000000
+    cardValueTypes_enhanced: 0300000003000000
+  - name: "\uB370\uAD74\uB370\uAD74"
+    cost: 1
+    type: 0
+    rarity: 0
+    dreamPieceNum: 2
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Trumble down
+    text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 2<\uD2B9\uC218>\uCE78
+      \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4. \uD589\uB3D9\uB825\uC774 \uB0A8\uC544
+      \uC788\uB2E4\uBA74 \uCE74\uB4DC\uB97C \uD55C \uBC88 \uB354 \uC0AC\uC6A9\uD569\uB2C8\uB2E4."
+    cardValues: 02000000
+    cardValueTypes: 03000000
+    name_enhanced: "\uB370\uAD74\uB370\uAD74+"
+    cost_enhanced: 1
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 2<\uD2B9\uC218>\uCE78
+      <color=red>\uD68C\uC804\uC2DC\uD0A4\uACE0, \uD53C\uD574\uB97C 2<\uD53C\uD574>
+      \uC90D\uB2C8\uB2E4.</color> \uD589\uB3D9\uB825\uC774 \uB0A8\uC544 \uC788\uB2E4\uBA74
+      \uCE74\uB4DC\uB97C \uD55C \uBC88 \uB354 \uC0AC\uC6A9\uD569\uB2C8\uB2E4."
+    cardValues_enhanced: 0200000002000000
+    cardValueTypes_enhanced: 0300000000000000
+  - name: "\uCC28\uAC00\uC6B4 \uC545\uC218"
+    cost: 3
+    type: 1
+    rarity: 0
+    dreamPieceNum: 2
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 1
+    sprite: Cold Handshake
+    text: "\uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC744
+      3<\uD2B9\uC218>\uD134\uAC04 \uAF41\uAF41 \uC5BC\uB9AC\uACE0, \uC801\uC5D0\uAC8C
+      '\uACFC\uBBFC\uD568' \uD6A8\uACFC\uB97C 1<\uD2B9\uC218> \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    cardValues: 0300000001000000
+    cardValueTypes: 0300000003000000
+    name_enhanced: "\uCC28\uAC00\uC6B4 \uC545\uC218+"
+    cost_enhanced: 2
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 1
+    text_enhanced: "\uC801\uC758 \uD6A8\uACFC \uC874\uC5D0 \uC704\uCE58\uD55C \uB8F0\uB81B\uC744
+      3<\uD2B9\uC218>\uD134\uAC04 \uAF41\uAF41 \uC5BC\uB9AC\uACE0, \uC801\uC5D0\uAC8C
+      '\uACFC\uBBFC\uD568' \uD6A8\uACFC\uB97C 1<\uD2B9\uC218> \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    cardValues_enhanced: 0300000001000000
+    cardValueTypes_enhanced: 0300000003000000
+  - name: "\uC2A4\uB178\uC6B0\uBCFC\uB9C1"
+    cost: 2
+    type: 0
+    rarity: 0
+    dreamPieceNum: 2
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Snowballing
+    text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 3<\uD2B9\uC218>\uCE78
+      \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4. \uC790\uC2E0\uC5D0\uAC8C \uBD99\uC740
+      \uBC29\uC5B4\uB3C4\uB97C 2<\uD2B9\uC218>\uBC30\uB85C \uB9CC\uB4ED\uB2C8\uB2E4."
+    cardValues: 0300000002000000
+    cardValueTypes: 0300000003000000
+    name_enhanced: "\uC2A4\uB178\uC6B0\uBCFC\uB9C1+"
+    cost_enhanced: 2
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 1
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 3<\uD2B9\uC218>\uCE78
+      \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4. \uC790\uC2E0\uC5D0\uAC8C \uBD99\uC740
+      \uBC29\uC5B4\uB3C4\uB97C 2<\uD2B9\uC218>\uBC30\uB85C \uB9CC\uB4ED\uB2C8\uB2E4.
+      <color=red>\uC794\uB958</color>"
+    cardValues_enhanced: 0300000002000000
+    cardValueTypes_enhanced: 0300000003000000
+  - name: "\uB179\uC544\uB0B4\uB9AC\uAE30"
+    cost: 1
+    type: 2
+    rarity: 0
+    dreamPieceNum: 2
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Meltin Down
+    text: "\uD2B8\uB9AC\uAC70 \uAC8C\uC774\uC9C0\uB97C 2<\uD2B9\uC218> \uC783\uC2B5\uB2C8\uB2E4.
+      \uBC29\uC5B4\uB3C4\uB97C 6<\uC218\uBE44> \uC5BB\uC2B5\uB2C8\uB2E4."
+    cardValues: 0200000006000000
+    cardValueTypes: 0300000002000000
+    name_enhanced: "\uB179\uC544\uB0B4\uB9AC\uAE30+"
+    cost_enhanced: 1
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uD2B8\uB9AC\uAC70 \uAC8C\uC774\uC9C0\uB97C 1<\uD2B9\uC218> \uC783\uC2B5\uB2C8\uB2E4.
+      \uBC29\uC5B4\uB3C4\uB97C 6<\uC218\uBE44> \uC5BB\uC2B5\uB2C8\uB2E4."
+    cardValues_enhanced: 0100000006000000
+    cardValueTypes_enhanced: 0300000002000000
+  - name: "\uBAA9\uB3C4\uB9AC"
+    cost: 1
+    type: 0
+    rarity: 0
+    dreamPieceNum: 2
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: muffler
+    text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 5<\uD2B9\uC218>\uCE78
+      \uD68C\uC804\uC2DC\uD0A4\uACE0, \uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC744
+      \uC2A4\uCCD0\uC9C0\uB098\uAC04 \uAF41\uAF41 \uB8F0\uB81B \uD558\uB098 \uB2F9
+      2<\uC218\uBE44>\uC758 \uBC29\uC5B4\uB3C4\uB97C \uC5BB\uC2B5\uB2C8\uB2E4."
+    cardValues: 0500000002000000
+    cardValueTypes: 0300000002000000
+    name_enhanced: "\uBAA9\uB3C4\uB9AC+"
+    cost_enhanced: 1
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 5<\uD2B9\uC218>\uCE78
+      \uD68C\uC804\uC2DC\uD0A4\uACE0, \uC790\uC2E0\uC758 \uD6A8\uACFC \uC874\uC744
+      \uC2A4\uCCD0\uC9C0\uB098\uAC04 \uAF41\uAF41 \uB8F0\uB81B \uD558\uB098 \uB2F9
+      <color=red>3<\uC218\uBE44></color>\uC758 \uBC29\uC5B4\uB3C4\uB97C \uC5BB\uC2B5\uB2C8\uB2E4."
+    cardValues_enhanced: 0500000003000000
+    cardValueTypes_enhanced: 0300000002000000
+  - name: "\uC5BC\uC74C \uAE68\uAE30"
+    cost: 2
+    type: 2
+    rarity: 0
+    dreamPieceNum: 2
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Icebreaking
+    text: "\uBAA8\uB4E0 \uAF41\uAF41 \uB8F0\uB81B\uC758 \uD6A8\uACFC\uB97C \uD574\uC81C\uD569\uB2C8\uB2E4.
+      \uC801\uC758 \uD6A8\uACFC \uC874 \uB8F0\uB81B\uC774 \uAF41\uAF41 \uB8F0\uB81B\uC774\uC5C8\uB2E4\uBA74
+      \uD53C\uD574\uB97C 8<\uD53C\uD574> \uC90D\uB2C8\uB2E4."
+    cardValues: 08000000
+    cardValueTypes: 00000000
+    name_enhanced: "\uC5BC\uC74C \uAE68\uAE30+"
+    cost_enhanced: 2
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uBAA8\uB4E0 \uAF41\uAF41 \uB8F0\uB81B\uC758 \uD6A8\uACFC\uB97C
+      \uD574\uC81C\uD569\uB2C8\uB2E4. \uC801\uC758 \uD6A8\uACFC \uC874 \uB8F0\uB81B\uC774
+      \uAF41\uAF41 \uB8F0\uB81B\uC774\uC5C8\uB2E4\uBA74 \uD53C\uD574\uB97C <color=red>12<\uD53C\uD574></color>
+      \uC90D\uB2C8\uB2E4."
+    cardValues_enhanced: 0c000000
+    cardValueTypes_enhanced: 00000000
+  - name: "\uB208\uC2F8\uC6C0"
+    cost: 3
+    type: 2
+    rarity: 0
+    dreamPieceNum: 2
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 1
+    sprite: Snowball fight
+    text: "\uC801\uC5D0\uAC8C \uAF41\uAF41 \uB8F0\uB81B\uC758 \uAC1C\uC218 x 4<\uD53C\uD574>\uC758
+      \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
+    cardValues: 04000000
+    cardValueTypes: 00000000
+    name_enhanced: "\uB208\uC2F8\uC6C0+"
+    cost_enhanced: 3
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 1
+    text_enhanced: "\uC801\uC5D0\uAC8C \uAF41\uAF41 \uB8F0\uB81B\uC758 \uAC1C\uC218
+      x <color=red>6<\uD53C\uD574></color>\uC758 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
+    cardValues_enhanced: 06000000
+    cardValueTypes_enhanced: 00000000
+  - name: "\uD3ED\uC124"
+    cost: 4
+    type: 2
+    rarity: 0
+    dreamPieceNum: 2
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Heavy Snow
+    text: "\uBAA8\uB4E0 \uBE48 \uB8F0\uB81B\uC5D0 \uAF41\uAF41 \uD6A8\uACFC\uB97C
+      3<\uD2B9\uC218>\uD134\uAC04 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    cardValues: 03000000
+    cardValueTypes: 03000000
+    name_enhanced: "\uD3ED\uC124+"
+    cost_enhanced: 3
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uBAA8\uB4E0 \uBE48 \uB8F0\uB81B\uC5D0 \uAF41\uAF41 \uD6A8\uACFC\uB97C
+      3<\uD2B9\uC218>\uD134\uAC04 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    cardValues_enhanced: 03000000
+    cardValueTypes_enhanced: 03000000
+  - name: "\uB05D\uB098\uC9C0 \uC54A\uB294 \uACA8\uC6B8"
+    cost: 2
+    type: 2
+    rarity: 0
+    dreamPieceNum: 2
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: Winter Witch
+    text: "\uBAA8\uB4E0 \uB8F0\uB81B\uC758 \uAF41\uAF41 \uD6A8\uACFC \uC9C0\uC18D\uC2DC\uAC04\uC744
+      1<\uD2B9\uC218>\uD134 \uC99D\uAC00\uC2DC\uD0B5\uB2C8\uB2E4."
+    cardValues: 01000000
+    cardValueTypes: 03000000
+    name_enhanced: "\uB05D\uB098\uC9C0 \uC54A\uB294 \uACA8\uC6B8+"
+    cost_enhanced: 2
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uBAA8\uB4E0 \uB8F0\uB81B\uC758 \uAF41\uAF41 \uD6A8\uACFC \uC9C0\uC18D\uC2DC\uAC04\uC744
+      <color=red>2</color>\uD134 \uC99D\uAC00\uC2DC\uD0B5\uB2C8\uB2E4."
+    cardValues_enhanced: 
+    cardValueTypes_enhanced: 
+  - name: "\uBC1C\uD1B1 \uC138\uC6B0\uAE30"
+    cost: 2
+    type: 1
+    rarity: 0
+    dreamPieceNum: 3
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 1
+    sprite: "\uBC1C\uD1B1\uC138\uC6B0\uAE30"
+    text: "\uC801 \uC55E \uB8F0\uB81B\uC5D0 \uBC1C\uD1B1 \uB8F0\uB81B\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    cardValues: 
+    cardValueTypes: 
+    name_enhanced: "\uBC1C\uD1B1 \uC138\uC6B0\uAE30+"
+    cost_enhanced: 2
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 1
+    text_enhanced: "\uC801 \uC55E \uB8F0\uB81B\uC5D0 \uAC15\uD654\uB41C \uBC1C\uD1B1
+      \uB8F0\uB81B\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    cardValues_enhanced: 
+    cardValueTypes_enhanced: 
+  - name: "\uC54C\uB730\uD55C \uC0AC\uB0E5\uAFBC"
+    cost: 0
+    type: 2
+    rarity: 0
+    dreamPieceNum: 3
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: "\uC54C\uB730\uD55C\uC0AC\uB0E5\uAFBC"
+    text: "3<\uD2B9\uC218> \uC774\uD558\uC778 \uBC1C\uD1B1 \uB8F0\uB81B\uC744 \uBAA8\uB450
+      \uC81C\uAC70\uD558\uACE0 \uC81C\uAC70\uD55C \uB8F0\uB81B\uB2F9 \uCF54\uC2A4\uD2B8\uB97C
+      1<\uD2B9\uC218> \uC5BB\uC2B5\uB2C8\uB2E4."
+    cardValues: 0300000001000000
+    cardValueTypes: 0300000003000000
+    name_enhanced: "\uC54C\uB730\uD55C \uC0AC\uB0E5\uAFBC+"
+    cost_enhanced: 0
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "<color=red>6<\uD2B9\uC218></color> \uC774\uD558\uC778 \uBC1C\uD1B1
+      \uB8F0\uB81B\uC744 \uBAA8\uB450 \uC81C\uAC70\uD558\uACE0 \uC81C\uAC70\uD55C
+      \uB8F0\uB81B\uB2F9 \uCF54\uC2A4\uD2B8\uB97C 1 \uC5BB\uC2B5\uB2C8\uB2E4."
+    cardValues_enhanced: 06000000
+    cardValueTypes_enhanced: 03000000
+  - name: "\uB9C8\uAD6C \uD560\uD034\uAE30"
+    cost: 2
+    type: 2
+    rarity: 1
+    dreamPieceNum: 3
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: "\uB9C8\uAD6C\uD560\uD034\uAE30"
+    text: "\uBAA8\uB4E0 \uBC1C\uD1B1 \uB8F0\uB81B\uC758 \uD6A8\uACFC\uB97C \uC989\uC2DC
+      2<\uD2B9\uC218>\uBC88 \uC801\uC6A9\uD569\uB2C8\uB2E4."
+    cardValues: 02000000
+    cardValueTypes: 03000000
+    name_enhanced: "\uB9C8\uAD6C \uD560\uD034\uAE30+"
+    cost_enhanced: 2
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uBAA8\uB4E0 \uBC1C\uD1B1 \uB8F0\uB81B\uC758 \uD6A8\uACFC\uB97C
+      \uC989\uC2DC <color=red>3<\uD2B9\uC218></color>\uBC88 \uC801\uC6A9\uD569\uB2C8\uB2E4."
+    cardValues_enhanced: 03000000
+    cardValueTypes_enhanced: 03000000
+  - name: "\uBC1C\uD1B1 \uC190\uC9C8"
+    cost: 1
+    type: 2
+    rarity: 0
+    dreamPieceNum: 3
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: "\uBC1C\uD1B1\uC190\uC9C8"
+    text: "\uBAA8\uB4E0 \uBC1C\uD1B1 \uB8F0\uB81B\uC758 \uAC12\uC744 3<\uD2B9\uC218>
+      \uB192\uC785\uB2C8\uB2E4."
+    cardValues: 03000000
+    cardValueTypes: 03000000
+    name_enhanced: "\uBC1C\uD1B1 \uC190\uC9C8+"
+    cost_enhanced: 1
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uBAA8\uB4E0 \uBC1C\uD1B1 \uB8F0\uB81B\uC758 \uAC12\uC744 <color=red>6<\uD2B9\uC218></color>
+      \uB192\uC785\uB2C8\uB2E4."
+    cardValues_enhanced: 06000000
+    cardValueTypes_enhanced: 03000000
+  - name: "\uC18C\uC2EC\uD55C \uD560\uD034\uAE30"
+    cost: 1
+    type: 1
+    rarity: 0
+    dreamPieceNum: 3
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 1
+    sprite: "\uC18C\uC2EC\uD55C\uD560\uD034\uAE30"
+    text: "\uC801\uC5D0\uAC8C 2<\uD53C\uD574> \uD53C\uD574\uB97C \uC8FC\uACE0, \uC801
+      \uC55E \uB8F0\uB81B\uC5D0 \uC57D\uD654\uB41C \uBC1C\uD1B1 \uB8F0\uB81B\uC744
+      \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    cardValues: 02000000
+    cardValueTypes: 00000000
+    name_enhanced: "\uC18C\uC2EC\uD55C \uD560\uD034\uAE30+"
+    cost_enhanced: 1
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 1
+    text_enhanced: "\uC801\uC5D0\uAC8C <color=red>5<\uD53C\uD574></color> \uD53C\uD574\uB97C
+      \uC8FC\uACE0, \uC801 \uC55E \uB8F0\uB81B\uC5D0 \uC57D\uD654\uB41C \uBC1C\uD1B1
+      \uB8F0\uB81B\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    cardValues_enhanced: 05000000
+    cardValueTypes_enhanced: 00000000
+  - name: "\uB0A0\uCE74\uB85C\uC6B4 \uBC1C\uD1B1"
+    cost: 2
+    type: 2
+    rarity: 1
+    dreamPieceNum: 3
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: "\uB0A0\uCE74\uB85C\uC6B4\uBC1C\uD1B1"
+    text: "\uC790\uC2E0 \uC55E\uC5D0 \uB193\uC778 \uBC1C\uD1B1 \uB8F0\uB81B\uC758
+      \uAC12\uC744 2<\uD2B9\uC218>\uBC30\uB85C \uB9CC\uB4ED\uB2C8\uB2E4."
+    cardValues: 02000000
+    cardValueTypes: 03000000
+    name_enhanced: "\uB0A0\uCE74\uB85C\uC6B4 \uBC1C\uD1B1+"
+    cost_enhanced: 2
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uC790\uC2E0 \uC55E\uC5D0 \uB193\uC778 \uBC1C\uD1B1 \uB8F0\uB81B\uC758
+      \uAC12\uC744 3<\uD2B9\uC218>\uBC30\uB85C \uB9CC\uB4ED\uB2C8\uB2E4."
+    cardValues_enhanced: 03000000
+    cardValueTypes_enhanced: 03000000
+  - name: "\uACE0\uC591\uC774\uC758 \uC2DC\uAC04"
+    cost: 3
+    type: 1
+    rarity: 1
+    dreamPieceNum: 3
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: "\uACE0\uC591\uC774\uC758\uC2DC\uAC04"
+    text: "\uBAA8\uB4E0 \uACF5\uACA9 \uB8F0\uB81B\uC744 \uBC1C\uD1B1 \uB8F0\uB81B\uC73C\uB85C
+      \uBC14\uAFC9\uB2C8\uB2E4."
+    cardValues: 
+    cardValueTypes: 
+    name_enhanced: "\uACE0\uC591\uC774\uC758 \uC2DC\uAC04+"
+    cost_enhanced: 3
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uBAA8\uB4E0 \uACF5\uACA9 \uB8F0\uB81B\uC744 <color=red>\uAC15\uD654\uB41C</color>
+      \uBC1C\uD1B1 \uB8F0\uB81B\uC73C\uB85C \uBC14\uAFC9\uB2C8\uB2E4."
+    cardValues_enhanced: 
+    cardValueTypes_enhanced: 
+  - name: "\uAE30\uBBFC\uD568"
+    cost: 2
+    type: 3
+    rarity: 1
+    dreamPieceNum: 3
+    isVolatile: 0
+    isVanish: 1
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: "\uAE30\uBBFC\uD568"
+    text: "\uD658\uC601\uC744 1 \uC5BB\uC2B5\uB2C8\uB2E4. \uC18C\uBA78."
+    cardValues: 01000000
+    cardValueTypes: 03000000
+    name_enhanced: "\uAE30\uBBFC\uD568+"
+    cost_enhanced: 2
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uD658\uC601\uC744 1 \uC5BB\uC2B5\uB2C8\uB2E4."
+    cardValues_enhanced: 01000000
+    cardValueTypes_enhanced: 03000000
+  - name: "\uC2E4\uBB49\uCE58"
+    cost: 1
+    type: 1
+    rarity: 0
+    dreamPieceNum: 3
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: "\uC2E4\uBB49\uCE58"
+    text: "\uC790\uC2E0 \uC55E \uB8F0\uB81B\uC5D0 \uC2E4\uBB49\uCE58 \uB8F0\uB81B\uC744
+      \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    cardValues: 
+    cardValueTypes: 
+    name_enhanced: "\uC2E4\uBB49\uCE58+"
+    cost_enhanced: 1
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uC790\uC2E0 \uC55E \uB8F0\uB81B\uC5D0 \uAC15\uD654\uB41C \uC2E4\uBB49\uCE58
+      \uB8F0\uB81B\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    cardValues_enhanced: 
+    cardValueTypes_enhanced: 
+  - name: "\uACE0\uC591\uC774\uAC78\uC74C"
+    cost: 1
+    type: 0
+    rarity: 0
+    dreamPieceNum: 3
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: "\uACE0\uC591\uC774\uAC78\uC74C"
+    text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 4<\uD2B9\uC218>\uCE78
+      \uD68C\uC804\uD558\uACE0, \uCE74\uB4DC\uB97C 1<\uD2B9\uC218>\uC7A5 \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
+    cardValues: 0400000001000000
+    cardValueTypes: 0300000003000000
+    name_enhanced: "\uACE0\uC591\uC774\uAC78\uC74C+"
+    cost_enhanced: 1
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C <color=red>6<\uD2B9\uC218></color>\uCE78
+      \uD68C\uC804\uD558\uACE0, \uCE74\uB4DC\uB97C 1<\uD2B9\uC218>\uC7A5 \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
+    cardValues_enhanced: 0600000001000000
+    cardValueTypes_enhanced: 0300000003000000
+  - name: "\uC2E4 \uD480\uAE30"
+    cost: 2
+    type: 2
+    rarity: 0
+    dreamPieceNum: 3
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: "\uC2E4\uD480\uAE30"
+    text: "\uC790\uC2E0 \uC55E\uC5D0 \uB193\uC778 \uC2E4\uBB49\uCE58 \uB8F0\uB81B\uC758
+      \uAC12\uC744 \uC808\uBC18\uC73C\uB85C \uAC10\uC18C\uC2DC\uD0A4\uACE0, \uAC10\uC18C\uD55C
+      \uAC12\uB9CC\uD07C \uBC29\uC5B4\uB3C4\uB97C \uC5BB\uC2B5\uB2C8\uB2E4."
+    cardValues: 
+    cardValueTypes: 
+    name_enhanced: "\uC2E4 \uD480\uAE30+"
+    cost_enhanced: 1
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uC790\uC2E0 \uC55E\uC5D0 \uB193\uC778 \uC2E4\uBB49\uCE58 \uB8F0\uB81B\uC758
+      \uAC12\uC744 \uC808\uBC18\uC73C\uB85C \uAC10\uC18C\uC2DC\uD0A4\uACE0, \uAC10\uC18C\uD55C
+      \uAC12\uB9CC\uD07C \uBC29\uC5B4\uB3C4\uB97C \uC5BB\uC2B5\uB2C8\uB2E4."
+    cardValues_enhanced: 
+    cardValueTypes_enhanced: 
+  - name: "\uB180\uC774 \uC2DC\uAC04"
+    cost: 2
+    type: 3
+    rarity: 1
+    dreamPieceNum: 3
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: "\uB180\uC774\uC2DC\uAC04"
+    text: "3<\uD2B9\uC218>\uD134 \uB3D9\uC548, \uD68C\uC804 \uCE74\uB4DC\uB97C \uC0AC\uC6A9\uD560
+      \uB54C\uB9C8\uB2E4 \uD589\uB3D9\uB825\uC744 1<\uD2B9\uC218> \uC5BB\uC2B5\uB2C8\uB2E4."
+    cardValues: 0300000001000000
+    cardValueTypes: 0300000003000000
+    name_enhanced: "\uB180\uC774 \uC2DC\uAC04+"
+    cost_enhanced: 2
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "4<\uD2B9\uC218>\uD134 \uB3D9\uC548, \uD68C\uC804 \uCE74\uB4DC\uB97C
+      \uC0AC\uC6A9\uD560 \uB54C\uB9C8\uB2E4 \uD589\uB3D9\uB825\uC744 1<\uD2B9\uC218>
+      \uC5BB\uC2B5\uB2C8\uB2E4."
+    cardValues_enhanced: 0400000001000000
+    cardValueTypes_enhanced: 0300000003000000
+  - name: "\uC228\uAE30"
+    cost: 1
+    type: 0
+    rarity: 0
+    dreamPieceNum: 3
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: "\uC228\uAE30"
+    text: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C 6<\uD2B9\uC218>\uCE78
+      \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4. \uC218\uBE44 \uB8F0\uB81B\uC744 \uB9CC\uB098\uBA74
+      \uD68C\uC804\uC744 \uC911\uB2E8\uD569\uB2C8\uB2E4."
+    cardValues: 06000000
+    cardValueTypes: 03000000
+    name_enhanced: "\uC228\uAE30+"
+    cost_enhanced: 1
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uB8F0\uB81B\uC744 \uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C <color=red>12<\uD2B9\uC218></color>\uCE78
+      \uD68C\uC804\uC2DC\uD0B5\uB2C8\uB2E4. \uC218\uBE44 \uB8F0\uB81B\uC744 \uB9CC\uB098\uBA74
+      \uD68C\uC804\uC744 \uC911\uB2E8\uD569\uB2C8\uB2E4."
+    cardValues_enhanced: 0c000000
+    cardValueTypes_enhanced: 03000000
+  - name: "\uADF8\uB8E8\uBC0D"
+    cost: 2
+    type: 3
+    rarity: 0
+    dreamPieceNum: 3
+    isVolatile: 0
+    isVanish: 0
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: "\uADF8\uB8E8\uBC0D"
+    text: "\uBC29\uC5B4\uB3C4\uB97C 3<\uC218\uBE44> \uC5BB\uACE0, \uBCF4\uD638\uB97C
+      1<\uD2B9\uC218> \uC5BB\uC2B5\uB2C8\uB2E4."
+    cardValues: 0300000001000000
+    cardValueTypes: 0200000003000000
+    name_enhanced: "\uADF8\uB8E8\uBC0D+"
+    cost_enhanced: 2
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 0
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uBC29\uC5B4\uB3C4\uB97C 3<\uC218\uBE44> \uC5BB\uACE0, \uBCF4\uD638\uB97C
+      2<\uD2B9\uC218> \uC5BB\uC2B5\uB2C8\uB2E4."
+    cardValues_enhanced: 0300000002000000
+    cardValueTypes_enhanced: 0200000003000000
+  - name: "\uAC04\uC2DD \uC2DC\uAC04"
+    cost: 1
+    type: 2
+    rarity: 1
+    dreamPieceNum: 3
+    isVolatile: 0
+    isVanish: 1
+    isRemain: 0
+    isSingleTarget: 0
+    sprite: "\uAC04\uC2DD\uC2DC\uAC04"
+    text: "\uD589\uB3D9\uB825\uC744 2<\uD2B9\uC218> \uC5BB\uC2B5\uB2C8\uB2E4. \uC18C\uBA78."
+    cardValues: 02000000
+    cardValueTypes: 03000000
+    name_enhanced: "\uAC04\uC2DD \uC2DC\uAC04+"
+    cost_enhanced: 0
+    isVolatile_enhanced: 0
+    isVanish_enhanced: 1
+    isRemain_enhanced: 0
+    isSingleTarget_enhanced: 0
+    text_enhanced: "\uD589\uB3D9\uB825\uC744 2<\uD2B9\uC218> \uC5BB\uC2B5\uB2C8\uB2E4.
+      \uC18C\uBA78."
+    cardValues_enhanced: 02000000
+    cardValueTypes_enhanced: 03000000

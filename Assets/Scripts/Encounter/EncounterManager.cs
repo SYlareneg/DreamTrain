@@ -53,6 +53,12 @@ public class EncounterManager : MonoBehaviour
     public RelicDataSO relicDatabase;
     public DreamPieceSO dreamPieceDatabase;
     public ItemDataSO cardDatabase;
+    
+    [Header("Typewriter Settings")]
+    public float typingSpeed = 0.03f; 
+    private Coroutine typingCoroutine;
+    private bool isTyping = false;
+    private System.Action onTypingComplete;
 
     public EncSofaManager sofaManager;
     public CardUI cardGetUI;
@@ -75,6 +81,9 @@ public class EncounterManager : MonoBehaviour
     public GameObject cardGetPanel;    
     public Button cardGetConfirmBtn;
 
+    public GameObject EndPanel;
+    public Button endButton;
+
     void Awake()
     {
         if (Instance == null)
@@ -88,9 +97,34 @@ public class EncounterManager : MonoBehaviour
     {
         if (masterDB != null) masterDatabase = masterDB.GetDictionary();
         if (locationDB != null) locationDatabase = locationDB.GetDictionary();
+        if (endButton != null)
+        {
+            endButton.onClick.RemoveAllListeners();
+            endButton.onClick.AddListener(QuitGame);
+        }
+        if (actData != null && actData.curNodeLocationID == "END")
+        {
+            Debug.Log("[EncounterManager] 엔딩 지점 도착.");
+            
+            if (encounterPanel != null) encounterPanel.SetActive(false);
+            if (EndPanel != null) EndPanel.SetActive(true);
+
+            SceneChangeManager.Inst.SceneFadeIn(() => { });
+            return; 
+        }
+        
         ResetChoiceContainers();
         RestoreOrStartEncounter();
         SceneChangeManager.Inst.SceneFadeIn(() => {  });
+    }
+    public void QuitGame()
+    {
+        Debug.Log("Game Quit");
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
     }
     void RestoreOrStartEncounter()
     {
@@ -434,7 +468,13 @@ public class EncounterManager : MonoBehaviour
         if (currentCell.Length > 0 || currentRow.Count > 0) { currentRow.Add(currentCell.ToString()); result.Add(currentRow); }
         return result;
     }
-    
+    string FormatDialogueColor(string content)
+    {
+        string pattern = @"([""“])(.*?)([""”])";
+        string replacement = "$1<color=#77B0FF>$2</color>$3";
+
+        return Regex.Replace(content, pattern, replacement);
+    }
     public void PlayStep(string id)
     {
         Debug.Log($"playstep: {isSceneLoading}");
@@ -443,23 +483,135 @@ public class EncounterManager : MonoBehaviour
         
         currentStep = stepDictionary[id];
         if (actData != null) actData.currentStepID = id;
-        Debug.Log(id);
-        if (currentStep.type == EncounterStepType.DESC)
-        {
-
-            descriptionText.text = currentStep.textContent.Replace("\\n", "\n");
-            ResetScrollPosition(true);
-        }
-
+        
+        ResetChoiceContainers();
         if (IsValidFunction(currentStep.functionCall))
         {
             ParseAndExecuteFunctions(currentStep.functionCall);
         }
-        
         if (actData.currentEncounterID == "" || SceneManager.GetActiveScene().name != "EncounterScene") return;
-        UpdateOptionsUI();
+        if (currentStep.type == EncounterStepType.DESC)
+        {
+            StartTyping(currentStep.textContent, false, () => 
+            {
+                UpdateOptionsUI(); 
+            });
+        }   
+        else
+        {
+         
+            UpdateOptionsUI();
+        }
+        
     }
+    public void StartTyping(string content, bool isAppend, System.Action onComplete = null)
+    {
+        if (typingCoroutine != null) StopCoroutine(typingCoroutine);
+        
+        // 현재 완료 콜백 저장 (SkipTyping에서 쓰기 위해)
+        this.onTypingComplete = onComplete; 
+        
+        typingCoroutine = StartCoroutine(TypeWriterRoutine(content, isAppend));
+    }
+    IEnumerator TypeWriterRoutine(string content, bool isAppend)
+    {
+        isTyping = true;
+        string formattedContent = FormatDialogueColor(content);
+        string parsedContent = formattedContent.Replace("\\n", "\n");
 
+        if (isAppend)
+        {
+            descriptionText.text += parsedContent;
+        }
+        else
+        {
+            descriptionText.text = parsedContent;
+            descriptionText.maxVisibleCharacters = 0;
+            
+            // 초기화: 새 페이지면 맨 위로
+            descriptionText.ForceMeshUpdate(); 
+            if (descriptionScrollRect != null) 
+            {
+                Canvas.ForceUpdateCanvases();
+                descriptionScrollRect.verticalNormalizedPosition = 1f; 
+            }
+        }
+
+        // 텍스트 정보 갱신 (글자 좌표 계산을 위해 필수)
+        descriptionText.ForceMeshUpdate();
+
+        int totalVisibleCharacters = descriptionText.textInfo.characterCount;
+        int counter = descriptionText.maxVisibleCharacters; 
+
+        while (counter < totalVisibleCharacters)
+        {
+            int visibleCount = counter % (totalVisibleCharacters + 1);
+            descriptionText.maxVisibleCharacters = visibleCount;
+
+            if (counter > 0)
+            {
+                ScrollToChar(counter - 1);
+            }
+
+            counter++;
+            yield return new WaitForSeconds(typingSpeed);
+        }
+
+        descriptionText.maxVisibleCharacters = totalVisibleCharacters;
+        
+        // 타이핑 끝난 후, 마지막 글자에 맞춰 확실하게 스크롤 조정
+        ScrollToChar(totalVisibleCharacters - 1);
+        
+        isTyping = false;
+        
+        onTypingComplete?.Invoke();
+        onTypingComplete = null;
+    }
+    void ScrollToChar(int charIndex)
+    {
+        if (descriptionScrollRect == null || descriptionText == null) return;
+        if (charIndex >= descriptionText.textInfo.characterCount) return;
+
+        TMP_CharacterInfo cInfo = descriptionText.textInfo.characterInfo[charIndex];
+        float charBottomY = cInfo.bottomRight.y;
+
+        float contentHeight = descriptionText.rectTransform.rect.height;
+        float viewportHeight = descriptionScrollRect.viewport.rect.height;
+        
+        if (contentHeight <= viewportHeight) 
+        {
+            descriptionScrollRect.verticalNormalizedPosition = 1f;
+            return;
+        }
+
+        float targetContentY = Mathf.Abs(charBottomY) - viewportHeight + 10f; // 10f는 하단 여백
+
+        float maxContentY = contentHeight - viewportHeight;
+        targetContentY = Mathf.Clamp(targetContentY, 0, maxContentY);
+
+        float newNormalizedPos = 1 - (targetContentY / maxContentY);
+
+        if (newNormalizedPos < descriptionScrollRect.verticalNormalizedPosition)
+        {
+            descriptionScrollRect.verticalNormalizedPosition = newNormalizedPos;
+        }
+    }
+/*
+    public void SkipTyping() // 화면 클릭 시 애니매이션 중지, 전체 텍스트 보임
+    {
+        if (isTyping)
+        {
+            if (typingCoroutine != null) StopCoroutine(typingCoroutine);
+            
+            descriptionText.maxVisibleCharacters = descriptionText.textInfo.characterCount;
+            ScrollToChar(descriptionText.textInfo.characterCount - 1);
+            
+            isTyping = false;
+            
+            onTypingComplete?.Invoke();
+            onTypingComplete = null;
+    }
+*/
     void UpdateOptionsUI()
     {
         ResetChoiceContainers();
@@ -471,7 +623,6 @@ public class EncounterManager : MonoBehaviour
             {
                 bool isConditionMet = CheckCondition(option.condition);
                 Debug.Log(isConditionMet);
-                // 조건 만족 여부(isConditionMet)를 함께 전달
                 buttonsToCreate.Add(new TempOptionData(option.text, option.nextStepId, option.functionCall, isConditionMet));
             }
         }
@@ -633,6 +784,10 @@ public class EncounterManager : MonoBehaviour
                     return characterData.personaPiece.name == argsRaw;
                 }
                 return false;
+            case "HasDreamCoin":
+                int neededCoins = int.Parse(argsRaw);
+                if (characterData!= null && characterData.dreamDust >= neededCoins) return true;
+                return false;
         }
 
         return true;
@@ -735,11 +890,10 @@ public class EncounterManager : MonoBehaviour
                             // 5. 텍스트 출력
                             if (descriptionText != null)
                             {
-                                descriptionText.text += $"\n<color=#77B0FF>오브제 [{foundData.relicName}] 획득!</color>";
-                    
-                                // 스크롤 갱신
-                                ResetScrollPosition(false);
-                                Canvas.ForceUpdateCanvases();
+                                string msg = $"\n<color=#77B0FF>오브제 [{foundData.relicName}] 획득!</color>";
+                                StartTyping(msg, true, null);
+                                //ResetScrollPosition(false);
+                                //Canvas.ForceUpdateCanvases();
                             }
                             Debug.Log($"[Encounter] 오브제 획득 성공: {foundData.relicName}");
                         }
@@ -748,8 +902,8 @@ public class EncounterManager : MonoBehaviour
                             Debug.LogWarning($"[Encounter] 이미 보유한 오브제입니다: {objectName}");
                             if (descriptionText != null)
                             {
-                                descriptionText.text += $"\n<color=#FF0000>이미 보유한 오브제입니다 ({objectName})</color>";
-                            }
+                                string msg = $"\n<color=#FF0000>이미 보유한 오브제입니다 ({objectName})</color>";
+                                StartTyping(msg, true, null);                            }
                         }
                     }
                     else
@@ -761,7 +915,7 @@ public class EncounterManager : MonoBehaviour
                 break;
 
             case "GetDebris":
-                if (args.Length >= 1) descriptionText.text += $"\n<color=#FFFF00>꿈의 파편 {args[0]}개 획득!</color>";
+                if (args.Length >= 1) descriptionText.text += $"\n<color=#FF0000>드림 코인 {args[0]}개 지불 완료!</color>";
                 break;
 
             case "UpStatus":
@@ -772,9 +926,9 @@ public class EncounterManager : MonoBehaviour
 
                     if(descriptionText != null)
                     {
-                        descriptionText.text += $"\n<color=#77B0FF>{sType} 증가!</color>";
-                        ResetScrollPosition(false);
-                        Canvas.ForceUpdateCanvases(); 
+                        string msg = $"\n<color=#77B0FF>{sType} 증가!</color>";
+                        StartTyping(msg, true, null);
+                        //Canvas.ForceUpdateCanvases(); 
                     }
                     else
                     {
@@ -790,9 +944,10 @@ public class EncounterManager : MonoBehaviour
 
                     if(descriptionText != null)
                     {
-                        descriptionText.text += $"\n<color=#FF0000>{sType1} 감소!</color>";
-                        ResetScrollPosition(false);
-                        Canvas.ForceUpdateCanvases(); 
+                        string msg = $"\n<color=#FF0000>{sType1} 감소!</color>";
+                        StartTyping(msg, true, null);
+                        //ResetScrollPosition(false);
+                        //Canvas.ForceUpdateCanvases(); 
                     }
                     else
                     {
@@ -834,7 +989,8 @@ public class EncounterManager : MonoBehaviour
                 {
                     int heal = Mathf.RoundToInt(characterData.maxHealth * (int.Parse(args[0]) / 100f));
                     characterData.curHealth = Mathf.Min(characterData.curHealth + heal, characterData.maxHealth);
-                    descriptionText.text += $"\n<color=#00FF00>체력 {heal} 회복.</color>";
+                    string msg = $"\n<color=#00FF00>체력 {heal} 회복.</color>";
+                    StartTyping(msg, true);
                 }
                 break;
 
@@ -847,7 +1003,9 @@ public class EncounterManager : MonoBehaviour
                         dmg = Mathf.RoundToInt(characterData.maxHealth * (amount / 100f));
                     
                     characterData.curHealth = Mathf.Max(1, characterData.curHealth - dmg);
-                    descriptionText.text += $"\n<color=#FF0000>체력 {dmg} 감소...</color>";
+                    string msg = $"\n<color=#FF0000>체력 {dmg} 감소...</color>";
+                    StartTyping(msg, true, null);
+                    
                 }
                 break;
             

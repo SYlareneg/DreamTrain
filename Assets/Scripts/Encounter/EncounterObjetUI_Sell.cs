@@ -6,121 +6,99 @@ using TMPro;
 public class EncounterObjetUI_Sell : MonoBehaviour, IPointerClickHandler
 {
     [Header("UI References")]
-    [SerializeField] Image objetIcon;
-    [SerializeField] TMP_Text nameTMP;
-    //[SerializeField] TMP_Text descTMP;
-    [SerializeField] public TMP_Text sellCostTMP; // EncounterCardUI_Sell과 동일하게 public 유지
-    //[SerializeField] GameObject soldOutPanel;     // 판매 완료 시 표시할 패널
+    [SerializeField] Image objetIcon;         
+    [SerializeField] TMP_Text nameTMP;        
+    [SerializeField] public TMP_Text sellCostTMP; 
 
-    // [변경] 데이터 타입 변경 (Item_Objets -> RelicItem_Data)
-    public RelicItem_Data relicItem;   
+    private RelicItem_Data relicData;   
     
-    public int cost;                // 판매 가격
-    public bool isValid;            // 구매 가능 여부
+    public int cost;                
+    public bool isValid;            
     
-    public CharacterSO _playerData; // 재화 확인용
+    public CharacterSO _playerData; 
     private System.Action _onBuyRequest;
-
-    // [최적화용 변수] 매 프레임 컬러 변경 방지
     private bool _wasAffordable = true;
 
-    /// <summary>
-    /// 상점 UI에서 이 함수를 호출하여 데이터를 세팅합니다.
-    /// </summary>
-    // [변경] 매개변수 타입 변경 (Item_Objets -> RelicItem_Data)
-    public void Setup(RelicItem_Data item, int cost, bool isValid, CharacterSO playerData, System.Action onBuyRequest)
+    public void Setup(RelicItem_Data data, int cost, bool isValid, CharacterSO playerData, System.Action onBuyRequest)
     {
-        // 디버깅용 로그
-        // Debug.Log($"[Objet SETUP 실행됨] ID: {this.GetInstanceID()} / 오브젝트: {gameObject.name} / 부모: {transform.parent?.name}");
-        // Debug.Log($" -> 받은 데이터 Cost: {cost}, Callback: {(onBuyRequest != null)}");
-
-        this.relicItem = item; // 데이터 저장
+        this.relicData = data;
         this.cost = cost;
         this.isValid = isValid;
         this._playerData = playerData;
         this._onBuyRequest = onBuyRequest;
 
         // UI 시각화 업데이트
-        if (item != null) UpdateObjetVisual(item);
+        if (relicData != null) 
+        {
+            UpdateObjetVisual(relicData);
+        }
 
-        // 가격 텍스트 설정
         if (sellCostTMP != null)
         {
-            sellCostTMP.text = "<sprite=0>" + this.cost.ToString();
-            UpdateColor(true); // 초기화 시 색상 강제 업데이트
-        }
+            TMP_SpriteAsset newSpriteAsset = Resources.Load<TMP_SpriteAsset>("Cards/coin");
 
-        // 판매 완료 상태 처리 (필요 시 주석 해제)
-        /*if (soldOutPanel != null)
-        {
-            soldOutPanel.SetActive(!isValid);
-        }*/
-        
-        // 유효하지 않아도 오브젝트는 켜두되, SoldOut 패널로 덮음 (기획에 따라 SetActive(isValid)로 변경 가능)
-        //gameObject.SetActive(true); 
-    }
+            if (newSpriteAsset != null)
+            {
+                // TMP 컴포넌트의 spriteAsset 속성을 교체합니다.
+                sellCostTMP.spriteAsset = newSpriteAsset;
+                // 변경 사항을 즉시 반영하기 위해 업데이트를 호출합니다.
+                sellCostTMP.SetVerticesDirty();
+                sellCostTMP.SetMaterialDirty();
+            }
+            else
+            {
+                Debug.LogWarning("새로운 Sprite Asset을 찾을 수 없습니다. 경로를 확인하세요.");
+            }
 
-    public void OnPointerClick(PointerEventData data)
-    {
-        // 클릭 로그
-        Debug.Log($"[Objet CLICK 실행됨] ID: {this.GetInstanceID()} / 오브젝트: {gameObject.name}");
-        
-        // 이미 팔렸다면 클릭 무시
-        if (!isValid) 
-        {
-            Debug.Log("이미 판매된 상품입니다.");
-            return;
-        }
-
-        if (_onBuyRequest == null)
-        {
-            Debug.LogError("범인 검거: 이 오브제는 Setup되지 않았거나 콜백이 없습니다!");
-        }
-        else
-        {
-            _onBuyRequest.Invoke();
+            sellCostTMP.text = "<sprite=0>" + this.cost;
+            
+            UpdateColor(true);
         }
     }
 
-    // [변경] RelicItem_Data 기반으로 UI 갱신
-    void UpdateObjetVisual(RelicItem_Data item)
+    public void OnPointerClick(PointerEventData eventData)
     {
-        // 1. 아이콘 설정 (RelicItem_Data는 string으로 경로를 가짐)
+        if (!isValid || _onBuyRequest == null) return;
+        _onBuyRequest.Invoke();
+    }
+
+    // [핵심 수정 부분]
+    void UpdateObjetVisual(RelicItem_Data data)
+    {
+        // 1. 아이콘 설정
         if (objetIcon != null)
         {
-            // 이전에 보여주신 코드를 참고하여 Utils 사용 (만약 Utils가 없으면 Resources.Load 등을 사용하세요)
-            Sprite sprite = Utils.LoadSpriteByName("Relics", item.relicSprite);
+            string spriteName = data.relicSprite; 
+
+            Sprite sprite = Resources.Load<Sprite>($"Relics/{spriteName}");
+            
             if (sprite != null)
             {
                 objetIcon.sprite = sprite;
                 objetIcon.gameObject.SetActive(true);
             }
+            else
+            {
+                // 이미지를 못 찾았을 때 (디버깅용)
+                Debug.LogWarning($"이미지 로드 실패! 이름: {spriteName}, 경로: Resources/Relics/{spriteName}");
+                // 임시로 투명하게 처리하거나 기본 이미지 유지
+                 objetIcon.color = Color.clear; 
+            }
         }
 
-        // 2. 텍스트 설정 (변수명 변경: name_ko -> relicName)
+        // 2. 이름 설정
         if (nameTMP != null)
         {
-            nameTMP.text = item.relicName;
+            nameTMP.text = data.relicName;
             nameTMP.gameObject.SetActive(true);
         }
-
-        // 설명 텍스트 (필요 시 주석 해제)
-        /* if (descTMP != null)
-        {
-            descTMP.text = item.relicTxt; // desc_ko -> relicTxt
-            descTMP.gameObject.SetActive(true);
-        }*/
     }
 
     private void Update()
     {
-        // 데이터가 없거나 이미 팔렸으면 업데이트 중단
-        if (_playerData == null || relicItem == null || sellCostTMP == null || !isValid) return;
+        if (_playerData == null || !isValid || sellCostTMP == null) return;
 
-        // 현재 재화로 구매 가능한지 체크
         bool isAffordable = _playerData.dreamDust >= cost;
-
-        // 상태가 변했을 때만 텍스트 색상 변경 (최적화)
         if (isAffordable != _wasAffordable)
         {
             UpdateColor(isAffordable);
@@ -131,7 +109,6 @@ public class EncounterObjetUI_Sell : MonoBehaviour, IPointerClickHandler
     void UpdateColor(bool isAffordable)
     {
         if (sellCostTMP == null) return;
-        // 구매 가능하면 파란색, 불가능하면 빨간색
         sellCostTMP.color = isAffordable ? Color.blue : Color.red;
     }
 }

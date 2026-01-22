@@ -1054,6 +1054,8 @@ MonoBehaviour:
     cardValueTypes: 
     num: 0
     isEnhanced: 0
+  cardUITooltipPrefab: {fileID: 8800369096788391767, guid: b54acd7753ea2ac48af2b4a03610b3ef, type: 3}
+  tooltipPos: {fileID: 7731038763045776077, guid: b54acd7753ea2ac48af2b4a03610b3ef, type: 3}
 --- !u!1 &7806158752167397374
 GameObject:
   m_ObjectHideFlags: 0
