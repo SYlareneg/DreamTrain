@@ -663,37 +663,17 @@
     {
       "name": "뱀파이어 폴",
       "id": "Vamp",
-      "health": 70,
+      "health": 80,
       "triggerNum": 2,
       "phase": [
         {
           "name": "빈혈",
-          "text": "피가 부족한 상태입니다. 흡혈로 체력을 2번 회복하면 '각성:뱀파이어' 패턴으로 전환합니다.",
+          "text": "피가 부족한 상태입니다. 흡혈로 체력을 2번 회복하면 피에 깃든 힘이 깨어납니다.",
           "patterns": [
             {
               "pattern": [
                 {
-                  "type": 0,
-                  "typeNum": 0,
-                  "val": 3,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
                   "type": 6,
-                  "typeNum": 0,
-                  "val": 5,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 3,
                   "typeNum": 0,
                   "val": 4,
                   "isTrigger": false
@@ -705,7 +685,47 @@
                 {
                   "type": 6,
                   "typeNum": 0,
-                  "val": 5,
+                  "val": 6,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 10,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 16,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 24,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 24,
                   "isTrigger": false
                 }
               ]
@@ -717,7 +737,7 @@
         },
         {
           "name": "각성:뱀파이어",
-          "text": "충분한 피를 흡수하여 뱀파이어의 본능이 꺠어났습니다. 흡혈로 체력을 회복할 때마다 12번 슬롯을 트리거합니다.",
+          "text": "충분한 피를 흡수하여 뱀파이어의 힘이 깨어났습니다. 흡혈로 체력을 회복할 때마다  트리거합니다.",
           "patterns": [
             {
               "pattern": [
@@ -761,7 +781,7 @@
                 },
                 {
                   "type": 0,
-                  "typeNum": 0,
+                  "typeNum": -2,
                   "val": -3,
                   "isTrigger": false
                 }
@@ -770,9 +790,9 @@
             {
               "pattern": [
                 {
-                  "type": 0,
+                  "type": 3,
                   "typeNum": 0,
-                  "val": 3,
+                  "val": 12,
                   "isTrigger": false
                 },
                 {
@@ -792,7 +812,7 @@
       "triggerPhase": [
         {
           "name": "뱀파이어:트리거",
-          "text": "뱀파이어가 트리거 상태입니다.",
+          "text": "충분한 피를 마시고 힘이 깨어났습니다. 흡혈로 체력을 2번 획득하면 트리거됩니다.",
           "patterns": [
             {
               "pattern": [
@@ -924,7 +944,7 @@
         {
           "sprite": "Roulette_Drain",
           "title": "흡혈",
-          "text": "값만큼 대상에게 피해를 주고, 입힌 피해만큼 뱀파이어의 체력이 회복되고, 흡혈 카운트를 1 얻습니다.",
+          "text": "값만큼 대상에게 피해를 주고, 입힌 피해만큼 체력을 회복합니다.트리거를 1 얻습니다.",
           "baseVal": 5,
           "title_enhanced": "",
           "text_enhanced": "",
@@ -944,7 +964,7 @@
         {
           "sprite": "EnemyAction_Drain",
           "title": "흡혈",
-          "text": "피해를 값만큼 주고, 입힌 피해만큼 뱀파이어의 체력이 회복되고, 흡혈 카운트를 1 얻습니다."
+          "text": "값만큼 대상에게 피해를 주고, 입힌 피해만큼 체력을 회복합니다.트리거를 1 얻습니다."
         },
         {
           "sprite": "",
@@ -968,7 +988,7 @@
     {
       "name": "박쥐",
       "id": "Bat",
-      "health": 68,
+      "health": 58,
       "triggerNum": 12,
       "phase": [
         {
@@ -1075,12 +1095,6 @@
             {
               "pattern": [
                 {
-                  "type": 6,
-                  "typeNum": 0,
-                  "val": 4,
-                  "isTrigger": false
-                },
-                {
                   "type": 3,
                   "typeNum": 0,
                   "val": 6,
@@ -1089,7 +1103,7 @@
                 {
                   "type": 6,
                   "typeNum": 1,
-                  "val": 4,
+                  "val": 6,
                   "isTrigger": true
                 }
               ]
@@ -1103,15 +1117,9 @@
                   "isTrigger": false
                 },
                 {
-                  "type": 0,
-                  "typeNum": 0,
-                  "val": -4,
-                  "isTrigger": false
-                },
-                {
                   "type": 6,
                   "typeNum": 1,
-                  "val": 4,
+                  "val": 6,
                   "isTrigger": true
                 }
               ]
@@ -1122,12 +1130,6 @@
                   "type": 1,
                   "typeNum": 0,
                   "val": 6,
-                  "isTrigger": false
-                },
-                {
-                  "type": 6,
-                  "typeNum": 0,
-                  "val": 4,
                   "isTrigger": false
                 },
                 {
@@ -1266,7 +1268,7 @@
         {
           "sprite": "EnemyAction_Drain",
           "title": "흡혈",
-          "text": "피해를 값만큼 주고, 입힌 피해만큼 박쥐의 체력이 회복되고, 흡혈 카운트를 1 얻습니다."
+          "text": "피해를 값만큼 주고, 입힌 피해만큼 박쥐의 체력이 회복됩니다."
         },
         {
           "sprite": "EnemyAction_Drain",
@@ -1295,7 +1297,7 @@
       "phase": [
         {
           "name": "마술 준비",
-          "text": "마술 모자가 자신의 효과 존을 지나갈 때마다 트리거 게이지와 방어도를 5 얻습니다.",
+          "text": "마술 모자가 비둘기 앞을 지나갈 때마다 트리거 게이지와 방어도를 5 얻습니다.",
           "patterns": [
             {
               "pattern": [
@@ -1364,7 +1366,7 @@
       "triggerPhase": [
         {
           "name": "비둘기:트리거",
-          "text": "비둘기가 트리거 상태입니다.",
+          "text": "비둘기가 트리거 되었습니다.턴 종료 시 트리거가 해제됩니다.",
           "patterns": [
             {
               "pattern": [
@@ -1526,7 +1528,7 @@
       "subEnemies_Spawn": []
     },
     {
-      "name": "망령 1",
+      "name": "유령의 집의 망령",
       "id": "GuestOrGhost",
       "health": 52,
       "triggerNum": 6,
@@ -1545,7 +1547,7 @@
                 },
                 {
                   "type": 0,
-                  "typeNum": 0,
+                  "typeNum": -2,
                   "val": -3,
                   "isTrigger": false
                 }
@@ -1556,7 +1558,7 @@
                 {
                   "type": 6,
                   "typeNum": 0,
-                  "val": 0,
+                  "val": 1,
                   "isTrigger": false
                 },
                 {
@@ -1577,7 +1579,7 @@
                 },
                 {
                   "type": 0,
-                  "typeNum": 0,
+                  "typeNum": -2,
                   "val": -3,
                   "isTrigger": false
                 }
@@ -1601,8 +1603,8 @@
       ],
       "triggerPhase": [
         {
-          "name": "망령 1:트리거",
-          "text": "망령 1이 트리거 상태입니다.",
+          "name": "망령:트리거",
+          "text": "망령이 트리거 되었습니다. 다음 턴 종료 시 트리거가 해제됩니다.",
           "patterns": [
             {
               "pattern": [
@@ -2340,12 +2342,6 @@
                   "typeNum": 0,
                   "val": 3,
                   "isTrigger": false
-                },
-                {
-                  "type": 1,
-                  "typeNum": 0,
-                  "val": 4,
-                  "isTrigger": false
                 }
               ]
             },
@@ -2374,7 +2370,7 @@
       "triggerPhase": [
         {
           "name": "귀신들린 인형:트리거",
-          "text": "귀신들린 인형이 트리거 상태입니다.",
+          "text": "귀신들린 인형이 트리거 상태입니다. 턴 종료 시 트리거가 해제됩니다.",
           "patterns": [
             {
               "pattern": [
@@ -2540,7 +2536,7 @@
     {
       "name": "대장 컵",
       "id": "Cups",
-      "health": 55,
+      "health": 45,
       "triggerNum": 24,
       "phase": [
         {
@@ -2550,7 +2546,7 @@
             {
               "pattern": [
                 {
-                  "type": 1,
+                  "type": 0,
                   "typeNum": 0,
                   "val": 6,
                   "isTrigger": false
@@ -2776,7 +2772,7 @@
     {
       "name": "흰 토끼",
       "id": "WhiteRabbit",
-      "health": 32,
+      "health": 36,
       "triggerNum": 3,
       "phase": [
         {
@@ -2822,7 +2818,7 @@
       "triggerPhase": [
         {
           "name": "흰 토끼:트리거",
-          "text": "흰 토끼는 트리거 상태입니다. 트리거 상태에서는 공격 행동을 두 번 수행합니다.",
+          "text": "흰 토끼는 트리거 상태입니다. 트리거 상태에서는 공격 행동을 두 번 수행합니다. 턴 종료 시 트리거가 해제됩니다.",
           "patterns": [
             {
               "pattern": [
@@ -2992,7 +2988,7 @@
     {
       "name": "말",
       "id": "horse",
-      "health": 56,
+      "health": 48,
       "triggerNum": 2,
       "phase": [
         {
@@ -3005,6 +3001,12 @@
                   "type": 1,
                   "typeNum": 0,
                   "val": 4,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 3,
                   "isTrigger": false
                 }
               ]
@@ -3054,7 +3056,7 @@
       "triggerPhase": [
         {
           "name": "말:트리거",
-          "text": "말은 트리거 상태입니다. '전력질주'를 사용합니다.",
+          "text": "말은 트리거 되었습니다. 턴 종료 시 트리거가 해제됩니다.",
           "patterns": [
             {
               "pattern": [
@@ -3218,7 +3220,7 @@
     {
       "name": "식인 꽃",
       "id": "CruelFlower",
-      "health": 48,
+      "health": 63,
       "triggerNum": 12,
       "phase": [
         {
@@ -3454,8 +3456,8 @@
     {
       "name": "무서운 고양이",
       "id": "ScaryCat",
-      "health": 59,
-      "triggerNum": 6,
+      "health": 57,
+      "triggerNum": 5,
       "phase": [
         {
           "name": "무섭게 할퀴기",
@@ -3483,16 +3485,6 @@
                   "type": 0,
                   "typeNum": 2,
                   "val": 6,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 1,
-                  "typeNum": 0,
-                  "val": 8,
                   "isTrigger": false
                 }
               ]
@@ -3656,7 +3648,7 @@
         {
           "sprite": "EnemyAction_Drain",
           "title": "무섭게 할퀴기",
-          "text": "값의 피해를 줍니다. 트리거 상태에서 고양이가 받은 피해 1 당 이 공격의 피해량도 1 감소합니다."
+          "text": "값의 피해를 줍니다. 트리거 상태에서 고양이가 받은 피해만큼 이 공격의 피해량이 감소합니다."
         },
         {
           "sprite": "EnemyAction_Enchant",
@@ -3977,7 +3969,7 @@
                 {
                   "type": 1,
                   "typeNum": 0,
-                  "val": 5,
+                  "val": 4,
                   "isTrigger": false
                 }
               ]
@@ -3987,7 +3979,7 @@
                 {
                   "type": 3,
                   "typeNum": 0,
-                  "val": 5,
+                  "val": 4,
                   "isTrigger": false
                 }
               ]
@@ -4055,7 +4047,7 @@
                 {
                   "type": 3,
                   "typeNum": 0,
-                  "val": 6,
+                  "val": 5,
                   "isTrigger": false
                 }
               ]
@@ -4065,7 +4057,7 @@
                 {
                   "type": 1,
                   "typeNum": 0,
-                  "val": 6,
+                  "val": 5,
                   "isTrigger": false
                 }
               ]

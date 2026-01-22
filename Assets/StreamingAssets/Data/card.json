@@ -1486,7 +1486,7 @@
     },
     {
       "name": "날카로운 발톱",
-      "cost": 2,
+      "cost": 1,
       "type": 2,
       "dreamPieceNum": 3,
       "sprite": "날카로운발톱",
@@ -1503,7 +1503,7 @@
         3
       ],
       "name_enhanced": "날카로운 발톱+",
-      "cost_enhanced": 2,
+      "cost_enhanced": 1,
       "text_enhanced": "자신 앞에 놓인 발톱 룰렛의 값을 3<특수>배로 만듭니다.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
@@ -1634,7 +1634,7 @@
     },
     {
       "name": "실 풀기",
-      "cost": 2,
+      "cost": 1,
       "type": 2,
       "dreamPieceNum": 3,
       "sprite": "실풀기",
@@ -1648,13 +1648,17 @@
       "cardValueTypes": [],
       "name_enhanced": "실 풀기+",
       "cost_enhanced": 1,
-      "text_enhanced": "자신 앞에 놓인 실뭉치 룰렛의 값을 절반으로 감소시키고, 감소한 값만큼 방어도를 얻습니다.",
+      "text_enhanced": "자신 앞에 놓인 실뭉치 룰렛의 값을 절반으로 감소시키고, 감소한 값의 2<특수>배만큼 방어도를 얻습니다.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": false,
-      "cardValues_enhanced": [],
-      "cardValueTypes_enhanced": []
+      "cardValues_enhanced": [
+        2
+      ],
+      "cardValueTypes_enhanced": [
+        3
+      ]
     },
     {
       "name": "놀이 시간",
