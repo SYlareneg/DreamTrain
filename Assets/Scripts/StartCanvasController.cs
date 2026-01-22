@@ -1,166 +1,212 @@
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 using System.Collections;
+using DG.Tweening;
+using TMPro;
+using UnityEngine.InputSystem;
 
 public class StartCanvasController : MonoBehaviour
 {
-    [SerializeField] private GameObject pabText; 
-    [SerializeField] private GameObject menuGroup; 
-    [SerializeField] private Image blackPanel; 
+    [SerializeField] GameObject newGameButton;
+    [SerializeField] GameObject loadGameButton;
+    [SerializeField] GameObject optionButton;
+    [SerializeField] GameObject exitButton;
+    [SerializeField] GameObject selector;
 
-    private bool menuActivated = false;
-    private bool isLoading  = false;
-    private CanvasGroup pabCanvasGroup;
+    private InputSystem_Actions input;
 
-    void Start()
+    void Awake()
     {
-        // 초기 상태
-        menuGroup.SetActive(false);
-        pabText.SetActive(true);
-        blackPanel.gameObject.SetActive(false);
+        input = new InputSystem_Actions();
+    }
 
-        if (blackPanel != null)
+    void OnEnable()
+    {
+        input.Player.Enable();
+        input.Player.Previous.performed += (ctx) =>
         {
-            var  c = blackPanel.color;
-            c.a = 0f;
-            blackPanel.color = c;
-        }
-        pabCanvasGroup = pabText.GetComponent<CanvasGroup>();
-        if (pabCanvasGroup == null)
-            pabCanvasGroup = pabText.AddComponent<CanvasGroup>();
-
-        pabCanvasGroup.alpha = 1f;
-
-        // 깜빡이는 코루틴 시작
-        StartCoroutine(FadePabTextRoutine());
-    }
-
-    void Update()
-    {
-        if (menuActivated) return;
-
-        if (Input.anyKeyDown || Input.GetMouseButtonDown(0))
+            if(selector.transform.position == newGameButton.transform.position)
+            {
+                selector.transform.DOMove(exitButton.transform.position, 0.2f);
+                newGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+                loadGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+                optionButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+                exitButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+            }
+            else if(selector.transform.position == loadGameButton.transform.position)
+            {
+                selector.transform.DOMove(newGameButton.transform.position, 0.2f);
+                newGameButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+                loadGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+                optionButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+                exitButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+            }
+            else if(selector.transform.position == optionButton.transform.position)
+            {
+                selector.transform.DOMove(loadGameButton.transform.position, 0.2f);
+                newGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+                loadGameButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+                optionButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+                exitButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+            }
+            else if(selector.transform.position == exitButton.transform.position)
+            {
+                selector.transform.DOMove(optionButton.transform.position, 0.2f);
+                newGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+                loadGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+                optionButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+                exitButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+            }
+        };
+        input.Player.Next.performed += (ctx) =>
         {
-            ActivateMenu();
-        }
-    }
-
-    private void ActivateMenu()
-    {
-        menuActivated = true;
-
-        pabText.SetActive(false);
-        menuGroup.SetActive(true);
-
-        var firstButton = menuGroup.GetComponentInChildren<UnityEngine.UI.Button>();
-        if (firstButton != null)
+            if(selector.transform.position == newGameButton.transform.position)
+            {
+                selector.transform.DOMove(loadGameButton.transform.position, 0.2f);
+                newGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+                loadGameButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+                optionButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+                exitButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+            }
+            else if(selector.transform.position == loadGameButton.transform.position)
+            {
+                selector.transform.DOMove(optionButton.transform.position, 0.2f);
+                newGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+                loadGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+                optionButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+                exitButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+            }
+            else if(selector.transform.position == optionButton.transform.position)
+            {
+                selector.transform.DOMove(exitButton.transform.position, 0.2f);
+                newGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+                loadGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+                optionButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+                exitButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+            }
+            else if(selector.transform.position == exitButton.transform.position)
+            {
+                selector.transform.DOMove(newGameButton.transform.position, 0.2f);
+                newGameButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+                loadGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+                optionButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+                exitButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+            }
+        };
+        input.Player.EnterRoom.performed += (ctx) =>
         {
-            EventSystem.current.SetSelectedGameObject(firstButton.gameObject);
+            if(selector.transform.position == newGameButton.transform.position)
+            {
+                OnNewGameClicked();
+            }
+            else if(selector.transform.position == loadGameButton.transform.position)
+            {
+                OnLoadGameClicked();
+            }
+            else if(selector.transform.position == optionButton.transform.position)
+            {
+                OnOptionClicked();
+            }
+            else if(selector.transform.position == exitButton.transform.position)
+            {
+                OnExitClicked();
+            }
+        };
+    }
+
+    IEnumerator Start()
+    {
+        yield return new WaitForEndOfFrame();
+        selector.SetActive(true);
+        selector.transform.position = newGameButton.transform.position;
+        newGameButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+        loadGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+        optionButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+        exitButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+    }
+
+    public void OnNewGameClicked()
+    {
+        if(selector.transform.position == newGameButton.transform.position)
+        {
+            Sequence buttonBlink = DOTween.Sequence();
+            buttonBlink.Append(newGameButton.GetComponentInChildren<TMP_Text>().DOColor(new Color32(255, 255, 255, 0), 0.1f));
+            buttonBlink.Append(newGameButton.GetComponentInChildren<TMP_Text>().DOColor(Color.white, 0.1f));
+            buttonBlink.SetLoops(2);
+            buttonBlink.OnComplete(() =>
+            {
+                SceneChangeManager.Inst.SceneFadeOut("RoomScene");
+            });
+        }
+        else
+        {
+            selector.transform.DOMove(newGameButton.transform.position, 0.2f);
+            newGameButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+            loadGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+            optionButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+            exitButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
         }
     }
 
-    public void OnNewGameClicked(Button btn)
-    {
-        StartCoroutine(ClickScaleRoutine(btn.transform));
-        if (!isLoading)
-            StartCoroutine(BlackAndLoad("RoomScene"));
-    }
-
-    public void OnLoadGameClicked(Button btn)
+    public void OnLoadGameClicked()
     {        
-        StartCoroutine(ClickScaleRoutine(btn.transform));
-        if (!isLoading)
-            StartCoroutine(BlackAndLoad("MapScene"));
-    }
-    public void OnOptionClicked(Button btn)
-    {
-        StartCoroutine(ClickScaleRoutine(btn.transform));
-    }
-    public void OnExitClicked(Button btn)
-    {
-        StartCoroutine(ClickScaleRoutine(btn.transform));
-        Debug.Log("Exit Game");
-        Application.Quit();
-    }
-    
-    private IEnumerator ClickScaleRoutine(Transform target)
-    {
-        Vector3 original = target.localScale;
-        Vector3 smaller = original * 0.9f;
-
-        float duration = 0.08f;
-        float t = 0f;
-
-        // 눌림 (작아짐)
-        while (t < duration)
+        if(selector.transform.position == loadGameButton.transform.position)
         {
-            t += Time.deltaTime;
-            target.localScale = Vector3.Lerp(original, smaller, t / duration);
-            yield return null;
-        }
-
-        // 복귀
-        t = 0f;
-        while (t < duration)
-        {
-            t += Time.deltaTime;
-            target.localScale = Vector3.Lerp(smaller, original, t / duration);
-            yield return null;
-        }
-    }
-
-    
-    private IEnumerator BlackAndLoad(string sceneName)
-    {
-        isLoading = true;
-
-        blackPanel.gameObject.SetActive(true);
-        Color c = blackPanel.color;
-        c.a = 0f;
-        blackPanel.color = c;
-
-        float duration = 1f; 
-        float t = 0f;
-
-        while (t < duration)
-        {
-            t += Time.deltaTime;
-            float alpha = Mathf.Lerp(0f, 1f, t / duration);
-            c.a = alpha;
-            blackPanel.color = c;
-            yield return null;
-        }
-
-        yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(sceneName);
-    }
-    private IEnumerator FadePabTextRoutine()
-    {
-        float duration = 1f;
-
-        while (!menuActivated)
-        {
-            float t = 0f;
-            while (t < duration && !menuActivated)
+            Sequence buttonBlink = DOTween.Sequence();
+            buttonBlink.Append(loadGameButton.GetComponentInChildren<TMP_Text>().DOColor(new Color32(255, 255, 255, 0), 0.1f));
+            buttonBlink.Append(loadGameButton.GetComponentInChildren<TMP_Text>().DOColor(Color.white, 0.1f));
+            buttonBlink.SetLoops(2);
+            buttonBlink.OnComplete(() =>
             {
-                t += Time.deltaTime;
-                pabCanvasGroup.alpha = Mathf.Lerp(0f, 1f, t / duration);
-                yield return null;
-            }
-
-            yield return new WaitForSeconds(0.5f);
-            
-            t = 0f;
-            while (t < duration && !menuActivated)
+                SceneChangeManager.Inst.SceneFadeOut("MapScene");
+            });
+        }
+        else
+        {
+            selector.transform.DOMove(loadGameButton.transform.position, 0.2f);
+            newGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+            loadGameButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+            optionButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+            exitButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+        }
+    }
+    public void OnOptionClicked()
+    {
+        if(selector.transform.position == optionButton.transform.position)
+        {
+            Sequence buttonBlink = DOTween.Sequence();
+            buttonBlink.Append(optionButton.GetComponentInChildren<TMP_Text>().DOColor(new Color32(255, 255, 255, 0), 0.1f));
+            buttonBlink.Append(optionButton.GetComponentInChildren<TMP_Text>().DOColor(Color.white, 0.1f));
+            buttonBlink.SetLoops(2);
+        }
+        else
+        {
+            selector.transform.DOMove(optionButton.transform.position, 0.2f);
+            newGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+            loadGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+            optionButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+            exitButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+        }
+    }
+    public void OnExitClicked()
+    {
+        if(selector.transform.position == exitButton.transform.position)
+        {
+            Sequence buttonBlink = DOTween.Sequence();
+            buttonBlink.Append(exitButton.GetComponentInChildren<TMP_Text>().DOColor(new Color32(255, 255, 255, 0), 0.1f));
+            buttonBlink.Append(exitButton.GetComponentInChildren<TMP_Text>().DOColor(Color.white, 0.1f));
+            buttonBlink.SetLoops(2);
+            buttonBlink.OnComplete(() =>
             {
-                t += Time.deltaTime;
-                pabCanvasGroup.alpha = Mathf.Lerp(1f, 0f, t / duration);
-                yield return null;
-            }
-
-            yield return null;
+                Application.Quit();
+            });
+        }
+        else
+        {
+            selector.transform.DOMove(exitButton.transform.position, 0.2f);
+            newGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+            loadGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+            optionButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+            exitButton.GetComponentInChildren<TMP_Text>().color = Color.white;
         }
     }
 }

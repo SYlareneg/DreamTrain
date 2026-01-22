@@ -2614,10 +2614,19 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire"
+          "sprite": "컵 메인"
         }
       ],
-      "triggerPhase": [],
+      "triggerPhase": [
+        {
+          "name": "",
+          "sprite": "",
+          "text": "",
+          "patterns": [],
+          "phaseRepeat": false,
+          "phaseClear": false
+        }
+      ],
       "roulettePattern": [
         {
           "rtype": {
@@ -2807,7 +2816,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "적 초상화"
+          "sprite": "적_토끼"
         }
       ],
       "triggerPhase": [
@@ -2834,7 +2843,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "적 초상화"
+          "sprite": "적_토끼"
         }
       ],
       "roulettePattern": [
@@ -3039,7 +3048,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire"
+          "sprite": "적_말"
         }
       ],
       "triggerPhase": [
@@ -3060,7 +3069,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Enemy_Vampire"
+          "sprite": "적_말"
         }
       ],
       "roulettePattern": [
@@ -3717,7 +3726,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire"
+          "sprite": "적_우는와인"
         }
       ],
       "triggerPhase": [
@@ -3738,7 +3747,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Enemy_Vampire"
+          "sprite": "적_우는와인"
         }
       ],
       "roulettePattern": [
@@ -3986,7 +3995,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire"
+          "sprite": "컵 서브 1"
         }
       ],
       "enemySpecialRoulettes": [
@@ -4064,7 +4073,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire"
+          "sprite": "컵 서브 2"
         }
       ],
       "enemySpecialRoulettes": [
