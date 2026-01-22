@@ -879,10 +879,10 @@ MonoBehaviour:
   fastMode: 1
   turnNum: 0
   maxCardCount: 10
-  drawCardCount: 5
+  drawCardCount: 10
   startCardCount: 0
   turnDraw: 0
-  turnCost: 4
+  turnCost: 10
   nowCost: 0
   maxHealth: 0
   curHealth: 0
@@ -2716,6 +2716,8 @@ MonoBehaviour:
     title_enhanced: 
     text_enhanced: 
     baseVal_enhanced: 0
+  playerSpecialRoulette_lastCardType: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  lastCardType: 2
 --- !u!4 &257622350
 Transform:
   m_ObjectHideFlags: 0

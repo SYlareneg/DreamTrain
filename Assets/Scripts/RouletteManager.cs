@@ -48,33 +48,59 @@ public class RouletteManager : MonoBehaviour
     public int spinDistance_Turn;
     public int spinDirection;
     public int spinOffset;
+    public Vector3 curRotation;
+    Tween rotateTween;
+
+    public float curZ;
+    public float targetZ;
+    public int pendingPieces;
 
     public void Spin(bool isClockwise, int pieces)
     {
-        if (!spinFlag)
+        spinCount++;
+        spinCount_Turn++;
+        spinDistance += pieces;
+        spinDistance_Turn += pieces;
+        spinDirection = isClockwise ? 1 : 0;
+        Utils.AllignActions<bool, int>(ref TurnManager.OnRouletteSpin, typeof(ShowBuff), typeof(RelicManager));
+        TurnManager.OnRouletteSpin?.Invoke(isClockwise, pieces);
+        if (isClockwise)
         {
-            spinCount++;
-            spinCount_Turn++;
-            spinDistance += pieces;
-            spinDistance_Turn += pieces;
-            spinDirection = isClockwise ? 1 : 0;
-            spinFlag = true;
-            Utils.AllignActions<bool, int>(ref TurnManager.OnRouletteSpin, typeof(ShowBuff), typeof(RelicManager));
-            TurnManager.OnRouletteSpin?.Invoke(isClockwise, pieces);
-            if (isClockwise)
-            {
-                pieces *= -1;
-            }
-            Vector3 newRotation = new Vector3(rouletteArea.transform.parent.eulerAngles.x, rouletteArea.transform.parent.eulerAngles.y, rouletteArea.transform.parent.eulerAngles.z + 360f * pieces / rouletteNum);
-            playerLookat = (playerLookat + pieces + rouletteNum) % rouletteNum;
-            enemyLookat = (enemyLookat + pieces + rouletteNum) % rouletteNum;
-            spinOffset = (spinOffset + pieces + rouletteNum) % rouletteNum;
-            rouletteArea.transform.parent.DORotate(newRotation, spinDelay, RotateMode.FastBeyond360).OnComplete(() => {
-                spinFlag = false;
-                Utils.AllignActions(ref TurnManager.AfterRouletteSpin, typeof(ShowBuff), typeof(RelicManager));
-                TurnManager.AfterRouletteSpin?.Invoke(pieces);
-            });
+            pieces *= -1;
         }
+        playerLookat = (playerLookat + pieces + rouletteNum) % rouletteNum;
+        enemyLookat = (enemyLookat + pieces + rouletteNum) % rouletteNum;
+        spinOffset = (spinOffset + pieces + rouletteNum) % rouletteNum;
+
+        targetZ += 360f * pieces / rouletteNum;
+        pendingPieces += pieces;
+
+        if(rotateTween != null && rotateTween.IsActive() && rotateTween.IsPlaying()) return;
+        spinFlag = true;
+        rotateTween = DOTween.To(
+            () => curZ,
+            z =>
+            {
+                curZ = z;
+                var e = rouletteArea.transform.parent.eulerAngles;
+                e.z = curZ;
+                rouletteArea.transform.parent.eulerAngles = e;
+            },
+            targetZ,
+            spinDelay
+        )
+        .OnComplete(() =>
+        {
+            rotateTween = null;
+            int donePieces = pendingPieces;
+            pendingPieces = 0;
+
+            Utils.AllignActions(ref TurnManager.AfterRouletteSpin, typeof(ShowBuff), typeof(RelicManager));
+            TurnManager.AfterRouletteSpin?.Invoke(donePieces);
+
+            if(targetZ != curZ) Spin(isClockwise, 0);
+            else spinFlag = false;
+        });
     }
 
     public int EnemyIdxSpinOffset(int enemyIdx)
@@ -196,6 +222,7 @@ public class RouletteManager : MonoBehaviour
 
     public bool EnchantRoulettePiece(int index, RouletteType rType, int rValue)
     {
+        if(isTriggerActivated) return false;
         bool ret = true;
         if(TurnManager.CheckRouletteEnchantable != null)
         {
@@ -272,6 +299,19 @@ public class RouletteManager : MonoBehaviour
         for (int i = 0; i < rouletteNum; i++)
         {
             if (roulettePieces[i].roulette.rtype == rType)
+            {
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    public int CountRouletteType(ERouletteType type)
+    {
+        int counter = 0;
+        for (int i = 0; i < rouletteNum; i++)
+        {
+            if (roulettePieces[i].roulette.rtype.type == type)
             {
                 counter++;
             }

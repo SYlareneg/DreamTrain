@@ -56,6 +56,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void HideTooltip()
     {
         if (tooltip == null || tooltipDisable == true) return;
+        Debug.Log("HideTooltip");
         tooltip.SetActive(false);
         Destroy(tooltip);
         tooltip = null;
@@ -124,6 +125,11 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private void OnDestroy()
     {
-        if(tooltip != null) HideTooltip();
+        if(tooltip != null)
+        {
+            tooltip.SetActive(false);
+            Destroy(tooltip);
+            tooltip = null;
+        }
     }
 }

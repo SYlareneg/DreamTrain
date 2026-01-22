@@ -22,6 +22,10 @@ public class DataManager : MonoBehaviour
         {
             StartCoroutine(LoadPlayerData(true));
         }
+        else
+        {
+            StartCoroutine(LoadPlayerData(false));
+        }
     }
 
     [Header("Developer Data")]

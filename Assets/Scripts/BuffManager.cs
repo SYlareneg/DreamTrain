@@ -419,8 +419,8 @@ public class ShowBuff
                 if (affectType == EBuffAffectType.Player)
                 {
                     BuffManager.Inst.playerShowBuffs.Add(this);
-                    Action<Card> earnCost = null;
-                    earnCost = (card) =>
+                    Action<Card, int> earnCost = null;
+                    earnCost = (card, enemyIdx) =>
                     {
                         if(card.item.type == CardType.Turn)
                         {
@@ -457,6 +457,63 @@ public class ShowBuff
                     removeBuff = () =>
                     {
                         TurnManager.OnRouletteSpin -= reduceCount;
+                    };
+                }
+                break;
+            case "커튼콜":
+                if (affectType == EBuffAffectType.Player)
+                {
+                    BuffManager.Inst.playerShowBuffs.Add(this);
+                    Action<Card, int> reduceCount = null;
+                    reduceCount = (card, enemyIdx) =>
+                    {
+                        if (isSetOnEnemyTurn)
+                        {
+                            isSetOnEnemyTurn = false;
+                            return;
+                        }
+                        BuffManager.Inst.AddShowBuff("커튼콜", affectType, -1, isSetOnEnemyTurn, baseVal, affectEnemyIdx);
+                        if (this.val == 0)
+                        {
+                            BuffManager.Inst.playerShowBuffs.Remove(this);
+                            TurnManager.OnUseCard -= reduceCount;
+                        }
+                        TurnManager.Inst.IncreaseCost(card.item.cost);
+                        card.UseCard(enemyIdx);
+                    };
+                    TurnManager.OnUseCard += reduceCount;
+                    removeBuff = () =>
+                    {
+                        TurnManager.OnUseCard -= reduceCount;
+                    };
+                }
+                break;
+            case "현혹":
+                if (affectType == EBuffAffectType.Player)
+                {
+                    BuffManager.Inst.playerShowBuffs.Add(this);
+                    Action<Card, int> endDaze = null;
+                    endDaze = (card, enemyIdx) =>
+                    {
+                        if(isSetOnEnemyTurn)
+                        {
+                            isSetOnEnemyTurn = false;
+                            return;
+                        }
+                        if(card.item.type != PassiveManager.Inst.lastCardType)
+                        {
+                            TurnManager.Inst.IncreaseCost(baseVal[0]);
+                        }
+                        if(this.val == 0)
+                        {
+                            BuffManager.Inst.playerShowBuffs.Remove(this);
+                            TurnManager.OnUseCard -= endDaze;
+                        }
+                    };
+                    TurnManager.OnUseCard = endDaze + TurnManager.OnUseCard;
+                    removeBuff = () =>
+                    {
+                        TurnManager.OnUseCard -= endDaze;
                     };
                 }
                 break;

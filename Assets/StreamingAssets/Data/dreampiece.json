@@ -275,19 +275,19 @@
           "r": 0,
           "g": 0,
           "b": 0,
-          "a": 0
+          "a": 1
         },
         {
           "r": 0,
           "g": 0,
           "b": 0,
-          "a": 0
+          "a": 1
         },
         {
           "r": 0,
           "g": 0,
           "b": 0,
-          "a": 0
+          "a": 1
         }
       ],
       "playerSpecialRoulettes": [
@@ -301,12 +301,12 @@
           "baseVal_enhanced": 15
         },
         {
-          "sprite": "",
-          "title": "",
-          "text": "",
+          "sprite": "룰렛_공격 VER.2",
+          "title": "마술카드 룰렛",
+          "text": "직전에 사용한 카드의 카드 타입에 따라 각기 다른 4가지의 룰렛을 부여합니다. 모든 룰렛은 효과 발동 시 소멸합니다.",
           "baseVal": 0,
-          "title_enhanced": "",
-          "text_enhanced": "",
+          "title_enhanced": "마술카드 룰렛+",
+          "text_enhanced": "직전에 사용한 카드의 카드 타입에 따라 각기 다른 4가지의 룰렛을 부여합니다. 모든 룰렛은 효과 발동 시 소멸합니다.",
           "baseVal_enhanced": 0
         },
         {

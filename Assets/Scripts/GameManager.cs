@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
         InputCheatKey();
         UpdateUIState();
 
-        Tooltip.showTooltipSignal = cardListView.activeSelf == false && relicScrollView.activeSelf == false && rewardCardView.activeSelf == false;
+        Tooltip.showTooltipSignal = cardListView.activeSelf == false && rewardCardView.activeSelf == false;
     }
 
     // 개발자용 특수입력

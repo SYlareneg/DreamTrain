@@ -1333,6 +1333,7 @@ public class EnemyManager : MonoBehaviour
         List<int> executeIdx = new List<int>();
         for (int i = 0; i < actionList.Count; i++)
         {
+            if(actionList[i].isIgnore) continue;
             if (actionList[i].actionType != EEnemyActionType.Turn)
             {
                 executeIdx.Add(i);
@@ -1459,6 +1460,7 @@ public class EnemyManager : MonoBehaviour
         {
             for(int j = 0; j < subEnemyActionList[sortedSubEnemies[i].enemyIdx].Count; j++)
             {
+                if(subEnemyActionList[sortedSubEnemies[i].enemyIdx][j].isIgnore) continue;
                 int localIndex_i = sortedSubEnemies[i].enemyIdx;
                 int localIndex_j = j;
                 var originalScale = subEnemyActionList[sortedSubEnemies[i].enemyIdx][j].transform.localScale;
@@ -1604,7 +1606,7 @@ public class EnemyManager : MonoBehaviour
             }
             else
             {
-                enemyDamageSprite = subEnemyImg[enemyIdx - 1].transform.Find("DamageSprite");
+                enemyDamageSprite = subEnemyImg[enemyIdx - 1]?.transform.Find("DamageSprite");
             }
             if (enemyDamageSprite != null)
             {

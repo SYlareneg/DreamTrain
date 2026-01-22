@@ -122,6 +122,7 @@ public class RoulettePiece : MonoBehaviour
 
     public void RouletteClear()
     {
+        tooltip.HideTooltip();
         int index = Array.IndexOf(RouletteManager.Inst.roulettePieces, this);
         switch (roulette.rtype.type)
         {
@@ -129,7 +130,11 @@ public class RoulettePiece : MonoBehaviour
                 PassiveManager.playerSpecialRouletteClear[roulette.rtype.specialTypeIdx]?.Invoke(index);
                 break;
             default:
-                RouletteManager.Inst.EnchantRoulettePiece(index, new RouletteType(ERouletteType.None), 0);
+                // RouletteManager.Inst.EnchantRoulettePiece(index, new RouletteType(ERouletteType.None, 0), 0);
+                RouletteItem rItem = new RouletteItem();
+                rItem.rtype = new RouletteType(ERouletteType.None, 0);
+                rItem.value = 0;
+                Setup(rItem);
                 break;
         }
     }

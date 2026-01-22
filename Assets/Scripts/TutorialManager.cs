@@ -124,8 +124,8 @@ public class TutorialManager : MonoBehaviour
                         HideTutorialBox();
                         SetNextTutorial_Card("3칸 회전", false);
 
-                        Action<Card> onUseCard = null;
-                        onUseCard = (card) =>
+                        Action<Card, int> onUseCard = null;
+                        onUseCard = (card, enemyIdx) =>
                         {
                             SetNextTutorial_Roulette(false);
                             Action onRouletteActivate = null;
@@ -235,8 +235,8 @@ public class TutorialManager : MonoBehaviour
                             {
                                 HideTutorialBox();
                                 SetNextTutorial_Card("1칸 회전", false);
-                                Action<Card> onUseCard = null;
-                                onUseCard = (card) =>
+                                Action<Card, int> onUseCard = null;
+                                onUseCard = (card, enemyIdx) =>
                                 {
                                     ShowTutorialBox(2, 2, 2);
                                     TurnManager.OnUseCard -= onUseCard;
@@ -444,8 +444,8 @@ public class TutorialManager : MonoBehaviour
                     hideScreenText.text = "손패에서 카드를 클릭해 손패 밖으로 드래그하면 카드를 사용할 수 있습니다!";
 
                     SetNextTutorial_Card("2칸 회전", true);
-                    Action<Card> onUseCard = null;
-                    onUseCard = (card) =>
+                    Action<Card, int> onUseCard = null;
+                    onUseCard = (card, enemyIdx) =>
                     {
                         ShowTutorialBox(1, 1, 2);
                         TurnManager.OnUseCard -= onUseCard;
@@ -489,8 +489,8 @@ public class TutorialManager : MonoBehaviour
                             hideScreenText.text = "앨리스는 카드를 사용해 룰렛에 새로운 힘을 부여할 수 있습니다. 효과가 부여되는 위치는 카드마다 다릅니다.\n\n추가로, '발톱 세우기'를 비롯한 몇몇 카드는 효과 발동을 위해 대상이 될 적을 선택해야 합니다. 이는 추후 여러 적이 등장했을 때 유용하게 활용할 수 있습니다.";
 
                             SetNextTutorial_Card("발톱 세우기", true);
-                            Action<Card> onUseCard = null;
-                            onUseCard = (card) =>
+                            Action<Card, int> onUseCard = null;
+                            onUseCard = (card, enemyIdx) =>
                             {
                                 ShowTutorialBox(2, 1, 3);
                                 TurnManager.OnUseCard -= onUseCard;
@@ -564,7 +564,7 @@ public class TutorialManager : MonoBehaviour
         var cardSR = cardExample.GetComponentsInChildren<SpriteRenderer>();
         foreach(var sr in cardSR)
         {
-            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.7f);
+            sr.color = new Color(sr.color.r * 0.7f, sr.color.g * 0.7f, sr.color.b * 0.7f, 1f);
         }
         cardExample.SetActive(false);
         int cardOrder = cardExample.GetComponent<Order>().originOrder;
@@ -586,8 +586,8 @@ public class TutorialManager : MonoBehaviour
         }
         pointer.SetActive(false);
 
-        Action<Card> setNextTutorial = null;
-        setNextTutorial = (card) =>
+        Action<Card, int> setNextTutorial = null;
+        setNextTutorial = (card, enemyIdx) =>
         {
             tutorialScreen.SetActive(false);
             CardManager.Inst.myCards[CardManager.Inst.myCards.Count - 1].GetComponent<Order>().SetOriginOrder(cardOrder);

@@ -106,7 +106,7 @@ public class RelicManager : MonoBehaviour
                     BuffManager.AddBuffToTarget(BuffManager.Inst.playerBuff_Damage_Type[(int)EDamageSource.Roulette], 0, damageMul, -1);
                     BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Damage_Type[0, (int)EDamageSource.Roulette], 0, damageMul, -1);
                 };
-                TurnManager.OnUseCard += (x) =>
+                TurnManager.OnUseCard += (x, enemyIdx) =>
                 {
                     if(cardUsed == false)
                     {
