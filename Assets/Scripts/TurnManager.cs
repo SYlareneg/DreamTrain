@@ -509,7 +509,7 @@ public class TurnManager : MonoBehaviour
         }
         if (playerTriggerCnt != 0 && playerTriggerCnt == playerTriggerMaxCnt)
         {
-            RouletteManager.Inst.TriggerRoulette();
+            StartCoroutine(RouletteManager.Inst.TriggerRoulette());
             playerTriggerCnt = 0;
         }
     }

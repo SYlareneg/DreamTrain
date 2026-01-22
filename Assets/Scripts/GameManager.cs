@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
     [Tooltip("플레이어 버프")] public GameObject playerBuffUIView;
     [Tooltip("플레이어 페르소나")] public Image personaImg;
     [Tooltip("플레이어 그림자")] public Image shadowImg;
+    [Tooltip("플레이어 데미지 이펙트")] public GameObject playerDamageEffect;
     [Header("적 UI")]
     [SerializeField][Tooltip("적 체력 값 텍스트")] TMP_Text[] enemyHealthTMP;
     [SerializeField][Tooltip("적 체력 바")] Image[] enemyHealthImg;
@@ -81,6 +82,17 @@ public class GameManager : MonoBehaviour
         DOTween.SetTweensCapacity(500, 50);
         gameOverSignal = false;
         StartGame();
+
+        playerDamageEffect.SetActive(false);
+        TurnManager.OnPlayerDamaged += (damage, source) =>
+        {
+            playerDamageEffect.SetActive(true);
+            playerDamageEffect.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
+            playerDamageEffect.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 0.6f), 0.3f).OnComplete(() =>
+            {
+                playerDamageEffect.SetActive(false);
+            });
+        };
     }
 
     // Update is called once per frame
@@ -120,7 +132,7 @@ public class GameManager : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.T))
             {
-                RouletteManager.Inst.TriggerRoulette();
+                StartCoroutine(RouletteManager.Inst.TriggerRoulette());
             }
             if (Input.GetKeyDown(KeyCode.L))
             {

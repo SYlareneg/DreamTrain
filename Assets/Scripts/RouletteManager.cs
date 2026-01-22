@@ -18,6 +18,7 @@ public class RouletteManager : MonoBehaviour
     [SerializeField] GameObject rouletteArea;
     public SpriteRenderer triggerSprite;
     public GameObject rouletteInnerFrame;
+    public Animator triggerEffect;
     public Sprite playerTriggerSprite;
     public Sprite enemyTriggerSprite;
 
@@ -175,10 +176,12 @@ public class RouletteManager : MonoBehaviour
         return triggerPiece == enemyTriggerPiece;
     }
 
-    public void TriggerRoulette()
+    public IEnumerator TriggerRoulette()
     {
         triggerPiece = playerTriggerPiece;
         BuffManager.Inst.rouletteBuff_Trigger.Clear();
+        triggerEffect.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
         isTriggerActivated = true;
         triggerSprite.sprite = playerTriggerSprite;
         triggerSprite.gameObject.SetActive(true);
@@ -192,6 +195,8 @@ public class RouletteManager : MonoBehaviour
         TriggerActivation = PlayerTriggerActivation;
         Utils.AllignActions(ref TurnManager.OnRouletteTrigger, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnRouletteTrigger?.Invoke();
+        yield return new WaitForSeconds(1f);
+        triggerEffect.gameObject.SetActive(false);
     }
 
     public void DeTriggerRoulette()

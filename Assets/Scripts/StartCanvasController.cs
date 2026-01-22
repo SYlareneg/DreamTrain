@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class StartCanvasController : MonoBehaviour
 {
+    public static StartCanvasController Inst;
     [SerializeField] GameObject newGameButton;
     [SerializeField] GameObject loadGameButton;
     [SerializeField] GameObject optionButton;
@@ -16,6 +17,7 @@ public class StartCanvasController : MonoBehaviour
 
     void Awake()
     {
+        Inst = this;
         input = new InputSystem_Actions();
     }
 
@@ -139,12 +141,17 @@ public class StartCanvasController : MonoBehaviour
         }
         else
         {
-            selector.transform.DOMove(newGameButton.transform.position, 0.2f);
-            newGameButton.GetComponentInChildren<TMP_Text>().color = Color.white;
-            loadGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
-            optionButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
-            exitButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+            SelectNewGame();
         }
+    }
+
+    public void SelectNewGame()
+    {
+        selector.transform.DOMove(newGameButton.transform.position, 0.2f);
+        newGameButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+        loadGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+        optionButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+        exitButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
     }
 
     public void OnLoadGameClicked()
@@ -162,12 +169,17 @@ public class StartCanvasController : MonoBehaviour
         }
         else
         {
-            selector.transform.DOMove(loadGameButton.transform.position, 0.2f);
-            newGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
-            loadGameButton.GetComponentInChildren<TMP_Text>().color = Color.white;
-            optionButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
-            exitButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+            SelectLoadGame();
         }
+    }
+
+    public void SelectLoadGame()
+    {
+        selector.transform.DOMove(loadGameButton.transform.position, 0.2f);
+        newGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+        loadGameButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+        optionButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+        exitButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
     }
     public void OnOptionClicked()
     {
@@ -180,12 +192,16 @@ public class StartCanvasController : MonoBehaviour
         }
         else
         {
-            selector.transform.DOMove(optionButton.transform.position, 0.2f);
-            newGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
-            loadGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
-            optionButton.GetComponentInChildren<TMP_Text>().color = Color.white;
-            exitButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+            SelectOption();
         }
+    }
+    public void SelectOption()
+    {
+        selector.transform.DOMove(optionButton.transform.position, 0.2f);
+        newGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+        loadGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+        optionButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+        exitButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
     }
     public void OnExitClicked()
     {
@@ -202,11 +218,16 @@ public class StartCanvasController : MonoBehaviour
         }
         else
         {
-            selector.transform.DOMove(exitButton.transform.position, 0.2f);
-            newGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
-            loadGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
-            optionButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
-            exitButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+            SelectExit();
         }
+    }
+
+    public void SelectExit()
+    {
+        selector.transform.DOMove(exitButton.transform.position, 0.2f);
+        newGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+        loadGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+        optionButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+        exitButton.GetComponentInChildren<TMP_Text>().color = Color.white;
     }
 }
