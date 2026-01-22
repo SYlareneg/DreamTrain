@@ -88,10 +88,15 @@ public class GameManager : MonoBehaviour
         {
             playerDamageEffect.SetActive(true);
             playerDamageEffect.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
-            playerDamageEffect.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 0.6f), 0.3f).OnComplete(() =>
+            Sequence damageSeq = DOTween.Sequence();
+            damageSeq.Append(playerDamageEffect.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 0.6f), 0.3f))
+            .Append(playerDamageEffect.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 0f), 0.6f))
+            .OnComplete(() =>
             {
                 playerDamageEffect.SetActive(false);
             });
+
+            Camera.main.transform.DOShakePosition(0.4f, 0.2f, 20, 90f);
         };
     }
 
