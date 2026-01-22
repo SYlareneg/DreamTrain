@@ -11,7 +11,7 @@ public class BugChecker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int a = 1;
+        int a = 2;
           ;
           
      
