@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class RoomPlayer : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class RoomPlayer : MonoBehaviour
     SpriteRenderer spriteRenderer;
     private InputSystem_Actions input;
     Animator animator;
+    public List<RoomClickableObject> nearbyInteractables = new List<RoomClickableObject>();
 
     void PlayerMove(Vector2 pos)
     {
@@ -26,6 +28,7 @@ public class RoomPlayer : MonoBehaviour
     {
         input.Player.Enable();
         input.Player.Click.performed += OnClickPerformed;
+        input.Player.Interact.performed += OnInteractPerformed;
     }
 
 
@@ -33,12 +36,11 @@ public class RoomPlayer : MonoBehaviour
     {
         input.Player.Disable();
         input.Player.Click.performed -= OnClickPerformed;
-
+        input.Player.Interact.performed -= OnInteractPerformed;
     }
 
     private void OnClickPerformed(InputAction.CallbackContext context)
     {
-        // if (PlayerManager.Inst.isLoading) return;
         if(!isInteractable) return;
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D[] hits = Physics2D.RaycastAll(mousePos, Vector2.zero);
@@ -61,6 +63,19 @@ public class RoomPlayer : MonoBehaviour
         PlayerMove(Utils.MousePos);
     }
 
+    private void OnInteractPerformed(InputAction.CallbackContext context)
+    {
+        if(!isInteractable) return;
+        if(nearbyInteractables.Count > 0)
+        {
+            nearbyInteractables.Sort((a, b) => 
+                Vector2.Distance(a.transform.position, rb.position)
+                .CompareTo(Vector2.Distance(b.transform.position, rb.position))
+            );
+            nearbyInteractables[0].Interact();
+        }
+    }
+
     private void CheckMove()
     {
         // if (PlayerManager.Inst.isLoading) return;
@@ -70,6 +85,16 @@ public class RoomPlayer : MonoBehaviour
         if (moveDelta.magnitude > 0)
         {
             PlayerMove(rb.position + moveDelta);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        RoomClickableObject interObj = collision.gameObject.GetComponent<RoomClickableObject>();
+        if (interObj != null && collision.isTrigger == false)
+        {
+            interObj.isInteractable = true;
+            nearbyInteractables.Add(interObj);
         }
     }
 
@@ -88,6 +113,7 @@ public class RoomPlayer : MonoBehaviour
         if (interObj != null && collision.isTrigger == false)
         {
             interObj.isInteractable = false;
+            nearbyInteractables.Remove(interObj);
         }
     }
 

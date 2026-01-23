@@ -1,9 +1,9 @@
 {
     "maxHealth": 60,
     "curHealth": 60,
-    "dreamDust": 1003,
+    "dreamDust": 0,
     "leftPassengers": 0,
-    "isTutorial": false,
+    "isTutorial": true,
     "personaPiece": "고양이의 꿈",
     "isPersonaEnhanced": false,
     "personaCards": [
@@ -20,26 +20,34 @@
             "num": 1
         }
     ],
-    "shadowPiece": "마술사의 꿈",
+    "shadowPiece": "고양이의 꿈",
     "isShadowEnhanced": false,
     "shadowCards": [
         {
-            "cardName": "마술 카드",
+            "cardName": "발톱 세우기",
             "num": 1
         },
         {
-            "cardName": "순간이동 마술",
+            "cardName": "실뭉치",
             "num": 1
         },
         {
-            "cardName": "마술 상자",
+            "cardName": "실 풀기",
             "num": 1
         }
     ],
     "normalCards": [
         {
-            "cardName": "2칸 역회전",
-            "num": 1
+            "cardName": "1칸 회전",
+            "num": 2
+        },
+        {
+            "cardName": "2칸 회전",
+            "num": 2
+        },
+        {
+            "cardName": "3칸 회전",
+            "num": 2
         }
     ],
     "relics": [],
@@ -47,13 +55,13 @@
     "useableItems": [],
     "courage": 1,
     "wisdom": 1,
-    "luck": 3,
-    "currentActNum": 1,
+    "luck": 1,
+    "currentActNum": 0,
     "mapNodes": [
         {
-            "locationID": "START",
+            "locationID": "TUTORIAL_START",
             "selectedEncounterPool": [],
-            "ID": "f9017fed88c84fc388a7b0075f917ecc",
+            "ID": "69d2eeba6c8c4be4a7ec8bcb89f06c01",
             "level": 0,
             "pos": 0,
             "screenPos": {
@@ -62,124 +70,78 @@
                 "z": 0.0
             },
             "childNodes": [
-                "6269097d0b3c4c3bad25bbb8b3ef06fe"
+                "6a4883d345284c4f963d50877e8cb8ac"
             ]
         },
         {
-            "locationID": "AMUSEMENT_PARK_ENTRANCE",
+            "locationID": "TUTORIAL_1",
             "selectedEncounterPool": [],
-            "ID": "6269097d0b3c4c3bad25bbb8b3ef06fe",
+            "ID": "6a4883d345284c4f963d50877e8cb8ac",
             "level": 1,
             "pos": 0,
             "screenPos": {
                 "x": -15.5,
-                "y": 0.06507008522748947,
+                "y": -0.06517934799194336,
                 "z": 0.0
             },
             "childNodes": [
-                "6aec0eba264246838fede86b1d613c2a",
-                "e3abda122efb4bbdadef145b2e228c10"
+                "2a43a04d0d124e69ad9e2209325b2acc"
             ]
         },
         {
-            "locationID": "TEA_CUPS",
+            "locationID": "TUTORIAL_2",
             "selectedEncounterPool": [],
-            "ID": "6aec0eba264246838fede86b1d613c2a",
+            "ID": "2a43a04d0d124e69ad9e2209325b2acc",
             "level": 2,
-            "pos": 1,
+            "pos": 0,
             "screenPos": {
                 "x": -11.5,
-                "y": 0.9308785200119019,
+                "y": -0.088069386780262,
                 "z": 0.0
             },
             "childNodes": [
-                "24329f5e41df41218c295aa026a42137"
+                "c0b56937ec3a4df183fbe9611d7df569"
             ]
         },
         {
-            "locationID": "GHOST_HOUSE",
+            "locationID": "TUTORIAL_3",
             "selectedEncounterPool": [],
-            "ID": "e3abda122efb4bbdadef145b2e228c10",
-            "level": 2,
-            "pos": -1,
-            "screenPos": {
-                "x": -11.5,
-                "y": -0.907009482383728,
-                "z": 0.0
-            },
-            "childNodes": [
-                "cdf2f7c7c01648ef9e9fb769afeecbce"
-            ]
-        },
-        {
-            "locationID": "MERRY_GO_ROUND",
-            "selectedEncounterPool": [],
-            "ID": "cdf2f7c7c01648ef9e9fb769afeecbce",
+            "ID": "c0b56937ec3a4df183fbe9611d7df569",
             "level": 3,
-            "pos": -1,
+            "pos": 0,
             "screenPos": {
                 "x": -7.5,
-                "y": -0.9194542169570923,
+                "y": 0.03252679854631424,
                 "z": 0.0
             },
             "childNodes": [
-                "6c2160d5c573445a8c57c5f3d7032fcd"
+                "664dc7d0499a4c7aa88bf585aa319ddf"
             ]
         },
         {
-            "locationID": "MAZE_GARDEN",
+            "locationID": "TUTORIAL_END",
             "selectedEncounterPool": [],
-            "ID": "24329f5e41df41218c295aa026a42137",
-            "level": 3,
-            "pos": 1,
-            "screenPos": {
-                "x": -7.5,
-                "y": 0.9608149528503418,
-                "z": 0.0
-            },
-            "childNodes": [
-                "6c2160d5c573445a8c57c5f3d7032fcd"
-            ]
-        },
-        {
-            "locationID": "ICECREAM_CART",
-            "selectedEncounterPool": [],
-            "ID": "6c2160d5c573445a8c57c5f3d7032fcd",
+            "ID": "664dc7d0499a4c7aa88bf585aa319ddf",
             "level": 4,
             "pos": 0,
             "screenPos": {
                 "x": -3.5,
-                "y": 0.022776976227760316,
-                "z": 0.0
-            },
-            "childNodes": [
-                "efcbbb208993420f80b9103231c69018"
-            ]
-        },
-        {
-            "locationID": "END",
-            "selectedEncounterPool": [],
-            "ID": "efcbbb208993420f80b9103231c69018",
-            "level": 5,
-            "pos": 0,
-            "screenPos": {
-                "x": 0.5,
                 "y": 0.0,
                 "z": 0.0
             },
             "childNodes": []
         }
     ],
-    "totalLevel": 6,
-    "visitedNodeIDList": [],
-    "curNodeIndex": 0,
-    "curNodeLocationID": "START",
-    "lastEncounterType": 0,
-    "encounterQueue": [
-        "ACT1_WINE_IN_CUP",
-        "ACT1_TEA_TIME"
+    "totalLevel": 5,
+    "visitedNodeIDList": [
+        "69d2eeba6c8c4be4a7ec8bcb89f06c01",
+        "6a4883d345284c4f963d50877e8cb8ac"
     ],
-    "currentStepID": "P_AFTER_BATTLE",
-    "currentEncounterID": "ACT1_WHITE_RABBIT",
-    "enemyName": "DevilDoll"
+    "curNodeIndex": 1,
+    "curNodeLocationID": "TUTORIAL_1",
+    "lastEncounterType": 0,
+    "encounterQueue": [],
+    "currentStepID": "",
+    "currentEncounterID": "",
+    "enemyName": "CardSoldier1"
 }

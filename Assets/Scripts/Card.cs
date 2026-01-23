@@ -984,7 +984,8 @@ public class Card : MonoBehaviour
                 {
                     int tempVal = BuffManager.Inst.GetBuffedRouletteValue(RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat]);
                     tempVal = tempVal - tempVal / 2;
-                    TurnManager.Inst.GetShield(false, tempVal * GetBuffedVal(item.cardValues[0], ECardValueType.Special), EDamageSource.Card);
+                    if(item.name == "실 풀기+") tempVal = tempVal * GetBuffedVal(item.cardValues[0], ECardValueType.Special);
+                    TurnManager.Inst.GetShield(false, tempVal, EDamageSource.Card);
                     BuffManager.AddBuffToTarget(BuffManager.Inst.roulettePieceBuff[RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat]], -tempVal, 1, -1);
                 }
                 else

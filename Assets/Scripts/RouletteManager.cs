@@ -350,47 +350,47 @@ public class RouletteManager : MonoBehaviour
         // roulettePieces[triggerPos].Setup(tempRoulettePiece);
     }
 
-    public void RouletteMouseDown()
-    {
-        if(!spinFlag && !TurnManager.Inst.isLoading)
-        {
-            spinFlag = true;
-            TurnManager.Inst.isLoading = true;
-            isRouletteDrag = true;
-            lastRotation = rouletteArea.transform.parent.rotation;
-        }
-    }
+    // public void RouletteMouseDown()
+    // {
+    //     if(!spinFlag && !TurnManager.Inst.isLoading)
+    //     {
+    //         spinFlag = true;
+    //         TurnManager.Inst.isLoading = true;
+    //         isRouletteDrag = true;
+    //         lastRotation = rouletteArea.transform.parent.rotation;
+    //     }
+    // }
 
-    public void RouletteMouseUp()
-    {
-        if(isRouletteDrag)
-        {
-            isRouletteDrag = false;
-            rouletteArea.transform.parent.DORotateQuaternion(lastRotation, 0.7f).OnComplete(() =>
-            {
-                spinFlag = false;
-                TurnManager.Inst.isLoading = false;
-            });
-        }
-    }
+    // public void RouletteMouseUp()
+    // {
+    //     if(isRouletteDrag)
+    //     {
+    //         isRouletteDrag = false;
+    //         rouletteArea.transform.parent.DORotateQuaternion(lastRotation, 0.7f).OnComplete(() =>
+    //         {
+    //             spinFlag = false;
+    //             TurnManager.Inst.isLoading = false;
+    //         });
+    //     }
+    // }
 
-    void RouletteDrag()
-    {
-        Vector3 mouseOrtho = new Vector3(Utils.MousePos.x, Utils.MousePos.y, rouletteArea.transform.parent.position.z);
-        Quaternion mouseRotation = Quaternion.FromToRotation(rouletteArea.transform.parent.position, mouseOrtho);
-        rouletteArea.transform.parent.rotation = lastRotation * mouseRotation;
-    }
+    // void RouletteDrag()
+    // {
+    //     Vector3 mouseOrtho = new Vector3(Utils.MousePos.x, Utils.MousePos.y, rouletteArea.transform.parent.position.z);
+    //     Quaternion mouseRotation = Quaternion.FromToRotation(rouletteArea.transform.parent.position, mouseOrtho);
+    //     rouletteArea.transform.parent.rotation = lastRotation * mouseRotation;
+    // }
 
-    void DetectRouletteArea()
-    {
-        RaycastHit2D[] hits = Physics2D.RaycastAll(Utils.MousePos, Vector3.forward);
-        int layer = LayerMask.NameToLayer("RouletteArea");
-        onRouletteArea = Array.Exists(hits, x => x.collider.gameObject.layer == layer);
-        if(onRouletteArea == false)
-        {
-            RouletteMouseUp();
-        }
-    }
+    // void DetectRouletteArea()
+    // {
+    //     RaycastHit2D[] hits = Physics2D.RaycastAll(Utils.MousePos, Vector3.forward);
+    //     int layer = LayerMask.NameToLayer("RouletteArea");
+    //     onRouletteArea = Array.Exists(hits, x => x.collider.gameObject.layer == layer);
+    //     if(onRouletteArea == false)
+    //     {
+    //         RouletteMouseUp();
+    //     }
+    // }
 
     void ShowBuffedPieces()
     {
@@ -415,12 +415,12 @@ public class RouletteManager : MonoBehaviour
 
     private void Update()
     {
-        if (isRouletteDrag)
-        {
-            RouletteDrag();
-        }
+        // if (isRouletteDrag)
+        // {
+        //     RouletteDrag();
+        // }
 
-        DetectRouletteArea();
+        // DetectRouletteArea();
         ShowBuffedPieces();
     }
 }

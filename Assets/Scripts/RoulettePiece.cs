@@ -293,13 +293,13 @@ public class RoulettePiece : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
-    {
-        RouletteManager.Inst.RouletteMouseDown();
-    }
+    // private void OnMouseDown()
+    // {
+    //     RouletteManager.Inst.RouletteMouseDown();
+    // }
 
-    private void OnMouseUp()
-    {
-        RouletteManager.Inst.RouletteMouseUp();
-    }
+    // private void OnMouseUp()
+    // {
+    //     RouletteManager.Inst.RouletteMouseUp();
+    // }
 }
