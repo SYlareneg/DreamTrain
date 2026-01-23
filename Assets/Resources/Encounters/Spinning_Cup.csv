@@ -33,7 +33,7 @@ P_SPIN,DESC,"당신은 컵을 따라 빙글빙글 돕니다.
 너도 함께 나도 함께 빙글빙글 돕니다.
 ",,,
 P_SPIN,BRANCH,"다음
-",P_AFTER_SPIN,GetObjet(),
+",P_AFTER_SPIN,GetObjet(찻잔),
 P_AFTER_SPIN,DESC,"한바탕 정신없이 돌고나니 당신은 세상이 새롭게 보입니다. 
 마치 새로 태어난 것만 같은 기분을 만끽하며 당신은 빙글빙글 걸어갑니다.",,,
 P_AFTER_SPIN,BRANCH,빙글빙글!,END,,

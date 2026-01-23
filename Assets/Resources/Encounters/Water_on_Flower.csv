@@ -3,15 +3,14 @@ P1,DESC,"희미한 꽃향기를 따라간 곳에는, 이미 시들어 말라 죽
 P1,BRANCH,눈물을 흘려준다,P_TEAR,,
 P1,BRANCH,"피를 흘려준다
 ",P_BLOOD,"LoseHP(5, ab)",
-P1,BRANCH,와인을 한 방울 떨어뜨린다,P_WINE,,HasObjet(WineDrop)
+P1,BRANCH,와인을 한 방울 떨어뜨린다,P_WINE,,HasObjet(와인의 눈물)
 P_TEAR,DESC,"꽃에 당신의 눈물이 닿자, 꽃이 순식간에 활짝 피어납니다. 마법 같은 일이군요!
 그 꽃을 바라보고 있으니 당신의 마음이 조금은 치유되는 것 같습니다.",,,
 P_TEAR,BRANCH,다시 길을 떠난다,END,Heal(10),
 P_BLOOD,DESC,"꽃에 당신의 피가 닿자, 꽃잎이 붉게 물들더니 순식간에 말라 죽어버립니다. 슬픈 일이군요.
 
 당신은 꽃잎을 하나 주워 챙기고는 다시 길을 떠납니다.",,,
-P_BLOOD,BRANCH,떠난다,END,GetObjet(BloodyFlower),
+P_BLOOD,BRANCH,떠난다,END,GetObjet(붉은 꽃잎),
 P_WINE,DESC,"당신은 와인잔에게서 얻었던 와인을 한 방울 떨어뜨립니다. 와인이 꽃에 닿자 꽃이 순식간에 피어납니다. 마법 같은 일이군요! 
 게다가 꽃에서 와인 향이 나는 것 같습니다. 그 향을 맡다보니 당신은 조금 용감해지는 기분이 듭니다.",,,
 P_WINE,BRANCH,다시 길을 떠난다,END,"UpStatus(Courage,2),DownStatus(Wisdom,1)",
-,,,,,

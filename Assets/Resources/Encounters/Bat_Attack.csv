@@ -12,9 +12,5 @@ P_AFTER_BATTLE,BRANCH,자리를 떠난다,END,,DEFAULT
 P_VAMP,DESC,"박쥐는 당신에게 서서히 다가오더니…놀랍게도 당신에게 작은 선물을 주고는 유유히 자리를 떠납니다! 박쥐에게 선물을 받다니 신기한 경험이군요.
 
 당신은 박쥐의 선물을 소중히 주워들고는 다음 장소로 향합니다.
-",,GetObjet(BatWings),
+",,GetObjet(박쥐 날개),
 P_VAMP,BRANCH,떠난다,END,,DEFAULT
-,,,,,
-,,,,,
-,,,,,
-,,,,,

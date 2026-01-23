@@ -16,7 +16,7 @@ P2,DESC,"""원한다면 당신도 웃게 만들어드릴 수 있어요. 당신�
 ""그러기를 원한다면, 지금 저를 보며 웃어주세요.""
 
 ",,,
-P2,BRANCH,웃음을 짓는다. ,P_SMILE,GetObjet(PermanentSmile),
+P2,BRANCH,웃음을 짓는다. ,P_SMILE,GetObjet(영원한 웃음),
 P2,BRANCH,웃지 않는다. ,P_REJECTION,"UpStatus(Wisdom, 1)",
 P_SMILE,DESC,"당신의 내면에서 무언가 사라지는 것 같은 느낌이 들지만, 정확히 무슨 일이 일어나고 있는 것인지는 모르겠습니다.
 
@@ -32,5 +32,3 @@ P_REJECTION,DESC,"""그렇군요. 역시 당신은 저와 같이 다른 별에�
 
 당신의 머릿속에는 그의 티없이 맑았던 웃음이 계속해서 맴돕니다.",,,
 P_REJECTION,BRANCH,떠난다,END,,
-,,,,,
-,,,,,

@@ -32,4 +32,4 @@ P_WOW,DESC,"감탄하는 당신을 보며 의기양양해진 비둘기는 또다
 당신은 지지의 감상평에 동의하며 다시 길을 떠납니다.  
 
 ",,,
-P_WOW,BRANCH,떠난다,END,GetObjet(DoveCoin),
+P_WOW,BRANCH,떠난다,END,GetObjet(비둘기 코인),

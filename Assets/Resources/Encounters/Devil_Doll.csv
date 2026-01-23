@@ -24,7 +24,7 @@ P3,BRANCH,떠난다,END,,
 P2_S,DESC,"다행히 인형이 다시 살아나 당신에게 칼을 휘두르는 일은 없었습니다. 
 
 당신은 인형을 잘 챙겨들고는 길을 떠납니다. ",,,
-P2_S,BRANCH,떠난다,END,GetObjet(VoodooDoll),
+P2_S,BRANCH,떠난다,END,GetObjet(저주인형),
 P2_GS,DESC,"다행히 인형이 다시 살아나 당신에게 칼을 휘두르는 일은 없었습니다. 
 게다가 인형 근처에 주울만한 것들이 더 있군요!
 

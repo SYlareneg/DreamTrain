@@ -40,6 +40,4 @@ P_AFTER_REJECTION,DESC,"당신은 찻잔들을 멋지게 제압했습니다.
 
 ",,,
 P_AFTER_REJECTION,BRANCH,"떠난다
-",END,GetObjet(WineDrop),DEFAULT
-,,,,,
-,,,,,
+",END,GetObjet(와인의 눈물),DEFAULT
