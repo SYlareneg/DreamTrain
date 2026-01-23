@@ -13,6 +13,15 @@ MonoBehaviour:
   m_Name: ActDataSO
   m_EditorClassIdentifier: Assembly-CSharp::ActDataSO
   actDataList:
+  - actNum: 0
+    essentialLocations:
+    - TUTORIAL_START
+    - TUTORIAL_1
+    - TUTORIAL_2
+    - TUTORIAL_3
+    - TUTORIAL_END
+    essentialIntervalLayerCount: 00000000000000000000000000000000
+    specialLocations: []
   - actNum: 1
     essentialLocations:
     - START
@@ -29,7 +38,16 @@ MonoBehaviour:
   - id: START
     nameKO: "\uCD9C\uBC1C"
     descriptionKO: "\uCD9C\uBC1C \uC9C0\uC810\uC785\uB2C8\uB2E4."
-    sprite: Circle
+    sprite: 
+    hideSprite: 
+    encounterPool: []
+    encounterNum: 0
+    difficulty: 6
+    isNormalLocation: 0
+  - id: TUTORIAL_START
+    nameKO: "\uD29C\uD1A0\uB9AC\uC5BC \uC2DC\uC791"
+    descriptionKO: "\uCD9C\uBC1C \uC9C0\uC810\uC785\uB2C8\uB2E4."
+    sprite: 
     hideSprite: 
     encounterPool: []
     encounterNum: 0
@@ -38,11 +56,20 @@ MonoBehaviour:
   - id: END
     nameKO: "\uB3C4\uCC29"
     descriptionKO: "\uB3C4\uCC29 \uC9C0\uC810\uC785\uB2C8\uB2E4."
-    sprite: Circle
+    sprite: 
     hideSprite: 
     encounterPool: []
     encounterNum: 0
-    difficulty: 10
+    difficulty: 16
+    isNormalLocation: 0
+  - id: TUTORIAL_END
+    nameKO: "\uD29C\uD1A0\uB9AC\uC5BC \uC885\uB8CC"
+    descriptionKO: "\uB3C4\uCC29 \uC9C0\uC810\uC785\uB2C8\uB2E4."
+    sprite: 
+    hideSprite: 
+    encounterPool: []
+    encounterNum: 0
+    difficulty: 4
     isNormalLocation: 0
   - id: AMUSEMENT_PARK_ENTRANCE
     nameKO: "\uB180\uC774\uACF5\uC6D0 \uC785\uAD6C"
@@ -53,7 +80,7 @@ MonoBehaviour:
     encounterPool:
     - ACT1_WHITE_RABBIT
     encounterNum: 1
-    difficulty: 1
+    difficulty: 7
     isNormalLocation: 0
   - id: MERRY_GO_ROUND
     nameKO: "\uD68C\uC804\uBAA9\uB9C8"
@@ -64,10 +91,9 @@ MonoBehaviour:
     encounterPool:
     - ACT1_FASTEST_HORSE
     - ACT1_LAZY_HORSE
-    - 
     - ACT1_BEST_HORSE
     encounterNum: 2
-    difficulty: 2
+    difficulty: 8
     isNormalLocation: 0
   - id: TEA_CUPS
     nameKO: "\uD68C\uC804 \uCEF5"
@@ -78,10 +104,9 @@ MonoBehaviour:
     encounterPool:
     - ACT1_SPINNING_CUP
     - ACT1_WINE_IN_CUP
-    - 
     - ACT1_TEA_TIME
     encounterNum: 2
-    difficulty: 2
+    difficulty: 8
     isNormalLocation: 0
   - id: GHOST_HOUSE
     nameKO: "\uC720\uB839\uC758 \uC9D1"
@@ -98,7 +123,7 @@ MonoBehaviour:
     - ACT1_BAT_ATTACK
     - ACT1_VAMP_INVITATION
     encounterNum: 3
-    difficulty: 3
+    difficulty: 9
     isNormalLocation: 0
   - id: MAZE_GARDEN
     nameKO: "\uBBF8\uB85C \uC815\uC6D0"
@@ -109,18 +134,13 @@ MonoBehaviour:
     hideSprite: "\uBBF8\uB85C\uC815\uC6D0N02"
     encounterPool:
     - ACT1_SHEEP_IN_MAZE
-    - 
     - ACT1_SUNNY_AFTERNOON
-    - 
     - ACT1_WHERE_DOVE_FROM
-    - 
     - ACT1_FLOWER_ATTACK
-    - 
     - ACT1_WATER_ON_FLOWER
-    - 
     - ACT1_ESCAPE_MAZE
     encounterNum: 3
-    difficulty: 4
+    difficulty: 10
     isNormalLocation: 0
   - id: ICECREAM_CART
     nameKO: "\uC544\uC774\uC2A4\uD06C\uB9BC \uCE74\uD2B8"
@@ -130,10 +150,39 @@ MonoBehaviour:
     hideSprite: "\uC544\uC774\uC2A4\uD06C\uB9BC\uCE74\uD2B8N02"
     encounterPool:
     - ACT1_SWEET_THING
-    - 
     - ACT1_SOUVENIR
     encounterNum: 1
-    difficulty: 5
+    difficulty: 11
+    isNormalLocation: 0
+  - id: TUTORIAL_1
+    nameKO: "\uD29C\uD1A0\uB9AC\uC5BC 1"
+    descriptionKO: "\uC9C0\uC9C0\uC640 \uD568\uAED8 \uAFC8\uC18D\uC744 \uD0D0\uD5D8\uD574
+      \uBCF4\uC790"
+    sprite: "\uBB34\uB30002"
+    hideSprite: "\uBB34\uB300N01"
+    encounterPool: []
+    encounterNum: 0
+    difficulty: 1
+    isNormalLocation: 0
+  - id: TUTORIAL_2
+    nameKO: "\uD29C\uD1A0\uB9AC\uC5BC 2"
+    descriptionKO: "\uC9C0\uC9C0\uC640 \uD568\uAED8 \uAFC8\uC18D\uC744 \uD0D0\uD5D8\uD574
+      \uBCF4\uC790"
+    sprite: "\uBB34\uB30002"
+    hideSprite: "\uBB34\uB300N01"
+    encounterPool: []
+    encounterNum: 0
+    difficulty: 2
+    isNormalLocation: 0
+  - id: TUTORIAL_3
+    nameKO: "\uD29C\uD1A0\uB9AC\uC5BC 3"
+    descriptionKO: "\uC9C0\uC9C0\uC640 \uD568\uAED8 \uAFC8\uC18D\uC744 \uD0D0\uD5D8\uD574
+      \uBCF4\uC790"
+    sprite: "\uBB34\uB30002"
+    hideSprite: "\uBB34\uB300N01"
+    encounterPool: []
+    encounterNum: 0
+    difficulty: 3
     isNormalLocation: 0
   encounterDataList:
   - id: ACT1_WHITE_RABBIT
@@ -263,7 +312,7 @@ MonoBehaviour:
   - id: ACT1_SPINNING_CUP
     nameKO: "\uBE59\uAE00\uBE59\uAE00"
     type: 0
-    imageName: 
+    imageName: "\uBE59\uAE00\uBE59\uAE00"
     textPath: 
     order: 0
     isEssential: 0
@@ -302,7 +351,7 @@ MonoBehaviour:
   - id: ACT1_WINE_IN_CUP
     nameKO: "\uCC3B\uC794\uACFC \uC640\uC778\uC794"
     type: 0
-    imageName: 
+    imageName: "\uCC3B\uC794\uACFC \uC640\uC778\uC794"
     textPath: 
     order: 0
     isEssential: 0
@@ -351,7 +400,7 @@ MonoBehaviour:
   - id: ACT1_TEA_TIME
     nameKO: "\uD2F0\uD0C0\uC784"
     type: 6
-    imageName: 
+    imageName: Tea_Time
     textPath: 
     order: 1
     isEssential: 0
