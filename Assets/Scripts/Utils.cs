@@ -183,7 +183,7 @@ public class Utils
         return n.Contains("<>c") || n.Contains("DisplayClass");
     }
 
-	public static IEnumerator EnsureCopiedToPersistent(string relativePath)
+	public static IEnumerator EnsureCopiedToPersistent(string relativePath, Action<bool> done = null)
     {
         var dst = Path.Combine(Application.persistentDataPath, "Data", relativePath);
         var dir = Path.GetDirectoryName(dst);
@@ -193,23 +193,53 @@ public class Utils
 
         var src = Path.Combine(Application.streamingAssetsPath, "Data", relativePath);
 
-        using (var req = UnityWebRequest.Get(src))
+#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_IOS
+        // Editor/PC/iOS는 StreamingAssets가 일반 파일로 접근 가능한 경우가 대부분 → File I/O가 제일 확실
+        try
+        {
+            var bytes = File.ReadAllBytes(src);
+            File.WriteAllBytes(dst, bytes); // ✅ 항상 덮어쓰기
+            Debug.Log($"[ForceCopy] Streaming -> Persistent\nSRC: {src}\nDST: {dst}");
+            done?.Invoke(true);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"[ForceCopy] Failed (File I/O)\nSRC: {src}\nDST: {dst}\n{e}");
+            done?.Invoke(false);
+        }
+        yield break;
+#else
+        // Android 등: StreamingAssets가 apk 내부라 File I/O 불가 → UnityWebRequest 사용
+        string srcUri = new Uri(srcPath).AbsoluteUri; // file://... 형태로 안전 변환
+        using (var req = UnityWebRequest.Get(srcUri))
         {
             yield return req.SendWebRequest();
 
 #if UNITY_2020_2_OR_NEWER
-            if (req.result != UnityWebRequest.Result.Success)
+            bool ok = req.result == UnityWebRequest.Result.Success;
 #else
-            if (req.isNetworkError || req.isHttpError)
+            bool ok = !(req.isNetworkError || req.isHttpError);
 #endif
+            if (!ok)
             {
-                Debug.LogError($"Failed to read default json from StreamingAssets: {src}\n{req.error}");
+                Debug.LogError($"[ForceCopy] Failed (UWR)\nSRC: {srcUri}\nDST: {dst}\nERR: {req.error}");
+                done?.Invoke(false);
                 yield break;
             }
 
-            File.WriteAllBytes(dst, req.downloadHandler.data);
-            Debug.Log($"Copied default json -> persistent: {dst}");
+            try
+            {
+                File.WriteAllBytes(dst, req.downloadHandler.data); // ✅ 항상 덮어쓰기
+                Debug.Log($"[ForceCopy] Streaming -> Persistent\nSRC: {srcUri}\nDST: {dst}");
+                done?.Invoke(true);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[ForceCopy] Failed to write\nDST: {dst}\n{e}");
+                done?.Invoke(false);
+            }
         }
+#endif
     }
 
 	public static void SaveData(ScriptableObject so, string fileName)
@@ -226,9 +256,11 @@ public class Utils
 
 	public static IEnumerator LoadData(ScriptableObject target, string filePath)
     {
+		bool copyOk = false;
+        yield return EnsureCopiedToPersistent(filePath, ok => copyOk = ok);
+        if (!copyOk) yield break;
+
 		string path = Path.Combine(Application.persistentDataPath, "Data", filePath);
-		// if (!File.Exists(path))
-        	yield return EnsureCopiedToPersistent(filePath);
         if (!File.Exists(path))
         {
             Debug.LogError("JSON file not found: " + path);
