@@ -187,7 +187,7 @@ public class EncounterRouletteUI : MonoBehaviour
         
 
         float segmentAngle = 360f / totalSlots; // 30도
-        float targetAngleZ = -(targetIndex * segmentAngle); 
+        float targetAngleZ = (targetIndex * segmentAngle); 
         
         // 5바퀴 + 목표 각도 + 랜덤 오차(칸 내부)
         int laps = 5; 

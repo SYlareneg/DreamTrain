@@ -5,7 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class RelicItem
 {
-    public string relicID;
     public int relicOwner;
     public Sprite relicSprite;
     public string relicName;
@@ -66,7 +65,6 @@ public class RelicItem_Enhanceable : RelicItem
 [System.Serializable]
 public class RelicItem_Data
 {
-    public string relicID;
     public int relicOwner;
     public string relicSprite;
     public string relicName;
@@ -82,7 +80,6 @@ public class RelicItem_Data
     public RelicItem_Data(RelicItem_Data relicItem_Data)
     {
         if(relicItem_Data == null) return;
-        relicID = relicItem_Data.relicID;
         relicOwner = relicItem_Data.relicOwner;
         relicSprite = relicItem_Data.relicSprite;
         relicName = relicItem_Data.relicName;
@@ -99,7 +96,6 @@ public class RelicItem_Data
     public RelicItem_Data(RelicItem_Enhanceable relicItem)
     {
         if(relicItem == null) return;
-        relicID = relicItem.relicID;
         relicOwner = relicItem.relicOwner;
         relicSprite = (relicItem.relicSprite != null)? relicItem.relicSprite.name : "";
         relicName = relicItem.relicName;

@@ -6665,7 +6665,7 @@ MonoBehaviour:
   typingSpeed: 0.01
   sofaManager: {fileID: 1493062490}
   cardGetUI: {fileID: 2090230963}
-  isDebuging: 0
+  isDebuging: 1
   debuggerID: ACT1_DEVIL_DOLL
   cardGetPanel: {fileID: 2012552559}
   cardGetConfirmBtn: {fileID: 1589231635}

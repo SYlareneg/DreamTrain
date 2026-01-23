@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using System.IO; 
 using System.Text;
 using System.Linq;
+using UnityEditor.U2D;
 using Random = UnityEngine.Random;
 
 public class EncounterManager : MonoBehaviour
@@ -144,20 +145,36 @@ public class EncounterManager : MonoBehaviour
             Debug.LogError("[EncounterManager] ActSO가 없습니다!");
             return;
         }
+        Debug.Log(isDebuging);
+        Debug.Log(actData.currentStepID);
+        // 해당 인카운터 파일 로드 및 파싱
+        if (isDebuging )
+        {
+            if (actData.currentStepID == "")
+            {
+                LoadEncounterData(debuggerID);
+                encounterPanel.SetActive(true);
+                PlayStep("P1"); 
+            }
+            else
+            {
+                LoadEncounterData(debuggerID);
+                // 저장된 스텝으로 이동 (없으면 P1)
+                string savedStep = string.IsNullOrEmpty(actData.currentStepID) ? "P1" : actData.currentStepID;
+                encounterPanel.SetActive(true);
+                PlayStep(savedStep);
+            }
 
+            return;
+        }
+        
+        
         // 1. 진행 중이던 인카운터가 있는지 확인 (BattleScene 등에서 돌아온 경우)
         if (!string.IsNullOrEmpty(actData.currentEncounterID))
         {
             Debug.Log($"[EncounterManager] 중단된 인카운터 복구: {actData.currentEncounterID}, Step: {actData.currentStepID}");
             
-            // 해당 인카운터 파일 로드 및 파싱
-            if (isDebuging)
-            {
-                LoadEncounterData(debuggerID);
-                encounterPanel.SetActive(true);
-                PlayStep("P1");
-            }
-            else LoadEncounterData(actData.currentEncounterID);
+            LoadEncounterData(actData.currentEncounterID);
             // 저장된 스텝으로 이동 (없으면 P1)
             string savedStep = string.IsNullOrEmpty(actData.currentStepID) ? "P1" : actData.currentStepID;
             encounterPanel.SetActive(true);
@@ -165,6 +182,12 @@ public class EncounterManager : MonoBehaviour
         }
         else
         {
+            if (isDebuging)
+            {
+                LoadEncounterData(debuggerID);
+                encounterPanel.SetActive(true);
+                PlayStep("P1");
+            }
             // 2. 진행 중인 게 없다면 대기열(Queue) 확인 및 지역 초기화
             if (actData.encounterQueue == null || actData.encounterQueue.Count == 0)
             {
@@ -337,7 +360,7 @@ public class EncounterManager : MonoBehaviour
             PlayStep("P1");
             return;
         }
-
+        
         if (actData.encounterQueue != null && actData.encounterQueue.Count > 0)
         {
             string nextID = actData.encounterQueue[0];
@@ -873,6 +896,7 @@ public class EncounterManager : MonoBehaviour
 
                 break;
             
+            
             case "GetObjet":
                 // [수정됨] 이름으로 유물을 찾아 인벤토리에 추가하는 로직
                 if (args.Length >= 1)
@@ -886,7 +910,7 @@ public class EncounterManager : MonoBehaviour
 
                     // 2. 전체 DB에서 이름(또는 ID)으로 유물 데이터 찾기
                     // (CSV에 적힌 이름이 RelicName 혹은 RelicOwner와 일치해야 함)
-                    RelicItem_Data foundData = relicDatabase.relicItems.Find(x => x.relicID == objectName);
+                    RelicItem_Data foundData = relicDatabase.relicItems.Find(x => x.relicName == objectName);
 
                     if (foundData != null)
                     {
@@ -925,6 +949,7 @@ public class EncounterManager : MonoBehaviour
                 
                 }
                 break;
+
 
             case "GetDebris":
                 if (args.Length >= 1) descriptionText.text += $"\n<color=#FF0000>드림 코인 {args[0]}개 지불 완료!</color>";

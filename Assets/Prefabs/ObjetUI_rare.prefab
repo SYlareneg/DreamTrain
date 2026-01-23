@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0.013749123, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -229,27 +229,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cd96a85e0de8634685b17ceb40814b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EncounterObjetUI_Sell
-  objetIcon: {fileID: 3775846210670166132}
+  objetIcon: {fileID: 231979026434034488}
   nameTMP: {fileID: 291780217147718658}
   sellCostTMP: {fileID: 2111643015510130146}
-  objetItem:
-    id: 0
-    name_ko: 
-    desc_ko: 
-    act: 0
-    rarity: 0
-    price: 100
-    isBought: 0
-    relicData:
-      relicOwner: 0
-      relicSprite: {fileID: 0}
-      relicName: 
-      relicTxt: 
-      relicVal: 
-      isEnhanced: 0
   cost: 0
   isValid: 0
-  _playerData: {fileID: 0}
+  _playerData: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
 --- !u!1 &6110467408510175565
 GameObject:
   m_ObjectHideFlags: 0

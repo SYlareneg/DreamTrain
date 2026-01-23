@@ -39,9 +39,7 @@ public class EncounterObjetUI_Sell : MonoBehaviour, IPointerClickHandler
 
             if (newSpriteAsset != null)
             {
-                // TMP 컴포넌트의 spriteAsset 속성을 교체합니다.
                 sellCostTMP.spriteAsset = newSpriteAsset;
-                // 변경 사항을 즉시 반영하기 위해 업데이트를 호출합니다.
                 sellCostTMP.SetVerticesDirty();
                 sellCostTMP.SetMaterialDirty();
             }

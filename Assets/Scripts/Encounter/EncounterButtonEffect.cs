@@ -10,15 +10,18 @@ public class EncounterButtonEffect : MonoBehaviour, IPointerEnterHandler, IPoint
     private RectTransform rectTransform;
     private Button button;
 
-    private Coroutine idleCoroutine;
+    private Coroutine currentCoroutine;
     private bool isHovered = false;
     private bool isClicked = false;
 
-    private const int frameDelay = 30;
-    private readonly float[] alphaSteps = { 0.25f, 0.30f, 0.35f, 0.40f, 0.45f, 0.50f }; 
-    private const float hoverAlpha = 0.55f;
-    private const float hoverScale = 1.1f; 
-    private const float clickedAlpha = 0.0f;
+    [Header("Animation Settings")]
+    [SerializeField] private float minAlpha = 0.25f;
+    [SerializeField] private float maxAlpha = 0.60f;
+    [SerializeField] private float animationSpeed = 2.0f;
+    [SerializeField] private float hoverAlpha = 070f;
+    [SerializeField] private float hoverScale = 1.1f;
+    [SerializeField] private float clickedAlpha = 0.0f;
+    [SerializeField] private float transitionDuration = 0.1f; 
 
     void Awake()
     {
@@ -33,37 +36,71 @@ public class EncounterButtonEffect : MonoBehaviour, IPointerEnterHandler, IPoint
         isClicked = false;
         rectTransform.localScale = Vector3.one;
         
-        if (idleCoroutine != null) StopCoroutine(idleCoroutine);
-        idleCoroutine = StartCoroutine(IdleAnimationRoutine());
+        StartAnimation(IdleAnimationRoutine());
     }
 
     void OnDisable()
     {
-        if (idleCoroutine != null) StopCoroutine(idleCoroutine);
+        StopAnimation();
     }
 
+    void StartAnimation(IEnumerator routine)
+    {
+        StopAnimation();
+        currentCoroutine = StartCoroutine(routine);
+    }
+
+    void StopAnimation()
+    {
+        if (currentCoroutine != null) StopCoroutine(currentCoroutine);
+    }
+
+    // [핵심 변경] 부드러운 Idle 애니메이션
     IEnumerator IdleAnimationRoutine()
     {
-        int index = 0;
-        bool goingUp = true;
+        float time = 0f;
+        // 시작 시 랜덤한 시간으로 설정하여 여러 버튼이 있을 때 동시에 깜빡이는 현상 방지 (선택 사항)
+        // time = Random.Range(0f, 10f); 
 
         while (!isHovered && !isClicked)
         {
-            canvasGroup.alpha = alphaSteps[index];
+            time += Time.deltaTime * animationSpeed;
+            
+            // 0.0 ~ 1.0 사이를 오가는 값 생성 (PingPong과 유사하지만 Sin이 더 부드러움)
+            float t = (Mathf.Sin(time) + 1f) * 0.5f; 
+            
+            // Min과 Max 사이를 t만큼 보간
+            canvasGroup.alpha = Mathf.Lerp(minAlpha, maxAlpha, t);
 
-            for (int i = 0; i < frameDelay; i++) yield return null;
-
-            if (goingUp)
-            {
-                index++;
-                if (index >= alphaSteps.Length - 1) goingUp = false;
-            }
-            else
-            {
-                index--;
-                if (index <= 0) goingUp = true;
-            }
+            yield return null;
         }
+    }
+
+    // [추가] 부드러운 스케일/알파 전환용 코루틴
+    IEnumerator TransitionRoutine(float targetScale, float targetAlpha)
+    {
+        float startScale = rectTransform.localScale.x;
+        float startAlpha = canvasGroup.alpha;
+        float elapsed = 0f;
+
+        while (elapsed < transitionDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / transitionDuration;
+            
+            // 부드러운 움직임을 위해 SmoothStep 사용
+            t = Mathf.SmoothStep(0f, 1f, t);
+
+            float currentScale = Mathf.Lerp(startScale, targetScale, t);
+            rectTransform.localScale = Vector3.one * currentScale;
+            canvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, t);
+
+            yield return null;
+        }
+
+        // 최종값 보정
+        rectTransform.localScale = Vector3.one * targetScale;
+        canvasGroup.alpha = targetAlpha;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -71,10 +108,8 @@ public class EncounterButtonEffect : MonoBehaviour, IPointerEnterHandler, IPoint
         if (isClicked || !button.interactable) return;
 
         isHovered = true;
-        if (idleCoroutine != null) StopCoroutine(idleCoroutine);
-
-        canvasGroup.alpha = hoverAlpha;
-        rectTransform.localScale = Vector3.one * hoverScale;
+        // 즉시 전환 대신 부드러운 전환 실행
+        StartAnimation(TransitionRoutine(hoverScale, hoverAlpha));
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -82,10 +117,20 @@ public class EncounterButtonEffect : MonoBehaviour, IPointerEnterHandler, IPoint
         if (isClicked || !button.interactable) return;
 
         isHovered = false;
-        rectTransform.localScale = Vector3.one;
+        
+        // 크기는 원래대로 줄이고, 알파값은 Idle로 돌아가기 위해 코루틴 재시작
+        // *여기서는 Transition 없이 바로 Idle로 가거나, 줄어드는 연출 후 Idle로 가게 할 수 있습니다.
+        // 아래 코드는 '줄어드는 연출' 후 'Idle'로 넘어가는 방식입니다.
+        StartCoroutine(ExitRoutine());
+    }
 
-        if (idleCoroutine != null) StopCoroutine(idleCoroutine);
-        idleCoroutine = StartCoroutine(IdleAnimationRoutine());
+    IEnumerator ExitRoutine()
+    {
+        // 1. 먼저 원래 크기로 부드럽게 복귀
+        yield return StartCoroutine(TransitionRoutine(1.0f, (minAlpha + maxAlpha) / 2));
+        
+        // 2. 다시 깜빡임 시작
+        StartAnimation(IdleAnimationRoutine());
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -93,7 +138,7 @@ public class EncounterButtonEffect : MonoBehaviour, IPointerEnterHandler, IPoint
         if (!button.interactable) return;
         
         isClicked = true;
-        if (idleCoroutine != null) StopCoroutine(idleCoroutine);
+        StopAnimation();
         
         canvasGroup.alpha = clickedAlpha;
         rectTransform.localScale = Vector3.one;

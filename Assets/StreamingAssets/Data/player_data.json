@@ -1,7 +1,7 @@
 {
     "maxHealth": 60,
     "curHealth": 60,
-    "dreamDust": 1002,
+    "dreamDust": 1003,
     "leftPassengers": 0,
     "isTutorial": false,
     "personaPiece": "고양이의 꿈",
@@ -83,10 +83,7 @@
         },
         {
             "locationID": "TEA_CUPS",
-            "selectedEncounterPool": [
-                "ACT1_SPINNING_CUP",
-                "ACT1_TEA_TIME"
-            ],
+            "selectedEncounterPool": [],
             "ID": "6aec0eba264246838fede86b1d613c2a",
             "level": 2,
             "pos": 1,
@@ -174,17 +171,15 @@
         }
     ],
     "totalLevel": 6,
-    "visitedNodeIDList": [
-        "6aec0eba264246838fede86b1d613c2a"
-    ],
-    "curNodeIndex": 2,
-    "curNodeLocationID": "TEA_CUPS",
+    "visitedNodeIDList": [],
+    "curNodeIndex": 0,
+    "curNodeLocationID": "START",
     "lastEncounterType": 0,
     "encounterQueue": [
         "ACT1_WINE_IN_CUP",
         "ACT1_TEA_TIME"
     ],
-    "currentStepID": "",
+    "currentStepID": "P_AFTER_BATTLE",
     "currentEncounterID": "ACT1_WHITE_RABBIT",
-    "enemyName": "카드 병정"
+    "enemyName": "DevilDoll"
 }
