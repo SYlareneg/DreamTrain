@@ -8,7 +8,7 @@
       "phase": [
         {
           "name": "전투 준비",
-          "sprite": "Enemy_Vampire",
+          "sprite": "카드병정 1",
           "text": "턴 시작 시 트리거를 1 얻습니다.",
           "patterns": [
             {
@@ -53,13 +53,14 @@
             }
           ],
           "phaseClear": false,
-          "phaseRepeat": true
+          "phaseRepeat": true,
+          "scalingFactor": 1
         }
       ],
       "triggerPhase": [
         {
           "name": "카드 병정: 트리거",
-          "sprite": "Enemy_Vampire",
+          "sprite": "카드병정 1",
           "text": "카드 병정이 트리거 상태입니다. 턴 종료 시 트리거가 해제됩니다.",
           "patterns": [
             {
@@ -74,7 +75,8 @@
             }
           ],
           "phaseRepeat": false,
-          "phaseClear": false
+          "phaseClear": false,
+          "scalingFactor": 1
         }
       ],
       "roulettePattern": [
@@ -228,7 +230,7 @@
       "phase": [
         {
           "name": "전투 준비",
-          "sprite": "Enemy_Vampire",
+          "sprite": "카드병정 2",
           "text": "턴 시작 시 트리거를 1 얻습니다.",
           "patterns": [
             {
@@ -273,13 +275,14 @@
             }
           ],
           "phaseClear": false,
-          "phaseRepeat": true
+          "phaseRepeat": true,
+          "scalingFactor": 1
         }
       ],
       "triggerPhase": [
         {
           "name": "카드 병정: 트리거",
-          "sprite": "Enemy_Vampire",
+          "sprite": "카드병정 2",
           "text": "카드 병정이 트리거 상태입니다. 턴 종료 시 트리거가 해제됩니다.",
           "patterns": [
             {
@@ -294,7 +297,8 @@
             }
           ],
           "phaseRepeat": false,
-          "phaseClear": false
+          "phaseClear": false,
+          "scalingFactor": 1
         }
       ],
       "roulettePattern": [
@@ -448,7 +452,7 @@
       "phase": [
         {
           "name": "전투 준비",
-          "sprite": "Enemy_Vampire",
+          "sprite": "카드병정 3",
           "text": "턴 시작 시 트리거를 1 얻습니다.",
           "patterns": [
             {
@@ -493,13 +497,14 @@
             }
           ],
           "phaseClear": false,
-          "phaseRepeat": true
+          "phaseRepeat": true,
+          "scalingFactor": 1
         }
       ],
       "triggerPhase": [
         {
           "name": "카드 병정: 트리거",
-          "sprite": "Enemy_Vampire",
+          "sprite": "카드병정 3",
           "text": "카드 병정이 트리거 상태입니다. 턴 종료 시 트리거가 해제됩니다.",
           "patterns": [
             {
@@ -514,7 +519,8 @@
             }
           ],
           "phaseRepeat": false,
-          "phaseClear": false
+          "phaseClear": false,
+          "scalingFactor": 1
         }
       ],
       "roulettePattern": [
@@ -733,7 +739,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire"
+          "sprite": "Enemy_Vampire",
+          "scalingFactor": 1
         },
         {
           "name": "각성:뱀파이어",
@@ -806,7 +813,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire"
+          "sprite": "Enemy_Vampire",
+          "scalingFactor": 1
         }
       ],
       "triggerPhase": [
@@ -839,7 +847,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Enemy_Vampire"
+          "sprite": "Enemy_Vampire",
+          "scalingFactor": 1
         }
       ],
       "roulettePattern": [
@@ -1062,7 +1071,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire"
+          "sprite": "Enemy_Vampire",
+          "scalingFactor": 1
         }
       ],
       "triggerPhase": [
@@ -1143,7 +1153,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire"
+          "sprite": "Enemy_Vampire",
+          "scalingFactor": 1
         }
       ],
       "roulettePattern": [
@@ -1341,7 +1352,7 @@
                 },
                 {
                   "type": 0,
-                  "typeNum": 0,
+                  "typeNum": -2,
                   "val": -7,
                   "isTrigger": false
                 }
@@ -1360,7 +1371,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire"
+          "sprite": "Enemy_Vampire",
+          "scalingFactor": 1
         }
       ],
       "triggerPhase": [
@@ -1381,7 +1393,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Enemy_Vampire"
+          "sprite": "Enemy_Vampire",
+          "scalingFactor": 1
         }
       ],
       "roulettePattern": [
@@ -1484,7 +1497,7 @@
       ],
       "enemySpecialRoulettes": [
         {
-          "sprite": "Roulette_MagicBox",
+          "sprite": "룰렛-아이콘-변경-후_0000s_0001s_0000_KakaoTalk_20260123_082120198",
           "title": "마술 모자",
           "text": "마술에 쓰이는 비밀스러운 모자입니다. 플레이어 존에서 룰렛의 효과가 발동하면 소멸합니다.마술에 쓰이는 비밀스러운 모자입니다. 플레이어 존에서 룰렛의 효과가 발동하면 소멸합니다.",
           "baseVal": 1,
@@ -1598,7 +1611,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire"
+          "sprite": "망령",
+          "scalingFactor": 1
         }
       ],
       "triggerPhase": [
@@ -1629,7 +1643,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Enemy_Vampire"
+          "sprite": "망령",
+          "scalingFactor": 1
         }
       ],
       "roulettePattern": [
@@ -1795,7 +1810,7 @@
                 },
                 {
                   "type": 0,
-                  "typeNum": 0,
+                  "typeNum": -2,
                   "val": -3,
                   "isTrigger": false
                 }
@@ -1827,7 +1842,7 @@
                 },
                 {
                   "type": 0,
-                  "typeNum": 0,
+                  "typeNum": -2,
                   "val": -3,
                   "isTrigger": false
                 }
@@ -1846,7 +1861,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire"
+          "sprite": "망령",
+          "scalingFactor": 1
         }
       ],
       "triggerPhase": [
@@ -1867,7 +1883,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Enemy_Vampire"
+          "sprite": "망령",
+          "scalingFactor": 1
         }
       ],
       "roulettePattern": [
@@ -2027,7 +2044,7 @@
               "pattern": [
                 {
                   "type": 0,
-                  "typeNum": 0,
+                  "typeNum": -2,
                   "val": -3,
                   "isTrigger": false
                 },
@@ -2052,7 +2069,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Enemy_Vampire"
+          "sprite": "Enemy_Vampire",
+          "scalingFactor": 1
         },
         {
           "name": "쇼타임",
@@ -2119,7 +2137,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire"
+          "sprite": "Enemy_Vampire",
+          "scalingFactor": 1
         }
       ],
       "triggerPhase": [
@@ -2150,7 +2169,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Enemy_Vampire"
+          "sprite": "Enemy_Vampire",
+          "scalingFactor": 1
         }
       ],
       "roulettePattern": [
@@ -2253,7 +2273,7 @@
       ],
       "enemySpecialRoulettes": [
         {
-          "sprite": "Roulette_MagicBox",
+          "sprite": "룰렛-아이콘-변경-후_0000s_0001s_0000_KakaoTalk_20260123_082120198",
           "title": "마술 모자",
           "text": "마술에 쓰이는 비밀스러운 모자입니다. 플레이어 존에서 룰렛의 효과가 발동하면 소멸합니다.",
           "baseVal": 1,
@@ -2319,7 +2339,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Enemy_Vampire"
+          "sprite": "귀신들린 인형",
+          "scalingFactor": 1
         },
         {
           "name": "인형의 저주",
@@ -2364,7 +2385,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire"
+          "sprite": "Enemy_Vampire",
+          "scalingFactor": 1
         }
       ],
       "triggerPhase": [
@@ -2385,7 +2407,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Enemy_Vampire"
+          "sprite": "귀신들린 인형",
+          "scalingFactor": 1
         }
       ],
       "roulettePattern": [
@@ -2610,7 +2633,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "컵 메인"
+          "sprite": "컵트리오 메인",
+          "scalingFactor": 1
         }
       ],
       "triggerPhase": [
@@ -2620,7 +2644,8 @@
           "text": "",
           "patterns": [],
           "phaseRepeat": false,
-          "phaseClear": false
+          "phaseClear": false,
+          "scalingFactor": 1
         }
       ],
       "roulettePattern": [
@@ -2812,7 +2837,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "적_토끼"
+          "sprite": "흰 토끼",
+          "scalingFactor": 1
         }
       ],
       "triggerPhase": [
@@ -2839,7 +2865,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "적_토끼"
+          "sprite": "흰 토끼",
+          "scalingFactor": 1
         }
       ],
       "roulettePattern": [
@@ -3050,7 +3077,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "적_말"
+          "sprite": "말",
+          "scalingFactor": 1
         }
       ],
       "triggerPhase": [
@@ -3071,7 +3099,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "적_말"
+          "sprite": "말",
+          "scalingFactor": 1
         }
       ],
       "roulettePattern": [
@@ -3276,7 +3305,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire"
+          "sprite": "Enemy_Vampire",
+          "scalingFactor": 1
         }
       ],
       "triggerPhase": [
@@ -3307,7 +3337,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Enemy_Vampire"
+          "sprite": "Enemy_Vampire",
+          "scalingFactor": 1
         }
       ],
       "roulettePattern": [
@@ -3502,7 +3533,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire"
+          "sprite": "Enemy_Vampire",
+          "scalingFactor": 1
         }
       ],
       "triggerPhase": [
@@ -3523,7 +3555,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Enemy_Vampire"
+          "sprite": "Enemy_Vampire",
+          "scalingFactor": 1
         }
       ],
       "roulettePattern": [
@@ -3718,7 +3751,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "적_우는와인"
+          "sprite": "우는 와인",
+          "scalingFactor": 1
         }
       ],
       "triggerPhase": [
@@ -3739,7 +3773,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "적_우는와인"
+          "sprite": "우는 와인",
+          "scalingFactor": 1
         }
       ],
       "roulettePattern": [
@@ -3909,7 +3944,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire"
+          "sprite": "저주인형",
+          "scalingFactor": 1
         }
       ],
       "enemySpecialRoulettes": [
@@ -3987,7 +4023,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "컵 서브 1"
+          "sprite": "컵트리오 서브 1",
+          "scalingFactor": 1
         }
       ],
       "enemySpecialRoulettes": [
@@ -4065,7 +4102,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "컵 서브 2"
+          "sprite": "컵트리오 서브 2",
+          "scalingFactor": 1
         }
       ],
       "enemySpecialRoulettes": [

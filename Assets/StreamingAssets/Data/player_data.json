@@ -57,91 +57,14 @@
     "wisdom": 1,
     "luck": 1,
     "currentActNum": 0,
-    "mapNodes": [
-        {
-            "locationID": "TUTORIAL_START",
-            "selectedEncounterPool": [],
-            "ID": "4fb5d7eb61354daab71c515232402d1b",
-            "level": 0,
-            "pos": 0,
-            "screenPos": {
-                "x": -19.5,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "childNodes": [
-                "7b8aec6c82a64e789d366e0f5697c682"
-            ]
-        },
-        {
-            "locationID": "TUTORIAL_1",
-            "selectedEncounterPool": [],
-            "ID": "7b8aec6c82a64e789d366e0f5697c682",
-            "level": 1,
-            "pos": 0,
-            "screenPos": {
-                "x": -15.5,
-                "y": 0.017323270440101625,
-                "z": 0.0
-            },
-            "childNodes": [
-                "50e4e43c4aaa4a7db18a6dd13a9943fb"
-            ]
-        },
-        {
-            "locationID": "TUTORIAL_2",
-            "selectedEncounterPool": [],
-            "ID": "50e4e43c4aaa4a7db18a6dd13a9943fb",
-            "level": 2,
-            "pos": 0,
-            "screenPos": {
-                "x": -11.5,
-                "y": -0.06779827922582627,
-                "z": 0.0
-            },
-            "childNodes": [
-                "d0e97088538a4a1e9472a1078d6eeeed"
-            ]
-        },
-        {
-            "locationID": "TUTORIAL_3",
-            "selectedEncounterPool": [],
-            "ID": "d0e97088538a4a1e9472a1078d6eeeed",
-            "level": 3,
-            "pos": 0,
-            "screenPos": {
-                "x": -7.5,
-                "y": -0.05762045830488205,
-                "z": 0.0
-            },
-            "childNodes": [
-                "630b8a5528584e9d88c1d6c698bbef46"
-            ]
-        },
-        {
-            "locationID": "TUTORIAL_END",
-            "selectedEncounterPool": [],
-            "ID": "630b8a5528584e9d88c1d6c698bbef46",
-            "level": 4,
-            "pos": 0,
-            "screenPos": {
-                "x": -3.5,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "childNodes": []
-        }
-    ],
-    "totalLevel": 5,
-    "visitedNodeIDList": [
-        "4fb5d7eb61354daab71c515232402d1b",
-        "7b8aec6c82a64e789d366e0f5697c682"
-    ],
-    "curNodeIndex": 1,
-    "curNodeLocationID": "TUTORIAL_1",
+    "mapNodes": [],
+    "totalLevel": 0,
+    "visitedNodeIDList": [],
+    "curNodeIndex": 0,
+    "curNodeLocationID": "",
     "lastEncounterType": 0,
     "encounterQueue": [],
     "currentStepID": "",
     "currentEncounterID": "",
-    "enemyName": "CardSoldier1"
+    "enemyName": ""
 }

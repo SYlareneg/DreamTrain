@@ -110,10 +110,10 @@ MonoBehaviour:
   roulettePiece: {fileID: 8049098143791841213}
   rouletteValueTMP: {fileID: 7409682080955745942}
   rouletteTypeSprites:
-  - {fileID: 0}
-  - {fileID: 21300000, guid: 0758ae092621a8f44929decca040389b, type: 3}
-  - {fileID: 21300000, guid: 0e51d7e8310c34d428fd960b6a9a5ce3, type: 3}
-  - {fileID: 21300000, guid: 069e7c6663e9069409e0acdf4cffcac3, type: 3}
+  - {fileID: 21300000, guid: 78ae4d0f1d53e2a4fb51710ab372c1f9, type: 3}
+  - {fileID: 21300000, guid: 896f2a8e545f7dc44a2344858ca03769, type: 3}
+  - {fileID: 21300000, guid: 3b916fd86a4cd694e83d627ea1c08daa, type: 3}
+  - {fileID: 21300000, guid: 66c933b0c3b53d7429b144c4da62e7be, type: 3}
   - {fileID: 0}
   originalSprite: {fileID: 0}
   originalTooltipTitle: 

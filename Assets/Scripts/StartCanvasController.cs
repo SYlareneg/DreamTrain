@@ -134,6 +134,7 @@ public class StartCanvasController : MonoBehaviour
             buttonBlink.Append(newGameButton.GetComponentInChildren<TMP_Text>().DOColor(new Color32(255, 255, 255, 0), 0.1f));
             buttonBlink.Append(newGameButton.GetComponentInChildren<TMP_Text>().DOColor(Color.white, 0.1f));
             buttonBlink.SetLoops(2);
+            StartCoroutine(DataManager.Inst.LoadPlayerData(true));
             buttonBlink.OnComplete(() =>
             {
                 SceneChangeManager.Inst.SceneFadeOut("RoomScene");
@@ -162,6 +163,7 @@ public class StartCanvasController : MonoBehaviour
             buttonBlink.Append(loadGameButton.GetComponentInChildren<TMP_Text>().DOColor(new Color32(255, 255, 255, 0), 0.1f));
             buttonBlink.Append(loadGameButton.GetComponentInChildren<TMP_Text>().DOColor(Color.white, 0.1f));
             buttonBlink.SetLoops(2);
+            StartCoroutine(DataManager.Inst.LoadPlayerData(true));
             buttonBlink.OnComplete(() =>
             {
                 SceneChangeManager.Inst.SceneFadeOut("MapScene");

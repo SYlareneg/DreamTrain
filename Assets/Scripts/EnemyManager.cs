@@ -68,11 +68,14 @@ public class EnemyManager : MonoBehaviour
     public Enemy enemy;
     public SubEnemy[] subEnemies = new SubEnemy[Enemy.maxSubEnemyNum];
     public int phaseNum;
+    public float phaseScale;
     public int[] phaseNum_SE = new int[Enemy.maxSubEnemyNum];
+    public float[] phaseScale_SE = new float[Enemy.maxSubEnemyNum];
     public int patternNum;
     public int[] patternNum_SE = new int[Enemy.maxSubEnemyNum];
     public bool isTriggerActivated;
     public int triggerPhaseNum;
+    public float triggerPhaseScale;
     public int triggerPatternNum;
     public List<EnemyPattern> currentPattern;
     public List<EnemyPattern>[] currentPattern_SE = new List<EnemyPattern>[Enemy.maxSubEnemyNum];
@@ -111,6 +114,7 @@ public class EnemyManager : MonoBehaviour
         TurnManager.Inst.enemyTriggerMaxCnt = enemy.triggerNum;
         TurnManager.Inst.enemyTriggerCnt = 0;
         phaseNum = 0;
+        phaseScale = 1f;
         patternNum = 0;
         isTriggerActivated = false;
         triggerPhaseNum = 0;
@@ -180,13 +184,17 @@ public class EnemyManager : MonoBehaviour
                         TurnManager.Inst.TriggerEnemyPassive(1);
                     }
                 };
+                // damage scaling
                 TurnManager.OnPlayerTurnStart += () =>
                 {
-                    if (TurnManager.Inst.turnNum % 2 == 0)
-                    {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], TurnManager.Inst.turnNum / 2, 1, 2);
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_EnemySpecial[0, 0][0], TurnManager.Inst.turnNum / 2, 1, 2);
-                    }
+                    phaseScale *= enemy.phase[phaseNum].scalingFactor;
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], 0, Mathf.FloorToInt(phaseScale), 1);
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_EnemySpecial[0, 0][0], 0, Mathf.FloorToInt(phaseScale), 1);
+                    // if (TurnManager.Inst.turnNum % 2 == 0)
+                    // {
+                    //     BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], TurnManager.Inst.turnNum / 2, 1, 2);
+                    //     BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_EnemySpecial[0, 0][0], TurnManager.Inst.turnNum / 2, 1, 2);
+                    // }
                 };
                 break;
             case "박쥐":
@@ -219,11 +227,14 @@ public class EnemyManager : MonoBehaviour
                 };
                 TurnManager.OnPlayerTurnStart += () =>
                 {
-                    if (TurnManager.Inst.turnNum % 2 == 0)
-                    {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], TurnManager.Inst.turnNum / 2, 1, 2);
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 1], TurnManager.Inst.turnNum / 2, 1.5f, 2);
-                    }
+                    phaseScale *= enemy.phase[phaseNum].scalingFactor;
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], 0, Mathf.FloorToInt(phaseScale), 1);
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 1], 0, Mathf.FloorToInt(phaseScale) * 1.5f, 2);
+                    // if (TurnManager.Inst.turnNum % 2 == 0)
+                    // {
+                    //     BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], TurnManager.Inst.turnNum / 2, 1, 2);
+                    //     BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 1], TurnManager.Inst.turnNum / 2, 1.5f, 2);
+                    // }
                 };
 
                 bool wasDamaged = false;
@@ -296,10 +307,12 @@ public class EnemyManager : MonoBehaviour
                 };
                 TurnManager.OnPlayerTurnStart += () =>
                 {
-                    if (patternNum == 3)
-                    {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], TurnManager.Inst.turnNum, 1, 1);
-                    }
+                    phaseScale *= enemy.phase[phaseNum].scalingFactor;
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(phaseScale), 1);
+                    // if (patternNum == 3)
+                    // {
+                    //     BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], TurnManager.Inst.turnNum, 1, 1);
+                    // }
                 };
                 break;
             case "망령 1":
@@ -317,10 +330,12 @@ public class EnemyManager : MonoBehaviour
                 };
                 TurnManager.OnPlayerTurnStart += () =>
                 {
-                    if (patternNum == 3)
-                    {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], TurnManager.Inst.turnNum, 1, 1);
-                    }
+                    phaseScale *= enemy.phase[phaseNum].scalingFactor;
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(phaseScale), 1);
+                    // if (patternNum == 3)
+                    // {
+                    //     BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], TurnManager.Inst.turnNum, 1, 1);
+                    // }
                 };
                 break;
             case "망령 2":
@@ -342,10 +357,12 @@ public class EnemyManager : MonoBehaviour
                 };
                 TurnManager.OnPlayerTurnStart += () =>
                 {
-                    if (patternNum == 3)
-                    {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], TurnManager.Inst.turnNum * 2, 1, 1);
-                    }
+                    phaseScale *= enemy.phase[phaseNum].scalingFactor;
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(phaseScale), 1);
+                    // if (patternNum == 3)
+                    // {
+                    //     BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], TurnManager.Inst.turnNum * 2, 1, 1);
+                    // }
                 };
                 break;
             case "마술사":
@@ -404,8 +421,11 @@ public class EnemyManager : MonoBehaviour
                 };
                 TurnManager.OnPlayerTurnStart += () =>
                 {
-                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], 2, 1, -1);
-                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 3], 1, 1, -1);
+                    phaseScale *= enemy.phase[phaseNum].scalingFactor;
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], 0, Mathf.FloorToInt(phaseScale) * 2, 1);
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 3], 0, Mathf.FloorToInt(phaseScale), 1);
+                    // BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], 2, 1, -1);
+                    // BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 3], 1, 1, -1);
                 };
                 int magicHat = 0;
                 TurnManager.OnRouletteEnchant += (value) =>
@@ -475,17 +495,18 @@ public class EnemyManager : MonoBehaviour
                 TurnManager.OnPlayerTurnStart += () =>
                 {
                     TurnManager.Inst.TriggerEnemyPassive(1);
+                    phaseScale *= enemy.phase[phaseNum].scalingFactor;
                     if(isTriggerActivated && triggerPatternNum == 0)
                     {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], TurnManager.Inst.turnNum, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(phaseScale), 1);
                     }
                     else if(!isTriggerActivated && patternNum == 0)
                     {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], TurnManager.Inst.turnNum, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(phaseScale), 1);
                     }
                     else if(!isTriggerActivated && patternNum == 2)
                     {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Shield[0], TurnManager.Inst.turnNum, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Shield[0], 0, Mathf.FloorToInt(phaseScale), 1);
                     }
                 };
                 break;
@@ -505,7 +526,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     if(isTriggerActivated && triggerPatternNum == 0)
                     {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], TurnManager.Inst.turnNum * 3, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], 0, Mathf.FloorToInt(phaseScale) * 3, 1);
                         if(TurnManager.Inst.shieldHealth > 0)
                         {
                             BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], 0, 0.5f, 1);
@@ -513,11 +534,11 @@ public class EnemyManager : MonoBehaviour
                     }
                     else if(!isTriggerActivated && patternNum == 0)
                     {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], TurnManager.Inst.turnNum, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(phaseScale), 1);
                     }
                     else if(!isTriggerActivated && patternNum == 2)
                     {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], TurnManager.Inst.turnNum, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(phaseScale), 1);
                     }
                 };
                 TurnManager.OnPlayerDamaged += (damage, source) =>
@@ -544,17 +565,18 @@ public class EnemyManager : MonoBehaviour
                 };
                 TurnManager.OnPlayerTurnStart += () =>
                 {
+                    phaseScale *= enemy.phase[phaseNum].scalingFactor;
                     if(!isTriggerActivated && patternNum == 0)
                     {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], TurnManager.Inst.turnNum / 2, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(phaseScale), 1);
                     }
                     else if(!isTriggerActivated && patternNum == 1)
                     {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], TurnManager.Inst.turnNum, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], 0, Mathf.FloorToInt(phaseScale) * 2, 1);
                     }
                     else if(!isTriggerActivated && patternNum == 3)
                     {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], TurnManager.Inst.turnNum * 2, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], 0, Mathf.FloorToInt(phaseScale) * 4, 1);
                     }
                 };
                 break;
@@ -572,19 +594,19 @@ public class EnemyManager : MonoBehaviour
                 {
                     if(isTriggerActivated && triggerPatternNum == 0)
                     {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], TurnManager.Inst.turnNum, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], 0, Mathf.FloorToInt(phaseScale), 1);
                     }
                     else if(!isTriggerActivated && patternNum == 0)
                     {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], TurnManager.Inst.turnNum / 2, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(phaseScale), 1);
                     }
                     else if(!isTriggerActivated && patternNum == 1)
                     {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Shield[0], TurnManager.Inst.turnNum, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Shield[0], 0, Mathf.FloorToInt(phaseScale), 1);
                     }
                     else if(!isTriggerActivated && patternNum == 2)
                     {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], TurnManager.Inst.turnNum / 2, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(phaseScale), 1);
                     }
                 };
                 TurnManager.OnEnemyDamaged += (damage, source, enemyIdx) =>
@@ -607,13 +629,14 @@ public class EnemyManager : MonoBehaviour
                 };
                 TurnManager.OnPlayerTurnStart += () =>
                 {
+                    phaseScale *= enemy.phase[phaseNum].scalingFactor;
                     if (isTriggerActivated)
                     {
                         BuffManager.Inst.AddShowBuff("취약", EBuffAffectType.Enemy, 1, true);
                     }
                     else if(!isTriggerActivated && patternNum == 0)
                     {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], TurnManager.Inst.turnNum, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(phaseScale), 1);
                     }
                 };
                 TurnManager.OnEnemyDamaged += (damage, source, enemyIdx) =>
@@ -683,6 +706,7 @@ public class EnemyManager : MonoBehaviour
         GameManager.Inst.SetSubEnemyUI(subEnemyIdx, subEnemyObj.transform);
 
         phaseNum_SE[subEnemyIdx] = 0;
+        phaseScale_SE[subEnemyIdx] = 1f;
         patternNum_SE[subEnemyIdx] = 0;
         currentPattern_SE[subEnemyIdx] = subEnemy.phase[0].patterns[0].pattern;
         foreach(var p in subEnemies[subEnemyIdx].phase)
@@ -749,6 +773,7 @@ public class EnemyManager : MonoBehaviour
         if (!isTriggerActivated && enemy.phase[phaseNum].phaseClear)
         {
             phaseNum++;
+            phaseScale = 1f;
             patternNum = 0;
             currentPattern = enemy.phase[phaseNum].patterns[0].pattern;
             enemyImg.GetComponent<SpriteRenderer>().sprite = enemy.phase[phaseNum].sprite;
@@ -782,6 +807,7 @@ public class EnemyManager : MonoBehaviour
             if (subEnemies[i].phase[phaseNum_SE[i]].phaseClear)
             {
                 phaseNum_SE[i]++;
+                phaseScale_SE[i] = 1f;
                 patternNum_SE[i] = 0;
                 currentPattern_SE[i] = subEnemies[i].phase[phaseNum_SE[i]].patterns[0].pattern;
                 subEnemyImg[i].GetComponent<SpriteRenderer>().sprite = subEnemies[i].phase[phaseNum_SE[i]].sprite;
@@ -796,6 +822,10 @@ public class EnemyManager : MonoBehaviour
 
     public void ChangePhase(int phaseNum, int patternNum)
     {
+        if(this.phaseNum != phaseNum)
+        {
+            phaseScale = 1f;
+        }
         this.phaseNum = phaseNum;
         this.patternNum = patternNum;
         currentPattern = enemy.phase[phaseNum].patterns[patternNum].pattern;
@@ -824,6 +854,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     enemy.phase[phaseNum].phaseClear = true;
                     phaseNum++;
+                    phaseScale = 1f;
                     if(phaseNum >= enemy.phase.Count)
                     {
                         phaseNum = enemy.phase.Count - 1;
@@ -860,6 +891,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     subEnemies[i].phase[phaseNum_SE[i]].phaseClear = true;
                     phaseNum_SE[i]++;
+                    phaseScale_SE[i] = 1f;
                     if(phaseNum_SE[i] >= subEnemies[i].phase.Count)
                     {
                         phaseNum_SE[i] = subEnemies[i].phase.Count - 1;
