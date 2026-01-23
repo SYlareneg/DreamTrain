@@ -117,6 +117,17 @@ public class EncounterManager : MonoBehaviour
         RestoreOrStartEncounter();
         SceneChangeManager.Inst.SceneFadeIn(() => {  });
     }
+    
+    void Update()
+    {
+        if (isTyping)
+        {
+            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
+            {
+                SkipTyping();
+            }
+        }
+    }
     public void QuitGame()
     {
         Debug.Log("Game Quit");
@@ -596,22 +607,23 @@ public class EncounterManager : MonoBehaviour
             descriptionScrollRect.verticalNormalizedPosition = newNormalizedPos;
         }
     }
-/*
-    public void SkipTyping() // 화면 클릭 시 애니매이션 중지, 전체 텍스트 보임
+
+    public void SkipTyping()
     {
         if (isTyping)
         {
             if (typingCoroutine != null) StopCoroutine(typingCoroutine);
-            
+
             descriptionText.maxVisibleCharacters = descriptionText.textInfo.characterCount;
-            ScrollToChar(descriptionText.textInfo.characterCount - 1);
-            
+            //ScrollToChar(descriptionText.textInfo.characterCount - 1);
+
             isTyping = false;
-            
+
             onTypingComplete?.Invoke();
             onTypingComplete = null;
+        }
     }
-*/
+
     void UpdateOptionsUI()
     {
         ResetChoiceContainers();
@@ -874,7 +886,7 @@ public class EncounterManager : MonoBehaviour
 
                     // 2. 전체 DB에서 이름(또는 ID)으로 유물 데이터 찾기
                     // (CSV에 적힌 이름이 RelicName 혹은 RelicOwner와 일치해야 함)
-                    RelicItem_Data foundData = relicDatabase.relicItems.Find(x => x.relicName == objectName);
+                    RelicItem_Data foundData = relicDatabase.relicItems.Find(x => x.relicID == objectName);
 
                     if (foundData != null)
                     {
