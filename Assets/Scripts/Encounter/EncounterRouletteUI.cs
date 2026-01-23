@@ -209,13 +209,13 @@ public class EncounterRouletteUI : MonoBehaviour
         
         switch (result){
             case (RouletteResultType.Success): 
-                resultText.text = "<color=#FFFFFF>성 공 !</color>"; // 노란색
+                resultText.text = "<color=#FFFFFF>성 공 !</color>";
                 break;
             case (RouletteResultType.GreatSuccess): 
-                resultText.text = "<color=#FFFFFF>대 성 공 !</color>"; // 민트/초록색
+                resultText.text = "<color=#FFFFFF>대 성 공 !</color>"; 
                 break;
             case (RouletteResultType.Fail): 
-                resultText.text = "<color=#FFFFFF>실 패 !</color>"; // 빨간색
+                resultText.text = "<color=#FF0000>실 패 !</color>";
                 break;
         }
 
