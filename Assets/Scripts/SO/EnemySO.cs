@@ -53,6 +53,7 @@ public class EnemyPhase_Base
     public List<EnemyPatterns> patterns;
     public bool phaseClear;
     public bool phaseRepeat;
+    public float scalingFactor;
 
     public EnemyPhase_Base(string s, string t)
     {
@@ -61,6 +62,7 @@ public class EnemyPhase_Base
         patterns = new List<EnemyPatterns>();
         phaseClear = false;
         phaseRepeat = false;
+        scalingFactor = 1f;
     }
 
     public EnemyPhase_Base(EnemyPhase_Base ep)
@@ -74,6 +76,7 @@ public class EnemyPhase_Base
         }
         phaseClear = ep.phaseClear;
         phaseRepeat = ep.phaseRepeat;
+        scalingFactor = ep.scalingFactor;
     }
 }
 
