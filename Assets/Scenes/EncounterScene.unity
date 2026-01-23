@@ -6662,7 +6662,7 @@ MonoBehaviour:
   relicDatabase: {fileID: 11400000, guid: 51dcd8347c98008458816214e380ed75, type: 2}
   dreamPieceDatabase: {fileID: 11400000, guid: fa145bd86cf8d8a47b1d9e3683cef771, type: 2}
   cardDatabase: {fileID: 11400000, guid: 200e71a8166738b4a98d746fa337adde, type: 2}
-  typingSpeed: 0.03
+  typingSpeed: 0.01
   sofaManager: {fileID: 1493062490}
   cardGetUI: {fileID: 2090230963}
   isDebuging: 0

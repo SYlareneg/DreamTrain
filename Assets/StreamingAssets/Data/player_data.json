@@ -1,9 +1,9 @@
 {
     "maxHealth": 60,
     "curHealth": 60,
-    "dreamDust": 0,
+    "dreamDust": 1002,
     "leftPassengers": 0,
-    "isTutorial": true,
+    "isTutorial": false,
     "personaPiece": "고양이의 꿈",
     "isPersonaEnhanced": false,
     "personaCards": [
@@ -20,34 +20,26 @@
             "num": 1
         }
     ],
-    "shadowPiece": "고양이의 꿈",
+    "shadowPiece": "마술사의 꿈",
     "isShadowEnhanced": false,
     "shadowCards": [
         {
-            "cardName": "발톱 세우기",
+            "cardName": "마술 카드",
             "num": 1
         },
         {
-            "cardName": "실뭉치",
+            "cardName": "순간이동 마술",
             "num": 1
         },
         {
-            "cardName": "실 풀기",
+            "cardName": "마술 상자",
             "num": 1
         }
     ],
     "normalCards": [
         {
-            "cardName": "1칸 회전",
-            "num": 2
-        },
-        {
-            "cardName": "2칸 회전",
-            "num": 2
-        },
-        {
-            "cardName": "3칸 회전",
-            "num": 2
+            "cardName": "2칸 역회전",
+            "num": 1
         }
     ],
     "relics": [],
@@ -55,16 +47,144 @@
     "useableItems": [],
     "courage": 1,
     "wisdom": 1,
-    "luck": 1,
-    "currentActNum": 0,
-    "mapNodes": [],
-    "totalLevel": 0,
-    "visitedNodeIDList": [],
-    "curNodeIndex": 0,
-    "curNodeLocationID": "",
+    "luck": 3,
+    "currentActNum": 1,
+    "mapNodes": [
+        {
+            "locationID": "START",
+            "selectedEncounterPool": [],
+            "ID": "f9017fed88c84fc388a7b0075f917ecc",
+            "level": 0,
+            "pos": 0,
+            "screenPos": {
+                "x": -19.5,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "childNodes": [
+                "6269097d0b3c4c3bad25bbb8b3ef06fe"
+            ]
+        },
+        {
+            "locationID": "AMUSEMENT_PARK_ENTRANCE",
+            "selectedEncounterPool": [],
+            "ID": "6269097d0b3c4c3bad25bbb8b3ef06fe",
+            "level": 1,
+            "pos": 0,
+            "screenPos": {
+                "x": -15.5,
+                "y": 0.06507008522748947,
+                "z": 0.0
+            },
+            "childNodes": [
+                "6aec0eba264246838fede86b1d613c2a",
+                "e3abda122efb4bbdadef145b2e228c10"
+            ]
+        },
+        {
+            "locationID": "TEA_CUPS",
+            "selectedEncounterPool": [
+                "ACT1_SPINNING_CUP",
+                "ACT1_TEA_TIME"
+            ],
+            "ID": "6aec0eba264246838fede86b1d613c2a",
+            "level": 2,
+            "pos": 1,
+            "screenPos": {
+                "x": -11.5,
+                "y": 0.9308785200119019,
+                "z": 0.0
+            },
+            "childNodes": [
+                "24329f5e41df41218c295aa026a42137"
+            ]
+        },
+        {
+            "locationID": "GHOST_HOUSE",
+            "selectedEncounterPool": [],
+            "ID": "e3abda122efb4bbdadef145b2e228c10",
+            "level": 2,
+            "pos": -1,
+            "screenPos": {
+                "x": -11.5,
+                "y": -0.907009482383728,
+                "z": 0.0
+            },
+            "childNodes": [
+                "cdf2f7c7c01648ef9e9fb769afeecbce"
+            ]
+        },
+        {
+            "locationID": "MERRY_GO_ROUND",
+            "selectedEncounterPool": [],
+            "ID": "cdf2f7c7c01648ef9e9fb769afeecbce",
+            "level": 3,
+            "pos": -1,
+            "screenPos": {
+                "x": -7.5,
+                "y": -0.9194542169570923,
+                "z": 0.0
+            },
+            "childNodes": [
+                "6c2160d5c573445a8c57c5f3d7032fcd"
+            ]
+        },
+        {
+            "locationID": "MAZE_GARDEN",
+            "selectedEncounterPool": [],
+            "ID": "24329f5e41df41218c295aa026a42137",
+            "level": 3,
+            "pos": 1,
+            "screenPos": {
+                "x": -7.5,
+                "y": 0.9608149528503418,
+                "z": 0.0
+            },
+            "childNodes": [
+                "6c2160d5c573445a8c57c5f3d7032fcd"
+            ]
+        },
+        {
+            "locationID": "ICECREAM_CART",
+            "selectedEncounterPool": [],
+            "ID": "6c2160d5c573445a8c57c5f3d7032fcd",
+            "level": 4,
+            "pos": 0,
+            "screenPos": {
+                "x": -3.5,
+                "y": 0.022776976227760316,
+                "z": 0.0
+            },
+            "childNodes": [
+                "efcbbb208993420f80b9103231c69018"
+            ]
+        },
+        {
+            "locationID": "END",
+            "selectedEncounterPool": [],
+            "ID": "efcbbb208993420f80b9103231c69018",
+            "level": 5,
+            "pos": 0,
+            "screenPos": {
+                "x": 0.5,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "childNodes": []
+        }
+    ],
+    "totalLevel": 6,
+    "visitedNodeIDList": [
+        "6aec0eba264246838fede86b1d613c2a"
+    ],
+    "curNodeIndex": 2,
+    "curNodeLocationID": "TEA_CUPS",
     "lastEncounterType": 0,
-    "encounterQueue": [],
+    "encounterQueue": [
+        "ACT1_WINE_IN_CUP",
+        "ACT1_TEA_TIME"
+    ],
     "currentStepID": "",
-    "currentEncounterID": "",
-    "enemyName": ""
+    "currentEncounterID": "ACT1_WHITE_RABBIT",
+    "enemyName": "카드 병정"
 }
