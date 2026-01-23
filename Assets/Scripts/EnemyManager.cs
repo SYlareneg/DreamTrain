@@ -706,6 +706,7 @@ public class EnemyManager : MonoBehaviour
         GameManager.Inst.SetSubEnemyUI(subEnemyIdx, subEnemyObj.transform);
 
         phaseNum_SE[subEnemyIdx] = 0;
+        phaseScale_SE[subEnemyIdx] = 1f;
         patternNum_SE[subEnemyIdx] = 0;
         currentPattern_SE[subEnemyIdx] = subEnemy.phase[0].patterns[0].pattern;
         foreach(var p in subEnemies[subEnemyIdx].phase)
@@ -772,6 +773,7 @@ public class EnemyManager : MonoBehaviour
         if (!isTriggerActivated && enemy.phase[phaseNum].phaseClear)
         {
             phaseNum++;
+            phaseScale = 1f;
             patternNum = 0;
             currentPattern = enemy.phase[phaseNum].patterns[0].pattern;
             enemyImg.GetComponent<SpriteRenderer>().sprite = enemy.phase[phaseNum].sprite;
@@ -805,6 +807,7 @@ public class EnemyManager : MonoBehaviour
             if (subEnemies[i].phase[phaseNum_SE[i]].phaseClear)
             {
                 phaseNum_SE[i]++;
+                phaseScale_SE[i] = 1f;
                 patternNum_SE[i] = 0;
                 currentPattern_SE[i] = subEnemies[i].phase[phaseNum_SE[i]].patterns[0].pattern;
                 subEnemyImg[i].GetComponent<SpriteRenderer>().sprite = subEnemies[i].phase[phaseNum_SE[i]].sprite;
@@ -819,6 +822,10 @@ public class EnemyManager : MonoBehaviour
 
     public void ChangePhase(int phaseNum, int patternNum)
     {
+        if(this.phaseNum != phaseNum)
+        {
+            phaseScale = 1f;
+        }
         this.phaseNum = phaseNum;
         this.patternNum = patternNum;
         currentPattern = enemy.phase[phaseNum].patterns[patternNum].pattern;
@@ -847,6 +854,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     enemy.phase[phaseNum].phaseClear = true;
                     phaseNum++;
+                    phaseScale = 1f;
                     if(phaseNum >= enemy.phase.Count)
                     {
                         phaseNum = enemy.phase.Count - 1;
@@ -883,6 +891,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     subEnemies[i].phase[phaseNum_SE[i]].phaseClear = true;
                     phaseNum_SE[i]++;
+                    phaseScale_SE[i] = 1f;
                     if(phaseNum_SE[i] >= subEnemies[i].phase.Count)
                     {
                         phaseNum_SE[i] = subEnemies[i].phase.Count - 1;
