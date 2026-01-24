@@ -28,6 +28,7 @@ public class CardManager : MonoBehaviour
     [Tooltip("카드 드래그 여부")][ReadOnly] public bool isMyCardDrag;
     [Tooltip("현재 드래그 중인 카드가 나의 핸드 범위에 위치하는지 확인")][ReadOnly, SerializeField] bool onMyCardArea; // false일 경우 카드 사용, true일 경우 카드 핸드로 복귀
     [Tooltip("현재 드래그 중인 카드가 적의 카드 적용 범위에 위치하는지 확인")][ReadOnly, SerializeField] int onEnemyCardArea; // 0 이상일 경우 카드 사용, -1일 경우 카드 핸드로 복귀
+    [Tooltip("카드 드로우 효과음")] public AudioClip cardDrawSFX;
 
     // 카드 매니저 상태 (카드 상호작용 불가, 카드 마우스 호버 가능/사용 불가, 카드 사용 가능)
     enum ECardState { Nothing, CanMouseOver, CanMouseDrag }
@@ -187,6 +188,8 @@ public class CardManager : MonoBehaviour
             // 설정한 카드 아이템이 잘못되었을 경우 카드 소멸
             Destroy(card.gameObject);
         }
+
+        card.cardSound.PlayOneShot(cardDrawSFX);
     
         SetOriginOrder(); // 핸드 내 카드 order 정렬 (오른쪽 카드가 더 위에 오도록)
         CardAlignment(); // 핸드 내 카드 위치 정렬 (myCardLeft, myCardRight 기준)
@@ -362,7 +365,7 @@ public class CardManager : MonoBehaviour
 
         // selectedCard = 마우스를 올려놓은 카드
         selectedCard = card;
-        selectedCard.highlight.enabled = false;
+        // selectedCard.highlight.enabled = false;
         // 카드 확대
         EnlargeCard(true, card);
         if (tooltipCreated)
@@ -383,7 +386,7 @@ public class CardManager : MonoBehaviour
 
         if(selectedCard != null)
         {
-            selectedCard.highlight.enabled = false;
+            // selectedCard.highlight.enabled = false;
         }
         // 확대했던 카드 축소
         EnlargeCard(false, card);
@@ -444,7 +447,7 @@ public class CardManager : MonoBehaviour
                 return;
             }
             // 카드 사용
-            selectedCard.highlight.enabled = false;
+            // selectedCard.highlight.enabled = false;
             if (selectedCard.UseCard(onEnemyCardArea) == false)
             {
                 // 카드 사용이 불가능할 경우, 카드 축소 및 selectCard 초기화
@@ -621,14 +624,14 @@ public class CardManager : MonoBehaviour
         if(selectedCard != null)
         {
             selectedCard.MoveTransform(new PRS(Utils.MousePos, Utils.QI, selectedCard.originPRS.scale), false);
-            if(!onMyCardArea && (onEnemyCardArea >= 0 || selectedCard.item.isSingleTarget == false))
-            {
-                selectedCard.highlight.enabled = true;
-            }
-            else
-            {
-                selectedCard.highlight.enabled = false;
-            }
+            // if(!onMyCardArea && (onEnemyCardArea >= 0 || selectedCard.item.isSingleTarget == false))
+            // {
+            //     selectedCard.highlight.enabled = true;
+            // }
+            // else
+            // {
+            //     selectedCard.highlight.enabled = false;
+            // }
         }
     }
 
@@ -685,7 +688,7 @@ public class CardManager : MonoBehaviour
         else
         {
             card.MoveTransform(card.originPRS, false);
-            card.highlight.enabled = false;
+            // card.highlight.enabled = false;
         }
 
         // 확대했을 경우 카드의 order를 핸드에서 맨 앞에 오도록 설정

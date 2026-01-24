@@ -66,8 +66,8 @@
             "pos": 0,
             "screenPos": {
                 "x": -19.5,
-                "y": 0.0,
-                "z": 0.0
+                "y": 0,
+                "z": 0
             },
             "childNodes": [
                 "6a4883d345284c4f963d50877e8cb8ac"
@@ -82,7 +82,7 @@
             "screenPos": {
                 "x": -15.5,
                 "y": -0.06517934799194336,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "2a43a04d0d124e69ad9e2209325b2acc"
@@ -97,7 +97,7 @@
             "screenPos": {
                 "x": -11.5,
                 "y": -0.088069386780262,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "c0b56937ec3a4df183fbe9611d7df569"
@@ -112,7 +112,7 @@
             "screenPos": {
                 "x": -7.5,
                 "y": 0.03252679854631424,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "664dc7d0499a4c7aa88bf585aa319ddf"
@@ -126,8 +126,8 @@
             "pos": 0,
             "screenPos": {
                 "x": -3.5,
-                "y": 0.0,
-                "z": 0.0
+                "y": 0,
+                "z": 0
             },
             "childNodes": []
         }
@@ -143,5 +143,5 @@
     "encounterQueue": [],
     "currentStepID": "",
     "currentEncounterID": "",
-    "enemyName": "CardSoldier1"
+    "enemyName": "귀신들린 인형"
 }

@@ -18,6 +18,7 @@ public class Card : MonoBehaviour
     [SerializeField] TMP_Text costTMP;
     [SerializeField] TMP_Text typeTMP;
     public TMP_Text textTMP;
+    public AudioSource cardSound;
     [SerializeField] Sprite[] cardTypes;
     [SerializeField] Sprite[] rarityTypes;
     [SerializeField] Sprite[] costTypes;
@@ -350,6 +351,112 @@ public class Card : MonoBehaviour
             transform.rotation = prs.rot;
             transform.localScale = prs.scale;
         }
+    }
+
+    public bool IsCardUseable(int enemyIdx)
+    {
+        int buffedCost = BuffManager.Inst.GetBuffedCardCost(item);
+        if (buffedCost > TurnManager.Inst.nowCost)
+        {
+            return false;
+        }
+        if(BuffManager.Inst.allCardTypeBlockBuff[item.type] == true)
+        {
+            Debug.Log(item.type + " 카드 사용이 차단되었습니다!");
+            return false;
+        }
+        switch(item.name)
+        {
+            case "흡혈 부여":
+            case "흡혈 부여+":
+                RouletteType bloodSteal = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0));
+                if(!RouletteManager.Inst.IsRouletteEnchantable(true, bloodSteal, enemyIdx)) return false;
+                break;
+            case "마술 상자":
+            case "마술 상자+":
+                RouletteType magicBox = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0));
+                if(!RouletteManager.Inst.IsRouletteEnchantable(false, magicBox)) return false;
+                break;
+            case "마술 카드":
+            case "마술 카드+":
+                RouletteType magicCard = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 1));
+                if(!RouletteManager.Inst.IsRouletteEnchantable(false, magicCard)) return false;
+                break;
+            case "수트 체인지":
+            case "수트 체인지+":
+                magicCard = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 1));
+                if(RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.rtype != magicCard) return false;
+                break;
+            case "그랜드 피날레":
+            case "그랜드 피날레+":
+                magicCard = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 1));
+                bool skillFound = false;
+                bool enchantFound = false;
+                bool turnFound = false;
+                bool dreamFound = false;
+                for(int i = 0; i < RouletteManager.rouletteNum; i++)
+                {
+                    if(RouletteManager.Inst.roulettePieces[i].roulette.rtype == magicCard)
+                    {
+                        Debug.Log("그랜드 피날레 룰렛 타입: " + PassiveManager.Inst.playerSpecialRoulette_lastCardType[i].ToString());
+                        switch(PassiveManager.Inst.playerSpecialRoulette_lastCardType[i])
+                        {
+                            case CardType.Skill:
+                                skillFound = true; break;
+                            case CardType.Enchant:
+                                enchantFound = true; break;
+                            case CardType.Turn:
+                                turnFound = true; break;
+                            case CardType.Dream:
+                                dreamFound = true; break;
+                        }
+                    }
+                }
+                if((skillFound && enchantFound && turnFound && dreamFound) == false) return false;
+                break;
+            case "꽁꽁 얼리기":
+            case "꽁꽁 얼리기+":
+                RouletteType frozen = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0));
+                if(!RouletteManager.Inst.IsRouletteEnchantable(false, frozen)) return false;
+                break;
+            case "차가운 악수":
+            case "차가운 악수+":
+                frozen = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0));
+                if(!RouletteManager.Inst.IsRouletteEnchantable(true, frozen, enemyIdx)) return false;
+                break;
+            case "발톱 세우기":
+            case "발톱 세우기+":
+                RouletteType claw = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0));
+                if(!RouletteManager.Inst.IsRouletteEnchantable(true, claw, enemyIdx)) return false;
+                break;
+            case "소심한 할퀴기":
+            case "소심한 할퀴기+":
+                claw = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0));
+                if(!RouletteManager.Inst.IsRouletteEnchantable(true, claw, enemyIdx)) return false;
+                break;
+            case "고양이의 시간":
+            case "고양이의 시간+":
+                claw = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0));
+                for(int i = 0; i < RouletteManager.rouletteNum; i++)
+                {
+                    if(RouletteManager.Inst.IsRouletteEnchantable(i, claw))
+                    {
+                        return false;
+                    }
+                }
+                break;
+            case "실뭉치":
+            case "실뭉치+":
+                RouletteType furball = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 1));
+                if(!RouletteManager.Inst.IsRouletteEnchantable(false, furball)) return false;
+                break;
+            case "실 풀기":
+            case "실 풀기+":
+                furball = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 1));
+                if(RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.rtype != furball) return false;
+                break;
+        }
+        return true;
     }
 
     public bool UseCard(int enemyIdx)
@@ -1038,6 +1145,18 @@ public class Card : MonoBehaviour
     {
         if (currType == SceneType.General) ShowBuffedCost();
         ShowBuffedVal();
+
+        highlight.enabled = false;
+        for(int i = 0; i <= EnemyManager.Inst.subEnemies.Length; i++)
+        {
+            if(i > 0 && (EnemyManager.Inst.subEnemies[i - 1] == null || EnemyManager.Inst.subEnemies[i - 1].name == null)) continue;
+            if (IsCardUseable(i))
+            {
+                Debug.Log("적 " + i + "에게 사용 가능");
+                highlight.enabled = true;
+                break;
+            }
+        }
 
         if (tooltipCreated)
         {

@@ -225,6 +225,41 @@ public class RouletteManager : MonoBehaviour
         return ret;
     }
 
+    public bool IsRouletteEnchantable(int index, RouletteType rType)
+    {
+        if(isTriggerActivated) return false;
+        bool ret = true;
+        if(TurnManager.CheckRouletteEnchantable != null)
+        {
+            foreach (Func<int, RouletteType, bool> func in TurnManager.CheckRouletteEnchantable.GetInvocationList())
+            {
+                ret = ret && func.Invoke(index, rType);
+            }
+        }
+        return ret;
+    }
+
+    public bool IsRouletteEnchantable(bool isEnemy, RouletteType rType, int enemyIdx = 0)
+    {
+        if(isTriggerActivated) return false;
+        bool ret = true;
+        if(TurnManager.CheckRouletteEnchantable != null)
+        {
+            foreach (Func<int, RouletteType, bool> func in TurnManager.CheckRouletteEnchantable.GetInvocationList())
+            {
+                if(isEnemy)
+                {
+                    ret = ret && func.Invoke(EnemyIdxSpinOffset(enemyIdx), rType);
+                }
+                else
+                {
+                    ret = ret && func.Invoke(playerLookat, rType);
+                }
+            }
+        }
+        return ret;
+    }
+
     public bool EnchantRoulettePiece(int index, RouletteType rType, int rValue)
     {
         if(isTriggerActivated) return false;

@@ -4998,6 +4998,7 @@ MonoBehaviour:
   isMyCardDrag: 0
   onMyCardArea: 0
   onEnemyCardArea: 0
+  cardDrawSFX: {fileID: 8300000, guid: 2eaf1da073d928a4e9f5063a100f2fe9, type: 3}
   myCards: []
   myCardLeft: {fileID: 206208247}
   myCardRight: {fileID: 482525478}
@@ -9355,7 +9356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ActivateButton
   useClickEffect: 1
   useCost: 0
-  maxUseCost: 3
+  maxUseCost: 1
   costSR: {fileID: 1494901652}
   costSprites:
   - {fileID: 21300000, guid: 077df3051191b6d41a23d475449b9a74, type: 3}
@@ -15695,11 +15696,18 @@ MonoBehaviour:
     subEnemies_Spawn: []
   subEnemies: []
   phaseNum: 0
+  phaseScale: 0
   phaseNum_SE: 
+  phaseScale_SE:
+  - 0
+  - 0
+  - 0
+  - 0
   patternNum: 0
   patternNum_SE: 
   isTriggerActivated: 0
   triggerPhaseNum: 0
+  triggerPhaseScale: 0
   triggerPatternNum: 0
   currentPattern: []
   enemySpecialRoulettes: []
@@ -17087,7 +17095,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1494901651
 Transform:
   m_ObjectHideFlags: 0

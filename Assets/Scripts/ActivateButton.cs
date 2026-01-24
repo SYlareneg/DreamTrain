@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
+using System.Collections;
 
 public class ActivateButton : MonoBehaviour
 {
@@ -72,10 +73,19 @@ public class ActivateButton : MonoBehaviour
         if(TurnManager.Inst.isLoading && (TurnManager.Inst.characterSO.isTutorial == false || TutorialManager.Inst.rouletteActivate == false)) return;
         if (TurnManager.Inst.nowCost >= useCost)
         {
-            RouletteManager.Inst.ActivateRoulette();
-            TurnManager.Inst.IncreaseCost(-useCost);
+            StartCoroutine(ButtonActivate());
             if(useCost < maxUseCost) useCost += 1;
         }
+    }
+
+    IEnumerator ButtonActivate()
+    {
+        RouletteManager.Inst.ActivateRoulette();
+        TurnManager.Inst.IncreaseCost(-useCost);
+        TurnManager.Inst.isLoading = true;
+        yield return new WaitForSeconds(0.5f);
+        RouletteManager.Inst.Spin(true, 1);
+        TurnManager.Inst.isLoading = false;
     }
 
     private void Update()
