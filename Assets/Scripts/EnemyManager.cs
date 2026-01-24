@@ -846,6 +846,12 @@ public class EnemyManager : MonoBehaviour
         // 메인 적 패턴 결정
         if (!isTriggerActivated)
         {
+            enemyImg.GetComponent<SpriteRenderer>().sprite = enemy.phase[phaseNum].sprite;
+            enemyImg.GetComponent<Tooltip>().tooltipTitle = enemy.phase[phaseNum].name;
+            enemyImg.GetComponent<Tooltip>().tooltipTxt = enemy.phase[phaseNum].text;
+            enemyThumbnail.transform.Find("ImageMask/Image").GetComponent<Image>().sprite = enemy.phase[phaseNum].sprite;
+            enemyTriggerBar.GetComponent<Tooltip>().tooltipTitle = enemy.phase[phaseNum].name;
+            enemyTriggerBar.GetComponent<Tooltip>().tooltipTxt = enemy.phase[phaseNum].text;
             currentPattern = enemy.phase[phaseNum].patterns[patternNum++].pattern;
             if(patternNum == enemy.phase[phaseNum].patterns.Count)
             {
@@ -864,6 +870,12 @@ public class EnemyManager : MonoBehaviour
         }
         else
         {
+            enemyImg.GetComponent<SpriteRenderer>().sprite = enemy.triggerPhase[triggerPhaseNum].sprite;
+            enemyImg.GetComponent<Tooltip>().tooltipTitle = enemy.triggerPhase[triggerPhaseNum].name;
+            enemyImg.GetComponent<Tooltip>().tooltipTxt = enemy.triggerPhase[triggerPhaseNum].text;
+            enemyThumbnail.transform.Find("ImageMask/Image").GetComponent<Image>().sprite = enemy.triggerPhase[triggerPhaseNum].sprite;
+            enemyTriggerBar.GetComponent<Tooltip>().tooltipTitle = enemy.triggerPhase[triggerPhaseNum].name;
+            enemyTriggerBar.GetComponent<Tooltip>().tooltipTxt = enemy.triggerPhase[triggerPhaseNum].text;
             currentPattern = enemy.triggerPhase[triggerPhaseNum].patterns[triggerPatternNum++].pattern;
             if (triggerPatternNum == enemy.triggerPhase[triggerPhaseNum].patterns.Count)
             {
