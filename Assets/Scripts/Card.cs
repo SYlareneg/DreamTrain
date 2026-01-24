@@ -1152,7 +1152,6 @@ public class Card : MonoBehaviour
             if(i > 0 && (EnemyManager.Inst.subEnemies[i - 1] == null || EnemyManager.Inst.subEnemies[i - 1].name == null)) continue;
             if (IsCardUseable(i))
             {
-                Debug.Log("적 " + i + "에게 사용 가능");
                 highlight.enabled = true;
                 break;
             }
