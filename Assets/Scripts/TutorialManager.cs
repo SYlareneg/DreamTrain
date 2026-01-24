@@ -454,7 +454,7 @@ public class TutorialManager : MonoBehaviour
                     break;
                 case 2:
                     hideScreenTitle.text = "룰렛의 발동";
-                    hideScreenText.text = "룰렛 중앙의 버튼을 클릭하면 행동력을 소모하여 룰렛의 효과가 발동합니다.\n\n적 앞(12시 방향)의 룰렛은 적에게, 앨리스 앞(6시 방향)의 룰렛은 앨리스에게 효과를 적용합니다.\n\n룰렛은 항상 적과 앨리스에게 동시에 적용되니 주의하세요!";
+                    hideScreenText.text = "룰렛 중앙의 버튼을 클릭하면 행동력을 소모하여 룰렛의 효과가 발동합니다.\n\n적 앞(12시 방향)의 룰렛은 적에게, 앨리스 앞(6시 방향)의 룰렛은 앨리스에게 동시에 효과가 적용됩니다!\n\n또한, 효과가 발동한 후에는 룰렛이 시계방향으로 1칸 회전하게 되니 잘 기억해둡시다.";
                     
                     SetNextTutorial_Roulette(true);
                     Action onRouletteActivate = null;
@@ -504,7 +504,7 @@ public class TutorialManager : MonoBehaviour
                     {
                         case 2:
                             hideScreenTitle.text = "룰렛의 연속 발동";
-                            hideScreenText.text = "룰렛 버튼을 연속으로 누르면 같은 룰렛의 효과를 연속으로 발동할 수 있습니다.\n\n다만, 룰렛을 발동할 때마다 다음 발동을 위해 필요한 행동력의 양이 증가하니 주의합시다!\n\n증가한 룰렛 발동 행동력은 룰렛을 회전시키면 다시 1로 초기화됩니다.";
+                            hideScreenText.text = "룰렛 버튼을 연속으로 누르면 연달아 부여되어 있는 룰렛의 효과를 연속으로 발동할 수 있습니다.";
 
                             SetNextTutorial_Roulette(true);
                             Action onRouletteActivate = null;

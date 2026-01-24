@@ -82,11 +82,11 @@
       "roulettePattern": [
         {
           "rtype": {
-            "type": 3,
+            "type": 0,
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
-          "value": 5
+          "value": 0
         },
         {
           "rtype": {
@@ -170,11 +170,11 @@
         },
         {
           "rtype": {
-            "type": 0,
+            "type": 3,
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
-          "value": 0
+          "value": 5
         }
       ],
       "enemySpecialRoulettes": [
@@ -320,19 +320,11 @@
         },
         {
           "rtype": {
-            "type": 0,
+            "type": 3,
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
-          "value": 0
-        },
-        {
-          "rtype": {
-            "type": 0,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 0
+          "value": 5
         },
         {
           "rtype": {
@@ -341,6 +333,14 @@
             "enemyIdx": 0
           },
           "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
         },
         {
           "rtype": {

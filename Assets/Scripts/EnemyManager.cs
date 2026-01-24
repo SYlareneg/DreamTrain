@@ -649,13 +649,13 @@ public class EnemyManager : MonoBehaviour
                 };
                 break;
             case "카드 병정 2":
-                bool decCost = false;
+                int decCost = 2;
                 TurnManager.OnPlayerTurnStart += () =>
                 {
-                    if (!decCost)
+                    if (decCost > 0)
                     {
-                        TurnManager.Inst.IncreaseCost(-1);
-                        decCost = true;
+                        TurnManager.Inst.IncreaseCost(-TurnManager.Inst.turnNum);
+                        decCost--;
                     }
                 };
                 break;

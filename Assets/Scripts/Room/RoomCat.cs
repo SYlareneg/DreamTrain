@@ -17,6 +17,7 @@ public class RoomCat : RoomClickableObject
         {
             RoomDialogueManager.OnDialogueEnd += () =>
             {
+                RoomPlayer.Inst.isInteractable = false;
                 SceneChangeManager.Inst.SceneFadeOut("MapScene");
             };
         }

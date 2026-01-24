@@ -115,6 +115,11 @@ public class StartCanvasController : MonoBehaviour
         };
     }
 
+    void OnDisable()
+    {
+        input.Player.Disable();
+    }
+
     IEnumerator Start()
     {
         yield return new WaitForEndOfFrame();
