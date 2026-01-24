@@ -354,7 +354,7 @@ MonoBehaviour:
   - id: ACT1_DEVIL_DOLL
     nameKO: "\uADC0\uC2E0\uB4E4\uB9B0 \uC778\uD615"
     type: 0
-    imageName: 
+    imageName: "\uADC0\uC2E0 \uB4E4\uB9B0 \uC778\uD615"
     textPath: 
     order: 3
     isEssential: 0
@@ -407,7 +407,7 @@ MonoBehaviour:
   - id: ACT1_GUEST_OR_GHOST
     nameKO: "\uC720\uB839\uC774 \uB41C \uC190\uB2D8"
     type: 0
-    imageName: 
+    imageName: "\uC720\uB839\uC774 \uB41C \uC190\uB2D8"
     textPath: 
     order: 2
     isEssential: 0
@@ -569,7 +569,7 @@ MonoBehaviour:
   - id: ACT1_SHEEP_IN_MAZE
     nameKO: "\uAE38\uC744 \uC783\uC740 \uC0C1\uC778"
     type: 4
-    imageName: 
+    imageName: Best_Horse
     textPath: 
     order: 0
     isEssential: 0

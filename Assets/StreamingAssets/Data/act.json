@@ -104,10 +104,9 @@
       "hideSprite": "회전목마N02",
       "encounterPool": [
         "ACT1_FASTEST_HORSE",
-        "ACT1_LAZY_HORSE",
-        "ACT1_BEST_HORSE"
+        "ACT1_LAZY_HORSE"
       ],
-      "encounterNum": 2,
+      "encounterNum": 1,
       "difficulty": 8,
       "isNormalLocation": false
     },

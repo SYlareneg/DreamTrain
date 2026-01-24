@@ -759,7 +759,7 @@ MonoBehaviour:
     \\n7 \uC774\uC0C1: \uCE74\uB4DC\uB97C \uC81C\uAC70\uD560 \uB54C\uB9C8\uB2E4 \uB4DC\uB9BC
     \uCF54\uC778\uC744 1 \uC5BB\uC2B5\uB2C8\uB2E4. \\n9 \uC774\uC0C1: \uC804\uD22C\uC5D0\uC11C
     \uD134 \uC2DC\uC791 \uC2DC \uCE74\uB4DC\uB97C 1\uC7A5 \uB354 \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
-  tooltipPos: {x: -936, y: 469}
+  tooltipPos: {x: -582, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
 --- !u!1 &104470737
@@ -1096,7 +1096,7 @@ MonoBehaviour:
     \uBB3C\uD488\uC744 \uD310\uB9E4\uD560 \uD655\uB960\uC774 2\uBC30\uAC00 \uB429\uB2C8\uB2E4.
     \\n9 \uC774\uC0C1: \uB8F0\uB81B \uD310\uC815\uC758 \uB300\uC131\uACF5 \uD655\uB960\uC774
     \uD06C\uAC8C \uC99D\uAC00\uD569\uB2C8\uB2E4."
-  tooltipPos: {x: -936, y: 469}
+  tooltipPos: {x: -498, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
 --- !u!1 &151365500
@@ -2748,7 +2748,7 @@ MonoBehaviour:
   tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
   tooltipTitle: "\uC624\uBE0C\uC81C"
   tooltipTxt: "\uBCF4\uC720 \uC911\uC778 \uC624\uBE0C\uC81C\uB97C \uC5F4\uB78C\uD569\uB2C8\uB2E4."
-  tooltipPos: {x: -936, y: 469}
+  tooltipPos: {x: -320, y: 530}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
 --- !u!1 &377506790
@@ -3968,7 +3968,7 @@ MonoBehaviour:
   tooltipTxt: "\uAFC8 \uC138\uACC4\uC5D0\uC11C \uD1B5\uC6A9\uB418\uB294 \uC2E0\uBE44\uD55C
     \uB3D9\uC804\uC785\uB2C8\uB2E4. \uC8FC\uB85C \uC0C1\uC778\uACFC\uC758 \uAC70\uB798\uC5D0
     \uC0AC\uC6A9\uB429\uB2C8\uB2E4."
-  tooltipPos: {x: -936, y: 469}
+  tooltipPos: {x: -793, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
 --- !u!1 &597607955
@@ -8318,7 +8318,7 @@ MonoBehaviour:
     \uC774\uC0C1: \uC704\uD5D8\uD55C \uC804\uD22C \uC885\uB8CC \uC2DC \uB4DC\uB9BC
     \uCF54\uC778\uC744 1\uAC1C \uC5BB\uC2B5\uB2C8\uB2E4. \\n9 \uC774\uC0C1: \uC804\uD22C
     \uC911 \uCD5C\uB300 \uD589\uB3D9\uB825\uC774 1 \uC99D\uAC00\uD569\uB2C8\uB2E4."
-  tooltipPos: {x: -936, y: 469}
+  tooltipPos: {x: -645, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
 --- !u!1 &1165808054

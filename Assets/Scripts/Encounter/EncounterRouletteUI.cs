@@ -182,17 +182,24 @@ public class EncounterRouletteUI : MonoBehaviour
         isSpinning = true;
         spinButton.interactable = false;
 
-        // 결과 인덱스 랜덤 결정 (0 ~ 11)
+        // 1. 결과 인덱스 랜덤 결정 (0 ~ 11)
         int targetIndex = Random.Range(0, totalSlots);
         
-
+        // 2. 각도 계산
         float segmentAngle = 360f / totalSlots; // 30도
-        float targetAngleZ = (targetIndex * segmentAngle); 
+
+        // [최종 수정] 
+        // 목표 지점(targetIndex)이 12시(0도)에 오게 하려면
+        // 해당 슬롯의 각도만큼 반시계 방향(+)으로 돌려야 합니다.
+        float targetAngleZ = (targetIndex * segmentAngle) + (segmentAngle / 2f); 
         
-        // 5바퀴 + 목표 각도 + 랜덤 오차(칸 내부)
+        // 3. 회전 연출
+        // 시계 방향으로 돌면서 멈추게 하기 위해, 바퀴 수(360 * laps)를 '뺍니다'.
+        // 수식: (목표 각도) - (회전할 바퀴 수)
         int laps = 5; 
-        float randomOffset = Random.Range(-12f, 12f); // 경계선 피하기 위한 오차
-        float finalRotationZ = (360 * laps) + targetAngleZ + randomOffset; 
+        float randomOffset = Random.Range(-10f, 10f); // 오차 범위
+        
+        float finalRotationZ = targetAngleZ - (360 * laps) + randomOffset; 
 
         Vector3 targetRot = new Vector3(0, 0, finalRotationZ);
 
@@ -202,7 +209,7 @@ public class EncounterRouletteUI : MonoBehaviour
 
         yield return new WaitForSeconds(3.0f);
 
-        // 결과 판정
+        // 4. 결과 판정
         RouletteResultType result = currentSegments[targetIndex];
         
         yield return new WaitForSeconds(0.5f);
@@ -212,7 +219,7 @@ public class EncounterRouletteUI : MonoBehaviour
                 resultText.text = "<color=#FFFFFF>성 공 !</color>";
                 break;
             case (RouletteResultType.GreatSuccess): 
-                resultText.text = "<color=#FFFFFF>대 성 공 !</color>"; 
+                resultText.text = "<color=#77B0FF>대 성 공 !</color>"; 
                 break;
             case (RouletteResultType.Fail): 
                 resultText.text = "<color=#FF0000>실 패 !</color>";

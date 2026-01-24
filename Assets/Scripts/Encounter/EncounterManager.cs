@@ -521,8 +521,6 @@ public class EncounterManager : MonoBehaviour
     
         ResetChoiceContainers();
 
-        // [수정 1] 시스템 메시지 초기화
-        pendingSystemMessage = ""; 
 
         if (IsValidFunction(currentStep.functionCall))
         {
@@ -531,7 +529,6 @@ public class EncounterManager : MonoBehaviour
 
         if (actData.currentEncounterID == "" || SceneManager.GetActiveScene().name != "EncounterScene") return;
 
-        // [수정 2] 텍스트가 있거나, 시스템 메시지가 있다면 출력
         string finalContent = currentStep.textContent + pendingSystemMessage;
 
         if (currentStep.type == EncounterStepType.DESC || !string.IsNullOrEmpty(finalContent))
@@ -546,6 +543,7 @@ public class EncounterManager : MonoBehaviour
         {
             UpdateOptionsUI();
         }
+        pendingSystemMessage = "";
     }
     public void StartTyping(string content, bool isAppend, System.Action onComplete = null)
     {
@@ -952,8 +950,15 @@ public class EncounterManager : MonoBehaviour
 
 
             case "GetDebris":
-                if (args.Length >= 1) descriptionText.text += $"\n<color=#5df86f>드림 코인 {args[0]}개 획득!</color>";
-                characterData.dreamDust += int.Parse(args[0]);
+                if (args.Length >= 1)
+                {
+                    int amount = int.Parse(args[0]);
+                    string msg = "";
+                    if (amount > 0) msg = $"\n<color=#5df86f>드림 코인 {amount}개 획득!</color>";
+                    else msg = $"\n<color=#FF0000>드림 코인 {-amount}개 지불!</color>";
+                    pendingSystemMessage += msg;
+                    characterData.dreamDust += int.Parse(args[0]);
+                }
                 break;
 
             case "UpStatus":
@@ -971,18 +976,9 @@ public class EncounterManager : MonoBehaviour
                 {
                     int amount = int.Parse(args[1]);
                     playerStats.ModifyStat(sType1, -amount);
-
-                    if(descriptionText != null)
-                    {
-                        string msg = $"\n<color=#FF0000>'{sType1}' {amount}감소!</color>";
-                        StartTyping(msg, true, null);
-                        //ResetScrollPosition(false);
-                        //Canvas.ForceUpdateCanvases(); 
-                    }
-                    else
-                    {
-                        Debug.LogError("[DownStatus] descriptionText가 비어있습니다!");
-                    }
+    
+                    string msg = $"\n<color=#FF0000>'{sType1}' {amount} 감소!</color>";
+                    pendingSystemMessage += msg;
                 }
                 break;
             case "StartBattle": 
@@ -1090,22 +1086,17 @@ public class EncounterManager : MonoBehaviour
                     if (foundRef != null)
                     {
                         DreamPiece_Player newPiece = new DreamPiece_Player(foundRef);
-
                         characterData.personaPiece = newPiece;
 
-                        if (descriptionText != null)
-                        {
-                            descriptionText.text += $"\n<color=#D4AF37>꿈 조각 {targetName}으로 교체!</color>";
-                            ResetScrollPosition(false);
-                        }
-                        Debug.Log($"[Encounter] 꿈조각 장착 완료: {targetName}");
+                        // [수정됨] 직접 텍스트 수정 -> pendingSystemMessage 사용
+                        string msg = $"\n<color=#D4AF37>꿈 조각 '{targetName}'(으)로 교체!</color>";
+                        pendingSystemMessage += msg;
                     }
                     else
                     {
-                        Debug.LogError($"[Encounter] DB에서 꿈조각을 찾을 수 없습니다: {targetName}");
+                        Debug.LogError($"꿈조각 찾기 실패: {targetName}");
                     }
-                }
-
+                } 
                 break;
         }
     }
