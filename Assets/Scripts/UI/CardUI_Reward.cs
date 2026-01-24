@@ -12,5 +12,7 @@ public class CardUI_Reward : CardUI, IPointerEnterHandler, IPointerExitHandler, 
         {
             GameManager.Inst.EndCardReward();
         });
+
+        GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.UISelectSFX);
     }
 }

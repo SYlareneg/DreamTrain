@@ -27,7 +27,7 @@ MonoBehaviour:
     luckStat: 1
     persona:
       type: 1
-      sprite: {fileID: -6690263383312596796, guid: d7a16495d63463f46b9d7629cceaf3ee, type: 3}
+      sprite: {fileID: 21300000, guid: d7a16495d63463f46b9d7629cceaf3ee, type: 3}
       name: "\uC0AC\uB0E5 \uBCF8\uB2A5"
       text: "\uCE74\uB4DC\uB97C \uC0AC\uC6A9\uD560 \uB54C\uB9C8\uB2E4 \uD2B8\uB9AC\uAC70\uB97C
         1  \uC5BB\uC2B5\uB2C8\uB2E4.\n\uD2B8\uB9AC\uAC70 \uD6A8\uACFC: \uBAA8\uB4E0
@@ -36,7 +36,7 @@ MonoBehaviour:
       isEnhanced: 0
       enhancedPassive:
         type: 1
-        sprite: {fileID: -6690263383312596796, guid: d7a16495d63463f46b9d7629cceaf3ee, type: 3}
+        sprite: {fileID: 21300000, guid: d7a16495d63463f46b9d7629cceaf3ee, type: 3}
         name: "\uC0AC\uB0E5 \uBCF8\uB2A5+"
         text: "\uCE74\uB4DC\uB97C \uC0AC\uC6A9\uD560 \uB54C\uB9C8\uB2E4 \uD2B8\uB9AC\uAC70\uB97C
           1  \uC5BB\uC2B5\uB2C8\uB2E4.\n\uD2B8\uB9AC\uAC70 \uD6A8\uACFC: \uBAA8\uB4E0
@@ -45,7 +45,7 @@ MonoBehaviour:
         dreamPieceNum: 3
     shadow:
       type: 2
-      sprite: {fileID: -6690263383312596796, guid: d7a16495d63463f46b9d7629cceaf3ee, type: 3}
+      sprite: {fileID: 21300000, guid: d7a16495d63463f46b9d7629cceaf3ee, type: 3}
       name: "\uC601\uC5ED \uBCF8\uB2A5"
       text: "\uC804\uD22C \uC2DC\uC791 \uC2DC \uBB34\uC791\uC704 1\uCE78\uC5D0 \uBC1C\uD1B1
         \uB8F0\uB81B\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
@@ -53,7 +53,7 @@ MonoBehaviour:
       isEnhanced: 0
       enhancedPassive:
         type: 2
-        sprite: {fileID: -6690263383312596796, guid: d7a16495d63463f46b9d7629cceaf3ee, type: 3}
+        sprite: {fileID: 21300000, guid: d7a16495d63463f46b9d7629cceaf3ee, type: 3}
         name: "\uC601\uC5ED \uBCF8\uB2A5+"
         text: "\uC804\uD22C \uC2DC\uC791 \uC2DC \uBB34\uC791\uC704 <color=red>2</color>\uCE78\uC5D0
           \uBC1C\uD1B1 \uB8F0\uB81B\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
@@ -67,7 +67,7 @@ MonoBehaviour:
     - {r: 0.14901961, g: 0.14901961, b: 0.14901961, a: 1}
     - {r: 0.21568628, g: 0.21568628, b: 0.21568628, a: 1}
     playerSpecialRoulettes:
-    - sprite: {fileID: 21300000, guid: 7e50e6c2fa83e1f4881b9a98451a6deb, type: 3}
+    - sprite: {fileID: 21300000, guid: 4d4796f0f07e7d44ab04b0a067b617fa, type: 3}
       title: "\uBC1C\uD1B1"
       text: "\uAC12 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4. \uD6A8\uACFC\uB97C \uC801\uC6A9\uD560
         \uB54C\uB9C8\uB2E4 \uC704\uB825\uC774 3 \uAC10\uC18C\uD558\uACE0, 0\uC774
@@ -78,7 +78,7 @@ MonoBehaviour:
         \uC801\uC6A9\uD560 \uB54C\uB9C8\uB2E4 \uC704\uB825\uC774 3 \uAC10\uC18C\uD558\uACE0,
         0\uC774 \uB418\uBA74 \uC0AC\uB77C\uC9D1\uB2C8\uB2E4."
       baseVal_enhanced: 12
-    - sprite: {fileID: 21300000, guid: 685ab5857b42c9c4480cc3e79efd39fb, type: 3}
+    - sprite: {fileID: 21300000, guid: e1249cde992d43d4a8c9cb13a7dcb250, type: 3}
       title: "\uC2E4\uBB49\uCE58"
       text: "\uAC12 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4. \uB8F0\uB81B\uC774 \uD68C\uC804\uD558\uBA74
         \uD68C\uC804\uD55C \uCE78 \uC218 \uB9CC\uD07C \uC704\uB825\uC774 \uC99D\uAC00\uD558\uACE0,
@@ -156,7 +156,7 @@ MonoBehaviour:
     luckStat: 1
     persona:
       type: 1
-      sprite: {fileID: -6690263383312596796, guid: d7a16495d63463f46b9d7629cceaf3ee, type: 3}
+      sprite: {fileID: 21300000, guid: d7a16495d63463f46b9d7629cceaf3ee, type: 3}
       name: "\uC0AC\uB0E5 \uBCF8\uB2A5"
       text: "\uCE74\uB4DC\uB97C \uC0AC\uC6A9\uD560 \uB54C\uB9C8\uB2E4 \uD2B8\uB9AC\uAC70\uB97C
         1  \uC5BB\uC2B5\uB2C8\uB2E4.\n\uD2B8\uB9AC\uAC70 \uD6A8\uACFC: \uBAA8\uB4E0
@@ -165,7 +165,7 @@ MonoBehaviour:
       isEnhanced: 0
       enhancedPassive:
         type: 1
-        sprite: {fileID: -6690263383312596796, guid: d7a16495d63463f46b9d7629cceaf3ee, type: 3}
+        sprite: {fileID: 21300000, guid: d7a16495d63463f46b9d7629cceaf3ee, type: 3}
         name: "\uC0AC\uB0E5 \uBCF8\uB2A5+"
         text: "\uCE74\uB4DC\uB97C \uC0AC\uC6A9\uD560 \uB54C\uB9C8\uB2E4 \uD2B8\uB9AC\uAC70\uB97C
           1  \uC5BB\uC2B5\uB2C8\uB2E4.\n\uD2B8\uB9AC\uAC70 \uD6A8\uACFC: \uBAA8\uB4E0
@@ -174,7 +174,7 @@ MonoBehaviour:
         dreamPieceNum: 3
     shadow:
       type: 2
-      sprite: {fileID: -6690263383312596796, guid: d7a16495d63463f46b9d7629cceaf3ee, type: 3}
+      sprite: {fileID: 21300000, guid: d7a16495d63463f46b9d7629cceaf3ee, type: 3}
       name: "\uC601\uC5ED \uBCF8\uB2A5"
       text: "\uC804\uD22C \uC2DC\uC791 \uC2DC \uBB34\uC791\uC704 1\uCE78\uC5D0 \uBC1C\uD1B1
         \uB8F0\uB81B\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
@@ -182,7 +182,7 @@ MonoBehaviour:
       isEnhanced: 0
       enhancedPassive:
         type: 2
-        sprite: {fileID: -6690263383312596796, guid: d7a16495d63463f46b9d7629cceaf3ee, type: 3}
+        sprite: {fileID: 21300000, guid: d7a16495d63463f46b9d7629cceaf3ee, type: 3}
         name: "\uC601\uC5ED \uBCF8\uB2A5+"
         text: "\uC804\uD22C \uC2DC\uC791 \uC2DC \uBB34\uC791\uC704 <color=red>2</color>\uCE78\uC5D0
           \uBC1C\uD1B1 \uB8F0\uB81B\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
@@ -196,7 +196,7 @@ MonoBehaviour:
     - {r: 0.14901961, g: 0.14901961, b: 0.14901961, a: 1}
     - {r: 0.21568628, g: 0.21568628, b: 0.21568628, a: 1}
     playerSpecialRoulettes:
-    - sprite: {fileID: 21300000, guid: 7e50e6c2fa83e1f4881b9a98451a6deb, type: 3}
+    - sprite: {fileID: 21300000, guid: 4d4796f0f07e7d44ab04b0a067b617fa, type: 3}
       title: "\uBC1C\uD1B1"
       text: "\uAC12 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4. \uD6A8\uACFC\uB97C \uC801\uC6A9\uD560
         \uB54C\uB9C8\uB2E4 \uC704\uB825\uC774 3 \uAC10\uC18C\uD558\uACE0, 0\uC774
@@ -207,7 +207,7 @@ MonoBehaviour:
         \uC801\uC6A9\uD560 \uB54C\uB9C8\uB2E4 \uC704\uB825\uC774 3 \uAC10\uC18C\uD558\uACE0,
         0\uC774 \uB418\uBA74 \uC0AC\uB77C\uC9D1\uB2C8\uB2E4."
       baseVal_enhanced: 12
-    - sprite: {fileID: 21300000, guid: 685ab5857b42c9c4480cc3e79efd39fb, type: 3}
+    - sprite: {fileID: 21300000, guid: e1249cde992d43d4a8c9cb13a7dcb250, type: 3}
       title: "\uC2E4\uBB49\uCE58"
       text: "\uAC12 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4. \uB8F0\uB81B\uC774 \uD68C\uC804\uD558\uBA74
         \uD68C\uC804\uD55C \uCE78 \uC218 \uB9CC\uD07C \uC704\uB825\uC774 \uC99D\uAC00\uD558\uACE0,
@@ -277,7 +277,7 @@ MonoBehaviour:
       isEnhanced: 0
   normalCards:
   - name: "1\uCE78 \uD68C\uC804"
-    cost: 1
+    cost: 0
     type: 0
     rarity: 0
     dreamPieceNum: -1

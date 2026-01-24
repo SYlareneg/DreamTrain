@@ -189,6 +189,8 @@ public class Utils
         var dir = Path.GetDirectoryName(dst);
         if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
 
+#if UNITY_EDITOR
+#else
         // 유저 파일이 이미 있으면 그대로 사용
 		if(relativePath.Contains("player_data.json") || relativePath.Contains("player_data_start.json"))
 		{
@@ -198,6 +200,7 @@ public class Utils
 				yield break;
 			}
 		}
+#endif
 
         var src = Path.Combine(Application.streamingAssetsPath, "Data", relativePath);
 

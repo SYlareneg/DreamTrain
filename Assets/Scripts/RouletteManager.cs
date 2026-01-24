@@ -102,6 +102,8 @@ public class RouletteManager : MonoBehaviour
             if(targetZ != curZ) Spin(isClockwise, 0);
             else spinFlag = false;
         });
+
+        GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.rouletteRotateSFX);
     }
 
     public int EnemyIdxSpinOffset(int enemyIdx)
@@ -278,6 +280,8 @@ public class RouletteManager : MonoBehaviour
         roulettePieces[index].Setup(rItem);
         Utils.AllignActions(ref TurnManager.OnRouletteEnchant, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnRouletteEnchant?.Invoke(index);
+
+        roulettePieces[index].GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.rouletteEnchantSFX);
         return true;
     }
 

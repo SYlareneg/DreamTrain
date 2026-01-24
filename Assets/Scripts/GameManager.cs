@@ -97,6 +97,8 @@ public class GameManager : MonoBehaviour
             });
 
             Camera.main.transform.DOShakePosition(0.8f, 0.2f, 20, 90f);
+
+            GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.playerDamageSFX);
         };
     }
 
@@ -499,6 +501,7 @@ public class GameManager : MonoBehaviour
         characterSO.maxHealth = TurnManager.Inst.maxHealth;
         characterSO.curHealth = TurnManager.Inst.curHealth;
         characterSO.dreamDust += 1;
+        GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.coinGetSFX);
         // if(characterSO.enemyName == stageSO.stageList[stageSO.currentStage].bossEnemy.enemyName)
         // {
         //     stageSO.stageList[stageSO.currentStage].bossEnemy.isClear = true;

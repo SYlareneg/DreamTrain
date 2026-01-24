@@ -114,11 +114,11 @@ public class PassiveManager : MonoBehaviour
                 RouletteManager.PlayerTriggerActivation = (isEnemy, totalVal) =>
                 {
                     TurnManager.Inst.TakeDmg(TurnManager.Inst.curHealth / 10, EDamageSource.Passive);
-                    TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette);
+                    TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.TriggerRoulette);
                     for(int i = 0; i < Enemy.maxSubEnemyNum; i++)
                     {
                         if(EnemyManager.Inst.subEnemies[i] == null || EnemyManager.Inst.subEnemies[i].name == null) continue;
-                        TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette, i + 1);
+                        TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.TriggerRoulette, i + 1);
                     }
                 };
                 // 트리거 데미지 계산
@@ -337,11 +337,11 @@ public class PassiveManager : MonoBehaviour
                             RouletteManager.Inst.roulettePieces[i].RouletteClear();
                         }
                     }
-                    TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette);
+                    TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.TriggerRoulette);
                     for(int i = 0; i < Enemy.maxSubEnemyNum; i++)
                     {
                         if(EnemyManager.Inst.subEnemies[i] == null || EnemyManager.Inst.subEnemies[i].name == null) continue;
-                        TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette, i + 1);
+                        TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.TriggerRoulette, i + 1);
                     }
                 };
                 // 트리거 데미지 계산
@@ -603,7 +603,7 @@ public class PassiveManager : MonoBehaviour
                 // 트리거 효과 설정
                 RouletteManager.PlayerTriggerActivation = (isEnemy, totalVal) =>
                 {
-                    TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette);
+                    TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.TriggerRoulette);
                 };
                 break;
         }

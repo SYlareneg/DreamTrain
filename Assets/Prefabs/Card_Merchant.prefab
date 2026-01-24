@@ -552,6 +552,7 @@ GameObject:
   - component: {fileID: 8506390177229420750}
   - component: {fileID: 5004873512213805021}
   - component: {fileID: 4626087165437482915}
+  - component: {fileID: 5411779911552806735}
   m_Layer: 0
   m_Name: Card_Merchant
   m_TagString: Untagged
@@ -682,6 +683,8 @@ MonoBehaviour:
     cardValueTypes: 
     num: 0
     isEnhanced: 0
+  cardUITooltipPrefab: {fileID: 0}
+  tooltipPos: {fileID: 0}
 --- !u!114 &8506390177229420750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -704,6 +707,7 @@ MonoBehaviour:
   costTMP: {fileID: 421128813716030867}
   typeTMP: {fileID: 3166591101041596359}
   textTMP: {fileID: 6377466046030370615}
+  cardSound: {fileID: 0}
   cardTypes:
   - {fileID: 21300000, guid: 60b632bb194923646b225227a54988e5, type: 3}
   - {fileID: 21300000, guid: c9ddc3d65e511304ca0ed66183e2ce79, type: 3}
@@ -743,6 +747,7 @@ MonoBehaviour:
     pos: {x: 0, y: 0, z: 0}
     rot: {x: 0, y: 0, z: 0, w: 0}
     scale: {x: 0, y: 0, z: 0}
+  cardUITooltipPrefab: {fileID: 0}
   tooltipPos: {fileID: 4466361225483850152}
 --- !u!114 &5004873512213805021
 MonoBehaviour:
@@ -769,6 +774,7 @@ MonoBehaviour:
   - {fileID: 2756992996982579607}
   - {fileID: 7033238958384984581}
   sortingLayerName: Card
+  originOrder: 0
 --- !u!60 &4626087165437482915
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -824,6 +830,103 @@ PolygonCollider2D:
       - {x: 0.25805342, y: -0.48983425}
       - {x: 0.24856544, y: 0.5}
   m_UseDelaunayMesh: 0
+--- !u!82 &5411779911552806735
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3101435894562736061}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3792495288313886466
 GameObject:
   m_ObjectHideFlags: 0

@@ -1660,6 +1660,15 @@ public class EnemyManager : MonoBehaviour
                     enemyDamageSprite.GetComponent<SpriteRenderer>().color = Color.white;
                     enemyDamageSprite.Find("DamageTMP").GetComponent<TMP_Text>().color = Color.white;
                 });
+
+                if(source == EDamageSource.TriggerRoulette)
+                {
+                    enemyDamageSprite.GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.enemyTriggerDamageSFX);
+                }
+                else
+                {
+                    enemyDamageSprite.GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.enemyDamageSFX);
+                }
             }
         };
     }
