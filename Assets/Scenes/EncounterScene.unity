@@ -674,6 +674,7 @@ GameObject:
   - component: {fileID: 96231552}
   - component: {fileID: 96231554}
   - component: {fileID: 96231553}
+  - component: {fileID: 96231555}
   m_Layer: 5
   m_Name: WisdomIcon
   m_TagString: Untagged
@@ -714,8 +715,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 390, y: 1020, z: 1480, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -738,6 +739,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 96231551}
   m_CullTransparentMesh: 1
+--- !u!114 &96231555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96231551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a00420b01652994990b4f0921a3d65a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tooltip
+  tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
+  tooltipTitle: "\uC9C0\uD61C"
+  tooltipTxt: "\uC568\uB9AC\uC2A4\uAC00 \uC9C0\uD61C\uB85C\uC6B4 \uC120\uD0DD\uC744
+    \uB0B4\uB9AC\uBA74 \uC99D\uAC00\uD569\uB2C8\uB2E4.\\n 4 \uC774\uC0C1: \uC804\uD22C
+    \uC2DC\uC791 \uC2DC \uCCAB \uD134\uC5D0 \uBC29\uC5B4\uB3C4\uB97C 5 \uC5BB\uC2B5\uB2C8\uB2E4.
+    \\n7 \uC774\uC0C1: \uCE74\uB4DC\uB97C \uC81C\uAC70\uD560 \uB54C\uB9C8\uB2E4 \uB4DC\uB9BC
+    \uCF54\uC778\uC744 1 \uC5BB\uC2B5\uB2C8\uB2E4. \\n9 \uC774\uC0C1: \uC804\uD22C\uC5D0\uC11C
+    \uD134 \uC2DC\uC791 \uC2DC \uCE74\uB4DC\uB97C 1\uC7A5 \uB354 \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
+  tooltipPos: {x: -936, y: 469}
+  tooltipPivot: {x: 0, y: 1}
+  tooltipDisable: 0
 --- !u!1 &104470737
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,6 +1010,7 @@ GameObject:
   - component: {fileID: 129783174}
   - component: {fileID: 129783176}
   - component: {fileID: 129783175}
+  - component: {fileID: 129783177}
   m_Layer: 5
   m_Name: LuckIcon
   m_TagString: Untagged
@@ -1026,8 +1051,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 465, y: 1020, z: 1400, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1050,6 +1075,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129783173}
   m_CullTransparentMesh: 1
+--- !u!114 &129783177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129783173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a00420b01652994990b4f0921a3d65a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tooltip
+  tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
+  tooltipTitle: "\uD589\uC6B4"
+  tooltipTxt: "\uBCC0\uB355\uC2A4\uB7EC\uC6B4 \uC568\uB9AC\uC2A4\uC758 \uD589\uC6B4\uC785\uB2C8\uB2E4.
+    \\n 4 \uC774\uC0C1: \uC804\uD22C \uC885\uB8CC \uD6C4 \uCE74\uB4DC \uBCF4\uC0C1\uC73C\uB85C
+    \uD76C\uADC0 \uCE74\uB4DC\uAC00 \uCD9C\uD604\uD560 \uD655\uB960\uC774 2\uBC30\uAC00
+    \uB429\uB2C8\uB2E4. \\n7 \uC774\uC0C1: \uC0C1\uC778\uC774 \uD76C\uADC0\uD55C
+    \uBB3C\uD488\uC744 \uD310\uB9E4\uD560 \uD655\uB960\uC774 2\uBC30\uAC00 \uB429\uB2C8\uB2E4.
+    \\n9 \uC774\uC0C1: \uB8F0\uB81B \uD310\uC815\uC758 \uB300\uC131\uACF5 \uD655\uB960\uC774
+    \uD06C\uAC8C \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  tooltipPos: {x: -936, y: 469}
+  tooltipPivot: {x: 0, y: 1}
+  tooltipDisable: 0
 --- !u!1 &151365500
 GameObject:
   m_ObjectHideFlags: 0
@@ -2019,6 +2068,7 @@ GameObject:
   - component: {fileID: 278076791}
   - component: {fileID: 278076793}
   - component: {fileID: 278076792}
+  - component: {fileID: 278076794}
   m_Layer: 5
   m_Name: DreamCoinText
   m_TagString: Untagged
@@ -2042,8 +2092,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -687.5891, y: -33.6541}
-  m_SizeDelta: {x: 91.1481, y: 23.8936}
+  m_AnchoredPosition: {x: -699.1459, y: -33.654}
+  m_SizeDelta: {x: 68.0345, y: 23.893}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &278076792
 MonoBehaviour:
@@ -2144,6 +2194,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 278076790}
   m_CullTransparentMesh: 1
+--- !u!114 &278076794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278076790}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a00420b01652994990b4f0921a3d65a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tooltip
+  tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
+  tooltipTitle: "\uB4DC\uB9BC \uCF54\uC778"
+  tooltipTxt: "\uAFC8 \uC138\uACC4\uC5D0\uC11C \uD1B5\uC6A9\uB418\uB294 \uC2E0\uBE44\uD55C
+    \uB3D9\uC804\uC785\uB2C8\uB2E4. \uC8FC\uB85C \uC0C1\uC778\uACFC\uC758 \uAC70\uB798\uC5D0
+    \uC0AC\uC6A9\uB429\uB2C8\uB2E4."
+  tooltipPos: {x: -936, y: 469}
+  tooltipPivot: {x: 0, y: 1}
+  tooltipDisable: 0
 --- !u!1 &281916174
 GameObject:
   m_ObjectHideFlags: 0
@@ -2217,6 +2287,7 @@ GameObject:
   - component: {fileID: 294265974}
   - component: {fileID: 294265976}
   - component: {fileID: 294265975}
+  - component: {fileID: 294265977}
   m_Layer: 5
   m_Name: LuckText
   m_TagString: Untagged
@@ -2240,8 +2311,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 562.5357, y: 503.76}
-  m_SizeDelta: {x: 61.4947, y: 29.1839}
+  m_AnchoredPosition: {x: 546.6451, y: 503.82}
+  m_SizeDelta: {x: 29.7136, y: 29.059}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &294265975
 MonoBehaviour:
@@ -2342,6 +2413,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 294265973}
   m_CullTransparentMesh: 1
+--- !u!114 &294265977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294265973}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a00420b01652994990b4f0921a3d65a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tooltip
+  tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
+  tooltipTitle: "\uD589\uC6B4"
+  tooltipTxt: "\uBCC0\uB355\uC2A4\uB7EC\uC6B4 \uC568\uB9AC\uC2A4\uC758 \uD589\uC6B4\uC785\uB2C8\uB2E4.
+    \\n 4 \uC774\uC0C1: \uC804\uD22C \uC885\uB8CC \uD6C4 \uCE74\uB4DC \uBCF4\uC0C1\uC73C\uB85C
+    \uD76C\uADC0 \uCE74\uB4DC\uAC00 \uCD9C\uD604\uD560 \uD655\uB960\uC774 2\uBC30\uAC00
+    \uB429\uB2C8\uB2E4. \\n7 \uC774\uC0C1: \uC0C1\uC778\uC774 \uD76C\uADC0\uD55C
+    \uBB3C\uD488\uC744 \uD310\uB9E4\uD560 \uD655\uB960\uC774 2\uBC30\uAC00 \uB429\uB2C8\uB2E4.
+    \\n9 \uC774\uC0C1: \uB8F0\uB81B \uD310\uC815\uC758 \uB300\uC131\uACF5 \uD655\uB960\uC774
+    \uD06C\uAC8C \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  tooltipPos: {x: -936, y: 469}
+  tooltipPivot: {x: 0, y: 1}
+  tooltipDisable: 0
 --- !u!1 &314847762
 GameObject:
   m_ObjectHideFlags: 0
@@ -2375,7 +2470,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 23, y: -18}
+  m_AnchoredPosition: {x: 0, y: -202.5}
   m_SizeDelta: {x: -412.2285, y: -102.38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &314847764
@@ -2395,7 +2490,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 4
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
@@ -2517,6 +2612,7 @@ GameObject:
   - component: {fileID: 348495602}
   - component: {fileID: 348495601}
   - component: {fileID: 348495600}
+  - component: {fileID: 348495603}
   m_Layer: 5
   m_Name: RelicButton
   m_TagString: Untagged
@@ -2637,6 +2733,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 348495598}
   m_CullTransparentMesh: 1
+--- !u!114 &348495603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348495598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a00420b01652994990b4f0921a3d65a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tooltip
+  tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
+  tooltipTitle: "\uC624\uBE0C\uC81C"
+  tooltipTxt: "\uBCF4\uC720 \uC911\uC778 \uC624\uBE0C\uC81C\uB97C \uC5F4\uB78C\uD569\uB2C8\uB2E4."
+  tooltipPos: {x: -936, y: 469}
+  tooltipPivot: {x: 0, y: 1}
+  tooltipDisable: 0
 --- !u!1 &377506790
 GameObject:
   m_ObjectHideFlags: 0
@@ -3772,6 +3886,7 @@ GameObject:
   - component: {fileID: 567092200}
   - component: {fileID: 567092202}
   - component: {fileID: 567092201}
+  - component: {fileID: 567092203}
   m_Layer: 5
   m_Name: DreamCoinIcon
   m_TagString: Untagged
@@ -3812,8 +3927,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 155, y: 1020, z: 1700, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3836,6 +3951,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 567092199}
   m_CullTransparentMesh: 1
+--- !u!114 &567092203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567092199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a00420b01652994990b4f0921a3d65a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tooltip
+  tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
+  tooltipTitle: "\uB4DC\uB9BC \uCF54\uC778"
+  tooltipTxt: "\uAFC8 \uC138\uACC4\uC5D0\uC11C \uD1B5\uC6A9\uB418\uB294 \uC2E0\uBE44\uD55C
+    \uB3D9\uC804\uC785\uB2C8\uB2E4. \uC8FC\uB85C \uC0C1\uC778\uACFC\uC758 \uAC70\uB798\uC5D0
+    \uC0AC\uC6A9\uB429\uB2C8\uB2E4."
+  tooltipPos: {x: -936, y: 469}
+  tooltipPivot: {x: 0, y: 1}
+  tooltipDisable: 0
 --- !u!1 &597607955
 GameObject:
   m_ObjectHideFlags: 0
@@ -6252,6 +6387,7 @@ GameObject:
   - component: {fileID: 947336060}
   - component: {fileID: 947336062}
   - component: {fileID: 947336061}
+  - component: {fileID: 947336063}
   m_Layer: 5
   m_Name: WisdomText
   m_TagString: Untagged
@@ -6275,8 +6411,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -496.3, y: 504.39}
-  m_SizeDelta: {x: 48.2151, y: 30.1955}
+  m_AnchoredPosition: {x: -505.4491, y: 504.39014}
+  m_SizeDelta: {x: 29.9169, y: 30.195}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &947336061
 MonoBehaviour:
@@ -6377,6 +6513,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 947336059}
   m_CullTransparentMesh: 1
+--- !u!114 &947336063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 947336059}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a00420b01652994990b4f0921a3d65a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tooltip
+  tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
+  tooltipTitle: "\uC9C0\uD61C"
+  tooltipTxt: "\uC568\uB9AC\uC2A4\uAC00 \uC9C0\uD61C\uB85C\uC6B4 \uC120\uD0DD\uC744
+    \uB0B4\uB9AC\uBA74 \uC99D\uAC00\uD569\uB2C8\uB2E4.\\n 4 \uC774\uC0C1: \uC804\uD22C
+    \uC2DC\uC791 \uC2DC \uCCAB \uD134\uC5D0 \uBC29\uC5B4\uB3C4\uB97C 5 \uC5BB\uC2B5\uB2C8\uB2E4.
+    \\n7 \uC774\uC0C1: \uCE74\uB4DC\uB97C \uC81C\uAC70\uD560 \uB54C\uB9C8\uB2E4 \uB4DC\uB9BC
+    \uCF54\uC778\uC744 1 \uC5BB\uC2B5\uB2C8\uB2E4. \\n9 \uC774\uC0C1: \uC804\uD22C\uC5D0\uC11C
+    \uD134 \uC2DC\uC791 \uC2DC \uCE74\uB4DC\uB97C 1\uC7A5 \uB354 \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
+  tooltipPos: {x: -936, y: 469}
+  tooltipPivot: {x: 0, y: 1}
+  tooltipDisable: 0
 --- !u!1 &949247317
 GameObject:
   m_ObjectHideFlags: 0
@@ -6666,7 +6825,7 @@ MonoBehaviour:
   sofaManager: {fileID: 1493062490}
   cardGetUI: {fileID: 2090230963}
   isDebuging: 0
-  debuggerID: ACT1_DEVIL_DOLL
+  debuggerID: ACT1_BAT_ATTACK
   cardGetPanel: {fileID: 2012552559}
   cardGetConfirmBtn: {fileID: 1589231635}
   EndPanel: {fileID: 1302276041}
@@ -8074,6 +8233,7 @@ GameObject:
   - component: {fileID: 1163220274}
   - component: {fileID: 1163220276}
   - component: {fileID: 1163220275}
+  - component: {fileID: 1163220277}
   m_Layer: 5
   m_Name: CourageIcon
   m_TagString: Untagged
@@ -8114,8 +8274,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 310, y: 1020, z: 1560, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -8138,6 +8298,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163220273}
   m_CullTransparentMesh: 1
+--- !u!114 &1163220277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163220273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a00420b01652994990b4f0921a3d65a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tooltip
+  tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
+  tooltipTitle: "\uC6A9\uAE30"
+  tooltipTxt: "\uC568\uB9AC\uC2A4\uAC00 \uC6A9\uAE30 \uC788\uB294 \uC120\uD0DD\uC744
+    \uB0B4\uB9AC\uBA74 \uC99D\uAC00\uD569\uB2C8\uB2E4. \\n 4 \uC774\uC0C1: \uC804\uD22C
+    \uC885\uB8CC \uC2DC \uCCB4\uB825\uC744 3\uD68C\uBCF5\uD569\uB2C8\uB2E4. \\n7
+    \uC774\uC0C1: \uC704\uD5D8\uD55C \uC804\uD22C \uC885\uB8CC \uC2DC \uB4DC\uB9BC
+    \uCF54\uC778\uC744 1\uAC1C \uC5BB\uC2B5\uB2C8\uB2E4. \\n9 \uC774\uC0C1: \uC804\uD22C
+    \uC911 \uCD5C\uB300 \uD589\uB3D9\uB825\uC774 1 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  tooltipPos: {x: -936, y: 469}
+  tooltipPivot: {x: 0, y: 1}
+  tooltipDisable: 0
 --- !u!1 &1165808054
 GameObject:
   m_ObjectHideFlags: 0
@@ -8320,6 +8503,7 @@ GameObject:
   - component: {fileID: 1192497210}
   - component: {fileID: 1192497212}
   - component: {fileID: 1192497211}
+  - component: {fileID: 1192497213}
   m_Layer: 5
   m_Name: HPIcon
   m_TagString: Untagged
@@ -8360,8 +8544,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 1020, z: 1850, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -8384,6 +8568,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1192497209}
   m_CullTransparentMesh: 1
+--- !u!114 &1192497213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192497209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a00420b01652994990b4f0921a3d65a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tooltip
+  tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
+  tooltipTitle: "\uCCB4\uB825"
+  tooltipTxt: "0\uC774 \uB418\uBA74 \uC568\uB9AC\uC2A4\uC758 \uC5EC\uC815\uC774 \uB05D\uB098\uAC8C
+    \uB429\uB2C8\uB2E4."
+  tooltipPos: {x: -936, y: 469}
+  tooltipPivot: {x: 0, y: 1}
+  tooltipDisable: 0
 --- !u!1 &1192944735
 GameObject:
   m_ObjectHideFlags: 0
@@ -11060,6 +11263,7 @@ GameObject:
   - component: {fileID: 1496225831}
   - component: {fileID: 1496225833}
   - component: {fileID: 1496225832}
+  - component: {fileID: 1496225834}
   m_Layer: 5
   m_Name: CourageText
   m_TagString: Untagged
@@ -11083,8 +11287,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 384.95, y: 504.39}
-  m_SizeDelta: {x: 44.2214, y: 27.9139}
+  m_AnchoredPosition: {x: 377.2455, y: 503.82}
+  m_SizeDelta: {x: 28.8124, y: 29.055}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1496225832
 MonoBehaviour:
@@ -11185,6 +11389,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1496225830}
   m_CullTransparentMesh: 1
+--- !u!114 &1496225834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496225830}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a00420b01652994990b4f0921a3d65a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tooltip
+  tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
+  tooltipTitle: "\uC6A9\uAE30"
+  tooltipTxt: "\uC568\uB9AC\uC2A4\uAC00 \uC6A9\uAE30 \uC788\uB294 \uC120\uD0DD\uC744
+    \uB0B4\uB9AC\uBA74 \uC99D\uAC00\uD569\uB2C8\uB2E4. \\n 4 \uC774\uC0C1: \uC804\uD22C
+    \uC885\uB8CC \uC2DC \uCCB4\uB825\uC744 3\uD68C\uBCF5\uD569\uB2C8\uB2E4. \\n7
+    \uC774\uC0C1: \uC704\uD5D8\uD55C \uC804\uD22C \uC885\uB8CC \uC2DC \uB4DC\uB9BC
+    \uCF54\uC778\uC744 1\uAC1C \uC5BB\uC2B5\uB2C8\uB2E4. \\n9 \uC774\uC0C1: \uC804\uD22C
+    \uC911 \uCD5C\uB300 \uD589\uB3D9\uB825\uC774 1 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  tooltipPos: {x: -936, y: 469}
+  tooltipPivot: {x: 0, y: 1}
+  tooltipDisable: 0
 --- !u!1 &1509736206
 GameObject:
   m_ObjectHideFlags: 0
@@ -16650,6 +16877,7 @@ GameObject:
   - component: {fileID: 2061099879}
   - component: {fileID: 2061099881}
   - component: {fileID: 2061099880}
+  - component: {fileID: 2061099882}
   m_Layer: 5
   m_Name: HPText
   m_TagString: Untagged
@@ -16673,8 +16901,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -840.3198, y: -35.4153}
-  m_SizeDelta: {x: 91.7072, y: 27.4159}
+  m_AnchoredPosition: {x: -846.0982, y: -33.654}
+  m_SizeDelta: {x: 80.1504, y: 23.893}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2061099880
 MonoBehaviour:
@@ -16775,6 +17003,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2061099878}
   m_CullTransparentMesh: 1
+--- !u!114 &2061099882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061099878}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a00420b01652994990b4f0921a3d65a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tooltip
+  tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
+  tooltipTitle: "\uCCB4\uB825"
+  tooltipTxt: "0\uC774 \uB418\uBA74 \uC568\uB9AC\uC2A4\uC758 \uC5EC\uC815\uC774 \uB05D\uB098\uAC8C
+    \uB429\uB2C8\uB2E4."
+  tooltipPos: {x: -936, y: 469}
+  tooltipPivot: {x: 0, y: 1}
+  tooltipDisable: 0
 --- !u!1001 &2090230962
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -19,7 +19,7 @@ public class CardUI_Sell : CardUI, IPointerClickHandler
         sellCard.cardItem = item;
         sellCard.cost = cost;
         sellCard.isValid = isValid;
-        sellCostTMP.text = "<sprite=0>" + sellCard.cost.ToString();
+        sellCostTMP.text = sellCard.cost.ToString();
         gameObject.SetActive(isValid);
     }
     public void OnPointerClick(PointerEventData data)
