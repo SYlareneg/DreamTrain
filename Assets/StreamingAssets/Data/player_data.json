@@ -1,9 +1,9 @@
 {
     "maxHealth": 60,
-    "curHealth": 60,
-    "dreamDust": 0,
+    "curHealth": 57,
+    "dreamDust": 2,
     "leftPassengers": 0,
-    "isTutorial": true,
+    "isTutorial": false,
     "personaPiece": "고양이의 꿈",
     "isPersonaEnhanced": false,
     "personaCards": [
@@ -55,13 +55,13 @@
     "useableItems": [],
     "courage": 1,
     "wisdom": 1,
-    "luck": 1,
-    "currentActNum": 0,
+    "luck": 3,
+    "currentActNum": 1,
     "mapNodes": [
         {
-            "locationID": "TUTORIAL_START",
+            "locationID": "START",
             "selectedEncounterPool": [],
-            "ID": "3739df753e0f4f7891f335e84756b0d6",
+            "ID": "25636694d346462ea79968f67c5bcc78",
             "level": 0,
             "pos": 0,
             "screenPos": {
@@ -70,78 +70,141 @@
                 "z": 0.0
             },
             "childNodes": [
-                "a7acea3452ad473faf0bc3d3ee459f5e"
+                "ce01ac72f49f4b339a4596128ba9a8dc"
             ]
         },
         {
-            "locationID": "TUTORIAL_1",
-            "selectedEncounterPool": [],
-            "ID": "a7acea3452ad473faf0bc3d3ee459f5e",
+            "locationID": "AMUSEMENT_PARK_ENTRANCE",
+            "selectedEncounterPool": [
+                "ACT1_WHITE_RABBIT"
+            ],
+            "ID": "ce01ac72f49f4b339a4596128ba9a8dc",
             "level": 1,
             "pos": 0,
             "screenPos": {
                 "x": -15.5,
-                "y": -0.08007495850324631,
+                "y": -0.015255823731422425,
                 "z": 0.0
             },
             "childNodes": [
-                "7767332ac6e841b2a5a0166f695e3f99"
+                "587300d2144b4405b18e39e81e5e837b",
+                "41d3346237f94098976e9ad98e563c94",
+                "577d88464b8f422aaf8f65b640e63482"
             ]
         },
         {
-            "locationID": "TUTORIAL_2",
-            "selectedEncounterPool": [],
-            "ID": "7767332ac6e841b2a5a0166f695e3f99",
+            "locationID": "MERRY_GO_ROUND",
+            "selectedEncounterPool": [
+                "ACT1_LAZY_HORSE",
+                "ACT1_BEST_HORSE"
+            ],
+            "ID": "587300d2144b4405b18e39e81e5e837b",
             "level": 2,
-            "pos": 0,
+            "pos": 2,
             "screenPos": {
                 "x": -11.5,
-                "y": 0.03980376571416855,
+                "y": 1.7693240642547608,
                 "z": 0.0
             },
             "childNodes": [
-                "14ce1906c30649eda05c4afb0cba48a0"
+                "bb4b46fd8414468694afe9bc0c57617e"
             ]
         },
         {
-            "locationID": "TUTORIAL_3",
-            "selectedEncounterPool": [],
-            "ID": "14ce1906c30649eda05c4afb0cba48a0",
+            "locationID": "TEA_CUPS",
+            "selectedEncounterPool": [
+                "ACT1_SPINNING_CUP",
+                "ACT1_TEA_TIME"
+            ],
+            "ID": "41d3346237f94098976e9ad98e563c94",
+            "level": 2,
+            "pos": 1,
+            "screenPos": {
+                "x": -11.5,
+                "y": 0.9699133634567261,
+                "z": 0.0
+            },
+            "childNodes": [
+                "bb4b46fd8414468694afe9bc0c57617e"
+            ]
+        },
+        {
+            "locationID": "GHOST_HOUSE",
+            "selectedEncounterPool": [
+                "ACT1_MISSING_ZIZI",
+                "ACT1_DEVIL_DOLL",
+                "ACT1_VAMP_INVITATION"
+            ],
+            "ID": "577d88464b8f422aaf8f65b640e63482",
             "level": 3,
-            "pos": 0,
+            "pos": -2,
             "screenPos": {
                 "x": -7.5,
-                "y": 0.05235516279935837,
+                "y": -1.7480798959732056,
                 "z": 0.0
             },
             "childNodes": [
-                "7c23177dee8149428cb078c8627d4116"
+                "f38a8c8e2b7e4ada98f016bdc9f6e35b"
             ]
         },
         {
-            "locationID": "TUTORIAL_END",
+            "locationID": "MAZE_GARDEN",
             "selectedEncounterPool": [],
-            "ID": "7c23177dee8149428cb078c8627d4116",
+            "ID": "bb4b46fd8414468694afe9bc0c57617e",
+            "level": 3,
+            "pos": 1,
+            "screenPos": {
+                "x": -7.5,
+                "y": 0.9913740158081055,
+                "z": 0.0
+            },
+            "childNodes": [
+                "f38a8c8e2b7e4ada98f016bdc9f6e35b"
+            ]
+        },
+        {
+            "locationID": "ICECREAM_CART",
+            "selectedEncounterPool": [],
+            "ID": "f38a8c8e2b7e4ada98f016bdc9f6e35b",
             "level": 4,
             "pos": 0,
             "screenPos": {
                 "x": -3.5,
+                "y": 0.07708122581243515,
+                "z": 0.0
+            },
+            "childNodes": [
+                "1900b5c8457b4368af6a778fa253a111"
+            ]
+        },
+        {
+            "locationID": "END",
+            "selectedEncounterPool": [],
+            "ID": "1900b5c8457b4368af6a778fa253a111",
+            "level": 5,
+            "pos": 0,
+            "screenPos": {
+                "x": 0.5,
                 "y": 0.0,
                 "z": 0.0
             },
             "childNodes": []
         }
     ],
-    "totalLevel": 5,
+    "totalLevel": 6,
     "visitedNodeIDList": [
-        "3739df753e0f4f7891f335e84756b0d6",
-        "a7acea3452ad473faf0bc3d3ee459f5e"
+        "25636694d346462ea79968f67c5bcc78",
+        "ce01ac72f49f4b339a4596128ba9a8dc",
+        "577d88464b8f422aaf8f65b640e63482"
     ],
-    "curNodeIndex": 1,
-    "curNodeLocationID": "TUTORIAL_1",
+    "curNodeIndex": 4,
+    "curNodeLocationID": "GHOST_HOUSE",
     "lastEncounterType": 0,
-    "encounterQueue": [],
-    "currentStepID": "",
-    "currentEncounterID": "",
-    "enemyName": "CardSoldier1"
+    "encounterQueue": [
+        "ACT1_DEVIL_DOLL",
+        "ACT1_VAMP_INVITATION"
+    ],
+    "currentStepID": "P_TRACE",
+    "currentEncounterID": "ACT1_MISSING_ZIZI",
+    "enemyName": "ScaryCat"
 }

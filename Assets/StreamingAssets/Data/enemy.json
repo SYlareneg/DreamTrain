@@ -739,7 +739,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire",
+          "sprite": "Not Drawn Yet",
           "scalingFactor": 1
         },
         {
@@ -1014,7 +1014,7 @@
                 },
                 {
                   "type": 0,
-                  "typeNum": 0,
+                  "typeNum": -2,
                   "val": -3,
                   "isTrigger": false
                 }
@@ -1040,13 +1040,13 @@
               "pattern": [
                 {
                   "type": 0,
-                  "typeNum": 0,
+                  "typeNum": -2,
                   "val": -4,
                   "isTrigger": false
                 },
                 {
                   "type": 0,
-                  "typeNum": 0,
+                  "typeNum": -2,
                   "val": -4,
                   "isTrigger": false
                 }
@@ -1071,7 +1071,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire",
+          "sprite": "Not Drawn Yet",
           "scalingFactor": 1
         }
       ],
@@ -1090,7 +1090,7 @@
                 },
                 {
                   "type": 0,
-                  "typeNum": 0,
+                  "typeNum": -2,
                   "val": -3,
                   "isTrigger": false
                 },
@@ -1122,7 +1122,7 @@
               "pattern": [
                 {
                   "type": 0,
-                  "typeNum": 0,
+                  "typeNum": -2,
                   "val": -4,
                   "isTrigger": false
                 },
@@ -1352,7 +1352,7 @@
                 },
                 {
                   "type": 0,
-                  "typeNum": -2,
+                  "typeNum": 0,
                   "val": -7,
                   "isTrigger": false
                 }
@@ -1371,7 +1371,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire",
+          "sprite": "Not Drawn Yet",
           "scalingFactor": 1
         }
       ],
@@ -2044,7 +2044,7 @@
               "pattern": [
                 {
                   "type": 0,
-                  "typeNum": -2,
+                  "typeNum": 0,
                   "val": -3,
                   "isTrigger": false
                 },
@@ -2069,7 +2069,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Enemy_Vampire",
+          "sprite": "Not Drawn Yet",
           "scalingFactor": 1
         },
         {
@@ -3305,7 +3305,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire",
+          "sprite": "Not Drawn Yet",
           "scalingFactor": 1
         }
       ],
@@ -3533,7 +3533,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire",
+          "sprite": "Not Drawn Yet",
           "scalingFactor": 1
         }
       ],
