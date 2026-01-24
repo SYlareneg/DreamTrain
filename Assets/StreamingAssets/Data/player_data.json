@@ -1,7 +1,7 @@
 {
     "maxHealth": 60,
     "curHealth": 57,
-    "dreamDust": 2,
+    "dreamDust": 5,
     "leftPassengers": 0,
     "isTutorial": false,
     "personaPiece": "고양이의 꿈",
@@ -75,9 +75,7 @@
         },
         {
             "locationID": "AMUSEMENT_PARK_ENTRANCE",
-            "selectedEncounterPool": [
-                "ACT1_WHITE_RABBIT"
-            ],
+            "selectedEncounterPool": [],
             "ID": "ce01ac72f49f4b339a4596128ba9a8dc",
             "level": 1,
             "pos": 0,
@@ -95,8 +93,7 @@
         {
             "locationID": "MERRY_GO_ROUND",
             "selectedEncounterPool": [
-                "ACT1_LAZY_HORSE",
-                "ACT1_BEST_HORSE"
+                "ACT1_LAZY_HORSE"
             ],
             "ID": "587300d2144b4405b18e39e81e5e837b",
             "level": 2,
@@ -112,10 +109,7 @@
         },
         {
             "locationID": "TEA_CUPS",
-            "selectedEncounterPool": [
-                "ACT1_SPINNING_CUP",
-                "ACT1_TEA_TIME"
-            ],
+            "selectedEncounterPool": [],
             "ID": "41d3346237f94098976e9ad98e563c94",
             "level": 2,
             "pos": 1,
@@ -130,11 +124,7 @@
         },
         {
             "locationID": "GHOST_HOUSE",
-            "selectedEncounterPool": [
-                "ACT1_MISSING_ZIZI",
-                "ACT1_DEVIL_DOLL",
-                "ACT1_VAMP_INVITATION"
-            ],
+            "selectedEncounterPool": [],
             "ID": "577d88464b8f422aaf8f65b640e63482",
             "level": 3,
             "pos": -2,
@@ -149,7 +139,11 @@
         },
         {
             "locationID": "MAZE_GARDEN",
-            "selectedEncounterPool": [],
+            "selectedEncounterPool": [
+                "ACT1_SHEEP_IN_MAZE",
+                "ACT1_FLOWER_ATTACK",
+                "ACT1_SUNNY_AFTERNOON"
+            ],
             "ID": "bb4b46fd8414468694afe9bc0c57617e",
             "level": 3,
             "pos": 1,
@@ -193,18 +187,15 @@
     ],
     "totalLevel": 6,
     "visitedNodeIDList": [
-        "25636694d346462ea79968f67c5bcc78",
-        "ce01ac72f49f4b339a4596128ba9a8dc",
-        "577d88464b8f422aaf8f65b640e63482"
+        "9ae3f883e4234636981146470121ce27"
     ],
-    "curNodeIndex": 4,
-    "curNodeLocationID": "GHOST_HOUSE",
+    "curNodeIndex": 3,
+    "curNodeLocationID": "MAZE_GARDEN",
     "lastEncounterType": 0,
     "encounterQueue": [
-        "ACT1_DEVIL_DOLL",
         "ACT1_VAMP_INVITATION"
     ],
-    "currentStepID": "P_TRACE",
-    "currentEncounterID": "ACT1_MISSING_ZIZI",
-    "enemyName": "ScaryCat"
+    "currentStepID": "P_AFTER_BATTLE",
+    "currentEncounterID": "ACT1_DEVIL_DOLL",
+    "enemyName": "DevilDoll"
 }
