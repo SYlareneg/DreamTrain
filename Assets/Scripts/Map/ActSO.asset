@@ -177,16 +177,130 @@ MonoBehaviour:
       level: 0
       pos: 0
       childNodes: []
-  curActNum: 0
+  curActNum: 1
   mapSave:
-    sortedMapNodeList: []
-    totalLevel: 0
-  mapNodeScreenPosSave: []
+    sortedMapNodeList:
+    - nodeImg: {fileID: 21300000, guid: d3fd2d362648f8c4587e38c7fd451bae, type: 3}
+      hideNodeImg: {fileID: 21300000, guid: d3fd2d362648f8c4587e38c7fd451bae, type: 3}
+      title: "\uCD9C\uBC1C"
+      text: "\uCD9C\uBC1C \uC9C0\uC810\uC785\uB2C8\uB2E4."
+      encounterNum: 0
+      ID: 16d46587fc4349ddb768846710e9f7c5
+      locationID: START
+      difficulty: 6
+      level: 0
+      pos: 0
+      childNodes:
+      - 74d4dc4032db41af9cb3f9b3193f1a3c
+    - nodeImg: {fileID: -7983062138974868417, guid: ab1d2931204d8bb43884f49039caf369, type: 3}
+      hideNodeImg: {fileID: 3128424324727989736, guid: e57288f7462425e49966e9d18671d475, type: 3}
+      title: "\uB180\uC774\uACF5\uC6D0 \uC785\uAD6C"
+      text: "\uC5EC\uC815\uC758 \uC2DC\uC791\uC740 \uD56D\uC0C1 \uB450\uADFC\uAC70\uB9AC\uB294
+        \uBC95\uC774\uC8E0."
+      encounterNum: 1
+      ID: 74d4dc4032db41af9cb3f9b3193f1a3c
+      locationID: AMUSEMENT_PARK_ENTRANCE
+      difficulty: 7
+      level: 1
+      pos: 0
+      childNodes:
+      - 5c58dcdbb2fc40d3a229ef2e1cbf3124
+      - 82f320d464e44bbfaf7e3b2d36e40b22
+      - 7c198f7c75844f2f825c8422f21b4c55
+    - nodeImg: {fileID: -8926303240294770156, guid: 31a04dcaea2c2a44d867e454b82ba421, type: 3}
+      hideNodeImg: {fileID: 4743818802694122910, guid: cc365173dda613a4cab7884c51adc013, type: 3}
+      title: "\uD68C\uC804\uBAA9\uB9C8"
+      text: "\uB3CC\uACE0 \uB3CC\uACE0 \uB3CC\uACE0. \uD574\uAC00 \uC9C0\uACE0 \uB2EC\uC774
+        \uC838\uB3C4 \uBA48\uCD94\uC9C0 \uC54A\uB294 \uD68C\uC804\uBAA9\uB9C8!"
+      encounterNum: 2
+      ID: 5c58dcdbb2fc40d3a229ef2e1cbf3124
+      locationID: MERRY_GO_ROUND
+      difficulty: 8
+      level: 2
+      pos: -2
+      childNodes:
+      - 2f369e5c00ee42fc9bcfc466a294146b
+    - nodeImg: {fileID: -824032058680583896, guid: f3c4031bbf7c82645b05a25c18f5f4d9, type: 3}
+      hideNodeImg: {fileID: -6133347383953558532, guid: 85a2603c725e6624cbb6b33907f72183, type: 3}
+      title: "\uC720\uB839\uC758 \uC9D1"
+      text: "\uC73C\uC2A4\uC2A4\uD558\uACE0 \uC704\uD5D8\uD55C \uC720\uB839\uC758
+        \uC9D1. \uC18C\uBB38\uC5D0 \uC758\uD558\uBA74 \uB4E4\uC5B4\uAC14\uB2E4\uAC00
+        \uB098\uC624\uC9C0 \uBABB\uD55C \uC190\uB2D8\uC774 \uAF64 \uB9CE\uB2E4\uACE0
+        \uD569\uB2C8\uB2E4. "
+      encounterNum: 3
+      ID: 82f320d464e44bbfaf7e3b2d36e40b22
+      locationID: GHOST_HOUSE
+      difficulty: 9
+      level: 2
+      pos: -1
+      childNodes:
+      - 2f369e5c00ee42fc9bcfc466a294146b
+    - nodeImg: {fileID: -3716145563210583421, guid: 743cab50883dbcb40a93e3abb8b59754, type: 3}
+      hideNodeImg: {fileID: -1424025527747268773, guid: b84f5e21640e6eb46ac85ea36c697127, type: 3}
+      title: "\uD68C\uC804 \uCEF5"
+      text: "\uBE59\uAE00\uBE59\uAE00 \uB3C4\uB294 \uCEF5\uB4E4\uACFC \uD568\uAED8
+        \uCC28 \uD55C\uC794\uC758 \uC5EC\uC720\uB97C!"
+      encounterNum: 2
+      ID: 7c198f7c75844f2f825c8422f21b4c55
+      locationID: TEA_CUPS
+      difficulty: 8
+      level: 3
+      pos: 1
+      childNodes:
+      - 4b603ebf7e494b15b166b5955ec36049
+    - nodeImg: {fileID: 3194919262170535919, guid: 9332a15791311f141b52ee959b704619, type: 3}
+      hideNodeImg: {fileID: -369633525563881796, guid: 31ef45a9fe77ec44e8a9b07f6a32d2d7, type: 3}
+      title: "\uBBF8\uB85C \uC815\uC6D0"
+      text: "\uAF43\uC73C\uB85C \uAC00\uB4DD\uD55C \uBBF8\uB85C \uC815\uC6D0. \uAE38\uC774
+        \uBCF5\uC7A1\uD574\uC11C \uC5B4\uB9B0 \uC544\uC774\uC5D0\uAC8C\uB294 \uD0C8\uCD9C\uD558\uAE30
+        \uC5B4\uB824\uC6B8 \uC218 \uC788\uC74C"
+      encounterNum: 3
+      ID: 2f369e5c00ee42fc9bcfc466a294146b
+      locationID: MAZE_GARDEN
+      difficulty: 10
+      level: 3
+      pos: -1
+      childNodes:
+      - 4b603ebf7e494b15b166b5955ec36049
+    - nodeImg: {fileID: -149203084467412800, guid: 8a9c21bdc97740d4fa47baf8d8b1350a, type: 3}
+      hideNodeImg: {fileID: 5173775427368765444, guid: 20a034fad4fc7ce47a206f68ef7385ae, type: 3}
+      title: "\uC544\uC774\uC2A4\uD06C\uB9BC \uCE74\uD2B8"
+      text: "\uB2F9\uC2E0\uC758 \uC9C0\uCE5C \uBAB8\uC744 \uAE68\uC6CC\uC904 \uB2EC\uB2EC\uD55C
+        \uC544\uC774\uC2A4\uD06C\uB9BC \uD558\uB098 \uC5B4\uB5A0\uC138\uC694?"
+      encounterNum: 1
+      ID: 4b603ebf7e494b15b166b5955ec36049
+      locationID: ICECREAM_CART
+      difficulty: 11
+      level: 4
+      pos: 0
+      childNodes:
+      - 0e344569ca774e98b1cda12fd95a2f7c
+    - nodeImg: {fileID: 21300000, guid: 291a1629a1114694ebf26eb16db2e47e, type: 3}
+      hideNodeImg: {fileID: 21300000, guid: 6cac6ccc8eb144b4e83bc9bd693055b5, type: 3}
+      title: "\uB3C4\uCC29"
+      text: "\uB3C4\uCC29 \uC9C0\uC810\uC785\uB2C8\uB2E4."
+      encounterNum: 0
+      ID: 0e344569ca774e98b1cda12fd95a2f7c
+      locationID: END
+      difficulty: 16
+      level: 5
+      pos: 0
+      childNodes: []
+    totalLevel: 6
+  mapNodeScreenPosSave:
+  - {x: -19.5, y: 0, z: 0}
+  - {x: -15.5, y: -0.014019668, z: 0}
+  - {x: -11.5, y: -1.7167597, z: 0}
+  - {x: -11.5, y: -0.9016241, z: 0}
+  - {x: -7.5, y: 0.96040976, z: 0}
+  - {x: -7.5, y: -0.9184272, z: 0}
+  - {x: -3.5, y: 0.059385367, z: 0}
+  - {x: 0.5, y: 0, z: 0}
   visitedNodeIDList: []
-  curNodeIndex: 0
-  curNodeLocationID: 
-  lastEncounterType: 0
+  curNodeIndex: 4
+  curNodeLocationID: TEA_CUPS
+  lastEncounterType: 5
   encounterQueue: []
-  currentStepID: 
-  currentEncounterID: 
+  currentStepID: P1
+  currentEncounterID: ACT1_SHEEP_IN_MAZE
   earnedKeys: []

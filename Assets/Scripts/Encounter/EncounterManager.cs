@@ -84,6 +84,7 @@ public class EncounterManager : MonoBehaviour
 
     public GameObject EndPanel;
     public Button endButton;
+    private string pendingSystemMessage = "";
 
     void Awake()
     {
@@ -514,29 +515,37 @@ public class EncounterManager : MonoBehaviour
         Debug.Log($"playstep: {isSceneLoading}");
         if (isSceneLoading) return;
         if (!stepDictionary.ContainsKey(id)) return;
-        
+    
         currentStep = stepDictionary[id];
         if (actData != null) actData.currentStepID = id;
-        
+    
         ResetChoiceContainers();
+
+        // [수정 1] 시스템 메시지 초기화
+        pendingSystemMessage = ""; 
+
         if (IsValidFunction(currentStep.functionCall))
         {
             ParseAndExecuteFunctions(currentStep.functionCall);
         }
+
         if (actData.currentEncounterID == "" || SceneManager.GetActiveScene().name != "EncounterScene") return;
-        if (currentStep.type == EncounterStepType.DESC)
+
+        // [수정 2] 텍스트가 있거나, 시스템 메시지가 있다면 출력
+        string finalContent = currentStep.textContent + pendingSystemMessage;
+
+        if (currentStep.type == EncounterStepType.DESC || !string.IsNullOrEmpty(finalContent))
         {
-            StartTyping(currentStep.textContent, false, () => 
+            // currentStep.textContent 대신 finalContent를 사용
+            StartTyping(finalContent, false, () => 
             {
                 UpdateOptionsUI(); 
             });
         }   
         else
         {
-         
             UpdateOptionsUI();
         }
-        
     }
     public void StartTyping(string content, bool isAppend, System.Action onComplete = null)
     {
@@ -549,6 +558,7 @@ public class EncounterManager : MonoBehaviour
     }
     IEnumerator TypeWriterRoutine(string content, bool isAppend)
     {
+        Debug.Log("typing");
         isTyping = true;
         string formattedContent = FormatDialogueColor(content);
         string parsedContent = formattedContent.Replace("\\n", "\n");
@@ -868,26 +878,28 @@ public class EncounterManager : MonoBehaviour
         {
             case "StartRoulette":
             case "StartRoullete":
-                if (args.Length >= 2 && rouletteUI != null)
+                if (args.Length >= 5 && rouletteUI != null)
                 {
                     int difficulty = int.Parse(args[1]);
                     string statName = args[0];
-                    string winPage = (args.Length > 3) ? args[3] : "P_WIN";
-                    string losePage = (args.Length > 4) ? args[4] : "P_LOSE";
+                    string success = args[3];
+                    string greatSuccess = args[4];
+                    string fail = args[5];
                     roulettePanel.SetActive(true);
                     rouletteUI.Open(statName, difficulty, (result) =>
                     {
-                        if (result == RouletteResultType.Success || result == RouletteResultType.GreatSuccess)
+                        switch (result)
                         {
-                            PlayStep(winPage);
-                            Debug.Log("성공");
+                            case RouletteResultType.Success:
+                                PlayStep(success);
+                                break;
+                            case RouletteResultType.Fail:
+                                PlayStep(fail);
+                                break;
+                            case RouletteResultType.GreatSuccess:
+                                PlayStep(greatSuccess);
+                                break;
                         }
-                        else
-                        {
-                            PlayStep(losePage);
-                            Debug.Log("실패");
-                        }
-
                         roulettePanel.SetActive(false);
                         encounterPanel.SetActive(true);
 
@@ -898,7 +910,6 @@ public class EncounterManager : MonoBehaviour
             
             
             case "GetObjet":
-                // [수정됨] 이름으로 유물을 찾아 인벤토리에 추가하는 로직
                 if (args.Length >= 1)
                 {
                     string objectName = args[0];
@@ -908,38 +919,27 @@ public class EncounterManager : MonoBehaviour
                         return;
                     }
 
-                    // 2. 전체 DB에서 이름(또는 ID)으로 유물 데이터 찾기
-                    // (CSV에 적힌 이름이 RelicName 혹은 RelicOwner와 일치해야 함)
                     RelicItem_Data foundData = relicDatabase.relicItems.Find(x => x.relicName == objectName);
 
                     if (foundData != null)
                     {
-                        // 3. 중복 보유 체크 (MerchantUI 로직 참고)
                         bool hasRelic = playerRelicSO.relicItems.Exists(r => r.relicOwner == foundData.relicOwner);
 
                         if (!hasRelic)
                         {
-                            // 4. RelicItem_Enhanceable로 변환하여 추가 (MerchantUI 로직과 동일)
+                            // ... (아이템 추가 로직) ...
                             RelicItem_Enhanceable newRelic = new RelicItem_Enhanceable(foundData);
                             playerRelicSO.relicItems.Add(newRelic);
 
-                            // 5. 텍스트 출력
-                            if (descriptionText != null)
-                            {
-                                string msg = $"\n<color=#77B0FF>오브제 [{foundData.relicName}] 획득!</color>";
-                                StartTyping(msg, true, null);
-                                //ResetScrollPosition(false);
-                                //Canvas.ForceUpdateCanvases();
-                            }
+                            // [수정] StartTyping 대신 변수에 텍스트 추가
+                            string msg = $"\n<color=#5df86f>오브제 '{foundData.relicName}' 획득!</color>";
+                            pendingSystemMessage += msg; 
                             Debug.Log($"[Encounter] 오브제 획득 성공: {foundData.relicName}");
                         }
                         else
                         {
-                            Debug.LogWarning($"[Encounter] 이미 보유한 오브제입니다: {objectName}");
-                            if (descriptionText != null)
-                            {
-                                string msg = $"\n<color=#FF0000>이미 보유한 오브제입니다 ({objectName})</color>";
-                                StartTyping(msg, true, null);                            }
+                            //string msg = $"\n<color=#FF0000>이미 [{objectName}]을 보유하고 있습니다!</color>";
+                            //pendingSystemMessage += msg;
                         }
                     }
                     else
@@ -952,36 +952,29 @@ public class EncounterManager : MonoBehaviour
 
 
             case "GetDebris":
-                if (args.Length >= 1) descriptionText.text += $"\n<color=#FF0000>드림 코인 {args[0]}개 지불 완료!</color>";
+                if (args.Length >= 1) descriptionText.text += $"\n<color=#5df86f>드림 코인 {args[0]}개 획득!</color>";
+                characterData.dreamDust += int.Parse(args[0]);
                 break;
 
             case "UpStatus":
-                Debug.Log("up "+ args.Length);
                 if (args.Length >= 2 && playerStats != null && System.Enum.TryParse(args[0], true, out StatType sType))
                 {
-                    playerStats.ModifyStat(sType, int.Parse(args[1]));
-
-                    if(descriptionText != null)
-                    {
-                        string msg = $"\n<color=#77B0FF>{sType} 증가!</color>";
-                        StartTyping(msg, true, null);
-                        //Canvas.ForceUpdateCanvases(); 
-                    }
-                    else
-                    {
-                        Debug.LogError("[UpStatus] descriptionText가 비어있습니다!");
-                    }
+                    int amount = int.Parse(args[1]);
+                    playerStats.ModifyStat(sType, amount);
+                    string msg = $"\n<color=#5df86f>'{sType}' {amount}증가!</color>";
+                    pendingSystemMessage += msg; 
                 }
                 break;
             
             case "DownStatus":
                 if (args.Length >= 2 && playerStats != null && System.Enum.TryParse(args[0], true, out StatType sType1))
                 {
-                    playerStats.ModifyStat(sType1, -int.Parse(args[1]));
+                    int amount = int.Parse(args[1]);
+                    playerStats.ModifyStat(sType1, -amount);
 
                     if(descriptionText != null)
                     {
-                        string msg = $"\n<color=#FF0000>{sType1} 감소!</color>";
+                        string msg = $"\n<color=#FF0000>'{sType1}' {amount}감소!</color>";
                         StartTyping(msg, true, null);
                         //ResetScrollPosition(false);
                         //Canvas.ForceUpdateCanvases(); 
@@ -1026,8 +1019,9 @@ public class EncounterManager : MonoBehaviour
                 {
                     int heal = Mathf.RoundToInt(characterData.maxHealth * (int.Parse(args[0]) / 100f));
                     characterData.curHealth = Mathf.Min(characterData.curHealth + heal, characterData.maxHealth);
-                    string msg = $"\n<color=#00FF00>체력 {heal} 회복.</color>";
-                    StartTyping(msg, true);
+            
+                    string msg = $"\n<color=#5df86f>체력 {heal} 회복!</color>";
+                    pendingSystemMessage += msg;
                 }
                 break;
 
@@ -1038,11 +1032,11 @@ public class EncounterManager : MonoBehaviour
                     int dmg = amount; 
                     if (args.Length >= 2 && args[1].Contains("ratio")) 
                         dmg = Mathf.RoundToInt(characterData.maxHealth * (amount / 100f));
-                    
+             
                     characterData.curHealth = Mathf.Max(1, characterData.curHealth - dmg);
-                    string msg = $"\n<color=#FF0000>체력 {dmg} 감소...</color>";
-                    StartTyping(msg, true, null);
-                    
+
+                    string msg = $"\n<color=#FF0000>체력 {dmg} 잃음!</color>";
+                    pendingSystemMessage += msg;
                 }
                 break;
             
@@ -1063,7 +1057,7 @@ public class EncounterManager : MonoBehaviour
                     }
                 }
                 break;
-            case "IllustChange": // [추가] 일러스트 변경
+            case "IllustChange": 
                 if (args.Length >= 1)
                 {
                     string path = args[0];
@@ -1074,7 +1068,7 @@ public class EncounterManager : MonoBehaviour
                     else Debug.LogError($"[IllustChange] 이미지를 찾을 수 없음: {path}");
                 }
                 break;
-            case "GetCard": // [추가] 카드 획득 UI 오픈
+            case "GetCard": 
                 if (args.Length >= 1)
                 {
                     string cardName = args[0];

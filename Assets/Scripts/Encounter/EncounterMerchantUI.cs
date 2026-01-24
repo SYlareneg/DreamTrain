@@ -116,9 +116,6 @@ public class EncounterMerchantUI : MonoBehaviour
         DrawShopUI();
     }
     
-    // ==========================================
-    // 카드 강화 (원본 코드와 동일하게 복구)
-    // ==========================================
     public void OpenEnhanceCardScreen()
     {
         SetEnhanceCardList();

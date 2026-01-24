@@ -35,20 +35,8 @@ public class EncounterObjetUI_Sell : MonoBehaviour, IPointerClickHandler
 
         if (sellCostTMP != null)
         {
-            TMP_SpriteAsset newSpriteAsset = Resources.Load<TMP_SpriteAsset>("Cards/coin");
-
-            if (newSpriteAsset != null)
-            {
-                sellCostTMP.spriteAsset = newSpriteAsset;
-                sellCostTMP.SetVerticesDirty();
-                sellCostTMP.SetMaterialDirty();
-            }
-            else
-            {
-                Debug.LogWarning("새로운 Sprite Asset을 찾을 수 없습니다. 경로를 확인하세요.");
-            }
-
-            sellCostTMP.text = "<sprite=0>" + this.cost;
+            
+            sellCostTMP.text = this.cost.ToString();
             
             UpdateColor(true);
         }
@@ -92,6 +80,7 @@ public class EncounterObjetUI_Sell : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    
     private void Update()
     {
         if (_playerData == null || !isValid || sellCostTMP == null) return;

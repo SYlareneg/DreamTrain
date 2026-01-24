@@ -6,7 +6,7 @@ P1,DESC,"""오오!""
 ""안녕. 온 김에 기념품을 하나 사지 않을래? 가격은 조금 비싸지만 아이스크림보다 더 도움이 될 거야.""",,,
 P1,BRANCH,"아이스크림을 산다.   (체력 회복)
 ",P_IceCream,Heal(30),
-P1,BRANCH,기념품을 산다.   (기념품 상점),P2,MeetMerchant(),
+P1,BRANCH,기념품을 산다.   (기념품 상점),P2,MeetMerchant(souvenir),
 P1,BRANCH,다른 물건을 산다.   (일반 상점),P2,MeetMerchant(),
 P_IceCream,DESC,"""난 아이스크림이 좋아. 너도 그렇지?""
 지지가 당신을 보며 은근히 눈치를 줍니다. 당신은 아이스크림을 사서 하나는 지지에게 주고, 하나는 당신이 먹습니다.
