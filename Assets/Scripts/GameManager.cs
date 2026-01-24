@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
     [Tooltip("플레이어 페르소나")] public Image personaImg;
     [Tooltip("플레이어 그림자")] public Image shadowImg;
     [Tooltip("플레이어 데미지 이펙트")] public GameObject playerDamageEffect;
+    [Tooltip("적 공격 이펙트")] public GameObject enemyAttackEffect;
     [Header("적 UI")]
     [SerializeField][Tooltip("적 체력 값 텍스트")] TMP_Text[] enemyHealthTMP;
     [SerializeField][Tooltip("적 체력 바")] Image[] enemyHealthImg;

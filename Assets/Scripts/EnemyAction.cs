@@ -6,6 +6,7 @@ using DG.Tweening;
 using System;
 using System.Text.RegularExpressions;
 using Random = UnityEngine.Random;
+using UnityEngine.UI;
 
 public class EnemyAction : MonoBehaviour
 {
@@ -196,6 +197,17 @@ public class EnemyAction : MonoBehaviour
                 case EEnemyActionType.Turn:
                     RouletteManager.Inst.Spin(totalVal > 0, Math.Abs(totalVal)); break;
                 case EEnemyActionType.Attack:
+                    GameManager.Inst.enemyAttackEffect.SetActive(true);
+                    GameManager.Inst.enemyAttackEffect.transform.localScale = Vector3.zero;
+                    GameManager.Inst.enemyAttackEffect.GetComponent<Image>().color = Color.white;
+                    Sequence attackSeq = DOTween.Sequence();
+                    attackSeq.Append(GameManager.Inst.enemyAttackEffect.transform.DOScale(Vector3.one, 0.2f))
+                    .AppendInterval(0.2f)
+                    .Append(GameManager.Inst.enemyAttackEffect.GetComponent<Image>().DOFade(0f, 0.2f))
+                    .OnComplete(() =>
+                    {
+                        GameManager.Inst.enemyAttackEffect.SetActive(false);
+                    });
                     totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Attack[enemyIdx], totalVal);
                     TurnManager.Inst.TakeDmg(totalVal, EDamageSource.Enemy); break;
                 case EEnemyActionType.Heal:
