@@ -25,6 +25,6 @@ public class ToolPanel_Button : MonoBehaviour, IPointerClickHandler
             arrow.gameObject.SetActive(false);
         }
         ToolPanel panel = transform.parent.GetComponent<ToolPanel>();
-        panel.TogglePanel();
+        if(panel != null) panel.TogglePanel();
     }
 }
