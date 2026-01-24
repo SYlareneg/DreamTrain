@@ -191,7 +191,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             }
         }
 
-        GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.UISelectSFX);
+        if(SoundManager.Inst != null && SoundManager.Inst.UISelectSFX != null) GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.UISelectSFX);
     }
 
     public virtual void OnPointerExit(PointerEventData eventData)

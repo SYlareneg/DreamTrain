@@ -16,11 +16,11 @@ public class RoomClickableObject : MonoBehaviour
     {
         if(isInteractable)
         {
-            transform.Find("Highlight").gameObject.SetActive(true);
+            transform.Find("Highlight").GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
         }
         else
         {
-            transform.Find("Highlight").gameObject.SetActive(false);
+            transform.Find("Highlight").GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
         }
     }
 }

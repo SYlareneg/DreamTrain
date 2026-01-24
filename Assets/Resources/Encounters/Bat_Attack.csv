@@ -1,9 +1,9 @@
 ﻿Page_ID,Type,Text_Content,Next_Page_ID,Call_Function,Constraint
-P1,DESC,"어딘가에서 심상치 않은 소리가 들려옵니다. 이런, 박쥐군요! 
+P1,DESC,"집 내부 어딘가에서 심상치 않은 소리가 들려옵니다. 이런, 박쥐군요! 
 당신과 지지를 합한 것보다도 더 큰 덩치를 가진 거대 박쥐가 당신을 지긋이 응시합니다. 
 ",,,
 P1,BRANCH,먼저 공격한다.   (전투),P_AFTER_BATTLE,StartBattle(Bat),DEFAULT
-P1,BRANCH,조용히 지나간다.,P_VAMP,,HasDream(Vampire)
+P1,BRANCH,조용히 지나간다. (뱀파이어의 꿈 조각 필요),P_VAMP,,HasDreamPiece(뱀파이어의 꿈)
 P_AFTER_BATTLE,DESC,"어둠 속에서의 사투 끝에 당신은 박쥐를 떼어내는 데 성공합니다! 박쥐는 당신을 한 번 노려보고는 조용히 자리를 떠납니다. 
 
 무척이나 기분 나쁜 전투였습니다...

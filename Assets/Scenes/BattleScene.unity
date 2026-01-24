@@ -1134,6 +1134,9 @@ MonoBehaviour:
   personaImg: {fileID: 1550327218}
   shadowImg: {fileID: 967740070}
   playerDamageEffect: {fileID: 440640581}
+  playerDamageEffectSprites:
+  - {fileID: 21300000, guid: 389246a521ee9034b8f24934157179a8, type: 3}
+  - {fileID: 21300000, guid: ab41e90c524083c41b5db318d8b92aab, type: 3}
   enemyAttackEffect: {fileID: 1352835508}
   enemyHealthTMP:
   - {fileID: 302703830}
