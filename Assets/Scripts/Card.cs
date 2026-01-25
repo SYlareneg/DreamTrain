@@ -11,6 +11,7 @@ public class Card : MonoBehaviour
     [SerializeField] SpriteRenderer card;
     [SerializeField] SpriteRenderer character;
     public SpriteRenderer highlight;
+    public SpriteRenderer specialHighlight;
     [SerializeField] SpriteRenderer type;
     [SerializeField] SpriteRenderer rarity;
     [SerializeField] SpriteRenderer cost;
@@ -90,6 +91,7 @@ public class Card : MonoBehaviour
 
         character.sprite = this.item.sprite;
         highlight.enabled = false;
+        specialHighlight.enabled = false;
 
         nameTMP.text = this.item.name;
         ShowBuffedCost();
@@ -459,6 +461,41 @@ public class Card : MonoBehaviour
         return true;
     }
 
+    public bool IsCardSpecialEffect(int enemyIdx)
+    {
+        switch(item.name)
+        {
+            case "비둘기 마술":
+            case "비둘기 마술+":
+                RouletteType magicBox = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0));
+                return RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(enemyIdx)].roulette.rtype == magicBox;
+            case "복제 마술":
+            case "복제 마술+":
+                magicBox = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0));
+                return RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.rtype == magicBox;
+            case "절단 마술":
+            case "절단 마술+":
+                magicBox = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0));
+                return RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(enemyIdx)].roulette.rtype == magicBox;
+            case "환영 마술":
+            case "환영 마술+":
+                magicBox = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0));
+                return RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.rtype == magicBox;
+            case "토끼 마술":
+            case "토끼 마술+":
+                magicBox = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0));
+                return RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.rtype == magicBox;
+            case "폭발 마술":
+            case "폭발 마술+":
+                magicBox = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0));
+                return RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(enemyIdx)].roulette.rtype == magicBox;
+            case "마술 준비+":
+                if (TurnManager.Inst.nowCost >= GetBuffedVal(item.cardValues[1], ECardValueType.Special)) return true;
+                break;
+        }
+        return false;
+    }
+
     public bool UseCard(int enemyIdx)
     {
         int buffedCost = BuffManager.Inst.GetBuffedCardCost(item);
@@ -648,7 +685,6 @@ public class Card : MonoBehaviour
             case "토끼 마술+":
                 magicBox = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0));
                 checkMagic = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.rtype == magicBox;
-                Debug.Log("토끼 마술 회전값: " + GetBuffedVal(item.cardValues[0], ECardValueType.Special));
                 RouletteManager.Inst.Spin(true, GetBuffedVal(item.cardValues[0], ECardValueType.Special));
                 if (checkMagic)
                 {
@@ -1153,6 +1189,18 @@ public class Card : MonoBehaviour
             if (IsCardUseable(i))
             {
                 highlight.enabled = true;
+                break;
+            }
+        }
+
+        specialHighlight.enabled = false;
+        for(int i = 0; i <= EnemyManager.Inst.subEnemies.Length; i++)
+        {
+            if(i > 0 && (EnemyManager.Inst.subEnemies[i - 1] == null || EnemyManager.Inst.subEnemies[i - 1].name == null)) continue;
+            if (IsCardSpecialEffect(i))
+            {
+                highlight.enabled = false;
+                specialHighlight.enabled = true;
                 break;
             }
         }

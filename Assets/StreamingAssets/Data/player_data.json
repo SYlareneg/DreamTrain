@@ -4,6 +4,7 @@
     "dreamDust": 0,
     "leftPassengers": 0,
     "isTutorial": true,
+    "lastSceneName": "BattleScene",
     "personaPiece": "고양이의 꿈",
     "isPersonaEnhanced": false,
     "personaCards": [
@@ -57,14 +58,93 @@
     "wisdom": 1,
     "luck": 1,
     "currentActNum": 0,
-    "mapNodes": [],
-    "totalLevel": 0,
-    "visitedNodeIDList": [],
-    "curNodeIndex": 0,
-    "curNodeLocationID": "",
+    "mapNodes": [
+        {
+            "locationID": "TUTORIAL_START",
+            "selectedEncounterPool": [],
+            "ID": "35e3f9de162e4504b05290064dd798d0",
+            "level": 0,
+            "pos": 0,
+            "screenPos": {
+                "x": -19.5,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "childNodes": [
+                "6beb17fe80b64ab89e4a09c6eb43e95a"
+            ]
+        },
+        {
+            "locationID": "TUTORIAL_1",
+            "selectedEncounterPool": [],
+            "ID": "6beb17fe80b64ab89e4a09c6eb43e95a",
+            "level": 1,
+            "pos": 0,
+            "screenPos": {
+                "x": -15.5,
+                "y": 0.04424593597650528,
+                "z": 0.0
+            },
+            "childNodes": [
+                "381544c512a84b53971edfb89977f4f5"
+            ]
+        },
+        {
+            "locationID": "TUTORIAL_2",
+            "selectedEncounterPool": [],
+            "ID": "381544c512a84b53971edfb89977f4f5",
+            "level": 2,
+            "pos": 0,
+            "screenPos": {
+                "x": -11.5,
+                "y": 0.08210562914609909,
+                "z": 0.0
+            },
+            "childNodes": [
+                "00f422ba565942b0be3da54ebbb23b1f"
+            ]
+        },
+        {
+            "locationID": "TUTORIAL_3",
+            "selectedEncounterPool": [],
+            "ID": "00f422ba565942b0be3da54ebbb23b1f",
+            "level": 3,
+            "pos": 0,
+            "screenPos": {
+                "x": -7.5,
+                "y": 0.040198914706707,
+                "z": 0.0
+            },
+            "childNodes": [
+                "f671b468164a445eb9e04275b3755354"
+            ]
+        },
+        {
+            "locationID": "TUTORIAL_END",
+            "selectedEncounterPool": [],
+            "ID": "f671b468164a445eb9e04275b3755354",
+            "level": 4,
+            "pos": 0,
+            "screenPos": {
+                "x": -3.5,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "childNodes": []
+        }
+    ],
+    "totalLevel": 5,
+    "visitedNodeIDList": [
+        "35e3f9de162e4504b05290064dd798d0",
+        "6beb17fe80b64ab89e4a09c6eb43e95a",
+        "381544c512a84b53971edfb89977f4f5",
+        "00f422ba565942b0be3da54ebbb23b1f"
+    ],
+    "curNodeIndex": 3,
+    "curNodeLocationID": "TUTORIAL_3",
     "lastEncounterType": 0,
     "encounterQueue": [],
     "currentStepID": "",
     "currentEncounterID": "",
-    "enemyName": ""
+    "enemyName": "CardSoldier3"
 }

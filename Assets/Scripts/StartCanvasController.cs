@@ -12,6 +12,8 @@ public class StartCanvasController : MonoBehaviour
     [SerializeField] GameObject optionButton;
     [SerializeField] GameObject exitButton;
     [SerializeField] GameObject selector;
+    [SerializeField] AudioClip selectSound;
+    [SerializeField] AudioClip enterSound;
 
     private InputSystem_Actions input;
 
@@ -144,6 +146,8 @@ public class StartCanvasController : MonoBehaviour
             {
                 SceneChangeManager.Inst.SceneFadeOut("RoomScene");
             });
+
+            GetComponent<AudioSource>().PlayOneShot(enterSound);
         }
         else
         {
@@ -158,6 +162,7 @@ public class StartCanvasController : MonoBehaviour
         loadGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
         optionButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
         exitButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+        GetComponent<AudioSource>().PlayOneShot(selectSound);
     }
 
     public void OnLoadGameClicked()
@@ -168,11 +173,13 @@ public class StartCanvasController : MonoBehaviour
             buttonBlink.Append(loadGameButton.GetComponentInChildren<TMP_Text>().DOColor(new Color32(255, 255, 255, 0), 0.1f));
             buttonBlink.Append(loadGameButton.GetComponentInChildren<TMP_Text>().DOColor(Color.white, 0.1f));
             buttonBlink.SetLoops(2);
-            StartCoroutine(DataManager.Inst.LoadPlayerData(true));
+            // StartCoroutine(DataManager.Inst.LoadPlayerData(false));
             buttonBlink.OnComplete(() =>
             {
-                SceneChangeManager.Inst.SceneFadeOut("MapScene");
+                SceneChangeManager.Inst.SceneFadeOut(DataManager.Inst.characterSO.lastSceneName);
             });
+            
+            GetComponent<AudioSource>().PlayOneShot(enterSound);
         }
         else
         {
@@ -187,6 +194,7 @@ public class StartCanvasController : MonoBehaviour
         loadGameButton.GetComponentInChildren<TMP_Text>().color = Color.white;
         optionButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
         exitButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+        GetComponent<AudioSource>().PlayOneShot(selectSound);
     }
     public void OnOptionClicked()
     {
@@ -196,6 +204,8 @@ public class StartCanvasController : MonoBehaviour
             buttonBlink.Append(optionButton.GetComponentInChildren<TMP_Text>().DOColor(new Color32(255, 255, 255, 0), 0.1f));
             buttonBlink.Append(optionButton.GetComponentInChildren<TMP_Text>().DOColor(Color.white, 0.1f));
             buttonBlink.SetLoops(2);
+            
+            GetComponent<AudioSource>().PlayOneShot(enterSound);
         }
         else
         {
@@ -209,6 +219,7 @@ public class StartCanvasController : MonoBehaviour
         loadGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
         optionButton.GetComponentInChildren<TMP_Text>().color = Color.white;
         exitButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
+        GetComponent<AudioSource>().PlayOneShot(selectSound);
     }
     public void OnExitClicked()
     {
@@ -222,6 +233,8 @@ public class StartCanvasController : MonoBehaviour
             {
                 Application.Quit();
             });
+            
+            GetComponent<AudioSource>().PlayOneShot(enterSound);
         }
         else
         {
@@ -236,5 +249,6 @@ public class StartCanvasController : MonoBehaviour
         loadGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
         optionButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
         exitButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+        GetComponent<AudioSource>().PlayOneShot(selectSound);
     }
 }
