@@ -3,7 +3,7 @@
     "curHealth": 60,
     "dreamDust": 0,
     "leftPassengers": 0,
-    "isTutorial": false,
+    "isTutorial": true,
     "personaPiece": "고양이의 꿈",
     "isPersonaEnhanced": false,
     "personaCards": [
@@ -56,7 +56,7 @@
     "courage": 1,
     "wisdom": 1,
     "luck": 1,
-    "currentActNum": 1,
+    "currentActNum": 0,
     "mapNodes": [],
     "totalLevel": 0,
     "visitedNodeIDList": [],
