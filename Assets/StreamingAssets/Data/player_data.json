@@ -5,35 +5,35 @@
     "leftPassengers": 0,
     "isTutorial": true,
     "lastSceneName": "BattleScene",
-    "personaPiece": "고양이의 꿈",
+    "personaPiece": "마술사의 꿈",
     "isPersonaEnhanced": false,
     "personaCards": [
         {
-            "cardName": "발톱 세우기",
+            "cardName": "마술 상자",
             "num": 1
         },
         {
-            "cardName": "고양이걸음",
+            "cardName": "마술 준비",
             "num": 1
         },
         {
-            "cardName": "숨기",
+            "cardName": "비둘기 마술",
             "num": 1
         }
     ],
-    "shadowPiece": "고양이의 꿈",
+    "shadowPiece": "마술사의 꿈",
     "isShadowEnhanced": false,
     "shadowCards": [
         {
-            "cardName": "발톱 세우기",
+            "cardName": "마술 카드",
             "num": 1
         },
         {
-            "cardName": "실뭉치",
+            "cardName": "순간이동 마술",
             "num": 1
         },
         {
-            "cardName": "실 풀기",
+            "cardName": "마술 상자",
             "num": 1
         }
     ],
@@ -67,8 +67,8 @@
             "pos": 0,
             "screenPos": {
                 "x": -19.5,
-                "y": 0.0,
-                "z": 0.0
+                "y": 0,
+                "z": 0
             },
             "childNodes": [
                 "6beb17fe80b64ab89e4a09c6eb43e95a"
@@ -83,7 +83,7 @@
             "screenPos": {
                 "x": -15.5,
                 "y": 0.04424593597650528,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "381544c512a84b53971edfb89977f4f5"
@@ -98,7 +98,7 @@
             "screenPos": {
                 "x": -11.5,
                 "y": 0.08210562914609909,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "00f422ba565942b0be3da54ebbb23b1f"
@@ -113,7 +113,7 @@
             "screenPos": {
                 "x": -7.5,
                 "y": 0.040198914706707,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "f671b468164a445eb9e04275b3755354"
@@ -127,8 +127,8 @@
             "pos": 0,
             "screenPos": {
                 "x": -3.5,
-                "y": 0.0,
-                "z": 0.0
+                "y": 0,
+                "z": 0
             },
             "childNodes": []
         }
@@ -146,5 +146,5 @@
     "encounterQueue": [],
     "currentStepID": "",
     "currentEncounterID": "",
-    "enemyName": "CardSoldier3"
+    "enemyName": "귀신들린 인형"
 }

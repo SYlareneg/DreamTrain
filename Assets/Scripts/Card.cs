@@ -707,7 +707,14 @@ public class Card : MonoBehaviour
                 break;
             case "배니싱":
             case "배니싱+":
-                CardManager.Inst.CardSelectModeTransit(ECardSelectMode.Discard, 1);
+                CardManager.Inst.CardSelectModeTransit(ECardSelectMode.Vanish, 1);
+                TurnManager.OnSelectCardDone += () =>
+                {
+                    if(CardManager.Inst.selectedCardList.Count > 0)
+                    {
+                        TurnManager.Inst.IncreaseCost(CardManager.Inst.selectedCardList[0].GetComponent<CardUI>().item.cost);
+                    }
+                };
                 // 구현예정
                 break;
             case "마술 준비":
