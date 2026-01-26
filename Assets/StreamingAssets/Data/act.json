@@ -22,21 +22,19 @@
       "essentialLocations": [
         "START",
         "AMUSEMENT_PARK_ENTRANCE",
-        "GHOST_HOUSE",
-        "MAZE_GARDEN",
         "ICECREAM_CART",
         "END"
       ],
       "essentialIntervalLayerCount": [
         0,
-        1,
-        0,
-        0,
+        2,
         0
       ],
       "specialLocations": [
         "MERRY_GO_ROUND",
-        "TEA_CUPS"
+        "TEA_CUPS",
+        "GHOST_HOUSE",
+        "MAZE_GARDEN"
       ]
     }
   ],
@@ -149,7 +147,6 @@
       "sprite": "미로정원02",
       "hideSprite": "미로정원N02",
       "encounterPool": [
-        "ACT1_SHEEP_IN_MAZE",
         "ACT1_SUNNY_AFTERNOON",
         "ACT1_WHERE_DOVE_FROM",
         "ACT1_FLOWER_ATTACK",
@@ -166,8 +163,7 @@
       "sprite": "아이스크림카트02",
       "hideSprite": "아이스크림카트N02",
       "encounterPool": [
-        "ACT1_SWEET_THING",
-        "ACT1_SOUVENIR"
+        "ACT1_SWEET_THING"
       ],
       "encounterNum": 1,
       "difficulty": 11,

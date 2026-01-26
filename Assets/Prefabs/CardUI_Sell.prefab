@@ -422,6 +422,41 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2431845989605665124
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2695865680265326038}
+  m_Layer: 5
+  m_Name: ToolTipPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2695865680265326038
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2431845989605665124}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4061296972987431879}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.3766667, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -81.5, y: -193}
+  m_SizeDelta: {x: 63, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4405099815432256909
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,6 +1072,7 @@ RectTransform:
   - {fileID: 3437976488864766496}
   - {fileID: 7061056555872362337}
   - {fileID: 339125548446079854}
+  - {fileID: 2695865680265326038}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -1132,7 +1168,7 @@ MonoBehaviour:
     num: 0
     isEnhanced: 0
   cardUITooltipPrefab: {fileID: 8800369096788391767, guid: b54acd7753ea2ac48af2b4a03610b3ef, type: 3}
-  tooltipPos: {fileID: 7731038763045776077, guid: b54acd7753ea2ac48af2b4a03610b3ef, type: 3}
+  tooltipPos: {fileID: 2695865680265326038}
 --- !u!82 &2839640119000246341
 AudioSource:
   m_ObjectHideFlags: 0
