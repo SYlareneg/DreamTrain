@@ -4,40 +4,36 @@
     "dreamDust": 0,
     "leftPassengers": 0,
     "isTutorial": true,
-    "lastSceneName": "MapScene",
-    "personaPiece": "마술사의 꿈",
+    "lastSceneName": "RoomScene",
+    "personaPiece": "고양이의 꿈",
     "isPersonaEnhanced": false,
     "personaCards": [
         {
-            "cardName": "마술 상자",
+            "cardName": "발톱 세우기",
             "num": 1
         },
         {
-            "cardName": "마술 준비",
+            "cardName": "고양이걸음",
             "num": 1
         },
         {
-            "cardName": "비둘기 마술",
+            "cardName": "숨기",
             "num": 1
-        },
-        {
-            "cardName": "배니싱",
-            "num": 10
         }
     ],
-    "shadowPiece": "마술사의 꿈",
+    "shadowPiece": "고양이의 꿈",
     "isShadowEnhanced": false,
     "shadowCards": [
         {
-            "cardName": "마술 카드",
+            "cardName": "발톱 세우기",
             "num": 1
         },
         {
-            "cardName": "순간이동 마술",
+            "cardName": "실뭉치",
             "num": 1
         },
         {
-            "cardName": "마술 상자",
+            "cardName": "실 풀기",
             "num": 1
         }
     ],
@@ -62,93 +58,14 @@
     "wisdom": 1,
     "luck": 1,
     "currentActNum": 0,
-    "mapNodes": [
-        {
-            "locationID": "TUTORIAL_START",
-            "selectedEncounterPool": [],
-            "ID": "35e3f9de162e4504b05290064dd798d0",
-            "level": 0,
-            "pos": 0,
-            "screenPos": {
-                "x": -19.5,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "childNodes": [
-                "6beb17fe80b64ab89e4a09c6eb43e95a"
-            ]
-        },
-        {
-            "locationID": "TUTORIAL_1",
-            "selectedEncounterPool": [],
-            "ID": "6beb17fe80b64ab89e4a09c6eb43e95a",
-            "level": 1,
-            "pos": 0,
-            "screenPos": {
-                "x": -15.5,
-                "y": 0.04424593597650528,
-                "z": 0.0
-            },
-            "childNodes": [
-                "381544c512a84b53971edfb89977f4f5"
-            ]
-        },
-        {
-            "locationID": "TUTORIAL_2",
-            "selectedEncounterPool": [],
-            "ID": "381544c512a84b53971edfb89977f4f5",
-            "level": 2,
-            "pos": 0,
-            "screenPos": {
-                "x": -11.5,
-                "y": 0.08210562914609909,
-                "z": 0.0
-            },
-            "childNodes": [
-                "00f422ba565942b0be3da54ebbb23b1f"
-            ]
-        },
-        {
-            "locationID": "TUTORIAL_3",
-            "selectedEncounterPool": [],
-            "ID": "00f422ba565942b0be3da54ebbb23b1f",
-            "level": 3,
-            "pos": 0,
-            "screenPos": {
-                "x": -7.5,
-                "y": 0.040198914706707,
-                "z": 0.0
-            },
-            "childNodes": [
-                "f671b468164a445eb9e04275b3755354"
-            ]
-        },
-        {
-            "locationID": "TUTORIAL_END",
-            "selectedEncounterPool": [],
-            "ID": "f671b468164a445eb9e04275b3755354",
-            "level": 4,
-            "pos": 0,
-            "screenPos": {
-                "x": -3.5,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "childNodes": []
-        }
-    ],
-    "totalLevel": 5,
-    "visitedNodeIDList": [
-        "35e3f9de162e4504b05290064dd798d0",
-        "6beb17fe80b64ab89e4a09c6eb43e95a",
-        "381544c512a84b53971edfb89977f4f5",
-        "00f422ba565942b0be3da54ebbb23b1f"
-    ],
-    "curNodeIndex": 3,
-    "curNodeLocationID": "TUTORIAL_3",
+    "mapNodes": [],
+    "totalLevel": 0,
+    "visitedNodeIDList": [],
+    "curNodeIndex": 0,
+    "curNodeLocationID": "",
     "lastEncounterType": 0,
     "encounterQueue": [],
     "currentStepID": "",
     "currentEncounterID": "",
-    "enemyName": "귀신들린 인형"
+    "enemyName": ""
 }

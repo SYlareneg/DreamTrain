@@ -951,7 +951,7 @@
       ],
       "enemySpecialRoulettes": [
         {
-          "sprite": "Roulette_Drain",
+          "sprite": "적 흡혈 룰렛",
           "title": "흡혈",
           "text": "값만큼 대상에게 피해를 주고, 입힌 피해만큼 체력을 회복합니다.트리거를 1 얻습니다.",
           "baseVal": 5,
@@ -971,7 +971,7 @@
       ],
       "enemySpecialActions": [
         {
-          "sprite": "EnemyAction_Drain",
+          "sprite": "적 흡혈 패턴",
           "title": "흡혈",
           "text": "값만큼 대상에게 피해를 주고, 입힌 피해만큼 체력을 회복합니다.트리거를 1 얻습니다."
         },
@@ -1014,7 +1014,7 @@
                 },
                 {
                   "type": 0,
-                  "typeNum": -2,
+                  "typeNum": 0,
                   "val": -3,
                   "isTrigger": false
                 }
@@ -1040,13 +1040,13 @@
               "pattern": [
                 {
                   "type": 0,
-                  "typeNum": -2,
+                  "typeNum": 0,
                   "val": -4,
                   "isTrigger": false
                 },
                 {
                   "type": 0,
-                  "typeNum": -2,
+                  "typeNum": 0,
                   "val": -4,
                   "isTrigger": false
                 }
@@ -1090,7 +1090,7 @@
                 },
                 {
                   "type": 0,
-                  "typeNum": -2,
+                  "typeNum": 0,
                   "val": -3,
                   "isTrigger": false
                 },
@@ -1122,7 +1122,7 @@
               "pattern": [
                 {
                   "type": 0,
-                  "typeNum": -2,
+                  "typeNum": 0,
                   "val": -4,
                   "isTrigger": false
                 },
@@ -1277,12 +1277,12 @@
       ],
       "enemySpecialActions": [
         {
-          "sprite": "EnemyAction_Drain",
+          "sprite": "적 흡혈 패턴",
           "title": "흡혈",
           "text": "피해를 값만큼 주고, 입힌 피해만큼 박쥐의 체력이 회복됩니다."
         },
         {
-          "sprite": "EnemyAction_Drain",
+          "sprite": "적 흡혈 패턴",
           "title": "흡혈+",
           "text": "피해를 값만큼 주고, 입힌 피해만큼 박쥐의 체력이 회복됩니다."
         },
