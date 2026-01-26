@@ -4,7 +4,7 @@
     "dreamDust": 0,
     "leftPassengers": 0,
     "isTutorial": true,
-    "lastSceneName": "BattleScene",
+    "lastSceneName": "MapScene",
     "personaPiece": "마술사의 꿈",
     "isPersonaEnhanced": false,
     "personaCards": [
@@ -19,6 +19,10 @@
         {
             "cardName": "비둘기 마술",
             "num": 1
+        },
+        {
+            "cardName": "배니싱",
+            "num": 10
         }
     ],
     "shadowPiece": "마술사의 꿈",
@@ -67,8 +71,8 @@
             "pos": 0,
             "screenPos": {
                 "x": -19.5,
-                "y": 0,
-                "z": 0
+                "y": 0.0,
+                "z": 0.0
             },
             "childNodes": [
                 "6beb17fe80b64ab89e4a09c6eb43e95a"
@@ -83,7 +87,7 @@
             "screenPos": {
                 "x": -15.5,
                 "y": 0.04424593597650528,
-                "z": 0
+                "z": 0.0
             },
             "childNodes": [
                 "381544c512a84b53971edfb89977f4f5"
@@ -98,7 +102,7 @@
             "screenPos": {
                 "x": -11.5,
                 "y": 0.08210562914609909,
-                "z": 0
+                "z": 0.0
             },
             "childNodes": [
                 "00f422ba565942b0be3da54ebbb23b1f"
@@ -113,7 +117,7 @@
             "screenPos": {
                 "x": -7.5,
                 "y": 0.040198914706707,
-                "z": 0
+                "z": 0.0
             },
             "childNodes": [
                 "f671b468164a445eb9e04275b3755354"
@@ -127,8 +131,8 @@
             "pos": 0,
             "screenPos": {
                 "x": -3.5,
-                "y": 0,
-                "z": 0
+                "y": 0.0,
+                "z": 0.0
             },
             "childNodes": []
         }
