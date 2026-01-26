@@ -605,19 +605,21 @@ public class GameManager : MonoBehaviour
         Item newItem = new Item();
         newItem.SetItem(item);
         newItem.num = 1;
+        Debug.Log("Adding Reward Card: " + item.name);
+        Debug.Log("Dream Piece Num: " + item.dreamPieceNum.ToString());
         if(item.dreamPieceNum < 0)
         {
             var existItem = characterSO.normalCards.Find(x => x.name == item.name);
             if(existItem == null) characterSO.normalCards.Add(newItem);
             else existItem.num++;
         }
-        else if(dreamPieceListSO.dreamPieces[item.dreamPieceNum].name == characterSO.personaPiece.name)
+        else if(item.dreamPieceNum == characterSO.personaPiece.persona.dreamPieceNum)
         {
             var existItem = characterSO.personaPiece.cards.Find(x => x.name == item.name);
             if(existItem == null) characterSO.personaPiece.cards.Add(newItem);
             else existItem.num++;
         }
-        else if(dreamPieceListSO.dreamPieces[item.dreamPieceNum].name == characterSO.shadowPiece.name)
+        else if(item.dreamPieceNum == characterSO.shadowPiece.shadow.dreamPieceNum)
         {
             var existItem = characterSO.shadowPiece.cards.Find(x => x.name == item.name);
             if(existItem == null) characterSO.shadowPiece.cards.Add(newItem);
