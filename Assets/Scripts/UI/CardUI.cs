@@ -8,25 +8,25 @@ using System.Text.RegularExpressions;
 
 public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] Image cardImg;
-    [SerializeField] Image character;
-    [SerializeField] Image type;
-    [SerializeField] Image rarity;
-    [SerializeField] Image cost;
-    [SerializeField] TMP_Text nameTMP;
-    [SerializeField] TMP_Text costTMP;
-    [SerializeField] TMP_Text typeTMP;
-    [SerializeField] TMP_Text textTMP;
-    [SerializeField] Sprite[] cardTypes;
-    [SerializeField] Sprite[] rarityTypes;
-    [SerializeField] Sprite[] costTypes;
+    [SerializeField] protected Image cardImg;
+    [SerializeField] protected Image character;
+    [SerializeField] protected Image type;
+    [SerializeField] protected Image rarity;
+    [SerializeField] protected Image cost;
+    [SerializeField] protected TMP_Text nameTMP;
+    [SerializeField] protected TMP_Text costTMP;
+    [SerializeField] protected TMP_Text typeTMP;
+    [SerializeField] protected TMP_Text textTMP;
+    [SerializeField] protected Sprite[] cardTypes;
+    [SerializeField] protected Sprite[] rarityTypes;
+    [SerializeField] protected Sprite[] costTypes;
 
     public Item item;
-    Vector3 originalScale;
-    bool tooltipCreated = false;
-    [SerializeField] GameObject cardUITooltipPrefab;
-    [SerializeField] Transform tooltipPos;
-    List<GameObject> activeTooltips = new List<GameObject>();
+    protected Vector3 originalScale;
+    protected bool tooltipCreated = false;
+    [SerializeField] protected GameObject cardUITooltipPrefab;
+    [SerializeField] protected Transform tooltipPos;
+    protected List<GameObject> activeTooltips = new List<GameObject>();
 
     public void Setup(Item item)
     {
