@@ -51,7 +51,6 @@ public class EncounterObjetUI_Sell : MonoBehaviour, IPointerClickHandler
     // [핵심 수정 부분]
     void UpdateObjetVisual(RelicItem_Data data)
     {
-        // 1. 아이콘 설정
         if (objetIcon != null)
         {
             string spriteName = data.relicSprite; 
@@ -65,9 +64,7 @@ public class EncounterObjetUI_Sell : MonoBehaviour, IPointerClickHandler
             }
             else
             {
-                // 이미지를 못 찾았을 때 (디버깅용)
                 Debug.LogWarning($"이미지 로드 실패! 이름: {spriteName}, 경로: Resources/Relics/{spriteName}");
-                // 임시로 투명하게 처리하거나 기본 이미지 유지
                  objetIcon.color = Color.clear; 
             }
         }

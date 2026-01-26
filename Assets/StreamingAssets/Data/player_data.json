@@ -76,9 +76,7 @@
         },
         {
             "locationID": "AMUSEMENT_PARK_ENTRANCE",
-            "selectedEncounterPool": [
-                "ACT1_WHITE_RABBIT"
-            ],
+            "selectedEncounterPool": [],
             "ID": "8037f4e13fe046cfa3e8486606889938",
             "level": 1,
             "pos": 0,
@@ -155,7 +153,9 @@
         },
         {
             "locationID": "ICECREAM_CART",
-            "selectedEncounterPool": [],
+            "selectedEncounterPool": [
+                "ACT1_SWEET_THING"
+            ],
             "ID": "d16f74a418a8456bbff79f53a489c86b",
             "level": 4,
             "pos": 0,
@@ -185,10 +185,12 @@
     "totalLevel": 6,
     "visitedNodeIDList": [
         "1c35d144cfc14d2e81e5e02a70430d5a",
-        "8037f4e13fe046cfa3e8486606889938"
+        "8037f4e13fe046cfa3e8486606889938",
+        "eaf3b066a92f4b95bcf6aaa34ebcc851",
+        "d16f74a418a8456bbff79f53a489c86b"
     ],
-    "curNodeIndex": 1,
-    "curNodeLocationID": "AMUSEMENT_PARK_ENTRANCE",
+    "curNodeIndex": 6,
+    "curNodeLocationID": "ICECREAM_CART",
     "lastEncounterType": 0,
     "encounterQueue": [],
     "currentStepID": "",

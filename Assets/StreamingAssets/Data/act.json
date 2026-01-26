@@ -150,7 +150,8 @@
         "ACT1_SUNNY_AFTERNOON",
         "ACT1_WHERE_DOVE_FROM",
         "ACT1_FLOWER_ATTACK",
-        "ACT1_ESCAPE_MAZE"
+        "ACT1_ESCAPE_MAZE",
+        "ACT1_SHEEP_IN_MAZE"
       ],
       "encounterNum": 3,
       "difficulty": 10,
@@ -163,7 +164,8 @@
       "sprite": "아이스크림카트02",
       "hideSprite": "아이스크림카트N02",
       "encounterPool": [
-        "ACT1_SWEET_THING"
+        "ACT1_SWEET_THING",
+        "ACT1_SOUVENIR"
       ],
       "encounterNum": 1,
       "difficulty": 11,

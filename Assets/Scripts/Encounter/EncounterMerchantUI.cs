@@ -496,6 +496,7 @@ public class EncounterMerchantUI : MonoBehaviour
             int diff = dataCount - currentChildCount;
             for (int i = 0; i < diff; i++) Instantiate(objetPrefab, objetContainer);
         }
+        
         for (int i = 0; i < objetContainer.childCount; i++)
         {
             Transform child = objetContainer.GetChild(i);
