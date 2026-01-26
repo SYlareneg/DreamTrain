@@ -3,7 +3,7 @@
     {
       "relicName": "박쥐 날개",
       "relicTxt": "턴 종료 시 남은 행동력x3의 방어도를 얻습니다.",
-      "relicSprite": "noble",
+      "relicSprite": "5. 오브제_ 박쥐 날개",
       "relicOwner": 0,
       "relicVal": [
         3
@@ -17,7 +17,7 @@
     {
       "relicName": "저주 인형",
       "relicTxt": "매 전투마다 처음으로 받는 피해를 인형이 대신 받습니다. 받은 피해가 44가 되면 부서집니다.",
-      "relicSprite": "noble",
+      "relicSprite": "4. 오브제_저주 인형",
       "relicOwner": 1,
       "relicVal": [
         44
@@ -31,7 +31,7 @@
     {
       "relicName": "꿀",
       "relicTxt": "턴 시작 시, 파괴되지 않고 남은 방어도의 25%를 체력으로 전환합니다.",
-      "relicSprite": "noble",
+      "relicSprite": "7. 오브제_꿀",
       "relicOwner": 2,
       "relicVal": [
         25
@@ -45,7 +45,7 @@
     {
       "relicName": "영원한 웃음",
       "relicTxt": "지혜가 1로 고정됩니다. 전투 시작 시 보호를 2 얻습니다.",
-      "relicSprite": "오브제_영원한 웃음",
+      "relicSprite": "3. 오브제_영원한 웃음",
       "relicOwner": 3,
       "relicVal": [
         1,
@@ -61,7 +61,7 @@
     {
       "relicName": "붉은 꽃잎",
       "relicTxt": "체력이 30%이하이면 턴 시작 시 행동력을 1 얻습니다.",
-      "relicSprite": "noble",
+      "relicSprite": "8. 오브제_붉은 꽃잎",
       "relicOwner": 4,
       "relicVal": [
         30,
@@ -77,7 +77,7 @@
     {
       "relicName": "비둘기 코인",
       "relicTxt": "지니고 있으면 행운이 1 증가합니다.",
-      "relicSprite": "noble",
+      "relicSprite": "6. 오브제_비둘기 코인",
       "relicOwner": 5,
       "relicVal": [
         1
@@ -91,7 +91,7 @@
     {
       "relicName": "와인의 눈물",
       "relicTxt": "체력이 50% 이하이면 활력 버프를 1 얻습니다.",
-      "relicSprite": "오브제_와인의 눈물",
+      "relicSprite": "2. 오브제_와인의 눈물",
       "relicOwner": 6,
       "relicVal": [
         50,
@@ -107,7 +107,7 @@
     {
       "relicName": "찻잔",
       "relicTxt": "턴 시작 시 1의 체력을 회복합니다.",
-      "relicSprite": "오브제_찻잔",
+      "relicSprite": "1. 오브제_찻잔",
       "relicOwner": 7,
       "relicVal": [
         1

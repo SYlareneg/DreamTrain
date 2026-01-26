@@ -10,6 +10,7 @@ public class PlayerDataSO : ScriptableObject
     public int dreamDust;
     public int leftPassengers;
     public bool isTutorial;
+    public string lastSceneName;
     [Header("카드 데이터")]
     public string personaPiece;
     public bool isPersonaEnhanced;

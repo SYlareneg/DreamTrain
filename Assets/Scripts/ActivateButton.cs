@@ -86,7 +86,7 @@ public class ActivateButton : MonoBehaviour
         GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.rouletteButtonSFX);
         yield return new WaitForSeconds(0.5f);
         RouletteManager.Inst.Spin(true, 1);
-        TurnManager.Inst.isLoading = false;
+        if(TurnManager.Inst.characterSO.isTutorial == false || TutorialManager.Inst.tutorialStage == 0) TurnManager.Inst.isLoading = false;
     }
 
     private void Update()

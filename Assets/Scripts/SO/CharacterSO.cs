@@ -12,6 +12,7 @@ public class CharacterSO : ScriptableObject
     public int dreamDust;
     public int leftPassengers;
     public bool isTutorial;
+    public string lastSceneName;
 
     public DreamPiece_Player personaPiece;
     public DreamPiece_Player shadowPiece;

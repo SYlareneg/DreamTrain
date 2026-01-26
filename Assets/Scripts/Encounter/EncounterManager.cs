@@ -8,7 +8,9 @@ using UnityEngine.SceneManagement;
 using System.IO; 
 using System.Text;
 using System.Linq;
+#if UNITY_EDITOR
 using UnityEditor.U2D;
+#endif
 using Random = UnityEngine.Random;
 
 public class EncounterManager : MonoBehaviour

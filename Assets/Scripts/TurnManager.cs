@@ -64,6 +64,7 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action<Card, int> OnUseCard;
     [HideInInspector] public static Action OnAddCard;
     [HideInInspector] public static Action OnDiscardCard;
+    [HideInInspector] public static Action OnSelectCardDone;
     [HideInInspector] public static Action<int, EDamageSource> OnPlayerDamaged;
     [HideInInspector] public static Action<int, EDamageSource> OnPlayerHealed;
     [HideInInspector] public static Action<int, EDamageSource> OnPlayerShielded;

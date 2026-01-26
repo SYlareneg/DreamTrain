@@ -1640,6 +1640,11 @@ public class EnemyManager : MonoBehaviour
         //         enemyDamageSeq.Play();
         //     }
         // };
+        Vector3[] originalScales = new Vector3[Enemy.maxSubEnemyNum + 1];
+        for(int i = 0; i < originalScales.Length; i++)
+        {
+            originalScales[i] = Vector3.zero;
+        }
 
         TurnManager.OnEnemyDamaged += (damage, source, enemyIdx) =>
         {
@@ -1654,7 +1659,8 @@ public class EnemyManager : MonoBehaviour
             }
             if (enemyDamageSprite != null)
             {
-                Vector3 originalScale = enemyDamageSprite.localScale;
+                if(originalScales[enemyIdx] == Vector3.zero) originalScales[enemyIdx] = enemyDamageSprite.localScale;
+                Vector3 expandScale = enemyDamageSprite.localScale.x * 1.5f > originalScales[enemyIdx].x * 2.5f ? originalScales[enemyIdx] * 2.5f : enemyDamageSprite.localScale * 1.5f;
                 enemyDamageSprite.localScale = Vector3.zero;
                 enemyDamageSprite.Find("DamageTMP").GetComponent<TMP_Text>().text = "-" + damage.ToString();
                 enemyDamageSprite.gameObject.SetActive(true);
@@ -1662,8 +1668,8 @@ public class EnemyManager : MonoBehaviour
                 enemyDamageSprite.Find("DamageTMP").GetComponent<TMP_Text>().color = Color.white;
                 enemyDamageSeq?.Kill();
                 enemyDamageSeq = DOTween.Sequence();
-                enemyDamageSeq.Append(enemyDamageSprite.DOScale(originalScale * 1.5f, 0.2f))
-                .Append(enemyDamageSprite.DOScale(originalScale, 0.2f))
+                enemyDamageSeq.Append(enemyDamageSprite.DOScale(expandScale, 0.2f))
+                .Append(enemyDamageSprite.DOScale(originalScales[enemyIdx], 0.2f))
                 .Append(enemyDamageSprite.GetComponent<SpriteRenderer>().DOFade(0, 0.2f).SetDelay(0.5f))
                 .Join(enemyDamageSprite.Find("DamageTMP").GetComponent<TMP_Text>().DOFade(0, 0.2f))
                 .AppendCallback(() =>

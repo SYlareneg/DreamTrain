@@ -11,7 +11,7 @@ using DG.Tweening;
 // 현재 카드 선택 화면 모드 (숨김, 카드 복제, 카드 버리기)
 public enum ECardSelectMode
 {
-    Hide, Duplicate, Discard
+    Hide, Duplicate, Discard, Vanish
 };
 public class CardManager : MonoBehaviour
 {
@@ -48,7 +48,7 @@ public class CardManager : MonoBehaviour
     [Tooltip("카드 선택 화면(버리기, 복제) UI 프리팹")][SerializeField] GameObject cardUISelectPrefab;
     [Tooltip("현재 카드 선택 화면 모드 (숨김, 카드 복제, 카드 버리기)")][ReadOnly, SerializeField] ECardSelectMode cardSelectMode;
     [Tooltip("선택해야 하는 카드 개수")][ReadOnly, SerializeField] int cardSelectNum;
-    [Tooltip("선택한 카드 목록")][ReadOnly, SerializeField] List<GameObject> selectedCardList;
+    [Tooltip("선택한 카드 목록")][ReadOnly] public List<GameObject> selectedCardList;
     [Tooltip("모드가 '카드 버리기'일 시, 버릴 카드 목록")][ReadOnly, SerializeField] List<Card> discardCardList;
     [Tooltip("선택된 카드 배치 레이아웃")][SerializeField] GameObject selectedCards;
     [Tooltip("카드 선택 화면 모드 텍스트")][SerializeField] TMP_Text selectModeText;
@@ -720,7 +720,7 @@ public class CardManager : MonoBehaviour
     #endregion
     
     #region Card Select Management
-    // 카드 선택 모드 변경(Hide: 카드 선택 화면 숨김, Duplicate: 복제할 카드 선택, Discard: 버릴 카드 선택), selectNum: 선택할 카드 개수
+    // 카드 선택 모드 변경(Hide: 카드 선택 화면 숨김, Duplicate: 복제할 카드 선택, Discard: 버릴 카드 선택, Vanish: 소멸 카드 선택), selectNum: 선택할 카드 개수
     public void CardSelectModeTransit(ECardSelectMode mode, int selectNum)
     {
         // 카드 선택 모드 설정
@@ -734,7 +734,11 @@ public class CardManager : MonoBehaviour
         showBoardButton.gameObject.SetActive(mode != ECardSelectMode.Hide);
 
         // 카드 선택 화면 설명
-        if (mode == ECardSelectMode.Duplicate)
+        if(mode == ECardSelectMode.Hide)
+        {
+            return;
+        }
+        else if (mode == ECardSelectMode.Duplicate)
         {
             selectModeText.text = "복제할 카드를 " + selectNum.ToString() + "장 선택하십시오.";
         }
@@ -742,12 +746,17 @@ public class CardManager : MonoBehaviour
         {
             selectModeText.text = "버릴 카드를" + selectNum.ToString() + "장 선택하십시오.";
         }
-        
+        else if (mode == ECardSelectMode.Vanish)
+        {
+            selectModeText.text = "소멸할 카드를" + selectNum.ToString() + "장 선택하십시오.";
+        }
         // 만약 선택해야 하는 카드 개수가 핸드 카드 개수 이상일 경우, 어짜피 핸드의 모든 카드를 선택해야 하므로 바로 모든 카드를 선택하고, 선택 완료 함수 SelectCardDone을 호출한다.
-        if (selectNum >= myCards.Count)
+        if (selectNum >= myCards.Count - 1)
         {
             foreach (Card card in myCards)
             {
+                if(card == selectedCard) continue;
+                Debug.Log("Auto Select Card: " + card.item.name);
                 SelectCard(card);
             }
             SelectCardDone();
@@ -781,7 +790,8 @@ public class CardManager : MonoBehaviour
         cUI.Setup(card.item);
         selectedCardList.Add(selectedCardUI);
         // Discard 모드일 경우 카드를 숨긴다. (버리기 모드에서는 선택 완료 시 핸드에서 카드가 버려지는 연출을 수행해야 하므로)
-        if(cardSelectMode == ECardSelectMode.Discard)
+        // Vanish 모드일 경우 카드도 숨긴다. (소멸 모드에서는 선택 완료 시 핸드에서 카드가 소멸되는 연출을 수행해야 하므로)
+        if(cardSelectMode == ECardSelectMode.Discard || cardSelectMode == ECardSelectMode.Vanish)
         {
             card.gameObject.SetActive(false);
             discardCardList.Add(card);
@@ -798,7 +808,7 @@ public class CardManager : MonoBehaviour
         selectedCardList.Remove(cUI_gameObject);
         Destroy(cUI_gameObject);
         // 버리기 모드일 경우 제거한 카드가 다시 핸드에서 보이게끔 설정한다.
-        if (cardSelectMode == ECardSelectMode.Discard)
+        if (cardSelectMode == ECardSelectMode.Discard || cardSelectMode == ECardSelectMode.Vanish)
         {
             discardCardList[idx].gameObject.SetActive(true);
             EnlargeCard(false, discardCardList[idx]);
@@ -817,6 +827,8 @@ public class CardManager : MonoBehaviour
     // 카드 선택 완료
     void SelectCardDone()
     {
+        Utils.AllignActions(ref TurnManager.OnSelectCardDone, typeof(ShowBuff), typeof(RelicManager));
+        TurnManager.OnSelectCardDone?.Invoke();
         // 카드 복제 모드
         if (cardSelectMode == ECardSelectMode.Duplicate)
         {
@@ -842,6 +854,24 @@ public class CardManager : MonoBehaviour
                 discardCardList[i].MoveTransform(new PRS(selectedCardList[i].transform.position, Utils.QI, new Vector3(1, 1, 1)), false, 0f);
                 discardCardList[i].gameObject.SetActive(true);
                 StartCoroutine(DiscardSingleCard(discardCardList[i]));
+                // 선택 카드 UI 오브젝트 파괴
+                Destroy(selectedCardList[i]);
+            }
+            selectedCardList.Clear();
+            discardCardList.Clear();
+            SetOriginOrder();
+            CardAlignment();
+            // 카드 선택 모드 Hide로 변경(카드 선택 화면 숨김)
+            CardSelectModeTransit(ECardSelectMode.Hide, 0);
+        }
+        // 카드 소멸 모드
+        else if (cardSelectMode == ECardSelectMode.Vanish)
+        {
+            for (int i = 0; i < selectedCardList.Count; i++)
+            {
+                // 선택한 카드 소멸
+                myCards.Remove(discardCardList[i]);
+                Destroy(discardCardList[i].gameObject);
                 // 선택 카드 UI 오브젝트 파괴
                 Destroy(selectedCardList[i]);
             }

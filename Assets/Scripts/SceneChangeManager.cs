@@ -16,9 +16,13 @@ public class SceneChangeManager : MonoBehaviour
         Tooltip.showTooltipSignal = false;
         fadeoutScreen.color = new Color(Color.black.r, Color.black.g, Color.black.b, 0f);
         fadeoutScreen.gameObject.SetActive(true);
-        if(DataManager.Inst != null) DataManager.Inst.SavePlayerData();
+        if(DataManager.Inst != null)
+        {
+            DataManager.Inst.characterSO.lastSceneName = toSceneName;
+            DataManager.Inst.SavePlayerData();
+        }
         Sequence fadeout = DOTween.Sequence();
-        fadeout.Append(fadeoutScreen.DOFade(1f, 1f).OnComplete(() =>
+        fadeout.Append(fadeoutScreen.DOFade(1f, 1f).SetLink(fadeoutScreen.gameObject).OnComplete(() =>
         {
             callbackAction?.Invoke();
             if(PlayerManager.Inst != null)

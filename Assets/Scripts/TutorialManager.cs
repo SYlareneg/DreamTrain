@@ -65,6 +65,10 @@ public class TutorialManager : MonoBehaviour
 
     public void ShowTutorialBox(int stage, int turn, int step)
     {
+        TurnManager.Inst.isLoading = true;
+        tutorialStage = stage;
+        tutorialTurn = turn;
+        tutorialStep = step;
         if(stage == 0)
         {
             hideScreen.SetActive(false);
@@ -77,10 +81,6 @@ public class TutorialManager : MonoBehaviour
             };
             return;
         }
-        TurnManager.Inst.isLoading = true;
-        tutorialStage = stage;
-        tutorialTurn = turn;
-        tutorialStep = step;
         if(stage == 1)
         {
             switch(step)

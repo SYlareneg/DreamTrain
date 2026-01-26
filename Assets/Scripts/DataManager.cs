@@ -18,14 +18,7 @@ public class DataManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         
         StartCoroutine(LoadDeveloperData());
-        if(SceneManager.GetActiveScene().name == "RoomScene")
-        {
-            StartCoroutine(LoadPlayerData(true));
-        }
-        else
-        {
-            StartCoroutine(LoadPlayerData(false));
-        }
+        StartCoroutine(LoadPlayerData(false));
     }
 
     [Header("Developer Data")]
@@ -180,6 +173,7 @@ public class DataManager : MonoBehaviour
         characterSO.dreamDust = playerDataSO.dreamDust;
         characterSO.leftPassengers = playerDataSO.leftPassengers;
         characterSO.isTutorial = playerDataSO.isTutorial;
+        characterSO.lastSceneName = playerDataSO.lastSceneName;
         // 카드 데이터
         if (playerDataSO.personaPiece != "")
         {
@@ -258,6 +252,7 @@ public class DataManager : MonoBehaviour
         playerDataSO.dreamDust = characterSO.dreamDust;
         playerDataSO.leftPassengers = characterSO.leftPassengers;
         playerDataSO.isTutorial = characterSO.isTutorial;
+        playerDataSO.lastSceneName = characterSO.lastSceneName;
         // 카드 데이터
         playerDataSO.personaPiece = characterSO.personaPiece != null ? characterSO.personaPiece.name : "";
         playerDataSO.isPersonaEnhanced = characterSO.personaPiece != null ? characterSO.personaPiece.persona.isEnhanced : false;
