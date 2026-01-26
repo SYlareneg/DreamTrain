@@ -170,7 +170,7 @@
       "type": 2,
       "dreamPieceNum": 1,
       "sprite": "폭발마술01",
-      "text": "3<피해>피해를 줍니다.\\n고급마술: 1<특수>2<피해>의 피해를 추가로 입히고 마술 상자를 제거합니다.",
+      "text": "3<피해>피해를 줍니다.\\n고급마술: 12<피해>의 피해를 추가로 입히고 마술 상자를 제거합니다.",
       "isVolatile": false,
       "isVanish": false,
       "isRemain": false,
@@ -178,29 +178,25 @@
       "rarity": 0,
       "cardValues": [
         3,
-        1,
-        2
+        12
       ],
       "cardValueTypes": [
         0,
-        3,
         0
       ],
       "name_enhanced": "폭발 마술+",
       "cost_enhanced": 2,
-      "text_enhanced": "3<피해>피해를 줍니다.\\n고급마술: 1<특수>8<피해>의 피해를 추가로 입히고 마술 상자를 제거합니다.",
+      "text_enhanced": "3<피해>피해를 줍니다.\\n고급마술: 18<피해>의 피해를 추가로 입히고 마술 상자를 제거합니다.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": true,
       "cardValues_enhanced": [
         3,
-        1,
-        8
+        18
       ],
       "cardValueTypes_enhanced": [
         0,
-        3,
         0
       ]
     },

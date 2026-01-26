@@ -477,7 +477,6 @@ public class Card : MonoBehaviour
             case "절단 마술+":
                 magicBox = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0));
                 return RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(enemyIdx)].roulette.rtype == magicBox;
-            case "환영 마술":
             case "환영 마술+":
                 magicBox = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0));
                 return RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.rtype == magicBox;
@@ -699,6 +698,7 @@ public class Card : MonoBehaviour
                 if (checkMagic)
                 {
                     TurnManager.Inst.EnemyTakeDmg(GetBuffedVal(item.cardValues[1], ECardValueType.Damage), EDamageSource.Card, enemyIdx);
+                    RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(enemyIdx)].RouletteClear();
                 }
                 break;
             case "재빠른 손놀림":
