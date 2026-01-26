@@ -117,11 +117,10 @@
       "sprite": "회전컵02",
       "hideSprite": "회전컵N02",
       "encounterPool": [
-        "ACT1_SPINNING_CUP",
         "ACT1_WINE_IN_CUP",
         "ACT1_TEA_TIME"
       ],
-      "encounterNum": 2,
+      "encounterNum": 1,
       "difficulty": 8,
       "isNormalLocation": false
     },
@@ -134,11 +133,10 @@
       "encounterPool": [
         "ACT1_MISSING_ZIZI",
         "ACT1_DEVIL_DOLL",
-        "ACT1_GUEST_OR_GHOST",
         "ACT1_BAT_ATTACK",
         "ACT1_VAMP_INVITATION"
       ],
-      "encounterNum": 3,
+      "encounterNum": 2,
       "difficulty": 9,
       "isNormalLocation": false
     },
@@ -153,7 +151,6 @@
         "ACT1_SUNNY_AFTERNOON",
         "ACT1_WHERE_DOVE_FROM",
         "ACT1_FLOWER_ATTACK",
-        "ACT1_WATER_ON_FLOWER",
         "ACT1_ESCAPE_MAZE"
       ],
       "encounterNum": 3,
