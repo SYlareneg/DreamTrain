@@ -4,7 +4,7 @@
     "dreamDust": 0,
     "leftPassengers": 0,
     "isTutorial": true,
-    "lastSceneName": "EncounterScene",
+    "lastSceneName": "RoomScene",
     "personaPiece": "고양이의 꿈",
     "isPersonaEnhanced": false,
     "personaCards": [
@@ -57,143 +57,15 @@
     "courage": 1,
     "wisdom": 1,
     "luck": 1,
-    "currentActNum": 1,
-    "mapNodes": [
-        {
-            "locationID": "START",
-            "selectedEncounterPool": [],
-            "ID": "1c35d144cfc14d2e81e5e02a70430d5a",
-            "level": 0,
-            "pos": 0,
-            "screenPos": {
-                "x": -19.5,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "childNodes": [
-                "8037f4e13fe046cfa3e8486606889938"
-            ]
-        },
-        {
-            "locationID": "AMUSEMENT_PARK_ENTRANCE",
-            "selectedEncounterPool": [],
-            "ID": "8037f4e13fe046cfa3e8486606889938",
-            "level": 1,
-            "pos": 0,
-            "screenPos": {
-                "x": -15.5,
-                "y": -0.01554194837808609,
-                "z": 0.0
-            },
-            "childNodes": [
-                "eaf3b066a92f4b95bcf6aaa34ebcc851",
-                "1c38752d8d5b47da927aed70e8446ec3",
-                "060570b5cbd34fff800e1651ab951d20"
-            ]
-        },
-        {
-            "locationID": "MERRY_GO_ROUND",
-            "selectedEncounterPool": [],
-            "ID": "eaf3b066a92f4b95bcf6aaa34ebcc851",
-            "level": 2,
-            "pos": 2,
-            "screenPos": {
-                "x": -11.5,
-                "y": 1.7550928592681885,
-                "z": 0.0
-            },
-            "childNodes": [
-                "d16f74a418a8456bbff79f53a489c86b"
-            ]
-        },
-        {
-            "locationID": "GHOST_HOUSE",
-            "selectedEncounterPool": [],
-            "ID": "1c38752d8d5b47da927aed70e8446ec3",
-            "level": 2,
-            "pos": -1,
-            "screenPos": {
-                "x": -11.5,
-                "y": -0.9871865510940552,
-                "z": 0.0
-            },
-            "childNodes": [
-                "75fa1f162caf4500b2337b4f2bf2cda5"
-            ]
-        },
-        {
-            "locationID": "TEA_CUPS",
-            "selectedEncounterPool": [],
-            "ID": "75fa1f162caf4500b2337b4f2bf2cda5",
-            "level": 3,
-            "pos": -2,
-            "screenPos": {
-                "x": -7.5,
-                "y": -1.7872700691223145,
-                "z": 0.0
-            },
-            "childNodes": [
-                "d16f74a418a8456bbff79f53a489c86b"
-            ]
-        },
-        {
-            "locationID": "MAZE_GARDEN",
-            "selectedEncounterPool": [],
-            "ID": "060570b5cbd34fff800e1651ab951d20",
-            "level": 3,
-            "pos": 0,
-            "screenPos": {
-                "x": -7.5,
-                "y": 0.07390875369310379,
-                "z": 0.0
-            },
-            "childNodes": [
-                "d16f74a418a8456bbff79f53a489c86b"
-            ]
-        },
-        {
-            "locationID": "ICECREAM_CART",
-            "selectedEncounterPool": [
-                "ACT1_SWEET_THING"
-            ],
-            "ID": "d16f74a418a8456bbff79f53a489c86b",
-            "level": 4,
-            "pos": 0,
-            "screenPos": {
-                "x": -3.5,
-                "y": 0.041481561958789828,
-                "z": 0.0
-            },
-            "childNodes": [
-                "14371f7dc5094f7294ffb05b12aac9c9"
-            ]
-        },
-        {
-            "locationID": "END",
-            "selectedEncounterPool": [],
-            "ID": "14371f7dc5094f7294ffb05b12aac9c9",
-            "level": 5,
-            "pos": 0,
-            "screenPos": {
-                "x": 0.5,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "childNodes": []
-        }
-    ],
-    "totalLevel": 6,
-    "visitedNodeIDList": [
-        "1c35d144cfc14d2e81e5e02a70430d5a",
-        "8037f4e13fe046cfa3e8486606889938",
-        "eaf3b066a92f4b95bcf6aaa34ebcc851",
-        "d16f74a418a8456bbff79f53a489c86b"
-    ],
-    "curNodeIndex": 6,
-    "curNodeLocationID": "ICECREAM_CART",
+    "currentActNum": 0,
+    "mapNodes": [],
+    "totalLevel": 0,
+    "visitedNodeIDList": [],
+    "curNodeIndex": 0,
+    "curNodeLocationID": "",
     "lastEncounterType": 0,
     "encounterQueue": [],
     "currentStepID": "",
-    "currentEncounterID": "ACT1_SOUVENIR",
-    "enemyName": "카드 병정"
+    "currentEncounterID": "",
+    "enemyName": ""
 }

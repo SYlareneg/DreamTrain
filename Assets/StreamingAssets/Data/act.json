@@ -22,19 +22,21 @@
       "essentialLocations": [
         "START",
         "AMUSEMENT_PARK_ENTRANCE",
+        "GHOST_HOUSE",
+        "MAZE_GARDEN",
         "ICECREAM_CART",
         "END"
       ],
       "essentialIntervalLayerCount": [
         0,
-        2,
+        1,
+        0,
+        0,
         0
       ],
       "specialLocations": [
         "MERRY_GO_ROUND",
-        "TEA_CUPS",
-        "GHOST_HOUSE",
-        "MAZE_GARDEN"
+        "TEA_CUPS"
       ]
     }
   ],
