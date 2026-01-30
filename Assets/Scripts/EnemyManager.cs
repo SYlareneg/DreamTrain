@@ -298,7 +298,7 @@ public class EnemyManager : MonoBehaviour
                     for (int i = 0; i <= spin; i++)
                     {
                         int tempIdx = (RouletteManager.Inst.enemyLookat + RouletteManager.rouletteNum + (isClockwise? -1 : 1) * i) % RouletteManager.rouletteNum;
-                        if (RouletteManager.Inst.roulettePieces[tempIdx].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special))
+                        if (RouletteManager.Inst.roulettePieces[tempIdx].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special, 0))
                         {
                             if(!isTriggerActivated) TurnManager.Inst.TriggerEnemyPassive(5);
                             TurnManager.Inst.GetShield(true, 5, EDamageSource.Enemy);
