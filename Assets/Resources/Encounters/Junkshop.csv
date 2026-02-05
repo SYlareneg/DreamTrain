@@ -1,0 +1,17 @@
+﻿Page_ID,Type,Text_Content,Next_Page_ID,Call_Function,Constraint
+P1,DESC,"장난감 폐기장의 으슥한 구석에서 지게차를 끌고 다니는 한 로봇이 보입니다. 
+
+""필요해, 고물?""",,,
+P1,BRANCH,물건을 산다.   (일반 상점),P2,MeetMerchant(),
+P1,BRANCH,물건을 판다.   (고물상 상점),P2,MeetMerchant(junkShop),
+P2,DESC,"""조심. 이 앞에, 고물 천지."" 
+로봇은 당신에게 짧은 경고를 남기고는 다음 손님을 찾아 떠납니다.
+
+당신도 다음 목적지로 향합니다.",,,
+P2,BRANCH,떠난다,END,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,

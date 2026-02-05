@@ -1,0 +1,31 @@
+﻿Page_ID,Type,Text_Content,Next_Page_ID,Call_Function,Constraint
+P1,DESC,"폐기장에는 정말 많은 장난감들이 산처럼 쌓여 있습니다. 
+""쓸만한 것들을 주워가도 도움이 되겠는데.""
+
+",,,
+P1,BRANCH,폐기장을 뒤져본다   (행운>6),R,"StartRoullete(Luck, 6, upper,P2_S,P2_GS,P2_F) ",
+P1,BRANCH,그냥 지나간다,P_PASS,,
+P_PASS,DESC,고물을 주워서 뭐하겠어요! 당신은 폐기장의 장난감을 줍지 않고 지나가기로 합니다. 아무 일도 일어나지 않았습니다.,,,
+P_PASS,BRANCH,떠난다,END,,
+P2_S,DESC,"당신은 열정적으로 고물 더미를 뒤집니다. 운이 좋게도 쓸만한 물건을 하나 건질 수 있었습니다.
+
+
+",,,
+P2_S,BRANCH,가지고 떠난다,END,GetRandomObjet(1),
+P2_GS,DESC,"당신은 열정적으로 고물 더미를 뒤집니다. 정말 운이 좋게도 쓸만한 물건을 두 개나 건질 수 있었습니다!
+
+
+",,,
+P2_GS,BRANCH,가지고 떠난다,END,GetRandomObjet(2),
+P2_F,DESC,"당신은 열정적으로 고물 더미를 뒤집니다. 날카로운 잔해에 손이 조금 긁히기도 했지만 덕분에 그럭저럭 쓸만한 물건을 하나 건졌습니다.
+
+
+",,,
+P2_F,BRANCH,가지고 떠난다,END,"LoseHP(5), GetRandomObjet(1)",
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,

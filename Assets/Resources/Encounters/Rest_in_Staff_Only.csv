@@ -1,0 +1,15 @@
+﻿Page_ID,Type,Text_Content,Next_Page_ID,Call_Function,Constraint
+P1,DESC,직원들의 휴식 공간을 발견했습니다. 마침 놀이공원의 직원들은 자리를 비우고 없는 것 같네요. 잠시 쉴 수 있겠습니다.,,,
+P1,BRANCH,간식을 먹으며 시간을 보낸다.  (체력 회복),P2,Heal(30),
+P1,BRANCH,잠시 눈을 붙인다.   (카드 제거),P2,DeleteCard(),
+P2,DESC,"""녀석들이 오기 전에 일어나자구.""
+
+당신은 지지와 함께 다시 길을 떠납니다
+",,,
+P2,BRANCH,떠난다,END,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
