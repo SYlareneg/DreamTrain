@@ -18,9 +18,7 @@ public class MapNodeObject : MonoBehaviour
 
         transform.localScale = originScale * expandSize;
         spriteRenderer.sprite = mapNode.nodeImg;
-        // Color color = spriteRenderer.color;
-        // color.a = 1f;
-        // spriteRenderer.color = color;
+        spriteRenderer.color = Color.white;
 
         MapManager.Inst.lookatNode = this;
     }
@@ -32,9 +30,7 @@ public class MapNodeObject : MonoBehaviour
 
         transform.localScale = originScale * expandSize;
         spriteRenderer.sprite = mapNode.nodeImg;
-        // Color color = spriteRenderer.color;
-        // color.a = 1f;
-        // spriteRenderer.color = color;
+        spriteRenderer.color = Color.white;
     }
 
     private void OnMouseExit()
@@ -45,9 +41,6 @@ public class MapNodeObject : MonoBehaviour
 
         transform.localScale = originScale;
         spriteRenderer.sprite = mapNode.hideNodeImg;
-        // Color color = spriteRenderer.color;
-        // color.a = 0.5f;
-        // spriteRenderer.color = color;
 
         MapManager.Inst.lookatNode = null;
     }
@@ -68,9 +61,9 @@ public class MapNodeObject : MonoBehaviour
         // spriteRenderer.color = color;
         blinkSeq = DOTween.Sequence()
             .Append(transform.DOScale(originScale * expandSize, blinkInterval / 2))
-            .Join(spriteRenderer.DOColor(Color.black, blinkInterval / 2))
+            // .Join(spriteRenderer.DOColor(Color.black, blinkInterval / 2))
             .Append(transform.DOScale(originScale, blinkInterval / 2))
-            .Join(spriteRenderer.DOColor(Color.white, blinkInterval / 2))
+            // .Join(spriteRenderer.DOColor(Color.white, blinkInterval / 2))
             .SetLoops(-1)
             .SetAutoKill(false);
     }
@@ -81,9 +74,6 @@ public class MapNodeObject : MonoBehaviour
         {
             transform.localScale = originScale * expandSize;
             spriteRenderer.sprite = mapNode.nodeImg;
-            // Color color = spriteRenderer.color;
-            // color.a = 1f;
-            // spriteRenderer.color = color;
         }
 
         if(MapManager.Inst.curNode.childNodes.Find(x => x == mapNode.ID) == null && blinkSeq.IsActive())

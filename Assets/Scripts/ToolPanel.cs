@@ -39,8 +39,8 @@ public class ToolPanel : MonoBehaviour
     void Start()
     {
         rect = GetComponent<RectTransform>();
-        rect.anchorMin = new Vector2(1f, rect.anchorMin.y);
-        rect.anchorMax = new Vector2(1.17f, rect.anchorMax.y);
+        rect.anchorMin = new Vector2(0.99f, rect.anchorMin.y);
+        rect.anchorMax = new Vector2(1.16f, rect.anchorMax.y);
         isShown = false;
         panelMoving = false;
     }

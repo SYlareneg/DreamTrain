@@ -927,7 +927,8 @@ public class EnemyManager : MonoBehaviour
             var newAction = newActionObj.GetComponent<EnemyAction>();
 
             newAction.SetAction(currentPattern[i], 0);
-            newAction.tooltipPos = Camera.main.WorldToScreenPoint(enemyActionPos.position) - Camera.main.WorldToScreenPoint(Vector3.zero);
+            newAction.tooltipPos += new Vector2(Camera.main.WorldToScreenPoint(enemyActionPos.position).x - Camera.main.WorldToScreenPoint(Vector3.zero).x,
+                                                Camera.main.WorldToScreenPoint(enemyActionPos.position).y - Camera.main.WorldToScreenPoint(Vector3.zero).y);
 
             actionList.Add(newAction);
         }
@@ -961,16 +962,16 @@ public class EnemyManager : MonoBehaviour
 
     public void AllignActionList()
     {
-        Vector3 mainActionPrefabWidthVec = new Vector3(mainActionPrefab.transform.localScale.x / 2 + actionMargin, 0, 0);
-        float mainActionPrefabScreenWidth = Camera.main.WorldToScreenPoint(mainActionPrefabWidthVec).x - Camera.main.WorldToScreenPoint(Vector3.zero).x;
+        Vector3 mainActionPrefabWidthVec = new Vector3(0, mainActionPrefab.transform.localScale.y / 2 + actionMargin, 0);
+        float mainActionPrefabScreenWidth = Camera.main.WorldToScreenPoint(mainActionPrefabWidthVec).y - Camera.main.WorldToScreenPoint(Vector3.zero).y;
         for (int i = 0; i < actionList.Count; i++)
         {
             var targetPos = enemyActionPos.position;
-            targetPos.x += i * mainActionPrefabWidthVec.x;
+            targetPos.y -= i * mainActionPrefabWidthVec.y;
             if (actionList[i].transform.position != targetPos)
             {
                 actionList[i].transform.DOMove(targetPos, 0.7f);
-                actionList[i].tooltipPos.x += i * mainActionPrefabScreenWidth;
+                actionList[i].tooltipPos.y -= i * mainActionPrefabScreenWidth;
             }
         }
 

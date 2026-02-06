@@ -4,7 +4,7 @@
     "dreamDust": 0,
     "leftPassengers": 0,
     "isTutorial": true,
-    "lastSceneName": "RoomScene",
+    "lastSceneName": "BattleScene",
     "personaPiece": "고양이의 꿈",
     "isPersonaEnhanced": false,
     "personaCards": [
@@ -60,12 +60,16 @@
     "currentActNum": 0,
     "mapNodes": [],
     "totalLevel": 0,
-    "visitedNodeIDList": [],
-    "curNodeIndex": 0,
-    "curNodeLocationID": "",
+    "visitedNodeIDList": [
+        "b139e1817510423084d302104a2fca44",
+        "6bb6f66f85554e3688974f4bd11abb50",
+        "d11dd50d35b7420aad559608df6a03b1"
+    ],
+    "curNodeIndex": 1,
+    "curNodeLocationID": "TUTORIAL_1",
     "lastEncounterType": 0,
     "encounterQueue": [],
     "currentStepID": "",
     "currentEncounterID": "",
-    "enemyName": ""
+    "enemyName": "CardSoldier1"
 }

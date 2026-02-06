@@ -166,7 +166,7 @@ public class RoulettePiece : MonoBehaviour
         }
         else if (totalVal == curVal)
         {
-            rouletteValueTMP.color = Color.white;
+            rouletteValueTMP.color = Color.black;
         }
         else
         {
@@ -187,7 +187,7 @@ public class RoulettePiece : MonoBehaviour
 
     public void HideTotalValue()
     {
-        rouletteValueTMP.color = Color.white;
+        rouletteValueTMP.color = Color.black;
         if (roulette.value != 0)
         {
             rouletteValueTMP.text = roulette.value.ToString();
