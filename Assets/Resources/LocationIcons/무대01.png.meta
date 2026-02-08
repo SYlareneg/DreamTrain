@@ -5,9 +5,6 @@ TextureImporter:
   - first:
       213: -8984234546072863777
     second: "\uBB34\uB30001_0"
-  - first:
-      213: 5381872310419932347
-    second: "\uBB34\uB30001_1"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -49,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
@@ -106,10 +103,10 @@ TextureImporter:
       name: "\uBB34\uB30001_0"
       rect:
         serializedVersion: 2
-        x: 892
-        y: 486
-        width: 194
-        height: 241
+        x: 10
+        y: 10
+        width: 250
+        height: 247
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,33 +121,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: "\uBB34\uB30001_1"
-      rect:
-        serializedVersion: 2
-        x: 1086
-        y: 509
-        width: 62
-        height: 118
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bb447191a5040ba40800000000000000
-      internalID: 5381872310419932347
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +136,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       "\uBB34\uB30001_0": -8984234546072863777
-      "\uBB34\uB30001_1": 5381872310419932347
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -89,7 +89,7 @@ public class EnemyAction : MonoBehaviour
         }
         else if (totalVal == actionVal)
         {
-            enemyActionTMP.color = Color.white;
+            enemyActionTMP.color = Color.black;
         }
         else
         {

@@ -23,7 +23,7 @@
     {
       "name": "강화",
       "text": "공격이 값만큼 더 큰 피해를 줍니다.",
-      "icon": "버프1_강화",
+      "icon": "버프_범용_강화",
       "type": 0,
       "effectType": 2,
       "defaultVal": []
@@ -31,7 +31,7 @@
     {
       "name": "보호",
       "text": "획득하는 방어도가 값만큼 증가합니다.",
-      "icon": "버프2_보호",
+      "icon": "버프_범용_보호",
       "type": 0,
       "effectType": 2,
       "defaultVal": []
@@ -39,7 +39,7 @@
     {
       "name": "활력",
       "text": "체력 회복량이 값만큼 증가합니다.",
-      "icon": "버프3_활력",
+      "icon": "버프_범용_활력",
       "type": 0,
       "effectType": 2,
       "defaultVal": []
@@ -47,7 +47,7 @@
     {
       "name": "주저함",
       "text": "공격으로 입히는 피해량이 25% 감소합니다.\n지속 턴수: 값턴",
-      "icon": "버프4_주저함",
+      "icon": "버프_범용_주저함",
       "type": 1,
       "effectType": 1,
       "defaultVal": [
@@ -57,7 +57,7 @@
     {
       "name": "취약",
       "text": "받는 모든 피해량이 50% 증가합니다.\n지속 턴수: 값턴",
-      "icon": "BuffIcon_Example",
+      "icon": "버프_범용_취약",
       "type": 1,
       "effectType": 1,
       "defaultVal": [
@@ -103,7 +103,7 @@
     {
       "name": "환영",
       "text": "받는 피해를 무효로 합니다. 효과 발동 시 횟수를 1 소모합니다.\n남은 횟수: 값",
-      "icon": "버프_환영",
+      "icon": "버프_범용_환영",
       "type": 2,
       "effectType": 0,
       "defaultVal": [
@@ -113,7 +113,7 @@
     {
       "name": "과민함",
       "text": "받는 피해가 50% 증가합니다. 효과 발동 시 횟수가 줄어듭니다.\n남은 횟수: 값",
-      "icon": "BuffIcon_Example",
+      "icon": "버프_범용_과민함",
       "type": 2,
       "effectType": 1,
       "defaultVal": [
@@ -123,7 +123,7 @@
     {
       "name": "불쾌함",
       "text": "룰렛 회전 시 3의 피해를 입습니다. 효과 발동 시 횟수가 줄어듭니다.\n남은 횟수: 값",
-      "icon": "BuffIcon_Example",
+      "icon": "버프_범용_불쾌함",
       "type": 2,
       "effectType": 1,
       "defaultVal": [
@@ -133,7 +133,7 @@
     {
       "name": "회전 봉인",
       "text": "룰렛을 회전시킬 수 없습니다.\n지속 턴수: 값턴",
-      "icon": "BuffIcon_Example",
+      "icon": "버프_범용_회전봉인",
       "type": 1,
       "effectType": 1,
       "defaultVal": []
@@ -141,7 +141,7 @@
     {
       "name": "놀이 시간",
       "text": "회전 카드를 사용할 때마다 행동력을 1 얻습니다.\n지속 턴수: 값턴",
-      "icon": "버프_놀이시간",
+      "icon": "버프_고양이_놀이시간",
       "type": 1,
       "effectType": 0,
       "defaultVal": [

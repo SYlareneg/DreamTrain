@@ -188,7 +188,7 @@ public class RouletteManager : MonoBehaviour
         isTriggerActivated = true;
         triggerSprite.sprite = playerTriggerSprite;
         triggerSprite.gameObject.SetActive(true);
-        rouletteInnerFrame.SetActive(false);
+        // rouletteInnerFrame.SetActive(false);
         for(int i = 0; i < rouletteNum; i++)
         {
             roulettePieces[i].Trigger(true);
@@ -211,7 +211,7 @@ public class RouletteManager : MonoBehaviour
             roulettePieces[i].Trigger(false);
         }
         triggerSprite.gameObject.SetActive(false);
-        rouletteInnerFrame.SetActive(true);
+        // rouletteInnerFrame.SetActive(true);
         BuffManager.Inst.rouletteBuff_Trigger.Clear();
     }
 
@@ -275,6 +275,11 @@ public class RouletteManager : MonoBehaviour
                 ret = ret && func.Invoke(index, rType);
             }
             if (ret == false) return false;
+        }
+        if(roulettePieces[index].roulette.rtype.type != ERouletteType.None)
+        {
+            Utils.AllignActions(ref TurnManager.OnRouletteErase, typeof(ShowBuff), typeof(RelicManager));
+            TurnManager.OnRouletteErase?.Invoke(index);
         }
         RouletteItem rItem = new RouletteItem();
         rItem.rtype = rType;

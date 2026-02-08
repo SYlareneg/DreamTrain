@@ -7,6 +7,9 @@ public class ActivateButton : MonoBehaviour
 {
     [Header("Settings")]
     public bool useClickEffect = true; // 클릭 시 눌리는 효과 사용 여부
+    [SerializeField] float clickScale = 0.9f; // 클릭 시 크기 비율
+    [SerializeField] Sprite originalSprite;
+    [SerializeField] Sprite pressedSprite;
     [Header("Cost")]
     public int useCost;
     [SerializeField] int maxUseCost;
@@ -22,7 +25,9 @@ public class ActivateButton : MonoBehaviour
         // 원래 크기 저장
         originalScale = transform.localScale;
         // 눌렸을 때 크기 (원래 크기의 90%)
-        pressedScale = originalScale * 0.9f;
+        pressedScale = originalScale * clickScale;
+
+        GetComponent<SpriteRenderer>().sprite = originalSprite;
 
         useCost = 1;
         TurnManager.OnRouletteSpin += (x, y) =>
@@ -55,6 +60,7 @@ public class ActivateButton : MonoBehaviour
         if (useClickEffect)
         {
             transform.localScale = pressedScale;
+            GetComponent<SpriteRenderer>().sprite = pressedSprite;
         }
     }
 
@@ -64,6 +70,7 @@ public class ActivateButton : MonoBehaviour
         if (useClickEffect)
         {
             transform.localScale = originalScale;
+            GetComponent<SpriteRenderer>().sprite = originalSprite;
         }
     }
 

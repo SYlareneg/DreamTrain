@@ -64,6 +64,7 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action<Card, int> OnUseCard;
     [HideInInspector] public static Action OnAddCard;
     [HideInInspector] public static Action OnDiscardCard;
+    [HideInInspector] public static Action OnVanishCard;
     [HideInInspector] public static Action OnSelectCardDone;
     [HideInInspector] public static Action<int, EDamageSource> OnPlayerDamaged;
     [HideInInspector] public static Action<int, EDamageSource> OnPlayerHealed;
@@ -85,6 +86,7 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public static Action OnRouletteTrigger;
     [HideInInspector] public static Func<int, RouletteType, bool> CheckRouletteEnchantable;
     [HideInInspector] public static Action<int> OnRouletteEnchant;
+    [HideInInspector] public static Action<int> OnRouletteErase;
     [HideInInspector] public static Action<int> OnRouletteEnhance;
     [HideInInspector] public static Action OnRouletteActivate;
     [HideInInspector] public static Action<int> OnCostChange;

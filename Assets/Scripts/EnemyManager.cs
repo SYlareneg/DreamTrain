@@ -298,7 +298,7 @@ public class EnemyManager : MonoBehaviour
                     for (int i = 0; i <= spin; i++)
                     {
                         int tempIdx = (RouletteManager.Inst.enemyLookat + RouletteManager.rouletteNum + (isClockwise? -1 : 1) * i) % RouletteManager.rouletteNum;
-                        if (RouletteManager.Inst.roulettePieces[tempIdx].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special))
+                        if (RouletteManager.Inst.roulettePieces[tempIdx].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special, 0))
                         {
                             if(!isTriggerActivated) TurnManager.Inst.TriggerEnemyPassive(5);
                             TurnManager.Inst.GetShield(true, 5, EDamageSource.Enemy);
@@ -927,7 +927,8 @@ public class EnemyManager : MonoBehaviour
             var newAction = newActionObj.GetComponent<EnemyAction>();
 
             newAction.SetAction(currentPattern[i], 0);
-            newAction.tooltipPos = Camera.main.WorldToScreenPoint(enemyActionPos.position) - Camera.main.WorldToScreenPoint(Vector3.zero);
+            newAction.tooltipPos += new Vector2(Camera.main.WorldToScreenPoint(enemyActionPos.position).x - Camera.main.WorldToScreenPoint(Vector3.zero).x,
+                                                Camera.main.WorldToScreenPoint(enemyActionPos.position).y - Camera.main.WorldToScreenPoint(Vector3.zero).y);
 
             actionList.Add(newAction);
         }
@@ -961,16 +962,16 @@ public class EnemyManager : MonoBehaviour
 
     public void AllignActionList()
     {
-        Vector3 mainActionPrefabWidthVec = new Vector3(mainActionPrefab.transform.localScale.x / 2 + actionMargin, 0, 0);
-        float mainActionPrefabScreenWidth = Camera.main.WorldToScreenPoint(mainActionPrefabWidthVec).x - Camera.main.WorldToScreenPoint(Vector3.zero).x;
+        Vector3 mainActionPrefabWidthVec = new Vector3(0, mainActionPrefab.transform.localScale.y / 2 + actionMargin, 0);
+        float mainActionPrefabScreenWidth = Camera.main.WorldToScreenPoint(mainActionPrefabWidthVec).y - Camera.main.WorldToScreenPoint(Vector3.zero).y;
         for (int i = 0; i < actionList.Count; i++)
         {
             var targetPos = enemyActionPos.position;
-            targetPos.x += i * mainActionPrefabWidthVec.x;
+            targetPos.y -= i * mainActionPrefabWidthVec.y;
             if (actionList[i].transform.position != targetPos)
             {
                 actionList[i].transform.DOMove(targetPos, 0.7f);
-                actionList[i].tooltipPos.x += i * mainActionPrefabScreenWidth;
+                actionList[i].tooltipPos.y -= i * mainActionPrefabScreenWidth;
             }
         }
 
@@ -1468,10 +1469,10 @@ public class EnemyManager : MonoBehaviour
             Sequence executionSubSeq = DOTween.Sequence();
             executionSubSeq.Append(executeActionList[localIndex].transform.DOScale(originalScale * 1.2f, actionInterval / 2));
             var subSeqSR = executeActionList[localIndex].GetComponentsInChildren<SpriteRenderer>();
-            foreach (var sr in subSeqSR)
-            {
-                executionSubSeq.Join(sr.DOColor(Color.white, actionInterval / 2));
-            }
+            // foreach (var sr in subSeqSR)
+            // {
+            //     executionSubSeq.Join(sr.DOColor(Color.white, actionInterval / 2));
+            // }
             executionSubSeq.AppendCallback(() =>
             {
                 lastAction = executeActionList[localIndex];
@@ -1487,7 +1488,8 @@ public class EnemyManager : MonoBehaviour
                 }
                 else
                 {
-                    executionSubSeq.Join(sr.DOColor(originalColor, actionInterval / 2));
+                    // executionSubSeq.Join(sr.DOColor(originalColor, actionInterval / 2));
+                    executionSubSeq.Join(sr.DOColor(new Color(120f/255f, 120f/255f, 120f/255f), actionInterval / 2));
                 }
             }
             executionSeq.Append(executionSubSeq);
@@ -1531,7 +1533,8 @@ public class EnemyManager : MonoBehaviour
                     }
                     else
                     {
-                        executionSubSeq.Join(sr.DOColor(originalColor, actionInterval / 2));
+                        // executionSubSeq.Join(sr.DOColor(originalColor, actionInterval / 2));
+                        executionSubSeq.Join(sr.DOColor(new Color(120f/255f, 120f/255f, 120f/255f), actionInterval / 2));
                     }
                 }
                 executionSeq.Append(executionSubSeq);

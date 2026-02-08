@@ -124,6 +124,11 @@ public class RoulettePiece : MonoBehaviour
     {
         tooltip.HideTooltip();
         int index = Array.IndexOf(RouletteManager.Inst.roulettePieces, this);
+        if(roulette.rtype.type != ERouletteType.None)
+        {
+            Utils.AllignActions(ref TurnManager.OnRouletteErase, typeof(ShowBuff), typeof(RelicManager));
+            TurnManager.OnRouletteErase?.Invoke(index);
+        }
         switch (roulette.rtype.type)
         {
             case ERouletteType.Player_Special:
@@ -166,7 +171,7 @@ public class RoulettePiece : MonoBehaviour
         }
         else if (totalVal == curVal)
         {
-            rouletteValueTMP.color = Color.white;
+            rouletteValueTMP.color = Color.black;
         }
         else
         {
@@ -187,7 +192,7 @@ public class RoulettePiece : MonoBehaviour
 
     public void HideTotalValue()
     {
-        rouletteValueTMP.color = Color.white;
+        rouletteValueTMP.color = Color.black;
         if (roulette.value != 0)
         {
             rouletteValueTMP.text = roulette.value.ToString();

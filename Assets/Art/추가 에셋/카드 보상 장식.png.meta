@@ -1,0 +1,495 @@
+fileFormatVersion: 2
+guid: f5a689c588ec54148b3bbe5dc880221f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -55795934226818810
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_0"
+  - first:
+      213: 6803159306750525434
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_1"
+  - first:
+      213: -7432025057133305092
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_2"
+  - first:
+      213: -2899682207876166144
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_3"
+  - first:
+      213: 6442834593393840940
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_4"
+  - first:
+      213: -4993223151858562193
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_5"
+  - first:
+      213: 7741518727884288546
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_6"
+  - first:
+      213: 3370397121262616615
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_7"
+  - first:
+      213: -7187496601595020507
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_8"
+  - first:
+      213: -5891782956533872808
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_9"
+  - first:
+      213: -4376637302146479008
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_10"
+  - first:
+      213: -4411133837700569969
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_11"
+  - first:
+      213: -66908772633836191
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_12"
+  - first:
+      213: 1534414082543337034
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_13"
+  - first:
+      213: 1987885002207259505
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_14"
+  - first:
+      213: -3964874593051047912
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_15"
+  - first:
+      213: 4440578045791536832
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_16"
+  - first:
+      213: -8491693010984768485
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_17"
+  - first:
+      213: -3003192866004511960
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_18"
+  - first:
+      213: -6778654689079529795
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_19"
+  - first:
+      213: 3430199038249063766
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_20"
+  - first:
+      213: 1152882297518834427
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_21"
+  - first:
+      213: 8768118250108931458
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_22"
+  - first:
+      213: 92807296110734502
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_23"
+  - first:
+      213: -2204781257399959310
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_24"
+  - first:
+      213: 3277830303000077072
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_25"
+  - first:
+      213: 5447734164972197311
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_26"
+  - first:
+      213: -3594939582153451823
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_27"
+  - first:
+      213: -2872066842649106882
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_28"
+  - first:
+      213: -7144280733363906374
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_29"
+  - first:
+      213: 6950882524785692107
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_30"
+  - first:
+      213: -5327620162081284828
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_31"
+  - first:
+      213: -3134730948087374216
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_32"
+  - first:
+      213: -6779332397844497
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_33"
+  - first:
+      213: 5242501906734980379
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_34"
+  - first:
+      213: 5253926495753428361
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_35"
+  - first:
+      213: 7563329215967039517
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_36"
+  - first:
+      213: 8297283443196238474
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_37"
+  - first:
+      213: 5496717629579950197
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_38"
+  - first:
+      213: -8675421404749744023
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_39"
+  - first:
+      213: -8079954220110623352
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_40"
+  - first:
+      213: -4216697250288697168
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_41"
+  - first:
+      213: 7733667212875675054
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_42"
+  - first:
+      213: -3771118271697906360
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_43"
+  - first:
+      213: -2860934115729927735
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_44"
+  - first:
+      213: 8034660403388330374
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_45"
+  - first:
+      213: 8964285420206967844
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_46"
+  - first:
+      213: -3879015343546200048
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_47"
+  - first:
+      213: -3873183703299047701
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_48"
+  - first:
+      213: -6211969472941137008
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_49"
+  - first:
+      213: -7976542725505556385
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_50"
+  - first:
+      213: 7774565991760950950
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_51"
+  - first:
+      213: 1491857942482995182
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_52"
+  - first:
+      213: -659468153703521563
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_53"
+  - first:
+      213: -5798310441772077127
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_54"
+  - first:
+      213: -476508239064147440
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_55"
+  - first:
+      213: -8848484911037138225
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_56"
+  - first:
+      213: -4390216638647259456
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_57"
+  - first:
+      213: 5634133972744232187
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_58"
+  - first:
+      213: -7220329196665059113
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_59"
+  - first:
+      213: 1393209849920576877
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_60"
+  - first:
+      213: -6175490341190668843
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_61"
+  - first:
+      213: -4920770720893152733
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_62"
+  - first:
+      213: -191160805379136959
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_63"
+  - first:
+      213: -7849500925804320052
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_64"
+  - first:
+      213: -4818059311036270296
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_65"
+  - first:
+      213: 1533190033374718771
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_66"
+  - first:
+      213: 3809299857489080707
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_67"
+  - first:
+      213: -7042431112214803338
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_68"
+  - first:
+      213: -2061898781782133846
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_69"
+  - first:
+      213: -5604404141671447672
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_70"
+  - first:
+      213: -7631363133265888559
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_71"
+  - first:
+      213: -9082060293922715948
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_72"
+  - first:
+      213: 3653302425675483112
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_73"
+  - first:
+      213: -2843642082997192511
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_74"
+  - first:
+      213: -8052934984325938070
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_75"
+  - first:
+      213: 4220408871780352860
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_76"
+  - first:
+      213: -4936668448941607548
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_77"
+  - first:
+      213: -7478542402619250315
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_78"
+  - first:
+      213: 3393771038654783133
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_79"
+  - first:
+      213: 6697515659377707308
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_80"
+  - first:
+      213: 8745067854310908165
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_81"
+  - first:
+      213: 2793798588025128488
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_82"
+  - first:
+      213: -4578234505150739025
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_83"
+  - first:
+      213: 8420457965920550000
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_84"
+  - first:
+      213: -3622893583338038933
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_85"
+  - first:
+      213: -4856305921822321412
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_86"
+  - first:
+      213: 1309794216047412935
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_87"
+  - first:
+      213: 5991988999970906372
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_88"
+  - first:
+      213: 3124967679298971634
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_89"
+  - first:
+      213: -2026825326003972393
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_90"
+  - first:
+      213: 1110377897646871055
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_91"
+  - first:
+      213: 382290909848614796
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_92"
+  - first:
+      213: 6475913512268730364
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_93"
+  - first:
+      213: -7661153799963501723
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_94"
+  - first:
+      213: 4572820502079841707
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_95"
+  - first:
+      213: 6790039685657548710
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_96"
+  - first:
+      213: 3619308606298681049
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_97"
+  - first:
+      213: 3456360940699025416
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_98"
+  - first:
+      213: -3313506685524066145
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_99"
+  - first:
+      213: 2032868793719291264
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_100"
+  - first:
+      213: 1771847597345581128
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_101"
+  - first:
+      213: -2215950396400293161
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_102"
+  - first:
+      213: 4087640285627432442
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_103"
+  - first:
+      213: 9068113209939509715
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_104"
+  - first:
+      213: 1406651559882745617
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_105"
+  - first:
+      213: -5454398804372010012
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_106"
+  - first:
+      213: -7823150697808138073
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_107"
+  - first:
+      213: -5193993850823488237
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_108"
+  - first:
+      213: -2704408116918147740
+    second: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_109"
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_0"
+      rect:
+        serializedVersion: 2
+        x: 1625
+        y: 1070
+        width: 1377
+        height: 1377
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 609df78b4e5c93ff0800000000000000
+      internalID: -55795934226818810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_1"
+      rect:
+        serializedVersion: 2
+        x: 4998
+        y: 1070
+        width: 1377
+        height: 1377
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afff145485da96e50800000000000000
+      internalID: 6803159306750525434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 274ef4bdd7fd9d54fabd56b068503202
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":2.0,"y":1.0},"gridSpriteSize":{"x":4000.0,"y":4500.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_0": -55795934226818810
+      "\u110F\u1161\u1103\u1173 \u1107\u1169\u1109\u1161\u11BC \u110C\u1161\u11BC\u1109\u1175\u11A8_1": 6803159306750525434
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

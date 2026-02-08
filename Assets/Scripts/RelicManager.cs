@@ -241,6 +241,165 @@ public class RelicManager : MonoBehaviour
                     if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
                 };
                 return;
+            case "잃어버린 노래":
+            case "잃어버린 노래+":
+                TurnManager.OnVanishCard += () =>
+                {
+                    TurnManager.Inst.IncreaseCost(relicItem.relicVal[0]);
+                    Debug.Log("Relic Activate: " + relicItem.relicName);
+                };
+                return;
+            case "모두의 우승":
+            case "모두의 우승+":
+                TurnManager.OnGameStart += () =>
+                {
+                    BuffManager.Inst.AddShowBuff("강화", EBuffAffectType.Roulette, relicItem.relicVal[0], false);
+                    BuffManager.Inst.AddShowBuff("강화", EBuffAffectType.Enemy, relicItem.relicVal[0], false);
+                    Debug.Log("Relic Activate: " + relicItem.relicName);
+                };
+                return;
+            case "낙하산":
+            case "낙하산+":
+                bool shieldedThisGame = false;
+                TurnManager.OnGameStart += () =>
+                {
+                    BuffManager.Inst.AddShowBuff("보호", EBuffAffectType.Player, relicItem.relicVal[0], false);
+                    Debug.Log("Relic Activate: " + relicItem.relicName);
+                };
+                TurnManager.OnPlayerDamaged += (x, s) =>
+                {
+                    if (shieldedThisGame == false)
+                    {
+                        BuffManager.Inst.AddShowBuff("보호", EBuffAffectType.Player, -relicItem.relicVal[0], false);
+                        shieldedThisGame = true;
+                    }
+                };
+                return;
+            case "자가수리 키트":
+            case "자가수리 키트+":
+                TurnManager.OnPlayerHealed += (damage, s) =>
+                {
+                    if(s == EDamageSource.Roulette)
+                    {
+                        damage = (int)(damage * ((float)relicItem.relicVal[0] / 100f));
+                        Debug.Log("Relic Activate: " + relicItem.relicName);
+                        if (TurnManager.Inst.curHealth + damage > TurnManager.Inst.maxHealth)
+                        {
+                            damage = TurnManager.Inst.maxHealth - TurnManager.Inst.curHealth;
+                        }
+                        
+                        TurnManager.Inst.curHealth += damage;
+                    }
+                };
+                return;
+            case "사건의 지평선":
+            case "사건의 지평선+":
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    if(TurnManager.Inst.turnNum == relicItem.relicVal[0])
+                    {
+                        BuffManager.Inst.AddShowBuff("강화", EBuffAffectType.Roulette, relicItem.relicVal[1], false);
+                        BuffManager.Inst.AddShowBuff("보호", EBuffAffectType.Roulette, relicItem.relicVal[1], false);
+                        BuffManager.Inst.AddShowBuff("활력", EBuffAffectType.Roulette, relicItem.relicVal[1], false);
+                    }
+                };
+                return;
+            case "깃펜":
+            case "깃펜+":
+                TurnManager.OnUseCard += (card, enemyIdx) =>
+                {
+                    if(Random.value <= (float)relicItem.relicVal[0] / 100f)
+                    {
+                        StartCoroutine(TurnManager.Inst.Draw(relicItem.relicVal[1], null));
+                        Debug.Log("Relic Activate: " + relicItem.relicName);
+                    }
+                };
+                return;
+            case "일기":
+            case "일기+":
+                TurnManager.OnGameEnd += (isWin) =>
+                {
+                    if(Random.value <= (float)relicItem.relicVal[0] / 100f)
+                    {
+                        int randIdx = Random.Range(0, 3);
+                        switch (randIdx)
+                        {
+                            case 0:
+                                DataManager.Inst.playerStatsSO.courage += relicItem.relicVal[1];
+                                break;
+                            case 1:
+                                DataManager.Inst.playerStatsSO.wisdom += relicItem.relicVal[1];
+                                break;
+                            case 2:
+                                DataManager.Inst.playerStatsSO.luck += relicItem.relicVal[1];
+                                break;
+                        }
+                        Debug.Log("Relic Activate: " + relicItem.relicName);
+                    }
+                };
+                return;
+            case "낡은 장갑":
+            case "낡은 장갑+":
+                TurnManager.OnRouletteSpin += (isClockwise, spinCount) =>
+                {
+                    TurnManager.Inst.GetShield(false, relicItem.relicVal[0], EDamageSource.Relic);
+                    Debug.Log("Relic Activate: " + relicItem.relicName);
+                };
+                return;
+            case "빗자루":
+            case "빗자루+":
+                TurnManager.OnRouletteErase += (index) =>
+                {
+                    TurnManager.Inst.IncreaseCost(relicItem.relicVal[0]);
+                    Debug.Log("Relic Activate: " + relicItem.relicName);
+                };
+                return;
+            case "파랑 구두":
+            case "파랑 구두+":
+                TurnManager.OnPlayerShielded += (x, s) =>
+                {
+                    BuffManager.Inst.AddShowBuff("강화", EBuffAffectType.Roulette, relicItem.relicVal[0], false);
+                    Debug.Log("Relic Activate: " + relicItem.relicName);
+                };
+                return;
+            case "머리끈":
+            case "머리끈+":
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    if(TurnManager.Inst.turnNum == 1)
+                    {
+                        TurnManager.Inst.IncreaseCost(relicItem.relicVal[0]);
+                        Debug.Log("Relic Activate: " + relicItem.relicName);
+                    }
+                };
+                return;
+            case "새장":
+            case "새장+":
+                TurnManager.OnGameStart += () =>
+                {
+                    BuffManager.Inst.AddShowBuff("보호", EBuffAffectType.Player, relicItem.relicVal[0], false);
+                    Debug.Log("Relic Activate: " + relicItem.relicName);
+                };
+                TurnManager.OnRouletteSpin += (isClockwise, spinCount) =>
+                {
+                    if(spinCount >= relicItem.relicVal[1])
+                    {
+                        BuffManager.Inst.AddShowBuff("보호", EBuffAffectType.Player, -relicItem.relicVal[2], false);
+                        Debug.Log("Relic Activate: " + relicItem.relicName);
+                    }
+                };
+                return;
+            case "모닥불":
+            case "모닥불+":
+                TurnManager.OnRouletteSpin += (isClockwise, spinCount) =>
+                {
+                    if(spinCount >= relicItem.relicVal[0])
+                    {
+                        TurnManager.Inst.EnemyTakeDmg(relicItem.relicVal[1], EDamageSource.Relic);
+                        Debug.Log("Relic Activate: " + relicItem.relicName);
+                    }
+                };
+                return;
         }
     }
 

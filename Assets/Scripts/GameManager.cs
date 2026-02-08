@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour
         playerDamageEffect.SetActive(false);
         TurnManager.OnPlayerDamaged += (damage, source) =>
         {
+            DOTween.Kill(playerDamageEffect);
             if(TurnManager.Inst.shieldHealth > 0) playerDamageEffect.GetComponent<Image>().sprite = playerDamageEffectSprites[1];
             else playerDamageEffect.GetComponent<Image>().sprite = playerDamageEffectSprites[0];
             playerDamageEffect.SetActive(true);
@@ -99,10 +100,43 @@ public class GameManager : MonoBehaviour
             {
                 playerDamageEffect.SetActive(false);
             });
+            damageSeq.SetLink(playerDamageEffect);
 
             Camera.main.transform.DOShakePosition(0.8f, 0.2f, 20, 90f);
 
             GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.playerDamageSFX);
+        };
+        TurnManager.OnPlayerHealed += (heal, source) =>
+        {
+            DOTween.Kill(playerDamageEffect);
+            playerDamageEffect.GetComponent<Image>().sprite = playerDamageEffectSprites[2];
+            playerDamageEffect.SetActive(true);
+            playerDamageEffect.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
+            Sequence healSeq = DOTween.Sequence();
+            healSeq.Append(playerDamageEffect.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 0.6f), 0.6f))
+            .Append(playerDamageEffect.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 0f), 1.2f))
+            .OnComplete(() =>
+            {
+                playerDamageEffect.SetActive(false);
+            });
+            healSeq.SetLink(playerDamageEffect);
+            // GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.playerHealSFX);
+        };
+        TurnManager.OnPlayerShielded += (shield, source) =>
+        {
+            DOTween.Kill(playerDamageEffect);
+            playerDamageEffect.GetComponent<Image>().sprite = playerDamageEffectSprites[3];
+            playerDamageEffect.SetActive(true);
+            playerDamageEffect.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
+            Sequence shieldSeq = DOTween.Sequence();
+            shieldSeq.Append(playerDamageEffect.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 0.6f), 0.6f))
+            .Append(playerDamageEffect.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 0f), 1.2f))
+            .OnComplete(() =>
+            {
+                playerDamageEffect.SetActive(false);
+            });
+            shieldSeq.SetLink(playerDamageEffect);
+            // GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.playerShieldSFX);
         };
     }
 
@@ -120,23 +154,23 @@ public class GameManager : MonoBehaviour
     {
         if (TurnManager.Inst.isLoading == false)
         {
-            // if (Input.GetKeyDown(KeyCode.Q))
-            // {
-            //     Utils.AllignActions(ref TurnManager.OnAddCard, typeof(ShowBuff), typeof(RelicManager));
-            //     TurnManager.OnAddCard?.Invoke();
-            // }
-            // if (Input.GetKeyDown(KeyCode.E))
-            // {
-            //     TurnManager.Inst.EndPlayerTurn();
-            // }
-            // if (Input.GetKeyDown(KeyCode.A))
-            // {
-            //     RouletteManager.Inst.Spin(false, 1);
-            // }
-            // if (Input.GetKeyDown(KeyCode.D))
-            // {
-            //     RouletteManager.Inst.Spin(true, 1);
-            // }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                Utils.AllignActions(ref TurnManager.OnAddCard, typeof(ShowBuff), typeof(RelicManager));
+                TurnManager.OnAddCard?.Invoke();
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                TurnManager.Inst.EndPlayerTurn();
+            }
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                RouletteManager.Inst.Spin(false, 1);
+            }
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                RouletteManager.Inst.Spin(true, 1);
+            }
             if (Input.GetKeyDown(KeyCode.S))
             {
                 RouletteManager.Inst.ActivateRoulette();
@@ -328,11 +362,11 @@ public class GameManager : MonoBehaviour
 
         if(isMyWin == false)
         {
-            resultPanel.Show("패배");
+            resultPanel.ShowLose();
         }
         else
         {
-            Notification("승리", "", () =>
+            resultPanel.ShowWin(() =>
             {
                 if(characterSO.isTutorial)
                 {
