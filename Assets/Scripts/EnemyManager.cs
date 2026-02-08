@@ -1469,10 +1469,10 @@ public class EnemyManager : MonoBehaviour
             Sequence executionSubSeq = DOTween.Sequence();
             executionSubSeq.Append(executeActionList[localIndex].transform.DOScale(originalScale * 1.2f, actionInterval / 2));
             var subSeqSR = executeActionList[localIndex].GetComponentsInChildren<SpriteRenderer>();
-            foreach (var sr in subSeqSR)
-            {
-                executionSubSeq.Join(sr.DOColor(Color.white, actionInterval / 2));
-            }
+            // foreach (var sr in subSeqSR)
+            // {
+            //     executionSubSeq.Join(sr.DOColor(Color.white, actionInterval / 2));
+            // }
             executionSubSeq.AppendCallback(() =>
             {
                 lastAction = executeActionList[localIndex];
@@ -1488,7 +1488,8 @@ public class EnemyManager : MonoBehaviour
                 }
                 else
                 {
-                    executionSubSeq.Join(sr.DOColor(originalColor, actionInterval / 2));
+                    // executionSubSeq.Join(sr.DOColor(originalColor, actionInterval / 2));
+                    executionSubSeq.Join(sr.DOColor(new Color(120f/255f, 120f/255f, 120f/255f), actionInterval / 2));
                 }
             }
             executionSeq.Append(executionSubSeq);
@@ -1532,7 +1533,8 @@ public class EnemyManager : MonoBehaviour
                     }
                     else
                     {
-                        executionSubSeq.Join(sr.DOColor(originalColor, actionInterval / 2));
+                        // executionSubSeq.Join(sr.DOColor(originalColor, actionInterval / 2));
+                        executionSubSeq.Join(sr.DOColor(new Color(120f/255f, 120f/255f, 120f/255f), actionInterval / 2));
                     }
                 }
                 executionSeq.Append(executionSubSeq);

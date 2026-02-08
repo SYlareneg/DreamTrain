@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4672993584769023155}
   - component: {fileID: 2920771180565848516}
   - component: {fileID: 7022057778937124705}
-  - component: {fileID: 1385244497166063198}
   m_Layer: 5
   m_Name: BuffIcon
   m_TagString: Untagged
@@ -76,24 +75,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1385244497166063198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2225612360819095917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a00420b01652994990b4f0921a3d65a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Tooltip
-  tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
-  tooltipTitle: 
-  tooltipTxt: 
-  tooltipPos: {x: 0, y: 0}
-  tooltipPivot: {x: 0, y: 1}
-  tooltipDisable: 0
 --- !u!1 &8469779114556094221
 GameObject:
   m_ObjectHideFlags: 0

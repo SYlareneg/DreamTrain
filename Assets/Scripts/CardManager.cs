@@ -465,6 +465,8 @@ public class CardManager : MonoBehaviour
             // 만약 현재 카드가 '소멸' 카드일 경우, 카드를 파괴한다.
             if (selectedCard.item.isVanish == true)
             {
+                Utils.AllignActions(ref TurnManager.OnVanishCard, typeof(ShowBuff), typeof(RelicManager));
+                TurnManager.OnVanishCard?.Invoke();
                 myCards.Remove(card);
                 Destroy(card.gameObject);
             }
@@ -867,6 +869,8 @@ public class CardManager : MonoBehaviour
         // 카드 소멸 모드
         else if (cardSelectMode == ECardSelectMode.Vanish)
         {
+            Utils.AllignActions(ref TurnManager.OnVanishCard, typeof(ShowBuff), typeof(RelicManager));
+            TurnManager.OnVanishCard?.Invoke();
             for (int i = 0; i < selectedCardList.Count; i++)
             {
                 // 선택한 카드 소멸

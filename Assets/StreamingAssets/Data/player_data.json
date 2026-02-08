@@ -3,7 +3,7 @@
     "curHealth": 60,
     "dreamDust": 0,
     "leftPassengers": 0,
-    "isTutorial": true,
+    "isTutorial": false,
     "lastSceneName": "BattleScene",
     "personaPiece": "고양이의 꿈",
     "isPersonaEnhanced": false,
@@ -19,6 +19,10 @@
         {
             "cardName": "숨기",
             "num": 1
+        },
+        {
+            "cardName": "간식 시간",
+            "num": 2
         }
     ],
     "shadowPiece": "고양이의 꿈",
@@ -51,19 +55,96 @@
             "num": 2
         }
     ],
-    "relics": [],
-    "relicEnhancements": [],
+    "relics": [
+        21
+    ],
+    "relicEnhancements": [
+        false
+    ],
     "useableItems": [],
     "courage": 1,
     "wisdom": 1,
     "luck": 1,
     "currentActNum": 0,
-    "mapNodes": [],
-    "totalLevel": 0,
+    "mapNodes": [
+        {
+            "locationID": "TUTORIAL_START",
+            "selectedEncounterPool": [],
+            "ID": "7ab041b6fbd84eb8abdd5e26a5138cfa",
+            "level": 0,
+            "pos": 0,
+            "screenPos": {
+                "x": -19.5,
+                "y": 0,
+                "z": 0
+            },
+            "childNodes": [
+                "b19f108e7a004b7597a7b3e1c5287fac"
+            ]
+        },
+        {
+            "locationID": "TUTORIAL_1",
+            "selectedEncounterPool": [],
+            "ID": "b19f108e7a004b7597a7b3e1c5287fac",
+            "level": 1,
+            "pos": 0,
+            "screenPos": {
+                "x": -15.5,
+                "y": -0.07082713395357132,
+                "z": 0
+            },
+            "childNodes": [
+                "0473c5ebc940418292ce3d6092b1efc8"
+            ]
+        },
+        {
+            "locationID": "TUTORIAL_2",
+            "selectedEncounterPool": [],
+            "ID": "0473c5ebc940418292ce3d6092b1efc8",
+            "level": 2,
+            "pos": 0,
+            "screenPos": {
+                "x": -11.5,
+                "y": 0.002117075026035309,
+                "z": 0
+            },
+            "childNodes": [
+                "eb4b2da8b39542bc99cb662c53bda6d5"
+            ]
+        },
+        {
+            "locationID": "TUTORIAL_3",
+            "selectedEncounterPool": [],
+            "ID": "eb4b2da8b39542bc99cb662c53bda6d5",
+            "level": 3,
+            "pos": 0,
+            "screenPos": {
+                "x": -7.5,
+                "y": -0.048680417239665985,
+                "z": 0
+            },
+            "childNodes": [
+                "393214ba65c44234a065544e90d60a69"
+            ]
+        },
+        {
+            "locationID": "TUTORIAL_END",
+            "selectedEncounterPool": [],
+            "ID": "393214ba65c44234a065544e90d60a69",
+            "level": 4,
+            "pos": 0,
+            "screenPos": {
+                "x": -3.5,
+                "y": 0,
+                "z": 0
+            },
+            "childNodes": []
+        }
+    ],
+    "totalLevel": 5,
     "visitedNodeIDList": [
-        "b139e1817510423084d302104a2fca44",
-        "6bb6f66f85554e3688974f4bd11abb50",
-        "d11dd50d35b7420aad559608df6a03b1"
+        "7ab041b6fbd84eb8abdd5e26a5138cfa",
+        "b19f108e7a004b7597a7b3e1c5287fac"
     ],
     "curNodeIndex": 1,
     "curNodeLocationID": "TUTORIAL_1",
@@ -71,5 +152,5 @@
     "encounterQueue": [],
     "currentStepID": "",
     "currentEncounterID": "",
-    "enemyName": "CardSoldier1"
+    "enemyName": "흰 토끼"
 }
