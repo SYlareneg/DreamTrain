@@ -93,7 +93,9 @@
         },
         {
             "locationID": "MERRY_GO_ROUND",
-            "selectedEncounterPool": [],
+            "selectedEncounterPool": [
+                "ACT1_LAZY_HORSE"
+            ],
             "ID": "eaf3b066a92f4b95bcf6aaa34ebcc851",
             "level": 2,
             "pos": 2,
@@ -153,9 +155,7 @@
         },
         {
             "locationID": "ICECREAM_CART",
-            "selectedEncounterPool": [
-                "ACT1_SWEET_THING"
-            ],
+            "selectedEncounterPool": [],
             "ID": "d16f74a418a8456bbff79f53a489c86b",
             "level": 4,
             "pos": 0,
@@ -184,13 +184,10 @@
     ],
     "totalLevel": 6,
     "visitedNodeIDList": [
-        "1c35d144cfc14d2e81e5e02a70430d5a",
-        "8037f4e13fe046cfa3e8486606889938",
-        "eaf3b066a92f4b95bcf6aaa34ebcc851",
-        "d16f74a418a8456bbff79f53a489c86b"
+        "eaf3b066a92f4b95bcf6aaa34ebcc851"
     ],
-    "curNodeIndex": 6,
-    "curNodeLocationID": "ICECREAM_CART",
+    "curNodeIndex": 2,
+    "curNodeLocationID": "MERRY_GO_ROUND",
     "lastEncounterType": 0,
     "encounterQueue": [],
     "currentStepID": "",
