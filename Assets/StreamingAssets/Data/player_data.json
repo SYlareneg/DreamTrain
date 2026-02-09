@@ -59,15 +59,19 @@
             "num": 2
         }
     ],
-    "relics": [],
-    "relicEnhancements": [],
+    "relics": [
+        23
+    ],
+    "relicEnhancements": [
+        false
+    ],
     "useableItems": [],
     "earnedKeys": [
         "MetDove"
     ],
     "courage": 1,
     "wisdom": 1,
-    "luck": 3,
+    "luck": 4,
     "currentActNum": 1,
     "mapNodes": [
         {
@@ -133,10 +137,7 @@
         },
         {
             "locationID": "GHOST_HOUSE",
-            "selectedEncounterPool": [
-                "ACT1_MISSING_ZIZI",
-                "ACT1_BAT_ATTACK"
-            ],
+            "selectedEncounterPool": [],
             "ID": "6866913d8f354956b70a4f7c63d0cf63",
             "level": 3,
             "pos": 0,
@@ -151,11 +152,7 @@
         },
         {
             "locationID": "MAZE_GARDEN",
-            "selectedEncounterPool": [
-                "ACT1_SHEEP_IN_MAZE",
-                "ACT1_WHERE_DOVE_FROM",
-                "ACT1_SUNNY_AFTERNOON"
-            ],
+            "selectedEncounterPool": [],
             "ID": "8a1f9cc7bdc0407591d4598eb0456bdd",
             "level": 4,
             "pos": 0,
@@ -170,7 +167,9 @@
         },
         {
             "locationID": "ICECREAM_CART",
-            "selectedEncounterPool": [],
+            "selectedEncounterPool": [
+                "ACT1_SOUVENIR"
+            ],
             "ID": "2c984997e990467db0f0d4ae0b50726b",
             "level": 5,
             "pos": 0,
@@ -199,14 +198,16 @@
     ],
     "totalLevel": 7,
     "visitedNodeIDList": [
+        "48330e411e8a409293f91bc296d0f999",
         "6866913d8f354956b70a4f7c63d0cf63",
-        "8a1f9cc7bdc0407591d4598eb0456bdd"
+        "8a1f9cc7bdc0407591d4598eb0456bdd",
+        "2c984997e990467db0f0d4ae0b50726b"
     ],
-    "curNodeIndex": 5,
-    "curNodeLocationID": "MAZE_GARDEN",
+    "curNodeIndex": 6,
+    "curNodeLocationID": "ICECREAM_CART",
     "lastEncounterType": 0,
     "encounterQueue": [],
     "currentStepID": "",
-    "currentEncounterID": "",
-    "enemyName": "Bat"
+    "currentEncounterID": "ACT1_SOUVENIR",
+    "enemyName": "카드 병정 2"
 }

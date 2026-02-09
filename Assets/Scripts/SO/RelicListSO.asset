@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: RelicListSO
   m_EditorClassIdentifier: Assembly-CSharp::RelicSO
   relicItems:
-  - relicID: BatWings
-    relicOwner: 0
+  - relicOwner: 0
     relicSprite: {fileID: 21300000, guid: 81ea13d86f80d1549bbbd95828715f65, type: 3}
     relicName: "\uBC15\uC950 \uB0A0\uAC1C"
     relicTxt: "\uD134 \uC885\uB8CC \uC2DC \uB0A8\uC740 \uD589\uB3D9\uB825x3\uC758
@@ -24,8 +23,8 @@ MonoBehaviour:
     relicAct: 0
     rarity: 0
     cost: 4
+    sellCost: 2
     enhancedRelicItem:
-      relicID: 
       relicOwner: 0
       relicSprite: {fileID: 21300000, guid: 81ea13d86f80d1549bbbd95828715f65, type: 3}
       relicName: "\uBC15\uC950 \uB0A0\uAC1C+"
@@ -36,8 +35,8 @@ MonoBehaviour:
       relicAct: 0
       rarity: 0
       cost: 100
-  - relicID: VoodooDoll
-    relicOwner: 1
+      sellCost: 50
+  - relicOwner: 1
     relicSprite: {fileID: 21300000, guid: 81ea13d86f80d1549bbbd95828715f65, type: 3}
     relicName: "\uC800\uC8FC \uC778\uD615"
     relicTxt: "\uB9E4 \uC804\uD22C\uB9C8\uB2E4 \uCC98\uC74C\uC73C\uB85C \uBC1B\uB294
@@ -48,8 +47,8 @@ MonoBehaviour:
     relicAct: 0
     rarity: 0
     cost: 4
+    sellCost: 0
     enhancedRelicItem:
-      relicID: 
       relicOwner: 1
       relicSprite: {fileID: 21300000, guid: 81ea13d86f80d1549bbbd95828715f65, type: 3}
       relicName: "\uC800\uC8FC \uC778\uD615+"
@@ -62,8 +61,8 @@ MonoBehaviour:
       relicAct: 0
       rarity: 0
       cost: 100
-  - relicID: Honey
-    relicOwner: 2
+      sellCost: 50
+  - relicOwner: 2
     relicSprite: {fileID: 21300000, guid: 81ea13d86f80d1549bbbd95828715f65, type: 3}
     relicName: "\uAFC0"
     relicTxt: "\uD134 \uC2DC\uC791 \uC2DC, \uD30C\uAD34\uB418\uC9C0 \uC54A\uACE0
@@ -73,8 +72,8 @@ MonoBehaviour:
     relicAct: 0
     rarity: 0
     cost: 5
+    sellCost: 0
     enhancedRelicItem:
-      relicID: 
       relicOwner: 2
       relicSprite: {fileID: 21300000, guid: 81ea13d86f80d1549bbbd95828715f65, type: 3}
       relicName: "\uAFC0+"
@@ -86,8 +85,8 @@ MonoBehaviour:
       relicAct: 0
       rarity: 0
       cost: 100
-  - relicID: PermanentSmile
-    relicOwner: 3
+      sellCost: 50
+  - relicOwner: 3
     relicSprite: {fileID: 21300000, guid: 82bdaa16c43c4c144b5b1ef558a30707, type: 3}
     relicName: "\uC601\uC6D0\uD55C \uC6C3\uC74C"
     relicTxt: "\uC9C0\uD61C\uAC00 1\uB85C \uACE0\uC815\uB429\uB2C8\uB2E4. \uC804\uD22C
@@ -97,8 +96,8 @@ MonoBehaviour:
     relicAct: 0
     rarity: 1
     cost: 99
+    sellCost: 0
     enhancedRelicItem:
-      relicID: 
       relicOwner: 3
       relicSprite: {fileID: 21300000, guid: 82bdaa16c43c4c144b5b1ef558a30707, type: 3}
       relicName: "\uC601\uC6D0\uD55C \uC6C3\uC74C+"
@@ -109,8 +108,8 @@ MonoBehaviour:
       relicAct: 0
       rarity: 0
       cost: 100
-  - relicID: BloodyFlower
-    relicOwner: 4
+      sellCost: 50
+  - relicOwner: 4
     relicSprite: {fileID: 21300000, guid: 81ea13d86f80d1549bbbd95828715f65, type: 3}
     relicName: "\uBD89\uC740 \uAF43\uC78E"
     relicTxt: "\uCCB4\uB825\uC774 30%\uC774\uD558\uC774\uBA74 \uD134 \uC2DC\uC791
@@ -120,8 +119,8 @@ MonoBehaviour:
     relicAct: 0
     rarity: 0
     cost: 3
+    sellCost: 0
     enhancedRelicItem:
-      relicID: 
       relicOwner: 4
       relicSprite: {fileID: 21300000, guid: 81ea13d86f80d1549bbbd95828715f65, type: 3}
       relicName: "\uBD89\uC740 \uAF43\uC78E+"
@@ -132,8 +131,8 @@ MonoBehaviour:
       relicAct: 0
       rarity: 0
       cost: 100
-  - relicID: DoveCoin
-    relicOwner: 5
+      sellCost: 50
+  - relicOwner: 5
     relicSprite: {fileID: 21300000, guid: 81ea13d86f80d1549bbbd95828715f65, type: 3}
     relicName: "\uBE44\uB458\uAE30 \uCF54\uC778"
     relicTxt: "\uC9C0\uB2C8\uACE0 \uC788\uC73C\uBA74 \uD589\uC6B4\uC774 1 \uC99D\uAC00\uD569\uB2C8\uB2E4."
@@ -142,8 +141,8 @@ MonoBehaviour:
     relicAct: 0
     rarity: 0
     cost: 3
+    sellCost: 0
     enhancedRelicItem:
-      relicID: 
       relicOwner: 5
       relicSprite: {fileID: 21300000, guid: 81ea13d86f80d1549bbbd95828715f65, type: 3}
       relicName: "\uBE44\uB458\uAE30 \uCF54\uC778+"
@@ -153,8 +152,8 @@ MonoBehaviour:
       relicAct: 0
       rarity: 0
       cost: 100
-  - relicID: WineDrop
-    relicOwner: 6
+      sellCost: 50
+  - relicOwner: 6
     relicSprite: {fileID: 21300000, guid: 327f3d08f3be0b54c9a9ab826faa8da8, type: 3}
     relicName: "\uC640\uC778\uC758 \uB208\uBB3C"
     relicTxt: "\uCCB4\uB825\uC774 50% \uC774\uD558\uC774\uBA74 \uD65C\uB825 \uBC84\uD504\uB97C
@@ -164,8 +163,8 @@ MonoBehaviour:
     relicAct: 0
     rarity: 1
     cost: 99
+    sellCost: 0
     enhancedRelicItem:
-      relicID: 
       relicOwner: 6
       relicSprite: {fileID: 21300000, guid: 327f3d08f3be0b54c9a9ab826faa8da8, type: 3}
       relicName: "\uC640\uC778\uC758 \uB208\uBB3C+"
@@ -176,8 +175,8 @@ MonoBehaviour:
       relicAct: 0
       rarity: 0
       cost: 100
-  - relicID: TeaCup
-    relicOwner: 7
+      sellCost: 50
+  - relicOwner: 7
     relicSprite: {fileID: 21300000, guid: be3da2cb7d12ac54d99cdbb0ff1c1a18, type: 3}
     relicName: "\uCC3B\uC794"
     relicTxt: "\uD134 \uC2DC\uC791 \uC2DC 1\uC758 \uCCB4\uB825\uC744 \uD68C\uBCF5\uD569\uB2C8\uB2E4."
@@ -186,8 +185,8 @@ MonoBehaviour:
     relicAct: 0
     rarity: 0
     cost: 5
+    sellCost: 0
     enhancedRelicItem:
-      relicID: 
       relicOwner: 7
       relicSprite: {fileID: 21300000, guid: be3da2cb7d12ac54d99cdbb0ff1c1a18, type: 3}
       relicName: "\uCC3B\uC794+"
@@ -198,3 +197,4 @@ MonoBehaviour:
       relicAct: 0
       rarity: 0
       cost: 100
+      sellCost: 50

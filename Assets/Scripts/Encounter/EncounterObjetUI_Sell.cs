@@ -13,19 +13,21 @@ public class EncounterObjetUI_Sell : MonoBehaviour, IPointerClickHandler
     private RelicItem_Data relicData;   
     
     public int cost;                
-    public bool isValid;            
+    public bool isValid;
+    public bool isJunk;
     
     public CharacterSO _playerData; 
     private System.Action _onBuyRequest;
     private bool _wasAffordable = true;
 
-    public void Setup(RelicItem_Data data, int cost, bool isValid, CharacterSO playerData, System.Action onBuyRequest)
+    public void Setup(RelicItem_Data data, int cost, bool isValid, CharacterSO playerData, bool isJunk, System.Action onBuyRequest)
     {
         this.relicData = data;
         this.cost = cost;
         this.isValid = isValid;
         this._playerData = playerData;
         this._onBuyRequest = onBuyRequest;
+        this.isJunk = isJunk;
 
         // UI 시각화 업데이트
         if (relicData != null) 
@@ -48,7 +50,6 @@ public class EncounterObjetUI_Sell : MonoBehaviour, IPointerClickHandler
         _onBuyRequest.Invoke();
     }
 
-    // [핵심 수정 부분]
     void UpdateObjetVisual(RelicItem_Data data)
     {
         if (objetIcon != null)
@@ -81,7 +82,7 @@ public class EncounterObjetUI_Sell : MonoBehaviour, IPointerClickHandler
     private void Update()
     {
         if (_playerData == null || !isValid || sellCostTMP == null) return;
-
+        if (!isJunk) return;
         bool isAffordable = _playerData.dreamDust >= cost;
         if (isAffordable != _wasAffordable)
         {

@@ -13,7 +13,8 @@ public class RelicItem
     public bool isEnhanced;
     public int relicAct;
     public CardRarity rarity; 
-    public int cost = 100;  
+    public int cost = 100;
+    public int sellCost = 50;
 
     public RelicItem() { }
     public RelicItem(RelicItem relicItem)
@@ -27,6 +28,7 @@ public class RelicItem
         relicAct = relicItem.relicAct;
         rarity = relicItem.rarity;
         cost = relicItem.cost;
+        sellCost = relicItem.sellCost;
     }
 }
 
@@ -50,6 +52,8 @@ public class RelicItem_Enhanceable : RelicItem
         relicAct = relicItem_Data.relicAct;
         rarity = relicItem_Data.rarity;
         cost = relicItem_Data.cost;
+        sellCost = relicItem_Data.sellCost;
+        
         isEnhanced = false;
         enhancedRelicItem = new RelicItem();
         enhancedRelicItem.relicOwner = relicItem_Data.relicOwner;
@@ -72,7 +76,8 @@ public class RelicItem_Data
     public List<int> relicVal;
     public int relicAct;
     public CardRarity rarity; 
-    public int cost = 100; 
+    public int cost = 100;
+    public int sellCost = 50;
     public string relicName_enhanced;
     public string relicTxt_enhanced;
     public List<int> relicVal_enhanced;
@@ -88,6 +93,7 @@ public class RelicItem_Data
         relicAct = relicItem_Data.relicAct;
         rarity = relicItem_Data.rarity;
         cost = relicItem_Data.cost;
+        sellCost = relicItem_Data.sellCost;
         relicName_enhanced = relicItem_Data.relicName_enhanced;
         relicTxt_enhanced = relicItem_Data.relicTxt_enhanced;
         relicVal_enhanced = new List<int>(relicItem_Data.relicVal_enhanced);
@@ -104,6 +110,7 @@ public class RelicItem_Data
         relicAct = relicItem.relicAct;
         rarity = relicItem.rarity;
         cost = relicItem.cost;
+        sellCost = relicItem.sellCost;
         relicName_enhanced = relicItem.enhancedRelicItem.relicName;
         relicTxt_enhanced = relicItem.enhancedRelicItem.relicTxt;
         relicVal_enhanced = new List<int>(relicItem.enhancedRelicItem.relicVal);

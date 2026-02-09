@@ -27,7 +27,6 @@ public class PlayerStatsSo : ScriptableObject
         OnStatChanged?.Invoke();
     }
     
-    // 스탯 변동 공통 함수
     public void ModifyStat(StatType type, int amount)
     {
         switch (type)
@@ -65,7 +64,6 @@ public class PlayerStatsSo : ScriptableObject
     public int GetExtraActionPoints() => (courage >= 9) ? 1 : 0;
     public int GetExtraDrawCount() => (wisdom >= 9) ? 1 : 0;
     
-    // 보상 획득
     public void OnEnterDangerousBattle()
     {
         if (courage >= 7 && courage <= 8)
@@ -78,24 +76,18 @@ public class PlayerStatsSo : ScriptableObject
     {
         if (wisdom >= 7 && wisdom <= 8)
         {
-            //dreamFragments += 1;
             Debug.Log("지혜 보너스: 꿈 파편 1 획득");
         }
     }
     
-    // 스탯 성장/감소
-
-    // 전투 종료 후 호출 (턴 수, 피격 여부)
     public void EvaluateBattleResult(int turnsTaken, bool tookDamage)
     {
-        // 용기 증가: 전투 4턴 이내 승리
         if (turnsTaken <= 4)
         {
             ModifyStat(StatType.Courage, 1);
             Debug.Log("조건 달성: 용기 증가 (4턴 이내 승리)");
         }
 
-        // 지혜 증가: 피해 없이 승리
         if (!tookDamage)
         {
             ModifyStat(StatType.Wisdom, 1);
@@ -103,16 +95,13 @@ public class PlayerStatsSo : ScriptableObject
         }
     }
 
-    // 룰렛 종료 후 호출 (결과)
     public void EvaluateRouletteResult(RouletteResultType result)
     {
-        // 행운 증가: 대성공 시
         if (result == RouletteResultType.GreatSuccess)
         {
             ModifyStat(StatType.Luck, 1);
             Debug.Log("조건 달성: 행운 증가 (대성공)");
         }
-        // 행운 감소: 실패 시 50% 확률
         else if (result == RouletteResultType.Fail)
         {
             if (Random.value < 0.5f)
