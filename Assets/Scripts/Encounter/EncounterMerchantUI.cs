@@ -397,7 +397,7 @@ public class EncounterMerchantUI : MonoBehaviour
         }
     }
     
-    void GenerateObjetInventory()
+    public void GenerateObjetInventory()
     {
         int currentAct = playerDataSO.currentActNum;
         List<RelicItem_Data> candidates = relicDataList.relicItems.Where(obj => 

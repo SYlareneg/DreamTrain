@@ -22,8 +22,9 @@ public class PlayerDataSO : ScriptableObject
     [Header("오브제 데이터")]
     public List<int> relics;
     public List<bool> relicEnhancements;
-    [Header("소모품 데이터")]
+    [Header("아이템 데이터")]
     public List<string> useableItems;
+    public List<string> earnedKeys = new List<string>();
     [Header("스탯 데이터")]
     public int courage;
     public int wisdom;

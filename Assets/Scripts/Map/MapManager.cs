@@ -16,6 +16,8 @@ public class MapManager : MonoBehaviour
     void Awake() => Inst = this;
 
     [SerializeField] ActSO actSO;
+    [SerializeField] PlayerDataSO playerDataSO;
+    [SerializeField] RelicSO playerRelicSO;
     public EncounterDatabaseSO encounterDB;
     public LocationDatabaseSO locationDB;
     [SerializeField] Transform mapTransform;
@@ -54,6 +56,27 @@ public class MapManager : MonoBehaviour
         return retVec;
     }
 
+    bool CheckConstraint(string constraint)
+    {
+        if (string.IsNullOrEmpty(constraint)) return true;
+
+        if (constraint.StartsWith("NeedKey"))
+        {
+            string keyName = constraint.Replace("NeedKey(", "").Replace(")", "").Trim();
+            if (!playerDataSO.earnedKeys.Contains(keyName)) return false;
+        }
+        else if (constraint.StartsWith("HasDreamPiece"))
+        {
+            if (playerRelicSO != null && playerRelicSO.relicItems != null)
+            {
+                string keyName = constraint.Replace("HasDreamPiece(", "").Replace(")", "").Trim();
+                bool hasRelic = playerRelicSO.relicItems.Exists(item => item.relicName == keyName);
+                return hasRelic;
+            }
+        }
+        return true;
+}
+    
     public List<EncounterType> GetEncounterType(string locationID)
     {
         LocationMetaInfo locInfo = locationDB.locationTable.Find(x => x.id == locationID);
@@ -86,6 +109,7 @@ public class MapManager : MonoBehaviour
         {
             EncounterMetaInfo info = encounterDB.masterTable.Find(x => x.id == id);
             if (info == null) continue;
+            if (!CheckConstraint(info.constraint)) continue;
             candidates.Add(new EncounterCandidate { info = info, score = 0 });
         }
 

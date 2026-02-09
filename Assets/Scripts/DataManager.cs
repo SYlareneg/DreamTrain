@@ -140,11 +140,12 @@ public class DataManager : MonoBehaviour
             encInfo.id = enc.id;
             encInfo.nameKO = enc.nameKO;
             encInfo.type = enc.type;
-            encInfo.imageName = enc.imageName;
-            encInfo.textPath = enc.textPath;
+            encInfo.imagePath = enc.imagePath;
+            encInfo.filePath = enc.filePath;
             encInfo.order = enc.order;
             encInfo.isEssential = enc.isEssential;
-            encInfo.encounterContext = enc.encounterContext;
+            encInfo.csvRawData = enc.csvRawData;
+            encInfo.constraint = enc.constraint;
             encounterDatabaseSO.masterTable.Add(encInfo);
         }
     }

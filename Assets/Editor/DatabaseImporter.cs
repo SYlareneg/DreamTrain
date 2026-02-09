@@ -84,9 +84,9 @@ public class DatabaseImporter : EditorWindow
                 info.type = EncounterType.Battle;
             }
 
-            info.imageName = row[3].Trim();
+            info.imagePath = row[3].Trim();
             
-            info.textPath = row[4].Trim();
+            info.imagePath = row[4].Trim();
 
             if (row.Count > 5 && int.TryParse(row[5], out int order)) 
                 info.order = order;

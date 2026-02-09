@@ -9,12 +9,14 @@ public class EncounterMetaInfo
     public string id;
     public string nameKO;
     public EncounterType type;
-    public string imageName;
-    public string textPath;
+    public string imagePath;
+    public string filePath;
     public int order;
     public bool isEssential;
+    public string constraint;
     public TextAsset sourceCsvFile;
-    public EncounterContext encounterContext;
+    [TextArea(3, 10)] 
+    public string csvRawData;
 }
 [CreateAssetMenu(fileName = "EncounterDatabase", menuName = "Data/Encounter Database")]
 public class EncounterDatabaseSO : ScriptableObject
@@ -44,16 +46,15 @@ public class EncounterDatabaseSO : ScriptableObject
                 if (info.sourceCsvFile != null)
                 {
                     // 현재 저장된 텍스트와 파일의 텍스트가 다를 때만 갱신 (성능 최적화)
-                    if (info.encounterContext.csvRawData != info.sourceCsvFile.text)
+                    if (info.csvRawData != info.sourceCsvFile.text)
                     {
-                        info.encounterContext.csvRawData = info.sourceCsvFile.text;
+                        info.csvRawData = info.sourceCsvFile.text;
                         isChanged = true;
                     }
                 }
             }
 
 #if UNITY_EDITOR
-            // 변경 사항이 있다면 Unity에게 "이 파일은 수정되었으니 저장해야 해"라고 알립니다.
             if (isChanged)
             {
                 EditorUtility.SetDirty(this);
@@ -61,13 +62,4 @@ public class EncounterDatabaseSO : ScriptableObject
 #endif
         }
     }
-}
-[System.Serializable]
-public struct EncounterContext
-{
-    [TextArea(3, 10)] 
-    public string csvRawData;
-    
-    public string PathID; 
-    //public List<ParsedStep> steps; 
 }

@@ -13,186 +13,127 @@ MonoBehaviour:
   m_Name: PlayerDataSO
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDataSO
   maxHealth: 60
-  curHealth: 24
-  dreamDust: 1
+  curHealth: 32
+  dreamDust: 3
   leftPassengers: 0
   isTutorial: 0
+  lastSceneName: EncounterScene
   personaPiece: "\uACE0\uC591\uC774\uC758 \uAFC8"
   isPersonaEnhanced: 0
   personaCards:
   - cardName: "\uBC1C\uD1B1 \uC138\uC6B0\uAE30"
     num: 1
-  - cardName: "\uC54C\uB730\uD55C \uC0AC\uB0E5\uAFBC"
-    num: 1
-  - cardName: "\uB9C8\uAD6C \uD560\uD034\uAE30"
-    num: 1
-  - cardName: "\uBC1C\uD1B1 \uC190\uC9C8"
-    num: 1
-  - cardName: "\uC18C\uC2EC\uD55C \uD560\uD034\uAE30"
-    num: 1
-  - cardName: "\uB0A0\uCE74\uB85C\uC6B4 \uBC1C\uD1B1"
-    num: 1
-  - cardName: "\uACE0\uC591\uC774\uC758 \uC2DC\uAC04"
-    num: 1
-  - cardName: "\uAE30\uBBFC\uD568"
-    num: 1
-  - cardName: "\uC2E4\uBB49\uCE58"
-    num: 1
   - cardName: "\uACE0\uC591\uC774\uAC78\uC74C"
-    num: 1
-  - cardName: "\uC2E4 \uD480\uAE30"
-    num: 1
-  - cardName: "\uB180\uC774 \uC2DC\uAC04"
     num: 1
   - cardName: "\uC228\uAE30"
     num: 1
-  - cardName: "\uADF8\uB8E8\uBC0D"
-    num: 1
-  - cardName: "\uAC04\uC2DD \uC2DC\uAC04"
+  - cardName: "\uAE30\uBBFC\uD568+"
     num: 1
   shadowPiece: "\uACE0\uC591\uC774\uC758 \uAFC8"
   isShadowEnhanced: 0
   shadowCards:
   - cardName: "\uBC1C\uD1B1 \uC138\uC6B0\uAE30"
     num: 1
-  - cardName: "\uC54C\uB730\uD55C \uC0AC\uB0E5\uAFBC"
-    num: 1
-  - cardName: "\uB9C8\uAD6C \uD560\uD034\uAE30"
-    num: 1
-  - cardName: "\uBC1C\uD1B1 \uC190\uC9C8"
-    num: 1
-  - cardName: "\uC18C\uC2EC\uD55C \uD560\uD034\uAE30"
-    num: 1
-  - cardName: "\uB0A0\uCE74\uB85C\uC6B4 \uBC1C\uD1B1"
-    num: 1
-  - cardName: "\uACE0\uC591\uC774\uC758 \uC2DC\uAC04"
-    num: 1
-  - cardName: "\uAE30\uBBFC\uD568"
-    num: 1
   - cardName: "\uC2E4\uBB49\uCE58"
-    num: 1
-  - cardName: "\uACE0\uC591\uC774\uAC78\uC74C"
     num: 1
   - cardName: "\uC2E4 \uD480\uAE30"
     num: 1
-  - cardName: "\uB180\uC774 \uC2DC\uAC04"
-    num: 1
-  - cardName: "\uC228\uAE30"
-    num: 1
-  - cardName: "\uADF8\uB8E8\uBC0D"
-    num: 1
-  - cardName: "\uAC04\uC2DD \uC2DC\uAC04"
-    num: 1
   normalCards:
-  - cardName: "\uD68C\uC804 \uCE74\uB4DC 1"
+  - cardName: "1\uCE78 \uD68C\uC804"
     num: 2
-  - cardName: "\uD68C\uC804 \uCE74\uB4DC 2"
-    num: 1
-  - cardName: "\uD68C\uC804 \uCE74\uB4DC 3"
+  - cardName: "2\uCE78 \uD68C\uC804"
+    num: 2
+  - cardName: "3\uCE78 \uD68C\uC804"
+    num: 2
+  - cardName: "2\uCE78 \uC5ED\uD68C\uC804"
     num: 2
   relics: 
   relicEnhancements: 
   useableItems: []
+  earnedKeys:
+  - MetDove
   courage: 1
-  wisdom: 2
-  luck: 1
-  currentActNum: 2
+  wisdom: 1
+  luck: 3
+  currentActNum: 1
   mapNodes:
   - locationID: START
     selectedEncounterPool: []
-    ID: 017df60b86124c7c8d68a225ef30f0c1
+    ID: 5521a39b27ed4934be99abae6931d424
     level: 0
     pos: 0
     screenPos: {x: -19.5, y: 0, z: 0}
     childNodes:
-    - bbb394ab0e104c228193e40d45314d83
+    - 7448b3e56f874e9aa2ef6f53e14c3e33
   - locationID: AMUSEMENT_PARK_ENTRANCE
-    selectedEncounterPool:
-    - ACT1_WHITE_RABBIT
-    ID: bbb394ab0e104c228193e40d45314d83
+    selectedEncounterPool: []
+    ID: 7448b3e56f874e9aa2ef6f53e14c3e33
     level: 1
     pos: 0
-    screenPos: {x: -15.5, y: -0.017109953, z: 0}
+    screenPos: {x: -15.5, y: -0.08171222, z: 0}
     childNodes:
-    - 2e7b34acded54abb865ccb6fbc6c03e9
-    - 0b18ed61ef834365b0e7c21076c825f7
-    - 5ff2d372832b4c4ba6c469fe0175ab45
+    - 48330e411e8a409293f91bc296d0f999
+    - 61a974293de240208c11a4691d188e8a
   - locationID: TEA_CUPS
-    selectedEncounterPool:
-    - ACT1_SPINNING_CUP
-    - ACT1_TEA_TIME
-    ID: 2e7b34acded54abb865ccb6fbc6c03e9
+    selectedEncounterPool: []
+    ID: 48330e411e8a409293f91bc296d0f999
     level: 2
-    pos: 2
-    screenPos: {x: -11.5, y: 1.7994373, z: 0}
+    pos: 0
+    screenPos: {x: -11.5, y: -0.052636094, z: 0}
     childNodes:
-    - 1d659d937d064a59ab5d598da5e57e19
+    - 6866913d8f354956b70a4f7c63d0cf63
+  - locationID: MERRY_GO_ROUND
+    selectedEncounterPool: []
+    ID: 61a974293de240208c11a4691d188e8a
+    level: 2
+    pos: 1
+    screenPos: {x: -11.5, y: 0.91744137, z: 0}
+    childNodes:
+    - 6866913d8f354956b70a4f7c63d0cf63
   - locationID: GHOST_HOUSE
     selectedEncounterPool:
     - ACT1_MISSING_ZIZI
-    - ACT1_DEVIL_DOLL
-    - ACT1_VAMP_INVITATION
-    ID: 0b18ed61ef834365b0e7c21076c825f7
-    level: 2
-    pos: -2
-    screenPos: {x: -11.5, y: -1.7352943, z: 0}
+    - ACT1_BAT_ATTACK
+    ID: 6866913d8f354956b70a4f7c63d0cf63
+    level: 3
+    pos: 0
+    screenPos: {x: -7.5, y: -0.01771389, z: 0}
     childNodes:
-    - 6d107765b6654d18a09bb46572922ee6
+    - 8a1f9cc7bdc0407591d4598eb0456bdd
   - locationID: MAZE_GARDEN
     selectedEncounterPool:
     - ACT1_SHEEP_IN_MAZE
-    - ACT1_FLOWER_ATTACK
+    - ACT1_WHERE_DOVE_FROM
     - ACT1_SUNNY_AFTERNOON
-    ID: 5ff2d372832b4c4ba6c469fe0175ab45
-    level: 2
-    pos: 0
-    screenPos: {x: -11.5, y: 0.019821867, z: 0}
-    childNodes:
-    - 1d659d937d064a59ab5d598da5e57e19
-  - locationID: MERRY_GO_ROUND
-    selectedEncounterPool:
-    - ACT1_FASTEST_HORSE
-    - ACT1_LAZY_HORSE
-    ID: 6d107765b6654d18a09bb46572922ee6
-    level: 3
-    pos: -2
-    screenPos: {x: -7.5, y: -1.7610726, z: 0}
-    childNodes:
-    - 1d659d937d064a59ab5d598da5e57e19
-  - locationID: ICECREAM_CART
-    selectedEncounterPool:
-    - ACT1_SOUVENIR
-    ID: 1d659d937d064a59ab5d598da5e57e19
+    ID: 8a1f9cc7bdc0407591d4598eb0456bdd
     level: 4
     pos: 0
-    screenPos: {x: -3.5, y: 0.06012123, z: 0}
+    screenPos: {x: -3.5, y: 0.08286271, z: 0}
     childNodes:
-    - f5731c099aaa4e708de280531804753c
-  - locationID: END
+    - 2c984997e990467db0f0d4ae0b50726b
+  - locationID: ICECREAM_CART
     selectedEncounterPool: []
-    ID: f5731c099aaa4e708de280531804753c
+    ID: 2c984997e990467db0f0d4ae0b50726b
     level: 5
     pos: 0
-    screenPos: {x: 0.5, y: 0, z: 0}
+    screenPos: {x: 0.5, y: -0.020217642, z: 0}
+    childNodes:
+    - 5f7eff88de46402abef67d7823176718
+  - locationID: END
+    selectedEncounterPool: []
+    ID: 5f7eff88de46402abef67d7823176718
+    level: 6
+    pos: 0
+    screenPos: {x: 4.5, y: 0, z: 0}
     childNodes: []
-  totalLevel: 6
+  totalLevel: 7
   visitedNodeIDList:
-  - 017df60b86124c7c8d68a225ef30f0c1
-  - bbb394ab0e104c228193e40d45314d83
-  - 0b18ed61ef834365b0e7c21076c825f7
-  - 6d107765b6654d18a09bb46572922ee6
-  - 1d659d937d064a59ab5d598da5e57e19
-  - bbb394ab0e104c228193e40d45314d83
-  - 2e7b34acded54abb865ccb6fbc6c03e9
-  - bbb394ab0e104c228193e40d45314d83
-  - 5ff2d372832b4c4ba6c469fe0175ab45
-  - bbb394ab0e104c228193e40d45314d83
-  - bbb394ab0e104c228193e40d45314d83
-  - 5ff2d372832b4c4ba6c469fe0175ab45
-  curNodeIndex: 4
+  - 6866913d8f354956b70a4f7c63d0cf63
+  - 8a1f9cc7bdc0407591d4598eb0456bdd
+  curNodeIndex: 5
   curNodeLocationID: MAZE_GARDEN
-  lastEncounterType: 5
+  lastEncounterType: 0
   encounterQueue: []
   currentStepID: 
   currentEncounterID: 
-  enemyName: DevilDoll
+  enemyName: Bat
