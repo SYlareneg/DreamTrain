@@ -13,13 +13,251 @@ MonoBehaviour:
   m_Name: RelicDataSO
   m_EditorClassIdentifier: Assembly-CSharp::RelicDataSO
   relicItems:
-  - relicOwner: 0
+  - relicOwner: 8
     relicSprite: noble
+    relicName: "\uC783\uC5B4\uBC84\uB9B0 \uB178\uB798"
+    relicTxt: "\uCE74\uB4DC\uAC00 \uC18C\uBA78\uD560 \uB54C\uB9C8\uB2E4 \uD589\uB3D9\uB825\uC744
+      1 \uC5BB\uC2B5\uB2C8\uB2E4."
+    relicVal: 01000000
+    relicAct: 1
+    rarity: 0
+    cost: 4
+    sellCost: 2
+    relicName_enhanced: "\uC783\uC5B4\uBC84\uB9B0 \uB178\uB798+"
+    relicTxt_enhanced: "\uCE74\uB4DC\uAC00 \uC18C\uBA78\uD560 \uB54C\uB9C8\uB2E4
+      \uD589\uB3D9\uB825\uC744 2 \uC5BB\uC2B5\uB2C8\uB2E4."
+    relicVal_enhanced: 02000000
+  - relicOwner: 9
+    relicSprite: noble
+    relicName: "\uBAA8\uB450\uC758 \uC6B0\uC2B9"
+    relicTxt: "\uC804\uD22C \uC2DC\uC791 \uC2DC \uC801\uACFC \uC790\uC2E0\uC774 \uAC15\uD654\uB97C
+      2 \uC5BB\uC2B5\uB2C8\uB2E4."
+    relicVal: 02000000
+    relicAct: 1
+    rarity: 1
+    cost: 5
+    sellCost: 3
+    relicName_enhanced: "\uBAA8\uB450\uC758 \uC6B0\uC2B9+"
+    relicTxt_enhanced: "\uC804\uD22C \uC2DC\uC791 \uC2DC \uC801\uACFC \uC790\uC2E0\uC774
+      \uAC15\uD654\uB97C 3 \uC5BB\uC2B5\uB2C8\uB2E4."
+    relicVal_enhanced: 03000000
+  - relicOwner: 10
+    relicSprite: noble
+    relicName: "\uB099\uD558\uC0B0"
+    relicTxt: "\uC804\uD22C \uC2DC\uC791 \uC2DC \uBCF4\uD638\uB97C 2 \uC5BB\uC2B5\uB2C8\uB2E4.
+      \uBC29\uC5B4\uB3C4\uB97C \uCD08\uACFC\uD558\uB294 \uD53C\uD574\uB97C \uBC1B\uC73C\uBA74
+      \uD574\uB2F9 \uC804\uD22C \uB3D9\uC548 \uD6A8\uACFC\uAC00 \uC0AC\uB77C\uC9D1\uB2C8\uB2E4."
+    relicVal: 02000000
+    relicAct: 0
+    rarity: 0
+    cost: 4
+    sellCost: 2
+    relicName_enhanced: "\uB099\uD558\uC0B0+"
+    relicTxt_enhanced: "\uC804\uD22C \uC2DC\uC791 \uC2DC \uBCF4\uD638\uB97C 3 \uC5BB\uC2B5\uB2C8\uB2E4.
+      \uBC29\uC5B4\uB3C4\uB97C \uCD08\uACFC\uD558\uB294 \uD53C\uD574\uB97C \uBC1B\uC73C\uBA74
+      \uD574\uB2F9 \uC804\uD22C \uB3D9\uC548 \uD6A8\uACFC\uAC00 \uC0AC\uB77C\uC9D1\uB2C8\uB2E4."
+    relicVal_enhanced: 03000000
+  - relicOwner: 11
+    relicSprite: noble
+    relicName: "\uC790\uAC00\uC218\uB9AC \uD0A4\uD2B8"
+    relicTxt: "\uCE58\uC720 \uB8F0\uB81B\uC73C\uB85C \uC5BB\uB294 \uCE58\uC720 \uD6A8\uACFC\uAC00
+      50% \uC99D\uAC00\uD569\uB2C8\uB2E4"
+    relicVal: 32000000
+    relicAct: 1
+    rarity: 0
+    cost: 4
+    sellCost: 2
+    relicName_enhanced: "\uC790\uAC00\uC218\uB9AC \uD0A4\uD2B8+"
+    relicTxt_enhanced: "\uCE58\uC720 \uB8F0\uB81B\uC73C\uB85C \uC5BB\uB294 \uCE58\uC720
+      \uD6A8\uACFC\uAC00 100% \uC99D\uAC00\uD569\uB2C8\uB2E4"
+    relicVal_enhanced: 64000000
+  - relicOwner: 12
+    relicSprite: noble
+    relicName: "\uC0AC\uAC74\uC758 \uC9C0\uD3C9\uC120"
+    relicTxt: "8\uBC88\uC9F8 \uD134 \uC2DC\uC791 \uC2DC \uB8F0\uB81B\uC5D0 \uAC15\uD654,
+      \uBCF4\uD638, \uD65C\uB825\uC744 5 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    relicVal: 0800000005000000
+    relicAct: 1
+    rarity: 1
+    cost: 5
+    sellCost: 3
+    relicName_enhanced: "\uC0AC\uAC74\uC758 \uC9C0\uD3C9\uC120+"
+    relicTxt_enhanced: "8\uBC88\uC9F8 \uD134 \uC2DC\uC791 \uC2DC \uB8F0\uB81B\uC5D0
+      \uAC15\uD654, \uBCF4\uD638, \uD65C\uB825\uC744 7 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    relicVal_enhanced: 0800000007000000
+  - relicOwner: 13
+    relicSprite: noble
+    relicName: "\uACE0\uB300 \uC8FC\uD654"
+    relicTxt: "\uC5B4\uB290 \uC2DC\uB300\uC5D0 \uC4F0\uC600\uB358 \uAC83\uC778\uC9C0
+      \uC54C \uC218 \uC5C6\uB294 \uB3D9\uC804\uC785\uB2C8\uB2E4. \uB204\uAD70\uAC00
+      \uBE44\uC2F8\uAC8C \uC0B4 \uC9C0\uB3C4 \uBAA8\uB985\uB2C8\uB2E4."
+    relicVal: 
+    relicAct: 1
+    rarity: 0
+    cost: 10
+    sellCost: 10
+    relicName_enhanced: "\uACE0\uB300 \uC8FC\uD654+"
+    relicTxt_enhanced: "\uC5B4\uB290 \uC2DC\uB300\uC5D0 \uC4F0\uC600\uB358 \uAC83\uC778\uC9C0
+      \uC54C \uC218 \uC5C6\uB294 \uB3D9\uC804\uC785\uB2C8\uB2E4. \uB204\uAD70\uAC00
+      \uBE44\uC2F8\uAC8C \uC0B4 \uC9C0\uB3C4 \uBAA8\uB985\uB2C8\uB2E4."
+    relicVal_enhanced: 
+  - relicOwner: 14
+    relicSprite: noble
+    relicName: "\uAE43\uD39C"
+    relicTxt: "\uCE74\uB4DC\uB97C \uC0AC\uC6A9\uD558\uBA74 20% \uD655\uB960\uB85C
+      \uCE74\uB4DC\uB97C 1\uC7A5 \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
+    relicVal: 1400000001000000
+    relicAct: 0
+    rarity: 0
+    cost: 4
+    sellCost: 2
+    relicName_enhanced: "\uAE43\uD39C+"
+    relicTxt_enhanced: "\uCE74\uB4DC\uB97C \uC0AC\uC6A9\uD558\uBA74 30% \uD655\uB960\uB85C
+      \uCE74\uB4DC\uB97C 1\uC7A5 \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
+    relicVal_enhanced: 1e00000001000000
+  - relicOwner: 15
+    relicSprite: noble
+    relicName: "\uC77C\uAE30"
+    relicTxt: "\uC804\uD22C \uC885\uB8CC \uC2DC 20% \uD655\uB960\uB85C \uBB34\uC791\uC704
+      \uC2A4\uD0EF\uC774 1 \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+    relicVal: 1400000001000000
+    relicAct: 0
+    rarity: 0
+    cost: 5
+    sellCost: 2
+    relicName_enhanced: "\uC77C\uAE30+"
+    relicTxt_enhanced: "\uC804\uD22C \uC885\uB8CC \uC2DC 30% \uD655\uB960\uB85C \uBB34\uC791\uC704
+      \uC2A4\uD0EF\uC774 1 \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+    relicVal_enhanced: 1e00000001000000
+  - relicOwner: 16
+    relicSprite: noble
+    relicName: "\uB0A1\uC740 \uC7A5\uAC11"
+    relicTxt: "\uB8F0\uB81B\uC744 \uD68C\uC804\uC2DC\uD0A4\uBA74 \uBC29\uC5B4\uB3C4\uB97C
+      2 \uC5BB\uC2B5\uB2C8\uB2E4."
+    relicVal: 02000000
+    relicAct: 0
+    rarity: 0
+    cost: 4
+    sellCost: 2
+    relicName_enhanced: "\uB0A1\uC740 \uC7A5\uAC11+"
+    relicTxt_enhanced: "\uB8F0\uB81B\uC744 \uD68C\uC804\uC2DC\uD0A4\uBA74 \uBC29\uC5B4\uB3C4\uB97C
+      3 \uC5BB\uC2B5\uB2C8\uB2E4."
+    relicVal_enhanced: 03000000
+  - relicOwner: 17
+    relicSprite: noble
+    relicName: "\uBE57\uC790\uB8E8"
+    relicTxt: "\uB8F0\uB81B\uC5D0 \uBD80\uC5EC\uB41C \uD6A8\uACFC\uAC00 \uC81C\uAC70\uB420
+      \uB54C \uD589\uB3D9\uB825\uC744 1 \uC5BB\uC2B5\uB2C8\uB2E4."
+    relicVal: 01000000
+    relicAct: 0
+    rarity: 0
+    cost: 4
+    sellCost: 2
+    relicName_enhanced: "\uBE57\uC790\uB8E8+"
+    relicTxt_enhanced: "\uB8F0\uB81B\uC5D0 \uBD80\uC5EC\uB41C \uD6A8\uACFC\uAC00
+      \uC81C\uAC70\uB420 \uB54C \uD589\uB3D9\uB825\uC744 2 \uC5BB\uC2B5\uB2C8\uB2E4."
+    relicVal_enhanced: 02000000
+  - relicOwner: 18
+    relicSprite: noble
+    relicName: "\uD30C\uB791 \uAD6C\uB450"
+    relicTxt: "\uC568\uB9AC\uC2A4\uAC00 \uBC29\uC5B4\uB3C4\uB97C \uC5BB\uC744 \uB54C\uB9C8\uB2E4
+      \uB8F0\uB81B\uC5D0 \uAC15\uD654\uB97C 1 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    relicVal: 01000000
+    relicAct: 0
+    rarity: 0
+    cost: 4
+    sellCost: 2
+    relicName_enhanced: "\uD30C\uB791 \uAD6C\uB450+"
+    relicTxt_enhanced: "\uC568\uB9AC\uC2A4\uAC00 \uBC29\uC5B4\uB3C4\uB97C \uC5BB\uC744
+      \uB54C\uB9C8\uB2E4 \uB8F0\uB81B\uC5D0 \uAC15\uD654\uB97C 2 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    relicVal_enhanced: 02000000
+  - relicOwner: 19
+    relicSprite: noble
+    relicName: "\uBA38\uB9AC\uB048"
+    relicTxt: "\uC804\uD22C \uC2DC\uC791 \uC2DC, \uCCAB \uD134\uC5D0\uB9CC \uD589\uB3D9\uB825\uC744
+      1 \uCD94\uAC00\uB85C \uC5BB\uC2B5\uB2C8\uB2E4."
+    relicVal: 01000000
+    relicAct: 0
+    rarity: 0
+    cost: 4
+    sellCost: 2
+    relicName_enhanced: "\uBA38\uB9AC\uB048+"
+    relicTxt_enhanced: "\uC804\uD22C \uC2DC\uC791 \uC2DC, \uCCAB \uD134\uC5D0\uB9CC
+      \uD589\uB3D9\uB825\uC744 2 \uCD94\uAC00\uB85C \uC5BB\uC2B5\uB2C8\uB2E4."
+    relicVal_enhanced: 02000000
+  - relicOwner: 20
+    relicSprite: noble
+    relicName: "\uC0C8\uC7A5"
+    relicTxt: "\uC804\uD22C \uC2DC\uC791 \uC2DC \uBCF4\uD638\uB97C 6 \uC5BB\uC2B5\uB2C8\uB2E4.
+      \uB8F0\uB81B\uC774 \uD55C \uBC88\uC5D0 2\uCE78 \uC774\uC0C1 \uD68C\uC804\uD558\uBA74
+      \uBCF4\uD638\uB97C 1 \uC783\uC2B5\uB2C8\uB2E4."
+    relicVal: 060000000200000001000000
+    relicAct: 0
+    rarity: 0
+    cost: 5
+    sellCost: 2
+    relicName_enhanced: "\uC0C8\uC7A5+"
+    relicTxt_enhanced: "\uC804\uD22C \uC2DC\uC791 \uC2DC \uBCF4\uD638\uB97C 10 \uC5BB\uC2B5\uB2C8\uB2E4.
+      \uB8F0\uB81B\uC774 \uD55C \uBC88\uC5D0 2\uCE78 \uC774\uC0C1 \uD68C\uC804\uD558\uBA74
+      \uBCF4\uD638\uB97C 1 \uC783\uC2B5\uB2C8\uB2E4."
+    relicVal_enhanced: 0a0000000200000001000000
+  - relicOwner: 21
+    relicSprite: noble
+    relicName: "\uBAA8\uB2E5\uBD88"
+    relicTxt: "\uB8F0\uB81B\uC774 \uD55C \uBC88\uC5D0 3\uCE78 \uC774\uC0C1 \uD68C\uC804\uD558\uBA74
+      \uC801\uC5D0\uAC8C 4 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
+    relicVal: 0300000004000000
+    relicAct: 0
+    rarity: 0
+    cost: 4
+    sellCost: 2
+    relicName_enhanced: "\uBAA8\uB2E5\uBD88+"
+    relicTxt_enhanced: "\uB8F0\uB81B\uC774 \uD55C \uBC88\uC5D0 3\uCE78 \uC774\uC0C1
+      \uD68C\uC804\uD558\uBA74 \uC801\uC5D0\uAC8C 6 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
+    relicVal_enhanced: 0300000006000000
+  - relicOwner: 22
+    relicSprite: noble
+    relicName: "\uBC14\uB2D0\uB77C \uCF58"
+    relicTxt: "\uD68D\uB4DD \uC2DC \uC9C0\uD61C\uAC00 1 \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+    relicVal: 01000000
+    relicAct: 1
+    rarity: 1
+    cost: 3
+    sellCost: 1
+    relicName_enhanced: "\uBC14\uB2D0\uB77C \uCF58+"
+    relicTxt_enhanced: "\uD68D\uB4DD \uC2DC \uC9C0\uD61C\uAC00 1 \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+    relicVal_enhanced: 01000000
+  - relicOwner: 23
+    relicSprite: noble
+    relicName: "\uCD08\uCF5C\uB9BF \uCF58"
+    relicTxt: "\uD68D\uB4DD \uC2DC \uD589\uC6B4\uC774 1 \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+    relicVal: 01000000
+    relicAct: 1
+    rarity: 1
+    cost: 3
+    sellCost: 1
+    relicName_enhanced: "\uCD08\uCF5C\uB9BF \uCF58+"
+    relicTxt_enhanced: "\uD68D\uB4DD \uC2DC \uD589\uC6B4\uC774 1 \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+    relicVal_enhanced: 01000000
+  - relicOwner: 24
+    relicSprite: noble
+    relicName: "\uB538\uAE30 \uCF58"
+    relicTxt: "\uD68D\uB4DD \uC2DC \uC6A9\uAE30\uAC00 1 \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+    relicVal: 01000000
+    relicAct: 1
+    rarity: 1
+    cost: 3
+    sellCost: 1
+    relicName_enhanced: "\uB538\uAE30 \uCF58+"
+    relicTxt_enhanced: "\uD68D\uB4DD \uC2DC \uC6A9\uAE30\uAC00 1 \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+    relicVal_enhanced: 01000000
+  - relicOwner: 0
+    relicSprite: "5. \uC624\uBE0C\uC81C_ \uBC15\uC950 \uB0A0\uAC1C"
     relicName: "\uBC15\uC950 \uB0A0\uAC1C"
     relicTxt: "\uD134 \uC885\uB8CC \uC2DC \uB0A8\uC740 \uD589\uB3D9\uB825x3\uC758
       \uBC29\uC5B4\uB3C4\uB97C \uC5BB\uC2B5\uB2C8\uB2E4."
     relicVal: 03000000
-    relicAct: 0
+    relicAct: 1
     rarity: 0
     cost: 4
     sellCost: 2
@@ -28,13 +266,13 @@ MonoBehaviour:
       \uBC29\uC5B4\uB3C4\uB97C \uC5BB\uC2B5\uB2C8\uB2E4."
     relicVal_enhanced: 04000000
   - relicOwner: 1
-    relicSprite: noble
+    relicSprite: "4. \uC624\uBE0C\uC81C_\uC800\uC8FC \uC778\uD615"
     relicName: "\uC800\uC8FC \uC778\uD615"
     relicTxt: "\uB9E4 \uC804\uD22C\uB9C8\uB2E4 \uCC98\uC74C\uC73C\uB85C \uBC1B\uB294
       \uD53C\uD574\uB97C \uC778\uD615\uC774 \uB300\uC2E0 \uBC1B\uC2B5\uB2C8\uB2E4.
       \uBC1B\uC740 \uD53C\uD574\uAC00 44\uAC00 \uB418\uBA74 \uBD80\uC11C\uC9D1\uB2C8\uB2E4."
     relicVal: 2c000000
-    relicAct: 0
+    relicAct: 1
     rarity: 0
     cost: 4
     sellCost: 2
@@ -44,12 +282,12 @@ MonoBehaviour:
       \uBC1B\uC740 \uD53C\uD574\uAC00 <color=red>144</color>\uAC00 \uB418\uBA74 \uBD80\uC11C\uC9D1\uB2C8\uB2E4."
     relicVal_enhanced: 90000000
   - relicOwner: 2
-    relicSprite: noble
+    relicSprite: "7. \uC624\uBE0C\uC81C_\uAFC0"
     relicName: "\uAFC0"
     relicTxt: "\uD134 \uC2DC\uC791 \uC2DC, \uD30C\uAD34\uB418\uC9C0 \uC54A\uACE0
       \uB0A8\uC740 \uBC29\uC5B4\uB3C4\uC758 25%\uB97C \uCCB4\uB825\uC73C\uB85C \uC804\uD658\uD569\uB2C8\uB2E4."
     relicVal: 19000000
-    relicAct: 0
+    relicAct: 1
     rarity: 0
     cost: 5
     sellCost: 3
@@ -59,26 +297,26 @@ MonoBehaviour:
       \uC804\uD658\uD569\uB2C8\uB2E4."
     relicVal_enhanced: 28000000
   - relicOwner: 3
-    relicSprite: "\uC624\uBE0C\uC81C_\uC601\uC6D0\uD55C \uC6C3\uC74C"
+    relicSprite: "3. \uC624\uBE0C\uC81C_\uC601\uC6D0\uD55C \uC6C3\uC74C"
     relicName: "\uC601\uC6D0\uD55C \uC6C3\uC74C"
     relicTxt: "\uC9C0\uD61C\uAC00 1\uB85C \uACE0\uC815\uB429\uB2C8\uB2E4. \uC804\uD22C
       \uC2DC\uC791 \uC2DC \uBCF4\uD638\uB97C 2 \uC5BB\uC2B5\uB2C8\uB2E4."
     relicVal: 0100000002000000
-    relicAct: 0
+    relicAct: 1
     rarity: 1
-    cost: 99
+    cost: 5
     sellCost: 1
     relicName_enhanced: "\uC601\uC6D0\uD55C \uC6C3\uC74C+"
     relicTxt_enhanced: "\uC9C0\uD61C\uAC00 1\uB85C \uACE0\uC815\uB429\uB2C8\uB2E4.
       \uC804\uD22C \uC2DC\uC791 \uC2DC \uBCF4\uD638\uB97C 2 \uC5BB\uC2B5\uB2C8\uB2E4."
     relicVal_enhanced: 0100000002000000
   - relicOwner: 4
-    relicSprite: noble
+    relicSprite: "8. \uC624\uBE0C\uC81C_\uBD89\uC740 \uAF43\uC78E"
     relicName: "\uBD89\uC740 \uAF43\uC78E"
     relicTxt: "\uCCB4\uB825\uC774 30%\uC774\uD558\uC774\uBA74 \uD134 \uC2DC\uC791
       \uC2DC \uD589\uB3D9\uB825\uC744 1 \uC5BB\uC2B5\uB2C8\uB2E4."
     relicVal: 1e00000001000000
-    relicAct: 0
+    relicAct: 1
     rarity: 0
     cost: 3
     sellCost: 2
@@ -87,11 +325,11 @@ MonoBehaviour:
       \uD134 \uC2DC\uC791 \uC2DC \uD589\uB3D9\uB825\uC744 1 \uC5BB\uC2B5\uB2C8\uB2E4."
     relicVal_enhanced: 3c00000001000000
   - relicOwner: 5
-    relicSprite: noble
+    relicSprite: "6. \uC624\uBE0C\uC81C_\uBE44\uB458\uAE30 \uCF54\uC778"
     relicName: "\uBE44\uB458\uAE30 \uCF54\uC778"
     relicTxt: "\uC9C0\uB2C8\uACE0 \uC788\uC73C\uBA74 \uD589\uC6B4\uC774 1 \uC99D\uAC00\uD569\uB2C8\uB2E4."
     relicVal: 01000000
-    relicAct: 0
+    relicAct: 1
     rarity: 0
     cost: 3
     sellCost: 2
@@ -100,25 +338,25 @@ MonoBehaviour:
       1 \uC99D\uAC00\uD569\uB2C8\uB2E4."
     relicVal_enhanced: 01000000
   - relicOwner: 6
-    relicSprite: "\uC624\uBE0C\uC81C_\uC640\uC778\uC758 \uB208\uBB3C"
+    relicSprite: "2. \uC624\uBE0C\uC81C_\uC640\uC778\uC758 \uB208\uBB3C"
     relicName: "\uC640\uC778\uC758 \uB208\uBB3C"
     relicTxt: "\uCCB4\uB825\uC774 50% \uC774\uD558\uC774\uBA74 \uD65C\uB825 \uBC84\uD504\uB97C
       1 \uC5BB\uC2B5\uB2C8\uB2E4."
     relicVal: 3200000001000000
-    relicAct: 0
+    relicAct: 1
     rarity: 1
-    cost: 99
+    cost: 5
     sellCost: 1
     relicName_enhanced: "\uC640\uC778\uC758 \uB208\uBB3C+"
     relicTxt_enhanced: "\uCCB4\uB825\uC774 <color=red>70%</color> \uC774\uD558\uC774\uBA74
       \uD65C\uB825 \uBC84\uD504\uB97C 1 \uC5BB\uC2B5\uB2C8\uB2E4."
     relicVal_enhanced: 4600000001000000
   - relicOwner: 7
-    relicSprite: "\uC624\uBE0C\uC81C_\uCC3B\uC794"
+    relicSprite: "1. \uC624\uBE0C\uC81C_\uCC3B\uC794"
     relicName: "\uCC3B\uC794"
     relicTxt: "\uD134 \uC2DC\uC791 \uC2DC 1\uC758 \uCCB4\uB825\uC744 \uD68C\uBCF5\uD569\uB2C8\uB2E4."
     relicVal: 01000000
-    relicAct: 0
+    relicAct: 1
     rarity: 0
     cost: 5
     sellCost: 3
