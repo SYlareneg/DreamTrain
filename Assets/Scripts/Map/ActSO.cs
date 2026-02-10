@@ -161,7 +161,7 @@ public class Map
             }
             essentialLayerCount++;
         }
-        if(act.essentialIntervalLayerCount == null || act.essentialIntervalLayerCount.Count != essentialLayerCount - 1) return null;
+        if(act.essentialIntervalLayerCount == null) return null;
         int cur_level = 0;
         int essentialLayerIdx = 0;
         for(int i = 0; i < act.essentialNodes.Count - 1; i++)
@@ -173,6 +173,7 @@ public class Map
             while(i + 1 < act.essentialNodes.Count - 1 && essentialNodes_samelayer.Count < (posValMax - posValMin + 1) && essentialNodes_sorted[i].difficulty == essentialNodes_sorted[i + 1].difficulty)
             {
                 i++;
+                essentialLayerIdx++;
                 essentialNodes_samelayer.Add(new MapNode(essentialNodes_sorted[i]));
             }
             for(int j = 0; j < essentialNodes_samelayer.Count; j++)
@@ -400,6 +401,7 @@ public class Map
             }
         }
         sortedMapNodeList.Add(essentialNode_last);
+        Debug.Log("sortedMapNodeList.Count: " + sortedMapNodeList.Count);
         cur_level++;
         totalLevel = cur_level;
         return this;

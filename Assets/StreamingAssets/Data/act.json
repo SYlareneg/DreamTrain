@@ -22,25 +22,134 @@
       "essentialLocations": [
         "START",
         "AMUSEMENT_PARK_ENTRANCE",
-        "GHOST_HOUSE",
-        "MAZE_GARDEN",
         "ICECREAM_CART",
+        "ROLLERCOASTER",
+        "GYRODROP",
+        "VIKING",
+        "STAFF_ONLY",
+        "DUMP",
         "END"
       ],
       "essentialIntervalLayerCount": [
         0,
-        1,
+        2,
         0,
+        0,
+        0,
+        1,
         0,
         0
       ],
       "specialLocations": [
         "MERRY_GO_ROUND",
-        "TEA_CUPS"
+        "TEA_CUPS",
+        "PARADE",
+        "FERRIS_WHEEL",
+        "GHOST_HOUSE",
+        "MAZE_GARDEN"
       ]
     }
   ],
   "locationDataList": [
+    {
+      "id": "DUMP",
+      "nameKO": "폐기장",
+      "descriptionKO": "온갖 망가지고 고장난 것들이 모이는 종착지입니다.",
+      "sprite": "장난감폐기01_C",
+      "hideSprite": "장난감폐기01",
+      "encounterPool": [
+        "ACT1_INSPECTION_DUMP",
+        "ACT1_JUNKSHOP",
+        "ACT1_ABANDONED_ROBOT"
+      ],
+      "encounterNum": 2,
+      "difficulty": 14,
+      "isNormalLocation": false
+    },
+    {
+      "id": "STAFF_ONLY",
+      "nameKO": "직원구역",
+      "descriptionKO": "일반 손님들의 출입이 금지된 구역입니다. 로봇 직들이 순찰을 다닌다고 하네요.",
+      "sprite": "스태프온리01_C",
+      "hideSprite": "스태프온리01",
+      "encounterPool": [
+        "ACT1_INSPECTION_STAFF_ONLY",
+        "ACT1_REST_IN_STAFF_ONLY",
+        "ACT1_ERROR_ROBOT"
+      ],
+      "encounterNum": 2,
+      "difficulty": 14,
+      "isNormalLocation": false
+    },
+    {
+      "id": "FERRIS_WHEEL",
+      "nameKO": "대관람차",
+      "descriptionKO": "놀이공원의 가장 높은 곳에서, 가장 느긋한 시간을.",
+      "sprite": "대관람차01_C",
+      "hideSprite": "대관람차01",
+      "encounterPool": [
+        "ACT1_STOP_FERRIS_WHEEL"
+      ],
+      "encounterNum": 1,
+      "difficulty": 13,
+      "isNormalLocation": false
+    },
+    {
+      "id": "PARADE",
+      "nameKO": "퍼레이드",
+      "descriptionKO": "기나긴 행렬, 수많은 사람들. 모두가 같은 마음이 될 수 있도록. ",
+      "sprite": "페스티벌01_C",
+      "hideSprite": "페스티벌01",
+      "encounterPool": [
+        "ACT1_SING_IN_PARADE",
+        "ACT1_SHEEP_IN_PARADE",
+        "ACT1_GIANTDODO_PARADE"
+      ],
+      "encounterNum": 2,
+      "difficulty": 13,
+      "isNormalLocation": false
+    },
+    {
+      "id": "VIKING",
+      "nameKO": "바이킹",
+      "descriptionKO": "스릴과 두려움 사이, 진정한 즐거움을 찾을 수 있나요?",
+      "sprite": "바이킹01_C",
+      "hideSprite": "바이킹01",
+      "encounterPool": [
+        "ACT1_WAITING_LINE_VIKING",
+        "ACT1_HURRAY_AT_VIKING"
+      ],
+      "encounterNum": 1,
+      "difficulty": 12,
+      "isNormalLocation": false
+    },
+    {
+      "id": "GYRODROP",
+      "nameKO": "자이로드롭",
+      "descriptionKO": "비명과 환호 사이, 지구 중심까지 떨어져 볼까요?",
+      "sprite": "자이로드롭01_C",
+      "hideSprite": "자이로드롭01",
+      "encounterPool": [
+        "ACT1_WAITING_LINE_GYRODROP"
+      ],
+      "encounterNum": 1,
+      "difficulty": 12,
+      "isNormalLocation": false
+    },
+    {
+      "id": "ROLLERCOASTER",
+      "nameKO": "롤러코스터",
+      "descriptionKO": "아찔함과 즐거움 사이, 빛의 속도로 달릴 수 있을 때까지.",
+      "sprite": "롤러코스터01_C",
+      "hideSprite": "롤러코스터01",
+      "encounterPool": [
+        "ACT1_WAITING_LINE_ROLLER",
+        "ACT1_LIGHTSPEED_ROLLER"
+      ],
+      "encounterNum": 1,
+      "difficulty": 12,
+      "isNormalLocation": false
+    },
     {
       "id": "START",
       "nameKO": "출발",
