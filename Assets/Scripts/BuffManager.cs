@@ -604,43 +604,43 @@ public class BuffManager : MonoBehaviour
     [SerializeField] GameObject buffUIPrefab;
     public ShowBuffSO showBuffSO;
 
-    public List<List<Buff>> rouletteBuffs = new List<List<Buff>>();
-    public List<ShowBuff> rouletteShowBuffs = new List<ShowBuff>();
-    public List<Buff> rouletteBuff_Attack;
-    public List<Buff> rouletteBuff_Heal;
-    public List<Buff> rouletteBuff_Shield;
-    public List<List<Buff>>[,] rouletteBuff_EnemySpecial = new List<List<Buff>>[Enemy.maxSubEnemyNum + 1, Enemy.enemySpecialRouletteNum];
-    public List<List<Buff>>[] rouletteBuff_PlayerSpecial = new List<List<Buff>>[DreamPiece_Base.playerSpecialRouletteNum * 2];
-    public List<Buff> rouletteBuff_Trigger;
-    public Dictionary<RoulettePiece, List<Buff>> roulettePieceBuff = new Dictionary<RoulettePiece, List<Buff>>();
+    [HideInInspector] public List<List<Buff>> rouletteBuffs = new List<List<Buff>>();
+    [HideInInspector] public List<ShowBuff> rouletteShowBuffs = new List<ShowBuff>();
+    [HideInInspector] public List<Buff> rouletteBuff_Attack;
+    [HideInInspector] public List<Buff> rouletteBuff_Heal;
+    [HideInInspector] public List<Buff> rouletteBuff_Shield;
+    [HideInInspector] public List<List<Buff>>[,] rouletteBuff_EnemySpecial = new List<List<Buff>>[Enemy.maxSubEnemyNum + 1, Enemy.enemySpecialRouletteNum];
+    [HideInInspector] public List<List<Buff>>[] rouletteBuff_PlayerSpecial = new List<List<Buff>>[DreamPiece_Base.playerSpecialRouletteNum * 2];
+    [HideInInspector] public List<Buff> rouletteBuff_Trigger;
+    [HideInInspector] public Dictionary<RoulettePiece, List<Buff>> roulettePieceBuff = new Dictionary<RoulettePiece, List<Buff>>();
 
-    public List<List<Buff>> playerBuffs = new List<List<Buff>>();
-    public List<ShowBuff> playerShowBuffs = new List<ShowBuff>();
-    public List<Buff> playerBuff_Damage;
-    public List<Buff>[] playerBuff_Damage_Type = new List<Buff>[Enum.GetNames(typeof(EDamageSource)).Length];
-    public List<Buff> playerBuff_Heal;
-    public List<Buff>[] playerBuff_Heal_Type = new List<Buff>[Enum.GetNames(typeof(EDamageSource)).Length];
-    public List<Buff> playerBuff_Shield;
-    public List<Buff>[] playerBuff_Shield_Type = new List<Buff>[Enum.GetNames(typeof(EDamageSource)).Length];
-    public List<Buff> playerBuff_Cost;
-    public List<Buff> playerBuff_Draw;
+    [HideInInspector] public List<List<Buff>> playerBuffs = new List<List<Buff>>();
+    [HideInInspector] public List<ShowBuff> playerShowBuffs = new List<ShowBuff>();
+    [HideInInspector] public List<Buff> playerBuff_Damage;
+    [HideInInspector] public List<Buff>[] playerBuff_Damage_Type = new List<Buff>[Enum.GetNames(typeof(EDamageSource)).Length];
+    [HideInInspector] public List<Buff> playerBuff_Heal;
+    [HideInInspector] public List<Buff>[] playerBuff_Heal_Type = new List<Buff>[Enum.GetNames(typeof(EDamageSource)).Length];
+    [HideInInspector] public List<Buff> playerBuff_Shield;
+    [HideInInspector] public List<Buff>[] playerBuff_Shield_Type = new List<Buff>[Enum.GetNames(typeof(EDamageSource)).Length];
+    [HideInInspector] public List<Buff> playerBuff_Cost;
+    [HideInInspector] public List<Buff> playerBuff_Draw;
 
-    public List<List<Buff>> enemyBuffs = new List<List<Buff>>();
-    public List<ShowBuff>[] enemyShowBuffs = new List<ShowBuff>[Enemy.maxSubEnemyNum + 1];
-    public List<Buff>[] enemyBuff_Damage = new List<Buff>[Enemy.maxSubEnemyNum + 1];
-    public List<Buff>[,] enemyBuff_Damage_Type = new List<Buff>[Enemy.maxSubEnemyNum + 1, Enum.GetNames(typeof(EDamageSource)).Length];
-    public List<Buff>[] enemyBuff_Heal = new List<Buff>[Enemy.maxSubEnemyNum + 1];
-    public List<Buff>[,] enemyBuff_Heal_Type = new List<Buff>[Enemy.maxSubEnemyNum + 1, Enum.GetNames(typeof(EDamageSource)).Length];
-    public List<Buff>[] enemyBuff_Shield = new List<Buff>[Enemy.maxSubEnemyNum + 1];
-    public List<Buff>[,] enemyBuff_Shield_Type = new List<Buff>[Enemy.maxSubEnemyNum + 1, Enum.GetNames(typeof(EDamageSource)).Length];
-    public List<Buff>[] enemyBuff_Attack = new List<Buff>[Enemy.maxSubEnemyNum + 1];
-    public List<Buff>[,] enemyBuff_Special = new List<Buff>[Enemy.maxSubEnemyNum + 1, Enemy.enemySpecialActionNum];
-    public Dictionary<EEnemyActionType, bool> enemyBuff_ActionBlock = new Dictionary<EEnemyActionType, bool>();
+    [HideInInspector] public List<List<Buff>> enemyBuffs = new List<List<Buff>>();
+    [HideInInspector] public List<ShowBuff>[] enemyShowBuffs = new List<ShowBuff>[Enemy.maxSubEnemyNum + 1];
+    [HideInInspector] public List<Buff>[] enemyBuff_Damage = new List<Buff>[Enemy.maxSubEnemyNum + 1];
+    [HideInInspector] public List<Buff>[,] enemyBuff_Damage_Type = new List<Buff>[Enemy.maxSubEnemyNum + 1, Enum.GetNames(typeof(EDamageSource)).Length];
+    [HideInInspector] public List<Buff>[] enemyBuff_Heal = new List<Buff>[Enemy.maxSubEnemyNum + 1];
+    [HideInInspector] public List<Buff>[,] enemyBuff_Heal_Type = new List<Buff>[Enemy.maxSubEnemyNum + 1, Enum.GetNames(typeof(EDamageSource)).Length];
+    [HideInInspector] public List<Buff>[] enemyBuff_Shield = new List<Buff>[Enemy.maxSubEnemyNum + 1];
+    [HideInInspector] public List<Buff>[,] enemyBuff_Shield_Type = new List<Buff>[Enemy.maxSubEnemyNum + 1, Enum.GetNames(typeof(EDamageSource)).Length];
+    [HideInInspector] public List<Buff>[] enemyBuff_Attack = new List<Buff>[Enemy.maxSubEnemyNum + 1];
+    [HideInInspector] public List<Buff>[,] enemyBuff_Special = new List<Buff>[Enemy.maxSubEnemyNum + 1, Enemy.enemySpecialActionNum];
+    [HideInInspector] public Dictionary<EEnemyActionType, bool> enemyBuff_ActionBlock = new Dictionary<EEnemyActionType, bool>();
 
-    public List<Buff> allCardValueBuff;
-    public List<Buff> allCardCostBuff;
-    public Dictionary<CardType, bool> allCardTypeBlockBuff = new Dictionary<CardType, bool>();
-    public Dictionary<Item, List<Buff>> singleCardCostBuff = new Dictionary<Item, List<Buff>>();
+    [HideInInspector] public List<Buff> allCardValueBuff;
+    [HideInInspector] public List<Buff> allCardCostBuff;
+    [HideInInspector] public Dictionary<CardType, bool> allCardTypeBlockBuff = new Dictionary<CardType, bool>();
+    [HideInInspector] public Dictionary<Item, List<Buff>> singleCardCostBuff = new Dictionary<Item, List<Buff>>();
 
     public static Action InitSpecialRouletteBuffs;
 

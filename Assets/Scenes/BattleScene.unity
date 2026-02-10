@@ -879,7 +879,7 @@ MonoBehaviour:
   fastMode: 1
   turnNum: 0
   maxCardCount: 10
-  drawCardCount: 5
+  drawCardCount: 6
   startCardCount: 0
   turnDraw: 0
   turnCost: 4
@@ -1188,9 +1188,9 @@ MonoBehaviour:
   normalItemListSO: {fileID: 11400000, guid: 839e0b6ae25343344aea4d6b6cc55c32, type: 2}
   dreamPieceListSO: {fileID: 11400000, guid: fa145bd86cf8d8a47b1d9e3683cef771, type: 2}
   rewardCardWeights:
-  - 40
   - 20
-  - 10
+  - 40
+  - 40
   enhanceProbability: 0.2
   stageSO: {fileID: 11400000, guid: 2de9de6b9f0fbea46b0149e204bb7b11, type: 2}
   gameOverSignal: 0
@@ -2272,7 +2272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FakeCursor
   cursorUI: {fileID: 160582038}
-  scale: 0.5
+  scale: 1
 --- !u!1 &169358773
 GameObject:
   m_ObjectHideFlags: 0
@@ -3677,7 +3677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -18242,7 +18242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

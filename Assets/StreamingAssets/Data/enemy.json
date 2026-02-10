@@ -1,7 +1,1099 @@
 {
   "enemies": [
     {
-      "name": "카드 병정",
+      "name": "고장난 로봇",
+      "id": "ErrorRobot",
+      "health": 86,
+      "triggerNum": 1,
+      "phase": [
+        {
+          "name": "잊어버린 표정",
+          "sprite": "",
+          "text": "앨리스가 몽상 타입 카드를 사용하면 트리거를 1 얻습니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 8,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 3,
+                  "typeNum": 0,
+                  "val": 8,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": -2,
+                  "val": -2,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 3,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseRepeat": true,
+          "phaseClear": false,
+          "scalingFactor": 1.25
+        }
+      ],
+      "triggerPhase": [
+        {
+          "name": "고장난 로봇: 트리거",
+          "sprite": "",
+          "text": "고장난 로봇이 트리거 상태입니다. 턴 종료시 트리거가 해제됩니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 1,
+                  "val": 0,
+                  "isTrigger": true
+                }
+              ]
+            }
+          ],
+          "phaseRepeat": false,
+          "phaseClear": false,
+          "scalingFactor": 2
+        }
+      ],
+      "roulettePattern": [
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 1
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 1
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 1
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 1
+        }
+      ],
+      "enemySpecialRoulettes": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "enemySpecialActions": [
+        {
+          "sprite": "",
+          "title": "디버프 부여: 강화",
+          "text": "룰렛에 강화 버프를 음수만큼 부여합니다."
+        },
+        {
+          "sprite": "",
+          "title": "오류 반응",
+          "text": "룰렛에 부여되어 있는 효과 하나 당 3의 피해를 줍니다."
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        }
+      ],
+      "subEnemies": [],
+      "subEnemies_Spawn": []
+    },
+    {
+      "name": "해골 손님",
+      "id": "BoneGuest",
+      "health": 66,
+      "triggerNum": 1,
+      "phase": [
+        {
+          "name": "새치기 금지",
+          "sprite": "",
+          "text": "룰렛이 반시계 방향으로 회전할 때마다 트리거를 1 얻습니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 1,
+                  "isTrigger": false
+                },
+                {
+                  "type": 3,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 1,
+                  "isTrigger": false
+                },
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 8,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 1,
+                  "isTrigger": false
+                },
+                {
+                  "type": 2,
+                  "typeNum": 0,
+                  "val": 4,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 1,
+                  "isTrigger": false
+                },
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 1,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseRepeat": true,
+          "phaseClear": false,
+          "scalingFactor": 1.5
+        }
+      ],
+      "triggerPhase": [
+        {
+          "name": "해골 손님: 트리거",
+          "sprite": "",
+          "text": "해골 손님이 트리거 상태입니다. 턴 종료시 트리거가 해제됩니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 15,
+                  "isTrigger": true
+                }
+              ]
+            }
+          ],
+          "phaseRepeat": false,
+          "phaseClear": false,
+          "scalingFactor": 1.33
+        }
+      ],
+      "roulettePattern": [
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        }
+      ],
+      "enemySpecialRoulettes": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "enemySpecialActions": [
+        {
+          "sprite": "",
+          "title": "디버프 부여: 불쾌함",
+          "text": "불쾌함을 1 부여합니다."
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        }
+      ],
+      "subEnemies": [],
+      "subEnemies_Spawn": []
+    },
+    {
+      "name": "직원 로봇",
+      "id": "StaffRobot",
+      "health": 72,
+      "triggerNum": 1,
+      "phase": [
+        {
+          "name": "표정 금지",
+          "sprite": "",
+          "text": "앨리스가 몽상 타입 카드를 사용하면 트리거를 1 얻습니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 3,
+                  "typeNum": 0,
+                  "val": 8,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 8,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 2,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 3,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseRepeat": true,
+          "phaseClear": false,
+          "scalingFactor": 1.5
+        }
+      ],
+      "triggerPhase": [
+        {
+          "name": "직원 로봇: 트리거",
+          "sprite": "",
+          "text": "직원 로봇이 트리거 상태입니다. 턴 종료시 트리거가 해제됩니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 16,
+                  "isTrigger": true
+                }
+              ]
+            }
+          ],
+          "phaseRepeat": false,
+          "phaseClear": false,
+          "scalingFactor": 1.25
+        }
+      ],
+      "roulettePattern": [
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 8
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 8
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 2,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 8
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        }
+      ],
+      "enemySpecialRoulettes": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "enemySpecialActions": [
+        {
+          "sprite": "",
+          "title": "디버프 부여: 보호",
+          "text": "획득하는 방어도 값을 변동시키는 보호 버프를 플레이어에게 음수로 겁니다."
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        }
+      ],
+      "subEnemies": [],
+      "subEnemies_Spawn": []
+    },
+    {
+      "name": "거대한 도도",
+      "id": "GiantDodo",
+      "health": 180,
+      "triggerNum": 2,
+      "phase": [
+        {
+          "name": "경주 시작!",
+          "sprite": "",
+          "text": "매 턴마다 트리거를 1 얻습니다. 트리거를 전부 쌓으면 경주가 종료됩니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 5,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseRepeat": true,
+          "phaseClear": false,
+          "scalingFactor": 1
+        }
+      ],
+      "triggerPhase": [
+        {
+          "name": "거대한 도도: 트리거",
+          "sprite": "",
+          "text": "거대한 도도가 트리거 상태입니다. 턴 종료시 트리거가 해제됩니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 1,
+                  "val": 180,
+                  "isTrigger": true
+                }
+              ]
+            }
+          ],
+          "phaseRepeat": false,
+          "phaseClear": false,
+          "scalingFactor": 1
+        }
+      ],
+      "roulettePattern": [
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 10
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 15
+        }
+      ],
+      "enemySpecialRoulettes": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "enemySpecialActions": [
+        {
+          "sprite": "",
+          "title": "코커스 경주!",
+          "text": "이 행동의 피해량은 턴마다 2배씩 증가합니다. 이번 턴에 룰렛이 회전할 때마다 피해량이 절반으로 줄어듭니다."
+        },
+        {
+          "sprite": "",
+          "title": "경주 종료!",
+          "text": "도도가 180 피해를 받습닏다."
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        }
+      ],
+      "subEnemies": [],
+      "subEnemies_Spawn": []
+    },
+    {
+      "name": "사나운 새",
+      "id": "HarshBird",
+      "health": 63,
+      "triggerNum": 1,
+      "phase": [
+        {
+          "name": "쪼기",
+          "sprite": "",
+          "text": "앨리스가 방어도를 갖추지 못한 상태로 앨리스의 턴을 종료하면, 트리거를 1 얻습니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 3,
+                  "typeNum": 0,
+                  "val": 8,
+                  "isTrigger": false
+                },
+                {
+                  "type": 2,
+                  "typeNum": 0,
+                  "val": 4,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 3,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": true,
+          "scalingFactor": 1.25
+        }
+      ],
+      "triggerPhase": [
+        {
+          "name": "사나운 새: 트리거",
+          "sprite": "",
+          "text": "사나운 새가 트리거 상태입니다. 턴 종료 시 트리거가 해제됩니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 12,
+                  "isTrigger": true
+                }
+              ]
+            }
+          ],
+          "phaseRepeat": false,
+          "phaseClear": false,
+          "scalingFactor": 1.5
+        }
+      ],
+      "roulettePattern": [
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 3,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 6
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        }
+      ],
+      "enemySpecialRoulettes": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": "",
+          "baseVal": 0,
+          "title_enhanced": "",
+          "text_enhanced": "",
+          "baseVal_enhanced": 0
+        }
+      ],
+      "enemySpecialActions": [
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        },
+        {
+          "sprite": "",
+          "title": "",
+          "text": ""
+        }
+      ],
+      "subEnemies": [],
+      "subEnemies_Spawn": []
+    },
+    {
+      "name": "카드 병정 1",
       "id": "CardSoldier1",
       "health": 10,
       "triggerNum": 0,
@@ -1352,7 +2444,7 @@
                 },
                 {
                   "type": 0,
-                  "typeNum": -2,
+                  "typeNum": 0,
                   "val": -7,
                   "isTrigger": false
                 }
@@ -1497,7 +2589,7 @@
       ],
       "enemySpecialRoulettes": [
         {
-          "sprite": "룰렛_마술모자",
+          "sprite": "룰렛_마술모자_1",
           "title": "마술 모자",
           "text": "마술에 쓰이는 비밀스러운 모자입니다. 플레이어 존에서 룰렛의 효과가 발동하면 소멸합니다.",
           "baseVal": 1,
@@ -2044,7 +3136,7 @@
               "pattern": [
                 {
                   "type": 0,
-                  "typeNum": -2,
+                  "typeNum": 0,
                   "val": -3,
                   "isTrigger": false
                 },
@@ -2273,7 +3365,7 @@
       ],
       "enemySpecialRoulettes": [
         {
-          "sprite": "룰렛_마술모자",
+          "sprite": "룰렛_마술모자_1",
           "title": "마술 모자",
           "text": "마술에 쓰이는 비밀스러운 모자입니다. 플레이어 존에서 룰렛의 효과가 발동하면 소멸합니다.",
           "baseVal": 1,

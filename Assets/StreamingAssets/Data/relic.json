@@ -30,14 +30,14 @@
     },
     {
       "relicName": "낙하산",
-      "relicTxt": "전투 시작 시 보호를 2 얻습니다. 피해를 입으면 해당 전투 동안 효과가 사라집니다.",
+      "relicTxt": "전투 시작 시 보호를 2 얻습니다. 방어도를 초과하는 피해를 받으면 해당 전투 동안 효과가 사라집니다.",
       "relicSprite": "noble",
       "relicOwner": 10,
       "relicVal": [
         2
       ],
       "relicName_enhanced": "낙하산+",
-      "relicTxt_enhanced": "전투 시작 시 보호를 3 얻습니다. 피해를 입으면 해당 전투 동안 효과가 사라집니다.",
+      "relicTxt_enhanced": "전투 시작 시 보호를 3 얻습니다. 방어도를 초과하는 피해를 받으면 해당 전투 동안 효과가 사라집니다.",
       "relicVal_enhanced": [
         3
       ]

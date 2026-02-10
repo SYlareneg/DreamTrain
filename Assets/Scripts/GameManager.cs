@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
     [Tooltip("플레이어 데미지 이펙트")] public GameObject playerDamageEffect;
     [Tooltip("플레이어 데미지 이펙트 스프라이트")] public Sprite[] playerDamageEffectSprites;
     [Tooltip("적 공격 이펙트")] public GameObject enemyAttackEffect;
+    Sequence playerDamageSeq;
     [Header("적 UI")]
     [SerializeField][Tooltip("적 체력 값 텍스트")] TMP_Text[] enemyHealthTMP;
     [SerializeField][Tooltip("적 체력 바")] Image[] enemyHealthImg;
@@ -88,19 +89,20 @@ public class GameManager : MonoBehaviour
         playerDamageEffect.SetActive(false);
         TurnManager.OnPlayerDamaged += (damage, source) =>
         {
-            DOTween.Kill(playerDamageEffect);
+            playerDamageSeq?.Kill();
+            playerDamageSeq = null;
             if(TurnManager.Inst.shieldHealth > 0) playerDamageEffect.GetComponent<Image>().sprite = playerDamageEffectSprites[1];
             else playerDamageEffect.GetComponent<Image>().sprite = playerDamageEffectSprites[0];
             playerDamageEffect.SetActive(true);
-            playerDamageEffect.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
-            Sequence damageSeq = DOTween.Sequence();
-            damageSeq.Append(playerDamageEffect.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 0.6f), 0.6f))
-            .Append(playerDamageEffect.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 0f), 1.2f))
+            playerDamageEffect.GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
+            playerDamageSeq = DOTween.Sequence();
+            // playerDamageSeq.Append(playerDamageEffect.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 0.6f), 0.6f))
+            playerDamageSeq.Append(playerDamageEffect.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 0f), 1.2f))
             .OnComplete(() =>
             {
                 playerDamageEffect.SetActive(false);
             });
-            damageSeq.SetLink(playerDamageEffect);
+            playerDamageSeq.SetLink(playerDamageEffect);
 
             Camera.main.transform.DOShakePosition(0.8f, 0.2f, 20, 90f);
 
@@ -108,34 +110,36 @@ public class GameManager : MonoBehaviour
         };
         TurnManager.OnPlayerHealed += (heal, source) =>
         {
-            DOTween.Kill(playerDamageEffect);
+            playerDamageSeq?.Kill();
+            playerDamageSeq = null;
             playerDamageEffect.GetComponent<Image>().sprite = playerDamageEffectSprites[2];
             playerDamageEffect.SetActive(true);
-            playerDamageEffect.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
-            Sequence healSeq = DOTween.Sequence();
-            healSeq.Append(playerDamageEffect.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 0.6f), 0.6f))
-            .Append(playerDamageEffect.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 0f), 1.2f))
+            playerDamageEffect.GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
+            playerDamageSeq = DOTween.Sequence();
+            // playerDamageSeq.Append(playerDamageEffect.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 0.6f), 0.6f))
+            playerDamageSeq.Append(playerDamageEffect.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 0f), 1.2f))
             .OnComplete(() =>
             {
                 playerDamageEffect.SetActive(false);
             });
-            healSeq.SetLink(playerDamageEffect);
+            playerDamageSeq.SetLink(playerDamageEffect);
             // GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.playerHealSFX);
         };
         TurnManager.OnPlayerShielded += (shield, source) =>
         {
-            DOTween.Kill(playerDamageEffect);
+            playerDamageSeq?.Kill();
+            playerDamageSeq = null;
             playerDamageEffect.GetComponent<Image>().sprite = playerDamageEffectSprites[3];
             playerDamageEffect.SetActive(true);
-            playerDamageEffect.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
-            Sequence shieldSeq = DOTween.Sequence();
-            shieldSeq.Append(playerDamageEffect.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 0.6f), 0.6f))
-            .Append(playerDamageEffect.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 0f), 1.2f))
+            playerDamageEffect.GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
+            playerDamageSeq = DOTween.Sequence();
+            // playerDamageSeq.Append(playerDamageEffect.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 0.6f), 0.6f))
+            playerDamageSeq.Append(playerDamageEffect.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 0f), 1.2f))
             .OnComplete(() =>
             {
                 playerDamageEffect.SetActive(false);
             });
-            shieldSeq.SetLink(playerDamageEffect);
+            playerDamageSeq.SetLink(playerDamageEffect);
             // GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.playerShieldSFX);
         };
     }
@@ -538,7 +542,7 @@ public class GameManager : MonoBehaviour
         rewardCardView.SetActive(false);
         characterSO.maxHealth = TurnManager.Inst.maxHealth;
         characterSO.curHealth = TurnManager.Inst.curHealth;
-        characterSO.dreamDust += 1;
+        characterSO.dreamDust += 2;
         GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.coinGetSFX);
         // if(characterSO.enemyName == stageSO.stageList[stageSO.currentStage].bossEnemy.enemyName)
         // {

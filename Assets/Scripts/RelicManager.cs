@@ -268,7 +268,7 @@ public class RelicManager : MonoBehaviour
                 };
                 TurnManager.OnPlayerDamaged += (x, s) =>
                 {
-                    if (shieldedThisGame == false)
+                    if (shieldedThisGame == false && x > TurnManager.Inst.shieldHealth)
                     {
                         BuffManager.Inst.AddShowBuff("보호", EBuffAffectType.Player, -relicItem.relicVal[0], false);
                         shieldedThisGame = true;
