@@ -686,7 +686,7 @@
       "name": "거대한 도도",
       "id": "GiantDodo",
       "health": 180,
-      "triggerNum": 2,
+      "triggerNum": 5,
       "phase": [
         {
           "name": "경주 시작!",
@@ -1540,7 +1540,7 @@
       "name": "카드 병정",
       "id": "CardSoldier",
       "health": 50,
-      "triggerNum": 3,
+      "triggerNum": 4,
       "phase": [
         {
           "name": "전투 준비",

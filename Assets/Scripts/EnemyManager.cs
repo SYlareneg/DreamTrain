@@ -1722,8 +1722,8 @@ public class EnemyManager : MonoBehaviour
 
     private void Start()
     {
-        TurnManager.BeforePlayerTurnStart += InitActionList;
-        TurnManager.BeforePlayerTurnStart += AllignActionList;
+        TurnManager.OnPlayerTurnStart += InitActionList;
+        TurnManager.OnPlayerTurnStart += AllignActionList;
 
         // TurnManager.OnEnemyDamaged += (damage, source, enemyIdx) =>
         // {
