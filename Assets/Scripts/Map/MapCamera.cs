@@ -20,12 +20,19 @@ public class MapCamera : MonoBehaviour
         transform.position = desiredPosition;
     }
 
+    public void MoveCamera(float newX)
+    {
+        Vector3 desiredPosition = transform.position;
+        desiredPosition.x = Mathf.Clamp(newX, minX, maxX);
+        transform.position = desiredPosition;
+    }
+
     void Update()
     {
         if(MapManager.Inst.player_moveable == false)
         {
             Vector3 desiredPosition = transform.position;
-            desiredPosition.x = transform.parent.position.x;
+            desiredPosition.x = Mathf.Clamp(transform.parent.position.x, minX, maxX);
             desiredPosition.y = transform.parent.position.y;
             transform.position = desiredPosition;
         }

@@ -4,14 +4,10 @@
       "actNum": 0,
       "essentialLocations": [
         "TUTORIAL_START",
-        "TUTORIAL_1",
-        "TUTORIAL_2",
-        "TUTORIAL_3",
+        "TUTORIAL",
         "TUTORIAL_END"
       ],
       "essentialIntervalLayerCount": [
-        0,
-        0,
         0,
         0
       ],
@@ -291,7 +287,7 @@
       "encounterPool": [],
       "encounterNum": 0,
       "difficulty": 1,
-      "isNormalLocation": false
+      "isNormalLocation": true
     },
     {
       "id": "TUTORIAL_2",
@@ -302,11 +298,11 @@
       "encounterPool": [],
       "encounterNum": 0,
       "difficulty": 2,
-      "isNormalLocation": false
+      "isNormalLocation": true
     },
     {
-      "id": "TUTORIAL_3",
-      "nameKO": "튜토리얼 3",
+      "id": "TUTORIAL",
+      "nameKO": "튜토리얼",
       "descriptionKO": "지지와 함께 꿈속을 탐험해 보자",
       "sprite": "튜토리얼03_C",
       "hideSprite": "튜토리얼03",

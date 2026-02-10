@@ -1,10 +1,10 @@
 {
     "maxHealth": 60,
-    "curHealth": 32,
-    "dreamDust": 3,
+    "curHealth": 60,
+    "dreamDust": 5,
     "leftPassengers": 0,
     "isTutorial": false,
-    "lastSceneName": "EncounterScene",
+    "lastSceneName": "MapScene",
     "personaPiece": "고양이의 꿈",
     "isPersonaEnhanced": false,
     "personaCards": [
@@ -18,10 +18,6 @@
         },
         {
             "cardName": "숨기",
-            "num": 1
-        },
-        {
-            "cardName": "기민함+",
             "num": 1
         }
     ],
@@ -53,161 +49,24 @@
         {
             "cardName": "3칸 회전",
             "num": 2
-        },
-        {
-            "cardName": "2칸 역회전",
-            "num": 2
         }
     ],
-    "relics": [
-        23
-    ],
-    "relicEnhancements": [
-        false
-    ],
+    "relics": [],
+    "relicEnhancements": [],
     "useableItems": [],
-    "earnedKeys": [
-        "MetDove"
-    ],
+    "earnedKeys": [],
     "courage": 1,
     "wisdom": 1,
-    "luck": 4,
+    "luck": 3,
     "currentActNum": 1,
-    "mapNodes": [
-        {
-            "locationID": "START",
-            "selectedEncounterPool": [],
-            "ID": "5521a39b27ed4934be99abae6931d424",
-            "level": 0,
-            "pos": 0,
-            "screenPos": {
-                "x": -19.5,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "childNodes": [
-                "7448b3e56f874e9aa2ef6f53e14c3e33"
-            ]
-        },
-        {
-            "locationID": "AMUSEMENT_PARK_ENTRANCE",
-            "selectedEncounterPool": [],
-            "ID": "7448b3e56f874e9aa2ef6f53e14c3e33",
-            "level": 1,
-            "pos": 0,
-            "screenPos": {
-                "x": -15.5,
-                "y": -0.08171222358942032,
-                "z": 0.0
-            },
-            "childNodes": [
-                "48330e411e8a409293f91bc296d0f999",
-                "61a974293de240208c11a4691d188e8a"
-            ]
-        },
-        {
-            "locationID": "TEA_CUPS",
-            "selectedEncounterPool": [],
-            "ID": "48330e411e8a409293f91bc296d0f999",
-            "level": 2,
-            "pos": 0,
-            "screenPos": {
-                "x": -11.5,
-                "y": -0.05263609439134598,
-                "z": 0.0
-            },
-            "childNodes": [
-                "6866913d8f354956b70a4f7c63d0cf63"
-            ]
-        },
-        {
-            "locationID": "MERRY_GO_ROUND",
-            "selectedEncounterPool": [],
-            "ID": "61a974293de240208c11a4691d188e8a",
-            "level": 2,
-            "pos": 1,
-            "screenPos": {
-                "x": -11.5,
-                "y": 0.9174413681030273,
-                "z": 0.0
-            },
-            "childNodes": [
-                "6866913d8f354956b70a4f7c63d0cf63"
-            ]
-        },
-        {
-            "locationID": "GHOST_HOUSE",
-            "selectedEncounterPool": [],
-            "ID": "6866913d8f354956b70a4f7c63d0cf63",
-            "level": 3,
-            "pos": 0,
-            "screenPos": {
-                "x": -7.5,
-                "y": -0.017713889479637147,
-                "z": 0.0
-            },
-            "childNodes": [
-                "8a1f9cc7bdc0407591d4598eb0456bdd"
-            ]
-        },
-        {
-            "locationID": "MAZE_GARDEN",
-            "selectedEncounterPool": [],
-            "ID": "8a1f9cc7bdc0407591d4598eb0456bdd",
-            "level": 4,
-            "pos": 0,
-            "screenPos": {
-                "x": -3.5,
-                "y": 0.08286271244287491,
-                "z": 0.0
-            },
-            "childNodes": [
-                "2c984997e990467db0f0d4ae0b50726b"
-            ]
-        },
-        {
-            "locationID": "ICECREAM_CART",
-            "selectedEncounterPool": [
-                "ACT1_SOUVENIR"
-            ],
-            "ID": "2c984997e990467db0f0d4ae0b50726b",
-            "level": 5,
-            "pos": 0,
-            "screenPos": {
-                "x": 0.5,
-                "y": -0.020217642188072206,
-                "z": 0.0
-            },
-            "childNodes": [
-                "5f7eff88de46402abef67d7823176718"
-            ]
-        },
-        {
-            "locationID": "END",
-            "selectedEncounterPool": [],
-            "ID": "5f7eff88de46402abef67d7823176718",
-            "level": 6,
-            "pos": 0,
-            "screenPos": {
-                "x": 4.5,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "childNodes": []
-        }
-    ],
-    "totalLevel": 7,
-    "visitedNodeIDList": [
-        "48330e411e8a409293f91bc296d0f999",
-        "6866913d8f354956b70a4f7c63d0cf63",
-        "8a1f9cc7bdc0407591d4598eb0456bdd",
-        "2c984997e990467db0f0d4ae0b50726b"
-    ],
-    "curNodeIndex": 6,
-    "curNodeLocationID": "ICECREAM_CART",
+    "mapNodes": [],
+    "totalLevel": 0,
+    "visitedNodeIDList": [],
+    "curNodeIndex": 0,
+    "curNodeLocationID": "",
     "lastEncounterType": 0,
     "encounterQueue": [],
     "currentStepID": "",
-    "currentEncounterID": "ACT1_SOUVENIR",
-    "enemyName": "카드 병정 2"
+    "currentEncounterID": "",
+    "enemyName": ""
 }

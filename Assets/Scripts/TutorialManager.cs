@@ -27,7 +27,7 @@ public class TutorialManager : MonoBehaviour
     public static Action nextTutorial;
     public static Action nextTutorial_Button;
     public static Vector3 rouletteButtonPos = new Vector3(3.18f, -3.49f, 0f);
-    public static Vector3 endTurnButtonPos = new Vector3(22.57f, -1.06f, 0f);
+    public static Vector3 endTurnButtonPos = new Vector3(24.57f, -10.06f, 0f);
     public static Vector3 rightCardPos = new Vector3(12f, -13f, 0f);
 
     public int tutorialStage;
@@ -164,7 +164,7 @@ public class TutorialManager : MonoBehaviour
                     switch(step)
                     {
                         case 1:
-                            tutorialText.text = "앨리스, 이제 몸은 좀 풀렸어?\n이번에 상대할 적은 이전 적과 달리 꽤나 강력한 것 같아.";
+                            tutorialText.text = "앨리스, 이제 몸은 좀 풀렸어?\n이전 턴에 성공적으로 적을 공격했지만, 아직 적은 체력이 많이 남아 있어.";
                             nextTutorial = () =>
                             {
                                 HideTutorialBox();

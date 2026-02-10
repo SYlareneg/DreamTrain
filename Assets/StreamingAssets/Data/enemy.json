@@ -1537,8 +1537,8 @@
       "subEnemies_Spawn": []
     },
     {
-      "name": "카드 병정 3",
-      "id": "CardSoldier3",
+      "name": "카드 병정",
+      "id": "CardSoldier",
       "health": 50,
       "triggerNum": 3,
       "phase": [
@@ -1552,7 +1552,7 @@
                 {
                   "type": 1,
                   "typeNum": 0,
-                  "val": 6,
+                  "val": 5,
                   "isTrigger": false
                 }
               ]
@@ -1562,7 +1562,7 @@
                 {
                   "type": 3,
                   "typeNum": 0,
-                  "val": 6,
+                  "val": 5,
                   "isTrigger": false
                 }
               ]
@@ -1604,7 +1604,7 @@
                 {
                   "type": 1,
                   "typeNum": 0,
-                  "val": 12,
+                  "val": 10,
                   "isTrigger": true
                 }
               ]
@@ -1618,11 +1618,11 @@
       "roulettePattern": [
         {
           "rtype": {
-            "type": 1,
+            "type": 0,
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
-          "value": 6
+          "value": 0
         },
         {
           "rtype": {
@@ -1631,6 +1631,70 @@
             "enemyIdx": 0
           },
           "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 2,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 2
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 5
         },
         {
           "rtype": {
@@ -1646,71 +1710,7 @@
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
-          "value": 6
-        },
-        {
-          "rtype": {
-            "type": 0,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 0
-        },
-        {
-          "rtype": {
-            "type": 0,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 0
-        },
-        {
-          "rtype": {
-            "type": 0,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 0
-        },
-        {
-          "rtype": {
-            "type": 1,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 6
-        },
-        {
-          "rtype": {
-            "type": 0,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 0
-        },
-        {
-          "rtype": {
-            "type": 3,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 6
-        },
-        {
-          "rtype": {
-            "type": 0,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 0
-        },
-        {
-          "rtype": {
-            "type": 0,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 0
+          "value": 5
         }
       ],
       "enemySpecialRoulettes": [

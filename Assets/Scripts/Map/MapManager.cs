@@ -300,9 +300,9 @@ public class MapManager : MonoBehaviour
                 {
                     DataManager.Inst.characterSO.enemyName = "CardSoldier2";
                 }
-                else if(curNode.locationID == "TUTORIAL_3")
+                else if(curNode.locationID == "TUTORIAL")
                 {
-                    DataManager.Inst.characterSO.enemyName = "CardSoldier3";
+                    DataManager.Inst.characterSO.enemyName = "CardSoldier";
                 }
                 SceneChangeManager.Inst.SceneFadeOut("BattleScene");
             }
@@ -345,8 +345,8 @@ public class MapManager : MonoBehaviour
         mapCamera = player.transform.GetComponentInChildren<MapCamera>();
         if(mapCamera != null)
         {
-            mapCamera.minX = GetScreenPos(map.sortedMapNodeList[0]).x + 6f;
-            mapCamera.maxX = GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).x - 6f;
+            mapCamera.minX = Mathf.Min(GetScreenPos(map.sortedMapNodeList[0]).x + 6f, 13.5f);
+            mapCamera.maxX = Mathf.Max(-13.5f, GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).x - 6f);
         }
     }
 
@@ -365,8 +365,8 @@ public class MapManager : MonoBehaviour
             mapCamera = player.transform.GetComponentInChildren<MapCamera>();
             if(mapCamera != null)
             {
-                mapCamera.minX = GetScreenPos(map.sortedMapNodeList[0]).x + 6f;
-                mapCamera.maxX = GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).x - 6f;
+                mapCamera.minX = Mathf.Min(GetScreenPos(map.sortedMapNodeList[0]).x + 6f, 13.5f);
+                mapCamera.maxX = Mathf.Max(-13.5f, GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).x - 6f);
             }
         }
         else
