@@ -317,7 +317,7 @@
       "id": "ACT1_ABANDONED_ROBOT",
       "nameKO": "버려진로봇",
       "type": 0,
-      "imagePath": "Abandoned_Robot",
+      "imagePath": "Encounter_Default",
       "filePath": "Abandoned_Robot",
       "order": 0,
       "isEssential": false
@@ -326,7 +326,7 @@
       "id": "ACT1_JUNKSHOP",
       "nameKO": "고물상 로봇",
       "type": 4,
-      "imagePath": "Junkshop",
+      "imagePath": "Encounter_Default",
       "filePath": "Junkshop",
       "order": 2,
       "isEssential": false
@@ -335,7 +335,7 @@
       "id": "ACT1_PICK_UP_JUNK",
       "nameKO": "고물 줍기 ",
       "type": 3,
-      "imagePath": "Pick_up_Junk",
+      "imagePath": "Encounter_Default",
       "filePath": "Pick_up_Junk",
       "order": 1,
       "isEssential": false
@@ -344,7 +344,7 @@
       "id": "ACT1_INSPECTION_DUMP",
       "nameKO": "불시검문",
       "type": 3,
-      "imagePath": "Inspection_Dump",
+      "imagePath": "Encounter_Default",
       "filePath": "Inspection_Dump",
       "order": 0,
       "isEssential": false
@@ -353,7 +353,7 @@
       "id": "ACT1_ERROR_ROBOT",
       "nameKO": "고장난 로봇",
       "type": 0,
-      "imagePath": "Error_Robot",
+      "imagePath": "Encounter_Default",
       "filePath": "Error_Robot",
       "order": 0,
       "isEssential": false
@@ -362,7 +362,7 @@
       "id": "ACT1_REST_IN_STAFF_ONLY",
       "nameKO": "직원들의 휴식처",
       "type": 5,
-      "imagePath": "Rest_in_Staff_Only",
+      "imagePath": "Encounter_Default",
       "filePath": "Rest_in_Staff_Only",
       "order": 2,
       "isEssential": false
@@ -371,7 +371,7 @@
       "id": "ACT1_INSPECTION_STAFF_ONLY",
       "nameKO": "불시 검문",
       "type": 3,
-      "imagePath": "Inspection_Staff_Only",
+      "imagePath": "Encounter_Default",
       "filePath": "Inspection_Staff_Only",
       "order": 0,
       "isEssential": false
@@ -380,7 +380,7 @@
       "id": "ACT1_STOP_FERRIS_WHEEL",
       "nameKO": "멈춰버린 관람차",
       "type": 3,
-      "imagePath": "Stop_Ferris_Wheel",
+      "imagePath": "Encounter_Default",
       "filePath": "Stop_Ferris_Wheel",
       "order": 0,
       "isEssential": false
@@ -389,7 +389,7 @@
       "id": "ACT1_IN_FERRIS_WHEEL",
       "nameKO": "관람차 안에서 ",
       "type": 5,
-      "imagePath": "In_Ferris_Wheel",
+      "imagePath": "Encounter_Default",
       "filePath": "In_Ferris_Wheel",
       "order": 0,
       "isEssential": false
@@ -398,7 +398,7 @@
       "id": "ACT1_GIANTDODO_PARADE",
       "nameKO": "거대 도도새",
       "type": 0,
-      "imagePath": "GinatDodo_Parade",
+      "imagePath": "Encounter_Default",
       "filePath": "GinatDodo_Parade",
       "order": 3,
       "isEssential": false
@@ -407,7 +407,7 @@
       "id": "ACT1_SHEEP_IN_PARADE",
       "nameKO": "행렬 속의 상인",
       "type": 4,
-      "imagePath": "Sheep_in_Parade",
+      "imagePath": "Best_Horse",
       "filePath": "Sheep_in_Parade",
       "order": 2,
       "isEssential": false
@@ -416,7 +416,7 @@
       "id": "ACT1_SING_IN_PARADE",
       "nameKO": "노래를 부르자",
       "type": 3,
-      "imagePath": "Sing_in_Parade",
+      "imagePath": "Encounter_Default",
       "filePath": "Sing_in_Parade",
       "order": 0,
       "isEssential": false
@@ -425,7 +425,7 @@
       "id": "ACT1_HURRAY_AT_VIKING",
       "nameKO": "만세!",
       "type": 3,
-      "imagePath": "Hurray_at_Viking",
+      "imagePath": "Encounter_Default",
       "filePath": "Hurray_at_Viking",
       "order": 1,
       "isEssential": false
@@ -434,7 +434,7 @@
       "id": "ACT1_GYRODROP_FALL",
       "nameKO": "지구를 뚫고서 ",
       "type": 3,
-      "imagePath": "Gyrodrop_Fall",
+      "imagePath": "Encounter_Default",
       "filePath": "Gyrodrop_Fall",
       "order": 1,
       "isEssential": false
@@ -443,7 +443,7 @@
       "id": "ACT1_LIGHTSPEED_ROLLER",
       "nameKO": "빛의 속도로",
       "type": 3,
-      "imagePath": "Lightspeed_Roller",
+      "imagePath": "Encounter_Default",
       "filePath": "Lightspeed_Roller",
       "order": 1,
       "isEssential": false
@@ -452,25 +452,25 @@
       "id": "ACT1_WAITING_LINE_VIKING",
       "nameKO": "줄 서기(바이킹)",
       "type": 0,
-      "imagePath": "Waiting_Line",
+      "imagePath": "Encounter_Default",
       "filePath": "Waiting_Line_Viking",
       "order": 0,
       "isEssential": false
     },
     {
       "id": "ACT1_WAITING_LINE_GYRODROP",
-      "nameKO": "줄 서기(자이오드롭)",
+      "nameKO": "줄 서기(자이로드롭)",
       "type": 0,
-      "imagePath": "Waiting_Line",
+      "imagePath": "Encounter_Default",
       "filePath": "Waiting_Line_Gyrodrop",
       "order": 0,
       "isEssential": false
     },
     {
       "id": "ACT1_WAITING_LINE_ROLLER",
-      "nameKO": "줄 서기(롤러장)",
+      "nameKO": "줄 서기(롤러코스터)",
       "type": 0,
-      "imagePath": "Waiting_Line",
+      "imagePath": "Encounter_Default",
       "filePath": "Waiting_Line_Roller",
       "order": 0,
       "isEssential": false
@@ -569,7 +569,7 @@
       "id": "ACT1_BAT_ATTACK",
       "nameKO": "박쥐의 습격",
       "type": 0,
-      "imagePath": "Bat_Attack",
+      "imagePath": "Encounter_Default",
       "filePath": "Bat_Attack",
       "order": 1,
       "isEssential": false
@@ -578,7 +578,7 @@
       "id": "ACT1_VAMP_INVITATION",
       "nameKO": "뱀파이어의 초대",
       "type": 1,
-      "imagePath": "Vamp_Invitation",
+      "imagePath": "Encounter_Default",
       "filePath": "Vamp_Invitation",
       "order": 4,
       "isEssential": false
@@ -587,7 +587,7 @@
       "id": "ACT1_SHEEP_IN_MAZE",
       "nameKO": "길을 잃은 상인",
       "type": 4,
-      "imagePath": "Sheep_in_Maze",
+      "imagePath": "Best_Horse",
       "filePath": "Sheep_in_Maze",
       "order": 0,
       "isEssential": false
@@ -605,7 +605,7 @@
       "id": "ACT1_WHERE_DOVE_FROM",
       "nameKO": "비둘기는 어디에서 왔을까?",
       "type": 3,
-      "imagePath": "Where_Dove_From",
+      "imagePath": "Encounter_Default",
       "filePath": "Where_Dove_From",
       "order": 1,
       "isEssential": false
@@ -623,7 +623,7 @@
       "id": "ACT1_WATER_ON_FLOWER",
       "nameKO": "시든 꽃에 물을",
       "type": 3,
-      "imagePath": "Water_on_Flower",
+      "imagePath": "Encounter_Default",
       "filePath": "Water_on_Flower",
       "order": 4,
       "isEssential": false
@@ -632,7 +632,7 @@
       "id": "ACT1_ESCAPE_MAZE",
       "nameKO": "미로 탈출",
       "type": 3,
-      "imagePath": "Escape_Maze",
+      "imagePath": "Encounter_Default",
       "filePath": "Escape_Maze",
       "order": 5,
       "isEssential": false
@@ -641,7 +641,7 @@
       "id": "ACT1_SWEET_THING",
       "nameKO": "단 것",
       "type": 5,
-      "imagePath": "Sweet_Thing",
+      "imagePath": "Encounter_Default",
       "filePath": "Sweet_Thing",
       "order": 0,
       "isEssential": false
@@ -650,7 +650,7 @@
       "id": "ACT1_SOUVENIR",
       "nameKO": "기념품을 고르자",
       "type": 4,
-      "imagePath": "Souvenir",
+      "imagePath": "Best_Horse",
       "filePath": "Souvenir",
       "order": 0,
       "isEssential": false
