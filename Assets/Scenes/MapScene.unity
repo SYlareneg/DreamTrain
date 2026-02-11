@@ -2469,7 +2469,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 2d7aa6d759ed3c249a72b6c8a8e83764, type: 3}
+  m_Resource: {fileID: 8300000, guid: 6a2d07286373f804ca213dda442701d2, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3138,7 +3138,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 991681059}
   m_CullTransparentMesh: 1
---- !u!1 &1005217088
+--- !u!1 &1040522699
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3146,9 +3146,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1005217091}
-  - component: {fileID: 1005217090}
-  - component: {fileID: 1005217089}
+  - component: {fileID: 1040522702}
+  - component: {fileID: 1040522701}
+  - component: {fileID: 1040522700}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -3156,13 +3156,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!82 &1005217089
+--- !u!82 &1040522700
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1005217088}
+  m_GameObject: {fileID: 1040522699}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -3253,13 +3253,13 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1005217090
+--- !u!114 &1040522701
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1005217088}
+  m_GameObject: {fileID: 1040522699}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da2d2267c83c7904d99c67a4ce922640, type: 3}
@@ -3280,16 +3280,16 @@ MonoBehaviour:
   UISelectSFX: {fileID: 8300000, guid: 320d5b89a728da145b1edac1349dbbe5, type: 3}
   coinGetSFX: {fileID: 8300000, guid: 86bec06fc807c1941a8b73764823aece, type: 3}
   bgmClips:
-  - {fileID: 8300000, guid: aca645ac0c1070441a3baa3d47b4ba87, type: 3}
+  - {fileID: 8300000, guid: 0686ab1895d9c6746accec762883cb69, type: 3}
   - {fileID: 8300000, guid: f690c48c719e7184997d9787360d2b6a, type: 3}
-  bgmSource: {fileID: 1005217089}
---- !u!4 &1005217091
+  bgmSource: {fileID: 1040522700}
+--- !u!4 &1040522702
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1005217088}
+  m_GameObject: {fileID: 1040522699}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -6098,7 +6098,7 @@ SceneRoots:
   - {fileID: 1102383489}
   - {fileID: 515434763}
   - {fileID: 1658210851}
-  - {fileID: 1005217091}
+  - {fileID: 1040522702}
   - {fileID: 1945880272}
   - {fileID: 796303070}
   - {fileID: 2071832704}
