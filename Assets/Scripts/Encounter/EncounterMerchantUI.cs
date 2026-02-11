@@ -468,7 +468,7 @@ public class EncounterMerchantUI : MonoBehaviour
     
     public void GenerateIcecreamShopInventory()
     {
-        List<int> iceCreamIds = new List<int> { 22, 23, 24 };
+        List<int> iceCreamIds = new List<int> { 24, 22, 23 };
 
         foreach (int id in iceCreamIds)
         {

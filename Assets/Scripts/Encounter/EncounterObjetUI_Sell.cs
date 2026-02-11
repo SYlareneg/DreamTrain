@@ -8,7 +8,9 @@ public class EncounterObjetUI_Sell : MonoBehaviour, IPointerClickHandler
     [Header("UI References")]
     [SerializeField] Image objetIcon;         
     [SerializeField] TMP_Text nameTMP;        
-    [SerializeField] public TMP_Text sellCostTMP; 
+    [SerializeField] public TMP_Text sellCostTMP;
+    
+    public Tooltip tooltip;
 
     private RelicItem_Data relicData;   
     
@@ -28,6 +30,9 @@ public class EncounterObjetUI_Sell : MonoBehaviour, IPointerClickHandler
         this._playerData = playerData;
         this._onBuyRequest = onBuyRequest;
         this.isJunk = isJunk;
+
+        tooltip.tooltipTitle = data.relicName;
+        tooltip.tooltipTxt = data.relicTxt;
 
         // UI 시각화 업데이트
         if (relicData != null) 

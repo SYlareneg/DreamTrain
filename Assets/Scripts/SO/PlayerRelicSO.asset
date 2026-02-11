@@ -12,4 +12,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 524acb156167afa4c93abfe668b9a323, type: 3}
   m_Name: PlayerRelicSO
   m_EditorClassIdentifier: Assembly-CSharp::RelicSO
-  relicItems: []
+  relicItems:
+  - relicOwner: 22
+    relicSprite: {fileID: 21300000, guid: 81ea13d86f80d1549bbbd95828715f65, type: 3}
+    relicName: "\uBC14\uB2D0\uB77C \uCF58"
+    relicTxt: "\uD68D\uB4DD \uC2DC \uC9C0\uD61C\uAC00 1 \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+    relicVal: 01000000
+    isEnhanced: 0
+    relicAct: 1
+    rarity: 1
+    cost: 3
+    sellCost: 1
+    enhancedRelicItem:
+      relicOwner: 22
+      relicSprite: {fileID: 21300000, guid: 81ea13d86f80d1549bbbd95828715f65, type: 3}
+      relicName: "\uBC14\uB2D0\uB77C \uCF58+"
+      relicTxt: "\uD68D\uB4DD \uC2DC \uC9C0\uD61C\uAC00 1 \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+      relicVal: 01000000
+      isEnhanced: 1
+      relicAct: 0
+      rarity: 0
+      cost: 100
+      sellCost: 50
+  - relicOwner: 23
+    relicSprite: {fileID: 21300000, guid: 81ea13d86f80d1549bbbd95828715f65, type: 3}
+    relicName: "\uCD08\uCF54 \uCF58"
+    relicTxt: "\uD68D\uB4DD \uC2DC \uC6A9\uAE30\uAC00 1 \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+    relicVal: 01000000
+    isEnhanced: 0
+    relicAct: 1
+    rarity: 1
+    cost: 3
+    sellCost: 1
+    enhancedRelicItem:
+      relicOwner: 22
+      relicSprite: {fileID: 21300000, guid: 81ea13d86f80d1549bbbd95828715f65, type: 3}
+      relicName: "\uBC14\uB2D0\uB77C \uCF58+"
+      relicTxt: "\uD68D\uB4DD \uC2DC \uC9C0\uD61C\uAC00 1 \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+      relicVal: 01000000
+      isEnhanced: 1
+      relicAct: 0
+      rarity: 0
+      cost: 100
+      sellCost: 50
+  - relicOwner: 24
+    relicSprite: {fileID: 21300000, guid: 47dd1a775422103409a9892ae41ed95d, type: 3}
+    relicName: "\uB538\uAE30 \uCF58"
+    relicTxt: "\uD68D\uB4DD \uC2DC \uC6B4\uC774 1 \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+    relicVal: 01000000
+    isEnhanced: 0
+    relicAct: 1
+    rarity: 1
+    cost: 3
+    sellCost: 1
+    enhancedRelicItem:
+      relicOwner: 22
+      relicSprite: {fileID: 21300000, guid: 81ea13d86f80d1549bbbd95828715f65, type: 3}
+      relicName: "\uBC14\uB2D0\uB77C \uCF58+"
+      relicTxt: "\uD68D\uB4DD \uC2DC \uC9C0\uD61C\uAC00 1 \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+      relicVal: 01000000
+      isEnhanced: 1
+      relicAct: 0
+      rarity: 0
+      cost: 100
+      sellCost: 50

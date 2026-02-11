@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -963,7 +964,20 @@ public class EncounterManager : MonoBehaviour
                 {
                     int amount = int.Parse(args[1]);
                     playerStats.ModifyStat(sType, amount);
-                    string msg = $"\n<color=#5df86f>'{sType}' {amount}증가!</color>";
+                    string statName = "";
+                    switch (sType)
+                    {
+                        case StatType.Courage:
+                            statName = "용기";
+                            break;
+                        case StatType.Luck:
+                            statName = "운";
+                            break;
+                        case StatType.Wisdom:
+                            statName = "지혜";
+                            break;
+                    }
+                    string msg = $"\n<color=#5df86f>'{statName}' {amount}증가!</color>";
                     pendingSystemMessage += msg; 
                 }
                 break;
@@ -973,8 +987,20 @@ public class EncounterManager : MonoBehaviour
                 {
                     int amount = int.Parse(args[1]);
                     playerStats.ModifyStat(sType1, -amount);
-    
-                    string msg = $"\n<color=#FF0000>'{sType1}' {amount} 감소!</color>";
+                    string statName = "";
+                    switch (sType1)
+                    {
+                        case StatType.Courage:
+                            statName = "용기";
+                            break;
+                        case StatType.Luck:
+                            statName = "운";
+                            break;
+                        case StatType.Wisdom:
+                            statName = "지혜";
+                            break;
+                    }
+                    string msg = $"\n<color=#FF0000>'{statName}' {amount} 감소!</color>";
                     pendingSystemMessage += msg;
                 }
                 break;
