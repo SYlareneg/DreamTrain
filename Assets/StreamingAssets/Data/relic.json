@@ -1,468 +1,368 @@
 {
-    "relicItems": [
-        {
-            "relicOwner": 8,
-            "relicSprite": "noble",
-            "relicName": "잃어버린 노래",
-            "relicTxt": "카드가 소멸할 때마다 행동력을 1 얻습니다.",
-            "relicVal": [
-                1
-            ],
-            "relicAct": 1,
-            "rarity": 0,
-            "cost": 4,
-            "sellCost": 2,
-            "relicName_enhanced": "잃어버린 노래+",
-            "relicTxt_enhanced": "카드가 소멸할 때마다 행동력을 2 얻습니다.",
-            "relicVal_enhanced": [
-                2
-            ]
-        },
-        {
-            "relicOwner": 9,
-            "relicSprite": "noble",
-            "relicName": "모두의 우승",
-            "relicTxt": "전투 시작 시 적과 자신이 강화를 2 얻습니다.",
-            "relicVal": [
-                2
-            ],
-            "relicAct": 1,
-            "rarity": 1,
-            "cost": 5,
-            "sellCost": 3,
-            "relicName_enhanced": "모두의 우승+",
-            "relicTxt_enhanced": "전투 시작 시 적과 자신이 강화를 3 얻습니다.",
-            "relicVal_enhanced": [
-                3
-            ]
-        },
-        {
-            "relicOwner": 10,
-            "relicSprite": "noble",
-            "relicName": "낙하산",
-            "relicTxt": "전투 시작 시 보호를 2 얻습니다. 방어도를 초과하는 피해를 받으면 해당 전투 동안 효과가 사라집니다.",
-            "relicVal": [
-                2
-            ],
-            "relicAct": 0,
-            "rarity": 0,
-            "cost": 4,
-            "sellCost": 2,
-            "relicName_enhanced": "낙하산+",
-            "relicTxt_enhanced": "전투 시작 시 보호를 3 얻습니다. 방어도를 초과하는 피해를 받으면 해당 전투 동안 효과가 사라집니다.",
-            "relicVal_enhanced": [
-                3
-            ]
-        },
-        {
-            "relicOwner": 11,
-            "relicSprite": "noble",
-            "relicName": "자가수리 키트",
-            "relicTxt": "치유 룰렛으로 얻는 치유 효과가 50% 증가합니다",
-            "relicVal": [
-                50
-            ],
-            "relicAct": 1,
-            "rarity": 0,
-            "cost": 4,
-            "sellCost": 2,
-            "relicName_enhanced": "자가수리 키트+",
-            "relicTxt_enhanced": "치유 룰렛으로 얻는 치유 효과가 100% 증가합니다",
-            "relicVal_enhanced": [
-                100
-            ]
-        },
-        {
-            "relicOwner": 12,
-            "relicSprite": "noble",
-            "relicName": "사건의 지평선",
-            "relicTxt": "8번째 턴 시작 시 룰렛에 강화, 보호, 활력을 5 부여합니다.",
-            "relicVal": [
-                8,
-                5
-            ],
-            "relicAct": 1,
-            "rarity": 1,
-            "cost": 5,
-            "sellCost": 3,
-            "relicName_enhanced": "사건의 지평선+",
-            "relicTxt_enhanced": "8번째 턴 시작 시 룰렛에 강화, 보호, 활력을 7 부여합니다.",
-            "relicVal_enhanced": [
-                8,
-                7
-            ]
-        },
-        {
-            "relicOwner": 13,
-            "relicSprite": "noble",
-            "relicName": "고대 주화",
-            "relicTxt": "어느 시대에 쓰였던 것인지 알 수 없는 동전입니다. 누군가 비싸게 살 지도 모릅니다.",
-            "relicVal": [],
-            "relicAct": 1,
-            "rarity": 0,
-            "cost": 10,
-            "sellCost": 10,
-            "relicName_enhanced": "고대 주화+",
-            "relicTxt_enhanced": "어느 시대에 쓰였던 것인지 알 수 없는 동전입니다. 누군가 비싸게 살 지도 모릅니다.",
-            "relicVal_enhanced": []
-        },
-        {
-            "relicOwner": 14,
-            "relicSprite": "noble",
-            "relicName": "깃펜",
-            "relicTxt": "카드를 사용하면 20% 확률로 카드를 1장 드로우합니다.",
-            "relicVal": [
-                20,
-                1
-            ],
-            "relicAct": 0,
-            "rarity": 0,
-            "cost": 4,
-            "sellCost": 2,
-            "relicName_enhanced": "깃펜+",
-            "relicTxt_enhanced": "카드를 사용하면 30% 확률로 카드를 1장 드로우합니다.",
-            "relicVal_enhanced": [
-                30,
-                1
-            ]
-        },
-        {
-            "relicOwner": 15,
-            "relicSprite": "noble",
-            "relicName": "일기",
-            "relicTxt": "전투 종료 시 20% 확률로 무작위 스탯이 1 상승합니다.",
-            "relicVal": [
-                20,
-                1
-            ],
-            "relicAct": 0,
-            "rarity": 0,
-            "cost": 5,
-            "sellCost": 2,
-            "relicName_enhanced": "일기+",
-            "relicTxt_enhanced": "전투 종료 시 30% 확률로 무작위 스탯이 1 상승합니다.",
-            "relicVal_enhanced": [
-                30,
-                1
-            ]
-        },
-        {
-            "relicOwner": 16,
-            "relicSprite": "noble",
-            "relicName": "낡은 장갑",
-            "relicTxt": "룰렛을 회전시키면 방어도를 2 얻습니다.",
-            "relicVal": [
-                2
-            ],
-            "relicAct": 0,
-            "rarity": 0,
-            "cost": 4,
-            "sellCost": 2,
-            "relicName_enhanced": "낡은 장갑+",
-            "relicTxt_enhanced": "룰렛을 회전시키면 방어도를 3 얻습니다.",
-            "relicVal_enhanced": [
-                3
-            ]
-        },
-        {
-            "relicOwner": 17,
-            "relicSprite": "noble",
-            "relicName": "빗자루",
-            "relicTxt": "룰렛에 부여된 효과가 제거될 때 행동력을 1 얻습니다.",
-            "relicVal": [
-                1
-            ],
-            "relicAct": 0,
-            "rarity": 0,
-            "cost": 4,
-            "sellCost": 2,
-            "relicName_enhanced": "빗자루+",
-            "relicTxt_enhanced": "룰렛에 부여된 효과가 제거될 때 행동력을 2 얻습니다.",
-            "relicVal_enhanced": [
-                2
-            ]
-        },
-        {
-            "relicOwner": 18,
-            "relicSprite": "noble",
-            "relicName": "파랑 구두",
-            "relicTxt": "앨리스가 방어도를 얻을 때마다 룰렛에 강화를 1 부여합니다.",
-            "relicVal": [
-                1
-            ],
-            "relicAct": 0,
-            "rarity": 0,
-            "cost": 4,
-            "sellCost": 2,
-            "relicName_enhanced": "파랑 구두+",
-            "relicTxt_enhanced": "앨리스가 방어도를 얻을 때마다 룰렛에 강화를 2 부여합니다.",
-            "relicVal_enhanced": [
-                2
-            ]
-        },
-        {
-            "relicOwner": 19,
-            "relicSprite": "noble",
-            "relicName": "머리끈",
-            "relicTxt": "전투 시작 시, 첫 턴에만 행동력을 1 추가로 얻습니다.",
-            "relicVal": [
-                1
-            ],
-            "relicAct": 0,
-            "rarity": 0,
-            "cost": 4,
-            "sellCost": 2,
-            "relicName_enhanced": "머리끈+",
-            "relicTxt_enhanced": "전투 시작 시, 첫 턴에만 행동력을 2 추가로 얻습니다.",
-            "relicVal_enhanced": [
-                2
-            ]
-        },
-        {
-            "relicOwner": 20,
-            "relicSprite": "noble",
-            "relicName": "새장",
-            "relicTxt": "전투 시작 시 보호를 6 얻습니다. 룰렛이 한 번에 2칸 이상 회전하면 보호를 1 잃습니다.",
-            "relicVal": [
-                6,
-                2,
-                1
-            ],
-            "relicAct": 0,
-            "rarity": 0,
-            "cost": 5,
-            "sellCost": 2,
-            "relicName_enhanced": "새장+",
-            "relicTxt_enhanced": "전투 시작 시 보호를 10 얻습니다. 룰렛이 한 번에 2칸 이상 회전하면 보호를 1 잃습니다.",
-            "relicVal_enhanced": [
-                10,
-                2,
-                1
-            ]
-        },
-        {
-            "relicOwner": 21,
-            "relicSprite": "noble",
-            "relicName": "모닥불",
-            "relicTxt": "룰렛이 한 번에 3칸 이상 회전하면 적에게 4 피해를 줍니다.",
-            "relicVal": [
-                3,
-                4
-            ],
-            "relicAct": 0,
-            "rarity": 0,
-            "cost": 4,
-            "sellCost": 2,
-            "relicName_enhanced": "모닥불+",
-            "relicTxt_enhanced": "룰렛이 한 번에 3칸 이상 회전하면 적에게 6 피해를 줍니다.",
-            "relicVal_enhanced": [
-                3,
-                6
-            ]
-        },
-        {
-            "relicOwner": 22,
-            "relicSprite": "noble",
-            "relicName": "바닐라 콘",
-            "relicTxt": "획득 시 지혜가 1 상승합니다.",
-            "relicVal": [
-                1
-            ],
-            "relicAct": 1,
-            "rarity": 1,
-            "cost": 3,
-            "sellCost": 1,
-            "relicName_enhanced": "바닐라 콘+",
-            "relicTxt_enhanced": "획득 시 지혜가 1 상승합니다.",
-            "relicVal_enhanced": [
-                1
-            ]
-        },
-        {
-            "relicOwner": 23,
-            "relicSprite": "noble",
-            "relicName": "초콜릿 콘",
-            "relicTxt": "획득 시 행운이 1 상승합니다.",
-            "relicVal": [
-                1
-            ],
-            "relicAct": 1,
-            "rarity": 1,
-            "cost": 3,
-            "sellCost": 1,
-            "relicName_enhanced": "초콜릿 콘+",
-            "relicTxt_enhanced": "획득 시 행운이 1 상승합니다.",
-            "relicVal_enhanced": [
-                1
-            ]
-        },
-        {
-            "relicOwner": 24,
-            "relicSprite": "noble",
-            "relicName": "딸기 콘",
-            "relicTxt": "획득 시 용기가 1 상승합니다.",
-            "relicVal": [
-                1
-            ],
-            "relicAct": 1,
-            "rarity": 1,
-            "cost": 3,
-            "sellCost": 1,
-            "relicName_enhanced": "딸기 콘+",
-            "relicTxt_enhanced": "획득 시 용기가 1 상승합니다.",
-            "relicVal_enhanced": [
-                1
-            ]
-        },
-        {
-            "relicOwner": 0,
-            "relicSprite": "5. 오브제_ 박쥐 날개",
-            "relicName": "박쥐 날개",
-            "relicTxt": "턴 종료 시 남은 행동력x3의 방어도를 얻습니다.",
-            "relicVal": [
-                3
-            ],
-            "relicAct": 1,
-            "rarity": 0,
-            "cost": 4,
-            "sellCost": 2,
-            "relicName_enhanced": "박쥐 날개+",
-            "relicTxt_enhanced": "턴 종료 시 남은 행동력<color=red>x4</color>의 방어도를 얻습니다.",
-            "relicVal_enhanced": [
-                4
-            ]
-        },
-        {
-            "relicOwner": 1,
-            "relicSprite": "4. 오브제_저주 인형",
-            "relicName": "저주 인형",
-            "relicTxt": "매 전투마다 처음으로 받는 피해를 인형이 대신 받습니다. 받은 피해가 44가 되면 부서집니다.",
-            "relicVal": [
-                44
-            ],
-            "relicAct": 1,
-            "rarity": 0,
-            "cost": 4,
-            "sellCost": 2,
-            "relicName_enhanced": "저주 인형+",
-            "relicTxt_enhanced": "매 전투마다 처음으로 받는 피해를 인형이 대신 받습니다. 받은 피해가 <color=red>144</color>가 되면 부서집니다.",
-            "relicVal_enhanced": [
-                144
-            ]
-        },
-        {
-            "relicOwner": 2,
-            "relicSprite": "7. 오브제_꿀",
-            "relicName": "꿀",
-            "relicTxt": "턴 시작 시, 파괴되지 않고 남은 방어도의 25%를 체력으로 전환합니다.",
-            "relicVal": [
-                25
-            ],
-            "relicAct": 1,
-            "rarity": 0,
-            "cost": 5,
-            "sellCost": 3,
-            "relicName_enhanced": "꿀+",
-            "relicTxt_enhanced": "턴 시작 시, 파괴되지 않고 남은 방어도의 <color=red>40%</color>를 체력으로 전환합니다.",
-            "relicVal_enhanced": [
-                40
-            ]
-        },
-        {
-            "relicOwner": 3,
-            "relicSprite": "3. 오브제_영원한 웃음",
-            "relicName": "영원한 웃음",
-            "relicTxt": "지혜가 1로 고정됩니다. 전투 시작 시 보호를 2 얻습니다.",
-            "relicVal": [
-                1,
-                2
-            ],
-            "relicAct": 1,
-            "rarity": 1,
-            "cost": 5,
-            "sellCost": 1,
-            "relicName_enhanced": "영원한 웃음+",
-            "relicTxt_enhanced": "지혜가 1로 고정됩니다. 전투 시작 시 보호를 2 얻습니다.",
-            "relicVal_enhanced": [
-                1,
-                2
-            ]
-        },
-        {
-            "relicOwner": 4,
-            "relicSprite": "8. 오브제_붉은 꽃잎",
-            "relicName": "붉은 꽃잎",
-            "relicTxt": "체력이 30%이하이면 턴 시작 시 행동력을 1 얻습니다.",
-            "relicVal": [
-                30,
-                1
-            ],
-            "relicAct": 1,
-            "rarity": 0,
-            "cost": 3,
-            "sellCost": 2,
-            "relicName_enhanced": "붉은 꽃잎+",
-            "relicTxt_enhanced": "체력이 <color=red>60%</color>이하이면 턴 시작 시 행동력을 1 얻습니다.",
-            "relicVal_enhanced": [
-                60,
-                1
-            ]
-        },
-        {
-            "relicOwner": 5,
-            "relicSprite": "6. 오브제_비둘기 코인",
-            "relicName": "비둘기 코인",
-            "relicTxt": "지니고 있으면 행운이 1 증가합니다.",
-            "relicVal": [
-                1
-            ],
-            "relicAct": 1,
-            "rarity": 0,
-            "cost": 3,
-            "sellCost": 2,
-            "relicName_enhanced": "비둘기 코인+",
-            "relicTxt_enhanced": "지니고 있으면 행운이 1 증가합니다.",
-            "relicVal_enhanced": [
-                1
-            ]
-        },
-        {
-            "relicOwner": 6,
-            "relicSprite": "2. 오브제_와인의 눈물",
-            "relicName": "와인의 눈물",
-            "relicTxt": "체력이 50% 이하이면 활력 버프를 1 얻습니다.",
-            "relicVal": [
-                50,
-                1
-            ],
-            "relicAct": 1,
-            "rarity": 1,
-            "cost": 5,
-            "sellCost": 1,
-            "relicName_enhanced": "와인의 눈물+",
-            "relicTxt_enhanced": "체력이 <color=red>70%</color> 이하이면 활력 버프를 1 얻습니다.",
-            "relicVal_enhanced": [
-                70,
-                1
-            ]
-        },
-        {
-            "relicOwner": 7,
-            "relicSprite": "1. 오브제_찻잔",
-            "relicName": "찻잔",
-            "relicTxt": "턴 시작 시 1의 체력을 회복합니다.",
-            "relicVal": [
-                1
-            ],
-            "relicAct": 1,
-            "rarity": 0,
-            "cost": 5,
-            "sellCost": 3,
-            "relicName_enhanced": "찻잔+",
-            "relicTxt_enhanced": "턴 시작 시 <color=red>2</color>의 체력을 회복합니다.",
-            "relicVal_enhanced": [
-                2
-            ]
-        }
-    ]
+  "relicItems": [
+    {
+      "relicName": "잃어버린 노래",
+      "relicTxt": "카드가 소멸할 때마다 행동력을 1 얻습니다.",
+      "relicSprite": "Not drawn yet",
+      "relicOwner": 8,
+      "relicVal": [
+        1
+      ],
+      "relicName_enhanced": "잃어버린 노래+",
+      "relicTxt_enhanced": "카드가 소멸할 때마다 행동력을 2 얻습니다.",
+      "relicVal_enhanced": [
+        2
+      ]
+    },
+    {
+      "relicName": "모두의 우승",
+      "relicTxt": "전투 시작 시 적과 자신이 강화를 2 얻습니다.",
+      "relicSprite": "Not drawn yet",
+      "relicOwner": 9,
+      "relicVal": [
+        2
+      ],
+      "relicName_enhanced": "모두의 우승+",
+      "relicTxt_enhanced": "전투 시작 시 적과 자신이 강화를 3 얻습니다.",
+      "relicVal_enhanced": [
+        3
+      ]
+    },
+    {
+      "relicName": "낙하산",
+      "relicTxt": "전투 시작 시 보호를 2 얻습니다. 방어도를 초과하는 피해를 받으면 해당 전투 동안 효과가 사라집니다.",
+      "relicSprite": "Not drawn yet",
+      "relicOwner": 10,
+      "relicVal": [
+        2
+      ],
+      "relicName_enhanced": "낙하산+",
+      "relicTxt_enhanced": "전투 시작 시 보호를 3 얻습니다. 방어도를 초과하는 피해를 받으면 해당 전투 동안 효과가 사라집니다.",
+      "relicVal_enhanced": [
+        3
+      ]
+    },
+    {
+      "relicName": "자가수리 키트",
+      "relicTxt": "치유 룰렛으로 얻는 치유 효과가 50% 증가합니다",
+      "relicSprite": "Not drawn yet",
+      "relicOwner": 11,
+      "relicVal": [
+        50
+      ],
+      "relicName_enhanced": "자가수리 키트+",
+      "relicTxt_enhanced": "치유 룰렛으로 얻는 치유 효과가 100% 증가합니다",
+      "relicVal_enhanced": [
+        100
+      ]
+    },
+    {
+      "relicName": "사건의 지평선",
+      "relicTxt": "8번째 턴 시작 시 룰렛에 강화, 보호, 활력을 5 부여합니다.",
+      "relicSprite": "Not drawn yet",
+      "relicOwner": 12,
+      "relicVal": [
+        8,
+        5
+      ],
+      "relicName_enhanced": "사건의 지평선+",
+      "relicTxt_enhanced": "8번째 턴 시작 시 룰렛에 강화, 보호, 활력을 7 부여합니다.",
+      "relicVal_enhanced": [
+        8,
+        7
+      ]
+    },
+    {
+      "relicName": "고대 주화",
+      "relicTxt": "어느 시대에 쓰였던 것인지 알 수 없는 동전입니다. 누군가 비싸게 살 지도 모릅니다.",
+      "relicSprite": "Not drawn yet",
+      "relicOwner": 13,
+      "relicVal": [],
+      "relicName_enhanced": "고대 주화+",
+      "relicTxt_enhanced": "어느 시대에 쓰였던 것인지 알 수 없는 동전입니다. 누군가 비싸게 살 지도 모릅니다.",
+      "relicVal_enhanced": []
+    },
+    {
+      "relicName": "깃펜",
+      "relicTxt": "카드를 사용하면 20% 확률로 카드를 1장 드로우합니다.",
+      "relicSprite": "Not drawn yet",
+      "relicOwner": 14,
+      "relicVal": [
+        20,
+        1
+      ],
+      "relicName_enhanced": "깃펜+",
+      "relicTxt_enhanced": "카드를 사용하면 30% 확률로 카드를 1장 드로우합니다.",
+      "relicVal_enhanced": [
+        30,
+        1
+      ]
+    },
+    {
+      "relicName": "일기",
+      "relicTxt": "전투 종료 시 20% 확률로 무작위 스탯이 1 상승합니다.",
+      "relicSprite": "Not drawn yet",
+      "relicOwner": 15,
+      "relicVal": [
+        20,
+        1
+      ],
+      "relicName_enhanced": "일기+",
+      "relicTxt_enhanced": "전투 종료 시 30% 확률로 무작위 스탯이 1 상승합니다.",
+      "relicVal_enhanced": [
+        30,
+        1
+      ]
+    },
+    {
+      "relicName": "낡은 장갑",
+      "relicTxt": "룰렛을 회전시키면 방어도를 2 얻습니다.",
+      "relicSprite": "Not drawn yet",
+      "relicOwner": 16,
+      "relicVal": [
+        2
+      ],
+      "relicName_enhanced": "낡은 장갑+",
+      "relicTxt_enhanced": "룰렛을 회전시키면 방어도를 3 얻습니다.",
+      "relicVal_enhanced": [
+        3
+      ]
+    },
+    {
+      "relicName": "빗자루",
+      "relicTxt": "룰렛에 부여된 효과가 제거될 때 행동력을 1 얻습니다.",
+      "relicSprite": "Not drawn yet",
+      "relicOwner": 17,
+      "relicVal": [
+        1
+      ],
+      "relicName_enhanced": "빗자루+",
+      "relicTxt_enhanced": "룰렛에 부여된 효과가 제거될 때 행동력을 2 얻습니다.",
+      "relicVal_enhanced": [
+        2
+      ]
+    },
+    {
+      "relicName": "파랑 구두",
+      "relicTxt": "앨리스가 방어도를 얻을 때마다 룰렛에 강화를 1 부여합니다.",
+      "relicSprite": "Not drawn yet",
+      "relicOwner": 18,
+      "relicVal": [
+        1
+      ],
+      "relicName_enhanced": "파랑 구두+",
+      "relicTxt_enhanced": "앨리스가 방어도를 얻을 때마다 룰렛에 강화를 2 부여합니다.",
+      "relicVal_enhanced": [
+        2
+      ]
+    },
+    {
+      "relicName": "머리끈",
+      "relicTxt": "전투 시작 시, 첫 턴에만 행동력을 1 추가로 얻습니다.",
+      "relicSprite": "Not drawn yet",
+      "relicOwner": 19,
+      "relicVal": [
+        1
+      ],
+      "relicName_enhanced": "머리끈+",
+      "relicTxt_enhanced": "전투 시작 시, 첫 턴에만 행동력을 2 추가로 얻습니다.",
+      "relicVal_enhanced": [
+        2
+      ]
+    },
+    {
+      "relicName": "새장",
+      "relicTxt": "전투 시작 시 보호를 6 얻습니다. 룰렛이 한 번에 2칸 이상 회전하면 보호를 1 잃습니다.",
+      "relicSprite": "Not drawn yet",
+      "relicOwner": 20,
+      "relicVal": [
+        6,
+        2,
+        1
+      ],
+      "relicName_enhanced": "새장+",
+      "relicTxt_enhanced": "전투 시작 시 보호를 10 얻습니다. 룰렛이 한 번에 2칸 이상 회전하면 보호를 1 잃습니다.",
+      "relicVal_enhanced": [
+        10,
+        2,
+        1
+      ]
+    },
+    {
+      "relicName": "모닥불",
+      "relicTxt": "룰렛이 한 번에 3칸 이상 회전하면 적에게 4 피해를 줍니다.",
+      "relicSprite": "Not drawn yet",
+      "relicOwner": 21,
+      "relicVal": [
+        3,
+        4
+      ],
+      "relicName_enhanced": "모닥불+",
+      "relicTxt_enhanced": "룰렛이 한 번에 3칸 이상 회전하면 적에게 6 피해를 줍니다.",
+      "relicVal_enhanced": [
+        3,
+        6
+      ]
+    },
+    {
+      "relicName": "바닐라 콘",
+      "relicTxt": "획득 시 지혜가 1 상승합니다.",
+      "relicSprite": "Not drawn yet",
+      "relicOwner": 22,
+      "relicVal": [
+        1
+      ],
+      "relicName_enhanced": "바닐라 콘+",
+      "relicTxt_enhanced": "획득 시 지혜가 1 상승합니다.",
+      "relicVal_enhanced": [
+        1
+      ]
+    },
+    {
+      "relicName": "초콜릿 콘",
+      "relicTxt": "획득 시 행운이 1 상승합니다.",
+      "relicSprite": "Not drawn yet",
+      "relicOwner": 23,
+      "relicVal": [
+        1
+      ],
+      "relicName_enhanced": "초콜릿 콘+",
+      "relicTxt_enhanced": "획득 시 행운이 1 상승합니다.",
+      "relicVal_enhanced": [
+        1
+      ]
+    },
+    {
+      "relicName": "딸기 콘",
+      "relicTxt": "획득 시 용기가 1 상승합니다.",
+      "relicSprite": "Not drawn yet",
+      "relicOwner": 24,
+      "relicVal": [
+        1
+      ],
+      "relicName_enhanced": "딸기 콘+",
+      "relicTxt_enhanced": "획득 시 용기가 1 상승합니다.",
+      "relicVal_enhanced": [
+        1
+      ]
+    },
+    {
+      "relicName": "박쥐 날개",
+      "relicTxt": "턴 종료 시 남은 행동력x3의 방어도를 얻습니다.",
+      "relicSprite": "Not drawn yet",
+      "relicOwner": 0,
+      "relicVal": [
+        3
+      ],
+      "relicName_enhanced": "박쥐 날개+",
+      "relicTxt_enhanced": "턴 종료 시 남은 행동력<color=red>x4</color>의 방어도를 얻습니다.",
+      "relicVal_enhanced": [
+        4
+      ]
+    },
+    {
+      "relicName": "저주 인형",
+      "relicTxt": "매 전투마다 처음으로 받는 피해를 인형이 대신 받습니다. 받은 피해가 44가 되면 부서집니다.",
+      "relicSprite": "4. 오브제_저주 인형",
+      "relicOwner": 1,
+      "relicVal": [
+        44
+      ],
+      "relicName_enhanced": "저주 인형+",
+      "relicTxt_enhanced": "매 전투마다 처음으로 받는 피해를 인형이 대신 받습니다. 받은 피해가 <color=red>144</color>가 되면 부서집니다.",
+      "relicVal_enhanced": [
+        144
+      ]
+    },
+    {
+      "relicName": "꿀",
+      "relicTxt": "턴 시작 시, 파괴되지 않고 남은 방어도의 25%를 체력으로 전환합니다.",
+      "relicSprite": "7. 오브제_꿀",
+      "relicOwner": 2,
+      "relicVal": [
+        25
+      ],
+      "relicName_enhanced": "꿀+",
+      "relicTxt_enhanced": "턴 시작 시, 파괴되지 않고 남은 방어도의 <color=red>40%</color>를 체력으로 전환합니다.",
+      "relicVal_enhanced": [
+        40
+      ]
+    },
+    {
+      "relicName": "영원한 웃음",
+      "relicTxt": "지혜가 1로 고정됩니다. 전투 시작 시 보호를 2 얻습니다.",
+      "relicSprite": "오브제_영원한 웃음 1",
+      "relicOwner": 3,
+      "relicVal": [
+        1,
+        2
+      ],
+      "relicName_enhanced": "영원한 웃음+",
+      "relicTxt_enhanced": "지혜가 1로 고정됩니다. 전투 시작 시 보호를 2 얻습니다.",
+      "relicVal_enhanced": [
+        1,
+        2
+      ]
+    },
+    {
+      "relicName": "붉은 꽃잎",
+      "relicTxt": "체력이 30%이하이면 턴 시작 시 행동력을 1 얻습니다.",
+      "relicSprite": "8. 오브제_붉은 꽃잎",
+      "relicOwner": 4,
+      "relicVal": [
+        30,
+        1
+      ],
+      "relicName_enhanced": "붉은 꽃잎+",
+      "relicTxt_enhanced": "체력이 <color=red>60%</color>이하이면 턴 시작 시 행동력을 1 얻습니다.",
+      "relicVal_enhanced": [
+        60,
+        1
+      ]
+    },
+    {
+      "relicName": "비둘기 코인",
+      "relicTxt": "지니고 있으면 행운이 1 증가합니다.",
+      "relicSprite": "6. 오브제_비둘기 코인",
+      "relicOwner": 5,
+      "relicVal": [
+        1
+      ],
+      "relicName_enhanced": "비둘기 코인+",
+      "relicTxt_enhanced": "지니고 있으면 행운이 1 증가합니다.",
+      "relicVal_enhanced": [
+        1
+      ]
+    },
+    {
+      "relicName": "와인의 눈물",
+      "relicTxt": "체력이 50% 이하이면 활력 버프를 1 얻습니다.",
+      "relicSprite": "2. 오브제_와인의 눈물",
+      "relicOwner": 6,
+      "relicVal": [
+        50,
+        1
+      ],
+      "relicName_enhanced": "와인의 눈물+",
+      "relicTxt_enhanced": "체력이 <color=red>70%</color> 이하이면 활력 버프를 1 얻습니다.",
+      "relicVal_enhanced": [
+        70,
+        1
+      ]
+    },
+    {
+      "relicName": "찻잔",
+      "relicTxt": "턴 시작 시 1의 체력을 회복합니다.",
+      "relicSprite": "1. 오브제_찻잔",
+      "relicOwner": 7,
+      "relicVal": [
+        1
+      ],
+      "relicName_enhanced": "찻잔+",
+      "relicTxt_enhanced": "턴 시작 시 <color=red>2</color>의 체력을 회복합니다.",
+      "relicVal_enhanced": [
+        2
+      ]
+    }
+  ]
 }

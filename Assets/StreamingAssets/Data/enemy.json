@@ -8,7 +8,7 @@
       "phase": [
         {
           "name": "잊어버린 표정",
-          "sprite": "",
+          "sprite": "Not Drawn Yet",
           "text": "앨리스가 몽상 타입 카드를 사용하면 트리거를 1 얻습니다.",
           "patterns": [
             {
@@ -31,7 +31,7 @@
                 },
                 {
                   "type": 0,
-                  "typeNum": 0,
+                  "typeNum": -2,
                   "val": -2,
                   "isTrigger": false
                 }
@@ -56,7 +56,7 @@
       "triggerPhase": [
         {
           "name": "고장난 로봇: 트리거",
-          "sprite": "",
+          "sprite": "Not Drawn Yet",
           "text": "고장난 로봇이 트리거 상태입니다. 턴 종료시 트리거가 해제됩니다.",
           "patterns": [
             {
@@ -226,7 +226,7 @@
       "phase": [
         {
           "name": "새치기 금지",
-          "sprite": "",
+          "sprite": "Not Drawn Yet",
           "text": "룰렛이 반시계 방향으로 회전할 때마다 트리거를 1 얻습니다.",
           "patterns": [
             {
@@ -302,7 +302,7 @@
       "triggerPhase": [
         {
           "name": "해골 손님: 트리거",
-          "sprite": "",
+          "sprite": "Not Drawn Yet",
           "text": "해골 손님이 트리거 상태입니다. 턴 종료시 트리거가 해제됩니다.",
           "patterns": [
             {
@@ -472,7 +472,7 @@
       "phase": [
         {
           "name": "표정 금지",
-          "sprite": "",
+          "sprite": "Not Drawn Yet",
           "text": "앨리스가 몽상 타입 카드를 사용하면 트리거를 1 얻습니다.",
           "patterns": [
             {
@@ -520,7 +520,7 @@
       "triggerPhase": [
         {
           "name": "직원 로봇: 트리거",
-          "sprite": "",
+          "sprite": "Not Drawn Yet",
           "text": "직원 로봇이 트리거 상태입니다. 턴 종료시 트리거가 해제됩니다.",
           "patterns": [
             {
@@ -690,7 +690,7 @@
       "phase": [
         {
           "name": "경주 시작!",
-          "sprite": "",
+          "sprite": "Not Drawn Yet",
           "text": "매 턴마다 트리거를 1 얻습니다. 트리거를 전부 쌓으면 경주가 종료됩니다.",
           "patterns": [
             {
@@ -712,7 +712,7 @@
       "triggerPhase": [
         {
           "name": "거대한 도도: 트리거",
-          "sprite": "",
+          "sprite": "Not Drawn Yet",
           "text": "거대한 도도가 트리거 상태입니다. 턴 종료시 트리거가 해제됩니다.",
           "patterns": [
             {
@@ -882,7 +882,7 @@
       "phase": [
         {
           "name": "쪼기",
-          "sprite": "",
+          "sprite": "Not Drawn Yet",
           "text": "앨리스가 방어도를 갖추지 못한 상태로 앨리스의 턴을 종료하면, 트리거를 1 얻습니다.",
           "patterns": [
             {
@@ -930,7 +930,7 @@
       "triggerPhase": [
         {
           "name": "사나운 새: 트리거",
-          "sprite": "",
+          "sprite": "Not Drawn Yet",
           "text": "사나운 새가 트리거 상태입니다. 턴 종료 시 트리거가 해제됩니다.",
           "patterns": [
             {
@@ -2106,7 +2106,7 @@
                 },
                 {
                   "type": 0,
-                  "typeNum": -2,
+                  "typeNum": 0,
                   "val": -3,
                   "isTrigger": false
                 }
@@ -2132,13 +2132,13 @@
               "pattern": [
                 {
                   "type": 0,
-                  "typeNum": -2,
+                  "typeNum": 0,
                   "val": -4,
                   "isTrigger": false
                 },
                 {
                   "type": 0,
-                  "typeNum": -2,
+                  "typeNum": 0,
                   "val": -4,
                   "isTrigger": false
                 }
@@ -2182,7 +2182,7 @@
                 },
                 {
                   "type": 0,
-                  "typeNum": -2,
+                  "typeNum": 0,
                   "val": -3,
                   "isTrigger": false
                 },
@@ -2214,7 +2214,7 @@
               "pattern": [
                 {
                   "type": 0,
-                  "typeNum": -2,
+                  "typeNum": 0,
                   "val": -4,
                   "isTrigger": false
                 },
@@ -2245,7 +2245,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire",
+          "sprite": "Not Drawn Yet",
           "scalingFactor": 1
         }
       ],
@@ -2444,7 +2444,7 @@
                 },
                 {
                   "type": 0,
-                  "typeNum": 0,
+                  "typeNum": -2,
                   "val": -7,
                   "isTrigger": false
                 }
@@ -2485,7 +2485,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Enemy_Vampire",
+          "sprite": "Not Drawn Yet",
           "scalingFactor": 1
         }
       ],
@@ -3136,7 +3136,7 @@
               "pattern": [
                 {
                   "type": 0,
-                  "typeNum": 0,
+                  "typeNum": -2,
                   "val": -3,
                   "isTrigger": false
                 },
@@ -3261,7 +3261,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Enemy_Vampire",
+          "sprite": "Not Drawn Yet",
           "scalingFactor": 1
         }
       ],
@@ -3732,7 +3732,7 @@
       "triggerPhase": [
         {
           "name": "",
-          "sprite": "",
+          "sprite": "컵트리오 메인",
           "text": "",
           "patterns": [],
           "phaseRepeat": false,
@@ -4429,7 +4429,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Enemy_Vampire",
+          "sprite": "Not Drawn Yet",
           "scalingFactor": 1
         }
       ],
@@ -4647,7 +4647,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Enemy_Vampire",
+          "sprite": "Not Drawn Yet",
           "scalingFactor": 1
         }
       ],
