@@ -36,6 +36,12 @@ public class SoundManager : MonoBehaviour
     {
         if(bgmSource.isPlaying) return;
         bgmSource.clip = bgmClips[Mathf.Clamp(actNum, 0, bgmClips.Length - 1)];
+        bgmSource.time = 0;
         bgmSource.Play();
+    }
+
+    public void StopBGM()
+    {
+        bgmSource.Stop();
     }
 }
