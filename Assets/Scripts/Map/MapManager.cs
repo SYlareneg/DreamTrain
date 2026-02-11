@@ -368,10 +368,12 @@ public class MapManager : MonoBehaviour
                 mapCamera.minX = Mathf.Min(GetScreenPos(map.sortedMapNodeList[0]).x + 6f, 13.5f);
                 mapCamera.maxX = Mathf.Max(-13.5f, GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).x - 6f);
             }
+            SoundManager.Inst.PlayBGM(actSO.curActNum);
         }
         else
         {
             SetNewMap();
+            SoundManager.Inst.PlayBGM(actSO.curActNum);
         }
 
         SceneChangeManager.Inst.SceneFadeIn(() =>

@@ -242,6 +242,7 @@ public class RoulettePiece : MonoBehaviour
         switch (roulette.rtype.type)
         {
             case ERouletteType.Attack:
+                if(totalVal < 0) totalVal = 0;
                 if (isEnemy)
                 {
                     RouletteManager.Inst.enemyRouletteEffectEndAction = () =>
@@ -258,6 +259,7 @@ public class RoulettePiece : MonoBehaviour
                 }
                 break;
             case ERouletteType.Heal:
+                if(totalVal > 0) totalVal = 0;
                 if (isEnemy)
                 {
                     RouletteManager.Inst.enemyRouletteEffectEndAction = () =>

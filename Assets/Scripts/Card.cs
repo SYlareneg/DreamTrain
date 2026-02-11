@@ -518,7 +518,6 @@ public class Card : MonoBehaviour
         {
             case "1칸 회전":
                 RouletteManager.Inst.Spin(true, 1);
-                BuffManager.Inst.AddShowBuff("강화", EBuffAffectType.Roulette, 1, false);
                 break;
             case "2칸 회전":
                 RouletteManager.Inst.Spin(true, 2);

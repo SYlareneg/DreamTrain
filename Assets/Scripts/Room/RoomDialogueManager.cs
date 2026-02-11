@@ -87,8 +87,7 @@ public class RoomDialogueManager : MonoBehaviour
 
         if(line.sound != null)
         {
-            dialogueAudioSource.clip = line.sound;
-            dialogueAudioSource.Play();
+            dialogueAudioSource.PlayOneShot(line.sound);
         }
     }
 
