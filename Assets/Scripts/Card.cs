@@ -439,8 +439,8 @@ public class Card : MonoBehaviour
             case "날카로운 발톱":
             case "날카로운 발톱+":
                 claw = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0));
-                if(!RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.rtype.Equals(claw)) Debug.Log("날카로운 발톱 사용 불가!");
-                else Debug.Log("날카로운 발톱 사용 가능!");
+                RouletteType claw2 = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.shadowPiece.shadow.dreamPieceNum != item.dreamPieceNum, 0));
+                if(!RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.rtype.Equals(claw) && !RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.rtype.Equals(claw2)) return false;
                 break;
             case "고양이의 시간":
             case "고양이의 시간+":
@@ -1084,7 +1084,8 @@ public class Card : MonoBehaviour
             case "날카로운 발톱":
             case "날카로운 발톱+":
                 claw = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0));
-                if(RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.rtype.Equals(claw))
+                RouletteType claw2 = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.shadowPiece.shadow.dreamPieceNum != item.dreamPieceNum, 0));
+                if(RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.rtype.Equals(claw) || RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.rtype.Equals(claw2))
                 {
                     RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.value *= GetBuffedVal(item.cardValues[0], ECardValueType.Special);
                 }

@@ -338,6 +338,24 @@ public class RoulettePiece : MonoBehaviour
         }
     }
 
+    public void EnchantAnim(Action onComplete = null)
+    {
+        Transform enchantEffect = transform.Find("EnchantEffect");
+        if (enchantEffect != null)
+        {
+            var enchantAnim = enchantEffect.GetComponent<Animator>();
+            enchantAnim.SetTrigger("Enchant");
+            enchantAnim.GetComponent<RouletteEffect_Enchant>().OnEffectEndAction = () =>
+            {
+                onComplete?.Invoke();
+            };
+        }
+        else
+        {
+            onComplete?.Invoke();
+        }
+    }
+
     // private void OnMouseDown()
     // {
     //     RouletteManager.Inst.RouletteMouseDown();

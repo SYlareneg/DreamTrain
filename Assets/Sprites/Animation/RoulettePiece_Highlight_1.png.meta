@@ -1,10 +1,25 @@
 fileFormatVersion: 2
-guid: 9f709d5f034507a498b639f738d3c1eb
+guid: c25fed6f04c4bda46a0885d59aedd0d4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2622925428787204955
-    second: "\uB8F0\uB81B\uAC1C\uBCC4_00030_0"
+      213: -3574188584718936264
+    second: RoulettePiece_Highlight_1_0
+  - first:
+      213: 7855936396840433248
+    second: RoulettePiece_Highlight_1_1
+  - first:
+      213: 8827852253910284051
+    second: RoulettePiece_Highlight_1_2
+  - first:
+      213: -5945439582606116914
+    second: RoulettePiece_Highlight_1_3
+  - first:
+      213: -1632545320441415571
+    second: RoulettePiece_Highlight_1_4
+  - first:
+      213: 4949845134035419564
+    second: RoulettePiece_Highlight_1_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +61,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 0
-  alignment: 7
+  alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,23 +115,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uB8F0\uB81B\uAC1C\uBCC4_00030_0"
+      name: RoulettePiece_Highlight_1_0
       rect:
         serializedVersion: 2
-        x: 147
-        y: 136
-        width: 213
-        height: 291
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 3672
+        y: 2236
+        width: 656
+        height: 1018
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b535337d7c0866420800000000000000
-      internalID: 2622925428787204955
+      spriteID: 83752974b6ee56ec0800000000000000
+      internalID: -3574188584718936264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoulettePiece_Highlight_1_4
+      rect:
+        serializedVersion: 2
+        x: 3669
+        y: 964
+        width: 662
+        height: 1017
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d68fc5f3ea80859e0800000000000000
+      internalID: -1632545320441415571
       vertices: []
       indices: 
       edges: []
@@ -125,7 +162,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 5a116c8f829388a4bb8977735c0232c0
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +172,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\uB8F0\uB81B\uAC1C\uBCC4_00030_0": 2622925428787204955
+      RoulettePiece_Highlight_1_0: -3574188584718936264
+      RoulettePiece_Highlight_1_1: 7855936396840433248
+      RoulettePiece_Highlight_1_2: 8827852253910284051
+      RoulettePiece_Highlight_1_3: -5945439582606116914
+      RoulettePiece_Highlight_1_4: -1632545320441415571
+      RoulettePiece_Highlight_1_5: 4949845134035419564
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
