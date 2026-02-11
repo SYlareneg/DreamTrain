@@ -178,6 +178,7 @@ public class TurnManager : MonoBehaviour
         SetFullCost();
         // 플레이어 턴 시작 UI를 띄우고, StartPlayerTurn_AfterNotify 호출
         GameManager.Inst.Notification("나의 턴", "턴 " + turnNum.ToString(), StartPlayerTurn_AfterNotify);
+        GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.playerTurnStartSFX);
     }
 
     // 플레이어 턴 시작 - UI 호출 이후
@@ -318,6 +319,7 @@ public class TurnManager : MonoBehaviour
         Discard();
         // 적 턴 시작 UI를 띄우고, StartPlayerTurn_AfterNotify 호출
         GameManager.Inst.Notification("적 턴", "턴 " + turnNum.ToString(), EnemyManager.Inst.StartEnemyTurn);
+        GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.enemyTurnStartSFX);
     }
 
     // 카드 드로우

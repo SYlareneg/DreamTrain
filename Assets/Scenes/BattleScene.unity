@@ -978,6 +978,7 @@ GameObject:
   m_Component:
   - component: {fileID: 57490507}
   - component: {fileID: 57490508}
+  - component: {fileID: 57490509}
   m_Layer: 0
   m_Name: TurnManager
   m_TagString: Untagged
@@ -1034,6 +1035,103 @@ MonoBehaviour:
   characterSO: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
   enemySO: {fileID: 11400000, guid: a468c181cdc283c448a0495213858113, type: 2}
   isLoading: 0
+--- !u!82 &57490509
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57490506}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &62641915
 GameObject:
   m_ObjectHideFlags: 0
@@ -17977,13 +18075,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da2d2267c83c7904d99c67a4ce922640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
+  playerTurnStartSFX: {fileID: 8300000, guid: 063ac17153446534999ed32c7f4292f7, type: 3}
+  enemyTurnStartSFX: {fileID: 8300000, guid: 068e6bfa3d61a4b4a8c9d504badad139, type: 3}
   cardDrawSFX: {fileID: 8300000, guid: 2eaf1da073d928a4e9f5063a100f2fe9, type: 3}
   enemyDamageSFX: {fileID: 8300000, guid: 32510053084e3b942a61dfc09905e6c9, type: 3}
   enemyTriggerDamageSFX: {fileID: 8300000, guid: 832225ccd33b4384e88382447e0b5fc5, type: 3}
   playerDamageSFX: {fileID: 8300000, guid: 6721dc48884cde348a8ddb72ee229bca, type: 3}
+  healSFX: {fileID: 8300000, guid: 34c2bfa875aaf284886999537ca213bd, type: 3}
+  shieldSFX: {fileID: 8300000, guid: dbdb2295debd76045ac1591987a9d4fe, type: 3}
   rouletteRotateSFX: {fileID: 8300000, guid: a2037fbc5996d9143b0f03478472a2f0, type: 3}
   rouletteButtonSFX: {fileID: 8300000, guid: 0fe328692bfde4d44b0c7a353cd4f043, type: 3}
   rouletteEnchantSFX: {fileID: 8300000, guid: d61ece3a537f9db49858a77bf234cec4, type: 3}
+  specialRouletteSFX_Claw: {fileID: 8300000, guid: 832225ccd33b4384e88382447e0b5fc5, type: 3}
   UISelectSFX: {fileID: 8300000, guid: 320d5b89a728da145b1edac1349dbbe5, type: 3}
   coinGetSFX: {fileID: 8300000, guid: 86bec06fc807c1941a8b73764823aece, type: 3}
   bgmClips:

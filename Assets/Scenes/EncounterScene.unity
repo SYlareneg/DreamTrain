@@ -16467,6 +16467,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da2d2267c83c7904d99c67a4ce922640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
+  playerTurnStartSFX: {fileID: 8300000, guid: 063ac17153446534999ed32c7f4292f7, type: 3}
+  enemyTurnStartSFX: {fileID: 8300000, guid: 068e6bfa3d61a4b4a8c9d504badad139, type: 3}
   cardDrawSFX: {fileID: 8300000, guid: 2eaf1da073d928a4e9f5063a100f2fe9, type: 3}
   enemyDamageSFX: {fileID: 8300000, guid: 32510053084e3b942a61dfc09905e6c9, type: 3}
   enemyTriggerDamageSFX: {fileID: 8300000, guid: 832225ccd33b4384e88382447e0b5fc5, type: 3}

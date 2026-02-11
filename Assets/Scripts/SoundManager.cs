@@ -14,13 +14,18 @@ public class SoundManager : MonoBehaviour
         Inst = this;
     }
 
+    public AudioClip playerTurnStartSFX;
+    public AudioClip enemyTurnStartSFX;
     public AudioClip cardDrawSFX;
     public AudioClip enemyDamageSFX;
     public AudioClip enemyTriggerDamageSFX;
     public AudioClip playerDamageSFX;
+    public AudioClip healSFX;
+    public AudioClip shieldSFX;
     public AudioClip rouletteRotateSFX;
     public AudioClip rouletteButtonSFX;
     public AudioClip rouletteEnchantSFX;
+    public AudioClip specialRouletteSFX_Claw;
     public AudioClip UISelectSFX;
     public AudioClip coinGetSFX;
 

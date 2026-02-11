@@ -1825,6 +1825,11 @@ public class EnemyManager : MonoBehaviour
                 {
                     enemyDamageSprite.GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.enemyTriggerDamageSFX);
                 }
+                else if(source == EDamageSource.Roulette && (RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(enemyIdx)].originalTooltipTitle == "발톱" ||
+                                                             RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(enemyIdx)].originalTooltipTitle == "발톱+"))
+                {
+                    enemyDamageSprite.GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.specialRouletteSFX_Claw);
+                }
                 else
                 {
                     enemyDamageSprite.GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.enemyDamageSFX);
@@ -1864,7 +1869,7 @@ public class EnemyManager : MonoBehaviour
                     // enemyHealSprite.Find("HealTMP").GetComponent<TMP_Text>().color = Color.white;
                 });
 
-                // enemyHealSprite.GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.enemyHealSFX);
+                enemyHealSprite.GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.healSFX);
             }
         };
 
@@ -1901,7 +1906,7 @@ public class EnemyManager : MonoBehaviour
                     // enemyShieldSprite.Find("ShieldTMP").GetComponent<TMP_Text>().color = Color.white;
                 });
 
-                // enemyShieldSprite.GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.enemyShieldSFX);
+                enemyShieldSprite.GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.shieldSFX);
             }
         };
     }
