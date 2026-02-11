@@ -33,6 +33,7 @@ public class TurnManager : MonoBehaviour
     [Header("행동력")]
     [Tooltip("최대 행동력")] public int turnCost;
     [Tooltip("현재 행동력")] public int nowCost;
+    [Tooltip("추가 행동력")] public int extraCost;
     [Header("플레이어")]
     [Tooltip("최대 체력")] public int maxHealth;
     [Tooltip("현재 체력")] public int curHealth;
@@ -173,6 +174,7 @@ public class TurnManager : MonoBehaviour
         isLoading = true;
         turnNum++;
         IncreaseCost(-nowCost);
+        extraCost = 0;
         SetFullCost();
         // 플레이어 턴 시작 UI를 띄우고, StartPlayerTurn_AfterNotify 호출
         GameManager.Inst.Notification("나의 턴", "턴 " + turnNum.ToString(), StartPlayerTurn_AfterNotify);
@@ -469,9 +471,12 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    public void IncreaseCost(int value)
+    public void IncreaseCost(int value, bool isRestore = true)
     {
+        if(nowCost + value < 0) value = -nowCost;
+        if(isRestore && nowCost + value > turnCost) value = turnCost - nowCost;
         nowCost += value;
+        if(!isRestore) extraCost += value;
         Utils.AllignActions(ref OnCostChange, typeof(ShowBuff), typeof(RelicManager));
         OnCostChange?.Invoke(value);
     }

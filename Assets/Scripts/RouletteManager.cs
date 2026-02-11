@@ -21,6 +21,9 @@ public class RouletteManager : MonoBehaviour
     public Animator triggerEffect;
     public Sprite playerTriggerSprite;
     public Sprite enemyTriggerSprite;
+    public Animator enemyRouletteEffect;
+    public Action enemyRouletteEffectEndAction;
+    public Animator rouletteBuffEffect;
 
     public static int rouletteNum = 12;
 

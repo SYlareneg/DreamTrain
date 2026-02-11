@@ -821,7 +821,14 @@ public class EnemyManager : MonoBehaviour
                 };
                 enemySpecialActivation[1] = (value) =>
                 {
-                    TurnManager.Inst.TakeDmg(value, EDamageSource.Enemy);
+                    if(value % 2 == 0)
+                    {
+                        TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Enemy);
+                    }
+                    else
+                    {
+                        TurnManager.Inst.TakeDmg(value, EDamageSource.Enemy);
+                    }
                 };
                 int rouletteEffectCnt_brokenRobot = 0;
                 TurnManager.OnRouletteEnchant += (index) =>
@@ -1812,6 +1819,79 @@ public class EnemyManager : MonoBehaviour
                 {
                     enemyDamageSprite.GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.enemyDamageSFX);
                 }
+            }
+        };
+
+        TurnManager.OnEnemyHealed += (heal, source, enemyIdx) =>
+        {
+            Transform enemyHealSprite = null;
+            if (enemyIdx == 0)
+            {
+                enemyHealSprite = enemyImg.transform.Find("HealSprite");
+            }
+            else
+            {
+                enemyHealSprite = subEnemyImg[enemyIdx - 1]?.transform.Find("HealSprite");
+            }
+            if (enemyHealSprite != null)
+            {
+                // if(originalScales[enemyIdx] == Vector3.zero) originalScales[enemyIdx] = enemyHealSprite.localScale;
+                // Vector3 expandScale = enemyHealSprite.localScale.x * 1.5f > originalScales[enemyIdx].x * 2.5f ? originalScales[enemyIdx] * 2.5f : enemyHealSprite.localScale * 1.5f;
+                // enemyHealSprite.localScale = Vector3.zero;
+                // enemyHealSprite.Find("HealTMP").GetComponent<TMP_Text>().text = "+" + heal.ToString();
+                enemyHealSprite.gameObject.SetActive(true);
+                enemyHealSprite.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+                // enemyHealSprite.Find("HealTMP").GetComponent<TMP_Text>().color = Color.white;
+                enemyDamageSeq?.Kill();
+                enemyDamageSeq = DOTween.Sequence();
+                enemyDamageSeq.Append(enemyHealSprite.GetComponent<SpriteRenderer>().DOFade(1, 0.5f))
+                .Append(enemyHealSprite.GetComponent<SpriteRenderer>().DOFade(0, 0.5f))//.SetDelay(0.5f))
+                // .Join(enemyHealSprite.Find("HealTMP").GetComponent<TMP_Text>().DOFade(0, 0.2f))
+                .AppendCallback(() =>
+                {
+                    enemyHealSprite.gameObject.SetActive(false);
+                    enemyHealSprite.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+                    // enemyHealSprite.Find("HealTMP").GetComponent<TMP_Text>().color = Color.white;
+                });
+
+                // enemyHealSprite.GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.enemyHealSFX);
+            }
+        };
+
+        TurnManager.OnEnemyShielded += (shield, source, enemyIdx) =>
+        {
+            Transform enemyShieldSprite = null;
+            if (enemyIdx == 0)
+            {
+                enemyShieldSprite = enemyImg.transform.Find("ShieldSprite");
+            }
+            else
+            {
+                enemyShieldSprite = subEnemyImg[enemyIdx - 1]?.transform.Find("ShieldSprite");
+            }
+            if (enemyShieldSprite != null)
+            {
+                if(originalScales[enemyIdx] == Vector3.zero) originalScales[enemyIdx] = enemyShieldSprite.localScale;
+                Vector3 expandScale = enemyShieldSprite.localScale.x * 1.5f > originalScales[enemyIdx].x * 2.5f ? originalScales[enemyIdx] * 2.5f : enemyShieldSprite.localScale * 1.5f;
+                enemyShieldSprite.localScale = Vector3.zero;
+                // enemyShieldSprite.Find("ShieldTMP").GetComponent<TMP_Text>().text = "+" + shield.ToString();
+                enemyShieldSprite.gameObject.SetActive(true);
+                enemyShieldSprite.GetComponent<SpriteRenderer>().color = Color.white;
+                // enemyShieldSprite.Find("ShieldTMP").GetComponent<TMP_Text>().color = Color.white;
+                enemyDamageSeq?.Kill();
+                enemyDamageSeq = DOTween.Sequence();
+                enemyDamageSeq.Append(enemyShieldSprite.DOScale(expandScale, 0.2f))
+                .Append(enemyShieldSprite.DOScale(originalScales[enemyIdx], 0.2f))
+                .Append(enemyShieldSprite.GetComponent<SpriteRenderer>().DOFade(0, 0.2f).SetDelay(0.5f))
+                // .Join(enemyShieldSprite.Find("ShieldTMP").GetComponent<TMP_Text>().DOFade(0, 0.2f))
+                .AppendCallback(() =>
+                {
+                    enemyShieldSprite.gameObject.SetActive(false);
+                    enemyShieldSprite.GetComponent<SpriteRenderer>().color = Color.white;
+                    // enemyShieldSprite.Find("ShieldTMP").GetComponent<TMP_Text>().color = Color.white;
+                });
+
+                // enemyShieldSprite.GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.enemyShieldSFX);
             }
         };
     }
