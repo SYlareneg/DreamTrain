@@ -173,7 +173,7 @@ public class TurnManager : MonoBehaviour
         BeforePlayerTurnStart?.Invoke();
         isLoading = true;
         turnNum++;
-        IncreaseCost(-nowCost);
+        IncreaseCost(-nowCost, true);
         extraCost = 0;
         SetFullCost();
         // 플레이어 턴 시작 UI를 띄우고, StartPlayerTurn_AfterNotify 호출
@@ -473,19 +473,19 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    public void IncreaseCost(int value, bool isRestore = true)
+    public void IncreaseCost(int value, bool isRestore = false)
     {
         if(nowCost + value < 0) value = -nowCost;
         if(isRestore && nowCost + value > turnCost) value = turnCost - nowCost;
         nowCost += value;
-        if(!isRestore) extraCost += value;
+        if(!isRestore && extraCost + value >= 0) extraCost += value;
         Utils.AllignActions(ref OnCostChange, typeof(ShowBuff), typeof(RelicManager));
         OnCostChange?.Invoke(value);
     }
 
     public void SetFullCost()
     {
-        IncreaseCost(turnCost - nowCost);
+        IncreaseCost(turnCost - nowCost, true);
     }
 
     public void GetShield(bool isEnemy, int value, EDamageSource source, int enemyIdx = 0)

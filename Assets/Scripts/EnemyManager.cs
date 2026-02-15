@@ -706,7 +706,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     if (decCost > 0)
                     {
-                        TurnManager.Inst.IncreaseCost(-TurnManager.Inst.turnNum);
+                        TurnManager.Inst.IncreaseCost(-TurnManager.Inst.turnNum, true);
                         decCost--;
                     }
                 };
@@ -716,7 +716,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     if(TurnManager.Inst.turnNum == 2)
                     {
-                        TurnManager.Inst.IncreaseCost(-1);
+                        TurnManager.Inst.IncreaseCost(-1, true);
                     }
                     TurnManager.Inst.TriggerEnemyPassive(1);
                 };
@@ -1493,6 +1493,7 @@ public class EnemyManager : MonoBehaviour
         {
             if(action.actionType == EEnemyActionType.Turn)
             {
+                action.actionTypeNum = -action.actionTypeNum;
                 action.actionVal = -action.actionVal;
             }
         }
@@ -1504,6 +1505,7 @@ public class EnemyManager : MonoBehaviour
             {
                 if(action.actionType == EEnemyActionType.Turn)
                 {
+                    action.actionTypeNum = -action.actionTypeNum;
                     action.actionVal = -action.actionVal;
                 }
             }
@@ -1514,6 +1516,8 @@ public class EnemyManager : MonoBehaviour
     public void GetBestAction()
     {
         List<int> turnActions = new List<int>();
+        int turnOffset = 0;
+        string bestActionCalcLog = "Best Action Calculation Log:\n";
         List<int> executeIdx = new List<int>();
         for (int i = 0; i < actionList.Count; i++)
         {
@@ -1524,50 +1528,94 @@ public class EnemyManager : MonoBehaviour
             }
             else
             {
-                turnActions.Add(i);
-            }
-        }
-        Dictionary<int, List<int>> turnActionSet = new Dictionary<int, List<int>>();
-        turnActionSet[0] = new List<int>();
-        foreach (var action in turnActions)
-        {
-            int newTurn = actionList[action].actionVal;
-            Dictionary<int, List<int>> tempTurnActionSet = new Dictionary<int, List<int>>();
-            foreach (var actionSet in turnActionSet)
-            {
-                int newKey = actionSet.Key + newTurn;
-                List<int> newSet = new List<int>(actionSet.Value);
-                newSet.Add(action);
-                if (tempTurnActionSet.ContainsKey(newKey) == false)
+                int bestSpinVal = 0;
+                int typePrior = 3;
+                int valPrior = 0;
+                List<int> bestSpinVals = new List<int>();
+                for(int spinVal = Mathf.Abs(actionList[i].actionTypeNum + 1); spinVal <= Mathf.Abs(actionList[i].actionVal); spinVal++)
                 {
-                    tempTurnActionSet[newKey] = newSet;
-                }
-            }
-            foreach (var actionSet in tempTurnActionSet)
-            {
-                turnActionSet[actionSet.Key] = actionSet.Value;
-            }
-        }
-        List<int> bestTurnSequence = new List<int>();
-        List<(int priority, List<int> list)> prioritizedTurnActionList = new List<(int, List<int>)>();
-        foreach (var turnAction in turnActionSet)
-        {
-            int turnNum = turnAction.Key;
-            List<int> turnSequence = turnAction.Value;
-            RoulettePiece playerSlot_afterTurn = RouletteManager.Inst.roulettePieces[(RouletteManager.Inst.playerLookat - turnNum + RouletteManager.rouletteNum) % RouletteManager.rouletteNum];
-            RoulettePiece enemySlot_afterTurn = RouletteManager.Inst.roulettePieces[(RouletteManager.Inst.enemyLookat - turnNum + RouletteManager.rouletteNum) % RouletteManager.rouletteNum];
+                    int tempSpinVal = actionList[i].actionVal < 0 ? -spinVal : spinVal;
+                    RoulettePiece playerSlot_afterSpin = RouletteManager.Inst.roulettePieces[(RouletteManager.Inst.playerLookat + turnOffset - tempSpinVal + RouletteManager.rouletteNum) % RouletteManager.rouletteNum];
+                    RoulettePiece enemySlot_afterSpin = RouletteManager.Inst.roulettePieces[(RouletteManager.Inst.enemyLookat + turnOffset - tempSpinVal + RouletteManager.rouletteNum) % RouletteManager.rouletteNum];
+                    bestActionCalcLog += $"Action {i} Spin {tempSpinVal} -> Player Slot: {playerSlot_afterSpin.roulette.rtype.type}, Enemy Slot: {enemySlot_afterSpin.roulette.rtype.type}\n";
 
-            prioritizedTurnActionList.Add(GetTurnActionPriority(playerSlot_afterTurn, enemySlot_afterTurn, turnSequence));
+                    var spinPriority = GetSpinPriority(playerSlot_afterSpin, enemySlot_afterSpin);
+                    if (spinPriority.typePrior < typePrior || (spinPriority.typePrior == typePrior && spinPriority.valPrior > valPrior))
+                    {
+                        bestSpinVal = tempSpinVal;
+                        typePrior = spinPriority.typePrior;
+                        valPrior = spinPriority.valPrior;
+                        bestSpinVals.Clear();
+                        bestSpinVals.Add(tempSpinVal);
+                    }
+                    else if (spinPriority.typePrior == typePrior && spinPriority.valPrior == valPrior)
+                    {
+                        bestSpinVals.Add(tempSpinVal);
+                    }
+                }
+                if(bestSpinVals.Count > 0)
+                {
+                    bestSpinVal = bestSpinVals[Random.Range(0, bestSpinVals.Count)];
+                }
+                actionList[i].actionVal = bestSpinVal;
+                actionList[i].isTurnSet = true;
+                executeIdx.Add(i);
+                bestActionCalcLog += $"Best Spin for Action {i}: {bestSpinVal}\n";
+                Debug.Log(bestActionCalcLog);
+                // turnActions.Add(i);
+            }
         }
-        List<(int priority, List<int> list)> sortedTurnActionList = prioritizedTurnActionList.OrderBy(x => x.priority).ToList();
-        bestTurnSequence = sortedTurnActionList[0].list;
-        executeIdx.AddRange(bestTurnSequence);
+        // Dictionary<int, List<int>> turnActionSet = new Dictionary<int, List<int>>();
+        // turnActionSet[0] = new List<int>();
+        // foreach (var action in turnActions)
+        // {
+        //     int newTurn = actionList[action].actionVal;
+        //     Dictionary<int, List<int>> tempTurnActionSet = new Dictionary<int, List<int>>();
+        //     foreach (var actionSet in turnActionSet)
+        //     {
+        //         int newKey = actionSet.Key + newTurn;
+        //         List<int> newSet = new List<int>(actionSet.Value);
+        //         newSet.Add(action);
+        //         if (tempTurnActionSet.ContainsKey(newKey) == false)
+        //         {
+        //             tempTurnActionSet[newKey] = newSet;
+        //         }
+        //     }
+        //     foreach (var actionSet in tempTurnActionSet)
+        //     {
+        //         turnActionSet[actionSet.Key] = actionSet.Value;
+        //     }
+        // }
+        // List<int> bestTurnSequence = new List<int>();
+        // List<(int priority, List<int> list)> prioritizedTurnActionList = new List<(int, List<int>)>();
+        // foreach (var turnAction in turnActionSet)
+        // {
+        //     int turnNum = turnAction.Key;
+        //     List<int> turnSequence = turnAction.Value;
+        //     RoulettePiece playerSlot_afterTurn = RouletteManager.Inst.roulettePieces[(RouletteManager.Inst.playerLookat - turnNum + RouletteManager.rouletteNum) % RouletteManager.rouletteNum];
+        //     RoulettePiece enemySlot_afterTurn = RouletteManager.Inst.roulettePieces[(RouletteManager.Inst.enemyLookat - turnNum + RouletteManager.rouletteNum) % RouletteManager.rouletteNum];
+
+        //     prioritizedTurnActionList.Add(GetTurnActionPriority(playerSlot_afterTurn, enemySlot_afterTurn, turnSequence));
+        // }
+        // List<(int priority, List<int> list)> sortedTurnActionList = prioritizedTurnActionList.OrderBy(x => x.priority).ToList();
+        // bestTurnSequence = sortedTurnActionList[0].list;
+        // executeIdx.AddRange(bestTurnSequence);
         executeIdx.Sort();
 
         foreach (int idx in executeIdx)
         {
             executeActionList.Add(actionList[idx]);
         }
+    }
+
+    (int typePrior, int valPrior) GetSpinPriority(RoulettePiece playerSlot, RoulettePiece enemySlot)
+    {
+        if (playerSlot.roulette.rtype.type == ERouletteType.Enemy_Special) return (0, playerSlot.roulette.value);
+        if (playerSlot.roulette.rtype.type == ERouletteType.Attack) return (1, playerSlot.roulette.value);
+        if (enemySlot.roulette.rtype.type == ERouletteType.Shield) return (2, enemySlot.roulette.value);
+        if (enemySlot.roulette.rtype.type == ERouletteType.Attack) return (4, enemySlot.roulette.value);
+        if (playerSlot.roulette.rtype.type == ERouletteType.Heal) return (5, playerSlot.roulette.value);
+        return (3, 0);
     }
 
     (int priority, List<int> list) GetTurnActionPriority(RoulettePiece playerSlot, RoulettePiece enemySlot, List<int> turnSequence)

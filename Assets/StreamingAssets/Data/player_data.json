@@ -3,8 +3,8 @@
     "curHealth": 60,
     "dreamDust": 5,
     "leftPassengers": 0,
-    "isTutorial": true,
-    "lastSceneName": "RoomScene",
+    "isTutorial": false,
+    "lastSceneName": "MapScene",
     "personaPiece": "고양이의 꿈",
     "isPersonaEnhanced": false,
     "personaCards": [
@@ -59,14 +59,61 @@
     "wisdom": 1,
     "luck": 1,
     "currentActNum": 0,
-    "mapNodes": [],
-    "totalLevel": 0,
-    "visitedNodeIDList": [],
-    "curNodeIndex": 0,
-    "curNodeLocationID": "",
+    "mapNodes": [
+        {
+            "locationID": "TUTORIAL_START",
+            "selectedEncounterPool": [],
+            "ID": "4b9cb54f38544a728f3e796a802f7fbd",
+            "level": 0,
+            "pos": 0,
+            "screenPos": {
+                "x": -19.5,
+                "y": 0,
+                "z": 0
+            },
+            "childNodes": [
+                "80cddfd1f6c34bb48193f8c014d37cd5"
+            ]
+        },
+        {
+            "locationID": "TUTORIAL",
+            "selectedEncounterPool": [],
+            "ID": "80cddfd1f6c34bb48193f8c014d37cd5",
+            "level": 1,
+            "pos": 0,
+            "screenPos": {
+                "x": -15.5,
+                "y": -0.013358131051063538,
+                "z": 0
+            },
+            "childNodes": [
+                "e7ede76dc7bc452ca4dd69e1da116479"
+            ]
+        },
+        {
+            "locationID": "TUTORIAL_END",
+            "selectedEncounterPool": [],
+            "ID": "e7ede76dc7bc452ca4dd69e1da116479",
+            "level": 2,
+            "pos": 0,
+            "screenPos": {
+                "x": -11.5,
+                "y": 0,
+                "z": 0
+            },
+            "childNodes": []
+        }
+    ],
+    "totalLevel": 3,
+    "visitedNodeIDList": [
+        "4b9cb54f38544a728f3e796a802f7fbd",
+        "80cddfd1f6c34bb48193f8c014d37cd5"
+    ],
+    "curNodeIndex": 1,
+    "curNodeLocationID": "TUTORIAL",
     "lastEncounterType": 0,
     "encounterQueue": [],
     "currentStepID": "",
     "currentEncounterID": "",
-    "enemyName": ""
+    "enemyName": "해골 손님"
 }

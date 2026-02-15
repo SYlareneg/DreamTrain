@@ -20,6 +20,7 @@ public class EnemyAction : MonoBehaviour
     public int baseActionVal;
     public int actionVal;
     public bool isIgnore = false;
+    public bool isTurnSet = false;
     Tooltip tooltip;
     public Vector2 tooltipPos;
 
@@ -71,16 +72,22 @@ public class EnemyAction : MonoBehaviour
         {
             enemyActionTMP.text = "";
         }
-        else
+        else if(actionType == EEnemyActionType.Turn)
         {
-            if (actionType == EEnemyActionType.Turn && totalVal < 0)
+            if (totalVal > 0)
             {
-                enemyActionTMP.text = (-totalVal).ToString();
+                if(!isTurnSet) enemyActionTMP.text = (actionTypeNum + 1).ToString() + " ~ " + totalVal.ToString();
+                else enemyActionTMP.text = totalVal.ToString();
             }
             else
             {
-                enemyActionTMP.text = totalVal.ToString();
+                if(!isTurnSet) enemyActionTMP.text = (-actionTypeNum - 1).ToString() + " ~ " + (-totalVal).ToString();
+                else enemyActionTMP.text = (-totalVal).ToString();
             }
+        }
+        else
+        {
+            enemyActionTMP.text = totalVal.ToString();
         }
 
         if (totalVal > actionVal)
@@ -120,12 +127,12 @@ public class EnemyAction : MonoBehaviour
                 tooltip.tooltipTxt = "체력을 값만큼 회복합니다.";
                 break;
             case EEnemyActionType.Shield:
-                tooltip.tooltipTitle = "실드";
-                tooltip.tooltipTxt = "실드를 값만큼 얻습니다.";
+                tooltip.tooltipTitle = "수비";
+                tooltip.tooltipTxt = "방어도를 값만큼 얻습니다.";
                 break;
             case EEnemyActionType.Turn:
                 tooltip.tooltipTitle = "회전";
-                tooltip.tooltipTxt = "룰렛을 " + ((totalVal >= 0) ? "시계방향으로 " : "반시계방향으로 ") + "<" + Math.Abs(totalVal).ToString() + ">칸 회전시킵니다.";
+                tooltip.tooltipTxt = "룰렛을 " + ((totalVal >= 0) ? "시계방향으로 " : "반시계방향으로 ") + "<" + enemyActionTMP.text + ">칸 회전시킵니다.";
                 break;
         }
         tooltip.tooltipTxt = Regex.Replace(tooltip.tooltipTxt, @"값|<\d+>", match =>
@@ -141,17 +148,18 @@ public class EnemyAction : MonoBehaviour
         this.enemyIdx = enemyIdx;
         SetActionVal(p.val);
         isIgnore = false;
+        isTurnSet = false;
 
         if (actionType == EEnemyActionType.Turn)
         {
             if (baseActionVal < 0)
             {
                 enemyAction.sprite = enemyActionSprites[(int)actionType + 2];
-                actionVal = Random.Range(baseActionVal, p.typeNum);
+                actionVal = baseActionVal;
             }
             else
             {
-                actionVal = Random.Range(p.typeNum + 1, baseActionVal + 1);
+                actionVal = baseActionVal;
             }
         }
         tooltip = GetComponent<Tooltip>();
@@ -195,7 +203,15 @@ public class EnemyAction : MonoBehaviour
             switch (actionType)
             {
                 case EEnemyActionType.Turn:
-                    RouletteManager.Inst.Spin(totalVal > 0, Math.Abs(totalVal)); break;
+                    if(!isTurnSet) break;
+                    RouletteManager.Inst.Spin(totalVal > 0, Math.Abs(totalVal));
+                    Sequence spinSeq = DOTween.Sequence();
+                    spinSeq.AppendInterval(RouletteManager.spinDelay);
+                    spinSeq.OnComplete(() =>
+                    {
+                        RouletteManager.Inst.ActivateRoulette();
+                    });
+                    break;
                 case EEnemyActionType.Attack:
                     GameManager.Inst.enemyAttackEffect.SetActive(true);
                     GameManager.Inst.enemyAttackEffect.transform.localScale = Vector3.zero;

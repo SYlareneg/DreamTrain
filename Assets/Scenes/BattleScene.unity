@@ -1424,8 +1424,8 @@ MonoBehaviour:
   dreamPieceListSO: {fileID: 11400000, guid: fa145bd86cf8d8a47b1d9e3683cef771, type: 2}
   rewardCardWeights:
   - 20
-  - 40
-  - 40
+  - 60
+  - 20
   enhanceProbability: 0.2
   stageSO: {fileID: 11400000, guid: 2de9de6b9f0fbea46b0149e204bb7b11, type: 2}
   gameOverSignal: 0

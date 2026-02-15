@@ -272,10 +272,10 @@ public class MapManager : MonoBehaviour
             sr.sprite = lineSprites[0];
             sr.size = new Vector2(0f, 1f);
             sr.sortingOrder = 2;
-            DOTween.To(() => sr.size, x => sr.size = x, new Vector2(moveRoad.GetComponent<SpriteRenderer>().size.x, 1f), 3f);
+            DOTween.To(() => sr.size, x => sr.size = x, new Vector2(moveRoad.GetComponent<SpriteRenderer>().size.x, 1f), 1.5f);
         }
         player.GetComponent<Animator>().SetBool("isMove", true);
-        player.transform.DOMove(mapNodeScreenPos[mapNode.ID], 3f).OnComplete(() =>
+        player.transform.DOMove(mapNodeScreenPos[mapNode.ID], 1.5f).OnComplete(() =>
         {
             player.GetComponent<Animator>().SetBool("isMove", false);
             curNode = mapNode;
