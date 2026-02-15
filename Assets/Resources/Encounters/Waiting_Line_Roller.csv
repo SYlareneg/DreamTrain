@@ -1,13 +1,6 @@
 ﻿Page_ID,Type,Text_Content,Next_Page_ID,Call_Function,Constraint
 P1,DESC,"롤러코스터 앞에 어마어마하게 긴 줄이 늘어서 있습니다. 이런, 놀이기구를 타기 위해 너무 오래 기다리다 해골이 되어버린 관람객도 보이는군요. 아무래도 당신은 줄 사이를 뚫고 지나가야 할 것 같습니다.",,,
-P1,BRANCH,줄에 끼어든다.   (전투),P_AFTER_BATTLE,StartBattle(BoneGuests),DEFAULT
+P1,BRANCH,줄에 끼어든다.   (전투),P_AFTER_BATTLE,StartBattle(BoneGuest),DEFAULT
 P_AFTER_BATTLE,DESC,"당신의 새치기에 격렬하게 저항하는 관람객들을 겨우 뿌리치는 데 성공했습니다. 과연 이 관람객들 중 몇 명이나 놀이기구를 탈 수 있을까 의문이 든 당신은 여정을 계속하기로 합니다.
 ",,,DEFAULT
 P_AFTER_BATTLE,BRANCH,자리를 떠난다,END,,DEFAULT
-,,,,,
-,,,,,
-,,,,,
-,,,,,
-,,,,,
-,,,,,
-,,,,,

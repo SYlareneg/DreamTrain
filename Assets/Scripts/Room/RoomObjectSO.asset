@@ -22,13 +22,13 @@ MonoBehaviour:
         text: "\uAC80\uC740 \uACE0\uC591\uC774\uB2E4. \uC6B8\uC74C\uC18C\uB9AC\uAC00
           \uC660\uC9C0 \uBAA8\uB974\uAC8C \uC775\uC219\uD558\uB2E4."
         speakerSprite: {fileID: 0}
-        sound: {fileID: 0}
+        sound: {fileID: 8300000, guid: e2386e4b7fd39ef4c8ce8e3fb27a5fc8, type: 3}
     - stateName: awake
       dialogueLines:
       - speakerName: "\uC9C0\uC9C0"
         text: "\uC568\uB9AC\uC2A4, \uB4DC\uB514\uC5B4 \uC900\uBE44\uAC00 \uB410\uC5B4?"
         speakerSprite: {fileID: -6885921731126323413, guid: 16b48c31bb848aa49b7b59b1d78012db, type: 3}
-        sound: {fileID: 0}
+        sound: {fileID: 8300000, guid: e2386e4b7fd39ef4c8ce8e3fb27a5fc8, type: 3}
       - speakerName: "\uC568\uB9AC\uC2A4"
         text: ...?
         speakerSprite: {fileID: 0}
@@ -62,7 +62,7 @@ MonoBehaviour:
       - speakerName: "\uC9C0\uC9C0"
         text: "\uC568\uB9AC\uC2A4, \uB4DC\uB514\uC5B4 \uC900\uBE44\uAC00 \uB410\uC5B4?"
         speakerSprite: {fileID: -6885921731126323413, guid: 16b48c31bb848aa49b7b59b1d78012db, type: 3}
-        sound: {fileID: 0}
+        sound: {fileID: 8300000, guid: e2386e4b7fd39ef4c8ce8e3fb27a5fc8, type: 3}
       - speakerName: "\uC568\uB9AC\uC2A4"
         text: ...?
         speakerSprite: {fileID: 0}

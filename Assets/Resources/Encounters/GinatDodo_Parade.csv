@@ -11,8 +11,8 @@ P_AFTER_BATTLE,DESC,"당신은 거대 도도새를 진정시키는 데에 성공
 그 말에 무질서하게 달리던 동물들이 일제히 멈추고는 다시 행렬로 돌아옵니다.
 
 ""경주가 끝났으니 상을 받아야겠지? 아이야, 누구에게 상을 줄래?""",,,DEFAULT
-P_AFTER_BATTLE,BRANCH,나에게 상을 준다,P_ALONE,,DEFAULT
-P_AFTER_BATTLE,BRANCH,모두에게 상을 준다,P_EVERYONE,,DEFAULT
+P_AFTER_BATTLE,BRANCH,나에게 상을 준다,P_ALONE,GetDebris(3),DEFAULT
+P_AFTER_BATTLE,BRANCH,모두에게 상을 준다,P_EVERYONE,GetObjet(모두의 우승),DEFAULT
 P_ALONE,DESC,"당신은 스스로에게 상을 주기로 합니다. 
 
 ""상금도 받아가야지!""
@@ -21,7 +21,7 @@ P_ALONE,DESC,"당신은 스스로에게 상을 주기로 합니다.
 ""다음에 또 경주하자!""
 
 당신은 도도에게 손을 흔들며 작별인사를 합니다. 나쁘지 않은 친구 같지만, 다시 만나고 싶지는 않군요! ",,,DEFAULT
-P_ALONE,BRANCH,떠난다,END,GetDebris(3),
+P_ALONE,BRANCH,떠난다,END,,
 P_EVERYONE,DESC,"당신은 모두에게 상을 주기로 합니다. 
 
 ""모두가 우승자이니, 모두가 상을 받아야 해요!""
@@ -30,6 +30,4 @@ P_EVERYONE,DESC,"당신은 모두에게 상을 주기로 합니다.
 ""다음에 또 경주하자!""
 
 당신은 도도에게 손을 흔들며 작별인사를 합니다. 나쁘지 않은 친구 같지만, 다시 만나고 싶지는 않군요! ",,,
-P_EVERYONE,BRANCH,떠난다,END,GetObjet(모두의 우승),
-,,,,,
-,,,,,
+P_EVERYONE,BRANCH,떠난다,END,,

@@ -190,13 +190,13 @@ public class EnemyManager : MonoBehaviour
                 {
                     if (isTriggerActivated)
                     {
-                        triggerPhaseScale *= enemy.triggerPhase[triggerPhaseNum].scalingFactor;
+                        // triggerPhaseScale *= enemy.triggerPhase[triggerPhaseNum].scalingFactor;
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], 0, Mathf.FloorToInt(triggerPhaseScale), 1);
                         BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_EnemySpecial[0, 0][0], 0, Mathf.FloorToInt(triggerPhaseScale), 1);
                     }
                     else
                     {
-                        phaseScale *= enemy.phase[phaseNum].scalingFactor;
+                        // phaseScale *= enemy.phase[phaseNum].scalingFactor;
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], 0, Mathf.FloorToInt(phaseScale), 1);
                         BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_EnemySpecial[0, 0][0], 0, Mathf.FloorToInt(phaseScale), 1);
                     }
@@ -239,13 +239,13 @@ public class EnemyManager : MonoBehaviour
                 {
                     if(isTriggerActivated)
                     {
-                        triggerPhaseScale *= enemy.triggerPhase[triggerPhaseNum].scalingFactor;
+                        // triggerPhaseScale *= enemy.triggerPhase[triggerPhaseNum].scalingFactor;
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], 0, Mathf.FloorToInt(triggerPhaseScale), 1);
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 1], 0, Mathf.FloorToInt(triggerPhaseScale) * 1.5f, 2);
                     }
                     else
                     {
-                        phaseScale *= enemy.phase[phaseNum].scalingFactor;
+                        // phaseScale *= enemy.phase[phaseNum].scalingFactor;
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], 0, Mathf.FloorToInt(phaseScale), 1);
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 1], 0, Mathf.FloorToInt(phaseScale) * 1.5f, 2);
                     }
@@ -328,12 +328,12 @@ public class EnemyManager : MonoBehaviour
                 {
                     if(isTriggerActivated)
                     {
-                        triggerPhaseScale *= enemy.triggerPhase[triggerPhaseNum].scalingFactor;
+                        // triggerPhaseScale *= enemy.triggerPhase[triggerPhaseNum].scalingFactor;
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(triggerPhaseScale), 1);
                     }
                     else
                     {
-                        phaseScale *= enemy.phase[phaseNum].scalingFactor;
+                        // phaseScale *= enemy.phase[phaseNum].scalingFactor;
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(phaseScale), 1);
                     }
                     // if (patternNum == 3)
@@ -359,12 +359,12 @@ public class EnemyManager : MonoBehaviour
                 {
                     if(isTriggerActivated)
                     {
-                        triggerPhaseScale *= enemy.triggerPhase[triggerPhaseNum].scalingFactor;
+                        // triggerPhaseScale *= enemy.triggerPhase[triggerPhaseNum].scalingFactor;
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(triggerPhaseScale), 1);
                     }
                     else
                     {
-                        phaseScale *= enemy.phase[phaseNum].scalingFactor;
+                        // phaseScale *= enemy.phase[phaseNum].scalingFactor;
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(phaseScale), 1);
                     }
                     // if (patternNum == 3)
@@ -394,12 +394,12 @@ public class EnemyManager : MonoBehaviour
                 {
                     if(isTriggerActivated)
                     {
-                        triggerPhaseScale *= enemy.triggerPhase[triggerPhaseNum].scalingFactor;
+                        // triggerPhaseScale *= enemy.triggerPhase[triggerPhaseNum].scalingFactor;
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(triggerPhaseScale), 1);
                     }
                     else
                     {
-                        phaseScale *= enemy.phase[phaseNum].scalingFactor;
+                        // phaseScale *= enemy.phase[phaseNum].scalingFactor;
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(phaseScale), 1);
                     }
                     // if (patternNum == 3)
@@ -466,13 +466,13 @@ public class EnemyManager : MonoBehaviour
                 {
                     if(isTriggerActivated)
                     {
-                        triggerPhaseScale *= enemy.triggerPhase[triggerPhaseNum].scalingFactor;
+                        // triggerPhaseScale *= enemy.triggerPhase[triggerPhaseNum].scalingFactor;
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], 0, Mathf.FloorToInt(triggerPhaseScale) * 2, 1);
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 3], 0, Mathf.FloorToInt(triggerPhaseScale), 1);
                     }
                     else
                     {
-                        phaseScale *= enemy.phase[phaseNum].scalingFactor;
+                        // phaseScale *= enemy.phase[phaseNum].scalingFactor;
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], 0, Mathf.FloorToInt(phaseScale) * 2, 1);
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 3], 0, Mathf.FloorToInt(phaseScale), 1);
                     }
@@ -547,7 +547,7 @@ public class EnemyManager : MonoBehaviour
                 TurnManager.OnPlayerTurnStart += () =>
                 {
                     TurnManager.Inst.TriggerEnemyPassive(1);
-                    phaseScale *= enemy.phase[phaseNum].scalingFactor;
+                    // phaseScale *= enemy.phase[phaseNum].scalingFactor;
                     if(isTriggerActivated && triggerPatternNum == 0)
                     {
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(phaseScale), 1);
@@ -617,7 +617,7 @@ public class EnemyManager : MonoBehaviour
                 };
                 TurnManager.OnPlayerTurnStart += () =>
                 {
-                    phaseScale *= enemy.phase[phaseNum].scalingFactor;
+                    // phaseScale *= enemy.phase[phaseNum].scalingFactor;
                     if(!isTriggerActivated && patternNum == 0)
                     {
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(phaseScale), 1);
@@ -681,7 +681,7 @@ public class EnemyManager : MonoBehaviour
                 };
                 TurnManager.OnPlayerTurnStart += () =>
                 {
-                    phaseScale *= enemy.phase[phaseNum].scalingFactor;
+                    // phaseScale *= enemy.phase[phaseNum].scalingFactor;
                     if (isTriggerActivated)
                     {
                         BuffManager.Inst.AddShowBuff("취약", EBuffAffectType.Enemy, 1, true);
@@ -706,7 +706,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     if (decCost > 0)
                     {
-                        TurnManager.Inst.IncreaseCost(-TurnManager.Inst.turnNum);
+                        TurnManager.Inst.IncreaseCost(-TurnManager.Inst.turnNum, true);
                         decCost--;
                     }
                 };
@@ -716,7 +716,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     if(TurnManager.Inst.turnNum == 2)
                     {
-                        TurnManager.Inst.IncreaseCost(-1);
+                        TurnManager.Inst.IncreaseCost(-1, true);
                     }
                     TurnManager.Inst.TriggerEnemyPassive(1);
                 };
@@ -726,12 +726,12 @@ public class EnemyManager : MonoBehaviour
                 {
                     if(isTriggerActivated)
                     {
-                        triggerPhaseScale *= enemy.triggerPhase[triggerPhaseNum].scalingFactor;
+                        // triggerPhaseScale *= enemy.triggerPhase[triggerPhaseNum].scalingFactor;
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(triggerPhaseScale), 1);
                     }
                     else
                     {
-                        phaseScale *= enemy.phase[phaseNum].scalingFactor;
+                        // phaseScale *= enemy.phase[phaseNum].scalingFactor;
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(phaseScale), 1);
                     }
                 };
@@ -771,12 +771,12 @@ public class EnemyManager : MonoBehaviour
                 {
                     if(isTriggerActivated)
                     {
-                        triggerPhaseScale *= enemy.triggerPhase[triggerPhaseNum].scalingFactor;
+                        // triggerPhaseScale *= enemy.triggerPhase[triggerPhaseNum].scalingFactor;
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(triggerPhaseScale), 1);
                     }
                     else
                     {
-                        phaseScale *= enemy.phase[phaseNum].scalingFactor;
+                        // phaseScale *= enemy.phase[phaseNum].scalingFactor;
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(phaseScale), 1);
                     }
                 };
@@ -797,12 +797,12 @@ public class EnemyManager : MonoBehaviour
                 {
                     if(isTriggerActivated)
                     {
-                        triggerPhaseScale *= enemy.triggerPhase[triggerPhaseNum].scalingFactor;
+                        // triggerPhaseScale *= enemy.triggerPhase[triggerPhaseNum].scalingFactor;
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(triggerPhaseScale), 1);
                     }
                     else
                     {
-                        phaseScale *= enemy.phase[phaseNum].scalingFactor;
+                        // phaseScale *= enemy.phase[phaseNum].scalingFactor;
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(phaseScale), 1);
                     }
                 };
@@ -821,7 +821,14 @@ public class EnemyManager : MonoBehaviour
                 };
                 enemySpecialActivation[1] = (value) =>
                 {
-                    TurnManager.Inst.TakeDmg(value, EDamageSource.Enemy);
+                    if(value % 2 == 0)
+                    {
+                        TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Enemy);
+                    }
+                    else
+                    {
+                        TurnManager.Inst.TakeDmg(value, EDamageSource.Enemy);
+                    }
                 };
                 int rouletteEffectCnt_brokenRobot = 0;
                 TurnManager.OnRouletteEnchant += (index) =>
@@ -844,12 +851,12 @@ public class EnemyManager : MonoBehaviour
                 {
                     if(isTriggerActivated)
                     {
-                        triggerPhaseScale *= enemy.triggerPhase[triggerPhaseNum].scalingFactor;
+                        // triggerPhaseScale *= enemy.triggerPhase[triggerPhaseNum].scalingFactor;
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(triggerPhaseScale), 1);
                     }
                     else
                     {
-                        phaseScale *= enemy.phase[phaseNum].scalingFactor;
+                        // phaseScale *= enemy.phase[phaseNum].scalingFactor;
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], 0, Mathf.FloorToInt(phaseScale), 1);
                     }
 
@@ -994,6 +1001,7 @@ public class EnemyManager : MonoBehaviour
         else if (isTriggerActivated && enemy.triggerPhase[triggerPhaseNum].phaseClear)
         {
             triggerPhaseNum++;
+            triggerPhaseScale = 1f;
             triggerPatternNum = 0;
             currentPattern = enemy.triggerPhase[triggerPhaseNum].patterns[0].pattern;
             enemyImg.GetComponent<SpriteRenderer>().sprite = enemy.triggerPhase[triggerPhaseNum].sprite;
@@ -1072,6 +1080,10 @@ public class EnemyManager : MonoBehaviour
                         phaseNum = enemy.phase.Count - 1;
                     }
                 }
+                else
+                {
+                    phaseScale *= enemy.phase[phaseNum].scalingFactor;
+                }
             }
         }
         else
@@ -1089,11 +1101,16 @@ public class EnemyManager : MonoBehaviour
                 if (!enemy.triggerPhase[triggerPhaseNum].phaseRepeat)
                 {
                     triggerPhaseNum++;
+                    triggerPhaseScale = 1f;
                     if (triggerPhaseNum >= enemy.triggerPhase.Count)
                     {
                         triggerPhaseNum = 0;
                         isTriggerActivated = false;
                     }
+                }
+                else
+                {
+                    triggerPhaseScale *= enemy.triggerPhase[triggerPhaseNum].scalingFactor;
                 }
             }
         }
@@ -1476,6 +1493,7 @@ public class EnemyManager : MonoBehaviour
         {
             if(action.actionType == EEnemyActionType.Turn)
             {
+                action.actionTypeNum = -action.actionTypeNum;
                 action.actionVal = -action.actionVal;
             }
         }
@@ -1487,6 +1505,7 @@ public class EnemyManager : MonoBehaviour
             {
                 if(action.actionType == EEnemyActionType.Turn)
                 {
+                    action.actionTypeNum = -action.actionTypeNum;
                     action.actionVal = -action.actionVal;
                 }
             }
@@ -1497,6 +1516,8 @@ public class EnemyManager : MonoBehaviour
     public void GetBestAction()
     {
         List<int> turnActions = new List<int>();
+        int turnOffset = 0;
+        string bestActionCalcLog = "Best Action Calculation Log:\n";
         List<int> executeIdx = new List<int>();
         for (int i = 0; i < actionList.Count; i++)
         {
@@ -1507,50 +1528,94 @@ public class EnemyManager : MonoBehaviour
             }
             else
             {
-                turnActions.Add(i);
-            }
-        }
-        Dictionary<int, List<int>> turnActionSet = new Dictionary<int, List<int>>();
-        turnActionSet[0] = new List<int>();
-        foreach (var action in turnActions)
-        {
-            int newTurn = actionList[action].actionVal;
-            Dictionary<int, List<int>> tempTurnActionSet = new Dictionary<int, List<int>>();
-            foreach (var actionSet in turnActionSet)
-            {
-                int newKey = actionSet.Key + newTurn;
-                List<int> newSet = new List<int>(actionSet.Value);
-                newSet.Add(action);
-                if (tempTurnActionSet.ContainsKey(newKey) == false)
+                int bestSpinVal = 0;
+                int typePrior = 3;
+                int valPrior = 0;
+                List<int> bestSpinVals = new List<int>();
+                for(int spinVal = Mathf.Abs(actionList[i].actionTypeNum + 1); spinVal <= Mathf.Abs(actionList[i].actionVal); spinVal++)
                 {
-                    tempTurnActionSet[newKey] = newSet;
-                }
-            }
-            foreach (var actionSet in tempTurnActionSet)
-            {
-                turnActionSet[actionSet.Key] = actionSet.Value;
-            }
-        }
-        List<int> bestTurnSequence = new List<int>();
-        List<(int priority, List<int> list)> prioritizedTurnActionList = new List<(int, List<int>)>();
-        foreach (var turnAction in turnActionSet)
-        {
-            int turnNum = turnAction.Key;
-            List<int> turnSequence = turnAction.Value;
-            RoulettePiece playerSlot_afterTurn = RouletteManager.Inst.roulettePieces[(RouletteManager.Inst.playerLookat - turnNum + RouletteManager.rouletteNum) % RouletteManager.rouletteNum];
-            RoulettePiece enemySlot_afterTurn = RouletteManager.Inst.roulettePieces[(RouletteManager.Inst.enemyLookat - turnNum + RouletteManager.rouletteNum) % RouletteManager.rouletteNum];
+                    int tempSpinVal = actionList[i].actionVal < 0 ? -spinVal : spinVal;
+                    RoulettePiece playerSlot_afterSpin = RouletteManager.Inst.roulettePieces[(RouletteManager.Inst.playerLookat + turnOffset - tempSpinVal + RouletteManager.rouletteNum) % RouletteManager.rouletteNum];
+                    RoulettePiece enemySlot_afterSpin = RouletteManager.Inst.roulettePieces[(RouletteManager.Inst.enemyLookat + turnOffset - tempSpinVal + RouletteManager.rouletteNum) % RouletteManager.rouletteNum];
+                    bestActionCalcLog += $"Action {i} Spin {tempSpinVal} -> Player Slot: {playerSlot_afterSpin.roulette.rtype.type}, Enemy Slot: {enemySlot_afterSpin.roulette.rtype.type}\n";
 
-            prioritizedTurnActionList.Add(GetTurnActionPriority(playerSlot_afterTurn, enemySlot_afterTurn, turnSequence));
+                    var spinPriority = GetSpinPriority(playerSlot_afterSpin, enemySlot_afterSpin);
+                    if (spinPriority.typePrior < typePrior || (spinPriority.typePrior == typePrior && spinPriority.valPrior > valPrior))
+                    {
+                        bestSpinVal = tempSpinVal;
+                        typePrior = spinPriority.typePrior;
+                        valPrior = spinPriority.valPrior;
+                        bestSpinVals.Clear();
+                        bestSpinVals.Add(tempSpinVal);
+                    }
+                    else if (spinPriority.typePrior == typePrior && spinPriority.valPrior == valPrior)
+                    {
+                        bestSpinVals.Add(tempSpinVal);
+                    }
+                }
+                if(bestSpinVals.Count > 0)
+                {
+                    bestSpinVal = bestSpinVals[Random.Range(0, bestSpinVals.Count)];
+                }
+                actionList[i].actionVal = bestSpinVal;
+                actionList[i].isTurnSet = true;
+                executeIdx.Add(i);
+                bestActionCalcLog += $"Best Spin for Action {i}: {bestSpinVal}\n";
+                Debug.Log(bestActionCalcLog);
+                // turnActions.Add(i);
+            }
         }
-        List<(int priority, List<int> list)> sortedTurnActionList = prioritizedTurnActionList.OrderBy(x => x.priority).ToList();
-        bestTurnSequence = sortedTurnActionList[0].list;
-        executeIdx.AddRange(bestTurnSequence);
+        // Dictionary<int, List<int>> turnActionSet = new Dictionary<int, List<int>>();
+        // turnActionSet[0] = new List<int>();
+        // foreach (var action in turnActions)
+        // {
+        //     int newTurn = actionList[action].actionVal;
+        //     Dictionary<int, List<int>> tempTurnActionSet = new Dictionary<int, List<int>>();
+        //     foreach (var actionSet in turnActionSet)
+        //     {
+        //         int newKey = actionSet.Key + newTurn;
+        //         List<int> newSet = new List<int>(actionSet.Value);
+        //         newSet.Add(action);
+        //         if (tempTurnActionSet.ContainsKey(newKey) == false)
+        //         {
+        //             tempTurnActionSet[newKey] = newSet;
+        //         }
+        //     }
+        //     foreach (var actionSet in tempTurnActionSet)
+        //     {
+        //         turnActionSet[actionSet.Key] = actionSet.Value;
+        //     }
+        // }
+        // List<int> bestTurnSequence = new List<int>();
+        // List<(int priority, List<int> list)> prioritizedTurnActionList = new List<(int, List<int>)>();
+        // foreach (var turnAction in turnActionSet)
+        // {
+        //     int turnNum = turnAction.Key;
+        //     List<int> turnSequence = turnAction.Value;
+        //     RoulettePiece playerSlot_afterTurn = RouletteManager.Inst.roulettePieces[(RouletteManager.Inst.playerLookat - turnNum + RouletteManager.rouletteNum) % RouletteManager.rouletteNum];
+        //     RoulettePiece enemySlot_afterTurn = RouletteManager.Inst.roulettePieces[(RouletteManager.Inst.enemyLookat - turnNum + RouletteManager.rouletteNum) % RouletteManager.rouletteNum];
+
+        //     prioritizedTurnActionList.Add(GetTurnActionPriority(playerSlot_afterTurn, enemySlot_afterTurn, turnSequence));
+        // }
+        // List<(int priority, List<int> list)> sortedTurnActionList = prioritizedTurnActionList.OrderBy(x => x.priority).ToList();
+        // bestTurnSequence = sortedTurnActionList[0].list;
+        // executeIdx.AddRange(bestTurnSequence);
         executeIdx.Sort();
 
         foreach (int idx in executeIdx)
         {
             executeActionList.Add(actionList[idx]);
         }
+    }
+
+    (int typePrior, int valPrior) GetSpinPriority(RoulettePiece playerSlot, RoulettePiece enemySlot)
+    {
+        if (playerSlot.roulette.rtype.type == ERouletteType.Enemy_Special) return (0, playerSlot.roulette.value);
+        if (playerSlot.roulette.rtype.type == ERouletteType.Attack) return (1, playerSlot.roulette.value);
+        if (enemySlot.roulette.rtype.type == ERouletteType.Shield) return (2, enemySlot.roulette.value);
+        if (enemySlot.roulette.rtype.type == ERouletteType.Attack) return (4, enemySlot.roulette.value);
+        if (playerSlot.roulette.rtype.type == ERouletteType.Heal) return (5, playerSlot.roulette.value);
+        return (3, 0);
     }
 
     (int priority, List<int> list) GetTurnActionPriority(RoulettePiece playerSlot, RoulettePiece enemySlot, List<int> turnSequence)
@@ -1808,10 +1873,88 @@ public class EnemyManager : MonoBehaviour
                 {
                     enemyDamageSprite.GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.enemyTriggerDamageSFX);
                 }
+                else if(source == EDamageSource.Roulette && (RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(enemyIdx)].originalTooltipTitle == "발톱" ||
+                                                             RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(enemyIdx)].originalTooltipTitle == "발톱+"))
+                {
+                    enemyDamageSprite.GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.specialRouletteSFX_Claw);
+                }
                 else
                 {
                     enemyDamageSprite.GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.enemyDamageSFX);
                 }
+            }
+        };
+
+        TurnManager.OnEnemyHealed += (heal, source, enemyIdx) =>
+        {
+            Transform enemyHealSprite = null;
+            if (enemyIdx == 0)
+            {
+                enemyHealSprite = enemyImg.transform.Find("HealSprite");
+            }
+            else
+            {
+                enemyHealSprite = subEnemyImg[enemyIdx - 1]?.transform.Find("HealSprite");
+            }
+            if (enemyHealSprite != null)
+            {
+                // if(originalScales[enemyIdx] == Vector3.zero) originalScales[enemyIdx] = enemyHealSprite.localScale;
+                // Vector3 expandScale = enemyHealSprite.localScale.x * 1.5f > originalScales[enemyIdx].x * 2.5f ? originalScales[enemyIdx] * 2.5f : enemyHealSprite.localScale * 1.5f;
+                // enemyHealSprite.localScale = Vector3.zero;
+                // enemyHealSprite.Find("HealTMP").GetComponent<TMP_Text>().text = "+" + heal.ToString();
+                enemyHealSprite.gameObject.SetActive(true);
+                enemyHealSprite.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+                // enemyHealSprite.Find("HealTMP").GetComponent<TMP_Text>().color = Color.white;
+                enemyDamageSeq?.Kill();
+                enemyDamageSeq = DOTween.Sequence();
+                enemyDamageSeq.Append(enemyHealSprite.GetComponent<SpriteRenderer>().DOFade(1, 0.5f))
+                .Append(enemyHealSprite.GetComponent<SpriteRenderer>().DOFade(0, 0.5f))//.SetDelay(0.5f))
+                // .Join(enemyHealSprite.Find("HealTMP").GetComponent<TMP_Text>().DOFade(0, 0.2f))
+                .AppendCallback(() =>
+                {
+                    enemyHealSprite.gameObject.SetActive(false);
+                    enemyHealSprite.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+                    // enemyHealSprite.Find("HealTMP").GetComponent<TMP_Text>().color = Color.white;
+                });
+
+                enemyHealSprite.GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.healSFX);
+            }
+        };
+
+        TurnManager.OnEnemyShielded += (shield, source, enemyIdx) =>
+        {
+            Transform enemyShieldSprite = null;
+            if (enemyIdx == 0)
+            {
+                enemyShieldSprite = enemyImg.transform.Find("ShieldSprite");
+            }
+            else
+            {
+                enemyShieldSprite = subEnemyImg[enemyIdx - 1]?.transform.Find("ShieldSprite");
+            }
+            if (enemyShieldSprite != null)
+            {
+                if(originalScales[enemyIdx] == Vector3.zero) originalScales[enemyIdx] = enemyShieldSprite.localScale;
+                Vector3 expandScale = enemyShieldSprite.localScale.x * 1.5f > originalScales[enemyIdx].x * 2.5f ? originalScales[enemyIdx] * 2.5f : enemyShieldSprite.localScale * 1.5f;
+                enemyShieldSprite.localScale = Vector3.zero;
+                // enemyShieldSprite.Find("ShieldTMP").GetComponent<TMP_Text>().text = "+" + shield.ToString();
+                enemyShieldSprite.gameObject.SetActive(true);
+                enemyShieldSprite.GetComponent<SpriteRenderer>().color = Color.white;
+                // enemyShieldSprite.Find("ShieldTMP").GetComponent<TMP_Text>().color = Color.white;
+                enemyDamageSeq?.Kill();
+                enemyDamageSeq = DOTween.Sequence();
+                enemyDamageSeq.Append(enemyShieldSprite.DOScale(expandScale, 0.2f))
+                .Append(enemyShieldSprite.DOScale(originalScales[enemyIdx], 0.2f))
+                .Append(enemyShieldSprite.GetComponent<SpriteRenderer>().DOFade(0, 0.2f).SetDelay(0.5f))
+                // .Join(enemyShieldSprite.Find("ShieldTMP").GetComponent<TMP_Text>().DOFade(0, 0.2f))
+                .AppendCallback(() =>
+                {
+                    enemyShieldSprite.gameObject.SetActive(false);
+                    enemyShieldSprite.GetComponent<SpriteRenderer>().color = Color.white;
+                    // enemyShieldSprite.Find("ShieldTMP").GetComponent<TMP_Text>().color = Color.white;
+                });
+
+                enemyShieldSprite.GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.shieldSFX);
             }
         };
     }

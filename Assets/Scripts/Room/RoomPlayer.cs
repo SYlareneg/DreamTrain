@@ -17,6 +17,7 @@ public class RoomPlayer : MonoBehaviour
     private InputSystem_Actions input;
     Animator animator;
     public List<RoomClickableObject> nearbyInteractables = new List<RoomClickableObject>();
+    AudioSource audioSource;
 
     void PlayerMove(Vector2 pos)
     {
@@ -127,6 +128,13 @@ public class RoomPlayer : MonoBehaviour
 
         input = new InputSystem_Actions();
         animator = GetComponent<Animator>();
+
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    public void WalkSound()
+    {
+        audioSource.PlayOneShot(audioSource.clip);
     }
 
     void Start()

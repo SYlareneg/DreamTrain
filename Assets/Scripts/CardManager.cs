@@ -438,6 +438,12 @@ public class CardManager : MonoBehaviour
             }
             if(selectedCard.item.isSingleTarget == true && onEnemyCardArea == -1)
             {
+                if(selectedCard.IsCardUseable(0) == false)
+                {
+                    EnlargeCard(false, selectedCard);
+                    selectedCard = null;
+                    return;
+                }
                 // EnlargeCard(false, selectedCard);
                 // selectedCard = null;
                 TurnManager.Inst.isLoading = true;

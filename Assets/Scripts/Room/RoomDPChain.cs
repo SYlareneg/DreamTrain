@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.EventSystems;
 
-public class RoomDPChain : MonoBehaviour, IDragHandler, IEndDragHandler
+public class RoomDPChain : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndDragHandler
 {
     Vector2 originalPivot;
     Vector3 originalPosition;
@@ -19,6 +19,11 @@ public class RoomDPChain : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         RectTransform rt = GetComponent<RectTransform>();
         DOTween.To(() => rt.pivot, (x) => rt.pivot = x, originalPivot, 0.5f).SetEase(Ease.OutBack);
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
     }
 
     public void OnDrag(PointerEventData eventData)

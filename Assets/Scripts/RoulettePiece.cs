@@ -242,9 +242,16 @@ public class RoulettePiece : MonoBehaviour
         switch (roulette.rtype.type)
         {
             case ERouletteType.Attack:
+                if(totalVal < 0) totalVal = 0;
                 if (isEnemy)
                 {
-                    TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette, enemyIdx);
+                    RouletteManager.Inst.enemyRouletteEffectEndAction = () =>
+                    {
+                        TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette, enemyIdx);
+                        RouletteManager.Inst.enemyRouletteEffectEndAction = null;
+                    };
+                    RouletteManager.Inst.enemyRouletteEffect.SetTrigger("Attack");
+                    // TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette, enemyIdx);
                 }
                 else
                 {
@@ -252,9 +259,16 @@ public class RoulettePiece : MonoBehaviour
                 }
                 break;
             case ERouletteType.Heal:
+                if(totalVal > 0) totalVal = 0;
                 if (isEnemy)
                 {
-                    TurnManager.Inst.EnemyTakeDmg(-totalVal, EDamageSource.Roulette, enemyIdx);
+                    RouletteManager.Inst.enemyRouletteEffectEndAction = () =>
+                    {
+                        TurnManager.Inst.EnemyTakeDmg(-totalVal, EDamageSource.Roulette, enemyIdx);
+                        RouletteManager.Inst.enemyRouletteEffectEndAction = null;
+                    };
+                    RouletteManager.Inst.enemyRouletteEffect.SetTrigger("Heal");
+                    // TurnManager.Inst.EnemyTakeDmg(-totalVal, EDamageSource.Roulette, enemyIdx);
                 }
                 else
                 {
@@ -264,7 +278,13 @@ public class RoulettePiece : MonoBehaviour
             case ERouletteType.Shield:
                 if (isEnemy)
                 {
-                    TurnManager.Inst.GetShield(true, totalVal, EDamageSource.Roulette, enemyIdx);
+                    RouletteManager.Inst.enemyRouletteEffectEndAction = () =>
+                    {
+                        TurnManager.Inst.GetShield(true, totalVal, EDamageSource.Roulette, enemyIdx);
+                        RouletteManager.Inst.enemyRouletteEffectEndAction = null;
+                    };
+                    RouletteManager.Inst.enemyRouletteEffect.SetTrigger("Shield");
+                    // TurnManager.Inst.GetShield(true, totalVal, EDamageSource.Roulette, enemyIdx);
                 }
                 else
                 {
@@ -276,7 +296,29 @@ public class RoulettePiece : MonoBehaviour
                 else EnemyManager.subEnemySpecialRouletteActivation[enemyIdx - 1, roulette.rtype.specialTypeIdx]?.Invoke(this, isEnemy, totalVal, enemyIdx, isEnhanced);
                 break;
             case ERouletteType.Player_Special:
-                PassiveManager.playerSpecialRouletteActivation[roulette.rtype.specialTypeIdx]?.Invoke(isEnemy, totalVal, enemyIdx, isEnhanced);
+                if(isEnemy)
+                {
+                    RouletteManager.Inst.enemyRouletteEffectEndAction = () =>
+                    {
+                        PassiveManager.playerSpecialRouletteActivation[roulette.rtype.specialTypeIdx]?.Invoke(isEnemy, totalVal, enemyIdx, isEnhanced);
+                        RouletteManager.Inst.enemyRouletteEffectEndAction = null;
+                    };
+                    switch(PassiveManager.Inst.playerSpecialRoulettes[roulette.rtype.specialTypeIdx].title)
+                    {
+                        case "발톱":
+                        case "발톱+":
+                            RouletteManager.Inst.enemyRouletteEffect.SetTrigger("Claw");
+                            break;
+                        case "실뭉치":
+                        case "실뭉치+":
+                            RouletteManager.Inst.enemyRouletteEffect.SetTrigger("Furball");
+                            break;
+                    }
+                }
+                else
+                {
+                    PassiveManager.playerSpecialRouletteActivation[roulette.rtype.specialTypeIdx]?.Invoke(isEnemy, totalVal, enemyIdx, isEnhanced);
+                }
                 break;
         }
 
@@ -295,6 +337,24 @@ public class RoulettePiece : MonoBehaviour
             activateSeq.AppendInterval(0.2f);
             activateSeq.Append(highlightSR.DOFade(0f, 0.1f));
             activateSeq.OnComplete(() => { highlight.gameObject.SetActive(false); });
+        }
+    }
+
+    public void EnchantAnim(Action onComplete = null)
+    {
+        Transform enchantEffect = transform.Find("EnchantEffect");
+        if (enchantEffect != null)
+        {
+            var enchantAnim = enchantEffect.GetComponent<Animator>();
+            enchantAnim.SetTrigger("Enchant");
+            enchantAnim.GetComponent<RouletteEffect_Enchant>().OnEffectEndAction = () =>
+            {
+                onComplete?.Invoke();
+            };
+        }
+        else
+        {
+            onComplete?.Invoke();
         }
     }
 

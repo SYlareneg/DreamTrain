@@ -586,7 +586,7 @@ public class PassiveManager : MonoBehaviour
                     }
                 };
                 // 트리거 게이지 최대치 설정
-                TurnManager.Inst.playerTriggerMaxCnt = 12;
+                TurnManager.Inst.playerTriggerMaxCnt = 10;
                 // 트리거 조각 설정
                 rItem.rtype = new RouletteType(ERouletteType.Attack);
                 rItem.value = 24;

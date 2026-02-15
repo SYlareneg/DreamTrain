@@ -37,6 +37,10 @@ public class SceneChangeManager : MonoBehaviour
                     PlayerPositionData.scenePlayerPos.Add(curSceneName, PlayerManager.Inst.player.transform.position);
                 }
             }
+            if(SoundManager.Inst != null && (toSceneName == "RoomScene" || toSceneName == "StartScene"))
+            {
+                SoundManager.Inst.StopBGM();
+            }
             SceneManager.LoadScene(toSceneName);
         }));
     }

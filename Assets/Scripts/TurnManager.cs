@@ -33,6 +33,7 @@ public class TurnManager : MonoBehaviour
     [Header("행동력")]
     [Tooltip("최대 행동력")] public int turnCost;
     [Tooltip("현재 행동력")] public int nowCost;
+    [Tooltip("추가 행동력")] public int extraCost;
     [Header("플레이어")]
     [Tooltip("최대 체력")] public int maxHealth;
     [Tooltip("현재 체력")] public int curHealth;
@@ -172,10 +173,12 @@ public class TurnManager : MonoBehaviour
         BeforePlayerTurnStart?.Invoke();
         isLoading = true;
         turnNum++;
-        IncreaseCost(-nowCost);
+        IncreaseCost(-nowCost, true);
+        extraCost = 0;
         SetFullCost();
         // 플레이어 턴 시작 UI를 띄우고, StartPlayerTurn_AfterNotify 호출
         GameManager.Inst.Notification("나의 턴", "턴 " + turnNum.ToString(), StartPlayerTurn_AfterNotify);
+        GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.playerTurnStartSFX);
     }
 
     // 플레이어 턴 시작 - UI 호출 이후
@@ -316,6 +319,7 @@ public class TurnManager : MonoBehaviour
         Discard();
         // 적 턴 시작 UI를 띄우고, StartPlayerTurn_AfterNotify 호출
         GameManager.Inst.Notification("적 턴", "턴 " + turnNum.ToString(), EnemyManager.Inst.StartEnemyTurn);
+        GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.enemyTurnStartSFX);
     }
 
     // 카드 드로우
@@ -469,16 +473,19 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    public void IncreaseCost(int value)
+    public void IncreaseCost(int value, bool isRestore = false)
     {
+        if(nowCost + value < 0) value = -nowCost;
+        if(isRestore && nowCost + value > turnCost) value = turnCost - nowCost;
         nowCost += value;
+        if(!isRestore && extraCost + value >= 0) extraCost += value;
         Utils.AllignActions(ref OnCostChange, typeof(ShowBuff), typeof(RelicManager));
         OnCostChange?.Invoke(value);
     }
 
     public void SetFullCost()
     {
-        IncreaseCost(turnCost - nowCost);
+        IncreaseCost(turnCost - nowCost, true);
     }
 
     public void GetShield(bool isEnemy, int value, EDamageSource source, int enemyIdx = 0)

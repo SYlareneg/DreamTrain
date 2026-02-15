@@ -87,12 +87,13 @@ public class ActivateButton : MonoBehaviour
 
     IEnumerator ButtonActivate()
     {
+        bool checkTrigger = RouletteManager.Inst.isTriggerActivated;
         RouletteManager.Inst.ActivateRoulette();
-        TurnManager.Inst.IncreaseCost(-useCost);
+        if(checkTrigger == false) TurnManager.Inst.IncreaseCost(-useCost);
         TurnManager.Inst.isLoading = true;
         GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.rouletteButtonSFX);
         yield return new WaitForSeconds(0.5f);
-        RouletteManager.Inst.Spin(true, 1);
+        if(checkTrigger == false) RouletteManager.Inst.Spin(true, 1);
         if(TurnManager.Inst.characterSO.isTutorial == false || TutorialManager.Inst.tutorialStage == 0) TurnManager.Inst.isLoading = false;
     }
 

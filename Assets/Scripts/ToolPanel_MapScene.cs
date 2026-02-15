@@ -41,9 +41,8 @@ public class ToolPanel_MapScene : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         rect = GetComponent<RectTransform>();
-        // rect.position = new Vector2(rect.position.x, rect.position.y - rect.rect.height);
-        Debug.Log(rect.rect.height);
-        isShown = false;
+        rect.position = new Vector2(rect.position.x, rect.position.y - rect.rect.height);
+        isShown = true;
         panelMoving = false;
     }
 }

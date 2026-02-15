@@ -50,6 +50,7 @@ public class MapNodeObject : MonoBehaviour
         if(mapNode == null) return;
         if(MapManager.Inst.curNode.childNodes.Find(x => x == mapNode.ID) == null) return;
         if(MapManager.Inst.player_moveable == false) return;
+        GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.UISelectSFX);
         MapManager.Inst.MovePlayerTo(mapNode);
     }
 

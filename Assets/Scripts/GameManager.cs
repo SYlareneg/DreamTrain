@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
                 playerDamageEffect.SetActive(false);
             });
             playerDamageSeq.SetLink(playerDamageEffect);
-            // GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.playerHealSFX);
+            GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.healSFX);
         };
         TurnManager.OnPlayerShielded += (shield, source) =>
         {
@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
                 playerDamageEffect.SetActive(false);
             });
             playerDamageSeq.SetLink(playerDamageEffect);
-            // GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.playerShieldSFX);
+            GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.shieldSFX);
         };
     }
 

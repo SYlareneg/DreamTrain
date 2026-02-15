@@ -676,6 +676,7 @@ public class BuffManager : MonoBehaviour
         switch (aType)
         {
             case EBuffAffectType.Roulette:
+                RouletteManager.Inst.rouletteBuffEffect.SetTrigger("Buffed");
                 GameManager.Inst.SetRouletteBuffUI(); break;
             case EBuffAffectType.Enemy:
                 GameManager.Inst.SetEnemyBuffUI(enemyIdx); break;

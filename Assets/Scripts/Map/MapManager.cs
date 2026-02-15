@@ -272,10 +272,10 @@ public class MapManager : MonoBehaviour
             sr.sprite = lineSprites[0];
             sr.size = new Vector2(0f, 1f);
             sr.sortingOrder = 2;
-            DOTween.To(() => sr.size, x => sr.size = x, new Vector2(moveRoad.GetComponent<SpriteRenderer>().size.x, 1f), 3f);
+            DOTween.To(() => sr.size, x => sr.size = x, new Vector2(moveRoad.GetComponent<SpriteRenderer>().size.x, 1f), 1.5f);
         }
         player.GetComponent<Animator>().SetBool("isMove", true);
-        player.transform.DOMove(mapNodeScreenPos[mapNode.ID], 3f).OnComplete(() =>
+        player.transform.DOMove(mapNodeScreenPos[mapNode.ID], 1.5f).OnComplete(() =>
         {
             player.GetComponent<Animator>().SetBool("isMove", false);
             curNode = mapNode;
@@ -368,10 +368,12 @@ public class MapManager : MonoBehaviour
                 mapCamera.minX = Mathf.Min(GetScreenPos(map.sortedMapNodeList[0]).x + 6f, 13.5f);
                 mapCamera.maxX = Mathf.Max(-13.5f, GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).x - 6f);
             }
+            SoundManager.Inst.PlayBGM(actSO.curActNum);
         }
         else
         {
             SetNewMap();
+            SoundManager.Inst.PlayBGM(actSO.curActNum);
         }
 
         SceneChangeManager.Inst.SceneFadeIn(() =>
