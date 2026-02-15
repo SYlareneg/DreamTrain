@@ -65,7 +65,14 @@ public class EncounterManager : MonoBehaviour
     private Coroutine typingCoroutine;
     private bool isTyping = false;
     private System.Action onTypingComplete;
-
+    
+    [Header("Audio Settings")]
+    public AudioClip typeWriterSfx; 
+    private AudioSource audioSource;
+    public AudioClip choiceClickSfx; 
+    public AudioClip coinGetSfx;
+    private AudioSource sfxSource;
+    
     public EncSofaManager sofaManager;
     public CardUI cardGetUI;
 
@@ -93,13 +100,26 @@ public class EncounterManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else { Destroy(gameObject); }
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+        
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.loop = true;
+        
+        sfxSource = gameObject.AddComponent<AudioSource>();
+        sfxSource.playOnAwake = false;
+        sfxSource.loop = false;
     }
-
+    public void PlaySFX(AudioClip clip)
+    {
+        if (sfxSource != null && clip != null)
+        {
+            sfxSource.PlayOneShot(clip);
+        }
+    }
+    
     void Start()
     {
         if (masterDB != null) masterDatabase = masterDB.GetDictionary();
@@ -540,9 +560,8 @@ public class EncounterManager : MonoBehaviour
 
         string finalContent = currentStep.textContent + pendingSystemMessage;
 
-        if (currentStep.type == EncounterStepType.DESC || !string.IsNullOrEmpty(finalContent))
+        if (encounterPanel.activeInHierarchy && (currentStep.type == EncounterStepType.DESC || !string.IsNullOrEmpty(finalContent)))
         {
-            // currentStep.textContent 대신 finalContent를 사용
             StartTyping(finalContent, false, () => 
             {
                 UpdateOptionsUI(); 
@@ -550,6 +569,7 @@ public class EncounterManager : MonoBehaviour
         }   
         else
         {
+            descriptionText.text = FormatDialogueColor(finalContent).Replace("\\n", "\n");
             UpdateOptionsUI();
         }
         pendingSystemMessage = "";
@@ -567,6 +587,11 @@ public class EncounterManager : MonoBehaviour
     {
         Debug.Log("typing");
         isTyping = true;
+        if (audioSource != null && typeWriterSfx != null)
+        {
+            audioSource.clip = typeWriterSfx;
+            audioSource.Play();
+        }
         string formattedContent = FormatDialogueColor(content);
         string parsedContent = formattedContent.Replace("\\n", "\n");
 
@@ -610,11 +635,13 @@ public class EncounterManager : MonoBehaviour
 
         descriptionText.maxVisibleCharacters = totalVisibleCharacters;
         
-        // 타이핑 끝난 후, 마지막 글자에 맞춰 확실하게 스크롤 조정
         ScrollToChar(totalVisibleCharacters - 1);
         
         isTyping = false;
-        
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+        }
         onTypingComplete?.Invoke();
         onTypingComplete = null;
     }
@@ -655,7 +682,10 @@ public class EncounterManager : MonoBehaviour
             if (typingCoroutine != null) StopCoroutine(typingCoroutine);
 
             descriptionText.maxVisibleCharacters = descriptionText.textInfo.characterCount;
-            //ScrollToChar(descriptionText.textInfo.characterCount - 1);
+            if (audioSource != null)
+            {
+                audioSource.Stop();
+            }
 
             isTyping = false;
 
@@ -806,6 +836,7 @@ public class EncounterManager : MonoBehaviour
         
         btn.onClick.AddListener(() => 
         {
+            PlaySFX(choiceClickSfx);
             if (IsValidFunction(data.func))
             {
                 ParseAndExecuteFunctions(data.func);
@@ -982,7 +1013,11 @@ public class EncounterManager : MonoBehaviour
                 {
                     int amount = int.Parse(args[0]);
                     string msg = "";
-                    if (amount > 0) msg = $"\n<color=#5df86f>드림 코인 {amount}개 획득!</color>";
+                    if (amount > 0)
+                    {
+                        msg = $"\n<color=#5df86f>드림 코인 {amount}개 획득!</color>";
+                        PlaySFX(coinGetSfx);
+                    }
                     else msg = $"\n<color=#FF0000>드림 코인 {-amount}개 지불!</color>";
                     pendingSystemMessage += msg;
                     characterData.dreamDust += int.Parse(args[0]);

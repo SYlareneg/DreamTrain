@@ -3481,7 +3481,6 @@ GameObject:
   - component: {fileID: 518884967}
   - component: {fileID: 518884969}
   - component: {fileID: 518884968}
-  - component: {fileID: 518884970}
   m_Layer: 5
   m_Name: RoulettePanel
   m_TagString: Untagged
@@ -3550,27 +3549,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 518884966}
   m_CullTransparentMesh: 1
---- !u!114 &518884970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 518884966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31c2bdbe5ab4d3940a63fdb8e0bfbff3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EncounterRouletteUI
-  panelRoot: {fileID: 518884966}
-  wheelContainer: {fileID: 431694175}
-  spinButton: {fileID: 597607957}
-  probabilityText: {fileID: 1740820835}
-  resultText: {fileID: 1740820835}
-  imgFail: {fileID: 710767727}
-  imgSuccess: {fileID: 377506791}
-  imgGreat: {fileID: 810421780}
-  playerStats: {fileID: 11400000, guid: 3814c952094c0884fa9f39e909922626, type: 2}
 --- !u!1 &520862443
 GameObject:
   m_ObjectHideFlags: 0
@@ -4218,7 +4196,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 518884970}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: EncounterRouletteUI, Assembly-CSharp
         m_MethodName: OnClickSpin
         m_Mode: 1
@@ -4280,6 +4258,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8f833148a88da4ab2db3f87f455597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouletteButtonVisual
+--- !u!1 &616019827
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 616019829}
+  - component: {fileID: 616019828}
+  m_Layer: 5
+  m_Name: RouletteManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &616019828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616019827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c2bdbe5ab4d3940a63fdb8e0bfbff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EncounterRouletteUI
+  panelRoot: {fileID: 518884966}
+  wheelContainer: {fileID: 431694175}
+  spinButton: {fileID: 597607957}
+  probabilityText: {fileID: 1740820835}
+  resultText: {fileID: 1740820835}
+  imgFail: {fileID: 710767727}
+  imgSuccess: {fileID: 377506791}
+  imgGreat: {fileID: 810421780}
+  playerStats: {fileID: 11400000, guid: 3814c952094c0884fa9f39e909922626, type: 2}
+  rouletteSfx: {fileID: 8300000, guid: a2037fbc5996d9143b0f03478472a2f0, type: 3}
+--- !u!224 &616019829
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616019827}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 960, y: 540}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &616808839
 GameObject:
   m_ObjectHideFlags: 0
@@ -7265,9 +7301,9 @@ MonoBehaviour:
   - {fileID: 1165808055}
   - {fileID: 485240248}
   choiceButtonPrefab: {fileID: 3483447046169688931, guid: 95af0e70fabbd1d4598cff01c115fb2a, type: 3}
-  rouletteUI: {fileID: 518884970}
+  rouletteUI: {fileID: 616019828}
   roulettePanel: {fileID: 518884966}
-  headerUI: {fileID: 0}
+  headerUI: {fileID: 1498465001}
   merchantPanel: {fileID: 31375621}
   cardRemovalPanel: {fileID: 2059001763}
   merchantUI: {fileID: 1413826898}
@@ -7283,6 +7319,9 @@ MonoBehaviour:
   cardDatabase: {fileID: 11400000, guid: 200e71a8166738b4a98d746fa337adde, type: 2}
   stageSO: {fileID: 11400000, guid: 2de9de6b9f0fbea46b0149e204bb7b11, type: 2}
   typingSpeed: 0.01
+  typeWriterSfx: {fileID: 8300000, guid: bf1a30b6f4667e14d9ecc2d57debcaba, type: 3}
+  choiceClickSfx: {fileID: 8300000, guid: 320d5b89a728da145b1edac1349dbbe5, type: 3}
+  coinGetSfx: {fileID: 8300000, guid: 86bec06fc807c1941a8b73764823aece, type: 3}
   sofaManager: {fileID: 1493062490}
   cardGetUI: {fileID: 2090230963}
   isDebuging: 0
@@ -18811,6 +18850,7 @@ SceneRoots:
   - {fileID: 4836060683566008206}
   - {fileID: 1619673954}
   - {fileID: 1665816292}
+  - {fileID: 616019829}
   - {fileID: 1498465002}
   - {fileID: 1413826899}
   - {fileID: 988924727}

@@ -10,6 +10,7 @@ public enum RouletteResultType
     Success,
     GreatSuccess
 }
+
 public class EncounterRouletteUI : MonoBehaviour
 {
     [Header("UI References")]
@@ -27,11 +28,27 @@ public class EncounterRouletteUI : MonoBehaviour
     [Header("Data")]
     public PlayerStatsSo playerStats;
     private Sprite originalSpinSprite;
+    
+    [Header("Audio")]
+    public AudioClip rouletteSfx;
+    private AudioSource audioSource;
 
-    private int totalSlots = 12; // 12조각 고정
+    private int totalSlots = 12; 
     private List<RouletteResultType> currentSegments = new List<RouletteResultType>();
     private bool isSpinning = false;
     private System.Action<RouletteResultType> onCompleteCallback;
+
+    private void Awake()
+    {
+        // [수정됨] AudioSource 컴포넌트 초기화
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        audioSource.playOnAwake = false;
+        audioSource.loop = false; // [변경] 반복 재생 끔 (한 번만 재생)
+    }
 
     private void Start()
     {
@@ -49,7 +66,9 @@ public class EncounterRouletteUI : MonoBehaviour
         if (spinButton != null)
         {
             if (originalSpinSprite == null) originalSpinSprite = spinButton.image.sprite;
-            spinButton.image.sprite = originalSpinSprite;
+            // 이미지 초기화 (재사용 시 버튼 이미지가 눌린 상태로 남아있는 것 방지)
+            if (originalSpinSprite != null) spinButton.image.sprite = originalSpinSprite;
+            
             spinButton.interactable = true;
             spinButton.onClick.RemoveAllListeners(); 
             spinButton.onClick.AddListener(OnClickSpin);
@@ -69,7 +88,6 @@ public class EncounterRouletteUI : MonoBehaviour
 
     void CalculateSegments(string statName, int requiredStat)
     {
-        // ... (기존 계산 로직 그대로 유지) ...
         StatType type = (StatType)System.Enum.Parse(typeof(StatType), statName);
         int currentStatVal = playerStats.GetStat(type);
         
@@ -114,34 +132,20 @@ public class EncounterRouletteUI : MonoBehaviour
             greatCount += convertToGreat;
         }
 
-        // 리스트 구성: 대성공 -> 성공 -> 실패 순서 (중요)
         for (int i = 0; i < greatCount; i++) currentSegments.Add(RouletteResultType.GreatSuccess);
         for (int i = 0; i < successCount; i++) currentSegments.Add(RouletteResultType.Success);
         for (int i = 0; i < failCount; i++) currentSegments.Add(RouletteResultType.Fail);
     }
 
-    // [핵심 로직] 이미지를 겹쳐서 표현
     void DrawWheelImages()
     {
-        // 1. 회전값 초기화
         wheelContainer.rotation = Quaternion.identity;
 
-        // 2. 개수 카운트
         int greatCount = currentSegments.FindAll(x => x == RouletteResultType.GreatSuccess).Count;
         int successCount = currentSegments.FindAll(x => x == RouletteResultType.Success).Count;
-        // failCount는 나머지 영역이므로 계산 불필요
 
-        // 3. 이미지 세팅
-        
-        // 배경(실패): 항상 100% 보이게 둠
-        if (imgFail != null) 
-        {
-            imgFail.gameObject.SetActive(true);
-        }
+        if (imgFail != null) imgFail.gameObject.SetActive(true);
 
-        // 성공 레이어 (노란색)
-        // [중요] 성공 이미지는 (대성공 + 성공) 영역만큼 채웁니다.
-        // 왜냐하면 대성공 이미지가 그 위를 덮을 것이기 때문입니다.
         if (imgSuccess != null)
         {
             float totalSuccessAmount = (float)(greatCount + successCount) / totalSlots;
@@ -149,8 +153,6 @@ public class EncounterRouletteUI : MonoBehaviour
             imgSuccess.gameObject.SetActive(totalSuccessAmount > 0);
         }
 
-        // 대성공 레이어 (민트색)
-        // 맨 위에 그려지며, 대성공 개수만큼만 채웁니다.
         if (imgGreat != null)
         {
             float greatAmount = (float)greatCount / totalSlots;
@@ -164,14 +166,9 @@ public class EncounterRouletteUI : MonoBehaviour
         if (isSpinning) return;
 
         Sprite pressedSprite = Resources.Load<Sprite>("Encounters/Images/버튼_누름_01");
-
         if (pressedSprite != null && spinButton != null)
         {
             spinButton.image.sprite = pressedSprite;
-        }
-        else
-        {
-            Debug.LogWarning("눌린 버튼 이미지를 찾을 수 없습니다. 경로를 확인하세요: Resources/Encounters/Images/버튼_누름");
         }
 
         StartCoroutine(SpinRoutine());
@@ -181,35 +178,29 @@ public class EncounterRouletteUI : MonoBehaviour
     {
         isSpinning = true;
         spinButton.interactable = false;
-
-        // 1. 결과 인덱스 랜덤 결정 (0 ~ 11)
+        
+        // [수정됨] 사운드 재생: 피치 조절 없이 단순 1회 재생
+        if (audioSource != null && rouletteSfx != null)
+        {
+            audioSource.PlayOneShot(rouletteSfx);
+        }
+        
         int targetIndex = Random.Range(0, totalSlots);
-        
-        // 2. 각도 계산
-        float segmentAngle = 360f / totalSlots; // 30도
-
-        // [최종 수정] 
-        // 목표 지점(targetIndex)이 12시(0도)에 오게 하려면
-        // 해당 슬롯의 각도만큼 반시계 방향(+)으로 돌려야 합니다.
+        float segmentAngle = 360f / totalSlots; 
         float targetAngleZ = (targetIndex * segmentAngle) + (segmentAngle / 2f); 
-        
-        // 3. 회전 연출
-        // 시계 방향으로 돌면서 멈추게 하기 위해, 바퀴 수(360 * laps)를 '뺍니다'.
-        // 수식: (목표 각도) - (회전할 바퀴 수)
+
         int laps = 5; 
-        float randomOffset = Random.Range(-10f, 10f); // 오차 범위
+        float randomOffset = Random.Range(-10f, 10f);
         
         float finalRotationZ = targetAngleZ - (360 * laps) + randomOffset; 
 
         Vector3 targetRot = new Vector3(0, 0, finalRotationZ);
-
-        // DOTween 회전
         wheelContainer.DORotate(targetRot, 3.0f, RotateMode.FastBeyond360)
             .SetEase(Ease.OutCubic); 
 
         yield return new WaitForSeconds(3.0f);
-
-        // 4. 결과 판정
+        
+        // 회전 종료 후 로직
         RouletteResultType result = currentSegments[targetIndex];
         
         yield return new WaitForSeconds(0.5f);
