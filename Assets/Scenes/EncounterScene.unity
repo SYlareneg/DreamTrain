@@ -437,14 +437,13 @@ GameObject:
   m_Component:
   - component: {fileID: 31375622}
   - component: {fileID: 31375623}
-  - component: {fileID: 31375624}
   m_Layer: 5
   m_Name: Merchant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &31375622
 RectTransform:
   m_ObjectHideFlags: 0
@@ -474,69 +473,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31375621}
   m_CullTransparentMesh: 1
---- !u!114 &31375624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 31375621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a33c14232d66b34a892f156d9af763a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EncounterMerchantUI
-  panelRoot: {fileID: 31375621}
-  characterSO: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
-  stageSO: {fileID: 11400000, guid: 2de9de6b9f0fbea46b0149e204bb7b11, type: 2}
-  dreamPieceListSO: {fileID: 11400000, guid: fa145bd86cf8d8a47b1d9e3683cef771, type: 2}
-  playerDataSO: {fileID: 11400000, guid: 00c60599a04bcec4f82efcd1f45339b4, type: 2}
-  relicDataList: {fileID: 11400000, guid: 51dcd8347c98008458816214e380ed75, type: 2}
-  playerRelicSO: {fileID: 11400000, guid: f261c4fa2c6606c4ea86c879ed3f631d, type: 2}
-  playerStatsSO: {fileID: 11400000, guid: 3814c952094c0884fa9f39e909922626, type: 2}
-  menuControll: {fileID: 1306292636}
-  normalItemDataListSO: {fileID: 11400000, guid: 200e71a8166738b4a98d746fa337adde, type: 2}
-  useableItemListSO: {fileID: 11400000, guid: e2b1eb20f9745d14d9ffcef82aa9b454, type: 2}
-  cardContainer: {fileID: 281916175}
-  cardSectionObj: {fileID: 281916174}
-  objetContainer: {fileID: 691578339}
-  objetSectionObj: {fileID: 691578338}
-  objetRareSectionObj: {fileID: 314847762}
-  objetRareContainer: {fileID: 314847763}
-  consumableSectionObj: {fileID: 685749991}
-  junkShopSectionObj: {fileID: 871787087}
-  objetJunkContainer: {fileID: 683492069}
-  junkChosenContainer: {fileID: 856271231}
-  junkSellButton: {fileID: 1761506757}
-  junkSellButtonImage: {fileID: 1761506754}
-  buttonBasicSprite: {fileID: 2700846266556587074, guid: 1bd5eb1365055c04fb93270e660c5cfe, type: 3}
-  buttonPressedSprite: {fileID: 8468375374493045740, guid: 2468aa2284f28064e82945555de2cf66, type: 3}
-  sellCardPrefab: {fileID: 7478611203382353997, guid: e9dd45c717fba81498b141351e5fc5d5, type: 3}
-  objetPrefab: {fileID: 4629691081660468709, guid: 46f183f220e4cc4438b070d8e952f509, type: 3}
-  objetRarePrefab: {fileID: 4629691081660468709, guid: 0bccb38ffbeaf9e45953600843aa5f8b, type: 3}
-  cardEnhanceScreen: {fileID: 2059486638}
-  cardEnhanceList: {fileID: 683268126}
-  enhanceCardPrefab: {fileID: 8014565957919429039, guid: dce40ba9eef724f47954beec3fc90dc1, type: 3}
-  cardEnhanceConfirmScreen: {fileID: 712483711}
-  beforeEnhance_C: {fileID: 123910945}
-  afterEnhance_C: {fileID: 1106901254}
-  cardEnhanceConfirmButtonTMP: {fileID: 733133262}
-  cardEnhanceCost: 3
-  currentSelectedCard: {fileID: 0}
-  relicListSO: {fileID: 11400000, guid: 0e7223e1226b56241819d7fb7d0eca1d, type: 2}
-  relicEnhanceScreen: {fileID: 1549668730}
-  relicEnhanceList: {fileID: 1031110078}
-  enhanceRelicPrefab: {fileID: 1794657334035001950, guid: cfce447f621a3e44f90dbbd7312f2c8c, type: 3}
-  relicEnhanceConfirmScreen: {fileID: 180821745}
-  beforeEnhance_R: {fileID: 227014697}
-  beforeEnhance_R_Name: {fileID: 88217137}
-  beforeEnhance_R_Text: {fileID: 220977897}
-  afterEnhance_R: {fileID: 628904313}
-  afterEnhance_R_Name: {fileID: 1392694529}
-  afterEnhance_R_Text: {fileID: 1758932760}
-  relicEnhanceConfirmButtonTMP: {fileID: 1710828160}
-  relicEnhanceCost: 4
-  currentShopId: 
 --- !u!1 &88217135
 GameObject:
   m_ObjectHideFlags: 0
@@ -2911,7 +2847,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1306292636}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: EncounterMenuControll, Assembly-CSharp
         m_MethodName: ShowRelics
         m_Mode: 1
@@ -5159,7 +5095,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -546, y: 236.01}
+  m_AnchoredPosition: {x: 353, y: -253.99}
   m_SizeDelta: {x: 751.7139, y: 572.0113}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &683492071
@@ -6458,7 +6394,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 380, y: 170}
+  m_AnchoredPosition: {x: 1290, y: -324}
   m_SizeDelta: {x: 254.7126, y: 309.14}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &856271232
@@ -6540,7 +6476,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &871787088
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6561,7 +6497,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &893887681
 GameObject:
@@ -7331,10 +7267,10 @@ MonoBehaviour:
   choiceButtonPrefab: {fileID: 3483447046169688931, guid: 95af0e70fabbd1d4598cff01c115fb2a, type: 3}
   rouletteUI: {fileID: 518884970}
   roulettePanel: {fileID: 518884966}
-  headerUI: {fileID: 1306292636}
+  headerUI: {fileID: 0}
   merchantPanel: {fileID: 31375621}
   cardRemovalPanel: {fileID: 2059001763}
-  merchantUI: {fileID: 31375624}
+  merchantUI: {fileID: 1413826898}
   masterDB: {fileID: 11400000, guid: 560f8c2d9a9e79a4184d8bc2e9b8898e, type: 2}
   locationDB: {fileID: 11400000, guid: c08b0a46a1f95814f939101e2a309bdf, type: 2}
   characterData: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
@@ -10262,7 +10198,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 31375624}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: EncounterMerchantUI, Assembly-CSharp
         m_MethodName: SetEnhanceRelicList
         m_Mode: 1
@@ -10453,7 +10389,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1306292635}
-  - component: {fileID: 1306292636}
   m_Layer: 5
   m_Name: menu
   m_TagString: Untagged
@@ -10488,29 +10423,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1306292636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1306292634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c7d21d2d9fe10b41b1dd98f1b8e7ed6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EncounterMenuControll
-  playerStats: {fileID: 11400000, guid: 3814c952094c0884fa9f39e909922626, type: 2}
-  characterData: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
-  characterRelicData: {fileID: 11400000, guid: f261c4fa2c6606c4ea86c879ed3f631d, type: 2}
-  hpText: {fileID: 2061099880}
-  dreamFragmentText: {fileID: 278076792}
-  courageText: {fileID: 1496225832}
-  wisdomText: {fileID: 947336061}
-  luckText: {fileID: 294265975}
-  relicButton: {fileID: 348495600}
-  relicPanel: {fileID: 1978354778}
-  relicUIPrefab: {fileID: 5057287302192230722, guid: 66d1092adde19ed47b90aaf4bfe7adf1, type: 3}
 --- !u!1 &1311904727
 GameObject:
   m_ObjectHideFlags: 0
@@ -11360,6 +11272,110 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1393490027}
   m_CullTransparentMesh: 1
+--- !u!1 &1413826897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1413826899}
+  - component: {fileID: 1413826898}
+  m_Layer: 5
+  m_Name: MerchantManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1413826898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413826897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a33c14232d66b34a892f156d9af763a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EncounterMerchantUI
+  panelRoot: {fileID: 31375621}
+  characterSO: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
+  stageSO: {fileID: 11400000, guid: 2de9de6b9f0fbea46b0149e204bb7b11, type: 2}
+  dreamPieceListSO: {fileID: 11400000, guid: fa145bd86cf8d8a47b1d9e3683cef771, type: 2}
+  playerDataSO: {fileID: 11400000, guid: 00c60599a04bcec4f82efcd1f45339b4, type: 2}
+  relicDataList: {fileID: 11400000, guid: 51dcd8347c98008458816214e380ed75, type: 2}
+  playerRelicSO: {fileID: 11400000, guid: f261c4fa2c6606c4ea86c879ed3f631d, type: 2}
+  playerStatsSO: {fileID: 11400000, guid: 3814c952094c0884fa9f39e909922626, type: 2}
+  menuControll: {fileID: 0}
+  normalItemListSO: {fileID: 11400000, guid: 839e0b6ae25343344aea4d6b6cc55c32, type: 2}
+  normalItemDataListSO: {fileID: 11400000, guid: 200e71a8166738b4a98d746fa337adde, type: 2}
+  useableItemListSO: {fileID: 11400000, guid: e2b1eb20f9745d14d9ffcef82aa9b454, type: 2}
+  cardContainer: {fileID: 281916175}
+  cardSectionObj: {fileID: 281916174}
+  objetContainer: {fileID: 691578339}
+  objetSectionObj: {fileID: 691578338}
+  objetRareSectionObj: {fileID: 314847762}
+  objetRareContainer: {fileID: 314847763}
+  consumableSectionObj: {fileID: 685749991}
+  junkShopSectionObj: {fileID: 871787087}
+  objetJunkContainer: {fileID: 683492069}
+  junkChosenContainer: {fileID: 856271231}
+  junkSellButton: {fileID: 1761506757}
+  junkSellButtonImage: {fileID: 1761506754}
+  buttonBasicSprite: {fileID: 2700846266556587074, guid: 1bd5eb1365055c04fb93270e660c5cfe, type: 3}
+  buttonPressedSprite: {fileID: 8468375374493045740, guid: 2468aa2284f28064e82945555de2cf66, type: 3}
+  sellCardPrefab: {fileID: 7478611203382353997, guid: e9dd45c717fba81498b141351e5fc5d5, type: 3}
+  objetPrefab: {fileID: 4629691081660468709, guid: 46f183f220e4cc4438b070d8e952f509, type: 3}
+  objetRarePrefab: {fileID: 4629691081660468709, guid: 0bccb38ffbeaf9e45953600843aa5f8b, type: 3}
+  cardEnhanceScreen: {fileID: 2059486638}
+  cardEnhanceList: {fileID: 683268126}
+  enhanceCardPrefab: {fileID: 8014565957919429039, guid: dce40ba9eef724f47954beec3fc90dc1, type: 3}
+  cardEnhanceConfirmScreen: {fileID: 712483711}
+  beforeEnhance_C: {fileID: 123910945}
+  afterEnhance_C: {fileID: 1106901254}
+  cardEnhanceConfirmButtonTMP: {fileID: 733133262}
+  cardEnhanceCost: 3
+  currentSelectedCard: {fileID: 0}
+  relicListSO: {fileID: 11400000, guid: 0e7223e1226b56241819d7fb7d0eca1d, type: 2}
+  relicEnhanceScreen: {fileID: 1549668730}
+  relicEnhanceList: {fileID: 1031110078}
+  enhanceRelicPrefab: {fileID: 1794657334035001950, guid: cfce447f621a3e44f90dbbd7312f2c8c, type: 3}
+  relicEnhanceConfirmScreen: {fileID: 180821745}
+  beforeEnhance_R: {fileID: 227014697}
+  beforeEnhance_R_Name: {fileID: 88217137}
+  beforeEnhance_R_Text: {fileID: 220977897}
+  afterEnhance_R: {fileID: 628904313}
+  afterEnhance_R_Name: {fileID: 1392694529}
+  afterEnhance_R_Text: {fileID: 1758932760}
+  relicEnhanceConfirmButtonTMP: {fileID: 1710828160}
+  relicEnhanceCost: 4
+  currentShopId: 
+  rewardCardWeights:
+  - 20
+  - 60
+  - 20
+--- !u!224 &1413826899
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413826897}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 960, y: 540}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1425325460
 GameObject:
   m_ObjectHideFlags: 0
@@ -12188,6 +12204,68 @@ MonoBehaviour:
   tooltipPos: {x: -936, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
+--- !u!1 &1498465000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1498465002}
+  - component: {fileID: 1498465001}
+  m_Layer: 5
+  m_Name: MenuManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1498465001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498465000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c7d21d2d9fe10b41b1dd98f1b8e7ed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EncounterMenuControll
+  playerStats: {fileID: 11400000, guid: 3814c952094c0884fa9f39e909922626, type: 2}
+  characterData: {fileID: 11400000, guid: 36ff0cdea242436488522fb0d929a111, type: 2}
+  characterRelicData: {fileID: 11400000, guid: f261c4fa2c6606c4ea86c879ed3f631d, type: 2}
+  hpText: {fileID: 2061099880}
+  dreamFragmentText: {fileID: 278076792}
+  courageText: {fileID: 1496225832}
+  wisdomText: {fileID: 947336061}
+  luckText: {fileID: 294265975}
+  relicButton: {fileID: 348495600}
+  relicPanel: {fileID: 1978354778}
+  relicUIPrefab: {fileID: 5057287302192230722, guid: 66d1092adde19ed47b90aaf4bfe7adf1, type: 3}
+  continuousTime: 5
+  countInterval: 0.02
+  highlightScale: 1.5
+--- !u!224 &1498465002
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498465000}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 960, y: 540}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1509736206
 GameObject:
   m_ObjectHideFlags: 0
@@ -16450,7 +16528,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 31375624}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: EncounterMerchantUI, Assembly-CSharp
         m_MethodName: OpenEnhanceCardScreen
         m_Mode: 1
@@ -18270,143 +18348,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2101423469}
   m_CullTransparentMesh: 1
---- !u!1 &2101682063
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2101682066}
-  - component: {fileID: 2101682065}
-  - component: {fileID: 2101682064}
-  - component: {fileID: 2101682067}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!81 &2101682064
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2101682063}
-  m_Enabled: 1
---- !u!20 &2101682065
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2101682063}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_Iso: 200
-  m_ShutterSpeed: 0.005
-  m_Aperture: 16
-  m_FocusDistance: 10
-  m_FocalLength: 50
-  m_BladeCount: 5
-  m_Curvature: {x: 2, y: 11}
-  m_BarrelClipping: 0.25
-  m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 1
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!4 &2101682066
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2101682063}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2101682067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2101682063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
-  m_Cameras: []
-  m_RendererIndex: -1
-  m_VolumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  m_VolumeTrigger: {fileID: 0}
-  m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
-  m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
-  m_ClearDepth: 1
-  m_AllowXRRendering: 1
-  m_AllowHDROutput: 1
-  m_UseScreenCoordOverride: 0
-  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
-  m_RequiresDepthTexture: 0
-  m_RequiresColorTexture: 0
-  m_TaaSettings:
-    m_Quality: 3
-    m_FrameInfluence: 0.1
-    m_JitterScale: 1
-    m_MipBias: 0
-    m_VarianceClampScale: 0.9
-    m_ContrastAdaptiveSharpening: 0
-  m_Version: 2
 --- !u!1 &2108446561
 GameObject:
   m_ObjectHideFlags: 0
@@ -18805,14 +18746,73 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2128973088}
   m_CullTransparentMesh: 1
+--- !u!1001 &4836060683566008206
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 9015291894288146, guid: 869e2998a9b40e24b9fa4beccff5b369, type: 3}
+      propertyPath: m_Name
+      value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075143431458473172, guid: 869e2998a9b40e24b9fa4beccff5b369, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075143431458473172, guid: 869e2998a9b40e24b9fa4beccff5b369, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075143431458473172, guid: 869e2998a9b40e24b9fa4beccff5b369, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075143431458473172, guid: 869e2998a9b40e24b9fa4beccff5b369, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075143431458473172, guid: 869e2998a9b40e24b9fa4beccff5b369, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075143431458473172, guid: 869e2998a9b40e24b9fa4beccff5b369, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075143431458473172, guid: 869e2998a9b40e24b9fa4beccff5b369, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075143431458473172, guid: 869e2998a9b40e24b9fa4beccff5b369, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075143431458473172, guid: 869e2998a9b40e24b9fa4beccff5b369, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075143431458473172, guid: 869e2998a9b40e24b9fa4beccff5b369, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 869e2998a9b40e24b9fa4beccff5b369, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 256678084}
-  - {fileID: 2101682066}
+  - {fileID: 4836060683566008206}
   - {fileID: 1619673954}
   - {fileID: 1665816292}
+  - {fileID: 1498465002}
+  - {fileID: 1413826899}
   - {fileID: 988924727}
   - {fileID: 1493062489}
   - {fileID: 1030290975}

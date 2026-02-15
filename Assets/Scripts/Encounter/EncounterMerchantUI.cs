@@ -21,6 +21,7 @@ public class EncounterMerchantUI : MonoBehaviour
     public RelicSO playerRelicSO;
     public PlayerStatsSo playerStatsSO;
     public EncounterMenuControll menuControll;
+    public ItemSO normalItemListSO;
     
     [Header("Databases")]
     public ItemDataSO normalItemDataListSO; 
@@ -82,7 +83,10 @@ public class EncounterMerchantUI : MonoBehaviour
     [Header("Settings")]
     public string currentShopId = "";
     private RelicItem_Enhanceable currentRelicToSell;
-
+    //public float[] rewardCardWeights = new float[Enum.GetNames(typeof(CardRarity)).Length + 1];
+    public float[] rewardCardWeights = { 20f, 60f, 20f };
+    float enhanceProbability = 0.2f;
+    
     public void Awake()
     {
         Inst = this; // 싱글톤 할당
@@ -343,79 +347,128 @@ public class EncounterMerchantUI : MonoBehaviour
         }
     }
 
+
     void GenerateCardInventory()
     {
-        Debug.Log("called card inventory (Auto Price Logic + Fixed Count)");
+        Debug.Log("called card inventory (Weighted Pool Logic)");
 
-        List<Item> poolCommon = new List<Item>();
-        if (normalItemDataListSO != null && normalItemDataListSO.items != null)
+        // 1. 카드 데이터 분류 (SetCardReward 로직 그대로 차용)
+        List<Item> normalCards = new List<Item>();
+        
+        // 희귀도별 리스트 배열 초기화
+        int rarityCount = Enum.GetNames(typeof(CardRarity)).Length;
+        List<Item>[] dreamCards = new List<Item>[rarityCount];
+        List<Item>[] dreamCards_enhanced = new List<Item>[rarityCount];
+
+        for (int i = 0; i < rarityCount; i++)
         {
-            foreach (var itemData in normalItemDataListSO.items)
-            {
-                Item_Enhanceable newItem = new Item_Enhanceable(itemData);
-                poolCommon.Add(newItem);
-            }
+            dreamCards[i] = new List<Item>();
+            dreamCards_enhanced[i] = new List<Item>();
         }
-
-        List<Item> poolPersona = new List<Item>();
-        List<Item> poolShadow = new List<Item>();
 
         DreamPiece_Reference persona_ref = dreamPieceListSO.dreamPieces.Find(x => x.name == characterSO.personaPiece.name);
         DreamPiece_Reference shadow_ref = dreamPieceListSO.dreamPieces.Find(x => x.name == characterSO.shadowPiece.name);
 
-        if (persona_ref != null) foreach (var card in persona_ref.cards) poolPersona.Add(card);
-        if (shadow_ref != null) foreach (var card in shadow_ref.cards) poolShadow.Add(card);
+        if (normalItemListSO != null)
+        {
+            foreach (Item item in normalItemListSO.items)
+            {
+                normalCards.Add(item);
+            }
+        }
 
-        if (poolCommon.Count == 0 && poolPersona.Count == 0 && poolShadow.Count == 0) return;
+        if (persona_ref != null)
+        {
+            Debug.Log(persona_ref.name);
+            Debug.Log(persona_ref.cards.Count);
+            foreach (Item_Enhanceable item in persona_ref.cards)
+            {
+                dreamCards[(int)item.rarity].Add((Item)item);
+                if (item.enhancedItem != null) 
+                    dreamCards_enhanced[(int)item.rarity].Add(item.enhancedItem);
+            }
+        }
 
-        int targetCount = 4;
-        int safetyLoop = 0; 
+        if (shadow_ref != null)
+        {
+            foreach (Item_Enhanceable item in shadow_ref.cards)
+            {
+                dreamCards[(int)item.rarity].Add((Item)item);
+                if (item.enhancedItem != null)
+                    dreamCards_enhanced[(int)item.rarity].Add(item.enhancedItem);
+            }
+        }
 
-        while (stageSO.merchantSellCards.Count < targetCount && safetyLoop < 100)
+        int targetCount = 4; 
+
+        int currentCount = stageSO.merchantSellCards.Count;
+        int safetyLoop = 0;
+
+        while (currentCount < targetCount && safetyLoop < 100)
         {
             safetyLoop++;
 
-            float r = Random.value; 
-            List<Item> selectedPool = null;
-
-            if (r < 0.2f) selectedPool = poolCommon; 
-            else if (r < 0.6f) selectedPool = poolPersona;
-            else selectedPool = poolShadow;
-
-            if (selectedPool == null || selectedPool.Count == 0)
+            float totalW = 0f;
+            if (rewardCardWeights == null || rewardCardWeights.Length == 0)
             {
-                if (poolCommon.Count > 0) selectedPool = poolCommon;
-                else if (poolPersona.Count > 0) selectedPool = poolPersona;
-                else if (poolShadow.Count > 0) selectedPool = poolShadow;
+                Debug.LogError("Reward Card Weights are not set in the Inspector!");
+                break;
             }
 
-            if (selectedPool == null || selectedPool.Count == 0) continue;
+            for (int i = 0; i < rewardCardWeights.Length; i++)
+            {
+                totalW += rewardCardWeights[i];
+            }
 
-            Item pickedCard = SelectCardWithWeight(selectedPool);
+            float rPoint = Random.value * totalW;
+            int chooseCardPool = 0;
+
+            for (int i = 0; i < rewardCardWeights.Length; i++)
+            {
+                if (rPoint < rewardCardWeights[i])
+                {
+                    chooseCardPool = i;
+                    break;
+                }
+                rPoint -= rewardCardWeights[i];
+            }
+
+            List<Item> lookat = new List<Item>();
+            bool isEnhanced = false;
+
+            if (chooseCardPool == 0) 
+            {
+                lookat = normalCards;
+            }
+            else if (chooseCardPool > 0 && chooseCardPool <= rarityCount)
+            {
+                
+                isEnhanced = Random.value < enhanceProbability;
+                int rarityIndex = chooseCardPool - 1;
+
+                if (isEnhanced) 
+                    lookat = dreamCards_enhanced[rarityIndex];
+                else 
+                    lookat = dreamCards[rarityIndex];
+            }
+
+            if (lookat == null || lookat.Count == 0) continue;
+
+            int cardIdx = Random.Range(0, lookat.Count);
+            Item pickedCard = lookat[cardIdx];
 
             if (pickedCard != null)
             {
-                stageSO.merchantSellCards.Add(new SellCard 
-                { 
-                    cardItem = pickedCard, 
-                    cost = (pickedCard.rarity == CardRarity.Rare) ? 3 : 2,
-                    isValid = true 
+                stageSO.merchantSellCards.Add(new SellCard
+                {
+                    cardItem = pickedCard,
+                    cost = pickedCard.cost,
+                    isValid = true
                 });
+                
+                currentCount++;
             }
         }
-    }
-
-    Item SelectCardWithWeight(List<Item> pool)
-    {
-        if (pool == null || pool.Count == 0) return null;
-        var normals = pool.Where(c => c.rarity == CardRarity.Normal).ToList();
-        var rares = pool.Where(c => c.rarity == CardRarity.Rare).ToList();
-        int totalWeight = (3 * normals.Count) + (1 * rares.Count);
-        if (totalWeight <= 0) return pool[0]; 
-        int randomPoint = Random.Range(0, totalWeight);
-        foreach (var card in normals) { if (randomPoint < 3) return card; randomPoint -= 3; }
-        foreach (var card in rares) { if (randomPoint < 1) return card; randomPoint -= 1; }
-        return pool[0]; 
     }
 
     void GenerateConsumableInventory()
@@ -711,6 +764,7 @@ public class EncounterMerchantUI : MonoBehaviour
             AddCardToInventory(data.cardItem);
             data.isValid = false;
             stageSO.merchantSellCards[index] = data; 
+            menuControll.RefreshUI();
             DrawShopUI(); 
             Debug.Log("카드 구매 성공!");
         }
@@ -727,6 +781,7 @@ public class EncounterMerchantUI : MonoBehaviour
                 AddObjectToInventory(data.objetItem); 
                 data.isValid = false;
                 stageSO.merchantSellObjets[index] = data; 
+                menuControll.RefreshUI();
                 if (currentShopId == "souvenir" || currentShopId == "IceCreamShop") DrawRareObjets();
                 else DrawShopUI();
             }

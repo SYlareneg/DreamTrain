@@ -502,7 +502,7 @@ public class EncounterManager : MonoBehaviour
                 else currentCell.Append(c);
             }
             else
-            {
+            {   
                 if (c == '"') inQuotes = true;
                 else if (c == ',') { currentRow.Add(currentCell.ToString()); currentCell.Clear(); }
                 else if (c == '\n') { currentRow.Add(currentCell.ToString()); result.Add(currentRow); currentRow = new List<string>(); currentCell.Clear(); }
@@ -673,14 +673,46 @@ public class EncounterManager : MonoBehaviour
         {
             foreach (var option in currentStep.options)
             {
+                // 1. 조건 만족 여부 확인
                 bool isConditionMet = CheckCondition(option.condition);
-                Debug.Log(isConditionMet);
-                buttonsToCreate.Add(new TempOptionData(option.text, option.nextStepId, option.functionCall, isConditionMet));
+                string finalButtonText = option.text;
+
+                if (!isConditionMet)
+                {
+                    string condName = option.condition.Split('(')[0].Trim();
+                    string argsRaw = "";
+                    Match match = Regex.Match(option.condition, @"\(([^)]*)\)");
+                    if (match.Success) argsRaw = match.Groups[1].Value.Trim();
+
+                    if (condName == "NeedKey")
+                    {
+                        continue; 
+                    }
+
+                    if (condName == "HasObjet")
+                    {
+                        string endsWith = $"({argsRaw} 필요)";
+                        if (!finalButtonText.Contains(endsWith))
+                        {
+                            finalButtonText += $"  {endsWith}";
+                        }
+                    }
+                    else if (condName == "HasDreamPiece")
+                    {
+                        string endsWith2 = $"({argsRaw} 조각 필요)";
+                        if (!finalButtonText.Contains(endsWith2))
+                        {
+                            finalButtonText += $"  {endsWith2}";
+                        }
+                    }
+                    
+                }
+
+                buttonsToCreate.Add(new TempOptionData(finalButtonText, option.nextStepId, option.functionCall, isConditionMet));
             }
         }
         else 
         {
-            // 옵션이 없는 경우 (기본 버튼) - 항상 활성화(true)
             if (IsWaitState(currentStep.nextStepId)) { }
             else if (currentStep.nextStepId == "END") buttonsToCreate.Add(new TempOptionData("떠난다", "END", null, true));
             else buttonsToCreate.Add(new TempOptionData("다음", currentStep.nextStepId, null, true));
@@ -688,7 +720,6 @@ public class EncounterManager : MonoBehaviour
 
         int count = buttonsToCreate.Count;
 
-        // 3. 개수에 따른 컨테이너 활성화 및 버튼 생성
         if (count == 1)
         {
             oneChoiceContainer.SetActive(true);
@@ -702,7 +733,6 @@ public class EncounterManager : MonoBehaviour
         else if (count >= 3)
         {
             threeChoiceContainer.SetActive(true);
-            // 3개 이상일 경우 3개까지만 표시하거나, 3번 자리에 마지막꺼 배치 등 기획 필요. 여기선 앞에서부터 3개.
             int limit = Mathf.Min(count, 3);
             for(int i=0; i<limit; i++) CreateButtonAt(buttonsToCreate[i], threeChoicePos[i]);
         }
@@ -1166,7 +1196,7 @@ public class EncounterManager : MonoBehaviour
                             bool hasRelic = playerRelicSO.relicItems.Exists(owned => owned.relicOwner == obj.relicOwner);
                             if (hasRelic) return false;
 
-                            return obj.rarity != CardRarity.Normal && (obj.relicAct <= currentAct);
+                            return obj.rarity != CardRarity.Normal && (obj.relicAct < currentAct);
 
                         }).ToList();
                         for (int i = 0; i < amount; i++)
