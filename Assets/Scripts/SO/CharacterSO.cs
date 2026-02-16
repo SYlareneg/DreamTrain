@@ -19,4 +19,5 @@ public class CharacterSO : ScriptableObject
     public List<Item> normalCards;
 
     public string enemyName;
+    public bool bossClear;
 }

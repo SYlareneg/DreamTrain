@@ -97,6 +97,12 @@ public class RoomPlayer : MonoBehaviour
             interObj.isInteractable = true;
             nearbyInteractables.Add(interObj);
         }
+
+        RoomTriggerObject triggerObj = collision.gameObject.GetComponent<RoomTriggerObject>();
+        if(triggerObj != null && collision.isTrigger == true)
+        {
+            triggerObj.Trigger();
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -139,7 +145,7 @@ public class RoomPlayer : MonoBehaviour
 
     void Start()
     {
-        moveTowards = rb.position;
+        // moveTowards = rb.position;
     }
 
     Vector2 lastPos;

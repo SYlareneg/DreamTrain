@@ -306,6 +306,12 @@ public class MapManager : MonoBehaviour
                 }
                 SceneChangeManager.Inst.SceneFadeOut("BattleScene");
             }
+            else if(curNode.locationID == "END")
+            {
+                DataManager.Inst.characterSO.enemyName = "마술사";
+                DataManager.Inst.characterSO.bossClear = false;
+                SceneChangeManager.Inst.SceneFadeOut("BossScene_Magician");
+            }
             else
             {
                 SceneChangeManager.Inst.SceneFadeOut("EncounterScene");

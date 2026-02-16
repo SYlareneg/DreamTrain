@@ -1,43 +1,35 @@
 {
     "maxHealth": 60,
     "curHealth": 28,
-    "dreamDust": 9,
+    "dreamDust": 17,
     "leftPassengers": 0,
     "isTutorial": false,
-    "lastSceneName": "MapScene",
-    "personaPiece": "고양이의 꿈",
+    "lastSceneName": "EncounterScene",
+    "personaPiece": "마술사의 꿈",
     "isPersonaEnhanced": false,
     "personaCards": [
         {
-            "cardName": "발톱 세우기",
+            "cardName": "마술 상자",
             "num": 1
         },
         {
-            "cardName": "고양이걸음",
+            "cardName": "폭발 마술",
             "num": 1
         },
         {
-            "cardName": "숨기",
-            "num": 1
-        },
-        {
-            "cardName": "날카로운 발톱",
+            "cardName": "복제 마술",
             "num": 1
         }
     ],
-    "shadowPiece": "고양이의 꿈",
+    "shadowPiece": "마술사의 꿈",
     "isShadowEnhanced": false,
     "shadowCards": [
         {
-            "cardName": "발톱 세우기",
+            "cardName": "마술 카드",
             "num": 1
         },
         {
-            "cardName": "실뭉치",
-            "num": 1
-        },
-        {
-            "cardName": "실 풀기",
+            "cardName": "재빠른 손놀림",
             "num": 1
         }
     ],
@@ -53,6 +45,14 @@
         {
             "cardName": "3칸 회전",
             "num": 2
+        },
+        {
+            "cardName": "공격 부여",
+            "num": 1
+        },
+        {
+            "cardName": "수비 부여",
+            "num": 1
         }
     ],
     "relics": [],
@@ -294,18 +294,14 @@
     ],
     "totalLevel": 9,
     "visitedNodeIDList": [
-        "70390848c0364e87ad638418277fd221",
-        "20858bb7f984406983a952fe7d45d2bd",
-        "8d6560ad12794715abb40cf3d11ca5f3",
-        "954aa0e92c9443699552c40228f551f1",
-        "52bfe1a55da049318c1f3bc6b32b461f",
-        "bccf95f3599142ada3fdcb4be243eb49"
+        "46e10b97c0294e11984d2406ce1e7781"
     ],
-    "curNodeIndex": 7,
-    "curNodeLocationID": "VIKING",
+    "curNodeIndex": 14,
+    "curNodeLocationID": "END",
     "lastEncounterType": 0,
     "encounterQueue": [],
     "currentStepID": "",
     "currentEncounterID": "",
-    "enemyName": "귀신들린 인형"
+    "enemyName": "마술사",
+    "bossClear": true
 }

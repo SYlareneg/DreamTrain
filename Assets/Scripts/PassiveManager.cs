@@ -181,12 +181,10 @@ public class PassiveManager : MonoBehaviour
                             {
                                 case CardType.Skill:
                                     int skillVal = 4;
-                                    if(RouletteManager.Inst.roulettePieces[i].isEnhanced) skillVal = 6;
                                     BuffManager.AddBuffToTarget(BuffManager.Inst.roulettePieceBuff[RouletteManager.Inst.roulettePieces[i]], skillVal, 1, -1);
                                     break;
                                 case CardType.Enchant:
                                     int enchantVal = 4;
-                                    if(RouletteManager.Inst.roulettePieces[i].isEnhanced) enchantVal = 6;
                                     BuffManager.AddBuffToTarget(BuffManager.Inst.roulettePieceBuff[RouletteManager.Inst.roulettePieces[i]], enchantVal, 1, -1);
                                     break;
                                 case CardType.Turn:
@@ -574,14 +572,7 @@ public class PassiveManager : MonoBehaviour
                     {
                         if(RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 1)))
                         {
-                            if(RouletteManager.Inst.roulettePieces[i].isEnhanced)
-                            {
-                                BuffManager.AddBuffToTarget(BuffManager.Inst.roulettePieceBuff[RouletteManager.Inst.roulettePieces[i]], spinValue * 2, 1, -1);
-                            }
-                            else
-                            {
-                                BuffManager.AddBuffToTarget(BuffManager.Inst.roulettePieceBuff[RouletteManager.Inst.roulettePieces[i]], spinValue, 1, -1);
-                            }
+                            BuffManager.AddBuffToTarget(BuffManager.Inst.roulettePieceBuff[RouletteManager.Inst.roulettePieces[i]], spinValue, 1, -1);
                         }
                     }
                 };
@@ -741,12 +732,10 @@ public class PassiveManager : MonoBehaviour
                             {
                                 case CardType.Skill:
                                     int skillVal = 4;
-                                    if(RouletteManager.Inst.roulettePieces[i].isEnhanced) skillVal = 6;
                                     BuffManager.AddBuffToTarget(BuffManager.Inst.roulettePieceBuff[RouletteManager.Inst.roulettePieces[i]], skillVal, 1, -1);
                                     break;
                                 case CardType.Enchant:
                                     int enchantVal = 4;
-                                    if(RouletteManager.Inst.roulettePieces[i].isEnhanced) enchantVal = 6;
                                     BuffManager.AddBuffToTarget(BuffManager.Inst.roulettePieceBuff[RouletteManager.Inst.roulettePieces[i]], enchantVal, 1, -1);
                                     break;
                                 case CardType.Turn:
@@ -1055,14 +1044,7 @@ public class PassiveManager : MonoBehaviour
                     {
                         if(RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 1)))
                         {
-                            if(RouletteManager.Inst.roulettePieces[i].isEnhanced)
-                            {
-                                BuffManager.AddBuffToTarget(BuffManager.Inst.roulettePieceBuff[RouletteManager.Inst.roulettePieces[i]], spinValue * 2, 1, -1);
-                            }
-                            else
-                            {
-                                BuffManager.AddBuffToTarget(BuffManager.Inst.roulettePieceBuff[RouletteManager.Inst.roulettePieces[i]], spinValue, 1, -1);
-                            }
+                            BuffManager.AddBuffToTarget(BuffManager.Inst.roulettePieceBuff[RouletteManager.Inst.roulettePieces[i]], spinValue, 1, -1);
                         }
                     }
                 };

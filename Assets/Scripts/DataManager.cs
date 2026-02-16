@@ -243,6 +243,7 @@ public class DataManager : MonoBehaviour
         actSO.currentEncounterID = playerDataSO.currentEncounterID;
         // 전투 데이터
         characterSO.enemyName = playerDataSO.enemyName;
+        characterSO.bossClear = playerDataSO.bossClear;
     }
 
     public void SavePlayerData()
@@ -315,6 +316,7 @@ public class DataManager : MonoBehaviour
         playerDataSO.currentEncounterID = actSO.currentEncounterID;
         // 전투 데이터
         playerDataSO.enemyName = characterSO.enemyName;
+        playerDataSO.bossClear = characterSO.bossClear;
         Utils.SaveData(playerDataSO, "player_data.json");
     }
 }

@@ -13,10 +13,6 @@
             "num": 1
         },
         {
-            "cardName": "고양이걸음",
-            "num": 1
-        },
-        {
             "cardName": "숨기",
             "num": 1
         }
@@ -25,15 +21,11 @@
     "isShadowEnhanced": false,
     "shadowCards": [
         {
-            "cardName": "발톱 세우기",
-            "num": 1
-        },
-        {
             "cardName": "실뭉치",
             "num": 1
         },
         {
-            "cardName": "실 풀기",
+            "cardName": "고양이걸음",
             "num": 1
         }
     ],
@@ -49,6 +41,14 @@
         {
             "cardName": "3칸 회전",
             "num": 2
+        },
+        {
+            "cardName": "공격 부여",
+            "num": 1
+        },
+        {
+            "cardName": "수비 부여",
+            "num": 1
         }
     ],
     "relics": [],
@@ -68,5 +68,6 @@
     "encounterQueue": [],
     "currentStepID": "",
     "currentEncounterID": "",
-    "enemyName": ""
+    "enemyName": "",
+    "bossClear": false
 }

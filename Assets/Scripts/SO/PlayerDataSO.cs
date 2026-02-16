@@ -42,4 +42,5 @@ public class PlayerDataSO : ScriptableObject
     public string currentEncounterID;
     [Header("전투 데이터")]
     public string enemyName;
+    public bool bossClear;
 }

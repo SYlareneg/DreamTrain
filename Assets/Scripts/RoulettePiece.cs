@@ -40,7 +40,7 @@ public class RoulettePiece : MonoBehaviour
         }
     }
 
-    public void Setup(RouletteItem rlt, bool isEnhanced = false)
+    public void Setup(RouletteItem rlt, bool isEnhanced = false, bool setSprite = true, bool setTooltip = true)
     {
         roulette = rlt;
         tooltip = GetComponent<Tooltip>();
@@ -115,8 +115,8 @@ public class RoulettePiece : MonoBehaviour
 
         if (RouletteManager.Inst.isTriggerActivated == false)
         {
-            SetRoulettePieceSprite(originalSprite);
-            SetRoulettePieceTooltip(originalTooltipTitle, originalTooltipText);
+            if (setSprite) SetRoulettePieceSprite(originalSprite);
+            if (setTooltip) SetRoulettePieceTooltip(originalTooltipTitle, originalTooltipText);
         }
     }
 
@@ -146,10 +146,11 @@ public class RoulettePiece : MonoBehaviour
 
     public void Enhance()
     {
+        Debug.Log("룰렛 강화 시도: " + roulette.rtype.type.ToString());
         if(roulette.rtype.type != ERouletteType.Player_Special || roulette.rtype.type == ERouletteType.Enemy_Special || isEnhanced) return;
         isEnhanced = true;
         roulette.value = PassiveManager.Inst.playerSpecialRoulettes[roulette.rtype.specialTypeIdx].baseVal_enhanced;
-        Setup(roulette, true);
+        Setup(roulette, true, false, true);
     }
 
     public void ShowTotalValue()

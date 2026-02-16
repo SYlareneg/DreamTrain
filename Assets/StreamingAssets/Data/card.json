@@ -70,7 +70,7 @@
     },
     {
       "name": "수트 체인지",
-      "cost": 2,
+      "cost": 1,
       "type": 1,
       "dreamPieceNum": 1,
       "sprite": "수트체인지01",
@@ -84,10 +84,10 @@
       "cardValueTypes": [],
       "name_enhanced": "수트 체인지+",
       "cost_enhanced": 1,
-      "text_enhanced": "자신 앞 마술 카드 룰렛의 수트를 다른 수트로 체인지합니다.",
+      "text_enhanced": "자신 앞 마술 카드 룰렛의 수트를 다른 수트로 체인지합니다.\\n잔류.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
-      "isRemain_enhanced": false,
+      "isRemain_enhanced": true,
       "isSingleTarget_enhanced": false,
       "cardValues_enhanced": [],
       "cardValueTypes_enhanced": []
@@ -98,7 +98,7 @@
       "type": 1,
       "dreamPieceNum": 1,
       "sprite": "마술카드01",
-      "text": "자신 앞 룰렛에 마술카드 룰렛을 부여합니다. 최근에 사용한 카드의 타입에 따라 부여하는 문양이 달라집니다.",
+      "text": "자신 앞 룰렛에 마술 카드 룰렛을 부여합니다. 최근에 사용한 카드의 타입에 따라 부여하는 문양이 달라집니다.",
       "isVolatile": false,
       "isVanish": false,
       "isRemain": false,
@@ -108,13 +108,17 @@
       "cardValueTypes": [],
       "name_enhanced": "마술 카드+",
       "cost_enhanced": 1,
-      "text_enhanced": "자신 앞 룰렛에 강화된 마술카드 룰렛을 부여합니다. 최근에 사용한 카드의 타입에 따라 부여하는 문양이 달라집니다.",
+      "text_enhanced": "자신 앞 룰렛에 마술 카드 룰렛을 부여합니다. 최근에 사용한 카드의 타입에 따라 부여하는 문양이 달라집니다.\\n초급 마술: 행동력을 1 돌려받습니다.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": false,
-      "cardValues_enhanced": [],
-      "cardValueTypes_enhanced": []
+      "cardValues_enhanced": [
+        1
+      ],
+      "cardValueTypes_enhanced": [
+        3
+      ]
     },
     {
       "name": "커튼콜",
@@ -170,7 +174,7 @@
       "type": 2,
       "dreamPieceNum": 1,
       "sprite": "폭발마술01",
-      "text": "3<피해>피해를 줍니다.\\n고급마술: 12<피해>의 피해를 추가로 입히고 마술 상자를 제거합니다.",
+      "text": "3<피해>피해를 줍니다.\\n고급 마술: 12<피해>의 피해를 추가로 입히고 마술 상자를 제거합니다.",
       "isVolatile": false,
       "isVanish": false,
       "isRemain": false,
@@ -186,7 +190,7 @@
       ],
       "name_enhanced": "폭발 마술+",
       "cost_enhanced": 2,
-      "text_enhanced": "3<피해>피해를 줍니다.\\n고급마술: 18<피해>의 피해를 추가로 입히고 마술 상자를 제거합니다.",
+      "text_enhanced": "3<피해>피해를 줍니다.\\n고급 마술: 18<피해>의 피해를 추가로 입히고 마술 상자를 제거합니다.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
@@ -206,7 +210,7 @@
       "type": 0,
       "dreamPieceNum": 1,
       "sprite": "토끼마술01",
-      "text": "룰렛을 시계방향으로 4<특수>칸 회전시킵니다.\\n마술: 2<특수>칸 더 회전시킵니다.",
+      "text": "룰렛을 시계방향으로 4<특수>칸 회전시킵니다.\\n초급 마술: 2<특수>칸 더 회전시킵니다.",
       "isVolatile": false,
       "isVanish": false,
       "isRemain": false,
@@ -222,7 +226,7 @@
       ],
       "name_enhanced": "토끼 마술+",
       "cost_enhanced": 1,
-      "text_enhanced": "룰렛을 시계방향으로 4<특수>칸 회전시킵니다.\\n마술: 2<특수>칸 더 회전시킵니다. 잔류.",
+      "text_enhanced": "룰렛을 시계방향으로 4<특수>칸 회전시킵니다.\\n초급 마술: 2<특수>칸 더 회전시킵니다.\\n잔류.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": true,
@@ -256,7 +260,7 @@
       ],
       "name_enhanced": "환영 마술+",
       "cost_enhanced": 2,
-      "text_enhanced": "환영을 1<특수> 얻습니다.\\n마술: 행동력을 1<특수> 돌려받습니다. ",
+      "text_enhanced": "환영을 1<특수> 얻습니다.\\초급 마술: 행동력을 1<특수> 돌려받습니다. ",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
@@ -429,6 +433,62 @@
         3
       ],
       "name_enhanced": "2칸 역회전+",
+      "cost_enhanced": 0,
+      "text_enhanced": "",
+      "isVolatile_enhanced": false,
+      "isVanish_enhanced": false,
+      "isRemain_enhanced": false,
+      "isSingleTarget_enhanced": false,
+      "cardValues_enhanced": [],
+      "cardValueTypes_enhanced": []
+    },
+    {
+      "name": "공격 부여",
+      "cost": 1,
+      "type": 1,
+      "dreamPieceNum": -1,
+      "sprite": "CCW2",
+      "text": "적 앞에 공격 룰렛을 6<특수> 부여합니다.",
+      "isVolatile": false,
+      "isVanish": false,
+      "isRemain": false,
+      "isSingleTarget": true,
+      "rarity": 0,
+      "cardValues": [
+        6
+      ],
+      "cardValueTypes": [
+        3
+      ],
+      "name_enhanced": "공격 부여+",
+      "cost_enhanced": 0,
+      "text_enhanced": "",
+      "isVolatile_enhanced": false,
+      "isVanish_enhanced": false,
+      "isRemain_enhanced": false,
+      "isSingleTarget_enhanced": false,
+      "cardValues_enhanced": [],
+      "cardValueTypes_enhanced": []
+    },
+    {
+      "name": "수비 부여",
+      "cost": 1,
+      "type": 1,
+      "dreamPieceNum": -1,
+      "sprite": "CCW2",
+      "text": "자신 앞에 수비 룰렛을 6<특수> 부여합니다.",
+      "isVolatile": false,
+      "isVanish": false,
+      "isRemain": false,
+      "isSingleTarget": false,
+      "rarity": 0,
+      "cardValues": [
+        6
+      ],
+      "cardValueTypes": [
+        3
+      ],
+      "name_enhanced": "수비 부여+",
       "cost_enhanced": 0,
       "text_enhanced": "",
       "isVolatile_enhanced": false,
@@ -710,23 +770,31 @@
       "type": 1,
       "dreamPieceNum": 1,
       "sprite": "마술상자01",
-      "text": "자신 앞 룰렛에 마술상자를 부여합니다",
+      "text": "자신 앞 룰렛에 마술 상자를 12<특수> 부여합니다",
       "isVolatile": false,
       "isVanish": false,
       "isRemain": false,
       "isSingleTarget": false,
       "rarity": 0,
-      "cardValues": [],
-      "cardValueTypes": [],
+      "cardValues": [
+        12
+      ],
+      "cardValueTypes": [
+        3
+      ],
       "name_enhanced": "마술 상자+",
       "cost_enhanced": 1,
-      "text_enhanced": "자신 앞 룰렛에 강화된 마술상자를 부여합니다",
+      "text_enhanced": "자신 앞 룰렛에 마술 상자를 15<특수> 부여합니다",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": false,
-      "cardValues_enhanced": [],
-      "cardValueTypes_enhanced": []
+      "cardValues_enhanced": [
+        15
+      ],
+      "cardValueTypes_enhanced": [
+        3
+      ]
     },
     {
       "name": "비둘기 마술",
@@ -734,7 +802,7 @@
       "type": 2,
       "dreamPieceNum": 1,
       "sprite": "비둘기마술01",
-      "text": "1<피해>피해를 줍니다.\\n고급마술: 적의 행동 하나를 봉쇄합니다.",
+      "text": "1<피해>피해를 줍니다.\\n고급 마술: 적의 행동 하나를 봉쇄합니다.",
       "isVolatile": false,
       "isVanish": false,
       "isRemain": false,
@@ -748,7 +816,7 @@
       ],
       "name_enhanced": "비둘기 마술+",
       "cost_enhanced": 1,
-      "text_enhanced": "3<피해>피해를 줍니다.\\n고급마술: 적의 행동 하나를 봉쇄합니다.",
+      "text_enhanced": "3<피해>피해를 줍니다.\\n고급 마술: 적의 행동 하나를 봉쇄합니다.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
@@ -766,7 +834,7 @@
       "type": 2,
       "dreamPieceNum": 1,
       "sprite": "복제마술01",
-      "text": "패의 카드 1<특수>장을 선택해 복제합니다.\\n마술:행동력을 1<특수> 돌려받습니다.",
+      "text": "패의 카드 1<특수>장을 선택해 복제합니다.\\n초급 마술:행동력을 1<특수> 돌려받습니다.",
       "isVolatile": false,
       "isVanish": false,
       "isRemain": false,
@@ -782,7 +850,7 @@
       ],
       "name_enhanced": "복제 마술+",
       "cost_enhanced": 2,
-      "text_enhanced": "패의 카드 1<특수>장을 선택해 복제합니다.\\n마술:행동력을 2<특수> 돌려받습니다.",
+      "text_enhanced": "패의 카드 1<특수>장을 선택해 복제합니다.\\n초급 마술:행동력을 2<특수> 돌려받습니다.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
@@ -802,7 +870,7 @@
       "type": 2,
       "dreamPieceNum": 1,
       "sprite": "절단마술01",
-      "text": "적에게 2<피해>피해를 줍니다.\\n고급마술:적의 방어도를 모두 파괴합니다",
+      "text": "적에게 2<피해>피해를 줍니다.\\n고급 마술:적의 방어도를 모두 파괴합니다",
       "isVolatile": false,
       "isVanish": false,
       "isRemain": false,
@@ -816,7 +884,7 @@
       ],
       "name_enhanced": "절단 마술+",
       "cost_enhanced": 1,
-      "text_enhanced": "적에게 6<피해>피해를 줍니다.\\n고급마술:적의 방어도를 모두 파괴합니다",
+      "text_enhanced": "적에게 6<피해>피해를 줍니다.\\n고급 마술:적의 방어도를 모두 파괴합니다",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
@@ -912,20 +980,16 @@
       ],
       "name_enhanced": "마술 준비+",
       "cost_enhanced": 1,
-      "text_enhanced": "룰렛을 시계방향으로 현재 행동력 x 1<특수>칸 회전시킵니다. 3<특수>칸 이상 회전시킨 경우 방어도를 6<수비> 얻습니다.",
+      "text_enhanced": "룰렛을 시계방향으로 현재 행동력 x 1<특수>칸 회전시킵니다. 회전시킨 칸 수만큼 룰렛에 강화 버프를 부여합니다.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": false,
       "cardValues_enhanced": [
-        1,
-        3,
-        6
+        1
       ],
       "cardValueTypes_enhanced": [
-        3,
-        3,
-        2
+        3
       ]
     },
     {
@@ -1336,23 +1400,31 @@
       "type": 1,
       "dreamPieceNum": 3,
       "sprite": "발톱세우기",
-      "text": "적 앞 룰렛에 발톱 룰렛을 부여합니다.",
+      "text": "적 앞 룰렛에 발톱 룰렛을 9<특수> 부여합니다.",
       "isVolatile": false,
       "isVanish": false,
       "isRemain": false,
       "isSingleTarget": true,
       "rarity": 0,
-      "cardValues": [],
-      "cardValueTypes": [],
+      "cardValues": [
+        9
+      ],
+      "cardValueTypes": [
+        3
+      ],
       "name_enhanced": "발톱 세우기+",
       "cost_enhanced": 2,
-      "text_enhanced": "적 앞 룰렛에 강화된 발톱 룰렛을 부여합니다.",
+      "text_enhanced": "적 앞 룰렛에 발톱 룰렛을 12<특수> 부여합니다.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": true,
-      "cardValues_enhanced": [],
-      "cardValueTypes_enhanced": []
+      "cardValues_enhanced": [
+        12
+      ],
+      "cardValueTypes_enhanced": [
+        3
+      ]
     },
     {
       "name": "알뜰한 사냥꾼",
@@ -1394,27 +1466,23 @@
       "type": 2,
       "dreamPieceNum": 3,
       "sprite": "마구할퀴기",
-      "text": "모든 발톱 룰렛의 효과를 즉시 2<특수>번 적용합니다.",
+      "text": "모든 발톱 룰렛의 값을 절반으로 감소시키고, 소모한 값만큼 적에게 피해를 줍니다.",
       "isVolatile": false,
       "isVanish": false,
       "isRemain": false,
       "isSingleTarget": false,
       "rarity": 1,
-      "cardValues": [
-        2
-      ],
-      "cardValueTypes": [
-        3
-      ],
+      "cardValues": [],
+      "cardValueTypes": [],
       "name_enhanced": "마구 할퀴기+",
       "cost_enhanced": 2,
-      "text_enhanced": "모든 발톱 룰렛의 효과를 즉시 <color=red>3<특수></color>번 적용합니다.",
+      "text_enhanced": "모든 발톱 룰렛의 값을 절반으로 감소시키고, 소모한 값의 150<특수>%만큼 적에게 피해를 줍니다.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": false,
       "cardValues_enhanced": [
-        3
+        150
       ],
       "cardValueTypes_enhanced": [
         3
@@ -1458,30 +1526,34 @@
       "type": 1,
       "dreamPieceNum": 3,
       "sprite": "소심한할퀴기",
-      "text": "적에게 2<피해> 피해를 주고, 적 앞 룰렛에 약화된 발톱 룰렛을 부여합니다.",
+      "text": "적에게 2<피해> 피해를 주고, 적 앞 룰렛에 발톱 룰렛을 3<특수> 부여합니다.",
       "isVolatile": false,
       "isVanish": false,
       "isRemain": false,
       "isSingleTarget": true,
       "rarity": 0,
       "cardValues": [
-        2
+        2,
+        3
       ],
       "cardValueTypes": [
-        0
+        0,
+        3
       ],
       "name_enhanced": "소심한 할퀴기+",
       "cost_enhanced": 1,
-      "text_enhanced": "적에게 <color=red>5<피해></color> 피해를 주고, 적 앞 룰렛에 약화된 발톱 룰렛을 부여합니다.",
+      "text_enhanced": "적에게 <color=red>5<피해></color> 피해를 주고, 적 앞 룰렛에 발톱 룰렛을 3<특수> 부여합니다.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": true,
       "cardValues_enhanced": [
-        5
+        5,
+        3
       ],
       "cardValueTypes_enhanced": [
-        0
+        0,
+        3
       ]
     },
     {
@@ -1522,23 +1594,31 @@
       "type": 1,
       "dreamPieceNum": 3,
       "sprite": "고양이의시간",
-      "text": "모든 공격 룰렛을 발톱 룰렛으로 바꿉니다.",
+      "text": "모든 공격 룰렛을 9<특수>의 발톱 룰렛으로 바꿉니다.",
       "isVolatile": false,
       "isVanish": false,
       "isRemain": false,
       "isSingleTarget": false,
       "rarity": 1,
-      "cardValues": [],
-      "cardValueTypes": [],
+      "cardValues": [
+        9
+      ],
+      "cardValueTypes": [
+        3
+      ],
       "name_enhanced": "고양이의 시간+",
       "cost_enhanced": 3,
-      "text_enhanced": "모든 공격 룰렛을 <color=red>강화된</color> 발톱 룰렛으로 바꿉니다.",
+      "text_enhanced": "모든 공격 룰렛을 <color=red>12<특수></color>의 발톱 룰렛으로 바꿉니다.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": false,
-      "cardValues_enhanced": [],
-      "cardValueTypes_enhanced": []
+      "cardValues_enhanced": [
+        12
+      ],
+      "cardValueTypes_enhanced": [
+        3
+      ]
     },
     {
       "name": "기민함",
@@ -1578,23 +1658,31 @@
       "type": 1,
       "dreamPieceNum": 3,
       "sprite": "실뭉치",
-      "text": "자신 앞 룰렛에 실뭉치 룰렛을 부여합니다.",
+      "text": "자신 앞 룰렛에 실뭉치 룰렛을 1<특수> 부여합니다.",
       "isVolatile": false,
       "isVanish": false,
       "isRemain": false,
       "isSingleTarget": false,
       "rarity": 0,
-      "cardValues": [],
-      "cardValueTypes": [],
+      "cardValues": [
+        1
+      ],
+      "cardValueTypes": [
+        3
+      ],
       "name_enhanced": "실뭉치+",
       "cost_enhanced": 1,
-      "text_enhanced": "자신 앞 룰렛에 강화된 실뭉치 룰렛을 부여합니다.",
+      "text_enhanced": "자신 앞 룰렛에 강화된 실뭉치 룰렛을 5<특수> 부여합니다.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": false,
-      "cardValues_enhanced": [],
-      "cardValueTypes_enhanced": []
+      "cardValues_enhanced": [
+        5
+      ],
+      "cardValueTypes_enhanced": [
+        3
+      ]
     },
     {
       "name": "고양이걸음",
@@ -1634,11 +1722,11 @@
     },
     {
       "name": "실 풀기",
-      "cost": 1,
+      "cost": 2,
       "type": 2,
       "dreamPieceNum": 3,
       "sprite": "실풀기",
-      "text": "자신 앞에 놓인 실뭉치 룰렛의 값을 절반으로 감소시키고, 감소한 값만큼 방어도를 얻습니다.",
+      "text": "모든 실뭉치 룰렛의 값을 절반으로 감소시키고, 소모한 값만큼 방어도를 얻습니다.",
       "isVolatile": false,
       "isVanish": false,
       "isRemain": false,
@@ -1647,14 +1735,14 @@
       "cardValues": [],
       "cardValueTypes": [],
       "name_enhanced": "실 풀기+",
-      "cost_enhanced": 1,
-      "text_enhanced": "자신 앞에 놓인 실뭉치 룰렛의 값을 절반으로 감소시키고, 감소한 값의 2<특수>배만큼 방어도를 얻습니다.",
+      "cost_enhanced": 2,
+      "text_enhanced": "모든 실뭉치 룰렛의 값을 절반으로 감소시키고, 소모한 값의 150<특수>%만큼 방어도를 얻습니다.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": false,
       "cardValues_enhanced": [
-        2
+        150
       ],
       "cardValueTypes_enhanced": [
         3
@@ -1666,14 +1754,14 @@
       "type": 3,
       "dreamPieceNum": 3,
       "sprite": "놀이시간",
-      "text": "3<특수>턴 동안, 회전 카드를 사용할 때마다 행동력을 1<특수> 얻습니다.",
+      "text": "2<특수>턴 동안, 회전 카드를 사용할 때마다 행동력을 1<특수> 얻습니다.",
       "isVolatile": false,
       "isVanish": false,
       "isRemain": false,
       "isSingleTarget": false,
       "rarity": 1,
       "cardValues": [
-        3,
+        2,
         1
       ],
       "cardValueTypes": [
@@ -1682,13 +1770,13 @@
       ],
       "name_enhanced": "놀이 시간+",
       "cost_enhanced": 2,
-      "text_enhanced": "4<특수>턴 동안, 회전 카드를 사용할 때마다 행동력을 1<특수> 얻습니다.",
+      "text_enhanced": "3<특수>턴 동안, 회전 카드를 사용할 때마다 행동력을 1<특수> 얻습니다.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": false,
       "cardValues_enhanced": [
-        4,
+        3,
         1
       ],
       "cardValueTypes_enhanced": [
@@ -1750,13 +1838,13 @@
       ],
       "name_enhanced": "그루밍+",
       "cost_enhanced": 2,
-      "text_enhanced": "방어도를 3<수비> 얻고, 보호를 2<특수> 얻습니다.",
+      "text_enhanced": "방어도를 5<수비> 얻고, 보호를 2<특수> 얻습니다.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": false,
       "cardValues_enhanced": [
-        3,
+        5,
         2
       ],
       "cardValueTypes_enhanced": [

@@ -544,6 +544,13 @@ public class GameManager : MonoBehaviour
         characterSO.curHealth = TurnManager.Inst.curHealth;
         characterSO.dreamDust += 2;
         GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.coinGetSFX);
+
+        if(characterSO.enemyName == "마술사")
+        {
+            characterSO.bossClear = true;
+            SceneChangeManager.Inst.SceneFadeOut("BossScene_Magician");
+            return;
+        }
         // if(characterSO.enemyName == stageSO.stageList[stageSO.currentStage].bossEnemy.enemyName)
         // {
         //     stageSO.stageList[stageSO.currentStage].bossEnemy.isClear = true;

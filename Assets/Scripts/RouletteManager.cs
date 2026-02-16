@@ -285,13 +285,12 @@ public class RouletteManager : MonoBehaviour
             TurnManager.OnRouletteErase?.Invoke(index);
         }
         // roulettePieces[index].Setup(new RouletteItem(new RouletteType(ERouletteType.None), 0));
-        TurnManager.Inst.isLoading = true;
+        RouletteItem rItem = new RouletteItem();
+        rItem.rtype = rType;
+        rItem.value = rValue;
+        roulettePieces[index].roulette = rItem;
         roulettePieces[index].EnchantAnim(() =>
         {
-            TurnManager.Inst.isLoading = false;
-            RouletteItem rItem = new RouletteItem();
-            rItem.rtype = rType;
-            rItem.value = rValue;
             roulettePieces[index].Setup(rItem);
             Utils.AllignActions(ref TurnManager.OnRouletteEnchant, typeof(ShowBuff), typeof(RelicManager));
             TurnManager.OnRouletteEnchant?.Invoke(index);
@@ -318,10 +317,10 @@ public class RouletteManager : MonoBehaviour
         {
             index = playerLookat;
         }
-        if((roulettePieces[index].roulette.rtype.type != ERouletteType.Player_Special && roulettePieces[index].roulette.rtype.type != ERouletteType.Enemy_Special) || roulettePieces[index].isEnhanced)
-        {
-            return false;
-        }
+        // if((roulettePieces[index].roulette.rtype.type != ERouletteType.Player_Special && roulettePieces[index].roulette.rtype.type != ERouletteType.Enemy_Special) || roulettePieces[index].isEnhanced)
+        // {
+        //     return false;
+        // }
         roulettePieces[index].Enhance();
         Utils.AllignActions(ref TurnManager.OnRouletteEnhance, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnRouletteEnhance?.Invoke(index);

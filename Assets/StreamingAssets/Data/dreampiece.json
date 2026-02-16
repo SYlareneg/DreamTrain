@@ -55,7 +55,7 @@
           "title": "발톱",
           "text": "값 피해를 줍니다. 효과를 적용할 때마다 위력이 3 감소하고, 0이 되면 사라집니다.",
           "baseVal": 9,
-          "title_enhanced": "발톱+",
+          "title_enhanced": "발톱",
           "text_enhanced": "값 피해를 줍니다. 효과를 적용할 때마다 위력이 3 감소하고, 0이 되면 사라집니다.",
           "baseVal_enhanced": 12
         },
@@ -64,9 +64,9 @@
           "title": "실뭉치",
           "text": "값 피해를 줍니다. 룰렛이 회전하면 회전한 칸 수 만큼 위력이 증가하고, 효과 발동시 제거됩니다.",
           "baseVal": 1,
-          "title_enhanced": "실뭉치+",
-          "text_enhanced": "값 피해를 줍니다. 룰렛이 회전하면 회전한 칸 수x2 만큼 위력이 증가하고, 효과 발동시 제거됩니다.",
-          "baseVal_enhanced": 1
+          "title_enhanced": "실뭉치",
+          "text_enhanced": "값 피해를 줍니다. 룰렛이 회전하면 회전한 칸 수 만큼 위력이 증가하고, 효과 발동시 제거됩니다.",
+          "baseVal_enhanced": 5
         },
         {
           "sprite": "",
@@ -101,25 +101,17 @@
           "num": 1
         },
         {
-          "cardName": "고양이걸음",
-          "num": 1
-        },
-        {
           "cardName": "숨기",
           "num": 1
         }
       ],
       "baseCards_shadow": [
         {
-          "cardName": "발톱 세우기",
-          "num": 1
-        },
-        {
           "cardName": "실뭉치",
           "num": 1
         },
         {
-          "cardName": "실 풀기",
+          "cardName": "고양이걸음",
           "num": 1
         }
       ]
@@ -296,7 +288,7 @@
           "title": "마술상자 룰렛",
           "text": "12의 값으로 시작합니다.룰렛이 시계방향으로 회전할 때마다 값이 1 감소하고, 0이 되면 룰렛에서 제거됩니다.",
           "baseVal": 12,
-          "title_enhanced": "마술상자 룰렛+",
+          "title_enhanced": "마술상자 룰렛",
           "text_enhanced": "15의 값으로 시작합니다.룰렛이 시계방향으로 회전할 때마다 값이 1 감소하고, 0이 되면 룰렛에서 제거됩니다.",
           "baseVal_enhanced": 15
         },
@@ -305,7 +297,7 @@
           "title": "마술카드 룰렛",
           "text": "직전에 사용한 카드의 카드 타입에 따라 각기 다른 4가지의 룰렛을 부여합니다. 모든 룰렛은 효과 발동 시 소멸합니다.",
           "baseVal": 0,
-          "title_enhanced": "마술카드 룰렛+",
+          "title_enhanced": "마술카드 룰렛",
           "text_enhanced": "직전에 사용한 카드의 카드 타입에 따라 각기 다른 4가지의 룰렛을 부여합니다. 모든 룰렛은 효과 발동 시 소멸합니다.",
           "baseVal_enhanced": 0
         },
@@ -343,11 +335,7 @@
           "num": 1
         },
         {
-          "cardName": "마술 준비",
-          "num": 1
-        },
-        {
-          "cardName": "비둘기 마술",
+          "cardName": "폭발 마술",
           "num": 1
         }
       ],
@@ -357,11 +345,7 @@
           "num": 1
         },
         {
-          "cardName": "순간이동 마술",
-          "num": 1
-        },
-        {
-          "cardName": "마술 상자",
+          "cardName": "재빠른 손놀림",
           "num": 1
         }
       ]

@@ -25,21 +25,21 @@ public class RoomDialogueManager : MonoBehaviour
         input = new InputSystem_Actions();
     }
 
-    [SerializeField] GameObject dialoguePanel;
-    [SerializeField] GameObject dialogue;
-    [SerializeField] float dialogueAnchorMaxPivotX = 0.79f;
-    [SerializeField] GameObject dialogueSpeakerName;
-    [SerializeField] GameObject dialogueText;
-    [SerializeField] GameObject dialogueSpeakerSprite;
-    [SerializeField] AudioSource dialogueAudioSource;
-    [SerializeField] Image dialogueDone;
+    [SerializeField] protected GameObject dialoguePanel;
+    [SerializeField] protected GameObject dialogue;
+    [SerializeField] protected float dialogueAnchorMaxPivotX = 0.79f;
+    [SerializeField] protected GameObject dialogueSpeakerName;
+    [SerializeField] protected GameObject dialogueText;
+    [SerializeField] protected GameObject dialogueSpeakerSprite;
+    [SerializeField] protected AudioSource dialogueAudioSource;
+    [SerializeField] protected Image dialogueDone;
 
     public List<DialogueLine> currentDialogueLines;
     public int currentLineIndex = 0;
 
-    private InputSystem_Actions input;
-    Coroutine typingCoroutine;
-    Sequence doneBlinkSequence;
+    protected InputSystem_Actions input;
+    protected Coroutine typingCoroutine;
+    protected Sequence doneBlinkSequence;
     public static Action OnDialogueEnd;
 
     private void OnEnable()
