@@ -478,7 +478,7 @@ public class TurnManager : MonoBehaviour
         if(nowCost + value < 0) value = -nowCost;
         if(isRestore && nowCost + value > turnCost) value = turnCost - nowCost;
         nowCost += value;
-        if(!isRestore && extraCost + value >= 0) extraCost += value;
+        // if(!isRestore && extraCost + value >= 0) extraCost += value;
         Utils.AllignActions(ref OnCostChange, typeof(ShowBuff), typeof(RelicManager));
         OnCostChange?.Invoke(value);
     }

@@ -21,8 +21,15 @@ public class RouletteManager : MonoBehaviour
     public Animator triggerEffect;
     public Sprite playerTriggerSprite;
     public Sprite enemyTriggerSprite;
+    public Animator playerRouletteEffect;
+    public Animator playerRouletteEffect2;
+    public List<Action> playerRouletteEffectEndAction = new List<Action>();
+    public string playerRouletteCurrentEffectName = "";
+    public List<string> playerRouletteEffectQueue = new List<string>();
     public Animator enemyRouletteEffect;
-    public Action enemyRouletteEffectEndAction;
+    public List<Action> enemyRouletteEffectEndAction = new List<Action>();
+    public string enemyRouletteCurrentEffectName = "";
+    public List<string> enemyRouletteEffectQueue = new List<string>();
     public Animator rouletteBuffEffect;
 
     public static int rouletteNum = 12;
@@ -457,6 +464,12 @@ public class RouletteManager : MonoBehaviour
     private void Start()
     {
         TurnManager.OnPlayerTurnStart += () => { spinCount_Turn = 0; spinDistance_Turn = 0; };
+        playerRouletteEffectEndAction = new List<Action>();
+        playerRouletteCurrentEffectName = "";
+        playerRouletteEffectQueue = new List<string>();
+        enemyRouletteEffectEndAction = new List<Action>();
+        enemyRouletteCurrentEffectName = "";
+        enemyRouletteEffectQueue = new List<string>();
     }
 
     private void OnDestroy()

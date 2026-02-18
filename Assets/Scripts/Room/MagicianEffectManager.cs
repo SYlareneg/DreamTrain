@@ -54,7 +54,7 @@ public class MagicianEffectManager : MonoBehaviour
             }
             foreach(var stageLight in stageLights)
             {
-                stageLight.GetComponent<Light2D>().intensity = 5f;
+                stageLight.GetComponent<Light2D>().intensity = 0.5f;
             }
         }
         else

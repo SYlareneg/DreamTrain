@@ -55,9 +55,9 @@ MonoBehaviour:
   rouletteValueTMP: {fileID: 7409682080955745942}
   rouletteTypeSprites:
   - {fileID: 0}
-  - {fileID: 21300000, guid: 0758ae092621a8f44929decca040389b, type: 3}
-  - {fileID: 21300000, guid: 0e51d7e8310c34d428fd960b6a9a5ce3, type: 3}
-  - {fileID: 21300000, guid: 069e7c6663e9069409e0acdf4cffcac3, type: 3}
+  - {fileID: 21300000, guid: a4fa48dad35cf1f40b7efda8e1e34c96, type: 3}
+  - {fileID: 21300000, guid: 79aa7db31c311424d96061c936af3c1f, type: 3}
+  - {fileID: 21300000, guid: ae4dee3a1c102584996da63539619812, type: 3}
   - {fileID: 0}
   originalSprite: {fileID: 0}
   originalTooltipTitle: 
@@ -798,7 +798,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 3.76}
+  m_AnchoredPosition: {x: 0, y: 3.77}
   m_SizeDelta: {x: 2, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &6764942881716337190
@@ -826,7 +826,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8369906880369458792, guid: d4f11fc392ee6cf48b4d45338994bc9b, type: 2}
+  - {fileID: -951138288061679093, guid: 62dbd821c04c76c4984d3f4834a8f5f9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -871,8 +871,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 5
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d4f11fc392ee6cf48b4d45338994bc9b, type: 2}
-  m_sharedMaterial: {fileID: 8369906880369458792, guid: d4f11fc392ee6cf48b4d45338994bc9b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 62dbd821c04c76c4984d3f4834a8f5f9, type: 2}
+  m_sharedMaterial: {fileID: -951138288061679093, guid: 62dbd821c04c76c4984d3f4834a8f5f9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

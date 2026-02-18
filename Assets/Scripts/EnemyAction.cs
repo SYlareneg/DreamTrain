@@ -14,6 +14,12 @@ public class EnemyAction : MonoBehaviour
     [SerializeField] TMP_Text enemyActionTMP;
     [SerializeField] Sprite[] enemyActionSprites;
 
+    [SerializeField] SpriteRenderer background;
+    [SerializeField] Sprite[] backgroundSprites;
+    [SerializeField] SpriteRenderer clip;
+    [SerializeField] Sprite[] clipSprites;
+    [SerializeField] GameObject triggerHighlight;
+
     public EEnemyActionType actionType;
     public int actionTypeNum;
     public int enemyIdx;
@@ -21,6 +27,7 @@ public class EnemyAction : MonoBehaviour
     public int actionVal;
     public bool isIgnore = false;
     public bool isTurnSet = false;
+    public bool isTriggerAction = false;
     Tooltip tooltip;
     public Vector2 tooltipPos;
 
@@ -46,6 +53,12 @@ public class EnemyAction : MonoBehaviour
     {
         baseActionVal = value;
         actionVal = value;
+    }
+
+    public void SetBackground(int patternNum)
+    {
+        background.sprite = backgroundSprites[patternNum % backgroundSprites.Length];
+        clip.sprite = clipSprites[patternNum % clipSprites.Length];
     }
 
     public void ShowAction()
@@ -149,6 +162,7 @@ public class EnemyAction : MonoBehaviour
         SetActionVal(p.val);
         isIgnore = false;
         isTurnSet = false;
+        isTriggerAction = p.isTrigger;
 
         if (actionType == EEnemyActionType.Turn)
         {
@@ -258,7 +272,42 @@ public class EnemyAction : MonoBehaviour
 
     public static void SpecialAction(int num, int val, int enemyIdx = 0)
     {
-        if(enemyIdx == 0) EnemyManager.enemySpecialActivation[num]?.Invoke(val);
+        if(enemyIdx == 0)
+        {
+            if(num == 0 && EnemyManager.Inst.enemy.name == "마술사")
+            {
+                EnemyManager.Inst.enemySpecialEffectEndAction.Add(() =>
+                {
+                    EnemyManager.enemySpecialActivation[num]?.Invoke(val);
+                });
+                if(EnemyManager.Inst.enemyCurrentSpecialEffectName == "")
+                {
+                    EnemyManager.Inst.enemyCurrentSpecialEffectName = "Magic-Fire";
+                    EnemyManager.Inst.enemySpecialEffect.SetTrigger(EnemyManager.Inst.enemyCurrentSpecialEffectName);
+                }
+                else
+                {
+                    EnemyManager.Inst.enemySpecialEffectQueue.Add("Magic-Fire");
+                }
+            }
+            else if(num == 0 && EnemyManager.Inst.enemy.name == "뱀파이어 폴")
+            {
+                EnemyManager.Inst.enemySpecialEffectEndAction.Add(() =>
+                {
+                    EnemyManager.enemySpecialActivation[num]?.Invoke(val);
+                });
+                if(EnemyManager.Inst.enemyCurrentSpecialEffectName == "")
+                {
+                    EnemyManager.Inst.enemyCurrentSpecialEffectName = "Drain";
+                    EnemyManager.Inst.enemySpecialEffect.SetTrigger(EnemyManager.Inst.enemyCurrentSpecialEffectName);
+                }
+                else
+                {
+                    EnemyManager.Inst.enemySpecialEffectQueue.Add("Drain");
+                }
+            }
+            else EnemyManager.enemySpecialActivation[num]?.Invoke(val);
+        }
         else EnemyManager.subEnemySpecialActivation[enemyIdx - 1, num]?.Invoke(val);
     }
 
@@ -315,6 +364,10 @@ public class EnemyAction : MonoBehaviour
     private void Update()
     {
         ShowAction();
+        if(triggerHighlight != null)
+        {
+            triggerHighlight.SetActive(isTriggerAction);
+        }
         tooltip.tooltipPos = this.tooltipPos;
     }
 }

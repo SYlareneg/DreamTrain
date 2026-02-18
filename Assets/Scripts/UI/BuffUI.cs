@@ -33,7 +33,8 @@ public class BuffUI : MonoBehaviour
     {
         if(tooltip)
         {
-            tooltip.tooltipPos = this.GetComponent<RectTransform>().anchoredPosition + tooltipBasePos;
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(this.transform.position) - Camera.main.WorldToScreenPoint(Vector3.zero);
+            tooltip.tooltipPos = new Vector2(screenPos.x, screenPos.y);
         }
     }
 }

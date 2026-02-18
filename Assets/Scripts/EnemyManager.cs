@@ -15,6 +15,10 @@ public class EnemyManager : MonoBehaviour
     {
         Inst = this;
 
+        enemySpecialEffectEndAction = new List<Action>();
+        enemyCurrentSpecialEffectName = "";
+        enemySpecialEffectQueue = new List<string>();
+
         subEnemyPos = new Transform[Enemy.maxSubEnemyNum];
         subEnemyActionPos = new Transform[Enemy.maxSubEnemyNum];
         subEnemyExecutePos = new Transform[Enemy.maxSubEnemyNum];
@@ -54,6 +58,7 @@ public class EnemyManager : MonoBehaviour
     [Tooltip("액션별 최대 실행값\n(예: 2일 경우 회전 액션은 최대 2칸 회전)")] public int maxActionVal;
 
     public GameObject enemyImg;
+    [SerializeField] GameObject enemyTriggerHighlight;
     public GameObject[] subEnemyImg;
     [SerializeField] GameObject enemyThumbnail;
     [SerializeField] GameObject[] subEnemyThumbnail;
@@ -86,6 +91,10 @@ public class EnemyManager : MonoBehaviour
     [Header("적 특수행동")]
     public List<EnemySpecialAction> enemySpecialActions;
     public static Action<int>[] enemySpecialActivation = new Action<int>[Enemy.enemySpecialActionNum];
+    public Animator enemySpecialEffect;
+    public List<Action> enemySpecialEffectEndAction = new List<Action>();
+    public string enemyCurrentSpecialEffectName = "";
+    public List<string> enemySpecialEffectQueue = new List<string>();
     [Header("하위 적 특수룰렛")]
     public List<SpecialRoulette>[] subEnemySpecialRoulettes = new List<SpecialRoulette>[Enemy.maxSubEnemyNum];
     public static Action<RoulettePiece, bool, int, int, bool>[,] subEnemySpecialRouletteActivation = new Action<RoulettePiece, bool, int, int, bool>[Enemy.maxSubEnemyNum, SubEnemy.enemySpecialRouletteNum];
@@ -1060,6 +1069,7 @@ public class EnemyManager : MonoBehaviour
         // 메인 적 패턴 결정
         if (!isTriggerActivated)
         {
+            enemyTriggerHighlight.SetActive(false);
             enemyImg.GetComponent<SpriteRenderer>().sprite = enemy.phase[phaseNum].sprite;
             enemyImg.GetComponent<Tooltip>().tooltipTitle = enemy.phase[phaseNum].name;
             enemyImg.GetComponent<Tooltip>().tooltipTxt = enemy.phase[phaseNum].text;
@@ -1088,6 +1098,7 @@ public class EnemyManager : MonoBehaviour
         }
         else
         {
+            enemyTriggerHighlight.SetActive(true);
             enemyImg.GetComponent<SpriteRenderer>().sprite = enemy.triggerPhase[triggerPhaseNum].sprite;
             enemyImg.GetComponent<Tooltip>().tooltipTitle = enemy.triggerPhase[triggerPhaseNum].name;
             enemyImg.GetComponent<Tooltip>().tooltipTxt = enemy.triggerPhase[triggerPhaseNum].text;
@@ -1150,6 +1161,7 @@ public class EnemyManager : MonoBehaviour
             var newAction = newActionObj.GetComponent<EnemyAction>();
 
             newAction.SetAction(currentPattern[i], 0);
+            newAction.SetBackground(i);
             newAction.tooltipPos += new Vector2(Camera.main.WorldToScreenPoint(enemyActionPos.position).x - Camera.main.WorldToScreenPoint(Vector3.zero).x,
                                                 Camera.main.WorldToScreenPoint(enemyActionPos.position).y - Camera.main.WorldToScreenPoint(Vector3.zero).y);
 
@@ -1168,6 +1180,7 @@ public class EnemyManager : MonoBehaviour
                 var newAction = newActionObj.GetComponent<EnemyAction>();
 
                 newAction.SetAction(currentPattern_SE[i][j], i + 1);
+                newAction.SetBackground(j);
                 newAction.tooltipPos = Camera.main.WorldToScreenPoint(subEnemyActionPos[i].position) - Camera.main.WorldToScreenPoint(Vector3.zero);
 
                 subEnemyActionList[i].Add(newAction);
@@ -1784,52 +1797,14 @@ public class EnemyManager : MonoBehaviour
     }
 
     Sequence enemyDamageSeq;
+    Sequence enemyHealSeq;
+    Sequence enemyShieldSeq;
 
     private void Start()
     {
         TurnManager.OnPlayerTurnStart += InitActionList;
         TurnManager.OnPlayerTurnStart += AllignActionList;
 
-        // TurnManager.OnEnemyDamaged += (damage, source, enemyIdx) =>
-        // {
-        //     Transform enemyDamageIcon = null;
-        //     if (enemyIdx == 0)
-        //     {
-        //         enemyDamageIcon = enemyImg.transform.Find("DamageIcon");
-        //     }
-        //     else
-        //     {
-        //         enemyDamageIcon = subEnemyImg[enemyIdx - 1].transform.Find("DamageIcon");
-        //     }
-        //     if (enemyDamageIcon != null)
-        //     {
-        //         var enemyDamageFilter = enemyImg.transform.Find("DamageFilter");
-        //         if(enemyDamageSeq != null && enemyDamageSeq.IsActive())
-        //         {
-        //             enemyDamageSeq.Kill();
-        //             enemyDamageIcon.gameObject.SetActive(false);
-        //             enemyDamageFilter?.gameObject.SetActive(false);
-        //         }
-        //         enemyDamageIcon.gameObject.SetActive(true);
-        //         enemyDamageSeq = DOTween.Sequence();
-        //         enemyDamageSeq.AppendInterval(0.7f);
-        //         enemyDamageSeq.AppendCallback(() =>
-        //         {
-        //             // enemyDamageIcon.gameObject.SetActive(false);
-        //             enemyDamageFilter?.gameObject.SetActive(true);
-        //         });
-        //         if(enemyDamageFilter != null)
-        //         {
-        //             enemyDamageSeq.Append(enemyDamageFilter.GetComponent<SpriteRenderer>().DOFade(0, 0.05f).SetLoops(6, LoopType.Yoyo).SetEase(Ease.Linear));
-        //             enemyDamageSeq.AppendCallback(() =>
-        //             {
-        //                 enemyDamageIcon.gameObject.SetActive(false);
-        //                 enemyDamageFilter.gameObject.SetActive(false);
-        //             });
-        //         }
-        //         enemyDamageSeq.Play();
-        //     }
-        // };
         Vector3[] originalScales = new Vector3[Enemy.maxSubEnemyNum + 1];
         for(int i = 0; i < originalScales.Length; i++)
         {
@@ -1905,9 +1880,9 @@ public class EnemyManager : MonoBehaviour
                 enemyHealSprite.gameObject.SetActive(true);
                 enemyHealSprite.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
                 // enemyHealSprite.Find("HealTMP").GetComponent<TMP_Text>().color = Color.white;
-                enemyDamageSeq?.Kill();
-                enemyDamageSeq = DOTween.Sequence();
-                enemyDamageSeq.Append(enemyHealSprite.GetComponent<SpriteRenderer>().DOFade(1, 0.5f))
+                enemyHealSeq?.Kill();
+                enemyHealSeq = DOTween.Sequence();
+                enemyHealSeq.Append(enemyHealSprite.GetComponent<SpriteRenderer>().DOFade(1, 0.5f))
                 .Append(enemyHealSprite.GetComponent<SpriteRenderer>().DOFade(0, 0.5f))//.SetDelay(0.5f))
                 // .Join(enemyHealSprite.Find("HealTMP").GetComponent<TMP_Text>().DOFade(0, 0.2f))
                 .AppendCallback(() =>
@@ -1941,9 +1916,9 @@ public class EnemyManager : MonoBehaviour
                 enemyShieldSprite.gameObject.SetActive(true);
                 enemyShieldSprite.GetComponent<SpriteRenderer>().color = Color.white;
                 // enemyShieldSprite.Find("ShieldTMP").GetComponent<TMP_Text>().color = Color.white;
-                enemyDamageSeq?.Kill();
-                enemyDamageSeq = DOTween.Sequence();
-                enemyDamageSeq.Append(enemyShieldSprite.DOScale(expandScale, 0.2f))
+                enemyShieldSeq?.Kill();
+                enemyShieldSeq = DOTween.Sequence();
+                enemyShieldSeq.Append(enemyShieldSprite.DOScale(expandScale, 0.2f))
                 .Append(enemyShieldSprite.DOScale(originalScales[enemyIdx], 0.2f))
                 .Append(enemyShieldSprite.GetComponent<SpriteRenderer>().DOFade(0, 0.2f).SetDelay(0.5f))
                 // .Join(enemyShieldSprite.Find("ShieldTMP").GetComponent<TMP_Text>().DOFade(0, 0.2f))

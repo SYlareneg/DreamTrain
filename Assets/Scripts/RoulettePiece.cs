@@ -172,7 +172,7 @@ public class RoulettePiece : MonoBehaviour
         }
         else if (totalVal == curVal)
         {
-            rouletteValueTMP.color = Color.black;
+            rouletteValueTMP.color = new Color(0.3020f, 0.2941f, 0.1882f, 1f);
         }
         else
         {
@@ -193,7 +193,7 @@ public class RoulettePiece : MonoBehaviour
 
     public void HideTotalValue()
     {
-        rouletteValueTMP.color = Color.black;
+        rouletteValueTMP.color = new Color(0.3020f, 0.2941f, 0.1882f, 1f);
         if (roulette.value != 0)
         {
             rouletteValueTMP.text = roulette.value.ToString();
@@ -246,79 +246,243 @@ public class RoulettePiece : MonoBehaviour
                 if(totalVal < 0) totalVal = 0;
                 if (isEnemy)
                 {
-                    RouletteManager.Inst.enemyRouletteEffectEndAction = () =>
+                    RouletteManager.Inst.enemyRouletteEffectEndAction.Add(() =>
                     {
                         TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette, enemyIdx);
-                        RouletteManager.Inst.enemyRouletteEffectEndAction = null;
-                    };
-                    RouletteManager.Inst.enemyRouletteEffect.SetTrigger("Attack");
-                    // TurnManager.Inst.EnemyTakeDmg(totalVal, EDamageSource.Roulette, enemyIdx);
+                    });
+                    if(RouletteManager.Inst.enemyRouletteCurrentEffectName == "")
+                    {
+                        RouletteManager.Inst.enemyRouletteCurrentEffectName = "Attack";
+                        RouletteManager.Inst.enemyRouletteEffect.SetTrigger("Attack");
+                    }
+                    else
+                    {
+                        RouletteManager.Inst.enemyRouletteEffectQueue.Add("Attack");
+                    }
                 }
                 else
                 {
-                    TurnManager.Inst.TakeDmg(totalVal, EDamageSource.Roulette);
+                    RouletteManager.Inst.playerRouletteEffectEndAction.Add(() =>
+                    {
+                        TurnManager.Inst.TakeDmg(totalVal, EDamageSource.Roulette);
+                    });
+                    if(RouletteManager.Inst.playerRouletteCurrentEffectName == "")
+                    {
+                        RouletteManager.Inst.playerRouletteCurrentEffectName = "Attack";
+                        RouletteManager.Inst.playerRouletteEffect.SetTrigger("Attack");
+                    }
+                    else
+                    {
+                        RouletteManager.Inst.playerRouletteEffectQueue.Add("Attack");
+                    }
                 }
                 break;
             case ERouletteType.Heal:
                 if(totalVal > 0) totalVal = 0;
                 if (isEnemy)
                 {
-                    RouletteManager.Inst.enemyRouletteEffectEndAction = () =>
+                    RouletteManager.Inst.enemyRouletteEffectEndAction.Add(() =>
                     {
                         TurnManager.Inst.EnemyTakeDmg(-totalVal, EDamageSource.Roulette, enemyIdx);
-                        RouletteManager.Inst.enemyRouletteEffectEndAction = null;
-                    };
-                    RouletteManager.Inst.enemyRouletteEffect.SetTrigger("Heal");
+                    });
+                    if(RouletteManager.Inst.enemyRouletteCurrentEffectName == "")
+                    {
+                        RouletteManager.Inst.enemyRouletteCurrentEffectName = "Heal";
+                        RouletteManager.Inst.enemyRouletteEffect.SetTrigger("Heal");
+                    }
+                    else
+                    {
+                        RouletteManager.Inst.enemyRouletteEffectQueue.Add("Heal");
+                    }
                     // TurnManager.Inst.EnemyTakeDmg(-totalVal, EDamageSource.Roulette, enemyIdx);
                 }
                 else
                 {
-                    TurnManager.Inst.TakeDmg(-totalVal, EDamageSource.Roulette);
+                    RouletteManager.Inst.playerRouletteEffectEndAction.Add(() =>
+                    {
+                        TurnManager.Inst.TakeDmg(-totalVal, EDamageSource.Roulette);
+                    });
+                    if(RouletteManager.Inst.playerRouletteCurrentEffectName == "")
+                    {
+                        RouletteManager.Inst.playerRouletteCurrentEffectName = "Heal";
+                        RouletteManager.Inst.playerRouletteEffect.SetTrigger("Heal");
+                    }
+                    else
+                    {
+                        RouletteManager.Inst.playerRouletteEffectQueue.Add("Heal");
+                    }
                 }
                 break;
             case ERouletteType.Shield:
                 if (isEnemy)
                 {
-                    RouletteManager.Inst.enemyRouletteEffectEndAction = () =>
+                    RouletteManager.Inst.enemyRouletteEffectEndAction.Add(() =>
                     {
                         TurnManager.Inst.GetShield(true, totalVal, EDamageSource.Roulette, enemyIdx);
-                        RouletteManager.Inst.enemyRouletteEffectEndAction = null;
-                    };
-                    RouletteManager.Inst.enemyRouletteEffect.SetTrigger("Shield");
+                    });
+                    if(RouletteManager.Inst.enemyRouletteCurrentEffectName == "")
+                    {
+                        RouletteManager.Inst.enemyRouletteCurrentEffectName = "Shield";
+                        RouletteManager.Inst.enemyRouletteEffect.SetTrigger("Shield");
+                    }
+                    else
+                    {
+                        RouletteManager.Inst.enemyRouletteEffectQueue.Add("Shield");
+                    }
                     // TurnManager.Inst.GetShield(true, totalVal, EDamageSource.Roulette, enemyIdx);
                 }
                 else
                 {
-                    TurnManager.Inst.GetShield(false, totalVal, EDamageSource.Roulette);
+                    RouletteManager.Inst.playerRouletteEffectEndAction.Add(() =>
+                    {
+                        TurnManager.Inst.GetShield(false, totalVal, EDamageSource.Roulette);
+                    });
+                    if(RouletteManager.Inst.playerRouletteCurrentEffectName == "")
+                    {
+                        RouletteManager.Inst.playerRouletteCurrentEffectName = "Shield";
+                        RouletteManager.Inst.playerRouletteEffect.SetTrigger("Shield");
+                    }
+                    else
+                    {
+                        RouletteManager.Inst.playerRouletteEffectQueue.Add("Shield");
+                    }
                 }
                 break;
             case ERouletteType.Enemy_Special:
-                if(enemyIdx == 0) EnemyManager.enemySpecialRouletteActivation[roulette.rtype.specialTypeIdx]?.Invoke(this, isEnemy, totalVal, 0, isEnhanced);
+                if(enemyIdx == 0)
+                {
+                    if(isEnemy)
+                    {
+                        RouletteManager.Inst.enemyRouletteEffectEndAction.Add(() =>
+                        {
+                            EnemyManager.enemySpecialRouletteActivation[roulette.rtype.specialTypeIdx]?.Invoke(this, isEnemy, totalVal, 0, isEnhanced);
+                        });
+                        if(RouletteManager.Inst.enemyRouletteCurrentEffectName == "")
+                        {
+                            switch(EnemyManager.Inst.enemySpecialRoulettes[roulette.rtype.specialTypeIdx].title)
+                            {
+                                case "흡혈":
+                                case "흡혈+":
+                                    RouletteManager.Inst.enemyRouletteCurrentEffectName = "Drain";
+                                    break;
+                            }
+                            RouletteManager.Inst.enemyRouletteEffect.SetTrigger(RouletteManager.Inst.enemyRouletteCurrentEffectName);
+                        }
+                        else
+                        {
+                            switch(EnemyManager.Inst.enemySpecialRoulettes[roulette.rtype.specialTypeIdx].title)
+                            {
+                                case "흡혈":
+                                case "흡혈+":
+                                    RouletteManager.Inst.enemyRouletteEffectQueue.Add("Drain");
+                                    break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        RouletteManager.Inst.playerRouletteEffectEndAction.Add(() =>
+                        {
+                            EnemyManager.enemySpecialRouletteActivation[roulette.rtype.specialTypeIdx]?.Invoke(this, isEnemy, totalVal, 0, isEnhanced);
+                        });
+                        if(RouletteManager.Inst.playerRouletteCurrentEffectName == "")
+                        {
+                            switch(EnemyManager.Inst.enemySpecialRoulettes[roulette.rtype.specialTypeIdx].title)
+                            {
+                                case "흡혈":
+                                case "흡혈+":
+                                    RouletteManager.Inst.playerRouletteCurrentEffectName = "Drain";
+                                    RouletteManager.Inst.playerRouletteEffect2.SetTrigger(RouletteManager.Inst.playerRouletteCurrentEffectName);
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            switch(EnemyManager.Inst.enemySpecialRoulettes[roulette.rtype.specialTypeIdx].title)
+                            {
+                                case "흡혈":
+                                case "흡혈+":
+                                    RouletteManager.Inst.playerRouletteEffectQueue.Add("Drain");
+                                    break;
+                            }
+                        }
+                    }
+                }
                 else EnemyManager.subEnemySpecialRouletteActivation[enemyIdx - 1, roulette.rtype.specialTypeIdx]?.Invoke(this, isEnemy, totalVal, enemyIdx, isEnhanced);
                 break;
             case ERouletteType.Player_Special:
                 if(isEnemy)
                 {
-                    RouletteManager.Inst.enemyRouletteEffectEndAction = () =>
+                    RouletteManager.Inst.enemyRouletteEffectEndAction.Add(() =>
                     {
                         PassiveManager.playerSpecialRouletteActivation[roulette.rtype.specialTypeIdx]?.Invoke(isEnemy, totalVal, enemyIdx, isEnhanced);
-                        RouletteManager.Inst.enemyRouletteEffectEndAction = null;
-                    };
-                    switch(PassiveManager.Inst.playerSpecialRoulettes[roulette.rtype.specialTypeIdx].title)
+                    });
+                    if(RouletteManager.Inst.enemyRouletteCurrentEffectName == "")
                     {
-                        case "발톱":
-                        case "발톱+":
-                            RouletteManager.Inst.enemyRouletteEffect.SetTrigger("Claw");
-                            break;
-                        case "실뭉치":
-                        case "실뭉치+":
-                            RouletteManager.Inst.enemyRouletteEffect.SetTrigger("Furball");
-                            break;
+                        switch(PassiveManager.Inst.playerSpecialRoulettes[roulette.rtype.specialTypeIdx].title)
+                        {
+                            case "발톱":
+                            case "발톱+":
+                                RouletteManager.Inst.enemyRouletteCurrentEffectName = "Claw";
+                                break;
+                            case "실뭉치":
+                            case "실뭉치+":
+                                RouletteManager.Inst.enemyRouletteCurrentEffectName = "Furball";
+                                break;
+                        }
+                        RouletteManager.Inst.enemyRouletteEffect.SetTrigger(RouletteManager.Inst.enemyRouletteCurrentEffectName);
+                    }
+                    else
+                    {
+                        switch(PassiveManager.Inst.playerSpecialRoulettes[roulette.rtype.specialTypeIdx].title)
+                        {
+                            case "발톱":
+                            case "발톱+":
+                                RouletteManager.Inst.enemyRouletteEffectQueue.Add("Claw");
+                                break;
+                            case "실뭉치":
+                            case "실뭉치+":
+                                RouletteManager.Inst.enemyRouletteEffectQueue.Add("Furball");
+                                break;
+                        }
                     }
                 }
                 else
                 {
-                    PassiveManager.playerSpecialRouletteActivation[roulette.rtype.specialTypeIdx]?.Invoke(isEnemy, totalVal, enemyIdx, isEnhanced);
+                    RouletteManager.Inst.playerRouletteEffectEndAction.Add(() =>
+                    {
+                        PassiveManager.playerSpecialRouletteActivation[roulette.rtype.specialTypeIdx]?.Invoke(isEnemy, totalVal, enemyIdx, isEnhanced);
+                    });
+                    if(RouletteManager.Inst.playerRouletteCurrentEffectName == "")
+                    {
+                        switch(PassiveManager.Inst.playerSpecialRoulettes[roulette.rtype.specialTypeIdx].title)
+                        {
+                            case "발톱":
+                            case "발톱+":
+                                RouletteManager.Inst.playerRouletteCurrentEffectName = "Claw";
+                                RouletteManager.Inst.playerRouletteEffect2.SetTrigger(RouletteManager.Inst.playerRouletteCurrentEffectName);
+                                break;
+                            case "실뭉치":
+                            case "실뭉치+":
+                                RouletteManager.Inst.playerRouletteCurrentEffectName = "Furball";
+                                RouletteManager.Inst.playerRouletteEffect.SetTrigger(RouletteManager.Inst.playerRouletteCurrentEffectName);
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch(PassiveManager.Inst.playerSpecialRoulettes[roulette.rtype.specialTypeIdx].title)
+                        {
+                            case "발톱":
+                            case "발톱+":
+                                RouletteManager.Inst.playerRouletteEffectQueue.Add("Claw");
+                                break;
+                            case "실뭉치":
+                            case "실뭉치+":
+                                RouletteManager.Inst.playerRouletteEffectQueue.Add("Furball");
+                                break;
+                        }
+                    }
                 }
                 break;
         }

@@ -1,35 +1,31 @@
 {
     "maxHealth": 60,
     "curHealth": 28,
-    "dreamDust": 17,
+    "dreamDust": 23,
     "leftPassengers": 0,
     "isTutorial": false,
-    "lastSceneName": "EncounterScene",
-    "personaPiece": "마술사의 꿈",
+    "lastSceneName": "BossScene_Magician",
+    "personaPiece": "고양이의 꿈",
     "isPersonaEnhanced": false,
     "personaCards": [
         {
-            "cardName": "마술 상자",
+            "cardName": "발톱 세우기",
             "num": 1
         },
         {
-            "cardName": "폭발 마술",
-            "num": 1
-        },
-        {
-            "cardName": "복제 마술",
+            "cardName": "숨기",
             "num": 1
         }
     ],
-    "shadowPiece": "마술사의 꿈",
+    "shadowPiece": "고양이의 꿈",
     "isShadowEnhanced": false,
     "shadowCards": [
         {
-            "cardName": "마술 카드",
+            "cardName": "실뭉치",
             "num": 1
         },
         {
-            "cardName": "재빠른 손놀림",
+            "cardName": "고양이걸음",
             "num": 1
         }
     ],
@@ -55,8 +51,16 @@
             "num": 1
         }
     ],
-    "relics": [],
-    "relicEnhancements": [],
+    "relics": [
+        8,
+        9,
+        18
+    ],
+    "relicEnhancements": [
+        false,
+        false,
+        false
+    ],
     "useableItems": [],
     "earnedKeys": [],
     "courage": 1,
@@ -72,8 +76,8 @@
             "pos": 0,
             "screenPos": {
                 "x": -19.5,
-                "y": 0.0,
-                "z": 0.0
+                "y": 0,
+                "z": 0
             },
             "childNodes": [
                 "20858bb7f984406983a952fe7d45d2bd"
@@ -88,7 +92,7 @@
             "screenPos": {
                 "x": -15.5,
                 "y": 0.07115238159894943,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "8d6560ad12794715abb40cf3d11ca5f3",
@@ -105,7 +109,7 @@
             "screenPos": {
                 "x": -11.5,
                 "y": -0.08153743296861649,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "954aa0e92c9443699552c40228f551f1"
@@ -120,7 +124,7 @@
             "screenPos": {
                 "x": -11.5,
                 "y": -1.753291130065918,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "52bfe1a55da049318c1f3bc6b32b461f"
@@ -135,7 +139,7 @@
             "screenPos": {
                 "x": -11.5,
                 "y": -0.9915584325790405,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "52bfe1a55da049318c1f3bc6b32b461f"
@@ -150,7 +154,7 @@
             "screenPos": {
                 "x": -7.5,
                 "y": 0.07061471790075302,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "52bfe1a55da049318c1f3bc6b32b461f"
@@ -165,7 +169,7 @@
             "screenPos": {
                 "x": -3.5,
                 "y": -0.06844288855791092,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "bccf95f3599142ada3fdcb4be243eb49",
@@ -181,8 +185,8 @@
             "pos": 0,
             "screenPos": {
                 "x": 0.5,
-                "y": -0.020766057074069978,
-                "z": 0.0
+                "y": -0.020766057074069977,
+                "z": 0
             },
             "childNodes": [
                 "cd8f16eafa714cda917bcd618011bfbc"
@@ -197,7 +201,7 @@
             "screenPos": {
                 "x": 0.5,
                 "y": -0.9217429161071777,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "6d7add5eafd54fcab5c8e16c64e53086"
@@ -212,7 +216,7 @@
             "screenPos": {
                 "x": 0.5,
                 "y": 0.9640059471130371,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "54783895cb934fa58272146c127f745a"
@@ -227,7 +231,7 @@
             "screenPos": {
                 "x": 4.5,
                 "y": -0.9513012170791626,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "9ab3bf74ba1d4be1a34af93ff87a17f4"
@@ -242,7 +246,7 @@
             "screenPos": {
                 "x": 4.5,
                 "y": 0.9358586072921753,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "cd8f16eafa714cda917bcd618011bfbc"
@@ -256,8 +260,8 @@
             "pos": 0,
             "screenPos": {
                 "x": 8.5,
-                "y": -0.09030944854021073,
-                "z": 0.0
+                "y": -0.09030944854021072,
+                "z": 0
             },
             "childNodes": [
                 "46e10b97c0294e11984d2406ce1e7781"
@@ -272,7 +276,7 @@
             "screenPos": {
                 "x": 8.5,
                 "y": -0.9349641799926758,
-                "z": 0.0
+                "z": 0
             },
             "childNodes": [
                 "46e10b97c0294e11984d2406ce1e7781"
@@ -286,8 +290,8 @@
             "pos": 0,
             "screenPos": {
                 "x": 12.5,
-                "y": 0.0,
-                "z": 0.0
+                "y": 0,
+                "z": 0
             },
             "childNodes": []
         }
@@ -302,6 +306,6 @@
     "encounterQueue": [],
     "currentStepID": "",
     "currentEncounterID": "",
-    "enemyName": "마술사",
+    "enemyName": "카드 병정",
     "bossClear": true
 }
