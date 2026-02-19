@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     [Tooltip("카드 목록 content - 덱")] public GameObject cardListContent_Deck;
     [Tooltip("카드 목록 content - 드로우")] public GameObject cardListContent_Draw;
     [Tooltip("카드 목록 content - 무덤")] public GameObject cardListContent_Discard;
+    [SerializeField][Tooltip("카드 목록 버튼")] GameObject cardListBtn;
     [SerializeField][Tooltip("카드 목록 버튼 - 덱")] Button deckListBtn;
     [SerializeField][Tooltip("카드 목록 버튼 - 드로우")] Button drawListBtn;
     [SerializeField][Tooltip("카드 목록 버튼 - 무덤")] Button discardListBtn;
@@ -150,7 +151,7 @@ public class GameManager : MonoBehaviour
         InputCheatKey();
         UpdateUIState();
 
-        Tooltip.showTooltipSignal = cardListView.activeSelf == false && rewardCardView.activeSelf == false;
+        // Tooltip.showTooltipSignal = cardListView.activeSelf == false && rewardCardView.activeSelf == false;
     }
 
     // 개발자용 특수입력
@@ -255,13 +256,14 @@ public class GameManager : MonoBehaviour
             if(TurnManager.Inst.enemyShieldHealth[i] > 0) enemyShieldTMP[i].text = "+" + TurnManager.Inst.enemyShieldHealth[i].ToString();
             else enemyShieldTMP[i].text = "";
         }
-        enemyTriggerCountTMP.text = TurnManager.Inst.enemyTriggerCnt.ToString() + "/" + TurnManager.Inst.enemyTriggerMaxCnt.ToString();
-        if (TurnManager.Inst.enemyTriggerMaxCnt == 0)
+        if(TurnManager.Inst.enemyTriggerMaxCnt == 0)
         {
-            enemyTriggerCntImg.fillAmount = 0;
+            enemyTriggerCntImg.transform.parent.gameObject.SetActive(false);
         }
         else
         {
+            enemyTriggerCntImg.transform.parent.gameObject.SetActive(true);
+            enemyTriggerCountTMP.text = TurnManager.Inst.enemyTriggerCnt.ToString() + "/" + TurnManager.Inst.enemyTriggerMaxCnt.ToString();
             if(!Mathf.Approximately(enemyTriggerbarTargetFill, (float)TurnManager.Inst.enemyTriggerCnt / TurnManager.Inst.enemyTriggerMaxCnt))
             {
                 enemyTriggerbarTargetFill = (float)TurnManager.Inst.enemyTriggerCnt / TurnManager.Inst.enemyTriggerMaxCnt;
@@ -294,7 +296,12 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        if (TurnManager.Inst.characterSO.personaPiece != null)
+        if(TurnManager.Inst.characterSO.isTutorial)
+        {
+            cardListBtn.SetActive(false);
+            relicScrollView.SetActive(false);
+        }
+        if (TurnManager.Inst.characterSO.personaPiece.name != null && TurnManager.Inst.characterSO.personaPiece.name != "")
         {
             Tooltip tooltip = personaImg.GetComponentInParent<Tooltip>();
             Tooltip triggerBarTooltip = triggerCntImg.transform.parent.GetComponent<Tooltip>();
@@ -327,7 +334,11 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        if (TurnManager.Inst.characterSO.shadowPiece != null)
+        else
+        {
+            triggerCntImg.transform.parent.gameObject.SetActive(false);
+        }
+        if (TurnManager.Inst.characterSO.shadowPiece.name != null && TurnManager.Inst.characterSO.shadowPiece.name != "" && TurnManager.Inst.characterSO.isTutorial == false)
         {
             Tooltip tooltip = shadowImg.GetComponentInParent<Tooltip>();
             if (TurnManager.Inst.characterSO.shadowPiece.shadow.isEnhanced)
@@ -348,6 +359,10 @@ public class GameManager : MonoBehaviour
                     tooltip.tooltipTxt = TurnManager.Inst.characterSO.shadowPiece.shadow.text;
                 }
             }
+        }
+        else
+        {
+            shadowImg.GetComponentInParent<Tooltip>().enabled = false;
         }
         TurnManager.Inst.InitializeGame();
         SceneChangeManager.Inst.SceneFadeIn(TurnManager.Inst.StartGameCo);
@@ -375,6 +390,12 @@ public class GameManager : MonoBehaviour
                 if(characterSO.isTutorial)
                 {
                     characterSO.curHealth = TurnManager.Inst.maxHealth;
+                    if(characterSO.enemyName == "CardSoldier")
+                    {
+                        DreamPiece_Data dp = DataManager.Inst.dreamPieceDataSO.dreamPieces.Find(x => x.name == "고양이의 꿈");
+                        characterSO.personaPiece = new DreamPiece_Player(dp.name, false, false, dp.baseCards_persona, DataManager.Inst.dreamPieceDataSO, DataManager.Inst.itemDataSO);
+                        characterSO.shadowPiece = new DreamPiece_Player(dp.name, false, false, dp.baseCards_shadow, DataManager.Inst.dreamPieceDataSO, DataManager.Inst.itemDataSO);
+                    }
                     SceneChangeManager.Inst.SceneFadeOut("MapScene");
                 }
                 else

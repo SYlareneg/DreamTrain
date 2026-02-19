@@ -169,7 +169,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -5
+  m_SortingOrder: -6
   m_Sprite: {fileID: 21300000, guid: 039a508b08132a74b830af4c81450dbd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -303,6 +303,7 @@ MonoBehaviour:
   tooltipPos: {x: 0, y: 0}
   tooltipPivot: {x: 1, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!1 &3917703137800477427
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,7 +460,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -2.1915736, y: 0.017734528}
+  m_Offset: {x: -0.12477958, y: 0.017734528}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -469,7 +470,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 9.598632, y: 6.2338886}
+  m_Size: {x: 5.465045, y: 6.2338886}
   m_EdgeRadius: 0
 --- !u!1 &6132397640852609737
 GameObject:

@@ -710,23 +710,8 @@ public class EnemyManager : MonoBehaviour
                 };
                 break;
             case "카드 병정 2":
-                int decCost = 2;
                 TurnManager.OnPlayerTurnStart += () =>
                 {
-                    if (decCost > 0)
-                    {
-                        TurnManager.Inst.IncreaseCost(-TurnManager.Inst.turnNum, true);
-                        decCost--;
-                    }
-                };
-                break;
-            case "카드 병정":
-                TurnManager.OnPlayerTurnStart += () =>
-                {
-                    if(TurnManager.Inst.turnNum == 2)
-                    {
-                        TurnManager.Inst.IncreaseCost(-1, true);
-                    }
                     TurnManager.Inst.TriggerEnemyPassive(1);
                 };
                 break;
@@ -1397,7 +1382,7 @@ public class EnemyManager : MonoBehaviour
             case "식인 꽃":
             case "무서운 고양이":
             case "우는 와인":
-            case "카드 병정":
+            case "카드 병정 2":
             case "사나운 새":
             case "거대한 도도":
             case "직원 로봇":

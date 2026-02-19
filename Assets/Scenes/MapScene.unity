@@ -484,7 +484,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &190476566
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1347,6 +1347,9 @@ MonoBehaviour:
   relicButton: {fileID: 1188136969}
   relicPanel: {fileID: 310617733}
   relicUIPrefab: {fileID: 5057287302192230722, guid: 66d1092adde19ed47b90aaf4bfe7adf1, type: 3}
+  continuousTime: 5
+  countInterval: 0.02
+  highlightScale: 1.5
 --- !u!1 &439521452
 GameObject:
   m_ObjectHideFlags: 0
@@ -1947,6 +1950,7 @@ MonoBehaviour:
   tooltipPos: {x: -936, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!1 &694209058
 GameObject:
   m_ObjectHideFlags: 0
@@ -2107,6 +2111,7 @@ MonoBehaviour:
   tooltipPos: {x: -582, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!1 &704833230
 GameObject:
   m_ObjectHideFlags: 0
@@ -2206,6 +2211,7 @@ MonoBehaviour:
   tooltipPos: {x: -582, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!1 &748246979
 GameObject:
   m_ObjectHideFlags: 0
@@ -2927,6 +2933,7 @@ MonoBehaviour:
   tooltipPos: {x: -645, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!1 &942241032
 GameObject:
   m_ObjectHideFlags: 0
@@ -3845,6 +3852,7 @@ MonoBehaviour:
   tooltipPos: {x: -320, y: 530}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!1 &1282534385
 GameObject:
   m_ObjectHideFlags: 0
@@ -4083,6 +4091,7 @@ MonoBehaviour:
   tooltipPos: {x: -645, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!1 &1359372140
 GameObject:
   m_ObjectHideFlags: 0
@@ -4390,6 +4399,7 @@ MonoBehaviour:
   tooltipPos: {x: -498, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!1 &1435412025
 GameObject:
   m_ObjectHideFlags: 0
@@ -4987,6 +4997,7 @@ MonoBehaviour:
   tooltipPos: {x: -793, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!1 &1626606083
 GameObject:
   m_ObjectHideFlags: 0
@@ -5194,6 +5205,7 @@ MonoBehaviour:
   tooltipPos: {x: -498, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!1 &1683230167
 GameObject:
   m_ObjectHideFlags: 0
@@ -5425,6 +5437,7 @@ MonoBehaviour:
   tooltipPos: {x: -936, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!1 &1847106737
 GameObject:
   m_ObjectHideFlags: 0
@@ -5611,6 +5624,7 @@ MonoBehaviour:
   tooltipPos: {x: -793, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!1 &1945880271
 GameObject:
   m_ObjectHideFlags: 0

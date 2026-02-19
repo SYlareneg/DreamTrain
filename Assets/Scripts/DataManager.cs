@@ -155,6 +155,7 @@ public class DataManager : MonoBehaviour
         yield return Utils.LoadData(playerDataSO, "player_data_start.json");
         playerDataSO.isTutorial = false;
         playerDataSO.currentActNum = 1;
+        playerDataSO.dreamDust = 5;
         Utils.SaveData(playerDataSO, "player_data_start.json");
     }
 
@@ -176,11 +177,11 @@ public class DataManager : MonoBehaviour
         characterSO.isTutorial = playerDataSO.isTutorial;
         characterSO.lastSceneName = playerDataSO.lastSceneName;
         // 카드 데이터
-        if (playerDataSO.personaPiece != "")
+        // if (playerDataSO.personaPiece != "")
         {
             characterSO.personaPiece = new DreamPiece_Player(playerDataSO.personaPiece, playerDataSO.isPersonaEnhanced, false, playerDataSO.personaCards, dreamPieceDataSO, itemDataSO);
         }
-        if (playerDataSO.shadowPiece != "")
+        // if (playerDataSO.shadowPiece != "")
         {
             characterSO.shadowPiece = new DreamPiece_Player(playerDataSO.shadowPiece, false, playerDataSO.isShadowEnhanced, playerDataSO.shadowCards, dreamPieceDataSO, itemDataSO);
         }
@@ -257,21 +258,27 @@ public class DataManager : MonoBehaviour
         playerDataSO.lastSceneName = characterSO.lastSceneName;
         // 카드 데이터
         playerDataSO.personaPiece = characterSO.personaPiece != null ? characterSO.personaPiece.name : "";
-        playerDataSO.isPersonaEnhanced = characterSO.personaPiece != null ? characterSO.personaPiece.persona.isEnhanced : false;
+        playerDataSO.isPersonaEnhanced = playerDataSO.personaPiece != "" ? characterSO.personaPiece.persona.isEnhanced : false;
         playerDataSO.personaCards = new List<Item_Num>();
-        foreach (var card in characterSO.personaPiece.cards)
+        if(characterSO.personaPiece.cards != null)
         {
-            playerDataSO.personaCards.Add(new Item_Num(card.name, card.num));
+            foreach (Item card in characterSO.personaPiece.cards)
+            {
+                playerDataSO.personaCards.Add(new Item_Num(card.name, card.num));
+            }
         }
         playerDataSO.shadowPiece = characterSO.shadowPiece != null ? characterSO.shadowPiece.name : "";
-        playerDataSO.isShadowEnhanced = characterSO.shadowPiece != null ? characterSO.shadowPiece.shadow.isEnhanced : false;
+        playerDataSO.isShadowEnhanced = playerDataSO.shadowPiece != "" ? characterSO.shadowPiece.shadow.isEnhanced : false;
         playerDataSO.shadowCards = new List<Item_Num>();
-        foreach (var card in characterSO.shadowPiece.cards)
+        if(characterSO.shadowPiece.cards != null)
         {
-            playerDataSO.shadowCards.Add(new Item_Num(card.name, card.num));
+            foreach (Item card in characterSO.shadowPiece.cards)
+            {
+                playerDataSO.shadowCards.Add(new Item_Num(card.name, card.num));
+            }
         }
         playerDataSO.normalCards = new List<Item_Num>();
-        foreach (var card in characterSO.normalCards)
+        foreach (Item card in characterSO.normalCards)
         {
             playerDataSO.normalCards.Add(new Item_Num(card.name, card.num));
         }

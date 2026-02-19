@@ -212,52 +212,40 @@ public class TurnManager : MonoBehaviour
             }
             switch (characterSO.enemyName)
             {
-                case "카드 병정 1":
-                case "CardSoldier1":
-                    if(turnNum == 1)
-                    {
-                        Item item_turn2 = new Item(CardManager.Inst.itemDeck.Find(card => card.name == "2칸 회전"));
-                        Item item_turn3 = new Item(CardManager.Inst.itemDeck.Find(card => card.name == "3칸 회전"));
-                        CardManager.Inst.itemDeck.Add(item_turn2);
-                        CardManager.Inst.itemDeck.Add(item_turn3);
-                        CardManager.Inst.itemDraw.Insert(turnDraw - 2, item_turn3);
-                        CardManager.Inst.itemDraw.Insert(turnDraw - 1, item_turn2);
-                        TutorialManager.Inst.ShowTutorialBox(1, 1, 1);
-                    }
-                    else if(turnNum == 2)
-                    {
-                        TutorialManager.Inst.ShowTutorialBox(0, 0, 0);
-                    }
-                    else
-                    {
-                        isLoading = false;
-                        TutorialManager.Inst.tutorialStage = 0;
-                    }
-                    break;
                 case "카드 병정 2":
                 case "CardSoldier2":
                     if(turnNum == 1)
                     {
-                        Item item_claw = new Item(CardManager.Inst.itemDeck.Find(card => card.name == "발톱 세우기"));
-                        CardManager.Inst.itemDeck.Add(item_claw);
-                        CardManager.Inst.itemDraw.Insert(turnDraw - 1, item_claw);
-                        TutorialManager.Inst.ShowTutorialBox(2, 1, 1);
+                        Item item_shield = CardManager.Inst.itemDeck.Find(card => card.name == "수비 부여");
+                        Item item_hide = CardManager.Inst.itemDeck.Find(card => card.name == "숨기");
+                        CardManager.Inst.itemDraw.Remove(item_shield);
+                        CardManager.Inst.itemDraw.Remove(item_hide);
+                        CardManager.Inst.itemDraw.Insert(turnDraw * 2 - 2, item_shield);
+                        CardManager.Inst.itemDraw.Insert(turnDraw * 2 - 1, item_hide);
+                        StartCoroutine(Draw(turnDraw, () =>
+                        {
+                            TutorialManager.Inst.ShowTutorialBox(2, 1, 1);
+                        }));
                     }
                     else if(turnNum == 2)
                     {
-                        Item item_turn1 = new Item(CardManager.Inst.itemDeck.Find(card => card.name == "1칸 회전"));
-                        CardManager.Inst.itemDeck.Add(item_turn1);
-                        CardManager.Inst.itemDraw.Insert(turnDraw - 1, item_turn1);
-                        TutorialManager.Inst.ShowTutorialBox(2, 2, 1);
+                        StartCoroutine(Draw(turnDraw, () =>
+                        {
+                            TutorialManager.Inst.ShowTutorialBox(2, 2, 1);
+                        }));
                     }
                     else if(turnNum == 3)
                     {
-                        TutorialManager.Inst.ShowTutorialBox(0, 0, 0);
+                        StartCoroutine(Draw(turnDraw, () =>
+                        {
+                            TutorialManager.Inst.ShowTutorialBox(2, 3, 1);
+                        }));
                     }
                     else
                     {
                         isLoading = false;
                         TutorialManager.Inst.tutorialStage = 0;
+                        StartCoroutine(Draw(turnDraw, null));
                     }
                     break;
                 case "카드 병정":
@@ -270,44 +258,54 @@ public class TurnManager : MonoBehaviour
                         CardManager.Inst.itemDeck.Add(item_turn3);
                         CardManager.Inst.itemDraw.Insert(turnDraw - 2, item_turn3);
                         CardManager.Inst.itemDraw.Insert(turnDraw - 1, item_turn2);
-                        TutorialManager.Inst.ShowTutorialBox(1, 1, 1);
+                        StartCoroutine(Draw(turnDraw, () =>
+                        {
+                            TutorialManager.Inst.ShowTutorialBox(1, 1, 1);
+                        }));
                     }
+                    // else if(turnNum == 2)
+                    // {
+                    //     Item item_claw = new Item(CardManager.Inst.itemDeck.Find(card => card.name == "발톱 세우기"));
+                    //     CardManager.Inst.itemDeck.Add(item_claw);
+                    //     CardManager.Inst.itemDraw.Insert(turnDraw - 1, item_claw);
+                    //     TutorialManager.Inst.ShowTutorialBox(2, 1, 1);
+                    // }
+                    // else if(turnNum == 3)
+                    // {
+                    //     TutorialManager.Inst.ShowTutorialBox(0, 0, 0);
+                    // }
+                    // else if(turnNum == 4)
+                    // {
+                    //     TutorialManager.Inst.ShowTutorialBox(3, 3, 1);
+                    // }
+                    // else if(turnNum == 5)
+                    // {
+                    //     Item item_hide = new Item(CardManager.Inst.itemDeck.Find(card => card.name == "숨기"));
+                    //     CardManager.Inst.itemDeck.Add(item_hide);
+                    //     CardManager.Inst.itemDraw.Insert(turnDraw - 1, item_hide);
+                    //     TutorialManager.Inst.ShowTutorialBox(3, 4, 1);
+                    // }
                     else if(turnNum == 2)
                     {
-                        Item item_claw = new Item(CardManager.Inst.itemDeck.Find(card => card.name == "발톱 세우기"));
-                        CardManager.Inst.itemDeck.Add(item_claw);
-                        CardManager.Inst.itemDraw.Insert(turnDraw - 1, item_claw);
-                        TutorialManager.Inst.ShowTutorialBox(2, 1, 1);
-                    }
-                    else if(turnNum == 3)
-                    {
-                        TutorialManager.Inst.ShowTutorialBox(0, 0, 0);
-                    }
-                    else if(turnNum == 4)
-                    {
-                        TutorialManager.Inst.ShowTutorialBox(3, 3, 1);
-                    }
-                    else if(turnNum == 5)
-                    {
-                        Item item_hide = new Item(CardManager.Inst.itemDeck.Find(card => card.name == "숨기"));
-                        CardManager.Inst.itemDeck.Add(item_hide);
-                        CardManager.Inst.itemDraw.Insert(turnDraw - 1, item_hide);
-                        TutorialManager.Inst.ShowTutorialBox(3, 4, 1);
-                    }
-                    else if(turnNum == 6)
-                    {
-                        TutorialManager.Inst.ShowTutorialBox(0, 0, 0);
+                        StartCoroutine(Draw(turnDraw, () =>
+                        {
+                            TutorialManager.Inst.ShowTutorialBox(0, 0, 0);
+                        }));
                     }
                     else
                     {
                         isLoading = false;
                         TutorialManager.Inst.tutorialStage = 0;
+                        StartCoroutine(Draw(turnDraw, null));
                     }
                     break;
             }
         }
-        // turnDraw만큼 카드를 뽑고, 로딩을 종료 (플레이어 인터랙션 가능)
-        StartCoroutine(Draw(turnDraw, () => isLoading = characterSO.isTutorial && TutorialManager.Inst.tutorialStage > 0));
+        else
+        {
+            // turnDraw만큼 카드를 뽑고, 로딩을 종료 (플레이어 인터랙션 가능)
+            StartCoroutine(Draw(turnDraw, null));
+        }
     }
 
     // 플레이어 턴 종료

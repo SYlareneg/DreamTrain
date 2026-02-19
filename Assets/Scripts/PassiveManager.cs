@@ -581,6 +581,7 @@ public class PassiveManager : MonoBehaviour
                 // 트리거 조각 설정
                 rItem.rtype = new RouletteType(ERouletteType.Attack);
                 rItem.value = 24;
+                if(DataManager.Inst.characterSO.isTutorial) rItem.value = 99;
                 if(personaName == "사냥 본능+") 
                 {
                     rItem.value = 36;
@@ -1051,11 +1052,7 @@ public class PassiveManager : MonoBehaviour
                 // 패시브 효과 설정
                 TurnManager.OnGameStart += () =>
                 {
-                    if (DataManager.Inst.characterSO.isTutorial)
-                    {
-                        RouletteManager.Inst.EnchantRoulettePiece(8, new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 0)), playerSpecialRoulettes[GetSpecialRouletteIdx(false, 0)].baseVal);
-                    }
-                    else
+                    if (!DataManager.Inst.characterSO.isTutorial)
                     {
                         EnemyAction.EnchantAction(new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 0)), playerSpecialRoulettes[GetSpecialRouletteIdx(false, 0)].baseVal);
                         if(shadowName == "영역 본능+") EnemyAction.EnchantAction(new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 0)), playerSpecialRoulettes[GetSpecialRouletteIdx(false, 0)].baseVal);

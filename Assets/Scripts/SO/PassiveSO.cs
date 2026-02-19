@@ -91,6 +91,8 @@ public class Passive_Enhanceable : Passive
         enhancedPassive = new Passive(p.enhancedPassive);
     }
 
+    public Passive_Enhanceable() { }
+
     public Passive_Enhanceable(Passive_Enhanceable pe) : base(pe)
     {
         isEnhanced = pe.isEnhanced;

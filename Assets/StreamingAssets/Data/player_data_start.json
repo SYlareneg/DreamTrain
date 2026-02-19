@@ -1,34 +1,16 @@
 {
     "maxHealth": 60,
     "curHealth": 60,
-    "dreamDust": 5,
+    "dreamDust": 0,
     "leftPassengers": 0,
-    "isTutorial": false,
+    "isTutorial": true,
     "lastSceneName": "RoomScene",
-    "personaPiece": "고양이의 꿈",
+    "personaPiece": "",
     "isPersonaEnhanced": false,
-    "personaCards": [
-        {
-            "cardName": "발톱 세우기",
-            "num": 1
-        },
-        {
-            "cardName": "숨기",
-            "num": 1
-        }
-    ],
-    "shadowPiece": "고양이의 꿈",
+    "personaCards": [],
+    "shadowPiece": "",
     "isShadowEnhanced": false,
-    "shadowCards": [
-        {
-            "cardName": "실뭉치",
-            "num": 1
-        },
-        {
-            "cardName": "고양이걸음",
-            "num": 1
-        }
-    ],
+    "shadowCards": [],
     "normalCards": [
         {
             "cardName": "1칸 회전",
@@ -58,7 +40,7 @@
     "courage": 1,
     "wisdom": 1,
     "luck": 1,
-    "currentActNum": 1,
+    "currentActNum": 0,
     "mapNodes": [],
     "totalLevel": 0,
     "visitedNodeIDList": [],

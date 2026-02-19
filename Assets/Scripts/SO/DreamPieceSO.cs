@@ -231,6 +231,12 @@ public class DreamPiece_Player : DreamPiece_Base
 
     public DreamPiece_Player(string dpName, bool personaEnhanced, bool shadowEnhanced, List<Item_Num> cardNameNums, DreamPieceDataSO dpDataSO, ItemDataSO itemDataSO)
     {
+        this.persona = new Passive_Enhanceable();
+        this.shadow = new Passive_Enhanceable();
+        this.cardBackgrounds = new List<Sprite>();
+        this.textColors = new Color[3];
+        this.playerSpecialRoulettes = new SpecialRoulette[playerSpecialRouletteNum];
+        this.cards = new List<Item>();
         DreamPiece_Data dreamPiece_Data = dpDataSO.dreamPieces.Find(x => x.name == dpName);
         if (dreamPiece_Data == null) return;
         this.name = dreamPiece_Data.name;

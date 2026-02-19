@@ -1317,8 +1317,8 @@
     {
       "name": "카드 병정 2",
       "id": "CardSoldier2",
-      "health": 25,
-      "triggerNum": 0,
+      "health": 50,
+      "triggerNum": 2,
       "phase": [
         {
           "name": "전투 준비",
@@ -1340,16 +1340,6 @@
                 {
                   "type": 1,
                   "typeNum": 0,
-                  "val": 10,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 3,
-                  "typeNum": 0,
                   "val": 5,
                   "isTrigger": false
                 }
@@ -1361,6 +1351,16 @@
                   "type": 2,
                   "typeNum": 0,
                   "val": 2,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 3,
                   "isTrigger": false
                 }
               ]
@@ -1380,7 +1380,7 @@
             {
               "pattern": [
                 {
-                  "type": 2,
+                  "type": 1,
                   "typeNum": 0,
                   "val": 10,
                   "isTrigger": true
@@ -1420,7 +1420,15 @@
         },
         {
           "rtype": {
-            "type": 3,
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
@@ -1452,11 +1460,11 @@
         },
         {
           "rtype": {
-            "type": 0,
+            "type": 3,
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
-          "value": 0
+          "value": 5
         },
         {
           "rtype": {
@@ -1465,14 +1473,6 @@
             "enemyIdx": 0
           },
           "value": 0
-        },
-        {
-          "rtype": {
-            "type": 2,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 2
         },
         {
           "rtype": {
@@ -1539,13 +1539,13 @@
     {
       "name": "카드 병정",
       "id": "CardSoldier",
-      "health": 50,
-      "triggerNum": 4,
+      "health": 10,
+      "triggerNum": 0,
       "phase": [
         {
           "name": "전투 준비",
-          "sprite": "카드병정 3",
-          "text": "턴 시작 시 트리거를 1 얻습니다.",
+          "sprite": "카드병정 1",
+          "text": "카드 병정입니다.",
           "patterns": [
             {
               "pattern": [
@@ -1596,7 +1596,7 @@
       "triggerPhase": [
         {
           "name": "카드 병정: 트리거",
-          "sprite": "카드병정 3",
+          "sprite": "카드병정 1",
           "text": "카드 병정이 트리거 상태입니다. 턴 종료 시 트리거가 해제됩니다.",
           "patterns": [
             {
@@ -1650,11 +1650,11 @@
         },
         {
           "rtype": {
-            "type": 2,
+            "type": 0,
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
-          "value": 2
+          "value": 0
         },
         {
           "rtype": {
