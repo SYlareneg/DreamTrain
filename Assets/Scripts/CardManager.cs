@@ -67,6 +67,16 @@ public class CardManager : MonoBehaviour
     [Tooltip("툴팁 키워드 목록")][SerializeField] KeywordSO keywordSO;
     private bool tooltipCreated = false; // 툴팁 생성 여부
     private RectTransform canvasRect; // 툴팁 배치 캔버스 위치
+    [Header("이펙트")]
+    [Tooltip("카드 이펙트")] public Animator cardEffect;
+    [Tooltip("카드 이펙트 - 페이드아웃")] public GameObject cardEffectFadeOut;
+    [Tooltip("카드 이펙트 종료 시 실행할 행동 목록")] public List<Action> cardEffectEndAction = new List<Action>(); // 카드 이펙트 종료 시 실행할 행동 목록
+    [Tooltip("현재 카드 이펙트 이름")] public string cardCurrentEffectName; // 현재 카드 이펙트 이름
+    [Tooltip("카드 이펙트 대기열")] public List<string> cardEffectQueue = new List<string>(); // 카드 이펙트 대기열
+    [Tooltip("카드 이펙트 - 룰렛")] public Animator cardEffect2;
+    [Tooltip("카드 이펙트 종료 시 실행할 행동 목록 - 룰렛")] public List<Action> cardEffectEndAction2 = new List<Action>(); // 카드 이펙트 종료 시 실행할 행동 목록
+    [Tooltip("현재 카드 이펙트 이름 - 룰렛")] public string cardCurrentEffectName2; // 현재 카드 이펙트 이름
+    [Tooltip("카드 이펙트 대기열 - 룰렛")] public List<string> cardEffectQueue2 = new List<string>(); // 카드 이펙트 대기열
 
     #region Item Management
     // items로 주어진 카드 item들에 대해 attachTransform에 CardUI 오브젝트를 생성하고, 생성한 CardUI 리스트를 반환한다.

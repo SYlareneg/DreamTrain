@@ -53,8 +53,11 @@ public class GameManager : MonoBehaviour
     [Tooltip("플레이어 그림자")] public Image shadowImg;
     [Tooltip("플레이어 데미지 이펙트")] public GameObject playerDamageEffect;
     [Tooltip("플레이어 데미지 이펙트 스프라이트")] public Sprite[] playerDamageEffectSprites;
+    [Tooltip("플레이어 버프 이펙트")] public GameObject playerBuffEffect;
+    [Tooltip("플레이어 버프 이펙트 스프라이트")] public Sprite[] playerBuffEffectSprites;
     [Tooltip("적 공격 이펙트")] public GameObject enemyAttackEffect;
     Sequence playerDamageSeq;
+    Sequence playerBuffEffectSeq;
     [Header("적 UI")]
     [SerializeField][Tooltip("적 체력 값 텍스트")] TMP_Text[] enemyHealthTMP;
     [SerializeField][Tooltip("적 체력 바")] Image[] enemyHealthImg;
@@ -79,6 +82,23 @@ public class GameManager : MonoBehaviour
     [Header("기타")]
     [SerializeField][Tooltip("스테이지 적 정보")] StageSO stageSO;
     [HideInInspector] public bool gameOverSignal;
+
+    public void PlayerBuffEffect(EBuffEffectType effectType)
+    {
+        if(effectType == EBuffEffectType.Neutral) return;
+        playerBuffEffectSeq?.Kill();
+        playerBuffEffect.GetComponent<Image>().sprite = playerBuffEffectSprites[(int)effectType];
+        playerBuffEffect.SetActive(true);
+        playerBuffEffect.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
+        playerBuffEffectSeq = DOTween.Sequence();
+        playerBuffEffectSeq.Append(playerBuffEffect.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 0.6f), 0.6f));
+        playerBuffEffectSeq.Append(playerBuffEffect.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 0f), 0.6f))
+        .OnComplete(() =>
+        {
+            playerBuffEffect.SetActive(false);
+        });
+        playerBuffEffectSeq.SetLink(playerBuffEffect);
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
