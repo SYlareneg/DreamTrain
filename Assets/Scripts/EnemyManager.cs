@@ -1561,12 +1561,45 @@ public class EnemyManager : MonoBehaviour
 
     (int typePrior, int valPrior) GetSpinPriority(RoulettePiece playerSlot, RoulettePiece enemySlot)
     {
-        if (playerSlot.roulette.rtype.type == ERouletteType.Enemy_Special) return (0, playerSlot.roulette.value);
-        if (playerSlot.roulette.rtype.type == ERouletteType.Attack) return (1, playerSlot.roulette.value);
-        if (enemySlot.roulette.rtype.type == ERouletteType.Shield) return (2, enemySlot.roulette.value);
-        if (enemySlot.roulette.rtype.type == ERouletteType.Attack) return (4, enemySlot.roulette.value);
-        if (playerSlot.roulette.rtype.type == ERouletteType.Heal) return (5, playerSlot.roulette.value);
-        return (3, 0);
+        switch(enemy.name)
+        {
+            case "식인 꽃":
+                if (enemySlot.roulette.rtype.type == ERouletteType.Enemy_Special) return (0, enemySlot.roulette.value);
+                if (playerSlot.roulette.rtype.type == ERouletteType.Attack) return (1, playerSlot.roulette.value);
+                if (playerSlot.roulette.rtype.type == ERouletteType.Enemy_Special) return (2, playerSlot.roulette.value);
+                if (enemySlot.roulette.rtype.type == ERouletteType.Shield) return (3, enemySlot.roulette.value);
+                if (enemySlot.roulette.rtype.type == ERouletteType.Heal) return (4, enemySlot.roulette.value);
+                if (playerSlot.roulette.rtype.type == ERouletteType.Shield) return (6, playerSlot.roulette.value);
+                if (playerSlot.roulette.rtype.type == ERouletteType.Heal) return (7, playerSlot.roulette.value);
+                if (enemySlot.roulette.rtype.type == ERouletteType.Attack) return (8, enemySlot.roulette.value);
+                return (5, 0);
+            case "귀신들린 인형":
+                if (enemySlot.roulette.rtype.type == ERouletteType.Enemy_Special) return (7, enemySlot.roulette.value);
+                if (playerSlot.roulette.rtype.type == ERouletteType.Enemy_Special) return (0, playerSlot.roulette.value);
+                if (playerSlot.roulette.rtype.type == ERouletteType.Attack) return (1, playerSlot.roulette.value);
+                if (enemySlot.roulette.rtype.type == ERouletteType.Shield) return (2, enemySlot.roulette.value);
+                if (playerSlot.roulette.rtype.type == ERouletteType.Shield) return (4, playerSlot.roulette.value);
+                if (playerSlot.roulette.rtype.type == ERouletteType.Heal) return (5, playerSlot.roulette.value);
+                if (enemySlot.roulette.rtype.type == ERouletteType.Attack) return (6, enemySlot.roulette.value);
+                return (3, 0);
+            case "뱀파이어 폴":
+                if (playerSlot.roulette.rtype.type == ERouletteType.Enemy_Special) return (0, playerSlot.roulette.value);
+                if (playerSlot.roulette.rtype.type == ERouletteType.Attack) return (1, playerSlot.roulette.value);
+                if (enemySlot.roulette.rtype.type == ERouletteType.Shield) return (2, enemySlot.roulette.value);
+                if (enemySlot.roulette.rtype.type == ERouletteType.Heal) return (3, enemySlot.roulette.value);
+                if (playerSlot.roulette.rtype.type == ERouletteType.Shield) return (5, playerSlot.roulette.value);
+                if (playerSlot.roulette.rtype.type == ERouletteType.Heal) return (6, playerSlot.roulette.value);
+                if (enemySlot.roulette.rtype.type == ERouletteType.Attack) return (7, enemySlot.roulette.value);
+                return (4, 0);
+            default:
+                if (playerSlot.roulette.rtype.type == ERouletteType.Attack) return (0, playerSlot.roulette.value);
+                if (enemySlot.roulette.rtype.type == ERouletteType.Shield) return (1, enemySlot.roulette.value);
+                if (enemySlot.roulette.rtype.type == ERouletteType.Heal) return (2, enemySlot.roulette.value);
+                if (playerSlot.roulette.rtype.type == ERouletteType.Shield) return (4, playerSlot.roulette.value);
+                if (playerSlot.roulette.rtype.type == ERouletteType.Heal) return (5, playerSlot.roulette.value);
+                if (enemySlot.roulette.rtype.type == ERouletteType.Attack) return (6, enemySlot.roulette.value);
+                return (3, 0);
+        }
     }
 
     (int priority, List<int> list) GetTurnActionPriority(RoulettePiece playerSlot, RoulettePiece enemySlot, List<int> turnSequence)
