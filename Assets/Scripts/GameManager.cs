@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour
         playerDamageEffect.SetActive(false);
         TurnManager.OnPlayerDamaged += (damage, source) =>
         {
+            if(damage <= 0) return;
             playerDamageSeq?.Kill();
             playerDamageSeq = null;
             if(TurnManager.Inst.shieldHealth > 0) playerDamageEffect.GetComponent<Image>().sprite = playerDamageEffectSprites[1];
@@ -111,6 +112,7 @@ public class GameManager : MonoBehaviour
         };
         TurnManager.OnPlayerHealed += (heal, source) =>
         {
+            if(heal <= 0) return;
             playerDamageSeq?.Kill();
             playerDamageSeq = null;
             playerDamageEffect.GetComponent<Image>().sprite = playerDamageEffectSprites[2];
@@ -128,6 +130,7 @@ public class GameManager : MonoBehaviour
         };
         TurnManager.OnPlayerShielded += (shield, source) =>
         {
+            if(shield <= 0) return;
             playerDamageSeq?.Kill();
             playerDamageSeq = null;
             playerDamageEffect.GetComponent<Image>().sprite = playerDamageEffectSprites[3];

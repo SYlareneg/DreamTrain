@@ -245,7 +245,10 @@ public class TurnManager : MonoBehaviour
                     {
                         isLoading = false;
                         TutorialManager.Inst.tutorialStage = 0;
-                        StartCoroutine(Draw(turnDraw, null));
+                        StartCoroutine(Draw(turnDraw, () =>
+                        {
+                            isLoading = false;
+                        }));
                     }
                     break;
                 case "카드 병정":
@@ -263,28 +266,6 @@ public class TurnManager : MonoBehaviour
                             TutorialManager.Inst.ShowTutorialBox(1, 1, 1);
                         }));
                     }
-                    // else if(turnNum == 2)
-                    // {
-                    //     Item item_claw = new Item(CardManager.Inst.itemDeck.Find(card => card.name == "발톱 세우기"));
-                    //     CardManager.Inst.itemDeck.Add(item_claw);
-                    //     CardManager.Inst.itemDraw.Insert(turnDraw - 1, item_claw);
-                    //     TutorialManager.Inst.ShowTutorialBox(2, 1, 1);
-                    // }
-                    // else if(turnNum == 3)
-                    // {
-                    //     TutorialManager.Inst.ShowTutorialBox(0, 0, 0);
-                    // }
-                    // else if(turnNum == 4)
-                    // {
-                    //     TutorialManager.Inst.ShowTutorialBox(3, 3, 1);
-                    // }
-                    // else if(turnNum == 5)
-                    // {
-                    //     Item item_hide = new Item(CardManager.Inst.itemDeck.Find(card => card.name == "숨기"));
-                    //     CardManager.Inst.itemDeck.Add(item_hide);
-                    //     CardManager.Inst.itemDraw.Insert(turnDraw - 1, item_hide);
-                    //     TutorialManager.Inst.ShowTutorialBox(3, 4, 1);
-                    // }
                     else if(turnNum == 2)
                     {
                         StartCoroutine(Draw(turnDraw, () =>
@@ -296,7 +277,10 @@ public class TurnManager : MonoBehaviour
                     {
                         isLoading = false;
                         TutorialManager.Inst.tutorialStage = 0;
-                        StartCoroutine(Draw(turnDraw, null));
+                        StartCoroutine(Draw(turnDraw, () =>
+                        {
+                            isLoading = false;
+                        }));
                     }
                     break;
             }
@@ -304,7 +288,10 @@ public class TurnManager : MonoBehaviour
         else
         {
             // turnDraw만큼 카드를 뽑고, 로딩을 종료 (플레이어 인터랙션 가능)
-            StartCoroutine(Draw(turnDraw, null));
+            StartCoroutine(Draw(turnDraw, () =>
+            {
+                isLoading = false;
+            }));
         }
     }
 

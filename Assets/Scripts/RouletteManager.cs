@@ -73,8 +73,11 @@ public class RouletteManager : MonoBehaviour
         spinDistance += pieces;
         spinDistance_Turn += pieces;
         spinDirection = isClockwise ? 1 : 0;
-        Utils.AllignActions<bool, int>(ref TurnManager.OnRouletteSpin, typeof(ShowBuff), typeof(RelicManager));
-        TurnManager.OnRouletteSpin?.Invoke(isClockwise, pieces);
+        if(pieces > 0)
+        {
+            Utils.AllignActions<bool, int>(ref TurnManager.OnRouletteSpin, typeof(ShowBuff), typeof(RelicManager));
+            TurnManager.OnRouletteSpin?.Invoke(isClockwise, pieces);
+        }
         if (isClockwise)
         {
             pieces *= -1;

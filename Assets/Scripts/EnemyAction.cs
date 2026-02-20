@@ -145,7 +145,19 @@ public class EnemyAction : MonoBehaviour
                 break;
             case EEnemyActionType.Turn:
                 tooltip.tooltipTitle = "회전";
-                tooltip.tooltipTxt = "룰렛을 " + ((totalVal >= 0) ? "시계방향으로 " : "반시계방향으로 ") + "<" + enemyActionTMP.text + ">칸 회전시킵니다.";
+                tooltip.tooltipTxt = "룰렛을 " + ((totalVal >= 0) ? "시계방향으로 " : "반시계방향으로 ") + "<" + enemyActionTMP.text + ">칸 회전시키고, 효과를 발동합니다.";
+                break;
+            case EEnemyActionType.Enchant_Attack:
+                tooltip.tooltipTitle = "공격 부여";
+                tooltip.tooltipTxt = "앨리스 앞에 공격 룰렛을 값 부여합니다.";
+                break;
+            case EEnemyActionType.Enchant_Shield:
+                tooltip.tooltipTitle = "수비 부여";
+                tooltip.tooltipTxt = "자신 앞에 수비 룰렛을 값 부여합니다.";
+                break;
+            case EEnemyActionType.Roulette_Activate:
+                tooltip.tooltipTitle = "룰렛 발동";
+                tooltip.tooltipTxt = "12시 방향의 룰렛을 자신에게, 6시 방향의 룰렛을 앨리스에게 적용합니다.";
                 break;
         }
         tooltip.tooltipTxt = Regex.Replace(tooltip.tooltipTxt, @"값|<\d+>", match =>
@@ -266,6 +278,12 @@ public class EnemyAction : MonoBehaviour
                         EnemyManager.Inst.InitSubEnemy(SE);
                     }
                     break;
+                case EEnemyActionType.Enchant_Attack:
+                    RouletteManager.Inst.EnchantRoulettePiece(RouletteManager.Inst.playerLookat, new RouletteType(ERouletteType.Attack, 0, enemyIdx), totalVal); break;
+                case EEnemyActionType.Enchant_Shield:
+                    RouletteManager.Inst.EnchantRoulettePiece(RouletteManager.Inst.EnemyIdxSpinOffset(enemyIdx), new RouletteType(ERouletteType.Shield, 0, enemyIdx), totalVal); break;
+                case EEnemyActionType.Roulette_Activate:
+                    RouletteManager.Inst.ActivateRoulette(); break;
             }
         }
     }

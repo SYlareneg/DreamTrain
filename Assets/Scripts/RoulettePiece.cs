@@ -124,11 +124,7 @@ public class RoulettePiece : MonoBehaviour
     {
         tooltip.HideTooltip();
         int index = Array.IndexOf(RouletteManager.Inst.roulettePieces, this);
-        if(roulette.rtype.type != ERouletteType.None)
-        {
-            Utils.AllignActions(ref TurnManager.OnRouletteErase, typeof(ShowBuff), typeof(RelicManager));
-            TurnManager.OnRouletteErase?.Invoke(index);
-        }
+        bool eraseFlag = roulette.rtype.type != ERouletteType.None;
         switch (roulette.rtype.type)
         {
             case ERouletteType.Player_Special:
@@ -141,6 +137,11 @@ public class RoulettePiece : MonoBehaviour
                 rItem.value = 0;
                 Setup(rItem);
                 break;
+        }
+        if(eraseFlag)
+        {
+            Utils.AllignActions(ref TurnManager.OnRouletteErase, typeof(ShowBuff), typeof(RelicManager));
+            TurnManager.OnRouletteErase?.Invoke(index);
         }
     }
 
@@ -278,7 +279,7 @@ public class RoulettePiece : MonoBehaviour
                 }
                 break;
             case ERouletteType.Heal:
-                if(totalVal > 0) totalVal = 0;
+                if(totalVal < 0) totalVal = 0;
                 if (isEnemy)
                 {
                     RouletteManager.Inst.enemyRouletteEffectEndAction.Add(() =>
@@ -364,9 +365,13 @@ public class RoulettePiece : MonoBehaviour
                                 case "흡혈":
                                 case "흡혈+":
                                     RouletteManager.Inst.enemyRouletteCurrentEffectName = "Drain";
+                                    RouletteManager.Inst.enemyRouletteEffect.SetTrigger(RouletteManager.Inst.enemyRouletteCurrentEffectName);
+                                    break;
+                                default:
+                                    RouletteManager.Inst.enemyRouletteCurrentEffectName = "Default";
+                                    RouletteManager.Inst.enemyRouletteEffect.SetTrigger(RouletteManager.Inst.enemyRouletteCurrentEffectName);
                                     break;
                             }
-                            RouletteManager.Inst.enemyRouletteEffect.SetTrigger(RouletteManager.Inst.enemyRouletteCurrentEffectName);
                         }
                         else
                         {
@@ -375,6 +380,9 @@ public class RoulettePiece : MonoBehaviour
                                 case "흡혈":
                                 case "흡혈+":
                                     RouletteManager.Inst.enemyRouletteEffectQueue.Add("Drain");
+                                    break;
+                                default:
+                                    RouletteManager.Inst.enemyRouletteEffectQueue.Add("Default");
                                     break;
                             }
                         }
@@ -394,6 +402,10 @@ public class RoulettePiece : MonoBehaviour
                                     RouletteManager.Inst.playerRouletteCurrentEffectName = "Drain";
                                     RouletteManager.Inst.playerRouletteEffect2.SetTrigger(RouletteManager.Inst.playerRouletteCurrentEffectName);
                                     break;
+                                default:
+                                    RouletteManager.Inst.playerRouletteCurrentEffectName = "Default";
+                                    RouletteManager.Inst.playerRouletteEffect.SetTrigger(RouletteManager.Inst.playerRouletteCurrentEffectName);
+                                    break;
                             }
                         }
                         else
@@ -403,6 +415,9 @@ public class RoulettePiece : MonoBehaviour
                                 case "흡혈":
                                 case "흡혈+":
                                     RouletteManager.Inst.playerRouletteEffectQueue.Add("Drain");
+                                    break;
+                                default:
+                                    RouletteManager.Inst.playerRouletteEffectQueue.Add("Default");
                                     break;
                             }
                         }
@@ -429,6 +444,9 @@ public class RoulettePiece : MonoBehaviour
                             case "실뭉치+":
                                 RouletteManager.Inst.enemyRouletteCurrentEffectName = "Furball";
                                 break;
+                            default:
+                                RouletteManager.Inst.enemyRouletteCurrentEffectName = "Default";
+                                break;
                         }
                         RouletteManager.Inst.enemyRouletteEffect.SetTrigger(RouletteManager.Inst.enemyRouletteCurrentEffectName);
                     }
@@ -443,6 +461,9 @@ public class RoulettePiece : MonoBehaviour
                             case "실뭉치":
                             case "실뭉치+":
                                 RouletteManager.Inst.enemyRouletteEffectQueue.Add("Furball");
+                                break;
+                            default:
+                                RouletteManager.Inst.enemyRouletteEffectQueue.Add("Default");
                                 break;
                         }
                     }
@@ -467,6 +488,10 @@ public class RoulettePiece : MonoBehaviour
                                 RouletteManager.Inst.playerRouletteCurrentEffectName = "Furball";
                                 RouletteManager.Inst.playerRouletteEffect.SetTrigger(RouletteManager.Inst.playerRouletteCurrentEffectName);
                                 break;
+                            default:
+                                RouletteManager.Inst.playerRouletteCurrentEffectName = "Default";
+                                RouletteManager.Inst.playerRouletteEffect.SetTrigger(RouletteManager.Inst.playerRouletteCurrentEffectName);
+                                break;
                         }
                     }
                     else
@@ -480,6 +505,9 @@ public class RoulettePiece : MonoBehaviour
                             case "실뭉치":
                             case "실뭉치+":
                                 RouletteManager.Inst.playerRouletteEffectQueue.Add("Furball");
+                                break;
+                            default:
+                                RouletteManager.Inst.playerRouletteEffectQueue.Add("Default");
                                 break;
                         }
                     }

@@ -438,6 +438,7 @@ public class ShowBuff
                 if (affectType == EBuffAffectType.Enemy)
                 {
                     BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Add(this);
+                    BuffManager.Inst.enemyBuff_Special[affectEnemyIdx, 1].Clear();
                     Action<bool, int> reduceCount = null;
                     reduceCount = (isClockwise, spinAmount) =>
                     {
@@ -448,7 +449,7 @@ public class ShowBuff
                             if (this.val == 0)
                             {
                                 BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Remove(this);
-                                EnemyManager.Inst.DestroySubEnemy(affectEnemyIdx - 1);
+                                BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[affectEnemyIdx, 1], 0, 0.5f, -1);
                                 TurnManager.OnRouletteSpin -= reduceCount;
                             }
                         }
