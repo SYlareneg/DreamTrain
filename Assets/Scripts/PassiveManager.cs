@@ -196,20 +196,49 @@ public class PassiveManager : MonoBehaviour
                             }
                         }
                     }
+
+                    foreach(Card c in CardManager.Inst.myCards)
+                    {
+                        if(c.item.name == "마술 카드" || c.item.name == "마술 카드+")
+                        {
+                            switch(card.item.type)
+                            {
+                                case CardType.Skill:
+                                    c.character.sprite = Utils.LoadSpriteByName("Cards", "마술카드_클로버");
+                                    break;
+                                case CardType.Enchant:
+                                    c.character.sprite = Utils.LoadSpriteByName("Cards", "마술카드_다이아");
+                                    break;
+                                case CardType.Turn:
+                                    c.character.sprite = Utils.LoadSpriteByName("Cards", "마술카드_하트");
+                                    break;
+                                case CardType.Dream:
+                                    c.character.sprite = Utils.LoadSpriteByName("Cards", "마술카드_스페이드");
+                                    break;
+                            }
+                        }
+                    }
                 };
                 TurnManager.OnRouletteEnchant += (index) =>
                 {
                     if(RouletteManager.Inst.roulettePieces[index].roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 1)))
                     {
                         playerSpecialRoulette_lastCardType[index] = lastCardType;
-                        switch(lastCardType)
+                    }
+                };
+                TurnManager.AfterRouletteEnchant += (index) =>
+                {
+                    if(RouletteManager.Inst.roulettePieces[index].roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 1)))
+                    {
+                        switch(playerSpecialRoulette_lastCardType[index])
                         {
                             case CardType.Skill:
                                 RouletteManager.Inst.roulettePieces[index].roulette.value = 4;
+                                RouletteManager.Inst.roulettePieces[index].originalSprite = Utils.LoadSpriteByName("SpecialRoulette", "룰렛_마술카드_클로버");
                                 if (RouletteManager.Inst.roulettePieces[index].isEnhanced)
                                 {
                                     RouletteManager.Inst.roulettePieces[index].originalTooltipTitle = "클로버 룰렛+";
-                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "값 피해를 줍니다. 스킬 카드가 사용될 때마다 값이 6 증가합니다.";
+                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "값 피해를 줍니다. 스킬 카드가 사용될 때마다 값이 4 증가합니다.";
                                 }
                                 else
                                 {
@@ -219,10 +248,11 @@ public class PassiveManager : MonoBehaviour
                                 break;
                             case CardType.Enchant:
                                 RouletteManager.Inst.roulettePieces[index].roulette.value = 4;
+                                RouletteManager.Inst.roulettePieces[index].originalSprite = Utils.LoadSpriteByName("SpecialRoulette", "룰렛_마술카드_다이아");
                                 if (RouletteManager.Inst.roulettePieces[index].isEnhanced)
                                 {
                                     RouletteManager.Inst.roulettePieces[index].originalTooltipTitle = "다이아몬드 룰렛+";
-                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "방어도를 값만큼 부여합니다. 부여 카드가 사용될 때마다 값이 6 증가합니다.";
+                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "방어도를 값만큼 부여합니다. 부여 카드가 사용될 때마다 값이 4 증가합니다.";
                                 }
                                 else
                                 {
@@ -232,6 +262,7 @@ public class PassiveManager : MonoBehaviour
                                 break;
                             case CardType.Turn:
                                 RouletteManager.Inst.roulettePieces[index].roulette.value = 1;
+                                RouletteManager.Inst.roulettePieces[index].originalSprite = Utils.LoadSpriteByName("SpecialRoulette", "룰렛_마술카드_하트");
                                 if (RouletteManager.Inst.roulettePieces[index].isEnhanced)
                                 {
                                     RouletteManager.Inst.roulettePieces[index].originalTooltipTitle = "하트 룰렛+";
@@ -245,6 +276,7 @@ public class PassiveManager : MonoBehaviour
                                 break;
                             case CardType.Dream:
                                 RouletteManager.Inst.roulettePieces[index].roulette.value = 1;
+                                RouletteManager.Inst.roulettePieces[index].originalSprite = Utils.LoadSpriteByName("SpecialRoulette", "룰렛_마술카드_스페이드");
                                 if (RouletteManager.Inst.roulettePieces[index].isEnhanced)
                                 {
                                     RouletteManager.Inst.roulettePieces[index].originalTooltipTitle = "스페이드 룰렛+";
@@ -257,6 +289,7 @@ public class PassiveManager : MonoBehaviour
                                 }
                                 break;
                         }
+                        RouletteManager.Inst.roulettePieces[index].SetRoulettePieceSprite(RouletteManager.Inst.roulettePieces[index].originalSprite);
                         RouletteManager.Inst.roulettePieces[index].SetRoulettePieceTooltip(RouletteManager.Inst.roulettePieces[index].originalTooltipTitle, RouletteManager.Inst.roulettePieces[index].originalTooltipText);
                     }
                 };
@@ -312,7 +345,7 @@ public class PassiveManager : MonoBehaviour
                     ace.cost = 0;
                     ace.type = CardType.Skill;
                     ace.rarity = CardRarity.Normal;
-                    ace.dreamPieceNum = -1;
+                    ace.dreamPieceNum = 1;
                     ace.isVolatile = false;
                     ace.isVanish = false;
                     ace.isRemain = false;
@@ -754,10 +787,17 @@ public class PassiveManager : MonoBehaviour
                     if(RouletteManager.Inst.roulettePieces[index].roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 1)))
                     {
                         playerSpecialRoulette_lastCardType[index] = lastCardType;
-                        switch(lastCardType)
+                    }
+                };
+                TurnManager.AfterRouletteEnchant += (index) =>
+                {
+                    if(RouletteManager.Inst.roulettePieces[index].roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 1)))
+                    {
+                        switch(playerSpecialRoulette_lastCardType[index])
                         {
                             case CardType.Skill:
                                 RouletteManager.Inst.roulettePieces[index].roulette.value = 4;
+                                RouletteManager.Inst.roulettePieces[index].originalSprite = Utils.LoadSpriteByName("SpecialRoulette", "룰렛_마술카드_클로버");
                                 if (RouletteManager.Inst.roulettePieces[index].isEnhanced)
                                 {
                                     RouletteManager.Inst.roulettePieces[index].originalTooltipTitle = "클로버 룰렛+";
@@ -771,6 +811,7 @@ public class PassiveManager : MonoBehaviour
                                 break;
                             case CardType.Enchant:
                                 RouletteManager.Inst.roulettePieces[index].roulette.value = 4;
+                                RouletteManager.Inst.roulettePieces[index].originalSprite = Utils.LoadSpriteByName("SpecialRoulette", "룰렛_마술카드_다이아");
                                 if (RouletteManager.Inst.roulettePieces[index].isEnhanced)
                                 {
                                     RouletteManager.Inst.roulettePieces[index].originalTooltipTitle = "다이아몬드 룰렛+";
@@ -784,6 +825,7 @@ public class PassiveManager : MonoBehaviour
                                 break;
                             case CardType.Turn:
                                 RouletteManager.Inst.roulettePieces[index].roulette.value = 1;
+                                RouletteManager.Inst.roulettePieces[index].originalSprite = Utils.LoadSpriteByName("SpecialRoulette", "룰렛_마술카드_하트");
                                 if (RouletteManager.Inst.roulettePieces[index].isEnhanced)
                                 {
                                     RouletteManager.Inst.roulettePieces[index].originalTooltipTitle = "하트 룰렛+";
@@ -797,6 +839,7 @@ public class PassiveManager : MonoBehaviour
                                 break;
                             case CardType.Dream:
                                 RouletteManager.Inst.roulettePieces[index].roulette.value = 1;
+                                RouletteManager.Inst.roulettePieces[index].originalSprite = Utils.LoadSpriteByName("SpecialRoulette", "룰렛_마술카드_스페이드");
                                 if (RouletteManager.Inst.roulettePieces[index].isEnhanced)
                                 {
                                     RouletteManager.Inst.roulettePieces[index].originalTooltipTitle = "스페이드 룰렛+";
@@ -809,6 +852,7 @@ public class PassiveManager : MonoBehaviour
                                 }
                                 break;
                         }
+                        RouletteManager.Inst.roulettePieces[index].SetRoulettePieceSprite(RouletteManager.Inst.roulettePieces[index].originalSprite);
                         RouletteManager.Inst.roulettePieces[index].SetRoulettePieceTooltip(RouletteManager.Inst.roulettePieces[index].originalTooltipTitle, RouletteManager.Inst.roulettePieces[index].originalTooltipText);
                     }
                 };

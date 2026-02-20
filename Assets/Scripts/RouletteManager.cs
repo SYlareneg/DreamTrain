@@ -299,11 +299,13 @@ public class RouletteManager : MonoBehaviour
         rItem.rtype = rType;
         rItem.value = rValue;
         roulettePieces[index].roulette = rItem;
+        Utils.AllignActions(ref TurnManager.OnRouletteEnchant, typeof(ShowBuff), typeof(RelicManager));
+        TurnManager.OnRouletteEnchant?.Invoke(index);
         roulettePieces[index].EnchantAnim(() =>
         {
             roulettePieces[index].Setup(rItem);
-            Utils.AllignActions(ref TurnManager.OnRouletteEnchant, typeof(ShowBuff), typeof(RelicManager));
-            TurnManager.OnRouletteEnchant?.Invoke(index);
+            Utils.AllignActions(ref TurnManager.AfterRouletteEnchant, typeof(ShowBuff), typeof(RelicManager));
+            TurnManager.AfterRouletteEnchant?.Invoke(index);
         });
 
         roulettePieces[index].GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.rouletteEnchantSFX);

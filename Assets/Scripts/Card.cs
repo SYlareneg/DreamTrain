@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 public class Card : MonoBehaviour
 {
     [SerializeField] SpriteRenderer card;
-    [SerializeField] SpriteRenderer character;
+    public SpriteRenderer character;
     public SpriteRenderer highlight;
     public SpriteRenderer specialHighlight;
     [SerializeField] SpriteRenderer type;
@@ -540,11 +540,6 @@ public class Card : MonoBehaviour
                 {
                     RouletteManager.Inst.EnhanceRoulette(true, enemyIdx);
                 }
-                // else
-                // {
-                //     isCardUsed = RouletteManager.Inst.EnchantRoulette(true, bloodSteal_plus, PassiveManager.Inst.playerSpecialRoulettes[PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 1)].baseVal, enemyIdx);
-                //     if(isCardUsed) RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(enemyIdx)].isEnhanced = true;
-                // }
                 break;
             case "혈액 순환":
             case "혈액 순환+":
@@ -736,10 +731,9 @@ public class Card : MonoBehaviour
                 {
                     RouletteManager.Inst.EnhanceRoulette(false);
                 }
-                if(isCardUsed && PassiveManager.Inst.lastCardType == CardType.Enchant)
+                if (PassiveManager.Inst.lastCardType == CardType.Enchant)
                 {
-                    if(item.name == "마술 카드+") BuffManager.AddBuffToTarget(BuffManager.Inst.roulettePieceBuff[RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat]], -6, 1, -1);
-                    else BuffManager.AddBuffToTarget(BuffManager.Inst.roulettePieceBuff[RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat]], -4, 1, -1);
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.roulettePieceBuff[RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat]], -4, 1, -1);
                 }
                 break;
             case "수트 체인지":
