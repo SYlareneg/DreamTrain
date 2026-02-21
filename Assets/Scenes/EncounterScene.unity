@@ -844,6 +844,7 @@ MonoBehaviour:
   tooltipPos: {x: -582, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!1 &104470737
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,6 +1182,7 @@ MonoBehaviour:
   tooltipPos: {x: -498, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!1 &151365500
 GameObject:
   m_ObjectHideFlags: 0
@@ -2298,6 +2300,7 @@ MonoBehaviour:
   tooltipPos: {x: -936, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!1 &281916174
 GameObject:
   m_ObjectHideFlags: 0
@@ -2561,6 +2564,7 @@ MonoBehaviour:
   tooltipPos: {x: -936, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!1 &314847762
 GameObject:
   m_ObjectHideFlags: 0
@@ -2915,6 +2919,7 @@ MonoBehaviour:
   tooltipPos: {x: -320, y: 530}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!1 &377506790
 GameObject:
   m_ObjectHideFlags: 0
@@ -4113,6 +4118,7 @@ MonoBehaviour:
   tooltipPos: {x: -793, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!1 &597607955
 GameObject:
   m_ObjectHideFlags: 0
@@ -7031,6 +7037,7 @@ MonoBehaviour:
   tooltipPos: {x: -936, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!1 &949247317
 GameObject:
   m_ObjectHideFlags: 0
@@ -8981,6 +8988,7 @@ MonoBehaviour:
   tooltipPos: {x: -645, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!1 &1165808054
 GameObject:
   m_ObjectHideFlags: 0
@@ -9337,6 +9345,7 @@ MonoBehaviour:
   tooltipPos: {x: -936, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!1 &1192944735
 GameObject:
   m_ObjectHideFlags: 0
@@ -12243,6 +12252,7 @@ MonoBehaviour:
   tooltipPos: {x: -936, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!1 &1498465000
 GameObject:
   m_ObjectHideFlags: 0
@@ -12283,7 +12293,7 @@ MonoBehaviour:
   relicButton: {fileID: 348495600}
   relicPanel: {fileID: 1978354778}
   relicUIPrefab: {fileID: 5057287302192230722, guid: 66d1092adde19ed47b90aaf4bfe7adf1, type: 3}
-  continuousTime: 5
+  continuousTime: 2
   countInterval: 0.02
   highlightScale: 1.5
 --- !u!224 &1498465002
@@ -18037,6 +18047,7 @@ MonoBehaviour:
   tooltipPos: {x: -936, y: 469}
   tooltipPivot: {x: 0, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!1001 &2090230962
 PrefabInstance:
   m_ObjectHideFlags: 0
