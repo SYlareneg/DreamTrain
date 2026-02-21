@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 using System;
+using System.Diagnostics.Contracts;
 using Random = UnityEngine.Random;
 
 public class EncounterMerchantUI : MonoBehaviour
@@ -149,7 +150,7 @@ public class EncounterMerchantUI : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-
+        
         List<Item> allCardItemList = characterSO.normalCards
             .Concat(characterSO.personaPiece.cards)
             .Concat(characterSO.shadowPiece.cards)
@@ -162,8 +163,7 @@ public class EncounterMerchantUI : MonoBehaviour
                 for(int i = 0; i < item.num; i++)
                 {
                     var cardObj = Instantiate(enhanceCardPrefab, cardEnhanceList, false);
-                    // Instantiate 할 때 부모를 지정하지 않고, 여기서 transform.SetParent 사용 (원본 스타일)
-                    // (단, Instantiate(prefab, parent)가 더 깔끔하긴 합니다)
+
                     cardObj.transform.SetParent(cardEnhanceList); 
                     
                     CardUI_Enhance cardUI = cardObj.GetComponent<CardUI_Enhance>();
