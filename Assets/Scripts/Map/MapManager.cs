@@ -294,7 +294,7 @@ public class MapManager : MonoBehaviour
 
                 if(curNode.locationID == "TUTORIAL_1")
                 {
-                    DataManager.Inst.characterSO.enemyName = "CardSoldier1";
+                    DataManager.Inst.characterSO.enemyName = "CardSoldier";
                 }
                 else if(curNode.locationID == "TUTORIAL_2")
                 {

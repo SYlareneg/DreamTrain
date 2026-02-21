@@ -3,7 +3,7 @@
     {
       "name": "고장난 로봇",
       "id": "ErrorRobot",
-      "health": 86,
+      "health": 80,
       "triggerNum": 1,
       "phase": [
         {
@@ -50,7 +50,7 @@
           ],
           "phaseRepeat": true,
           "phaseClear": false,
-          "scalingFactor": 1.25
+          "scalingFactor": 1.5
         }
       ],
       "triggerPhase": [
@@ -122,7 +122,7 @@
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
-          "value": 1
+          "value": 8
         },
         {
           "rtype": {
@@ -170,7 +170,7 @@
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
-          "value": 1
+          "value": 8
         }
       ],
       "enemySpecialRoulettes": [
@@ -196,8 +196,8 @@
       "enemySpecialActions": [
         {
           "sprite": "",
-          "title": "디버프 부여: 강화",
-          "text": "룰렛에 강화를 값 부여합니다."
+          "title": "회복 부여",
+          "text": "자신 앞에 회복 룰렛을 값 부여합니다."
         },
         {
           "sprite": "",
@@ -308,9 +308,9 @@
             {
               "pattern": [
                 {
-                  "type": 1,
-                  "typeNum": 0,
-                  "val": 15,
+                  "type": 6,
+                  "typeNum": 1,
+                  "val": 12,
                   "isTrigger": true
                 }
               ]
@@ -318,7 +318,7 @@
           ],
           "phaseRepeat": false,
           "phaseClear": false,
-          "scalingFactor": 1.33
+          "scalingFactor": 1.5
         }
       ],
       "roulettePattern": [
@@ -443,12 +443,12 @@
         {
           "sprite": "",
           "title": "디버프 부여: 불쾌함",
-          "text": "불쾌함을 1 부여합니다."
+          "text": "불쾌함을 값 부여합니다."
         },
         {
           "sprite": "",
-          "title": "",
-          "text": ""
+          "title": "새치기 단속",
+          "text": "값 피해를 주고, 회전 봉인을 2턴간 부여합니다."
         },
         {
           "sprite": "",
@@ -467,7 +467,7 @@
     {
       "name": "직원 로봇",
       "id": "StaffRobot",
-      "health": 72,
+      "health": 80,
       "triggerNum": 1,
       "phase": [
         {
@@ -478,9 +478,15 @@
             {
               "pattern": [
                 {
-                  "type": 3,
+                  "type": 8,
                   "typeNum": 0,
                   "val": 8,
+                  "isTrigger": false
+                },
+                {
+                  "type": 9,
+                  "typeNum": 0,
+                  "val": 0,
                   "isTrigger": false
                 }
               ]
@@ -506,7 +512,7 @@
                 {
                   "type": 6,
                   "typeNum": 0,
-                  "val": 3,
+                  "val": -3,
                   "isTrigger": false
                 }
               ]
@@ -526,9 +532,9 @@
             {
               "pattern": [
                 {
-                  "type": 1,
-                  "typeNum": 0,
-                  "val": 16,
+                  "type": 6,
+                  "typeNum": 1,
+                  "val": 12,
                   "isTrigger": true
                 }
               ]
@@ -536,7 +542,7 @@
           ],
           "phaseRepeat": false,
           "phaseClear": false,
-          "scalingFactor": 1.25
+          "scalingFactor": 1.5
         }
       ],
       "roulettePattern": [
@@ -582,7 +588,7 @@
         },
         {
           "rtype": {
-            "type": 2,
+            "type": 1,
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
@@ -661,12 +667,12 @@
         {
           "sprite": "",
           "title": "디버프 부여: 보호",
-          "text": "보호를 -3 부여합니다."
+          "text": "보호를 값 부여합니다."
         },
         {
           "sprite": "",
-          "title": "",
-          "text": ""
+          "title": "빠직!",
+          "text": "값 피해를 주고, 앨리스에게 보호를 -3 부여합니다."
         },
         {
           "sprite": "",
@@ -698,7 +704,7 @@
                 {
                   "type": 6,
                   "typeNum": 0,
-                  "val": 10,
+                  "val": 20,
                   "isTrigger": false
                 }
               ]
@@ -858,7 +864,7 @@
         {
           "sprite": "",
           "title": "경주 종료!",
-          "text": "도도가 180 피해를 받습닏다."
+          "text": "도도가 값 피해를 받습닏다."
         },
         {
           "sprite": "",
@@ -904,9 +910,9 @@
                   "isTrigger": false
                 },
                 {
-                  "type": 2,
+                  "type": 7,
                   "typeNum": 0,
-                  "val": 4,
+                  "val": 6,
                   "isTrigger": false
                 }
               ]
@@ -924,7 +930,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "scalingFactor": 1.25
+          "scalingFactor": 1.5
         }
       ],
       "triggerPhase": [
@@ -938,7 +944,7 @@
                 {
                   "type": 1,
                   "typeNum": 0,
-                  "val": 12,
+                  "val": 15,
                   "isTrigger": true
                 }
               ]
@@ -1317,8 +1323,8 @@
     {
       "name": "카드 병정 2",
       "id": "CardSoldier2",
-      "health": 25,
-      "triggerNum": 0,
+      "health": 50,
+      "triggerNum": 2,
       "phase": [
         {
           "name": "전투 준비",
@@ -1340,16 +1346,6 @@
                 {
                   "type": 1,
                   "typeNum": 0,
-                  "val": 10,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 3,
-                  "typeNum": 0,
                   "val": 5,
                   "isTrigger": false
                 }
@@ -1361,6 +1357,16 @@
                   "type": 2,
                   "typeNum": 0,
                   "val": 2,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 3,
                   "isTrigger": false
                 }
               ]
@@ -1380,7 +1386,7 @@
             {
               "pattern": [
                 {
-                  "type": 2,
+                  "type": 1,
                   "typeNum": 0,
                   "val": 10,
                   "isTrigger": true
@@ -1420,7 +1426,15 @@
         },
         {
           "rtype": {
-            "type": 3,
+            "type": 0,
+            "specialTypeIdx": 0,
+            "enemyIdx": 0
+          },
+          "value": 0
+        },
+        {
+          "rtype": {
+            "type": 1,
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
@@ -1452,11 +1466,11 @@
         },
         {
           "rtype": {
-            "type": 0,
+            "type": 3,
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
-          "value": 0
+          "value": 5
         },
         {
           "rtype": {
@@ -1465,14 +1479,6 @@
             "enemyIdx": 0
           },
           "value": 0
-        },
-        {
-          "rtype": {
-            "type": 2,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 2
         },
         {
           "rtype": {
@@ -1539,13 +1545,13 @@
     {
       "name": "카드 병정",
       "id": "CardSoldier",
-      "health": 50,
-      "triggerNum": 4,
+      "health": 10,
+      "triggerNum": 0,
       "phase": [
         {
           "name": "전투 준비",
-          "sprite": "카드병정 3",
-          "text": "턴 시작 시 트리거를 1 얻습니다.",
+          "sprite": "카드병정 1",
+          "text": "카드 병정입니다.",
           "patterns": [
             {
               "pattern": [
@@ -1596,7 +1602,7 @@
       "triggerPhase": [
         {
           "name": "카드 병정: 트리거",
-          "sprite": "카드병정 3",
+          "sprite": "카드병정 1",
           "text": "카드 병정이 트리거 상태입니다. 턴 종료 시 트리거가 해제됩니다.",
           "patterns": [
             {
@@ -1650,11 +1656,11 @@
         },
         {
           "rtype": {
-            "type": 2,
+            "type": 0,
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
-          "value": 2
+          "value": 0
         },
         {
           "rtype": {
@@ -1761,7 +1767,7 @@
     {
       "name": "뱀파이어 폴",
       "id": "Vamp",
-      "health": 80,
+      "health": 88,
       "triggerNum": 2,
       "phase": [
         {
@@ -1773,57 +1779,7 @@
                 {
                   "type": 6,
                   "typeNum": 0,
-                  "val": 4,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 6,
-                  "typeNum": 0,
-                  "val": 6,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 6,
-                  "typeNum": 0,
-                  "val": 10,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 6,
-                  "typeNum": 0,
-                  "val": 16,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 6,
-                  "typeNum": 0,
-                  "val": 24,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 6,
-                  "typeNum": 0,
-                  "val": 24,
+                  "val": 5,
                   "isTrigger": false
                 }
               ]
@@ -1832,18 +1788,18 @@
           "phaseClear": false,
           "phaseRepeat": true,
           "sprite": "Not Drawn Yet",
-          "scalingFactor": 1
+          "scalingFactor": 5
         },
         {
           "name": "각성:뱀파이어",
-          "text": "충분한 피를 흡수하여 뱀파이어의 힘이 깨어났습니다. 흡혈로 체력을 회복할 때마다  트리거합니다.",
+          "text": "충분한 피를 흡수하여 뱀파이어의 힘이 깨어났습니다. 흡혈로 체력을 회복할 때마다 트리거합니다.",
           "patterns": [
             {
               "pattern": [
                 {
                   "type": 1,
                   "typeNum": 0,
-                  "val": 5,
+                  "val": 8,
                   "isTrigger": false
                 },
                 {
@@ -1859,7 +1815,7 @@
                 {
                   "type": 6,
                   "typeNum": 0,
-                  "val": 5,
+                  "val": 8,
                   "isTrigger": false
                 },
                 {
@@ -1873,15 +1829,15 @@
             {
               "pattern": [
                 {
-                  "type": 4,
-                  "typeNum": 0,
-                  "val": 1,
+                  "type": 6,
+                  "typeNum": 1,
+                  "val": 5,
                   "isTrigger": false
                 },
                 {
-                  "type": 0,
-                  "typeNum": -2,
-                  "val": -3,
+                  "type": 9,
+                  "typeNum": 0,
+                  "val": 0,
                   "isTrigger": false
                 }
               ]
@@ -1891,13 +1847,7 @@
                 {
                   "type": 3,
                   "typeNum": 0,
-                  "val": 12,
-                  "isTrigger": false
-                },
-                {
-                  "type": 0,
-                  "typeNum": 0,
-                  "val": 3,
+                  "val": 14,
                   "isTrigger": false
                 }
               ]
@@ -1906,13 +1856,13 @@
           "phaseClear": false,
           "phaseRepeat": true,
           "sprite": "Enemy_Vampire",
-          "scalingFactor": 1
+          "scalingFactor": 1.5
         }
       ],
       "triggerPhase": [
         {
           "name": "뱀파이어:트리거",
-          "text": "충분한 피를 마시고 힘이 깨어났습니다. 흡혈로 체력을 2번 획득하면 트리거됩니다.",
+          "text": "충분한 피를 마시고 힘이 깨어났습니다. 턴 종료 시 트리거가 해제됩니다.",
           "patterns": [
             {
               "pattern": [
@@ -1940,7 +1890,7 @@
           "phaseClear": false,
           "phaseRepeat": false,
           "sprite": "Enemy_Vampire",
-          "scalingFactor": 1
+          "scalingFactor": 5
         }
       ],
       "roulettePattern": [
@@ -2089,7 +2039,7 @@
     {
       "name": "박쥐",
       "id": "Bat",
-      "health": 58,
+      "health": 52,
       "triggerNum": 12,
       "phase": [
         {
@@ -2099,61 +2049,27 @@
             {
               "pattern": [
                 {
-                  "type": 1,
-                  "typeNum": 0,
-                  "val": 6,
-                  "isTrigger": false
-                },
-                {
-                  "type": 0,
-                  "typeNum": 0,
-                  "val": -3,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 6,
-                  "typeNum": 0,
-                  "val": 4,
-                  "isTrigger": false
-                },
-                {
                   "type": 3,
                   "typeNum": 0,
-                  "val": 6,
+                  "val": 8,
                   "isTrigger": false
                 }
               ]
             },
             {
               "pattern": [
-                {
-                  "type": 0,
-                  "typeNum": 0,
-                  "val": -4,
-                  "isTrigger": false
-                },
-                {
-                  "type": 0,
-                  "typeNum": 0,
-                  "val": -4,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 1,
-                  "typeNum": 0,
-                  "val": 6,
-                  "isTrigger": false
-                },
                 {
                   "type": 6,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 0,
                   "typeNum": 0,
                   "val": 4,
                   "isTrigger": false
@@ -2164,47 +2080,41 @@
           "phaseClear": false,
           "phaseRepeat": true,
           "sprite": "Not Drawn Yet",
-          "scalingFactor": 1
+          "scalingFactor": 1.5
         }
       ],
       "triggerPhase": [
         {
           "name": "박쥐:트리거",
-          "text": "트리거 상태입니다. 트리거 패턴이 추가되며 트리거 패턴으로 피해를 입히지 못할 경우 트리거 상태가 해제됩니다.",
+          "text": "트리거 상태입니다. 트리거 패턴이 추가되며 흡혈로 피해를 입히지 못할 경우 트리거 상태가 해제됩니다.",
           "patterns": [
-            {
-              "pattern": [
-                {
-                  "type": 1,
-                  "typeNum": 0,
-                  "val": 6,
-                  "isTrigger": false
-                },
-                {
-                  "type": 0,
-                  "typeNum": 0,
-                  "val": -3,
-                  "isTrigger": false
-                },
-                {
-                  "type": 6,
-                  "typeNum": 1,
-                  "val": 4,
-                  "isTrigger": true
-                }
-              ]
-            },
             {
               "pattern": [
                 {
                   "type": 3,
                   "typeNum": 0,
+                  "val": 8,
+                  "isTrigger": false
+                },
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": true
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 0,
                   "val": 6,
                   "isTrigger": false
                 },
                 {
                   "type": 6,
-                  "typeNum": 1,
+                  "typeNum": 0,
                   "val": 6,
                   "isTrigger": true
                 }
@@ -2215,29 +2125,13 @@
                 {
                   "type": 0,
                   "typeNum": 0,
-                  "val": -4,
+                  "val": 4,
                   "isTrigger": false
                 },
                 {
                   "type": 6,
-                  "typeNum": 1,
-                  "val": 6,
-                  "isTrigger": true
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 1,
                   "typeNum": 0,
                   "val": 6,
-                  "isTrigger": false
-                },
-                {
-                  "type": 6,
-                  "typeNum": 1,
-                  "val": 4,
                   "isTrigger": true
                 }
               ]
@@ -2246,7 +2140,7 @@
           "phaseClear": false,
           "phaseRepeat": true,
           "sprite": "Not Drawn Yet",
-          "scalingFactor": 1
+          "scalingFactor": 1.5
         }
       ],
       "roulettePattern": [
@@ -2374,9 +2268,9 @@
           "text": "피해를 값만큼 주고, 입힌 피해만큼 박쥐의 체력이 회복됩니다."
         },
         {
-          "sprite": "행동_특수_뱀파이어, 박쥐_흡혈",
-          "title": "흡혈+",
-          "text": "피해를 값만큼 주고, 입힌 피해만큼 박쥐의 체력이 회복됩니다."
+          "sprite": "",
+          "title": "",
+          "text": ""
         },
         {
           "sprite": "",
@@ -2405,12 +2299,6 @@
             {
               "pattern": [
                 {
-                  "type": 3,
-                  "typeNum": 0,
-                  "val": 5,
-                  "isTrigger": false
-                },
-                {
                   "type": 4,
                   "typeNum": 0,
                   "val": 1,
@@ -2436,25 +2324,9 @@
             },
             {
               "pattern": [
-                {
-                  "type": 4,
-                  "typeNum": 0,
-                  "val": 1,
-                  "isTrigger": false
-                },
                 {
                   "type": 0,
-                  "typeNum": -2,
-                  "val": -7,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 1,
-                  "typeNum": 0,
+                  "typeNum": 3,
                   "val": 6,
                   "isTrigger": false
                 }
@@ -2464,13 +2336,13 @@
           "phaseClear": false,
           "phaseRepeat": true,
           "sprite": "Not Drawn Yet",
-          "scalingFactor": 1
+          "scalingFactor": 1.5
         }
       ],
       "triggerPhase": [
         {
           "name": "비둘기:트리거",
-          "text": "비둘기가 트리거 되었습니다.턴 종료 시 트리거가 해제됩니다.",
+          "text": "비둘기가 트리거 되었습니다. 턴 종료 시 트리거가 해제됩니다.",
           "patterns": [
             {
               "pattern": [
@@ -2486,7 +2358,7 @@
           "phaseClear": false,
           "phaseRepeat": false,
           "sprite": "Not Drawn Yet",
-          "scalingFactor": 1
+          "scalingFactor": 1.5
         }
       ],
       "roulettePattern": [
@@ -2635,7 +2507,7 @@
     {
       "name": "유령의 집의 망령",
       "id": "GuestOrGhost",
-      "health": 52,
+      "health": 48,
       "triggerNum": 6,
       "phase": [
         {
@@ -2645,15 +2517,9 @@
             {
               "pattern": [
                 {
-                  "type": 1,
+                  "type": 7,
                   "typeNum": 0,
-                  "val": 4,
-                  "isTrigger": false
-                },
-                {
-                  "type": 0,
-                  "typeNum": -2,
-                  "val": -3,
+                  "val": 5,
                   "isTrigger": false
                 }
               ]
@@ -2664,22 +2530,6 @@
                   "type": 6,
                   "typeNum": 0,
                   "val": 1,
-                  "isTrigger": false
-                },
-                {
-                  "type": 2,
-                  "typeNum": 0,
-                  "val": 2,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 3,
-                  "typeNum": 0,
-                  "val": 8,
                   "isTrigger": false
                 },
                 {
@@ -2697,276 +2547,10 @@
                   "typeNum": 0,
                   "val": 8,
                   "isTrigger": false
-                }
-              ]
-            }
-          ],
-          "phaseClear": false,
-          "phaseRepeat": true,
-          "sprite": "망령",
-          "scalingFactor": 1
-        }
-      ],
-      "triggerPhase": [
-        {
-          "name": "망령:트리거",
-          "text": "망령이 트리거 되었습니다. 다음 턴 종료 시 트리거가 해제됩니다.",
-          "patterns": [
-            {
-              "pattern": [
-                {
-                  "type": 2,
-                  "typeNum": 0,
-                  "val": 14,
-                  "isTrigger": true
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 2,
-                  "typeNum": 0,
-                  "val": 14,
-                  "isTrigger": true
-                }
-              ]
-            }
-          ],
-          "phaseClear": false,
-          "phaseRepeat": false,
-          "sprite": "망령",
-          "scalingFactor": 1
-        }
-      ],
-      "roulettePattern": [
-        {
-          "rtype": {
-            "type": 3,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 5
-        },
-        {
-          "rtype": {
-            "type": 0,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 0
-        },
-        {
-          "rtype": {
-            "type": 3,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 5
-        },
-        {
-          "rtype": {
-            "type": 1,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 5
-        },
-        {
-          "rtype": {
-            "type": 0,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 0
-        },
-        {
-          "rtype": {
-            "type": 2,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 2
-        },
-        {
-          "rtype": {
-            "type": 0,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 0
-        },
-        {
-          "rtype": {
-            "type": 0,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 0
-        },
-        {
-          "rtype": {
-            "type": 3,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 5
-        },
-        {
-          "rtype": {
-            "type": 0,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 0
-        },
-        {
-          "rtype": {
-            "type": 0,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 0
-        },
-        {
-          "rtype": {
-            "type": 0,
-            "specialTypeIdx": 0,
-            "enemyIdx": 0
-          },
-          "value": 0
-        }
-      ],
-      "enemySpecialRoulettes": [
-        {
-          "sprite": "",
-          "title": "",
-          "text": "",
-          "baseVal": 0,
-          "title_enhanced": "",
-          "text_enhanced": "",
-          "baseVal_enhanced": 0
-        },
-        {
-          "sprite": "",
-          "title": "",
-          "text": "",
-          "baseVal": 0,
-          "title_enhanced": "",
-          "text_enhanced": "",
-          "baseVal_enhanced": 0
-        }
-      ],
-      "enemySpecialActions": [
-        {
-          "sprite": "EnemyAction_Enchant",
-          "title": "공격 부여",
-          "text": "무작위 빈 룰렛 칸에 '공격' 룰렛을 부여합니다. 빈 칸이 없을 경우 무작위 칸에 부여합니다."
-        },
-        {
-          "sprite": "",
-          "title": "",
-          "text": ""
-        },
-        {
-          "sprite": "",
-          "title": "",
-          "text": ""
-        },
-        {
-          "sprite": "",
-          "title": "",
-          "text": ""
-        }
-      ],
-      "subEnemies": [],
-      "subEnemies_Spawn": []
-    },
-    {
-      "name": "망령 2",
-      "id": "",
-      "health": 52,
-      "triggerNum": 6,
-      "phase": [
-        {
-          "name": "장난꾸러기",
-          "text": "룰렛이 회전할 때마다 트리거 게이지를 1 얻습니다.",
-          "patterns": [
-            {
-              "pattern": [
-                {
-                  "type": 1,
-                  "typeNum": 0,
-                  "val": 4,
-                  "isTrigger": false
                 },
                 {
                   "type": 0,
-                  "typeNum": -2,
-                  "val": -3,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 6,
                   "typeNum": 0,
-                  "val": 1,
-                  "isTrigger": false
-                },
-                {
-                  "type": 2,
-                  "typeNum": 0,
-                  "val": 2,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 1,
-                  "typeNum": 0,
-                  "val": 4,
-                  "isTrigger": false
-                },
-                {
-                  "type": 0,
-                  "typeNum": -2,
-                  "val": -3,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 1,
-                  "typeNum": 0,
-                  "val": 4,
-                  "isTrigger": false
-                }
-              ]
-            }
-          ],
-          "phaseClear": false,
-          "phaseRepeat": true,
-          "sprite": "망령",
-          "scalingFactor": 1
-        }
-      ],
-      "triggerPhase": [
-        {
-          "name": "망령 2:트리거",
-          "text": "망령 2가 트리거 상태입니다.",
-          "patterns": [
-            {
-              "pattern": [
-                {
-                  "type": 6,
-                  "typeNum": 1,
                   "val": 3,
                   "isTrigger": false
                 }
@@ -2974,9 +2558,31 @@
             }
           ],
           "phaseClear": false,
+          "phaseRepeat": true,
+          "sprite": "망령",
+          "scalingFactor": 2
+        }
+      ],
+      "triggerPhase": [
+        {
+          "name": "유령의 집의 망령:트리거",
+          "text": "유령의 집의 망령이 트리거 되었습니다. 턴 종료 시 트리거가 해제됩니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 2,
+                  "typeNum": 0,
+                  "val": 16,
+                  "isTrigger": true
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
           "phaseRepeat": false,
           "sprite": "망령",
-          "scalingFactor": 1
+          "scalingFactor": 2
         }
       ],
       "roulettePattern": [
@@ -3046,7 +2652,7 @@
         },
         {
           "rtype": {
-            "type": 1,
+            "type": 3,
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
@@ -3104,9 +2710,9 @@
           "text": "무작위 빈 룰렛 칸에 '공격' 룰렛을 부여합니다. 빈 칸이 없을 경우 무작위 칸에 부여합니다."
         },
         {
-          "sprite": "EnemyAction_Enchant",
-          "title": "회전 봉인",
-          "text": "플레이어에게 '회전 봉인' 디버프를 값턴동안 부여합니다."
+          "sprite": "",
+          "title": "",
+          "text": ""
         },
         {
           "sprite": "",
@@ -3124,22 +2730,16 @@
     },
     {
       "name": "마술사",
-      "id": "",
-      "health": 84,
+      "id": "Magician",
+      "health": 112,
       "triggerNum": 3,
       "phase": [
         {
           "name": "쇼타임",
-          "text": "마술에 3번 실패하면 그의 비밀이 드러납니다.",
+          "text": "마술에 3번 성공하면 그의 비밀이 드러납니다.",
           "patterns": [
             {
               "pattern": [
-                {
-                  "type": 0,
-                  "typeNum": -2,
-                  "val": -3,
-                  "isTrigger": false
-                },
                 {
                   "type": 4,
                   "typeNum": 0,
@@ -3162,7 +2762,7 @@
           "phaseClear": false,
           "phaseRepeat": false,
           "sprite": "Not Drawn Yet",
-          "scalingFactor": 1
+          "scalingFactor": 1.5
         },
         {
           "name": "쇼타임",
@@ -3171,9 +2771,9 @@
             {
               "pattern": [
                 {
-                  "type": 1,
+                  "type": 4,
                   "typeNum": 0,
-                  "val": 5,
+                  "val": 1,
                   "isTrigger": false
                 },
                 {
@@ -3197,21 +2797,15 @@
             {
               "pattern": [
                 {
-                  "type": 2,
-                  "typeNum": 0,
-                  "val": 3,
-                  "isTrigger": false
-                },
-                {
                   "type": 4,
                   "typeNum": 0,
                   "val": 1,
                   "isTrigger": false
                 },
                 {
-                  "type": 4,
-                  "typeNum": 0,
-                  "val": 1,
+                  "type": 0,
+                  "typeNum": -3,
+                  "val": -5,
                   "isTrigger": false
                 }
               ]
@@ -3230,13 +2824,13 @@
           "phaseClear": false,
           "phaseRepeat": true,
           "sprite": "Enemy_Vampire",
-          "scalingFactor": 1
+          "scalingFactor": 1.5
         }
       ],
       "triggerPhase": [
         {
           "name": "마술사:트리거",
-          "text": "마술사는 트리거 상태입니다.",
+          "text": "마술사는 트리거 상태입니다. 두 턴 이후 트리거가 해제됩니다.",
           "patterns": [
             {
               "pattern": [
@@ -3262,7 +2856,7 @@
           "phaseClear": false,
           "phaseRepeat": false,
           "sprite": "Not Drawn Yet",
-          "scalingFactor": 1
+          "scalingFactor": 1.5
         }
       ],
       "roulettePattern": [
@@ -3387,12 +2981,12 @@
         {
           "sprite": "EnemyAction_Drain",
           "title": "마술-불꽃",
-          "text": "턴x2+마술 모자 개수x5 의 피해를 줍니다. 마술 모자가 하나도 없다면 마술에 실패합니다."
+          "text": "마술 모자 1개당 12의 피해를 주고, 모든 마술 모자를 제거합니다. 마술 모자가 하나도 없다면 마술에 실패합니다."
         },
         {
           "sprite": "EnemyAction_Drain",
           "title": "마술-환영",
-          "text": "마술 모자 1개당 1의 환영 버프를 얻습니다. 마술 모자가 하나도 없다면 마술에 실패합니다."
+          "text": "마술 모자 1개당 환영 버프를 1 얻습니다. 마술 모자가 하나도 없다면 마술에 실패합니다."
         },
         {
           "sprite": "EnemyAction_Drain",
@@ -3402,7 +2996,7 @@
         {
           "sprite": "EnemyAction_Drain",
           "title": "마술-쇼타임",
-          "text": "턴x1+마술 모자 개수x1 의 피해를 줍니다."
+          "text": "마술 모자 1개당 6의 피해를 주고, 모든 마술 모자를 제거합니다."
         }
       ],
       "subEnemies": [],
@@ -3412,38 +3006,18 @@
       "name": "귀신들린 인형",
       "id": "DevilDoll",
       "health": 144,
-      "triggerNum": 4,
+      "triggerNum": 1,
       "phase": [
         {
           "name": "인형의 저주",
-          "text": "저주 인형이 존재한다면, 자신이 공격받을 때 트리거 게이지를 1 얻고 저주 인형이 피해를 대신 받습니다.",
-          "patterns": [
-            {
-              "pattern": [
-                {
-                  "type": 5,
-                  "typeNum": 0,
-                  "val": 1,
-                  "isTrigger": false
-                }
-              ]
-            }
-          ],
-          "phaseClear": false,
-          "phaseRepeat": false,
-          "sprite": "귀신들린 인형",
-          "scalingFactor": 1
-        },
-        {
-          "name": "인형의 저주",
-          "text": "저주 인형이 존재한다면, 자신이 공격받을 때 트리거 게이지를 1 얻고 저주 인형이 피해를 대신 받습니다.",
+          "text": "룰렛에 저주인형이 없다면, 턴 시작 시 트리거를 1 얻습니다.",
           "patterns": [
             {
               "pattern": [
                 {
                   "type": 1,
                   "typeNum": 0,
-                  "val": 8,
+                  "val": 4,
                   "isTrigger": false
                 }
               ]
@@ -3455,15 +3029,21 @@
                   "typeNum": 0,
                   "val": 3,
                   "isTrigger": false
+                },
+                {
+                  "type": 8,
+                  "typeNum": 0,
+                  "val": 4,
+                  "isTrigger": false
                 }
               ]
             },
             {
               "pattern": [
                 {
-                  "type": 1,
+                  "type": 0,
                   "typeNum": 0,
-                  "val": 6,
+                  "val": 3,
                   "isTrigger": false
                 },
                 {
@@ -3477,8 +3057,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire",
-          "scalingFactor": 1
+          "sprite": "귀신들린 인형",
+          "scalingFactor": 2
         }
       ],
       "triggerPhase": [
@@ -3491,7 +3071,7 @@
                 {
                   "type": 6,
                   "typeNum": 0,
-                  "val": 0,
+                  "val": 1,
                   "isTrigger": true
                 }
               ]
@@ -3604,8 +3184,8 @@
       "enemySpecialRoulettes": [
         {
           "sprite": "",
-          "title": "",
-          "text": "",
+          "title": "저주인형",
+          "text": "매 턴마다 귀신들린 인형이 처음으로 받는 피해를 0으로 만들고, 감소시킨 피해량만큼 룰렛의 카운트가 증가합니다. 룰렛 발동 시 대상에게 값만큼 피해를 주고 소멸합니다.\\n저주: 룰렛 효과의 대상이 귀신들린 인형이라면 4배의 피해를 줍니다.",
           "baseVal": 0,
           "title_enhanced": "",
           "text_enhanced": "",
@@ -3624,8 +3204,8 @@
       "enemySpecialActions": [
         {
           "sprite": "EnemyAction_Drain",
-          "title": "인형 흡수",
-          "text": "저주 인형이 존재한다면, 저주 인형의 현재 체력만큼 자신의 체력을 회복하고 저주 인형은 소멸시킵니다. 저주 인형이 없으면 자신의 체력이 4 가 됩니다."
+          "title": "저주인형 부여",
+          "text": "자신 앞에 저주인형 룰렛을 값 부여합니다."
         },
         {
           "sprite": "",
@@ -3644,14 +3224,12 @@
         }
       ],
       "subEnemies": [],
-      "subEnemies_Spawn": [
-        "저주 인형"
-      ]
+      "subEnemies_Spawn": []
     },
     {
-      "name": "대장 컵",
+      "name": "회전 컵",
       "id": "Cups",
-      "health": 45,
+      "health": 50,
       "triggerNum": 24,
       "phase": [
         {
@@ -3661,31 +3239,9 @@
             {
               "pattern": [
                 {
-                  "type": 0,
+                  "type": 6,
                   "typeNum": 0,
-                  "val": 6,
-                  "isTrigger": false
-                },
-                {
-                  "type": 0,
-                  "typeNum": 0,
-                  "val": 6,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 3,
-                  "typeNum": 0,
-                  "val": 8,
-                  "isTrigger": false
-                },
-                {
-                  "type": 0,
-                  "typeNum": 0,
-                  "val": 6,
+                  "val": 5,
                   "isTrigger": false
                 }
               ]
@@ -3695,13 +3251,13 @@
                 {
                   "type": 1,
                   "typeNum": 0,
-                  "val": 10,
+                  "val": 5,
                   "isTrigger": false
                 },
                 {
                   "type": 0,
                   "typeNum": 0,
-                  "val": 6,
+                  "val": 3,
                   "isTrigger": false
                 }
               ]
@@ -3711,9 +3267,19 @@
                 {
                   "type": 2,
                   "typeNum": 0,
-                  "val": 6,
+                  "val": 3,
                   "isTrigger": false
                 },
+                {
+                  "type": 0,
+                  "typeNum": 3,
+                  "val": 6,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
                 {
                   "type": 0,
                   "typeNum": 6,
@@ -3726,18 +3292,29 @@
           "phaseClear": false,
           "phaseRepeat": true,
           "sprite": "컵트리오 메인",
-          "scalingFactor": 1
+          "scalingFactor": 1.5
         }
       ],
       "triggerPhase": [
         {
-          "name": "",
+          "name": "회전 컵: 트리거",
           "sprite": "컵트리오 메인",
-          "text": "",
-          "patterns": [],
+          "text": "회전 컵이 트리거 상태입니다. 턴 종료 시 트리거가 해제됩니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 1,
+                  "val": 20,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
           "phaseRepeat": false,
           "phaseClear": false,
-          "scalingFactor": 1
+          "scalingFactor": 1.5
         }
       ],
       "roulettePattern": [
@@ -3860,14 +3437,14 @@
       ],
       "enemySpecialActions": [
         {
-          "sprite": "",
-          "title": "",
-          "text": ""
+          "sprite": "행동_특수_뱀파이어, 박쥐_흡혈",
+          "title": "버프 부여: 빙그르!",
+          "text": "빙그르! 버프를 5 얻습니다."
         },
         {
           "sprite": "",
-          "title": "",
-          "text": ""
+          "title": "빙글빙글!",
+          "text": "값 피해를 줍니다. 빙그르! 버프가 없다면 피해량이 절반으로 감소합니다."
         },
         {
           "sprite": "",
@@ -3880,10 +3457,7 @@
           "text": ""
         }
       ],
-      "subEnemies": [
-        "부하 컵 1",
-        "부하 컵 2"
-      ],
+      "subEnemies": [],
       "subEnemies_Spawn": []
     },
     {
@@ -3899,7 +3473,7 @@
             {
               "pattern": [
                 {
-                  "type": 3,
+                  "type": 1,
                   "typeNum": 0,
                   "val": 5,
                   "isTrigger": false
@@ -3909,9 +3483,15 @@
             {
               "pattern": [
                 {
-                  "type": 1,
+                  "type": 8,
                   "typeNum": 0,
-                  "val": 7,
+                  "val": 5,
+                  "isTrigger": false
+                },
+                {
+                  "type": 9,
+                  "typeNum": 0,
+                  "val": 0,
                   "isTrigger": false
                 }
               ]
@@ -3930,7 +3510,7 @@
           "phaseClear": false,
           "phaseRepeat": true,
           "sprite": "흰 토끼",
-          "scalingFactor": 1
+          "scalingFactor": 1.5
         }
       ],
       "triggerPhase": [
@@ -3943,13 +3523,13 @@
                 {
                   "type": 1,
                   "typeNum": 0,
-                  "val": 4,
+                  "val": 5,
                   "isTrigger": true
                 },
                 {
                   "type": 1,
                   "typeNum": 0,
-                  "val": 4,
+                  "val": 5,
                   "isTrigger": true
                 }
               ]
@@ -3958,7 +3538,7 @@
           "phaseClear": false,
           "phaseRepeat": false,
           "sprite": "흰 토끼",
-          "scalingFactor": 1
+          "scalingFactor": 1.5
         }
       ],
       "roulettePattern": [
@@ -4107,7 +3687,7 @@
     {
       "name": "말",
       "id": "horse",
-      "health": 48,
+      "health": 42,
       "triggerNum": 2,
       "phase": [
         {
@@ -4117,15 +3697,15 @@
             {
               "pattern": [
                 {
-                  "type": 1,
+                  "type": 7,
                   "typeNum": 0,
-                  "val": 4,
+                  "val": 5,
                   "isTrigger": false
                 },
                 {
-                  "type": 0,
+                  "type": 9,
                   "typeNum": 0,
-                  "val": 3,
+                  "val": 0,
                   "isTrigger": false
                 }
               ]
@@ -4145,7 +3725,7 @@
                 {
                   "type": 1,
                   "typeNum": 0,
-                  "val": 4,
+                  "val": 8,
                   "isTrigger": false
                 },
                 {
@@ -4170,7 +3750,7 @@
           "phaseClear": false,
           "phaseRepeat": true,
           "sprite": "말",
-          "scalingFactor": 1
+          "scalingFactor": 1.5
         }
       ],
       "triggerPhase": [
@@ -4183,7 +3763,7 @@
                 {
                   "type": 6,
                   "typeNum": 0,
-                  "val": 5,
+                  "val": 20,
                   "isTrigger": true
                 }
               ]
@@ -4192,7 +3772,7 @@
           "phaseClear": false,
           "phaseRepeat": false,
           "sprite": "말",
-          "scalingFactor": 1
+          "scalingFactor": 1.5
         }
       ],
       "roulettePattern": [
@@ -4341,19 +3921,19 @@
     {
       "name": "식인 꽃",
       "id": "CruelFlower",
-      "health": 63,
+      "health": 53,
       "triggerNum": 12,
       "phase": [
         {
           "name": "벌레잡이",
-          "text": "흡혈로 회복한 체력만큼 트리거를 얻습니다.",
+          "text": "체력을 회복하면 회복량만큼 트리거를 얻습니다.",
           "patterns": [
             {
               "pattern": [
                 {
-                  "type": 1,
-                  "typeNum": 0,
-                  "val": 5,
+                  "type": 6,
+                  "typeNum": 1,
+                  "val": 4,
                   "isTrigger": false
                 }
               ]
@@ -4363,7 +3943,13 @@
                 {
                   "type": 6,
                   "typeNum": 0,
-                  "val": 5,
+                  "val": 6,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": 1,
+                  "val": 4,
                   "isTrigger": false
                 }
               ]
@@ -4377,42 +3963,10 @@
                   "isTrigger": false
                 },
                 {
-                  "type": 0,
-                  "typeNum": 0,
-                  "val": 3,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
                   "type": 6,
-                  "typeNum": 0,
-                  "val": 2,
+                  "typeNum": 1,
+                  "val": 4,
                   "isTrigger": false
-                }
-              ]
-            }
-          ],
-          "phaseClear": false,
-          "phaseRepeat": true,
-          "sprite": "Not Drawn Yet",
-          "scalingFactor": 1
-        }
-      ],
-      "triggerPhase": [
-        {
-          "name": "식인 꽃:트리거",
-          "text": "식인 꽃은 트리거 상태입니다.",
-          "patterns": [
-            {
-              "pattern": [
-                {
-                  "type": 3,
-                  "typeNum": 0,
-                  "val": 16,
-                  "isTrigger": true
                 }
               ]
             },
@@ -4421,7 +3975,51 @@
                 {
                   "type": 2,
                   "typeNum": 0,
-                  "val": 24,
+                  "val": 4,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": 1,
+                  "val": 4,
+                  "isTrigger": false
+                }
+              ]
+            }
+          ],
+          "phaseClear": false,
+          "phaseRepeat": true,
+          "sprite": "Not Drawn Yet",
+          "scalingFactor": 2
+        }
+      ],
+      "triggerPhase": [
+        {
+          "name": "식인 꽃:트리거",
+          "text": "식인 꽃은 트리거 상태입니다. 턴 종료 시 트리거가 해제됩니다.",
+          "patterns": [
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 1,
+                  "val": 6,
+                  "isTrigger": true
+                },
+                {
+                  "type": 0,
+                  "typeNum": 2,
+                  "val": 6,
+                  "isTrigger": true
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
+                  "type": 6,
+                  "typeNum": 0,
+                  "val": 10,
                   "isTrigger": true
                 }
               ]
@@ -4430,7 +4028,7 @@
           "phaseClear": false,
           "phaseRepeat": false,
           "sprite": "Not Drawn Yet",
-          "scalingFactor": 1
+          "scalingFactor": 2
         }
       ],
       "roulettePattern": [
@@ -4534,12 +4132,12 @@
       "enemySpecialRoulettes": [
         {
           "sprite": "",
-          "title": "",
-          "text": "",
-          "baseVal": 0,
-          "title_enhanced": "",
-          "text_enhanced": "",
-          "baseVal_enhanced": 0
+          "title": "벌레",
+          "text": "앨리스는 값만큼 피해를 받습니다. 꽃은 값만큼 체력을 회복합니다. 룰렛 발동 후 소멸합니다.",
+          "baseVal": 4,
+          "title_enhanced": "벌레",
+          "text_enhanced": "앨리스는 값만큼 피해를 받습니다. 꽃은 값만큼 체력을 회복합니다. 룰렛 발동 후 소멸합니다.",
+          "baseVal_enhanced": 6
         },
         {
           "sprite": "",
@@ -4558,9 +4156,9 @@
           "text": "값의 피해를 줍니다. 입힌 피해만큼 체력을 회복합니다."
         },
         {
-          "sprite": "",
-          "title": "",
-          "text": ""
+          "sprite": "EnemyAction_Drain",
+          "title": "벌레 부여",
+          "text": "자신 앞에 벌레 룰렛을 값 부여합니다."
         },
         {
           "sprite": "",
@@ -4579,8 +4177,8 @@
     {
       "name": "무서운 고양이",
       "id": "ScaryCat",
-      "health": 57,
-      "triggerNum": 5,
+      "health": 53,
+      "triggerNum": 3,
       "phase": [
         {
           "name": "무섭게 할퀴기",
@@ -4590,6 +4188,12 @@
               "pattern": [
                 {
                   "type": 1,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                },
+                {
+                  "type": 7,
                   "typeNum": 0,
                   "val": 6,
                   "isTrigger": false
@@ -4615,6 +4219,22 @@
             {
               "pattern": [
                 {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 6,
+                  "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": 2,
+                  "val": 6,
+                  "isTrigger": false
+                }
+              ]
+            },
+            {
+              "pattern": [
+                {
                   "type": 6,
                   "typeNum": 1,
                   "val": 1,
@@ -4626,13 +4246,13 @@
           "phaseClear": false,
           "phaseRepeat": true,
           "sprite": "Not Drawn Yet",
-          "scalingFactor": 1
+          "scalingFactor": 1.5
         }
       ],
       "triggerPhase": [
         {
           "name": "무서운 고양이:트리거",
-          "text": "무서운 고양이는 트리거 상태입니다. '무섭게 할퀴기'를 사용합니다.",
+          "text": "무서운 고양이는 트리거 상태입니다. '무섭게 할퀴기'를 사용합니다. 턴 종료 시 트리거가 해제됩니다.",
           "patterns": [
             {
               "pattern": [
@@ -4648,7 +4268,7 @@
           "phaseClear": false,
           "phaseRepeat": false,
           "sprite": "Not Drawn Yet",
-          "scalingFactor": 1
+          "scalingFactor": 1.5
         }
       ],
       "roulettePattern": [
@@ -4773,7 +4393,7 @@
         {
           "sprite": "EnemyAction_Drain",
           "title": "무섭게 할퀴기",
-          "text": "값의 피해를 줍니다. 트리거 상태에서 고양이가 받은 피해만큼 이 공격의 피해량이 감소합니다."
+          "text": "24의 피해를 줍니다. 이번 턴에 고양이가 받은 피해 1당 이 공격의 피해량이 1 감소합니다. 턴 종료 시 트리거가 해제됩니다."
         },
         {
           "sprite": "EnemyAction_Enchant",
@@ -4809,7 +4429,7 @@
                 {
                   "type": 1,
                   "typeNum": 0,
-                  "val": 4,
+                  "val": 6,
                   "isTrigger": false
                 }
               ]
@@ -4844,13 +4464,13 @@
           "phaseClear": false,
           "phaseRepeat": true,
           "sprite": "우는 와인",
-          "scalingFactor": 1
+          "scalingFactor": 1.5
         }
       ],
       "triggerPhase": [
         {
           "name": "우는 와인:트리거",
-          "text": "우는 와인은 트리거 상태입니다. '와인의 눈물'을 사용합니다.",
+          "text": "우는 와인은 트리거 상태입니다. '와인의 눈물'을 사용합니다. 턴 종료 시 트리거가 해제됩니다.",
           "patterns": [
             {
               "pattern": [
@@ -4866,7 +4486,7 @@
           "phaseClear": false,
           "phaseRepeat": false,
           "sprite": "우는 와인",
-          "scalingFactor": 1
+          "scalingFactor": 1.5
         }
       ],
       "roulettePattern": [
@@ -4892,7 +4512,7 @@
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
-          "value": 4
+          "value": 8
         },
         {
           "rtype": {
@@ -4924,7 +4544,7 @@
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
-          "value": 4
+          "value": 8
         },
         {
           "rtype": {

@@ -21,8 +21,15 @@ public class RouletteManager : MonoBehaviour
     public Animator triggerEffect;
     public Sprite playerTriggerSprite;
     public Sprite enemyTriggerSprite;
+    public Animator playerRouletteEffect;
+    public Animator playerRouletteEffect2;
+    public List<Action> playerRouletteEffectEndAction = new List<Action>();
+    public string playerRouletteCurrentEffectName = "";
+    public List<string> playerRouletteEffectQueue = new List<string>();
     public Animator enemyRouletteEffect;
-    public Action enemyRouletteEffectEndAction;
+    public List<Action> enemyRouletteEffectEndAction = new List<Action>();
+    public string enemyRouletteCurrentEffectName = "";
+    public List<string> enemyRouletteEffectQueue = new List<string>();
     public Animator rouletteBuffEffect;
 
     public static int rouletteNum = 12;
@@ -66,8 +73,11 @@ public class RouletteManager : MonoBehaviour
         spinDistance += pieces;
         spinDistance_Turn += pieces;
         spinDirection = isClockwise ? 1 : 0;
-        Utils.AllignActions<bool, int>(ref TurnManager.OnRouletteSpin, typeof(ShowBuff), typeof(RelicManager));
-        TurnManager.OnRouletteSpin?.Invoke(isClockwise, pieces);
+        if(pieces > 0)
+        {
+            Utils.AllignActions<bool, int>(ref TurnManager.OnRouletteSpin, typeof(ShowBuff), typeof(RelicManager));
+            TurnManager.OnRouletteSpin?.Invoke(isClockwise, pieces);
+        }
         if (isClockwise)
         {
             pieces *= -1;
@@ -289,11 +299,13 @@ public class RouletteManager : MonoBehaviour
         rItem.rtype = rType;
         rItem.value = rValue;
         roulettePieces[index].roulette = rItem;
+        Utils.AllignActions(ref TurnManager.OnRouletteEnchant, typeof(ShowBuff), typeof(RelicManager));
+        TurnManager.OnRouletteEnchant?.Invoke(index);
         roulettePieces[index].EnchantAnim(() =>
         {
             roulettePieces[index].Setup(rItem);
-            Utils.AllignActions(ref TurnManager.OnRouletteEnchant, typeof(ShowBuff), typeof(RelicManager));
-            TurnManager.OnRouletteEnchant?.Invoke(index);
+            Utils.AllignActions(ref TurnManager.AfterRouletteEnchant, typeof(ShowBuff), typeof(RelicManager));
+            TurnManager.AfterRouletteEnchant?.Invoke(index);
         });
 
         roulettePieces[index].GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.rouletteEnchantSFX);
@@ -457,6 +469,12 @@ public class RouletteManager : MonoBehaviour
     private void Start()
     {
         TurnManager.OnPlayerTurnStart += () => { spinCount_Turn = 0; spinDistance_Turn = 0; };
+        playerRouletteEffectEndAction = new List<Action>();
+        playerRouletteCurrentEffectName = "";
+        playerRouletteEffectQueue = new List<string>();
+        enemyRouletteEffectEndAction = new List<Action>();
+        enemyRouletteCurrentEffectName = "";
+        enemyRouletteEffectQueue = new List<string>();
     }
 
     private void OnDestroy()

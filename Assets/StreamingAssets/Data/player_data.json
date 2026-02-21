@@ -4,7 +4,7 @@
     "dreamDust": 5,
     "leftPassengers": 0,
     "isTutorial": false,
-    "lastSceneName": "EncounterScene",
+    "lastSceneName": "BattleScene",
     "personaPiece": "고양이의 꿈",
     "isPersonaEnhanced": false,
     "personaCards": [
@@ -63,7 +63,7 @@
         {
             "locationID": "START",
             "selectedEncounterPool": [],
-            "ID": "d4e2784aa8fd4e418759712f86e67e75",
+            "ID": "1bd1f4fde9bd49f681ee148df31a404c",
             "level": 0,
             "pos": 0,
             "screenPos": {
@@ -72,216 +72,213 @@
                 "z": 0.0
             },
             "childNodes": [
-                "f29f63ba163d4c37a2915f1c51774afd"
+                "31a1b7508b96485f96cf5943739699b6"
             ]
         },
         {
             "locationID": "AMUSEMENT_PARK_ENTRANCE",
-            "selectedEncounterPool": [],
-            "ID": "f29f63ba163d4c37a2915f1c51774afd",
+            "selectedEncounterPool": [
+                "ACT1_WHITE_RABBIT"
+            ],
+            "ID": "31a1b7508b96485f96cf5943739699b6",
             "level": 1,
             "pos": 0,
             "screenPos": {
                 "x": -15.5,
-                "y": -0.07209236174821854,
+                "y": -0.07845073193311691,
                 "z": 0.0
             },
             "childNodes": [
-                "bb2fb22aede64a43a8a3577d3a8bad34",
-                "b420ae92521643de91594d59d417f6c4",
-                "121059a3709943aaaa01075e759c5304"
-            ]
-        },
-        {
-            "locationID": "MERRY_GO_ROUND",
-            "selectedEncounterPool": [],
-            "ID": "bb2fb22aede64a43a8a3577d3a8bad34",
-            "level": 2,
-            "pos": 2,
-            "screenPos": {
-                "x": -11.5,
-                "y": 1.771882176399231,
-                "z": 0.0
-            },
-            "childNodes": [
-                "267950aa9c5741c4a452ecd0f32c6b45"
+                "97d6139b3f634719acd66e862d0ae0ee",
+                "65b856edfa19425788e919e4ff062b4f"
             ]
         },
         {
             "locationID": "TEA_CUPS",
             "selectedEncounterPool": [],
-            "ID": "b420ae92521643de91594d59d417f6c4",
+            "ID": "97d6139b3f634719acd66e862d0ae0ee",
             "level": 2,
-            "pos": -2,
+            "pos": 1,
             "screenPos": {
                 "x": -11.5,
-                "y": -1.7618495225906373,
+                "y": 0.9446252584457398,
                 "z": 0.0
             },
             "childNodes": [
-                "ec2d800f35d1481dae100ef073fa6734"
-            ]
-        },
-        {
-            "locationID": "MAZE_GARDEN",
-            "selectedEncounterPool": [],
-            "ID": "121059a3709943aaaa01075e759c5304",
-            "level": 2,
-            "pos": -1,
-            "screenPos": {
-                "x": -11.5,
-                "y": -0.9938802123069763,
-                "z": 0.0
-            },
-            "childNodes": [
-                "ec2d800f35d1481dae100ef073fa6734"
+                "adec5b2997ba4e5e8456de2eb9e0c238"
             ]
         },
         {
             "locationID": "GHOST_HOUSE",
             "selectedEncounterPool": [],
-            "ID": "ec2d800f35d1481dae100ef073fa6734",
-            "level": 3,
-            "pos": -1,
+            "ID": "65b856edfa19425788e919e4ff062b4f",
+            "level": 2,
+            "pos": 0,
             "screenPos": {
-                "x": -7.5,
-                "y": -0.9031563997268677,
+                "x": -11.5,
+                "y": -0.0555020347237587,
                 "z": 0.0
             },
             "childNodes": [
-                "267950aa9c5741c4a452ecd0f32c6b45"
+                "a0a4acea1a6c4d09ab6308d9c4c20134"
+            ]
+        },
+        {
+            "locationID": "MERRY_GO_ROUND",
+            "selectedEncounterPool": [],
+            "ID": "a0a4acea1a6c4d09ab6308d9c4c20134",
+            "level": 3,
+            "pos": 0,
+            "screenPos": {
+                "x": -7.5,
+                "y": 0.07669370621442795,
+                "z": 0.0
+            },
+            "childNodes": [
+                "d5eee47569864ae0b40f23af48ac7ace"
+            ]
+        },
+        {
+            "locationID": "MAZE_GARDEN",
+            "selectedEncounterPool": [],
+            "ID": "adec5b2997ba4e5e8456de2eb9e0c238",
+            "level": 3,
+            "pos": 2,
+            "screenPos": {
+                "x": -7.5,
+                "y": 1.7051410675048829,
+                "z": 0.0
+            },
+            "childNodes": [
+                "d5eee47569864ae0b40f23af48ac7ace"
             ]
         },
         {
             "locationID": "ICECREAM_CART",
             "selectedEncounterPool": [],
-            "ID": "267950aa9c5741c4a452ecd0f32c6b45",
+            "ID": "d5eee47569864ae0b40f23af48ac7ace",
             "level": 4,
             "pos": 0,
             "screenPos": {
                 "x": -3.5,
-                "y": -0.05996832996606827,
+                "y": 0.08854570239782334,
                 "z": 0.0
             },
             "childNodes": [
-                "81a98f02606a41619f77ec835accf956",
-                "23f5e44c1b49490eae5656eef9e0528a",
-                "f566b113896d4ab08929dd0fa2001d12"
+                "64ecda2828ac4c37a64110c6d60e9c79",
+                "bdb6bd612d224cc5be64039fef4e3d1c",
+                "bb02170351d4445391c98e0009f1d68f"
             ]
         },
         {
             "locationID": "VIKING",
             "selectedEncounterPool": [],
-            "ID": "81a98f02606a41619f77ec835accf956",
+            "ID": "64ecda2828ac4c37a64110c6d60e9c79",
             "level": 5,
             "pos": 0,
             "screenPos": {
                 "x": 0.5,
-                "y": -0.07109100371599198,
+                "y": -0.07123077660799027,
                 "z": 0.0
             },
             "childNodes": [
-                "5d906cff15d74b8099b8820f98556cb5"
+                "1545ee403331437b9d7c9cc7430985c6"
             ]
         },
         {
             "locationID": "GYRODROP",
             "selectedEncounterPool": [],
-            "ID": "23f5e44c1b49490eae5656eef9e0528a",
+            "ID": "bdb6bd612d224cc5be64039fef4e3d1c",
             "level": 5,
             "pos": -1,
             "screenPos": {
                 "x": 0.5,
-                "y": -0.909887433052063,
+                "y": -0.9774839282035828,
                 "z": 0.0
             },
             "childNodes": [
-                "ef7e06c1ae524b9295adea4fd1712bee"
+                "8fa065c19a644279a413af456a2b08d2"
             ]
         },
         {
             "locationID": "ROLLERCOASTER",
             "selectedEncounterPool": [],
-            "ID": "f566b113896d4ab08929dd0fa2001d12",
+            "ID": "bb02170351d4445391c98e0009f1d68f",
             "level": 5,
             "pos": 1,
             "screenPos": {
                 "x": 0.5,
-                "y": 0.9049383401870728,
+                "y": 0.9949779510498047,
                 "z": 0.0
             },
             "childNodes": [
-                "b365fc763e9e43b38663aba5daecd720",
-                "3ad3d5d06f7f49a49394ab1f3aff5757"
-            ]
-        },
-        {
-            "locationID": "PARADE",
-            "selectedEncounterPool": [],
-            "ID": "b365fc763e9e43b38663aba5daecd720",
-            "level": 6,
-            "pos": 2,
-            "screenPos": {
-                "x": 4.5,
-                "y": 1.791792631149292,
-                "z": 0.0
-            },
-            "childNodes": [
-                "5d906cff15d74b8099b8820f98556cb5"
+                "b52de0f8996740dd98b318b06d2706e1"
             ]
         },
         {
             "locationID": "FERRIS_WHEEL",
             "selectedEncounterPool": [],
-            "ID": "3ad3d5d06f7f49a49394ab1f3aff5757",
+            "ID": "1545ee403331437b9d7c9cc7430985c6",
+            "level": 6,
+            "pos": 0,
+            "screenPos": {
+                "x": 4.5,
+                "y": 0.04466240853071213,
+                "z": 0.0
+            },
+            "childNodes": [
+                "5dbeb62692eb476298df60c9178f4a33"
+            ]
+        },
+        {
+            "locationID": "PARADE",
+            "selectedEncounterPool": [],
+            "ID": "b52de0f8996740dd98b318b06d2706e1",
             "level": 6,
             "pos": 1,
             "screenPos": {
                 "x": 4.5,
-                "y": 0.9397760629653931,
+                "y": 0.9889053106307983,
                 "z": 0.0
             },
             "childNodes": [
-                "5d906cff15d74b8099b8820f98556cb5"
+                "5dbeb62692eb476298df60c9178f4a33"
             ]
         },
         {
             "locationID": "DUMP",
-            "selectedEncounterPool": [
-                "ACT1_ABANDONED_ROBOT",
-                "ACT1_JUNKSHOP"
-            ],
-            "ID": "5d906cff15d74b8099b8820f98556cb5",
+            "selectedEncounterPool": [],
+            "ID": "5dbeb62692eb476298df60c9178f4a33",
             "level": 7,
             "pos": 0,
             "screenPos": {
                 "x": 8.5,
-                "y": -0.06612028926610947,
+                "y": -0.026545412838459016,
                 "z": 0.0
             },
             "childNodes": [
-                "7eabf5fb7fb6491aa1a34d366a45e422"
+                "15f50026ff2f454781b0ef8530306b78"
             ]
         },
         {
             "locationID": "STAFF_ONLY",
             "selectedEncounterPool": [],
-            "ID": "ef7e06c1ae524b9295adea4fd1712bee",
+            "ID": "8fa065c19a644279a413af456a2b08d2",
             "level": 7,
             "pos": -1,
             "screenPos": {
                 "x": 8.5,
-                "y": -0.976935863494873,
+                "y": -0.9040263295173645,
                 "z": 0.0
             },
             "childNodes": [
-                "7eabf5fb7fb6491aa1a34d366a45e422"
+                "15f50026ff2f454781b0ef8530306b78"
             ]
         },
         {
             "locationID": "END",
             "selectedEncounterPool": [],
-            "ID": "7eabf5fb7fb6491aa1a34d366a45e422",
+            "ID": "15f50026ff2f454781b0ef8530306b78",
             "level": 8,
             "pos": 0,
             "screenPos": {
@@ -294,20 +291,15 @@
     ],
     "totalLevel": 9,
     "visitedNodeIDList": [
-        "d4e2784aa8fd4e418759712f86e67e75",
-        "f29f63ba163d4c37a2915f1c51774afd",
-        "bb2fb22aede64a43a8a3577d3a8bad34",
-        "267950aa9c5741c4a452ecd0f32c6b45",
-        "f566b113896d4ab08929dd0fa2001d12",
-        "b365fc763e9e43b38663aba5daecd720",
-        "5d906cff15d74b8099b8820f98556cb5"
+        "1bd1f4fde9bd49f681ee148df31a404c",
+        "31a1b7508b96485f96cf5943739699b6"
     ],
-    "curNodeIndex": 12,
-    "curNodeLocationID": "DUMP",
+    "curNodeIndex": 1,
+    "curNodeLocationID": "AMUSEMENT_PARK_ENTRANCE",
     "lastEncounterType": 0,
     "encounterQueue": [],
-    "currentStepID": "",
-    "currentEncounterID": "ACT1_SOUVENIR",
-    "enemyName": "고장난 로봇",
+    "currentStepID": "P2",
+    "currentEncounterID": "ACT1_WHITE_RABBIT",
+    "enemyName": "WhiteRabbit",
     "bossClear": false
 }

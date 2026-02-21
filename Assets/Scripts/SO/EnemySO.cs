@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum EEnemyActionType { Turn, Attack, Heal, Shield, Enchant_Random, Spawn_SubEnemy, Special_Activate };
+public enum EEnemyActionType { Turn, Attack, Heal, Shield, Enchant_Random, Spawn_SubEnemy, Special_Activate, Enchant_Attack, Enchant_Shield, Roulette_Activate };
 
 [System.Serializable]
 public struct EnemyPattern

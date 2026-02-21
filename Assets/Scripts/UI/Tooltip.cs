@@ -16,12 +16,13 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Vector2 tooltipPos;
     public Vector2 tooltipPivot = new Vector2(0, 1);
     public bool tooltipDisable = false;
+    public bool forceTooltipEnable = false;
     bool objectEnter;
     public static bool showTooltipSignal = true;
 
     public void SetupTooltip()
     {
-        if (tooltip != null || tooltipDisable == true) return;
+        if (tooltip != null || ((tooltipDisable == true || !showTooltipSignal) && !forceTooltipEnable)) return;
         Vector3 newPos = new Vector3(tooltipPos.x, tooltipPos.y, 0);
         tooltip = Instantiate(tooltipPrefab, newPos, Utils.QI);
         Canvas canvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
@@ -56,7 +57,6 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void HideTooltip()
     {
         if (tooltip == null || tooltipDisable == true) return;
-        Debug.Log("HideTooltip");
         tooltip.SetActive(false);
         Destroy(tooltip);
         tooltip = null;
@@ -94,14 +94,14 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private void Start()
     {
         rect = GetComponent<RectTransform>();
-        col = GetComponent<Collider2D>();
+        col = GetComponentInChildren<Collider2D>();
         objectEnter = false;
     }
 
     private void Update()
     {
         if(!objectEnter && tooltip != null) HideTooltip();
-        if(!showTooltipSignal)
+        if((!showTooltipSignal && !forceTooltipEnable) || gameObject.activeSelf == false)
         {
             HideTooltip();
             return;

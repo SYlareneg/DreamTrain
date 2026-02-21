@@ -20,6 +20,10 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] TMP_Text hideScreenText;
     [SerializeField] GameObject tutorialScreen;
     [SerializeField] GameObject pointerIcon;
+    [SerializeField] GameObject roulette;
+    [SerializeField] GameObject cost;
+    [SerializeField] GameObject playerHealth;
+    [SerializeField] GameObject enemyUI;
     [SerializeField] GameObject rouletteButton;
     [SerializeField] GameObject rouletteButtonCost;
     [SerializeField] GameObject endTurnButton;
@@ -29,6 +33,8 @@ public class TutorialManager : MonoBehaviour
     public static Vector3 rouletteButtonPos = new Vector3(3.18f, -3.49f, 0f);
     public static Vector3 endTurnButtonPos = new Vector3(24.57f, -10.06f, 0f);
     public static Vector3 rightCardPos = new Vector3(12f, -13f, 0f);
+    public static Vector3 playerTriggerPos = new Vector3(-14.5f, -12.3f, 0f);
+    public static Vector3 enemyTriggerPos = new Vector3(22.57f, 8.3f, 0f);
 
     public int tutorialStage;
     public int tutorialTurn;
@@ -86,73 +92,151 @@ public class TutorialManager : MonoBehaviour
             switch(step)
             {
                 case 1:
+                    Tooltip.showTooltipSignal = false;
+                    tutorialScreen.SetActive(true);
                     tutorialText.text = "앨리스, 룰렛을 다루는 방법은 잊지 않았지?\n우선 공격 룰렛이 적 앞(12시 방향)에 오도록 룰렛을 회전시켜보자!";
-                    nextTutorial = () =>
+
+                    var rouletteInstance = Instantiate(roulette, tutorialScreen.transform, true);
+                    rouletteInstance.transform.localPosition = roulette.transform.localPosition;
+                    rouletteInstance.transform.localScale = roulette.transform.localScale;
+                    foreach(var sr in rouletteInstance.GetComponentsInChildren<SpriteRenderer>())
                     {
-                        HideTutorialBox();
-                        ShowTutorialScreen(1, 1, 1);
-                    };
+                        sr.sortingOrder += 299;
+                    }
+                    foreach(var tmpro in rouletteInstance.GetComponentsInChildren<TextMeshPro>())
+                    {
+                        tmpro.sortingOrder += 299;
+                    }
+
+                    SetNextTutorial_Card("2칸 회전", false, (card, enemyIdx) =>
+                    {
+                        Destroy(rouletteInstance);
+                        Tooltip.showTooltipSignal = true;
+                        ShowTutorialBox(1, 1, 2);
+                    });
                     break;
                 case 2:
-                    tutorialText.text = "잘했어! 이제 공격 룰렛이 적 앞에 위치하고 있으니 룰렛을 발동시키면 적에게 공격을 할 수 있어.\n룰렛 중앙의 버튼을 눌러 룰렛의 힘을 발동시켜보자!";
+                    Tooltip.showTooltipSignal = false;
+                    tutorialScreen.SetActive(true);
+                    tutorialText.text = "잘했어! 방금처럼 카드를 사용하려면 행동력이 필요해. 행동력은 매 턴 회복되지만, 행동력이 부족하면 카드를 사용할 수 없으니 주의하자!";
+
+                    var costInstance = Instantiate(cost, tutorialScreen.transform, true);
+                    costInstance.transform.localPosition = cost.transform.localPosition;
+                    costInstance.transform.localScale = cost.transform.localScale;
+                    foreach(var sr in costInstance.GetComponentsInChildren<SpriteRenderer>())
+                    {
+                        sr.sortingOrder += 300;
+                    }
+                    foreach(var tmpro in costInstance.GetComponentsInChildren<TextMeshPro>())
+                    {
+                        tmpro.sortingOrder += 300;
+                    }
                     nextTutorial = () =>
                     {
+                        Tooltip.showTooltipSignal = true;
                         HideTutorialBox();
-                        ShowTutorialScreen(1, 1, 2);
+                        Destroy(costInstance);
+                        ShowTutorialBox(1, 1, 3);
                     };
                     break;
                 case 3:
-                    tutorialText.text = "멋져! 룰렛을 발동시키니 적에게 공격이 들어갔어!";
-                    nextTutorial = () =>
+                    Tooltip.showTooltipSignal = false;
+                    tutorialScreen.SetActive(true);
+                    tutorialText.text = "이제 룰렛 중앙의 버튼을 눌러 룰렛의 힘을 발동시켜보자!";
+                    SetNextTutorial_Roulette(false, () =>
                     {
-                        HideTutorialBox();
+                        Tooltip.showTooltipSignal = true;
                         ShowTutorialBox(1, 1, 4);
-                    };
+                    });
                     break;
                 case 4:
-                    tutorialText.text = "잠깐, 그러고 보니 상대도 공격을 준비하고 있잖아?";
+                    Tooltip.showTooltipSignal = false;
+                    tutorialScreen.SetActive(true);
+                    tutorialText.text = "좋았어! 방금처럼 룰렛 중앙의 버튼을 누르면 12시 방향의 룰렛을 적에게, 6시 방향의 룰렛은 스스로에게 발동할 수 있어.";
                     nextTutorial = () =>
                     {
+                        Tooltip.showTooltipSignal = true;
                         HideTutorialBox();
-                        ShowTutorialScreen(1, 1, 4);
+                        ShowTutorialBox(1, 1, 5);
                     };
                     break;
                 case 5:
-                    tutorialText.text = "상대의 공격을 방어하기 위해 방어 룰렛을 앨리스 앞(6시 방향)에 위치시키고 발동시켜보자!";
+                    Tooltip.showTooltipSignal = false;
+                    tutorialScreen.SetActive(true);
+                    tutorialText.text = "룰렛을 발동하려면 행동력이 1개 필요해. 그리고 발동 후에는 룰렛이 시계방향으로 1칸 회전하게 되니 잘 기억해둬!";
+
+                    costInstance = Instantiate(cost, tutorialScreen.transform, true);
+                    costInstance.transform.localPosition = cost.transform.localPosition;
+                    costInstance.transform.localScale = cost.transform.localScale;
+                    foreach(var sr in costInstance.GetComponentsInChildren<SpriteRenderer>())
+                    {
+                        sr.sortingOrder += 300;
+                    }
+                    foreach(var tmpro in costInstance.GetComponentsInChildren<TextMeshPro>())
+                    {
+                        tmpro.sortingOrder += 300;
+                    }
                     nextTutorial = () =>
                     {
+                        Tooltip.showTooltipSignal = true;
                         HideTutorialBox();
-                        SetNextTutorial_Card("3칸 회전", false);
-
-                        Action<Card, int> onUseCard = null;
-                        onUseCard = (card, enemyIdx) =>
-                        {
-                            SetNextTutorial_Roulette(false);
-                            Action onRouletteActivate = null;
-                            onRouletteActivate = () =>
-                            {
-                                ShowTutorialBox(1, 1, 6);
-                                TurnManager.OnRouletteActivate -= onRouletteActivate;
-                            };
-                            TurnManager.OnRouletteActivate += onRouletteActivate;
-                            TurnManager.OnUseCard -= onUseCard;
-                        };
-                        TurnManager.OnUseCard += onUseCard;
+                        Destroy(costInstance);
+                        ShowTutorialBox(1, 1, 6);
                     };
                     break;
                 case 6:
-                    tutorialText.text = "완벽해! 이제 턴을 종료하고 적이 공격하더라도 방어도가 공격으로 인한 피해를 막아줄거야.";
+                    Tooltip.showTooltipSignal = false;
+                    tutorialScreen.SetActive(true);
+                    tutorialText.text = "자, 이번에는 상대의 행동에 대비해 볼까?";
+
+                    var enemyActionInstance = Instantiate(EnemyManager.Inst.actionList[0].gameObject, tutorialScreen.transform, true);
+                    enemyActionInstance.GetComponent<EnemyAction>().enabled = false;
+                    enemyActionInstance.GetComponent<Tooltip>().forceTooltipEnable = true;
+                    foreach(var sr in enemyActionInstance.GetComponentsInChildren<SpriteRenderer>())
+                    {
+                        sr.sortingOrder += 320;
+                    }
+                    foreach(var tmpro in enemyActionInstance.GetComponentsInChildren<TextMeshPro>())
+                    {
+                        tmpro.sortingOrder += 320;
+                    }
                     nextTutorial = () =>
                     {
-                        HideTutorialBox();
-                        SetNextTutorial_EndTurn(false);
-                        Action onPlayerTurnEnd = null;
-                        onPlayerTurnEnd = () =>
+                        tutorialText.text = "상대는 공격을 준비하고 있네. 수비 룰렛을 앨리스 네 앞(6시 방향)에 위치시킨 채로 룰렛을 발동해보자.";
+                        SetNextTutorial_Card("3칸 회전", false, (card, enemyIdx) =>
                         {
-                            TurnManager.OnPlayerTurnEnd -= onPlayerTurnEnd;
-                        };
-                        TurnManager.OnPlayerTurnEnd += onPlayerTurnEnd;
+                            Destroy(enemyActionInstance);
+                            SetNextTutorial_Roulette(false, () =>
+                            {
+                                Tooltip.showTooltipSignal = true;
+                                ShowTutorialBox(1, 1, 7);
+                            });
+                        });
                     };
+                    break;
+                case 7:
+                    Tooltip.showTooltipSignal = false;
+                    tutorialScreen.SetActive(true);
+                    tutorialText.text = "완벽해! 이제 턴을 종료하고 적이 공격하더라도 방어도가 공격으로 인한 피해를 막아줄거야.";
+
+                    // var playerHealthInstance = Instantiate(playerHealth, tutorialScreen.transform, true);
+                    // playerHealthInstance.transform.localPosition = playerHealth.transform.localPosition;
+                    // playerHealthInstance.transform.localScale = playerHealth.transform.localScale;
+                    // foreach(var sr in playerHealthInstance.GetComponentsInChildren<SpriteRenderer>())
+                    // {
+                    //     sr.sortingOrder += 300;
+                    // }
+                    // foreach(var tmpro in playerHealthInstance.GetComponentsInChildren<TextMeshPro>())
+                    // {
+                    //     tmpro.sortingOrder += 300;
+                    // }
+                    
+                    SetNextTutorial_EndTurn(false, () =>
+                    {
+                        Tooltip.showTooltipSignal = true;
+                        HideTutorialBox();
+                        // Destroy(playerHealthInstance);
+                    });
                     break;
             }
         }
@@ -164,64 +248,77 @@ public class TutorialManager : MonoBehaviour
                     switch(step)
                     {
                         case 1:
-                            tutorialText.text = "앨리스, 이제 몸은 좀 풀렸어?\n이전 턴에 성공적으로 적을 공격했지만, 아직 적은 체력이 많이 남아 있어.";
+                            Tooltip.showTooltipSignal = false;
+                            tutorialScreen.SetActive(true);
+                            tutorialText.text = "앨리스, 혹시 트리거에 대한 것을 기억해?";
                             nextTutorial = () =>
                             {
-                                HideTutorialBox();
+                                Tooltip.showTooltipSignal = true;
+                                tutorialScreen.SetActive(false);
                                 ShowTutorialBox(2, 1, 2);
                             };
                             break;
                         case 2:
-                            tutorialText.text = "적에게 맞서기 위해서는 우리도 룰렛의 힘을 더 이끌어 내야 해! 지금부터 그 방법을 알려줄게.";
+                            Tooltip.showTooltipSignal = false;
+                            tutorialScreen.SetActive(true);
+                            tutorialText.text = "꿈 세계의 존재들은 저마다 고유한 트리거 조건을 가지고 있어. 조건을 만족하면 트리거 상태가 돼서, 평소보다 더 위협적인 행동을 하기도 해.";
                             nextTutorial = () =>
                             {
-                                HideTutorialBox();
-                                ShowTutorialScreen(2, 1, 2);
+                                Tooltip.showTooltipSignal = true;
+                                tutorialScreen.SetActive(false);
+                                ShowTutorialBox(2, 1, 3);
                             };
                             break;
                         case 3:
-                            tutorialText.text = "방금 적 앞에 부여한 발톱 룰렛은 처음엔 강한 데미지를 주지만 발동할수록 약해지는 특징이 있어.";
+                            Tooltip.showTooltipSignal = false;
+                            tutorialScreen.SetActive(true);
+                            tutorialText.text = "상대의 트리거 조건은 체력 바 아래의 트리거 게이지를 관찰하면 확인할 수 있어.";
+
+                            var enemyTriggerInstance = Instantiate(enemyUI, tutorialScreen.transform, true);
+                            enemyTriggerInstance.transform.localPosition = enemyUI.transform.localPosition;
+                            enemyTriggerInstance.transform.localScale = enemyUI.transform.localScale;
+                            foreach(var sr in enemyTriggerInstance.GetComponentsInChildren<SpriteRenderer>())
+                            {
+                                sr.sortingOrder += 300;
+                            }
+                            foreach(var tmpro in enemyTriggerInstance.GetComponentsInChildren<TextMeshPro>())
+                            {
+                                tmpro.sortingOrder += 300;
+                            }
+                            foreach(var tooltip in enemyTriggerInstance.GetComponentsInChildren<Tooltip>())
+                            {
+                                tooltip.forceTooltipEnable = true;
+                            }
+
+                            GameObject pointer = Instantiate(pointerIcon, enemyTriggerPos, Utils.QI);
+                            pointer.transform.SetParent(tutorialScreen.transform, true);
+                            var pointerSR = pointer.GetComponentsInChildren<SpriteRenderer>();
+                            foreach(var sr in pointerSR)
+                            {
+                                sr.sortingOrder = 310;
+                            }
+                            pointer.SetActive(true);
+
                             nextTutorial = () =>
                             {
-                                HideTutorialBox();
+                                Tooltip.showTooltipSignal = true;
+                                tutorialScreen.SetActive(false);
+                                Destroy(enemyTriggerInstance);
+                                Destroy(pointer);
                                 ShowTutorialBox(2, 1, 4);
                             };
                             break;
                         case 4:
-                            tutorialText.text = "룰렛 버튼을 눌러서 발톱 룰렛을 발동시켜 보자!";
+                            Tooltip.showTooltipSignal = false;
+                            tutorialScreen.SetActive(true);
+                            tutorialText.text = "보아하니 상대는 다음 턴에 트리거되겠군. 이번 턴에는 앨리스 네 마음대로 해도 괜찮겠어.";
                             nextTutorial = () =>
                             {
+                                Tooltip.showTooltipSignal = true;
+                                TurnManager.Inst.isLoading = false;
+                                tutorialStage = 0;
+                                tutorialScreen.SetActive(false);
                                 HideTutorialBox();
-                                SetNextTutorial_Roulette(false);
-                                Action onRouletteActivate = null;
-                                onRouletteActivate = () =>
-                                {
-                                    ShowTutorialBox(2, 1, 5);
-                                    TurnManager.OnRouletteActivate -= onRouletteActivate;
-                                };
-                                TurnManager.OnRouletteActivate += onRouletteActivate;
-                            };
-                            break;
-                        case 5:
-                            tutorialText.text = "좋아! 발톱 룰렛이 적에게 큰 피해를 주었어!";
-                            nextTutorial = () =>
-                            {
-                                HideTutorialBox();
-                                ShowTutorialBox(2, 1, 6);
-                            };
-                            break;
-                        case 6:
-                            tutorialText.text = "하지만 이제 행동력이 부족해서 더이상 할 수 있는 행동이 없네... 턴을 종료해야겠어.";
-                            nextTutorial = () =>
-                            {
-                                HideTutorialBox();
-                                SetNextTutorial_EndTurn(false);
-                                Action onPlayerTurnEnd = null;
-                                onPlayerTurnEnd = () =>
-                                {
-                                    TurnManager.OnPlayerTurnEnd -= onPlayerTurnEnd;
-                                };
-                                TurnManager.OnPlayerTurnEnd += onPlayerTurnEnd;
                             };
                             break;
                     }
@@ -230,75 +327,16 @@ public class TutorialManager : MonoBehaviour
                     switch(step)
                     {
                         case 1:
-                            tutorialText.text = "이런! 상대가 제법 강한 공격을 준비하고 있어. 방어 룰렛을 이용해서 공격을 막아볼까?";
+                            Tooltip.showTooltipSignal = false;
+                            tutorialScreen.SetActive(true);
+                            tutorialText.text = "적이 트리거됐어. 강력한 공격을 준비하고 있는 것 같으니 조심해!";
                             nextTutorial = () =>
                             {
-                                HideTutorialBox();
-                                SetNextTutorial_Card("1칸 회전", false);
-                                Action<Card, int> onUseCard = null;
-                                onUseCard = (card, enemyIdx) =>
-                                {
-                                    ShowTutorialBox(2, 2, 2);
-                                    TurnManager.OnUseCard -= onUseCard;
-                                };
-                                TurnManager.OnUseCard += onUseCard;
-                            };
-                            break;
-                        case 2:
-                            tutorialText.text = "좋아! 이제 방어 룰렛이 앨리스 앞에 위치하고 있으니 룰렛을 발동시키면 적의 공격을 막을 수 있어.\n하지만 한번 발동시키는 것만으론 공격을 완전히 막을 수 없을 것 같아...";
-                            nextTutorial = () =>
-                            {
-                                HideTutorialBox();
-                                ShowTutorialScreen(2, 2, 2);
-                            };
-                            break;
-                        case 3:
-                            tutorialText.text = "한번 더 룰렛을 발동시키면 적의 공격을 완벽히 막을 수 있을 것 같아!";
-                            nextTutorial = () =>
-                            {
-                                HideTutorialBox();
-                                SetNextTutorial_Roulette(false);
-                                Action onRouletteActivate = null;
-                                onRouletteActivate = () =>
-                                {
-                                    ShowTutorialBox(2, 2, 4);
-                                    TurnManager.OnRouletteActivate -= onRouletteActivate;
-                                };
-                                TurnManager.OnRouletteActivate += onRouletteActivate;
-                            };
-                            break;
-                        case 4:
-                            tutorialText.text = "좋아! 이제 턴을 종료하고 적이 공격하더라도 방어도가 공격으로 인한 피해를 막아줄거야.";
-                            nextTutorial = () =>
-                            {
-                                HideTutorialBox();
-                                SetNextTutorial_EndTurn(false);
-                                Action onPlayerTurnEnd = null;
-                                onPlayerTurnEnd = () =>
-                                {
-                                    TurnManager.OnPlayerTurnEnd -= onPlayerTurnEnd;
-                                };
-                                TurnManager.OnPlayerTurnEnd += onPlayerTurnEnd;
-                            };
-                            break;
-                    }
-                    break;
-            }
-        }
-        else if(stage == 3)
-        {
-            switch(turn)
-            {
-                case 1:
-                    switch(step)
-                    {
-                        case 1:
-                            tutorialText.text = "드디어 마지막 단계에 왔어! 지금까지 배운 것들을 활용하여 적을 물리쳐보자!";
-                            nextTutorial = () =>
-                            {
-                                HideTutorialBox();
-                                tutorialStage = 0;
+                                Tooltip.showTooltipSignal = true;
                                 TurnManager.Inst.isLoading = false;
+                                tutorialStage = 0;
+                                tutorialScreen.SetActive(false);
+                                HideTutorialBox();
                             };
                             break;
                     }
@@ -307,117 +345,80 @@ public class TutorialManager : MonoBehaviour
                     switch(step)
                     {
                         case 1:
-                            tutorialText.text = "이런! 적이 트리거 상태가 되었잖아!";
+                            Tooltip.showTooltipSignal = false;
+                            tutorialScreen.SetActive(true);
+                            tutorialText.text = "적의 트리거 시간이 무사히 지나갔어. 이제 우리가 실력을 보여줄 차례야!";
                             nextTutorial = () =>
                             {
-                                HideTutorialBox();
-                                ShowTutorialScreen(3, 3, 1);
+                                Tooltip.showTooltipSignal = true;
+                                tutorialScreen.SetActive(false);
+                                ShowTutorialBox(2, 3, 2);
                             };
                             break;
                         case 2:
-                            tutorialText.text = "적이 강력한 공격을 하려고 해... 적의 트리거 상태를 무사히 막아내야 해!";
+                            Tooltip.showTooltipSignal = false;
+                            tutorialScreen.SetActive(true);
+                            tutorialText.text = "적 뿐만 아니라 앨리스 너도 트리거할 수 있어. 트리거 조건과 효과는 네가 장착한 꿈 조각에 따라 달라지게 돼.";
+
+                            playerHealth.transform.SetParent(tutorialScreen.transform.parent, true);
+                            playerHealth.transform.localPosition = playerHealth.transform.localPosition;
+                            playerHealth.transform.localScale = playerHealth.transform.localScale;
+                            foreach(var tooltip in playerHealth.GetComponentsInChildren<Tooltip>())
+                            {
+                                tooltip.forceTooltipEnable = true;
+                            }
+
+                            GameObject pointer = Instantiate(pointerIcon, playerTriggerPos, Utils.QI);
+                            pointer.transform.SetParent(tutorialScreen.transform, true);
+                            var pointerSR = pointer.GetComponentsInChildren<SpriteRenderer>();
+                            foreach(var sr in pointerSR)
+                            {
+                                sr.sortingOrder = 310;
+                            }
+                            pointer.SetActive(true);
+
                             nextTutorial = () =>
                             {
-                                HideTutorialBox();
-                                tutorialStage = 0;
-                                TurnManager.Inst.isLoading = false;
+                                Tooltip.showTooltipSignal = true;
+                                tutorialScreen.SetActive(false);
+                                Destroy(pointer);
+                                ShowTutorialBox(2, 3, 3);
                             };
                             break;
-                        // case 2:
-                        //     tutorialText.text = "적의 강력한 공격을 막기 위해서 무언가 방법이 필요해... 숨기 카드를 활용해 볼까?";
-                        //     nextTutorial = () =>
-                        //     {
-                        //         HideTutorialBox();
-                        //         SetNextTutorial_Card("숨기", false);
-                        //         Action<Card> onUseCard = null;
-                        //         onUseCard = (card) =>
-                        //         {
-                        //             ShowTutorialBox(3, 3, 3);
-                        //             TurnManager.OnUseCard -= onUseCard;
-                        //         };
-                        //         TurnManager.OnUseCard += onUseCard;
-                        //     };
-                        //     break;
-                        // case 3:
-                        //     tutorialText.text = "좋았어! 숨기 카드를 사용해서 방어 룰렛을 우리 앞으로 가져왔어. 이제 룰렛을 발동시켜서 적의 공격을 막아보자!";
-                        //     nextTutorial = () =>
-                        //     {
-                        //         HideTutorialBox();
-                        //         SetNextTutorial_Roulette(false);
-                        //         Action onRouletteActivate = null;
-                        //         onRouletteActivate = () =>
-                        //         {
-                        //             ShowTutorialBox(3, 3, 4);
-                        //             TurnManager.OnRouletteActivate -= onRouletteActivate;
-                        //         };
-                        //         TurnManager.OnRouletteActivate += onRouletteActivate;
-                        //     };
-                        //     break;
-                        // case 4:
-                        //     tutorialText.text = "한번 더 발동시키면 적의 공격을 완벽히 막을 수 있을 것 같아!";
-                        //     nextTutorial = () =>
-                        //     {
-                        //         HideTutorialBox();
-                        //         SetNextTutorial_Roulette(false);
-                        //         Action onRouletteActivate = null;
-                        //         onRouletteActivate = () =>
-                        //         {
-                        //             ShowTutorialBox(3, 3, 5);
-                        //             TurnManager.OnRouletteActivate -= onRouletteActivate;
-                        //         };
-                        //         TurnManager.OnRouletteActivate += onRouletteActivate;
-                        //     };
-                        //     break;
-                        // case 5:
-                        //     tutorialText.text = "완벽해! 이제 턴을 종료하고 적이 공격하더라도 방어도가 공격으로 인한 피해를 막아줄거야.";
-                        //     nextTutorial = () =>
-                        //     {
-                        //         HideTutorialBox();
-                        //         SetNextTutorial_EndTurn(false);
-                        //         Action onPlayerTurnEnd = null;
-                        //         onPlayerTurnEnd = () =>
-                        //         {
-                        //             TurnManager.OnPlayerTurnEnd -= onPlayerTurnEnd;
-                        //         };
-                        //         TurnManager.OnPlayerTurnEnd += onPlayerTurnEnd;
-                        //     };
-                        //     break;
-                    }
-                    break;
-                case 4:
-                    switch(step)
-                    {
-                        case 1:
-                            tutorialText.text = "휴... 적의 트리거 상태를 무사히 막아냈어.\n이번엔 우리가 실력을 보여줄 차례야! 내가 힘을 보태 줄테니, 아무 카드나 사용해 봐.";
-                            nextTutorial = () =>
+                        case 3:
+                            Tooltip.showTooltipSignal = false;
+                            tutorialScreen.SetActive(true);
+                            tutorialText.text = "이번에는 내가 힘을 조금 보태줄게. 아무 카드나 한 장 사용해봐.";
+
+                            TurnManager.Inst.playerTriggerCnt = 9;
+                            SetNextTutorial_Card(CardManager.Inst.myCards[CardManager.Inst.myCards.Count - 1].item.name, false);
+                            Action onRouletteTrigger = null;
+                            onRouletteTrigger = () =>
                             {
-                                HideTutorialBox();
-                                TurnManager.Inst.playerTriggerCnt = 11;
-                                SetNextTutorial_Card(CardManager.Inst.myCards[CardManager.Inst.myCards.Count - 1].item.name, false);
-                                Action onRouletteTrigger = null;
-                                onRouletteTrigger = () =>
+                                Sequence seq = DOTween.Sequence();
+                                seq.AppendInterval(0.5f);
+                                seq.AppendCallback(() =>
                                 {
-                                    ShowTutorialScreen(3, 4, 1);
+                                    Tooltip.showTooltipSignal = true;
+                                    tutorialScreen.SetActive(false);
+                                    ShowTutorialBox(2, 3, 4);
                                     TurnManager.OnRouletteTrigger -= onRouletteTrigger;
-                                };
-                                TurnManager.OnRouletteTrigger += onRouletteTrigger;
+                                });
+                                seq.Play();
                             };
+                            TurnManager.OnRouletteTrigger += onRouletteTrigger;
                             break;
-                        case 2:
-                            tutorialText.text = "좋아! 룰렛을 트리거시키는 데 성공했어. 우리도 적에게 한 방 먹여주자고!";
-                            nextTutorial = () =>
+                        case 4:
+                            Tooltip.showTooltipSignal = false;
+                            tutorialScreen.SetActive(true);
+                            tutorialText.text = "좋아! 룰렛을 트리거하는 데 성공했어. 이제 끝내볼까?";
+
+                            SetNextTutorial_Roulette(false, () =>
                             {
+                                Tooltip.showTooltipSignal = true;
+                                tutorialScreen.SetActive(false);
                                 HideTutorialBox();
-                                SetNextTutorial_Roulette(false);
-                                Action onRouletteActivate = null;
-                                onRouletteActivate = () =>
-                                {
-                                    tutorialStage = 0;
-                                    TurnManager.Inst.isLoading = false;
-                                    TurnManager.OnRouletteActivate -= onRouletteActivate;
-                                };
-                                TurnManager.OnRouletteActivate += onRouletteActivate;
-                            };
+                            });
                             break;
                     }
                     break;
@@ -557,7 +558,7 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    public void SetNextTutorial_Card(string cardName, bool isButton)
+    public void SetNextTutorial_Card(string cardName, bool isButton, Action<Card, int> onUseCard = null)
     {
         GameObject cardExample = Instantiate(CardManager.Inst.myCards.Find(c => c.item.name == cardName).gameObject, new Vector3(7.5f, -14f, 0f), Utils.QI);
         Destroy(cardExample.GetComponent<Card>());
@@ -598,14 +599,21 @@ public class TutorialManager : MonoBehaviour
             Destroy(cardExample);
             exampleCardSequence.Kill();
             Destroy(pointer);
+            HideTutorialBox();
+            Sequence sequence = DOTween.Sequence();
+            sequence.AppendInterval(1f).AppendCallback(() =>
+            {
+                onUseCard?.Invoke(card, enemyIdx);
+            });
+            sequence.Play();
         };
         TurnManager.OnUseCard += setNextTutorial;
 
         Action next = () =>
         {
             tutorialScreen.SetActive(true);
-            CardManager.Inst.myCards[CardManager.Inst.myCards.Count - 1].GetComponent<Order>().SetOriginOrder(30);
-            cardExample.GetComponent<Order>().SetOriginOrder(30);
+            CardManager.Inst.myCards[CardManager.Inst.myCards.Count - 1].GetComponent<Order>().SetOriginOrder(31);
+            cardExample.GetComponent<Order>().SetOriginOrder(31);
             cardActivate = true;
             activateCardName = cardName;
             cardExample.SetActive(true);
@@ -622,7 +630,7 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    public void SetNextTutorial_Roulette(bool isButton)
+    public void SetNextTutorial_Roulette(bool isButton, Action onRouletteActivate = null)
     {
         int rBsortingOrder = rouletteButton.GetComponent<SpriteRenderer>().sortingOrder;
         int rBCsortingOrder = rouletteButtonCost.GetComponent<SpriteRenderer>().sortingOrder;
@@ -645,6 +653,13 @@ public class TutorialManager : MonoBehaviour
             TurnManager.OnRouletteActivate -= setNextTutorial;
             rouletteActivate = false;
             Destroy(pointer);
+            HideTutorialBox();
+            Sequence sequence = DOTween.Sequence();
+            sequence.AppendInterval(1.5f).AppendCallback(() =>
+            {
+                onRouletteActivate?.Invoke();
+            });
+            sequence.Play();
         };
         TurnManager.OnRouletteActivate += setNextTutorial;
         Action next = () =>
@@ -665,7 +680,7 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    public void SetNextTutorial_EndTurn(bool isButton)
+    public void SetNextTutorial_EndTurn(bool isButton, Action onEndTurnActivate = null)
     {
         var newEndTurnBtn = Instantiate(endTurnButton, endTurnButton.transform.position, Utils.QI);
         newEndTurnBtn.transform.SetParent(tutorialScreen.transform, true);
@@ -690,6 +705,8 @@ public class TutorialManager : MonoBehaviour
             TurnManager.OnPlayerTurnEnd -= setNextTutorial;
             endTurnActivate = false;
             Destroy(pointer);
+            HideTutorialBox();
+            onEndTurnActivate?.Invoke();
         };
         TurnManager.OnPlayerTurnEnd += setNextTutorial;
         Action next = () =>

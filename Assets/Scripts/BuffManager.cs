@@ -106,6 +106,11 @@ public class ShowBuff
         affectType = aType;
         this.affectEnemyIdx = affectEnemyIdx;
         val = newVal;
+        if(affectType == EBuffAffectType.Player && effectType != EBuffEffectType.Neutral)
+        {
+            if(val > 0) GameManager.Inst.PlayerBuffEffect(effectType);
+            else if(val < 0) GameManager.Inst.PlayerBuffEffect(effectType == EBuffEffectType.Benefit ? EBuffEffectType.Demerit : EBuffEffectType.Benefit);
+        }
         defaultVal = new List<int>(origin.defaultVal);
         if(baseVal == null) baseVal = defaultVal;
         this.isSetOnEnemyTurn = isSetOnEnemyTurn;
@@ -438,6 +443,7 @@ public class ShowBuff
                 if (affectType == EBuffAffectType.Enemy)
                 {
                     BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Add(this);
+                    BuffManager.Inst.enemyBuff_Special[affectEnemyIdx, 1].Clear();
                     Action<bool, int> reduceCount = null;
                     reduceCount = (isClockwise, spinAmount) =>
                     {
@@ -448,7 +454,7 @@ public class ShowBuff
                             if (this.val == 0)
                             {
                                 BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Remove(this);
-                                EnemyManager.Inst.DestroySubEnemy(affectEnemyIdx - 1);
+                                BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[affectEnemyIdx, 1], 0, 0.5f, -1);
                                 TurnManager.OnRouletteSpin -= reduceCount;
                             }
                         }
@@ -573,6 +579,11 @@ public class ShowBuff
     public void AddShowBuff(int addVal)
     {
         val += addVal;
+        if(affectType == EBuffAffectType.Player && effectType != EBuffEffectType.Neutral)
+        {
+            if(addVal > 0) GameManager.Inst.PlayerBuffEffect(effectType);
+            else if(addVal < 0) GameManager.Inst.PlayerBuffEffect(effectType == EBuffEffectType.Benefit ? EBuffEffectType.Demerit : EBuffEffectType.Benefit);
+        }
         Buff addBuff = new Buff();
         int affectBuffNum = affectBuffs.Count;
         for(int i = 0; i < affectBuffNum; i++)

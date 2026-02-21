@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     [Tooltip("카드 목록 content - 덱")] public GameObject cardListContent_Deck;
     [Tooltip("카드 목록 content - 드로우")] public GameObject cardListContent_Draw;
     [Tooltip("카드 목록 content - 무덤")] public GameObject cardListContent_Discard;
+    [SerializeField][Tooltip("카드 목록 버튼")] GameObject cardListBtn;
     [SerializeField][Tooltip("카드 목록 버튼 - 덱")] Button deckListBtn;
     [SerializeField][Tooltip("카드 목록 버튼 - 드로우")] Button drawListBtn;
     [SerializeField][Tooltip("카드 목록 버튼 - 무덤")] Button discardListBtn;
@@ -52,8 +53,11 @@ public class GameManager : MonoBehaviour
     [Tooltip("플레이어 그림자")] public Image shadowImg;
     [Tooltip("플레이어 데미지 이펙트")] public GameObject playerDamageEffect;
     [Tooltip("플레이어 데미지 이펙트 스프라이트")] public Sprite[] playerDamageEffectSprites;
+    [Tooltip("플레이어 버프 이펙트")] public GameObject playerBuffEffect;
+    [Tooltip("플레이어 버프 이펙트 스프라이트")] public Sprite[] playerBuffEffectSprites;
     [Tooltip("적 공격 이펙트")] public GameObject enemyAttackEffect;
     Sequence playerDamageSeq;
+    Sequence playerBuffEffectSeq;
     [Header("적 UI")]
     [SerializeField][Tooltip("적 체력 값 텍스트")] TMP_Text[] enemyHealthTMP;
     [SerializeField][Tooltip("적 체력 바")] Image[] enemyHealthImg;
@@ -79,6 +83,23 @@ public class GameManager : MonoBehaviour
     [SerializeField][Tooltip("스테이지 적 정보")] StageSO stageSO;
     [HideInInspector] public bool gameOverSignal;
 
+    public void PlayerBuffEffect(EBuffEffectType effectType)
+    {
+        if(effectType == EBuffEffectType.Neutral) return;
+        playerBuffEffectSeq?.Kill();
+        playerBuffEffect.GetComponent<Image>().sprite = playerBuffEffectSprites[(int)effectType];
+        playerBuffEffect.SetActive(true);
+        playerBuffEffect.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
+        playerBuffEffectSeq = DOTween.Sequence();
+        playerBuffEffectSeq.Append(playerBuffEffect.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 0.6f), 0.6f));
+        playerBuffEffectSeq.Append(playerBuffEffect.GetComponent<Image>().DOColor(new Color(1f, 1f, 1f, 0f), 0.6f))
+        .OnComplete(() =>
+        {
+            playerBuffEffect.SetActive(false);
+        });
+        playerBuffEffectSeq.SetLink(playerBuffEffect);
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
@@ -89,6 +110,7 @@ public class GameManager : MonoBehaviour
         playerDamageEffect.SetActive(false);
         TurnManager.OnPlayerDamaged += (damage, source) =>
         {
+            if(damage <= 0) return;
             playerDamageSeq?.Kill();
             playerDamageSeq = null;
             if(TurnManager.Inst.shieldHealth > 0) playerDamageEffect.GetComponent<Image>().sprite = playerDamageEffectSprites[1];
@@ -110,6 +132,7 @@ public class GameManager : MonoBehaviour
         };
         TurnManager.OnPlayerHealed += (heal, source) =>
         {
+            if(heal <= 0) return;
             playerDamageSeq?.Kill();
             playerDamageSeq = null;
             playerDamageEffect.GetComponent<Image>().sprite = playerDamageEffectSprites[2];
@@ -127,6 +150,7 @@ public class GameManager : MonoBehaviour
         };
         TurnManager.OnPlayerShielded += (shield, source) =>
         {
+            if(shield <= 0) return;
             playerDamageSeq?.Kill();
             playerDamageSeq = null;
             playerDamageEffect.GetComponent<Image>().sprite = playerDamageEffectSprites[3];
@@ -150,7 +174,7 @@ public class GameManager : MonoBehaviour
         InputCheatKey();
         UpdateUIState();
 
-        Tooltip.showTooltipSignal = cardListView.activeSelf == false && rewardCardView.activeSelf == false;
+        // Tooltip.showTooltipSignal = cardListView.activeSelf == false && rewardCardView.activeSelf == false;
     }
 
     // 개발자용 특수입력
@@ -255,13 +279,14 @@ public class GameManager : MonoBehaviour
             if(TurnManager.Inst.enemyShieldHealth[i] > 0) enemyShieldTMP[i].text = "+" + TurnManager.Inst.enemyShieldHealth[i].ToString();
             else enemyShieldTMP[i].text = "";
         }
-        enemyTriggerCountTMP.text = TurnManager.Inst.enemyTriggerCnt.ToString() + "/" + TurnManager.Inst.enemyTriggerMaxCnt.ToString();
-        if (TurnManager.Inst.enemyTriggerMaxCnt == 0)
+        if(TurnManager.Inst.enemyTriggerMaxCnt == 0)
         {
-            enemyTriggerCntImg.fillAmount = 0;
+            enemyTriggerCntImg.transform.parent.gameObject.SetActive(false);
         }
         else
         {
+            enemyTriggerCntImg.transform.parent.gameObject.SetActive(true);
+            enemyTriggerCountTMP.text = TurnManager.Inst.enemyTriggerCnt.ToString() + "/" + TurnManager.Inst.enemyTriggerMaxCnt.ToString();
             if(!Mathf.Approximately(enemyTriggerbarTargetFill, (float)TurnManager.Inst.enemyTriggerCnt / TurnManager.Inst.enemyTriggerMaxCnt))
             {
                 enemyTriggerbarTargetFill = (float)TurnManager.Inst.enemyTriggerCnt / TurnManager.Inst.enemyTriggerMaxCnt;
@@ -294,7 +319,12 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        if (TurnManager.Inst.characterSO.personaPiece != null)
+        if(TurnManager.Inst.characterSO.isTutorial)
+        {
+            cardListBtn.SetActive(false);
+            relicScrollView.SetActive(false);
+        }
+        if (TurnManager.Inst.characterSO.personaPiece.name != null && TurnManager.Inst.characterSO.personaPiece.name != "")
         {
             Tooltip tooltip = personaImg.GetComponentInParent<Tooltip>();
             Tooltip triggerBarTooltip = triggerCntImg.transform.parent.GetComponent<Tooltip>();
@@ -327,7 +357,11 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        if (TurnManager.Inst.characterSO.shadowPiece != null)
+        else
+        {
+            triggerCntImg.transform.parent.gameObject.SetActive(false);
+        }
+        if (TurnManager.Inst.characterSO.shadowPiece.name != null && TurnManager.Inst.characterSO.shadowPiece.name != "" && TurnManager.Inst.characterSO.isTutorial == false)
         {
             Tooltip tooltip = shadowImg.GetComponentInParent<Tooltip>();
             if (TurnManager.Inst.characterSO.shadowPiece.shadow.isEnhanced)
@@ -348,6 +382,10 @@ public class GameManager : MonoBehaviour
                     tooltip.tooltipTxt = TurnManager.Inst.characterSO.shadowPiece.shadow.text;
                 }
             }
+        }
+        else
+        {
+            shadowImg.GetComponentInParent<Tooltip>().enabled = false;
         }
         TurnManager.Inst.InitializeGame();
         SceneChangeManager.Inst.SceneFadeIn(TurnManager.Inst.StartGameCo);
@@ -375,6 +413,12 @@ public class GameManager : MonoBehaviour
                 if(characterSO.isTutorial)
                 {
                     characterSO.curHealth = TurnManager.Inst.maxHealth;
+                    if(characterSO.enemyName == "CardSoldier")
+                    {
+                        DreamPiece_Data dp = DataManager.Inst.dreamPieceDataSO.dreamPieces.Find(x => x.name == "고양이의 꿈");
+                        characterSO.personaPiece = new DreamPiece_Player(dp.name, false, false, dp.baseCards_persona, DataManager.Inst.dreamPieceDataSO, DataManager.Inst.itemDataSO);
+                        characterSO.shadowPiece = new DreamPiece_Player(dp.name, false, false, dp.baseCards_shadow, DataManager.Inst.dreamPieceDataSO, DataManager.Inst.itemDataSO);
+                    }
                     SceneChangeManager.Inst.SceneFadeOut("MapScene");
                 }
                 else
@@ -518,6 +562,11 @@ public class GameManager : MonoBehaviour
             Destroy(enemyBuffUIView[enemyIdx].transform.GetChild(i).gameObject);
         }
         BuffManager.Inst.BuffListToBuffUIList(BuffManager.Inst.enemyShowBuffs[enemyIdx], enemyBuffUIView[enemyIdx], enemyBuffPos[enemyIdx]);
+        var tooltipList = enemyBuffUIView[enemyIdx].GetComponentsInChildren<Tooltip>();
+        foreach (var tooltip in tooltipList)
+        {
+            tooltip.tooltipPivot = new Vector2(1, 1);
+        }
     }
 
     public void SetRouletteBuffUI()

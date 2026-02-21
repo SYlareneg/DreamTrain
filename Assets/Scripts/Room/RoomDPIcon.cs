@@ -29,7 +29,7 @@ public class RoomDPIcon : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(dreamPiece.name != "고양이의 꿈") return;
+        if(dreamPiece.name != "고양이의 꿈" && dreamPiece.name != "마술사의 꿈") return;
         foreach(var dpIcon in RoomDPManager.Inst.roomDPIcons)
         {
             dpIcon.highlight.gameObject.SetActive(false);
@@ -40,7 +40,7 @@ public class RoomDPIcon : MonoBehaviour, IPointerClickHandler
 
     void Start()
     {
-        if(dreamPiece.name != "고양이의 꿈")
+        if(dreamPiece.name != "고양이의 꿈" && dreamPiece.name != "마술사의 꿈")
         {
             var imgList = GetComponentsInChildren<Image>();
             foreach(var img in imgList)
@@ -60,7 +60,7 @@ public class RoomDPIcon : MonoBehaviour, IPointerClickHandler
 
     void Update()
     {
-        if(dreamPiece.name != "고양이의 꿈") return;
+        if(dreamPiece.name != "고양이의 꿈" && dreamPiece.name != "마술사의 꿈") return;
         if (RoomDPManager.Inst.isInit)
         {
             selectHover.gameObject.SetActive(true);
