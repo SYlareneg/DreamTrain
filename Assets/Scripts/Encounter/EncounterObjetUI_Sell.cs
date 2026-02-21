@@ -140,7 +140,7 @@ public class EncounterObjetUI_Sell : MonoBehaviour, IPointerClickHandler, IPoint
     private void Update()
     {
         if (_playerData == null || !isValid || sellCostTMP == null) return;
-        if (!isJunk) return;
+        if (isJunk) return;
         
         bool isAffordable = _playerData.dreamDust >= cost;
         if (isAffordable != _wasAffordable)

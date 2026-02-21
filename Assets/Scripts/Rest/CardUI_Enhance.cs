@@ -13,6 +13,7 @@ public class CardUI_Enhance : CardUI, IPointerEnterHandler, IPointerExitHandler,
     }
     public void OnPointerClick(PointerEventData data)
     {
+        Debug.Log("Clicked Card : " + this.nameTMP);
         EncounterMerchantUI.Inst.EnhanceCardSelect(this);
     }
 }
