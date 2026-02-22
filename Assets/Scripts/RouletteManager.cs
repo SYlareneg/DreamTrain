@@ -46,6 +46,7 @@ public class RouletteManager : MonoBehaviour
     public static Action<bool, int> PlayerTriggerActivation;
     public static Action<bool, int> EnemyTriggerActivation;
     public static Action<bool, int> TriggerActivation;
+    public Animator rouletteTriggerEffect;
 
     public bool spinFlag = false;
     public bool isRouletteDrag;
@@ -149,7 +150,9 @@ public class RouletteManager : MonoBehaviour
         {
             int totalVal = BuffManager.Inst.GetBuffedRouletteValue(triggerPiece);
             Debug.Log("trigger value: " + totalVal.ToString());
-            TriggerActivation?.Invoke(isEnemyTrigger(), totalVal);
+            rouletteTriggerEffect.GetComponent<RouletteEffect_Trigger>().triggerVal = totalVal;
+            rouletteTriggerEffect.SetTrigger("Claw");
+            // TriggerActivation?.Invoke(isEnemyTrigger(), totalVal);
             Utils.AllignActions(ref TurnManager.OnRouletteActivate, typeof(ShowBuff), typeof(RelicManager));
             TurnManager.OnRouletteActivate?.Invoke();
             DeTriggerRoulette();
