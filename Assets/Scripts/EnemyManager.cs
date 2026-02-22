@@ -193,6 +193,10 @@ public class EnemyManager : MonoBehaviour
                         TurnManager.Inst.TriggerEnemyPassive(1);
                     }
                 };
+                enemySpecialActivation[1] = (value) =>
+                {
+                    RouletteManager.Inst.EnchantRoulettePiece(RouletteManager.Inst.playerLookat, new RouletteType(ERouletteType.Enemy_Special, 0), value);
+                };
                 // damage scaling
                 TurnManager.OnPlayerTurnStart += () =>
                 {
@@ -200,25 +204,25 @@ public class EnemyManager : MonoBehaviour
                     {
                         int plusScale = 0;
                         float scale = triggerPhaseScale;
-                        while (scale >= 1f)
+                        while (scale > 1f)
                         {
-                            scale /= 5;
+                            scale /= 3;
                             plusScale++;
                         }
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], plusScale * 5, 1, 1);
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], plusScale * 5, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], plusScale * 3, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], plusScale * 3, 1, 1);
                     }
                     else if(phaseNum == 0)
                     {
                         int plusScale = 0;
                         float scale = phaseScale;
-                        while (scale >= 1f)
+                        while (scale > 1f)
                         {
-                            scale /= 5;
+                            scale /= 3;
                             plusScale++;
                         }
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], (plusScale - 1) * 5, 1, 1);
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], (plusScale - 1) * 5, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], plusScale * 3, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], plusScale * 3, 1, 1);
                     }
                     else
                     {

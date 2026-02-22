@@ -1788,7 +1788,7 @@
           "phaseClear": false,
           "phaseRepeat": true,
           "sprite": "Not Drawn Yet",
-          "scalingFactor": 5
+          "scalingFactor": 3
         },
         {
           "name": "각성:뱀파이어",
@@ -1855,7 +1855,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire",
+          "sprite": "Not Drawn Yet",
           "scalingFactor": 1.5
         }
       ],
@@ -1889,8 +1889,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Enemy_Vampire",
-          "scalingFactor": 5
+          "sprite": "Not Drawn Yet",
+          "scalingFactor": 3
         }
       ],
       "roulettePattern": [
@@ -2018,9 +2018,9 @@
           "text": "값만큼 대상에게 피해를 주고, 입힌 피해만큼 체력을 회복합니다.트리거를 1 얻습니다."
         },
         {
-          "sprite": "",
-          "title": "",
-          "text": ""
+          "sprite": "행동_특수 룰렛 부여",
+          "title": "흡혈 부여",
+          "text": "앨리스 앞에 흡혈 룰렛을 값 부여합니다."
         },
         {
           "sprite": "",
