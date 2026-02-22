@@ -52,11 +52,11 @@
         }
     ],
     "relics": [
-        8,
-        12,
-        5,
         7,
-        14
+        6,
+        5,
+        4,
+        3
     ],
     "relicEnhancements": [
         false,
@@ -318,6 +318,6 @@
     "encounterQueue": [],
     "currentStepID": "P1",
     "currentEncounterID": "ACT1_SOUVENIR",
-    "enemyName": "식인 꽃",
+    "enemyName": "뱀파이어 폴",
     "bossClear": false
 }
