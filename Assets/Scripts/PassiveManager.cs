@@ -356,8 +356,8 @@ public class PassiveManager : MonoBehaviour
                 // 트리거 게이지 최대치 설정
                 TurnManager.Inst.playerTriggerMaxCnt = 2;
                 // 트리거 조각 설정
-                rItem.rtype = new RouletteType(ERouletteType.Attack);
-                rItem.value = 0;
+                rItem.rtype = new RouletteType(ERouletteType.Attack, 0);
+                rItem.value = 12;
                 RouletteManager.Inst.playerTriggerPiece = rItem;
                 // 트리거 조건 설정
                 TurnManager.OnGameStart += () =>
@@ -384,7 +384,8 @@ public class PassiveManager : MonoBehaviour
                 {
                     for (int i = 0; i < RouletteManager.rouletteNum; i++)
                     {
-                        if(RouletteManager.Inst.roulettePieces[i].roulette.rtype.type != ERouletteType.None && RouletteManager.Inst.roulettePieces[i].roulette.rtype.type != ERouletteType.Attack && RouletteManager.Inst.roulettePieces[i].roulette.rtype.type != ERouletteType.Shield)
+                        if(i == RouletteManager.Inst.playerLookat || i == RouletteManager.Inst.enemyLookat) continue;
+                        if(RouletteManager.Inst.roulettePieces[i].roulette.rtype.type != ERouletteType.None)
                         {
                             Debug.Log("마술 해체 트리거 클리어: " + RouletteManager.Inst.roulettePieces[i].roulette.rtype.type.ToString());
                             RouletteManager.Inst.roulettePieces[i].RouletteClear();
@@ -404,8 +405,9 @@ public class PassiveManager : MonoBehaviour
                     BuffManager.Inst.rouletteBuff_Trigger.Clear();
                     counter = RouletteManager.rouletteNum;
                     counter -= RouletteManager.Inst.CountRouletteType(ERouletteType.None);
-                    counter -= RouletteManager.Inst.CountRouletteType(ERouletteType.Attack);
-                    counter -= RouletteManager.Inst.CountRouletteType(ERouletteType.Shield);
+                    if(RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.rtype.type != ERouletteType.None) counter--;
+                    if(RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].roulette.rtype.type != ERouletteType.None) counter--;
+                    Debug.Log("마술 해체 트리거 카운터: " + counter);
                     if (personaName == "마술 해체+" && counter >= 6) BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, counter * 6, 1.5f, -1);
                     else BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, counter * 6, 1, -1);
                 };
@@ -415,8 +417,27 @@ public class PassiveManager : MonoBehaviour
                     {
                         int newCnt = RouletteManager.rouletteNum;
                         newCnt -= RouletteManager.Inst.CountRouletteType(ERouletteType.None);
-                        newCnt -= RouletteManager.Inst.CountRouletteType(ERouletteType.Attack);
-                        newCnt -= RouletteManager.Inst.CountRouletteType(ERouletteType.Shield);
+                        if(RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat].roulette.rtype.type != ERouletteType.None) newCnt--;
+                        if(RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].roulette.rtype.type != ERouletteType.None) newCnt--;
+                        Debug.Log("마술 해체 트리거 카운터: " + newCnt);
+                        if (newCnt != counter)
+                        {
+                            if (personaName == "마술 해체+" && counter >= 6 && newCnt < 6) BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, (newCnt - counter) * 6, 2.0f / 3, -1);
+                            else if (personaName == "마술 해체+" && counter < 6 && newCnt >= 6) BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, (newCnt - counter) * 6, 1.5f, -1);
+                            else BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, (newCnt - counter) * 6, 1, -1);
+                            counter = newCnt;
+                        }
+                    }
+                };
+                TurnManager.OnRouletteSpin += (isClockwise, pieces) =>
+                {
+                    if (RouletteManager.Inst.isTriggerActivated)
+                    {
+                        int newCnt = RouletteManager.rouletteNum;
+                        newCnt -= RouletteManager.Inst.CountRouletteType(ERouletteType.None);
+                        if (RouletteManager.Inst.roulettePieces[(RouletteManager.Inst.playerLookat + pieces * (isClockwise ? -1 : 1) + RouletteManager.rouletteNum) % RouletteManager.rouletteNum].roulette.rtype.type != ERouletteType.None) newCnt--;
+                        if (RouletteManager.Inst.roulettePieces[(RouletteManager.Inst.enemyLookat + pieces * (isClockwise ? -1 : 1) + RouletteManager.rouletteNum) % RouletteManager.rouletteNum].roulette.rtype.type != ERouletteType.None) newCnt--;
+                        Debug.Log("마술 해체 트리거 카운터: " + newCnt);
                         if (newCnt != counter)
                         {
                             if (personaName == "마술 해체+" && counter >= 6 && newCnt < 6) BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, (newCnt - counter) * 6, 2.0f / 3, -1);

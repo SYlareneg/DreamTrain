@@ -795,7 +795,7 @@ public class Card : MonoBehaviour
                 }
                 if (PassiveManager.Inst.lastCardType == CardType.Enchant)
                 {
-                    BuffManager.AddBuffToTarget(BuffManager.Inst.roulettePieceBuff[RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat]], -4, 1, -1);
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.roulettePieceBuff[RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat]], -1, 1, -1);
                 }
                 break;
             case "수트 체인지":

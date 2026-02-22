@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class SoundManager : MonoBehaviour
 {
@@ -37,11 +38,13 @@ public class SoundManager : MonoBehaviour
         if(bgmSource.isPlaying) return;
         bgmSource.clip = bgmClips[Mathf.Clamp(actNum, 0, bgmClips.Length - 1)];
         bgmSource.time = 0;
+        bgmSource.volume = 0;
+        DOTween.To(() => bgmSource.volume, x => bgmSource.volume = x, 1, 2.5f).SetEase(Ease.InOutSine);
         bgmSource.Play();
     }
 
     public void StopBGM()
     {
-        bgmSource.Stop();
+        DOTween.To(() => bgmSource.volume, x => bgmSource.volume = x, 0, 2.5f).SetEase(Ease.InOutSine).OnComplete(() => bgmSource.Stop());
     }
 }
