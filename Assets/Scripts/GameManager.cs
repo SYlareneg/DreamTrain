@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerBuffEffect(EBuffEffectType effectType)
     {
-        if(effectType == EBuffEffectType.Neutral) return;
+        if(effectType == EBuffEffectType.Neutral) effectType = EBuffEffectType.Benefit;
         playerBuffEffectSeq?.Kill();
         playerBuffEffect.GetComponent<Image>().sprite = playerBuffEffectSprites[(int)effectType];
         playerBuffEffect.SetActive(true);

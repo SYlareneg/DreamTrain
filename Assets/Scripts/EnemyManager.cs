@@ -1814,7 +1814,7 @@ public class EnemyManager : MonoBehaviour
     Sequence enemyBuffEffectSeq;
     public void EnemyBuffEffect(EBuffEffectType effectType)
     {
-        if(effectType == EBuffEffectType.Neutral) return;
+        if(effectType == EBuffEffectType.Neutral) effectType = EBuffEffectType.Benefit;
         enemyBuffEffectSeq?.Kill();
         enemyBuffEffect.GetComponent<SpriteRenderer>().sprite = enemyBuffEffectSprites[(int)effectType];
         enemyBuffEffect.SetActive(true);
