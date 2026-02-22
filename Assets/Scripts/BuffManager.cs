@@ -218,7 +218,7 @@ public class ShowBuff
                     addProphecy = () =>
                     {
                         BuffManager.Inst.AddShowBuff("예언", EBuffAffectType.Player, 1, isSetOnEnemyTurn, baseVal, affectEnemyIdx);
-                        if (this.val == 0)
+                        if (this.val <= 0)
                         {
                             BuffManager.Inst.playerShowBuffs.Remove(this);
                             TurnManager.OnPlayerTurnStart -= addProphecy;
@@ -260,7 +260,7 @@ public class ShowBuff
                     {
                         TurnManager.Inst.enemyShieldHealth[affectEnemyIdx] += value;
                         BuffManager.Inst.AddShowBuff("환영", affectType, -baseVal[0], isSetOnEnemyTurn, baseVal, affectEnemyIdx);
-                        if (this.val == 0)
+                        if (this.val <= 0)
                         {
                             BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Remove(this);
                             TurnManager.OnEnemyDamaged -= noDamage;
@@ -280,7 +280,7 @@ public class ShowBuff
                     {
                         TurnManager.Inst.shieldHealth += value;
                         BuffManager.Inst.AddShowBuff("환영", affectType, -baseVal[0], isSetOnEnemyTurn, baseVal, affectEnemyIdx);
-                        if (this.val == 0)
+                        if (this.val <= 0)
                         {
                             BuffManager.Inst.playerShowBuffs.Remove(this);
                             TurnManager.OnPlayerDamaged -= noDamage;
@@ -302,7 +302,7 @@ public class ShowBuff
                     reduceCount = (damage, source, enemyIdx) =>
                     {
                         BuffManager.Inst.AddShowBuff("과민함", affectType, -1, isSetOnEnemyTurn, baseVal, affectEnemyIdx);
-                        if (this.val == 0)
+                        if (this.val <= 0)
                         {
                             BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Remove(this);
                             TurnManager.OnEnemyDamaged -= reduceCount;
@@ -322,7 +322,7 @@ public class ShowBuff
                     reduceCount = (damage, source) =>
                     {
                         BuffManager.Inst.AddShowBuff("과민함", affectType, -1, isSetOnEnemyTurn, baseVal, affectEnemyIdx);
-                        if (this.val == 0)
+                        if (this.val <= 0)
                         {
                             BuffManager.Inst.playerShowBuffs.Remove(this);
                             TurnManager.OnPlayerDamaged -= reduceCount;
@@ -344,7 +344,7 @@ public class ShowBuff
                     {
                         TurnManager.Inst.EnemyTakeDmg(baseVal[0], EDamageSource.Buff);
                         BuffManager.Inst.AddShowBuff("불쾌함", affectType, -1, isSetOnEnemyTurn, baseVal, affectEnemyIdx);
-                        if (this.val == 0)
+                        if (this.val <= 0)
                         {
                             BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Remove(this);
                             TurnManager.OnRouletteSpin -= reduceCount;
@@ -364,7 +364,7 @@ public class ShowBuff
                     {
                         TurnManager.Inst.TakeDmg(baseVal[0], EDamageSource.Buff);
                         BuffManager.Inst.AddShowBuff("불쾌함", affectType, -1, isSetOnEnemyTurn, baseVal, affectEnemyIdx);
-                        if (this.val == 0)
+                        if (this.val <= 0)
                         {
                             BuffManager.Inst.playerShowBuffs.Remove(this);
                             TurnManager.OnRouletteSpin -= reduceCount;
@@ -385,7 +385,7 @@ public class ShowBuff
                     Action endSpinBlock = null;
                     endSpinBlock = () =>
                     {
-                        if (this.val == 0)
+                        if (this.val <= 0)
                         {
                             BuffManager.Inst.enemyBuff_ActionBlock[EEnemyActionType.Turn] = false;
                             BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Remove(this);
@@ -405,7 +405,7 @@ public class ShowBuff
                     Action endSpinBlock = null;
                     endSpinBlock = () =>
                     {
-                        if (this.val == 0)
+                        if (this.val <= 0)
                         {
                             BuffManager.Inst.allCardTypeBlockBuff[CardType.Turn] = false;
                             BuffManager.Inst.playerShowBuffs.Remove(this);
@@ -451,7 +451,7 @@ public class ShowBuff
                         {
                             BuffManager.Inst.AddShowBuff("빙그르!", affectType, -1, isSetOnEnemyTurn, baseVal, affectEnemyIdx);
                             BuffManager.Inst.AddShowBuff("강화", EBuffAffectType.Enemy, baseVal[1], isSetOnEnemyTurn, null, affectEnemyIdx);
-                            if (this.val == 0)
+                            if (this.val <= 0)
                             {
                                 BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Remove(this);
                                 BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[affectEnemyIdx, 1], 0, 0.5f, -1);
@@ -479,7 +479,7 @@ public class ShowBuff
                             return;
                         }
                         BuffManager.Inst.AddShowBuff("커튼콜", affectType, -1, isSetOnEnemyTurn, baseVal, affectEnemyIdx);
-                        if (this.val == 0)
+                        if (this.val <= 0)
                         {
                             BuffManager.Inst.playerShowBuffs.Remove(this);
                             TurnManager.OnUseCard -= reduceCount;
@@ -513,7 +513,7 @@ public class ShowBuff
                         {
                             TurnManager.Inst.IncreaseCost(baseVal[0]);
                         }
-                        if(this.val == 0)
+                        if(this.val <= 0)
                         {
                             BuffManager.Inst.playerShowBuffs.Remove(this);
                             TurnManager.OnUseCard -= endDaze;
