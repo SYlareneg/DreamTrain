@@ -106,10 +106,15 @@ public class ShowBuff
         affectType = aType;
         this.affectEnemyIdx = affectEnemyIdx;
         val = newVal;
-        if(affectType == EBuffAffectType.Player && effectType != EBuffEffectType.Neutral)
+        if(affectType == EBuffAffectType.Player)
         {
             if(val > 0) GameManager.Inst.PlayerBuffEffect(effectType);
-            else if(val < 0) GameManager.Inst.PlayerBuffEffect(effectType == EBuffEffectType.Benefit ? EBuffEffectType.Demerit : EBuffEffectType.Benefit);
+            else if(val < 0) GameManager.Inst.PlayerBuffEffect(effectType != EBuffEffectType.Demerit ? EBuffEffectType.Demerit : EBuffEffectType.Benefit);
+        }
+        else if(affectType == EBuffAffectType.Enemy)
+        {
+            if (val > 0) EnemyManager.Inst.EnemyBuffEffect(effectType);
+            else if (val < 0) EnemyManager.Inst.EnemyBuffEffect(effectType != EBuffEffectType.Demerit ? EBuffEffectType.Demerit : EBuffEffectType.Benefit);
         }
         defaultVal = new List<int>(origin.defaultVal);
         if(baseVal == null) baseVal = defaultVal;

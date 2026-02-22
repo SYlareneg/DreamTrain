@@ -1788,7 +1788,7 @@
           "phaseClear": false,
           "phaseRepeat": true,
           "sprite": "Not Drawn Yet",
-          "scalingFactor": 5
+          "scalingFactor": 3
         },
         {
           "name": "각성:뱀파이어",
@@ -1855,7 +1855,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire",
+          "sprite": "Not Drawn Yet",
           "scalingFactor": 1.5
         }
       ],
@@ -1889,8 +1889,8 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Enemy_Vampire",
-          "scalingFactor": 5
+          "sprite": "Not Drawn Yet",
+          "scalingFactor": 3
         }
       ],
       "roulettePattern": [
@@ -1993,7 +1993,7 @@
       ],
       "enemySpecialRoulettes": [
         {
-          "sprite": "적 흡혈 룰렛",
+          "sprite": "룰렛_흡혈",
           "title": "흡혈",
           "text": "값만큼 대상에게 피해를 주고, 입힌 피해만큼 체력을 회복합니다.트리거를 1 얻습니다.",
           "baseVal": 5,
@@ -2018,9 +2018,9 @@
           "text": "값만큼 대상에게 피해를 주고, 입힌 피해만큼 체력을 회복합니다.트리거를 1 얻습니다."
         },
         {
-          "sprite": "",
-          "title": "",
-          "text": ""
+          "sprite": "행동_특수 룰렛 부여",
+          "title": "흡혈 부여",
+          "text": "앨리스 앞에 흡혈 룰렛을 값 부여합니다."
         },
         {
           "sprite": "",
@@ -2731,12 +2731,12 @@
     {
       "name": "마술사",
       "id": "Magician",
-      "health": 112,
-      "triggerNum": 2,
+      "health": 128,
+      "triggerNum": 42,
       "phase": [
         {
           "name": "쇼타임",
-          "text": "마술에 2번 성공하면 그의 비밀이 드러납니다.",
+          "text": "마술 모자가 마술사 앞을 지나갈 때마다 방어도를 6 얻습니다. 앨리스가 마술 모자를 발동하면 트리거를 6 얻습니다.",
           "patterns": [
             {
               "pattern": [
@@ -2772,26 +2772,32 @@
         },
         {
           "name": "쇼타임",
-          "text": "마술에 2번 성공하면 그의 비밀이 드러납니다.",
+          "text": "마술 모자가 마술사 앞을 지나갈 때마다 방어도를 6 얻습니다. 앨리스가 마술 모자를 발동하면 트리거를 6 얻습니다.",
           "patterns": [
             {
               "pattern": [
                 {
-                  "type": 4,
+                  "type": 0,
                   "typeNum": 0,
-                  "val": 1,
+                  "val": 2,
                   "isTrigger": false
                 },
                 {
                   "type": 4,
                   "typeNum": 0,
-                  "val": 1,
+                  "val": 2,
                   "isTrigger": false
                 }
               ]
             },
             {
               "pattern": [
+                {
+                  "type": 1,
+                  "typeNum": 0,
+                  "val": 7,
+                  "isTrigger": false
+                },
                 {
                   "type": 6,
                   "typeNum": 1,
@@ -2804,20 +2810,14 @@
               "pattern": [
                 {
                   "type": 0,
-                  "typeNum": -3,
-                  "val": -5,
+                  "typeNum": 0,
+                  "val": 2,
                   "isTrigger": false
                 },
                 {
                   "type": 4,
                   "typeNum": 0,
-                  "val": 1,
-                  "isTrigger": false
-                },
-                {
-                  "type": 4,
-                  "typeNum": 0,
-                  "val": 1,
+                  "val": 3,
                   "isTrigger": false
                 }
               ]
@@ -2829,13 +2829,19 @@
                   "typeNum": 0,
                   "val": 0,
                   "isTrigger": false
+                },
+                {
+                  "type": 0,
+                  "typeNum": -3,
+                  "val": -5,
+                  "isTrigger": false
                 }
               ]
             }
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Enemy_Vampire",
+          "sprite": "Not Drawn Yet",
           "scalingFactor": 1.5
         }
       ],

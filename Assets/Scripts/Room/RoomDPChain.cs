@@ -7,36 +7,77 @@ public class RoomDPChain : MonoBehaviour, IPointerDownHandler, IDragHandler, IEn
 {
     Vector2 originalPivot;
     Vector3 originalPosition;
+    [SerializeField] float offset;
+    [SerializeField] GameObject[] chainArrows;
+    Sequence arrowSeq;
     public void Activate()
     {
         GetComponent<Image>().enabled = true;
         RectTransform rt = GetComponent<RectTransform>();
         originalPivot = rt.pivot;
-        DOTween.To(() => rt.pivot, (x) => rt.pivot = x, new Vector2(0.5f, originalPivot.y), 0.5f);
+        DOTween.To(() => rt.pivot, (x) => rt.pivot = x, new Vector2(0.6f, originalPivot.y), 0.5f)
+        .OnComplete(() =>
+        {
+            arrowSeq = DOTween.Sequence();
+            foreach(var arrow in chainArrows)
+            {
+                arrowSeq.Join(arrow.transform.DOMoveX(arrow.transform.position.x - 10f, 0.8f).SetEase(Ease.InOutSine));
+                foreach(var arrowSR in arrow.GetComponentsInChildren<Image>())
+                {
+                    arrowSeq.Join(arrowSR.DOColor(Color.white, 0.8f).SetEase(Ease.InOutSine));
+                }
+            }
+            arrowSeq.SetLoops(-1, LoopType.Yoyo);
+            arrowSeq.Play();
+        });
+
+        foreach(var arrow in chainArrows)
+        {
+            arrow.SetActive(true);
+            foreach(var arrowSR in arrow.GetComponentsInChildren<Image>())
+            {
+                Color c = arrowSR.color;
+                c *= 0.5f;
+                c.a = 1f;
+                arrowSR.color = c;
+            }
+        }
+        
     }
 
     public void DeActivate()
     {
         RectTransform rt = GetComponent<RectTransform>();
         DOTween.To(() => rt.pivot, (x) => rt.pivot = x, originalPivot, 0.5f).SetEase(Ease.OutBack);
+
+        arrowSeq.Pause();
+        foreach(var arrow in chainArrows)
+        {
+            arrow.SetActive(false);
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        arrowSeq.Pause();
         GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         transform.position += new Vector3(eventData.delta.x, 0, 0);
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, originalPosition.x - GetComponent<RectTransform>().rect.width / 2, originalPosition.x), transform.position.y, transform.position.z);
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, originalPosition.x - GetComponent<RectTransform>().rect.width / 2 - offset, originalPosition.x), transform.position.y, transform.position.z);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if(transform.position.x <= originalPosition.x - GetComponent<RectTransform>().rect.width / 2)
+        if(transform.position.x <= originalPosition.x - GetComponent<RectTransform>().rect.width / 2 - offset)
         {
             RoomDPManager.Inst.StartGame();
+        }
+        else
+        {
+            arrowSeq.Play();
         }
         DOTween.To(() => transform.position, (x) => transform.position = x, originalPosition, 0.5f).SetEase(Ease.OutBack);
     }

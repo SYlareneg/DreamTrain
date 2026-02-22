@@ -20,6 +20,8 @@
       "essentialLocations": [
         "START",
         "AMUSEMENT_PARK_ENTRANCE",
+        "MERRY_GO_ROUND",
+        "TEA_CUPS",
         "ICECREAM_CART",
         "ROLLERCOASTER",
         "GYRODROP",
@@ -30,7 +32,9 @@
       ],
       "essentialIntervalLayerCount": [
         0,
-        2,
+        0,
+        0,
+        1,
         0,
         0,
         0,
@@ -39,8 +43,6 @@
         0
       ],
       "specialLocations": [
-        "MERRY_GO_ROUND",
-        "TEA_CUPS",
         "PARADE",
         "FERRIS_WHEEL",
         "GHOST_HOUSE",
@@ -228,7 +230,7 @@
         "ACT1_WINE_IN_CUP",
         "ACT1_TEA_TIME"
       ],
-      "encounterNum": 1,
+      "encounterNum": 2,
       "difficulty": 8,
       "isNormalLocation": false
     },

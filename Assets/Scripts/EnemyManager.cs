@@ -193,6 +193,10 @@ public class EnemyManager : MonoBehaviour
                         TurnManager.Inst.TriggerEnemyPassive(1);
                     }
                 };
+                enemySpecialActivation[1] = (value) =>
+                {
+                    RouletteManager.Inst.EnchantRoulettePiece(RouletteManager.Inst.playerLookat, new RouletteType(ERouletteType.Enemy_Special, 0), value);
+                };
                 // damage scaling
                 TurnManager.OnPlayerTurnStart += () =>
                 {
@@ -200,25 +204,25 @@ public class EnemyManager : MonoBehaviour
                     {
                         int plusScale = 0;
                         float scale = triggerPhaseScale;
-                        while (scale >= 1f)
+                        while (scale > 1f)
                         {
-                            scale /= 5;
+                            scale /= 3;
                             plusScale++;
                         }
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], plusScale * 5, 1, 1);
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], plusScale * 5, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], plusScale * 3, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], plusScale * 3, 1, 1);
                     }
                     else if(phaseNum == 0)
                     {
                         int plusScale = 0;
                         float scale = phaseScale;
-                        while (scale >= 1f)
+                        while (scale > 1f)
                         {
-                            scale /= 5;
+                            scale /= 3;
                             plusScale++;
                         }
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], (plusScale - 1) * 5, 1, 1);
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], (plusScale - 1) * 5, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], plusScale * 3, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Attack[0], plusScale * 3, 1, 1);
                     }
                     else
                     {
@@ -363,6 +367,7 @@ public class EnemyManager : MonoBehaviour
                     if (!isEnemy)
                     {
                         rPiece.RouletteClear();
+                        TurnManager.Inst.TriggerEnemyPassive(6);
                     }
                 };
                 enemySpecialActivation[0] = (value) =>
@@ -376,10 +381,10 @@ public class EnemyManager : MonoBehaviour
                             RouletteManager.Inst.roulettePieces[i].RouletteClear();
                         }
                     }
-                    if (tempMagicHat != 0)
-                    {
-                        TurnManager.Inst.TriggerEnemyPassive(1);
-                    }
+                    // if (tempMagicHat != 0)
+                    // {
+                    //     TurnManager.Inst.TriggerEnemyPassive(1);
+                    // }
                     TurnManager.Inst.TakeDmg(value, EDamageSource.Enemy);
                 };
                 enemySpecialActivation[1] = (value) =>
@@ -394,7 +399,7 @@ public class EnemyManager : MonoBehaviour
                     }
                     if (tempMagicHat != 0)
                     {
-                        TurnManager.Inst.TriggerEnemyPassive(1);
+                        // TurnManager.Inst.TriggerEnemyPassive(1);
                         BuffManager.Inst.AddShowBuff("환영", EBuffAffectType.Enemy, tempMagicHat, true);
                     }
                 };
@@ -410,20 +415,25 @@ public class EnemyManager : MonoBehaviour
                 };
                 enemySpecialActivation[3] = (value) =>
                 {
-                    int tempMagicHat = 0;
                     for (int i = 0; i < RouletteManager.rouletteNum; i++)
                     {
                         if (RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special, 0))
                         {
-                            tempMagicHat++;
                             RouletteManager.Inst.roulettePieces[i].RouletteClear();
                         }
                     }
-                    if (tempMagicHat != 0)
-                    {
-                        TurnManager.Inst.TriggerEnemyPassive(1);
-                    }
                     TurnManager.Inst.TakeDmg(value, EDamageSource.Enemy);
+                };
+                TurnManager.OnRouletteSpin += (isClockwise, spin) =>
+                {
+                    for (int i = 0; i <= spin; i++)
+                    {
+                        int tempIdx = (RouletteManager.Inst.enemyLookat + RouletteManager.rouletteNum + (isClockwise? -1 : 1) * i) % RouletteManager.rouletteNum;
+                        if (RouletteManager.Inst.roulettePieces[tempIdx].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special, 0))
+                        {
+                            TurnManager.Inst.GetShield(true, 6, EDamageSource.Enemy);
+                        }
+                    }
                 };
                 TurnManager.OnPlayerTurnStart += () =>
                 {
@@ -1300,6 +1310,8 @@ public class EnemyManager : MonoBehaviour
                     isTriggerActivated = true;
                     triggerPhaseNum = 0;
                     triggerPatternNum = 0;
+                    if(triggerPhaseScale == 0f) triggerPhaseScale = 1f;
+                    else triggerPhaseScale *= enemy.triggerPhase[triggerPhaseNum].scalingFactor;
                     Action detrigger = null;
                     detrigger = () =>
                     {
@@ -1795,6 +1807,26 @@ public class EnemyManager : MonoBehaviour
         {
             TurnManager.Inst.StartPlayerTurn();
         }
+    }
+
+    [Tooltip("플레이어 버프 이펙트")] public GameObject enemyBuffEffect;
+    [Tooltip("플레이어 버프 이펙트 스프라이트")] public Sprite[] enemyBuffEffectSprites;
+    Sequence enemyBuffEffectSeq;
+    public void EnemyBuffEffect(EBuffEffectType effectType)
+    {
+        if(effectType == EBuffEffectType.Neutral) effectType = EBuffEffectType.Benefit;
+        enemyBuffEffectSeq?.Kill();
+        enemyBuffEffect.GetComponent<SpriteRenderer>().sprite = enemyBuffEffectSprites[(int)effectType];
+        enemyBuffEffect.SetActive(true);
+        enemyBuffEffect.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+        enemyBuffEffectSeq = DOTween.Sequence();
+        enemyBuffEffectSeq.Append(enemyBuffEffect.GetComponent<SpriteRenderer>().DOColor(new Color(1f, 1f, 1f, 0.6f), 0.6f));
+        enemyBuffEffectSeq.Append(enemyBuffEffect.GetComponent<SpriteRenderer>().DOColor(new Color(1f, 1f, 1f, 0f), 0.6f))
+        .OnComplete(() =>
+        {
+            enemyBuffEffect.SetActive(false);
+        });
+        enemyBuffEffectSeq.SetLink(enemyBuffEffect);
     }
 
     Sequence enemyDamageSeq;

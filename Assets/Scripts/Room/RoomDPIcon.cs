@@ -6,6 +6,9 @@ using DG.Tweening;
 public class RoomDPIcon : MonoBehaviour, IPointerClickHandler
 {
     public DreamPiece_Reference dreamPiece;
+    [SerializeField] Image keycapImage;
+    [SerializeField] Sprite keycapSprite_unselected;
+    [SerializeField] Sprite keycapSprite_selected;
     [SerializeField] Image iconImage;
     [SerializeField] Image highlight;
     [SerializeField] Sprite[] highlightSprites;
@@ -25,6 +28,7 @@ public class RoomDPIcon : MonoBehaviour, IPointerClickHandler
         }
         highlight.gameObject.SetActive(false);
         highlight.sprite = highlightSprites[dp.persona.dreamPieceNum];
+        keycapImage.sprite = keycapSprite_unselected;
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -35,6 +39,7 @@ public class RoomDPIcon : MonoBehaviour, IPointerClickHandler
             dpIcon.highlight.gameObject.SetActive(false);
         }
         highlight.gameObject.SetActive(true);
+        keycapImage.sprite = keycapSprite_selected;
         RoomDPManager.Inst.SetDreamPieceView(dreamPiece);
     }
 
@@ -49,6 +54,7 @@ public class RoomDPIcon : MonoBehaviour, IPointerClickHandler
             }
         }
         highlight.gameObject.SetActive(false);
+        keycapImage.sprite = keycapSprite_unselected;
 
         selectHoverSeq = DOTween.Sequence().SetLoops(-1, LoopType.Yoyo);
         selectHoverSeq.Append(selectHover.DOFade(0.3f, 0.5f));

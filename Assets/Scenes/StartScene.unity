@@ -1601,7 +1601,7 @@ MonoBehaviour:
   optionButton: {fileID: 1999962286}
   exitButton: {fileID: 1592064154}
   selector: {fileID: 1667363619}
-  selectSound: {fileID: 8300000, guid: d300bff2aab41ae479e8e02e1f94305b, type: 3}
+  selectSound: {fileID: 8300000, guid: ab2202ce56d93724e99668fc3a2b3e67, type: 3}
   enterSound: {fileID: 8300000, guid: 320d5b89a728da145b1edac1349dbbe5, type: 3}
 --- !u!82 &1255433559
 AudioSource:
