@@ -197,7 +197,7 @@ public class RouletteManager : MonoBehaviour
         BuffManager.Inst.rouletteBuff_Trigger.Clear();
         triggerEffect.gameObject.SetActive(true);
         TurnManager.Inst.isLoading = true;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         isTriggerActivated = true;
         triggerSprite.sprite = playerTriggerSprite;
         triggerSprite.gameObject.SetActive(true);
@@ -211,8 +211,8 @@ public class RouletteManager : MonoBehaviour
         TriggerActivation = PlayerTriggerActivation;
         Utils.AllignActions(ref TurnManager.OnRouletteTrigger, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnRouletteTrigger?.Invoke();
-        yield return new WaitForSeconds(2.2f);
         TurnManager.Inst.isLoading = false;
+        yield return new WaitForSeconds(0.35f);
         triggerEffect.gameObject.SetActive(false);
     }
 

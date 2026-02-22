@@ -1529,7 +1529,7 @@ MonoBehaviour:
   lineWidth: 0.3
   zeroPos: {x: -19.5, y: 0, z: 0}
   levelDist: 4
-  posDist: 0.8
+  posDist: 1.2
   tooltipOffset: {x: 0.5, y: -0.2}
   map:
     sortedMapNodeList: []

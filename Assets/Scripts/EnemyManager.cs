@@ -384,13 +384,18 @@ public class EnemyManager : MonoBehaviour
                 };
                 enemySpecialActivation[1] = (value) =>
                 {
-                    if (value != 0)
+                    int tempMagicHat = 0;
+                    for (int i = 0; i < RouletteManager.rouletteNum; i++)
+                    {
+                        if (RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special, 0))
+                        {
+                            tempMagicHat++;
+                        }
+                    }
+                    if (tempMagicHat != 0)
                     {
                         TurnManager.Inst.TriggerEnemyPassive(1);
-                    }
-                    else
-                    {
-                        BuffManager.Inst.AddShowBuff("환영", EBuffAffectType.Enemy, value, true);
+                        BuffManager.Inst.AddShowBuff("환영", EBuffAffectType.Enemy, tempMagicHat, true);
                     }
                 };
                 enemySpecialActivation[2] = (value) =>
@@ -436,7 +441,6 @@ public class EnemyManager : MonoBehaviour
                 int magicHat = 0;
                 Action<int> countMagicHat = (value) =>
                 {
-                    Debug.Log("Counting Magic Hat...");
                     int tempMagicHat = 0;
                     for (int i = 0; i < RouletteManager.rouletteNum; i++)
                     {
@@ -447,11 +451,27 @@ public class EnemyManager : MonoBehaviour
                     }
                     if(tempMagicHat != magicHat)
                     {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], (tempMagicHat - magicHat) * 12, 1, -1);
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 1], tempMagicHat - magicHat, 1, -1);
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 3], tempMagicHat - magicHat, 6, -1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], (tempMagicHat - magicHat) * 12, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 1], tempMagicHat - magicHat, 1, 1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 3], (tempMagicHat - magicHat) * 6, 1, 1);
                         magicHat = tempMagicHat;
                     }
+                    Debug.Log("Current Magic Hat : " + magicHat);
+                };
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    magicHat = 0;
+                    for (int i = 0; i < RouletteManager.rouletteNum; i++)
+                    {
+                        if (RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special, 0))
+                        {
+                            magicHat++;
+                        }
+                    }
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], magicHat * 12, 1, 1);
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 1], magicHat, 1, 1);
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 3], magicHat * 6, 1, 1);
+                    Debug.Log("Current Magic Hat : " + magicHat);
                 };
                 TurnManager.OnRouletteEnchant += countMagicHat;
                 TurnManager.OnRouletteErase += countMagicHat;
@@ -1665,6 +1685,14 @@ public class EnemyManager : MonoBehaviour
                     executionSubSeq.Join(sr.DOColor(new Color(120f/255f, 120f/255f, 120f/255f), actionInterval / 2));
                 }
             }
+            executionSubSeq.AppendCallback(() =>
+            {
+                if (GameManager.Inst.gameOverSignal == true)
+                {
+                    executionSubSeq.Kill();
+                    executionSeq.Kill();
+                }
+            });
             executionSeq.Append(executionSubSeq);
         }
         // 서브 적 액션 실행

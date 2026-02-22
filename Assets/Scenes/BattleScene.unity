@@ -1432,7 +1432,7 @@ MonoBehaviour:
   - 20
   - 60
   - 20
-  enhanceProbability: 0.2
+  enhanceProbability: 0
   stageSO: {fileID: 11400000, guid: 2de9de6b9f0fbea46b0149e204bb7b11, type: 2}
   gameOverSignal: 0
   barFillTime: 1

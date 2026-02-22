@@ -81,11 +81,7 @@ public class EnemyAction : MonoBehaviour
             totalVal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.enemyBuff_Shield[enemyIdx], totalVal);
         }
         
-        if (totalVal == 0)
-        {
-            enemyActionTMP.text = "";
-        }
-        else if(actionType == EEnemyActionType.Turn)
+        if(actionType == EEnemyActionType.Turn)
         {
             if (totalVal > 0)
             {
@@ -197,11 +193,22 @@ public class EnemyAction : MonoBehaviour
         isIgnore = bIg;
         if (isIgnore)
         {
-            enemyAction.color = Color.red;
+            foreach(var sr in GetComponentsInChildren<SpriteRenderer>())
+            {
+                Color c = sr.color;
+                c *= 0.5f;
+                c.a = 1f;
+                sr.color = c;
+            }
+            // enemyAction.color = Color.red;
         }
         else
         {
-            enemyAction.color = Color.white;
+            foreach(var sr in GetComponentsInChildren<SpriteRenderer>())
+            {
+                sr.color = Color.white;
+            }
+            // enemyAction.color = Color.white;
         }
     }
 

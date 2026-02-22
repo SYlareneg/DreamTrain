@@ -485,7 +485,10 @@ public class ShowBuff
                             TurnManager.OnUseCard -= reduceCount;
                         }
                         TurnManager.Inst.IncreaseCost(card.item.cost);
-                        card.UseCard(enemyIdx);
+                        if(card.item.name != "커튼콜" && card.item.name != "커튼콜+")
+                        {
+                            card.UseCard(enemyIdx);
+                        }
                     };
                     TurnManager.OnUseCard += reduceCount;
                     removeBuff = () =>

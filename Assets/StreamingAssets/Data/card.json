@@ -135,10 +135,10 @@
       "cardValues": [],
       "cardValueTypes": [],
       "name_enhanced": "커튼콜+",
-      "cost_enhanced": 2,
-      "text_enhanced": "다음에 사용하는 카드의 효과는 두 번 적용됩니다. ",
+      "cost_enhanced": 1,
+      "text_enhanced": "다음에 사용하는 카드의 효과는 두 번 적용됩니다. 소멸.",
       "isVolatile_enhanced": false,
-      "isVanish_enhanced": false,
+      "isVanish_enhanced": true,
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": false,
       "cardValues_enhanced": [],
@@ -146,7 +146,7 @@
     },
     {
       "name": "배니싱",
-      "cost": 2,
+      "cost": 1,
       "type": 2,
       "dreamPieceNum": 1,
       "sprite": "베니싱01",
@@ -160,28 +160,28 @@
       "cardValueTypes": [],
       "name_enhanced": "배니싱+",
       "cost_enhanced": 1,
-      "text_enhanced": "패에서 카드 한 장을 선택해 소멸시킵니다. 소멸한 카드의 코스트만큼 행동력을 얻습니다.",
+      "text_enhanced": "패에서 카드 한 장을 선택해 소멸시킵니다. 소멸한 카드의 코스트만큼 행동력을 얻습니다. 잔류.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
-      "isRemain_enhanced": false,
+      "isRemain_enhanced": true,
       "isSingleTarget_enhanced": false,
       "cardValues_enhanced": [],
       "cardValueTypes_enhanced": []
     },
     {
       "name": "폭발 마술",
-      "cost": 2,
+      "cost": 1,
       "type": 2,
       "dreamPieceNum": 1,
       "sprite": "폭발마술01",
-      "text": "3<피해>피해를 줍니다.\\n고급 마술: 12<피해>의 피해를 추가로 입히고 마술 상자를 제거합니다.",
+      "text": "4<피해>피해를 줍니다.\\n고급 마술: 12<피해>의 피해를 추가로 입히고 마술 상자를 제거합니다.",
       "isVolatile": false,
       "isVanish": false,
       "isRemain": false,
       "isSingleTarget": true,
       "rarity": 0,
       "cardValues": [
-        3,
+        4,
         12
       ],
       "cardValueTypes": [
@@ -189,14 +189,14 @@
         0
       ],
       "name_enhanced": "폭발 마술+",
-      "cost_enhanced": 2,
-      "text_enhanced": "3<피해>피해를 줍니다.\\n고급 마술: 18<피해>의 피해를 추가로 입히고 마술 상자를 제거합니다.",
+      "cost_enhanced": 1,
+      "text_enhanced": "6<피해>피해를 줍니다.\\n고급 마술: 18<피해>의 피해를 추가로 입히고 마술 상자를 제거합니다.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": true,
       "cardValues_enhanced": [
-        3,
+        6,
         18
       ],
       "cardValueTypes_enhanced": [
@@ -830,7 +830,7 @@
     },
     {
       "name": "복제 마술",
-      "cost": 2,
+      "cost": 1,
       "type": 2,
       "dreamPieceNum": 1,
       "sprite": "복제마술01",
@@ -849,7 +849,7 @@
         3
       ],
       "name_enhanced": "복제 마술+",
-      "cost_enhanced": 2,
+      "cost_enhanced": 1,
       "text_enhanced": "패의 카드 1<특수>장을 선택해 복제합니다.\\n초급 마술:행동력을 2<특수> 돌려받습니다.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
@@ -934,20 +934,20 @@
       "type": 2,
       "dreamPieceNum": 1,
       "sprite": "재빠른손놀림01",
-      "text": "덱에서 카드를 1<특수>장 드로우합니다.",
+      "text": "덱에서 카드를 2<특수>장 드로우합니다.",
       "isVolatile": false,
       "isVanish": false,
       "isRemain": false,
       "isSingleTarget": false,
       "rarity": 1,
       "cardValues": [
-        1
+        2
       ],
       "cardValueTypes": [
         3
       ],
       "name_enhanced": "재빠른 손놀림+",
-      "cost_enhanced": 1,
+      "cost_enhanced": 0,
       "text_enhanced": "덱에서 카드를 2<특수>장 드로우합니다.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,

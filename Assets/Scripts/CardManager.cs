@@ -456,10 +456,11 @@ public class CardManager : MonoBehaviour
                 }
                 // EnlargeCard(false, selectedCard);
                 // selectedCard = null;
-                TurnManager.Inst.isLoading = true;
-                selectedCard.gameObject.SetActive(false);
-                StartCoroutine(CardEnemySelect());
-                return;
+                // TurnManager.Inst.isLoading = true;
+                // selectedCard.gameObject.SetActive(false);
+                // StartCoroutine(CardEnemySelect());
+                // return;
+                onEnemyCardArea = 0;
             }
             // 카드 사용
             // selectedCard.highlight.enabled = false;

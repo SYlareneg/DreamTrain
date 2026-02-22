@@ -42,6 +42,7 @@ public class ActivateButton : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        if(TurnManager.Inst.isLoading && (TurnManager.Inst.characterSO.isTutorial == false || TutorialManager.Inst.rouletteActivate == false)) return;
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         Color color = Color.white;
         color.r *= 0.9f;
@@ -57,6 +58,7 @@ public class ActivateButton : MonoBehaviour
     // 마우스 버튼을 눌렀을 때
     private void OnMouseDown()
     {
+        if(TurnManager.Inst.isLoading && (TurnManager.Inst.characterSO.isTutorial == false || TutorialManager.Inst.rouletteActivate == false)) return;
         if (useClickEffect)
         {
             transform.localScale = pressedScale;
@@ -78,10 +80,10 @@ public class ActivateButton : MonoBehaviour
     private void OnMouseUpAsButton()
     {
         if(TurnManager.Inst.isLoading && (TurnManager.Inst.characterSO.isTutorial == false || TutorialManager.Inst.rouletteActivate == false)) return;
-        if (TurnManager.Inst.nowCost >= useCost)
+        if (RouletteManager.Inst.isTriggerActivated == true || TurnManager.Inst.nowCost >= useCost)
         {
             StartCoroutine(ButtonActivate());
-            if(useCost < maxUseCost) useCost += 1;
+            // if(useCost < maxUseCost) useCost += 1;
         }
     }
 

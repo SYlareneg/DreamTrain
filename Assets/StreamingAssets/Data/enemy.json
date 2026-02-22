@@ -3,7 +3,7 @@
     {
       "name": "고장난 로봇",
       "id": "ErrorRobot",
-      "health": 80,
+      "health": 76,
       "triggerNum": 1,
       "phase": [
         {
@@ -2732,14 +2732,20 @@
       "name": "마술사",
       "id": "Magician",
       "health": 112,
-      "triggerNum": 3,
+      "triggerNum": 2,
       "phase": [
         {
           "name": "쇼타임",
-          "text": "마술에 3번 성공하면 그의 비밀이 드러납니다.",
+          "text": "마술에 2번 성공하면 그의 비밀이 드러납니다.",
           "patterns": [
             {
               "pattern": [
+                {
+                  "type": 0,
+                  "typeNum": 0,
+                  "val": 2,
+                  "isTrigger": false
+                },
                 {
                   "type": 4,
                   "typeNum": 0,
@@ -2766,7 +2772,7 @@
         },
         {
           "name": "쇼타임",
-          "text": "마술에 3번 실패하면 그의 비밀이 드러납니다.",
+          "text": "마술에 2번 성공하면 그의 비밀이 드러납니다.",
           "patterns": [
             {
               "pattern": [
@@ -2797,15 +2803,21 @@
             {
               "pattern": [
                 {
+                  "type": 0,
+                  "typeNum": -3,
+                  "val": -5,
+                  "isTrigger": false
+                },
+                {
                   "type": 4,
                   "typeNum": 0,
                   "val": 1,
                   "isTrigger": false
                 },
                 {
-                  "type": 0,
-                  "typeNum": -3,
-                  "val": -5,
+                  "type": 4,
+                  "typeNum": 0,
+                  "val": 1,
                   "isTrigger": false
                 }
               ]

@@ -4478,7 +4478,7 @@ MonoBehaviour:
   - speakerName: "\uC9C0\uC9C0"
     text: "\uC900\uBE44\uD558\uB294\uAC8C \uC88B\uACA0\uC5B4."
     speakerSprite: {fileID: -6885921731126323413, guid: 16b48c31bb848aa49b7b59b1d78012db, type: 3}
-    sound: {fileID: 8300000, guid: e2386e4b7fd39ef4c8ce8e3fb27a5fc8, type: 3}
+    sound: {fileID: 0}
   - speakerName: "\uB9C8\uC220\uC0AC"
     text: "\uD6C4\uD6C4, \uB2F9\uC2E0\uC744 \uAE30\uB2E4\uB9AC\uB294\uAC8C \uD658\uD76C\uC77C\uC9C0
       \uC808\uB9DD\uC77C\uC9C0. \uC0C1\uC790\uB97C \uC5F4\uC5B4\uBCFC \uC2DC\uAC04\uC774\uAD70\uC694."
