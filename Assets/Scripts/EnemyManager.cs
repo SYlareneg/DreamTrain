@@ -363,6 +363,7 @@ public class EnemyManager : MonoBehaviour
                     if (!isEnemy)
                     {
                         rPiece.RouletteClear();
+                        TurnManager.Inst.TriggerEnemyPassive(6);
                     }
                 };
                 enemySpecialActivation[0] = (value) =>
@@ -376,10 +377,10 @@ public class EnemyManager : MonoBehaviour
                             RouletteManager.Inst.roulettePieces[i].RouletteClear();
                         }
                     }
-                    if (tempMagicHat != 0)
-                    {
-                        TurnManager.Inst.TriggerEnemyPassive(1);
-                    }
+                    // if (tempMagicHat != 0)
+                    // {
+                    //     TurnManager.Inst.TriggerEnemyPassive(1);
+                    // }
                     TurnManager.Inst.TakeDmg(value, EDamageSource.Enemy);
                 };
                 enemySpecialActivation[1] = (value) =>
@@ -394,7 +395,7 @@ public class EnemyManager : MonoBehaviour
                     }
                     if (tempMagicHat != 0)
                     {
-                        TurnManager.Inst.TriggerEnemyPassive(1);
+                        // TurnManager.Inst.TriggerEnemyPassive(1);
                         BuffManager.Inst.AddShowBuff("환영", EBuffAffectType.Enemy, tempMagicHat, true);
                     }
                 };
@@ -410,20 +411,25 @@ public class EnemyManager : MonoBehaviour
                 };
                 enemySpecialActivation[3] = (value) =>
                 {
-                    int tempMagicHat = 0;
                     for (int i = 0; i < RouletteManager.rouletteNum; i++)
                     {
                         if (RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special, 0))
                         {
-                            tempMagicHat++;
                             RouletteManager.Inst.roulettePieces[i].RouletteClear();
                         }
                     }
-                    if (tempMagicHat != 0)
-                    {
-                        TurnManager.Inst.TriggerEnemyPassive(1);
-                    }
                     TurnManager.Inst.TakeDmg(value, EDamageSource.Enemy);
+                };
+                TurnManager.OnRouletteSpin += (isClockwise, spin) =>
+                {
+                    for (int i = 0; i <= spin; i++)
+                    {
+                        int tempIdx = (RouletteManager.Inst.enemyLookat + RouletteManager.rouletteNum + (isClockwise? -1 : 1) * i) % RouletteManager.rouletteNum;
+                        if (RouletteManager.Inst.roulettePieces[tempIdx].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special, 0))
+                        {
+                            TurnManager.Inst.GetShield(true, 6, EDamageSource.Enemy);
+                        }
+                    }
                 };
                 TurnManager.OnPlayerTurnStart += () =>
                 {
@@ -1300,6 +1306,8 @@ public class EnemyManager : MonoBehaviour
                     isTriggerActivated = true;
                     triggerPhaseNum = 0;
                     triggerPatternNum = 0;
+                    if(triggerPhaseScale == 0f) triggerPhaseScale = 1f;
+                    else triggerPhaseScale *= enemy.triggerPhase[triggerPhaseNum].scalingFactor;
                     Action detrigger = null;
                     detrigger = () =>
                     {

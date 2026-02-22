@@ -357,7 +357,8 @@ public class PassiveManager : MonoBehaviour
                 TurnManager.Inst.playerTriggerMaxCnt = 2;
                 // 트리거 조각 설정
                 rItem.rtype = new RouletteType(ERouletteType.Attack, 0);
-                rItem.value = 12;
+                rItem.value = 6;
+                if(personaName == "마술 해체+") rItem.value = 12;
                 RouletteManager.Inst.playerTriggerPiece = rItem;
                 // 트리거 조건 설정
                 TurnManager.OnGameStart += () =>
@@ -409,7 +410,7 @@ public class PassiveManager : MonoBehaviour
                     if(RouletteManager.Inst.roulettePieces[RouletteManager.Inst.enemyLookat].roulette.rtype.type != ERouletteType.None) counter--;
                     Debug.Log("마술 해체 트리거 카운터: " + counter);
                     if (personaName == "마술 해체+" && counter >= 6) BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, counter * 6, 1.5f, -1);
-                    else BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, counter * 6, 1, -1);
+                    else BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, counter * 4, 1, -1);
                 };
                 TurnManager.OnRouletteEnchant += (x) =>
                 {
@@ -424,7 +425,7 @@ public class PassiveManager : MonoBehaviour
                         {
                             if (personaName == "마술 해체+" && counter >= 6 && newCnt < 6) BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, (newCnt - counter) * 6, 2.0f / 3, -1);
                             else if (personaName == "마술 해체+" && counter < 6 && newCnt >= 6) BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, (newCnt - counter) * 6, 1.5f, -1);
-                            else BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, (newCnt - counter) * 6, 1, -1);
+                            else BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, (newCnt - counter) * 4, 1, -1);
                             counter = newCnt;
                         }
                     }
@@ -442,7 +443,7 @@ public class PassiveManager : MonoBehaviour
                         {
                             if (personaName == "마술 해체+" && counter >= 6 && newCnt < 6) BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, (newCnt - counter) * 6, 2.0f / 3, -1);
                             else if (personaName == "마술 해체+" && counter < 6 && newCnt >= 6) BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, (newCnt - counter) * 6, 1.5f, -1);
-                            else BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, (newCnt - counter) * 6, 1, -1);
+                            else BuffManager.AddBuffToTarget(BuffManager.Inst.rouletteBuff_Trigger, (newCnt - counter) * 4, 1, -1);
                             counter = newCnt;
                         }
                     }

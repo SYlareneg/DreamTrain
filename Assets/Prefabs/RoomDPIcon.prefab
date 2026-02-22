@@ -124,6 +124,9 @@ MonoBehaviour:
     cards: []
     baseCards_persona: []
     baseCards_shadow: []
+  keycapImage: {fileID: 3358364169435176849}
+  keycapSprite_unselected: {fileID: 4424182279342510847, guid: 029a9b3ae56c8c348add714d27f8b42d, type: 3}
+  keycapSprite_selected: {fileID: 2139647006071309020, guid: eb6f3a77f40dd5c4f8cef4f36122da14, type: 3}
   iconImage: {fileID: 8636700079721486597}
   highlight: {fileID: 6762667017454266361}
   highlightSprites:
@@ -347,7 +350,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 2947009361886655646, guid: 37c40b6d0028463428d36ea13b873fc0, type: 3}
+  m_Sprite: {fileID: 4424182279342510847, guid: 029a9b3ae56c8c348add714d27f8b42d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
