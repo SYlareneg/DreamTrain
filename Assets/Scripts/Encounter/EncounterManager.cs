@@ -550,29 +550,63 @@ public class EncounterManager : MonoBehaviour
     
         ResetChoiceContainers();
 
-
-        if (IsValidFunction(currentStep.functionCall))
+        string initialContent = currentStep.textContent;
+        if (!string.IsNullOrEmpty(pendingSystemMessage))
         {
-            ParseAndExecuteFunctions(currentStep.functionCall);
+            initialContent += pendingSystemMessage;
+            pendingSystemMessage = "";
         }
 
         if (actData.currentEncounterID == "" || SceneManager.GetActiveScene().name != "EncounterScene") return;
 
-        string finalContent = currentStep.textContent + pendingSystemMessage;
-
-        if (encounterPanel.activeInHierarchy && (currentStep.type == EncounterStepType.DESC || !string.IsNullOrEmpty(finalContent)))
+        if (encounterPanel.activeInHierarchy && (currentStep.type == EncounterStepType.DESC || !string.IsNullOrEmpty(initialContent)))
         {
-            StartTyping(finalContent, false, () => 
+            StartTyping(initialContent, false, () => 
             {
-                UpdateOptionsUI(); 
+                ExecuteStepFunctionAndAppendUI();
             });
         }   
         else
         {
-            descriptionText.text = FormatDialogueColor(finalContent).Replace("\\n", "\n");
-            UpdateOptionsUI();
+            descriptionText.text = FormatDialogueColor(initialContent).Replace("\\n", "\n");
+            ExecuteStepFunctionAndAppendUI_Immediate();
         }
-        pendingSystemMessage = "";
+    }
+    private void ExecuteStepFunctionAndAppendUI()
+    {
+        if (IsValidFunction(currentStep.functionCall))
+        {
+            ParseAndExecuteFunctions(currentStep.functionCall);
+            
+            if (!string.IsNullOrEmpty(pendingSystemMessage))
+            {
+                string sysMsg = pendingSystemMessage;
+                pendingSystemMessage = "";
+                
+                StartTyping(sysMsg, true, () => 
+                {
+                    UpdateOptionsUI();
+                });
+                return; 
+            }
+        }
+        
+        UpdateOptionsUI();
+    }
+    
+    private void ExecuteStepFunctionAndAppendUI_Immediate()
+    {
+        if (IsValidFunction(currentStep.functionCall))
+        {
+            ParseAndExecuteFunctions(currentStep.functionCall);
+            
+            if (!string.IsNullOrEmpty(pendingSystemMessage))
+            {
+                descriptionText.text += FormatDialogueColor(pendingSystemMessage).Replace("\\n", "\n");
+                pendingSystemMessage = "";
+            }
+        }
+        UpdateOptionsUI();
     }
     public void StartTyping(string content, bool isAppend, System.Action onComplete = null)
     {
@@ -603,8 +637,6 @@ public class EncounterManager : MonoBehaviour
         {
             descriptionText.text = parsedContent;
             descriptionText.maxVisibleCharacters = 0;
-            
-            // 초기화: 새 페이지면 맨 위로
             descriptionText.ForceMeshUpdate(); 
             if (descriptionScrollRect != null) 
             {
@@ -642,8 +674,9 @@ public class EncounterManager : MonoBehaviour
         {
             audioSource.Stop();
         }
-        onTypingComplete?.Invoke();
+        System.Action tempCallback = onTypingComplete;
         onTypingComplete = null;
+        tempCallback?.Invoke();
     }
     void ScrollToChar(int charIndex)
     {
@@ -688,9 +721,9 @@ public class EncounterManager : MonoBehaviour
             }
 
             isTyping = false;
-
-            onTypingComplete?.Invoke();
+            System.Action tempCallback = onTypingComplete;
             onTypingComplete = null;
+            tempCallback?.Invoke();
         }
     }
 

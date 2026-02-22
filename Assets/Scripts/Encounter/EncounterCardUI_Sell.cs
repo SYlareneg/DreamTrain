@@ -6,17 +6,15 @@ using TMPro;
 public class EncounterCardUI_Sell : MonoBehaviour, IPointerClickHandler
 {
     [Header("Core Reference")]
-    public CardUI cardUI; // [핵심] 카드의 비주얼(그림, 텍스트)을 담당하는 컴포넌트
+    public CardUI cardUI; 
 
     [Header("Shop UI")]
     public TMP_Text sellCostTMP;    
 
-    // 데이터
     public SellCard sellCard;       
     private CharacterSO _playerData; 
     private System.Action _onBuyRequest; 
 
-    // [최적화] 매 프레임 컬러 변경 방지
     private bool _wasAffordable = true; 
 
     private void Awake()
@@ -24,10 +22,8 @@ public class EncounterCardUI_Sell : MonoBehaviour, IPointerClickHandler
         if(sellCard == null) sellCard = new SellCard();
     }
 
-    // 초기화 함수
     public void Setup(Item item, int cost, bool isValid, CharacterSO playerData, System.Action onBuyRequest)
     {
-        // 1. 데이터 설정
         if(sellCard == null) sellCard = new SellCard();
         sellCard.cardItem = item;
         sellCard.cost = cost;
@@ -36,7 +32,6 @@ public class EncounterCardUI_Sell : MonoBehaviour, IPointerClickHandler
         this._playerData = playerData; 
         this._onBuyRequest = onBuyRequest;
 
-        // 2. [핵심] 카드 비주얼은 CardUI에게 전적으로 위임
         if (cardUI != null)
         {
             cardUI.Setup(item);
@@ -56,7 +51,6 @@ public class EncounterCardUI_Sell : MonoBehaviour, IPointerClickHandler
         gameObject.SetActive(isValid);
     }
 
-    // 클릭 이벤트 (구매 시도)
     public void OnPointerClick(PointerEventData data)
     {
         if (_onBuyRequest != null)
@@ -65,7 +59,6 @@ public class EncounterCardUI_Sell : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    // 가격 색상 갱신 (돈이 부족하면 빨간색)
     private void Update()
     {
         if (_playerData == null || sellCard == null || sellCostTMP == null) return;
@@ -82,6 +75,6 @@ public class EncounterCardUI_Sell : MonoBehaviour, IPointerClickHandler
     void UpdateColor(bool isAffordable)
     {
         if (sellCostTMP == null) return;
-        sellCostTMP.color = isAffordable ? Color.blue : Color.red;
+        sellCostTMP.color = isAffordable ? Color.white : Color.red;
     }
 }

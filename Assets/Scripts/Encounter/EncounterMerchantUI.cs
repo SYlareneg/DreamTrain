@@ -409,10 +409,7 @@ public void EnhanceRelicSelect(EnhanceObjet clickedRelicUI)
     {
         Debug.Log("called card inventory (Weighted Pool Logic)");
 
-        // 1. 카드 데이터 분류 (SetCardReward 로직 그대로 차용)
         List<Item> normalCards = new List<Item>();
-        
-        // 희귀도별 리스트 배열 초기화
         int rarityCount = Enum.GetNames(typeof(CardRarity)).Length;
         List<Item>[] dreamCards = new List<Item>[rarityCount];
         List<Item>[] dreamCards_enhanced = new List<Item>[rarityCount];
@@ -436,8 +433,6 @@ public void EnhanceRelicSelect(EnhanceObjet clickedRelicUI)
 
         if (persona_ref != null)
         {
-            Debug.Log(persona_ref.name);
-            Debug.Log(persona_ref.cards.Count);
             foreach (Item_Enhanceable item in persona_ref.cards)
             {
                 dreamCards[(int)item.rarity].Add((Item)item);
@@ -516,10 +511,11 @@ public void EnhanceRelicSelect(EnhanceObjet clickedRelicUI)
 
             if (pickedCard != null)
             {
+                int cardPrice = (pickedCard.rarity == CardRarity.Rare) ? 2 : 1;
                 stageSO.merchantSellCards.Add(new SellCard
                 {
                     cardItem = pickedCard,
-                    cost = pickedCard.cost,
+                    cost = cardPrice,
                     isValid = true
                 });
                 
@@ -820,9 +816,9 @@ public void EnhanceRelicSelect(EnhanceObjet clickedRelicUI)
         {
             characterSO.dreamDust -= data.cost;
             AddCardToInventory(data.cardItem);
-            stageSO.merchantSellCards.RemoveAt(index);
+            //stageSO.merchantSellCards.RemoveAt(index);
             data.isValid = false;
-            //stageSO.merchantSellCards[index] = data; 
+            stageSO.merchantSellCards[index] = data; 
             menuControll.RefreshUI();
             DrawShopUI(); 
             Debug.Log("카드 구매 성공!");
@@ -839,8 +835,8 @@ public void EnhanceRelicSelect(EnhanceObjet clickedRelicUI)
                 characterSO.dreamDust -= data.cost;
                 AddObjectToInventory(data.objetItem); 
                 data.isValid = false;
-                stageSO.merchantSellObjets.RemoveAt(index);
-                //stageSO.merchantSellObjets[index] = data; 
+                //stageSO.merchantSellObjets.RemoveAt(index);
+                stageSO.merchantSellObjets[index] = data; 
                 menuControll.RefreshUI();
                 if (currentShopId == "souvenir" || currentShopId == "IceCreamShop") DrawRareObjets();
                 else DrawShopUI();

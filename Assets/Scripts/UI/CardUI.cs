@@ -221,4 +221,20 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             }
         }
     }
+    
+    protected virtual void OnDisable()
+    {
+        if (activeTooltips != null && activeTooltips.Count > 0)
+        {
+            foreach (GameObject tooltipObj in activeTooltips)
+            {
+                if (tooltipObj != null)
+                {
+                    Destroy(tooltipObj);
+                }
+            }
+            activeTooltips.Clear();
+        }
+        tooltipCreated = false;
+    }
 }
