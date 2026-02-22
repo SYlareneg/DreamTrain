@@ -111,6 +111,12 @@ public class ShowBuff
             if(val > 0) GameManager.Inst.PlayerBuffEffect(effectType);
             else if(val < 0) GameManager.Inst.PlayerBuffEffect(effectType == EBuffEffectType.Benefit ? EBuffEffectType.Demerit : EBuffEffectType.Benefit);
         }
+        else if(affectType == EBuffAffectType.Enemy && effectType != EBuffEffectType.Neutral)
+        {
+            Debug.Log("적 버프 효과 발동: " + name);
+            if (val > 0) EnemyManager.Inst.EnemyBuffEffect(effectType);
+            else if (val < 0) EnemyManager.Inst.EnemyBuffEffect(effectType == EBuffEffectType.Benefit ? EBuffEffectType.Demerit : EBuffEffectType.Benefit);
+        }
         defaultVal = new List<int>(origin.defaultVal);
         if(baseVal == null) baseVal = defaultVal;
         this.isSetOnEnemyTurn = isSetOnEnemyTurn;

@@ -1805,6 +1805,26 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    [Tooltip("플레이어 버프 이펙트")] public GameObject enemyBuffEffect;
+    [Tooltip("플레이어 버프 이펙트 스프라이트")] public Sprite[] enemyBuffEffectSprites;
+    Sequence enemyBuffEffectSeq;
+    public void EnemyBuffEffect(EBuffEffectType effectType)
+    {
+        if(effectType == EBuffEffectType.Neutral) return;
+        enemyBuffEffectSeq?.Kill();
+        enemyBuffEffect.GetComponent<SpriteRenderer>().sprite = enemyBuffEffectSprites[(int)effectType];
+        enemyBuffEffect.SetActive(true);
+        enemyBuffEffect.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+        enemyBuffEffectSeq = DOTween.Sequence();
+        enemyBuffEffectSeq.Append(enemyBuffEffect.GetComponent<SpriteRenderer>().DOColor(new Color(1f, 1f, 1f, 0.6f), 0.6f));
+        enemyBuffEffectSeq.Append(enemyBuffEffect.GetComponent<SpriteRenderer>().DOColor(new Color(1f, 1f, 1f, 0f), 0.6f))
+        .OnComplete(() =>
+        {
+            enemyBuffEffect.SetActive(false);
+        });
+        enemyBuffEffectSeq.SetLink(enemyBuffEffect);
+    }
+
     Sequence enemyDamageSeq;
     Sequence enemyHealSeq;
     Sequence enemyShieldSeq;
