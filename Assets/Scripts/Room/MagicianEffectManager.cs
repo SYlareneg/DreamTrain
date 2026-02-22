@@ -90,6 +90,7 @@ public class MagicianEffectManager : MonoBehaviour
         effectSequence.Append(mainCamera.transform.DOMove(mainCameraEffectPosition, 2f).SetEase(Ease.InOutSine).OnComplete(() =>
         {
             spotLight.SetActive(true);
+            SoundManager.Inst.PlayBGM(SoundManager.Inst.magicianBGM);
         }))
         .AppendInterval(1f).OnComplete(() =>
         {
@@ -97,6 +98,7 @@ public class MagicianEffectManager : MonoBehaviour
             RoomDialogueManager.OnDialogueEnd += () =>
             {
                 DataManager.Inst.characterSO.enemyName = "마술사";
+                SoundManager.Inst.PlayBGM(SoundManager.Inst.magicianBattleBGM);
                 SceneChangeManager.Inst.SceneFadeOut("BattleScene");
             };
         });
