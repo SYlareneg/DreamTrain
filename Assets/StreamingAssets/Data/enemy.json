@@ -195,12 +195,12 @@
       ],
       "enemySpecialActions": [
         {
-          "sprite": "",
+          "sprite": "행동_룰렛효과부여",
           "title": "회복 부여",
           "text": "자신 앞에 회복 룰렛을 값 부여합니다."
         },
         {
-          "sprite": "",
+          "sprite": "행동_고장난로봇_오류반응",
           "title": "오류 반응",
           "text": "룰렛에 부여되어 있는 효과 하나 당 3의 피해를 줍니다. 계산된 피해량 값이 홀수일 경우 앨리스에게, 짝수인 경우 자기자신에게 피해를 적용합니다."
         },
@@ -441,7 +441,7 @@
       ],
       "enemySpecialActions": [
         {
-          "sprite": "",
+          "sprite": "행동_버프부여",
           "title": "디버프 부여: 불쾌함",
           "text": "불쾌함을 값 부여합니다."
         },
@@ -665,7 +665,7 @@
       ],
       "enemySpecialActions": [
         {
-          "sprite": "",
+          "sprite": "행동_버프부여",
           "title": "디버프 부여: 보호",
           "text": "보호를 값 부여합니다."
         },
@@ -857,7 +857,7 @@
       ],
       "enemySpecialActions": [
         {
-          "sprite": "",
+          "sprite": "행동_도도새_코커스경주",
           "title": "코커스 경주!",
           "text": "이 행동의 피해량은 턴마다 2배씩 증가합니다. 이번 턴에 룰렛이 회전할 때마다 피해량이 절반으로 줄어듭니다."
         },
@@ -2481,7 +2481,7 @@
       ],
       "enemySpecialActions": [
         {
-          "sprite": "EnemyAction_Attack",
+          "sprite": "행동_비둘기_모자폭발",
           "title": "모자 폭발",
           "text": "룰렛에 존재하는 마술 모자를 모두 제거하고, 제거한 마술 모자 개수X5의 피해를 줍니다."
         },
@@ -2705,7 +2705,7 @@
       ],
       "enemySpecialActions": [
         {
-          "sprite": "EnemyAction_Enchant",
+          "sprite": "행동_룰렛효과부여",
           "title": "공격 부여",
           "text": "무작위 빈 룰렛 칸에 '공격' 룰렛을 부여합니다. 빈 칸이 없을 경우 무작위 칸에 부여합니다."
         },
@@ -2991,22 +2991,22 @@
       ],
       "enemySpecialActions": [
         {
-          "sprite": "EnemyAction_Drain",
+          "sprite": "행동_마술사_마술불꽃",
           "title": "마술-불꽃",
           "text": "마술 모자 1개당 12의 피해를 주고, 모든 마술 모자를 제거합니다. 마술 모자가 하나도 없다면 마술에 실패합니다."
         },
         {
-          "sprite": "EnemyAction_Drain",
+          "sprite": "행동_마술사_마술환영",
           "title": "마술-환영",
           "text": "마술 모자 1개당 환영 버프를 1 얻습니다. 마술 모자가 하나도 없다면 마술에 실패합니다."
         },
         {
-          "sprite": "EnemyAction_Drain",
+          "sprite": "행동_마술사_쇼타임",
           "title": "마술 준비-쇼타임",
           "text": "공격, 수비 룰렛을 제외한 모든 룰렛에 마술 모자를 부여합니다."
         },
         {
-          "sprite": "EnemyAction_Drain",
+          "sprite": "행동_마술사_쇼타임",
           "title": "마술-쇼타임",
           "text": "마술 모자 1개당 6의 피해를 주고, 모든 마술 모자를 제거합니다."
         }
@@ -3215,7 +3215,7 @@
       ],
       "enemySpecialActions": [
         {
-          "sprite": "EnemyAction_Drain",
+          "sprite": "행동_룰렛효과부여",
           "title": "저주인형 부여",
           "text": "자신 앞에 저주인형 룰렛을 값 부여합니다."
         },
@@ -4163,12 +4163,12 @@
       ],
       "enemySpecialActions": [
         {
-          "sprite": "EnemyAction_Drain",
+          "sprite": "행동_특수_뱀파이어, 박쥐_흡혈",
           "title": "흡혈",
           "text": "값의 피해를 줍니다. 입힌 피해만큼 체력을 회복합니다."
         },
         {
-          "sprite": "EnemyAction_Drain",
+          "sprite": "행동_룰렛효과부여",
           "title": "벌레 부여",
           "text": "자신 앞에 벌레 룰렛을 값 부여합니다."
         },
@@ -4403,12 +4403,12 @@
       ],
       "enemySpecialActions": [
         {
-          "sprite": "EnemyAction_Drain",
+          "sprite": "행동_고양이_무섭게할퀴기",
           "title": "무섭게 할퀴기",
           "text": "24의 피해를 줍니다. 이번 턴에 고양이가 받은 피해 1당 이 공격의 피해량이 1 감소합니다. 턴 종료 시 트리거가 해제됩니다."
         },
         {
-          "sprite": "EnemyAction_Enchant",
+          "sprite": "행동_버프부여",
           "title": "디버프 부여",
           "text": "플레이어와 룰렛에 '주저함'을 값씩 부여합니다."
         },

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5933fc2751dbe964a8b943a21ff5fad5
+guid: cb4dfd0d89a80f4438f7679ddf73545d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1521565114957691944
-    second: EnemyAction_Drain_0
+      213: -7315108198365714838
+    second: "\uD589\uB3D9_\uBE44\uB458\uAE30_\uBAA8\uC790\uD3ED\uBC1C_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: EnemyAction_Drain_0
+      name: "\uD589\uB3D9_\uBE44\uB458\uAE30_\uBAA8\uC790\uD3ED\uBC1C_0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 36
-        height: 36
+        x: 260
+        y: 266
+        width: 1526
+        height: 1616
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8d3025ce69052eae0800000000000000
-      internalID: -1521565114957691944
+      spriteID: a662dd6c9d38b7a90800000000000000
+      internalID: -7315108198365714838
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      EnemyAction_Drain_0: -1521565114957691944
+      "\uD589\uB3D9_\uBE44\uB458\uAE30_\uBAA8\uC790\uD3ED\uBC1C_0": -7315108198365714838
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

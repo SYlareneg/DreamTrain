@@ -3,7 +3,7 @@
     {
       "name": "현혹",
       "text": "최근에 사용한 카드와 다른 타입의 카드를 사용할 때마다 행동력을 1 얻습니다.\n",
-      "icon": "BuffIcon_Example",
+      "icon": "버프_마술사_현혹",
       "type": 1,
       "effectType": 0,
       "defaultVal": [
@@ -13,7 +13,7 @@
     {
       "name": "커튼콜",
       "text": "사용하는 카드의 효과가 두 번 적용됩니다. 효과 발동 시 횟수를 1 소모합니다. \n",
-      "icon": "BuffIcon_Example",
+      "icon": "버프_마술사_커튼콜",
       "type": 2,
       "effectType": 0,
       "defaultVal": [

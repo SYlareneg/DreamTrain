@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 4fda8f431c099bd459e144ebdb1775d1
+guid: f323af4134d08434c91cb5ec66b46a5c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6740872868151833609
-    second: EnemyAction_Attack_0
+      213: -795615796193951102
+    second: "\uD589\uB3D9_\uBC84\uD504\uBD80\uC5EC_0"
+  - first:
+      213: -2701426845769422389
+    second: "\uD589\uB3D9_\uBC84\uD504\uBD80\uC5EC_1"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: EnemyAction_Attack_0
+      name: "\uD589\uB3D9_\uBC84\uD504\uBD80\uC5EC_0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 36
-        height: 36
+        x: 225
+        y: 1068
+        width: 1468
+        height: 738
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 904324ea8246c8d50800000000000000
-      internalID: 6740872868151833609
+      spriteID: 2828b2216a765f4f0800000000000000
+      internalID: -795615796193951102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uD589\uB3D9_\uBC84\uD504\uBD80\uC5EC_1"
+      rect:
+        serializedVersion: 2
+        x: 626
+        y: 329
+        width: 798
+        height: 859
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc9a537b89a928ad0800000000000000
+      internalID: -2701426845769422389
       vertices: []
       indices: 
       edges: []
@@ -135,7 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      EnemyAction_Attack_0: 6740872868151833609
+      "\uD589\uB3D9_\uBC84\uD504\uBD80\uC5EC_0": -795615796193951102
+      "\uD589\uB3D9_\uBC84\uD504\uBD80\uC5EC_1": -2701426845769422389
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

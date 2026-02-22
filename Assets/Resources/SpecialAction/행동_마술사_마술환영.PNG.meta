@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 743265c0663c6d5458023ef37fb90605
+guid: 4a84746c8e6c7a64eb8a382ec564ee71
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9202054676734628973
-    second: EnemyAction_Enchant_0
+      213: 7864596690556727211
+    second: "\uD589\uB3D9_\uB9C8\uC220\uC0AC_\uB9C8\uC220\uD658\uC601_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: EnemyAction_Enchant_0
+      name: "\uD589\uB3D9_\uB9C8\uC220\uC0AC_\uB9C8\uC220\uD658\uC601_0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 36
-        height: 36
+        x: 440
+        y: 199
+        width: 1146
+        height: 1616
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 39ba28da60cbb4080800000000000000
-      internalID: -9202054676734628973
+      spriteID: bafa85a8509a42d60800000000000000
+      internalID: 7864596690556727211
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      EnemyAction_Enchant_0: -9202054676734628973
+      "\uD589\uB3D9_\uB9C8\uC220\uC0AC_\uB9C8\uC220\uD658\uC601_0": 7864596690556727211
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
