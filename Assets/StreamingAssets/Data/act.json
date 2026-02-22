@@ -57,7 +57,6 @@
       "hideSprite": "장난감폐기01",
       "encounterPool": [
         "ACT1_INSPECTION_DUMP",
-        "ACT1_JUNKSHOP",
         "ACT1_ABANDONED_ROBOT"
       ],
       "encounterNum": 2,
@@ -243,7 +242,8 @@
         "ACT1_MISSING_ZIZI",
         "ACT1_DEVIL_DOLL",
         "ACT1_BAT_ATTACK",
-        "ACT1_VAMP_INVITATION"
+        "ACT1_VAMP_INVITATION",
+        "ACT1_GUEST_OR_GHOST"
       ],
       "encounterNum": 2,
       "difficulty": 9,
@@ -252,7 +252,7 @@
     {
       "id": "MAZE_GARDEN",
       "nameKO": "미로 정원",
-      "descriptionKO": "꽃으로 가득한 미로 정원. 길이 복잡해서 어린 아이에게는 탈출하기 어려울 수 있음",
+      "descriptionKO": "꽃으로 가득한 미로 정원. 길을 잃지 않도록 주의하세요.  ",
       "sprite": "미로정원01_C",
       "hideSprite": "미로정원01",
       "encounterPool": [
@@ -260,7 +260,8 @@
         "ACT1_WHERE_DOVE_FROM",
         "ACT1_FLOWER_ATTACK",
         "ACT1_ESCAPE_MAZE",
-        "ACT1_SHEEP_IN_MAZE"
+        "ACT1_SHEEP_IN_MAZE",
+        "ACT1_WATER_ON_FLOWER"
       ],
       "encounterNum": 3,
       "difficulty": 10,
@@ -269,7 +270,7 @@
     {
       "id": "ICECREAM_CART",
       "nameKO": "아이스크림 카트",
-      "descriptionKO": "당신의 지친 몸을 깨워줄 달달한 아이스크림 하나 어떠세요?",
+      "descriptionKO": "놀이공원에서 먹는 아이스크림. 지나칠 수 없는 조합이죠.",
       "sprite": "아이스크림카트01_C",
       "hideSprite": "아이스크림카트01",
       "encounterPool": [
@@ -650,7 +651,7 @@
     },
     {
       "id": "ACT1_SOUVENIR",
-      "nameKO": "기념품을 고르자",
+      "nameKO": "아이스크림을 고르자",
       "type": 4,
       "imagePath": "Best_Horse",
       "filePath": "Souvenir",
