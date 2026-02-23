@@ -486,7 +486,10 @@ public class TurnManager : MonoBehaviour
         }
         else
         {
-            value = BuffManager.Inst.GetBuffedPlayerShield(source, value);
+            if(source != EDamageSource.Card)
+            {
+                value = BuffManager.Inst.GetBuffedPlayerShield(source, value);
+            }
             shieldHealth += value;
             if (shieldHealth < 0) shieldHealth = 0;
             Utils.AllignActions(ref OnPlayerShielded, typeof(ShowBuff), typeof(RelicManager));

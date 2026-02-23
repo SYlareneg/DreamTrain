@@ -683,7 +683,11 @@ public class Card : MonoBehaviour
                 {
                     spinVal_teleport++;
                     int tempIdx = (RouletteManager.Inst.playerLookat + RouletteManager.rouletteNum + spinVal_teleport) % RouletteManager.rouletteNum;
-                    if (RouletteManager.Inst.roulettePieces[tempIdx].roulette.rtype == magicBox || RouletteManager.Inst.roulettePieces[tempIdx].roulette.rtype == magicBox2) break;
+                    if (RouletteManager.Inst.roulettePieces[tempIdx].roulette.rtype == magicBox || RouletteManager.Inst.roulettePieces[tempIdx].roulette.rtype == magicBox2)
+                    {
+                        TurnManager.Inst.GetShield(false, GetBuffedVal(item.cardValues[1], ECardValueType.Shield), EDamageSource.Card);
+                        break;
+                    }
                 }
                 RouletteManager.Inst.Spin(false, spinVal_teleport);
                 break;
@@ -707,6 +711,10 @@ public class Card : MonoBehaviour
                 if (checkMagic)
                 {
                     RouletteManager.Inst.Spin(true, GetBuffedVal(item.cardValues[1], ECardValueType.Special));
+                    DOTween.Sequence().AppendInterval(1f).AppendCallback(() => 
+                    {
+                        TurnManager.Inst.EnemyTakeDmg(GetBuffedVal(item.cardValues[2], ECardValueType.Damage), EDamageSource.Card, enemyIdx);
+                    });
                 }
                 break;
             case "폭발 마술":
