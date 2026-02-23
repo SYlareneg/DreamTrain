@@ -30,6 +30,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip UISelectSFX;
     public AudioClip coinGetSFX;
 
+    [Header("BGM Clips")]
+    [SerializeField] public AudioClip titleBGM;
     [SerializeField] AudioClip[] bgmClips;
     [SerializeField] public AudioClip magicianBGM;
     [SerializeField] public AudioClip magicianBattleBGM;

@@ -59,6 +59,7 @@ MonoBehaviour:
   specialRouletteSFX_Claw: {fileID: 8300000, guid: 832225ccd33b4384e88382447e0b5fc5, type: 3}
   UISelectSFX: {fileID: 8300000, guid: 320d5b89a728da145b1edac1349dbbe5, type: 3}
   coinGetSFX: {fileID: 8300000, guid: 86bec06fc807c1941a8b73764823aece, type: 3}
+  titleBGM: {fileID: 8300000, guid: 52bebb2b3c230154abd043c9875659f3, type: 3}
   bgmClips:
   - {fileID: 8300000, guid: 0686ab1895d9c6746accec762883cb69, type: 3}
   - {fileID: 8300000, guid: be81c28e5b9bd794283c628bef4006be, type: 3}

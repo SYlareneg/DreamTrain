@@ -124,6 +124,7 @@ public class StartCanvasController : MonoBehaviour
 
     IEnumerator Start()
     {
+        SoundManager.Inst.PlayBGM(SoundManager.Inst.titleBGM);
         yield return new WaitForEndOfFrame();
         selector.SetActive(true);
         selector.transform.position = newGameButton.transform.position;
