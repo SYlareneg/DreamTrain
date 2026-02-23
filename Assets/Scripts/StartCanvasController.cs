@@ -199,28 +199,29 @@ public class StartCanvasController : MonoBehaviour
     }
     public void OnOptionClicked()
     {
-        if(selector.transform.position == optionButton.transform.position)
-        {
-            Sequence buttonBlink = DOTween.Sequence();
-            buttonBlink.Append(optionButton.GetComponentInChildren<TMP_Text>().DOColor(new Color32(255, 255, 255, 0), 0.1f));
-            buttonBlink.Append(optionButton.GetComponentInChildren<TMP_Text>().DOColor(Color.white, 0.1f));
-            buttonBlink.SetLoops(2);
+        // if(selector.transform.position == optionButton.transform.position)
+        // {
+        //     Sequence buttonBlink = DOTween.Sequence();
+        //     buttonBlink.Append(optionButton.GetComponentInChildren<TMP_Text>().DOColor(new Color32(255, 255, 255, 0), 0.1f));
+        //     buttonBlink.Append(optionButton.GetComponentInChildren<TMP_Text>().DOColor(Color.white, 0.1f));
+        //     buttonBlink.SetLoops(2);
             
-            GetComponent<AudioSource>().PlayOneShot(enterSound);
-        }
-        else
-        {
-            SelectOption();
-        }
+        //     GetComponent<AudioSource>().PlayOneShot(enterSound);
+        // }
+        // else
+        // {
+        //     SelectOption();
+        // }
     }
     public void SelectOption()
     {
         selector.transform.DOMove(optionButton.transform.position, 0.2f);
         newGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
         loadGameButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
-        optionButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+        // optionButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+        optionButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
         exitButton.GetComponentInChildren<TMP_Text>().color = new Color32(100, 100, 100, 255);
-        GetComponent<AudioSource>().PlayOneShot(selectSound);
+        // GetComponent<AudioSource>().PlayOneShot(selectSound);
     }
     public void OnExitClicked()
     {

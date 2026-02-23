@@ -1,30 +1,16 @@
 {
     "maxHealth": 60,
     "curHealth": 60,
-    "dreamDust": 5,
+    "dreamDust": 0,
     "leftPassengers": 0,
-    "isTutorial": false,
-    "lastSceneName": "EncounterScene",
-    "personaPiece": "고양이의 꿈",
+    "isTutorial": true,
+    "lastSceneName": "RoomScene",
+    "personaPiece": "",
     "isPersonaEnhanced": false,
-    "personaCards": [
-        {
-            "cardName": "발톱 세우기",
-            "num": 1
-        }
-    ],
-    "shadowPiece": "고양이의 꿈",
+    "personaCards": [],
+    "shadowPiece": "",
     "isShadowEnhanced": false,
-    "shadowCards": [
-        {
-            "cardName": "실뭉치",
-            "num": 1
-        },
-        {
-            "cardName": "고양이걸음",
-            "num": 1
-        }
-    ],
+    "shadowCards": [],
     "normalCards": [
         {
             "cardName": "1칸 회전",
@@ -47,24 +33,13 @@
             "num": 1
         }
     ],
-    "relics": [
-        7,
-        6,
-        5,
-        4,
-        3
-    ],
-    "relicEnhancements": [
-        false,
-        false,
-        false,
-        false,
-        false
-    ],
+    "relics": [],
+    "relicEnhancements": [],
     "useableItems": [],
     "earnedKeys": [],
     "courage": 1,
     "wisdom": 1,
+<<<<<<< HEAD
     "luck": 3,
     "currentActNum": 1,
     "mapNodes": [
@@ -318,9 +293,19 @@
     "curNodeIndex": 11,
     "curNodeLocationID": "FERRIS_WHEEL",
     "lastEncounterType": 5,
+=======
+    "luck": 1,
+    "currentActNum": 0,
+    "mapNodes": [],
+    "totalLevel": 0,
+    "visitedNodeIDList": [],
+    "curNodeIndex": 0,
+    "curNodeLocationID": "",
+    "lastEncounterType": 0,
+>>>>>>> 95fcfb14c90d7a36eea01ab1cebf6b5fc311aaff
     "encounterQueue": [],
     "currentStepID": "",
-    "currentEncounterID": "ACT1_SOUVENIR",
-    "enemyName": "고장난 로봇",
+    "currentEncounterID": "",
+    "enemyName": "",
     "bossClear": false
 }

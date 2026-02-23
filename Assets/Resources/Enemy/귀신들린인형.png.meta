@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3a8ac068cf01ff34c8d5beaa9761acb5
+guid: f23801689fdc5d243992d87fc237ab86
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6671268082314554089
-    second: "6. \uC624\uBE0C\uC81C_\uBE44\uB458\uAE30 \uCF54\uC778_0"
+      213: 5720509268383174147
+    second: "\uADC0\uC2E0\uB4E4\uB9B0\uC778\uD615_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 150
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "6. \uC624\uBE0C\uC81C_\uBE44\uB458\uAE30 \uCF54\uC778_0"
+      name: "\uADC0\uC2E0\uB4E4\uB9B0\uC778\uD615_0"
       rect:
         serializedVersion: 2
-        x: 519
-        y: 383
-        width: 4016
-        height: 4061
+        x: 2951
+        y: 3404
+        width: 2099
+        height: 1096
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7155d386605ea63a0800000000000000
-      internalID: -6671268082314554089
+      spriteID: 30e0f4cfed4536f40800000000000000
+      internalID: 5720509268383174147
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 3de46e9b4ce91f046b09aae403bd193a
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "6. \uC624\uBE0C\uC81C_\uBE44\uB458\uAE30 \uCF54\uC778_0": -6671268082314554089
+      "\uADC0\uC2E0\uB4E4\uB9B0\uC778\uD615_0": 5720509268383174147
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

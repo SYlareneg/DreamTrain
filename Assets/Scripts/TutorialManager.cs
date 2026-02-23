@@ -295,7 +295,7 @@ public class TutorialManager : MonoBehaviour
                             var pointerSR = pointer.GetComponentsInChildren<SpriteRenderer>();
                             foreach(var sr in pointerSR)
                             {
-                                sr.sortingOrder = 310;
+                                sr.sortingOrder = 400;
                             }
                             pointer.SetActive(true);
 
@@ -373,7 +373,7 @@ public class TutorialManager : MonoBehaviour
                             var pointerSR = pointer.GetComponentsInChildren<SpriteRenderer>();
                             foreach(var sr in pointerSR)
                             {
-                                sr.sortingOrder = 310;
+                                sr.sortingOrder = 400;
                             }
                             pointer.SetActive(true);
 
@@ -583,7 +583,7 @@ public class TutorialManager : MonoBehaviour
         var pointerSR = pointer.GetComponentsInChildren<SpriteRenderer>();
         foreach(var sr in pointerSR)
         {
-            sr.sortingOrder = 310;
+            sr.sortingOrder = 400;
         }
         pointer.SetActive(false);
 
@@ -627,6 +627,7 @@ public class TutorialManager : MonoBehaviour
         else
         {
             next.Invoke();
+            nextTutorial = null;
         }
     }
 
@@ -640,7 +641,7 @@ public class TutorialManager : MonoBehaviour
         var pointerSR = pointer.GetComponentsInChildren<SpriteRenderer>();
         foreach(var sr in pointerSR)
         {
-            sr.sortingOrder = 310;
+            sr.sortingOrder = 400;
         }
         pointer.SetActive(false);
 
@@ -677,6 +678,7 @@ public class TutorialManager : MonoBehaviour
         else
         {
             next.Invoke();
+            nextTutorial = null;
         }
     }
 
@@ -693,7 +695,7 @@ public class TutorialManager : MonoBehaviour
         var pointerSR = pointer.GetComponentsInChildren<SpriteRenderer>();
         foreach(var sr in pointerSR)
         {
-            sr.sortingOrder = 310;
+            sr.sortingOrder = 400;
         }
         pointer.SetActive(false);
 
@@ -723,6 +725,7 @@ public class TutorialManager : MonoBehaviour
         else
         {
             next.Invoke();
+            nextTutorial = null;
         }
     }
     public void HideTutorialScreen()

@@ -183,31 +183,31 @@ public class GameManager : MonoBehaviour
     {
         if (TurnManager.Inst.isLoading == false)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                Utils.AllignActions(ref TurnManager.OnAddCard, typeof(ShowBuff), typeof(RelicManager));
-                TurnManager.OnAddCard?.Invoke();
-            }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                TurnManager.Inst.EndPlayerTurn();
-            }
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                RouletteManager.Inst.Spin(false, 1);
-            }
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                RouletteManager.Inst.Spin(true, 1);
-            }
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                RouletteManager.Inst.ActivateRoulette();
-            }
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                StartCoroutine(RouletteManager.Inst.TriggerRoulette());
-            }
+            // if (Input.GetKeyDown(KeyCode.Q))
+            // {
+            //     Utils.AllignActions(ref TurnManager.OnAddCard, typeof(ShowBuff), typeof(RelicManager));
+            //     TurnManager.OnAddCard?.Invoke();
+            // }
+            // if (Input.GetKeyDown(KeyCode.E))
+            // {
+            //     TurnManager.Inst.EndPlayerTurn();
+            // }
+            // if (Input.GetKeyDown(KeyCode.A))
+            // {
+            //     RouletteManager.Inst.Spin(false, 1);
+            // }
+            // if (Input.GetKeyDown(KeyCode.D))
+            // {
+            //     RouletteManager.Inst.Spin(true, 1);
+            // }
+            // if (Input.GetKeyDown(KeyCode.S))
+            // {
+            //     RouletteManager.Inst.ActivateRoulette();
+            // }
+            // if (Input.GetKeyDown(KeyCode.T))
+            // {
+            //     StartCoroutine(RouletteManager.Inst.TriggerRoulette());
+            // }
             // if (Input.GetKeyDown(KeyCode.L))
             // {
             //     Lever.Inst.ActivateLever();

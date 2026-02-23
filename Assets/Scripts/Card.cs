@@ -146,7 +146,7 @@ public class Card : MonoBehaviour
         }
         else if (buffedCost == this.item.cost)
         {
-            costTMP.color = new Color(60f/255f, 60f/255f, 80f/255f);
+            costTMP.color = new Color(0.9882f, 1f, 0.9176f, 1f);
             // cost.color = Color.white;
         }
         else
