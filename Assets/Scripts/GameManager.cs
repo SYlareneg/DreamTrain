@@ -106,6 +106,7 @@ public class GameManager : MonoBehaviour
         DOTween.SetTweensCapacity(500, 50);
         gameOverSignal = false;
         StartGame();
+        SoundManager.Inst.PlayBGM(DataManager.Inst.playerDataSO.currentActNum);
 
         playerDamageEffect.SetActive(false);
         TurnManager.OnPlayerDamaged += (damage, source) =>
