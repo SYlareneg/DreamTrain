@@ -142,8 +142,6 @@ public class EncounterMerchantUI : MonoBehaviour
         
         SetEnhanceCardList();
         cardEnhanceScreen.SetActive(true);
-        characterSO.dreamDust -= 2;
-        menuControll.RefreshUI();
         if(relicEnhanceScreen) relicEnhanceScreen.SetActive(false);
     }
 
@@ -245,6 +243,8 @@ public class EncounterMerchantUI : MonoBehaviour
 
         AddCardToInventory(afterEnhance_C.item);
 
+        characterSO.dreamDust -= 2;
+        menuControll.RefreshUI();
         Destroy(currentSelectedCard.gameObject);
         cardEnhanceConfirmScreen.SetActive(false);
         cardEnhanceScreen.SetActive(false);
@@ -257,9 +257,6 @@ public class EncounterMerchantUI : MonoBehaviour
         
         SetEnhanceRelicList();
         relicEnhanceScreen.SetActive(true);
-        
-        characterSO.dreamDust -= 2;
-        menuControll.RefreshUI();
 
         if(cardEnhanceScreen) cardEnhanceScreen.SetActive(false);
     }
@@ -337,6 +334,9 @@ public void EnhanceRelicSelect(EnhanceObjet clickedRelicUI)
             rItem.relicVal = new List<int>(rItem.enhancedRelicItem.relicVal);
         }
         rItem.isEnhanced = true; 
+        
+        characterSO.dreamDust -= 2;
+        menuControll.RefreshUI();
         selectedEnhance.SetActive(false);
         relicEnhanceScreen.SetActive(false);
         menuControll.RefreshUI();

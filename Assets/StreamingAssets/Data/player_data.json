@@ -85,9 +85,7 @@
         },
         {
             "locationID": "AMUSEMENT_PARK_ENTRANCE",
-            "selectedEncounterPool": [
-                "ACT1_WHITE_RABBIT"
-            ],
+            "selectedEncounterPool": [],
             "ID": "4283bd6a10b34a9d8b910d33e2543458",
             "level": 1,
             "pos": 0,
@@ -181,7 +179,9 @@
         },
         {
             "locationID": "VIKING",
-            "selectedEncounterPool": [],
+            "selectedEncounterPool": [
+                "ACT1_HURRAY_AT_VIKING"
+            ],
             "ID": "a9ef52878d2d475ca70fad50be4a59e5",
             "level": 5,
             "pos": 0,
@@ -241,7 +241,9 @@
         },
         {
             "locationID": "FERRIS_WHEEL",
-            "selectedEncounterPool": [],
+            "selectedEncounterPool": [
+                "ACT1_STOP_FERRIS_WHEEL"
+            ],
             "ID": "5cd19f0e4f264557962334ca698781c2",
             "level": 6,
             "pos": 0,
@@ -309,10 +311,11 @@
         "3dd4d3b3a4f54d088f3a3479d6dc13c6",
         "d20892553b2242c4bf3bfd9d7fe29c56",
         "789896c8f7c640acb9c20d1d5581c33d",
-        "a3872f85cadd427ea0b61a4a252ccbcb"
+        "a3872f85cadd427ea0b61a4a252ccbcb",
+        "a9ef52878d2d475ca70fad50be4a59e5"
     ],
-    "curNodeIndex": 1,
-    "curNodeLocationID": "AMUSEMENT_PARK_ENTRANCE",
+    "curNodeIndex": 7,
+    "curNodeLocationID": "VIKING",
     "lastEncounterType": 5,
     "encounterQueue": [],
     "currentStepID": "",
