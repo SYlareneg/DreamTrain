@@ -8,7 +8,7 @@
       "phase": [
         {
           "name": "잊어버린 표정",
-          "sprite": "Not Drawn Yet",
+          "sprite": "고장난로봇",
           "text": "앨리스가 몽상 타입 카드를 사용하면 트리거를 1 얻습니다.",
           "patterns": [
             {
@@ -56,7 +56,7 @@
       "triggerPhase": [
         {
           "name": "고장난 로봇: 트리거",
-          "sprite": "Not Drawn Yet",
+          "sprite": "고장난로봇",
           "text": "고장난 로봇이 트리거 상태입니다. 턴 종료시 트리거가 해제됩니다.",
           "patterns": [
             {
@@ -2319,7 +2319,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Not Drawn Yet",
+          "sprite": "비둘기",
           "scalingFactor": 1.5
         }
       ],
@@ -2341,7 +2341,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Not Drawn Yet",
+          "sprite": "비둘기",
           "scalingFactor": 1.5
         }
       ],
@@ -3439,7 +3439,7 @@
       ],
       "enemySpecialActions": [
         {
-          "sprite": "행동_특수_뱀파이어, 박쥐_흡혈",
+          "sprite": "행동_버프부여",
           "title": "버프 부여: 빙그르!",
           "text": "빙그르! 버프를 5 얻습니다."
         },
@@ -3991,7 +3991,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Not Drawn Yet",
+          "sprite": "식인꽃",
           "scalingFactor": 2
         }
       ],
@@ -4029,7 +4029,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Not Drawn Yet",
+          "sprite": "식인꽃",
           "scalingFactor": 2
         }
       ],
@@ -4247,7 +4247,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Not Drawn Yet",
+          "sprite": "무서운고양이",
           "scalingFactor": 1.5
         }
       ],
@@ -4269,7 +4269,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Not Drawn Yet",
+          "sprite": "무서운고양이",
           "scalingFactor": 1.5
         }
       ],
