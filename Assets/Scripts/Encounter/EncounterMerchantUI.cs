@@ -138,8 +138,12 @@ public class EncounterMerchantUI : MonoBehaviour
     
     public void OpenEnhanceCardScreen()
     {
+        if (characterSO.dreamDust < 2) return;
+        
         SetEnhanceCardList();
         cardEnhanceScreen.SetActive(true);
+        characterSO.dreamDust -= 2;
+        menuControll.RefreshUI();
         if(relicEnhanceScreen) relicEnhanceScreen.SetActive(false);
     }
 
@@ -249,8 +253,14 @@ public class EncounterMerchantUI : MonoBehaviour
 
     public void OpenEnhanceRelicScreen()
     {
+        if (characterSO.dreamDust < 2) return;
+        
         SetEnhanceRelicList();
         relicEnhanceScreen.SetActive(true);
+        
+        characterSO.dreamDust -= 2;
+        menuControll.RefreshUI();
+
         if(cardEnhanceScreen) cardEnhanceScreen.SetActive(false);
     }
 
