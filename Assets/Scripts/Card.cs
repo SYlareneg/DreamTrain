@@ -683,7 +683,11 @@ public class Card : MonoBehaviour
                 {
                     spinVal_teleport++;
                     int tempIdx = (RouletteManager.Inst.playerLookat + RouletteManager.rouletteNum + spinVal_teleport) % RouletteManager.rouletteNum;
-                    if (RouletteManager.Inst.roulettePieces[tempIdx].roulette.rtype == magicBox || RouletteManager.Inst.roulettePieces[tempIdx].roulette.rtype == magicBox2) break;
+                    if (RouletteManager.Inst.roulettePieces[tempIdx].roulette.rtype == magicBox || RouletteManager.Inst.roulettePieces[tempIdx].roulette.rtype == magicBox2)
+                    {
+                        TurnManager.Inst.GetShield(false, GetBuffedVal(item.cardValues[1], ECardValueType.Shield), EDamageSource.Card);
+                        break;
+                    }
                 }
                 RouletteManager.Inst.Spin(false, spinVal_teleport);
                 break;
@@ -707,6 +711,10 @@ public class Card : MonoBehaviour
                 if (checkMagic)
                 {
                     RouletteManager.Inst.Spin(true, GetBuffedVal(item.cardValues[1], ECardValueType.Special));
+                    DOTween.Sequence().AppendInterval(1f).AppendCallback(() => 
+                    {
+                        TurnManager.Inst.EnemyTakeDmg(GetBuffedVal(item.cardValues[2], ECardValueType.Damage), EDamageSource.Card, enemyIdx);
+                    });
                 }
                 break;
             case "폭발 마술":
@@ -869,7 +877,7 @@ public class Card : MonoBehaviour
                 break;
             case "현혹":
             case "현혹+":
-                BuffManager.Inst.AddShowBuff("현혹", EBuffAffectType.Player, GetBuffedVal(item.cardValues[0], ECardValueType.Special), true, new List<int>(1){GetBuffedVal(item.cardValues[1], ECardValueType.Special)}, enemyIdx);
+                BuffManager.Inst.AddShowBuff("현혹", EBuffAffectType.Player, GetBuffedVal(item.cardValues[0], ECardValueType.Special), false, new List<int>(1){GetBuffedVal(item.cardValues[1], ECardValueType.Special)}, enemyIdx);
                 break;
             case "그랜드 피날레":
             case "그랜드 피날레+":

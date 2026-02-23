@@ -1429,7 +1429,7 @@ MonoBehaviour:
   normalItemListSO: {fileID: 11400000, guid: 839e0b6ae25343344aea4d6b6cc55c32, type: 2}
   dreamPieceListSO: {fileID: 11400000, guid: fa145bd86cf8d8a47b1d9e3683cef771, type: 2}
   rewardCardWeights:
-  - 20
+  - 10
   - 60
   - 20
   enhanceProbability: 0
@@ -14355,7 +14355,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: c703749faab106a47b0590db3f0a47cf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -15625,7 +15625,7 @@ SpriteRenderer:
   m_Size: {x: 140, y: 190}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &1249306015
@@ -20497,8 +20497,8 @@ Transform:
   m_GameObject: {fileID: 1552146881}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 13, z: -20}
-  m_LocalScale: {x: 33, y: 33, z: 1}
+  m_LocalPosition: {x: 0, y: 10, z: -20}
+  m_LocalScale: {x: 36, y: 37, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1654673576}
@@ -20554,12 +20554,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -3
-  m_Sprite: {fileID: 21300000, guid: 55b915b288e3f2e4f8727cc4e9a76240, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8bb61ba8f28cea04a8461c0132099d00, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 50, y: 50}
+  m_Size: {x: 13.993334, y: 7.306667}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -20602,9 +20602,9 @@ BoxCollider2D:
   m_Offset: {x: -0.10352278, y: 3.676937}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 9.906667, y: 11.886666}
-    newSize: {x: 50, y: 50}
+    pivot: {x: 0.5, y: 0.4}
+    oldSize: {x: 7.43, y: 8.915}
+    newSize: {x: 13.993334, y: 7.306667}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -21603,7 +21603,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.6, y: 1.86, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1949001124}
@@ -26998,7 +26998,7 @@ SpriteRenderer:
   m_Size: {x: 140, y: 190}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!4 &3475061587685289648

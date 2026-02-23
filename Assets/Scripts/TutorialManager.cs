@@ -390,7 +390,7 @@ public class TutorialManager : MonoBehaviour
                             tutorialScreen.SetActive(true);
                             tutorialText.text = "이번에는 내가 힘을 조금 보태줄게. 아무 카드나 한 장 사용해봐.";
 
-                            TurnManager.Inst.playerTriggerCnt = 9;
+                            TurnManager.Inst.playerTriggerCnt = TurnManager.Inst.playerTriggerMaxCnt - 1;
                             SetNextTutorial_Card(CardManager.Inst.myCards[CardManager.Inst.myCards.Count - 1].item.name, false);
                             Action onRouletteTrigger = null;
                             onRouletteTrigger = () =>

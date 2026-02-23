@@ -210,7 +210,7 @@
       "type": 0,
       "dreamPieceNum": 1,
       "sprite": "토끼마술01",
-      "text": "룰렛을 시계방향으로 4<특수>칸 회전시킵니다.\\n초급 마술: 2<특수>칸 더 회전시킵니다.",
+      "text": "룰렛을 시계방향으로 4<특수>칸 회전시킵니다.\\n초급 마술: 2<특수>칸 더 회전시키고 적에게 4<피해>피해를 줍니다.",
       "isVolatile": false,
       "isVanish": false,
       "isRemain": false,
@@ -218,26 +218,30 @@
       "rarity": 0,
       "cardValues": [
         4,
-        2
+        2,
+        4
       ],
       "cardValueTypes": [
         3,
-        3
+        3,
+        0
       ],
       "name_enhanced": "토끼 마술+",
       "cost_enhanced": 1,
-      "text_enhanced": "룰렛을 시계방향으로 4<특수>칸 회전시킵니다.\\n초급 마술: 2<특수>칸 더 회전시킵니다.\\n잔류.",
+      "text_enhanced": "룰렛을 시계방향으로 4<특수>칸 회전시킵니다.\\n초급 마술: 2<특수>칸 더 회전시키고 적에게 4<피해>피해를 줍니다.\\n잔류.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": true,
       "isSingleTarget_enhanced": false,
       "cardValues_enhanced": [
         4,
-        2
+        2,
+        4
       ],
       "cardValueTypes_enhanced": [
         3,
-        3
+        3,
+        0
       ]
     },
     {
@@ -902,30 +906,34 @@
       "type": 0,
       "dreamPieceNum": 1,
       "sprite": "순간이동마술01",
-      "text": "룰렛을 반시계 방향으로 6<특수>칸 회전시킵니다. 마술 상자를 만나면 회전을 중단합니다. ",
+      "text": "룰렛을 반시계 방향으로 6<특수>칸 회전시킵니다. 마술 상자를 만나면 회전을 중단하고, 방어도를 5<수비> 얻습니다.",
       "isVolatile": false,
       "isVanish": false,
       "isRemain": false,
       "isSingleTarget": false,
       "rarity": 0,
       "cardValues": [
-        6
+        6,
+        5
       ],
       "cardValueTypes": [
-        3
+        3,
+        2
       ],
       "name_enhanced": "순간이동 마술+",
       "cost_enhanced": 1,
-      "text_enhanced": "룰렛을 반시계 방향으로 6<특수>칸 회전시킵니다. 마술 상자를 만나면 회전을 중단합니다. 잔류.",
+      "text_enhanced": "룰렛을 반시계 방향으로 6<특수>칸 회전시킵니다. 마술 상자를 만나면 회전을 중단하고, 방어도를 5<수비> 얻습니다. 잔류.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": true,
       "isSingleTarget_enhanced": false,
       "cardValues_enhanced": [
-        6
+        6,
+        5
       ],
       "cardValueTypes_enhanced": [
-        3
+        3,
+        2
       ]
     },
     {

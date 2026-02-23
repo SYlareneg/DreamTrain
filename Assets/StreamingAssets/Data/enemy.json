@@ -226,7 +226,7 @@
       "phase": [
         {
           "name": "새치기 금지",
-          "sprite": "Not Drawn Yet",
+          "sprite": "해골손님",
           "text": "룰렛이 반시계 방향으로 회전할 때마다 트리거를 1 얻습니다.",
           "patterns": [
             {
@@ -270,22 +270,6 @@
                   "isTrigger": false
                 },
                 {
-                  "type": 2,
-                  "typeNum": 0,
-                  "val": 4,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 0,
-                  "typeNum": 0,
-                  "val": 1,
-                  "isTrigger": false
-                },
-                {
                   "type": 6,
                   "typeNum": 0,
                   "val": 1,
@@ -302,7 +286,7 @@
       "triggerPhase": [
         {
           "name": "해골 손님: 트리거",
-          "sprite": "Not Drawn Yet",
+          "sprite": "해골손님",
           "text": "해골 손님이 트리거 상태입니다. 턴 종료시 트리거가 해제됩니다.",
           "patterns": [
             {
@@ -472,7 +456,7 @@
       "phase": [
         {
           "name": "표정 금지",
-          "sprite": "Not Drawn Yet",
+          "sprite": "직원로봇",
           "text": "앨리스가 몽상 타입 카드를 사용하면 트리거를 1 얻습니다.",
           "patterns": [
             {
@@ -526,7 +510,7 @@
       "triggerPhase": [
         {
           "name": "직원 로봇: 트리거",
-          "sprite": "Not Drawn Yet",
+          "sprite": "직원로봇",
           "text": "직원 로봇이 트리거 상태입니다. 턴 종료시 트리거가 해제됩니다.",
           "patterns": [
             {
@@ -696,7 +680,7 @@
       "phase": [
         {
           "name": "경주 시작!",
-          "sprite": "Not Drawn Yet",
+          "sprite": "거대한도도",
           "text": "매 턴마다 트리거를 1 얻습니다. 트리거를 전부 쌓으면 경주가 종료됩니다.",
           "patterns": [
             {
@@ -718,7 +702,7 @@
       "triggerPhase": [
         {
           "name": "거대한 도도: 트리거",
-          "sprite": "Not Drawn Yet",
+          "sprite": "거대한도도",
           "text": "거대한 도도가 트리거 상태입니다. 턴 종료시 트리거가 해제됩니다.",
           "patterns": [
             {
@@ -2079,7 +2063,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Not Drawn Yet",
+          "sprite": "박쥐",
           "scalingFactor": 1.5
         }
       ],
@@ -2139,7 +2123,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Not Drawn Yet",
+          "sprite": "박쥐",
           "scalingFactor": 1.5
         }
       ],
@@ -2705,9 +2689,9 @@
       ],
       "enemySpecialActions": [
         {
-          "sprite": "행동_공격 부여",
-          "title": "공격 부여",
-          "text": "무작위 빈 룰렛 칸에 '공격' 룰렛을 부여합니다. 빈 칸이 없을 경우 무작위 칸에 부여합니다."
+          "sprite": "행동_버프부여",
+          "title": "환영 부여",
+          "text": "환영 버프를 값 얻습니다."
         },
         {
           "sprite": "",
@@ -2767,7 +2751,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Not Drawn Yet",
+          "sprite": "마술사",
           "scalingFactor": 1.5
         },
         {
@@ -2841,7 +2825,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "Not Drawn Yet",
+          "sprite": "마술사",
           "scalingFactor": 1.5
         }
       ],
@@ -2873,7 +2857,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "Not Drawn Yet",
+          "sprite": "마술사",
           "scalingFactor": 1.5
         }
       ],
@@ -3309,14 +3293,14 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "컵트리오 메인",
+          "sprite": "컵",
           "scalingFactor": 1.5
         }
       ],
       "triggerPhase": [
         {
           "name": "회전 컵: 트리거",
-          "sprite": "컵트리오 메인",
+          "sprite": "컵",
           "text": "회전 컵이 트리거 상태입니다. 턴 종료 시 트리거가 해제됩니다.",
           "patterns": [
             {
@@ -3527,7 +3511,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "흰 토끼",
+          "sprite": "토끼",
           "scalingFactor": 1.5
         }
       ],
@@ -3555,7 +3539,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "흰 토끼",
+          "sprite": "토끼",
           "scalingFactor": 1.5
         }
       ],
