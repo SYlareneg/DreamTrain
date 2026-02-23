@@ -874,6 +874,22 @@ public class EnemyManager : MonoBehaviour
                         rouletteEffectCnt_brokenRobot = tempCnt;
                     }
                 };
+                TurnManager.OnRouletteErase += (index) =>
+                {
+                    int tempCnt = 0;
+                    for(int i = 0; i < RouletteManager.rouletteNum; i++)
+                    {
+                        if(RouletteManager.Inst.roulettePieces[i].roulette.rtype.type != ERouletteType.None)
+                        {
+                            tempCnt++;
+                        }
+                    }
+                    if(tempCnt != rouletteEffectCnt_brokenRobot)
+                    {
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 1], (tempCnt - rouletteEffectCnt_brokenRobot) * 3, 1, 1);
+                        rouletteEffectCnt_brokenRobot = tempCnt;
+                    }
+                };
                 TurnManager.OnPlayerTurnStart += () =>
                 {
                     if(isTriggerActivated)
