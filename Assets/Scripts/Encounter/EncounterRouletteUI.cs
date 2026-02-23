@@ -40,14 +40,13 @@ public class EncounterRouletteUI : MonoBehaviour
 
     private void Awake()
     {
-        // [수정됨] AudioSource 컴포넌트 초기화
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
         audioSource.playOnAwake = false;
-        audioSource.loop = false; // [변경] 반복 재생 끔 (한 번만 재생)
+        audioSource.loop = false;
     }
 
     private void Start()
@@ -204,7 +203,7 @@ public class EncounterRouletteUI : MonoBehaviour
         RouletteResultType result = currentSegments[targetIndex];
         
         yield return new WaitForSeconds(0.5f);
-        
+        probabilityText.text = "";
         switch (result){
             case (RouletteResultType.Success): 
                 resultText.text = "<color=#FFFFFF>성 공 !</color>";
