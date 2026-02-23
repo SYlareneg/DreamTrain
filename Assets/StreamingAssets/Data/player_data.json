@@ -1,16 +1,30 @@
 {
     "maxHealth": 60,
     "curHealth": 60,
-    "dreamDust": 0,
+    "dreamDust": 5,
     "leftPassengers": 0,
-    "isTutorial": true,
-    "lastSceneName": "RoomScene",
-    "personaPiece": "",
+    "isTutorial": false,
+    "lastSceneName": "EncounterScene",
+    "personaPiece": "고양이의 꿈",
     "isPersonaEnhanced": false,
-    "personaCards": [],
-    "shadowPiece": "",
+    "personaCards": [
+        {
+            "cardName": "발톱 세우기",
+            "num": 1
+        }
+    ],
+    "shadowPiece": "고양이의 꿈",
     "isShadowEnhanced": false,
-    "shadowCards": [],
+    "shadowCards": [
+        {
+            "cardName": "실뭉치",
+            "num": 1
+        },
+        {
+            "cardName": "고양이걸음",
+            "num": 1
+        }
+    ],
     "normalCards": [
         {
             "cardName": "1칸 회전",
@@ -33,13 +47,24 @@
             "num": 1
         }
     ],
-    "relics": [],
-    "relicEnhancements": [],
+    "relics": [
+        7,
+        6,
+        5,
+        4,
+        3
+    ],
+    "relicEnhancements": [
+        false,
+        false,
+        false,
+        false,
+        false
+    ],
     "useableItems": [],
     "earnedKeys": [],
     "courage": 1,
     "wisdom": 1,
-<<<<<<< HEAD
     "luck": 3,
     "currentActNum": 1,
     "mapNodes": [
@@ -76,7 +101,9 @@
         },
         {
             "locationID": "MERRY_GO_ROUND",
-            "selectedEncounterPool": [],
+            "selectedEncounterPool": [
+                "ACT1_FASTEST_HORSE"
+            ],
             "ID": "893d7044d9d24c49b9158d04f3a2cc64",
             "level": 2,
             "pos": 0,
@@ -154,9 +181,7 @@
         },
         {
             "locationID": "VIKING",
-            "selectedEncounterPool": [
-                "ACT1_WAITING_LINE_VIKING"
-            ],
+            "selectedEncounterPool": [],
             "ID": "a9ef52878d2d475ca70fad50be4a59e5",
             "level": 5,
             "pos": 0,
@@ -216,9 +241,7 @@
         },
         {
             "locationID": "FERRIS_WHEEL",
-            "selectedEncounterPool": [
-                "ACT1_STOP_FERRIS_WHEEL"
-            ],
+            "selectedEncounterPool": [],
             "ID": "5cd19f0e4f264557962334ca698781c2",
             "level": 6,
             "pos": 0,
@@ -277,35 +300,14 @@
     ],
     "totalLevel": 9,
     "visitedNodeIDList": [
-        "16fbcc06ac244327a5f4ad9d237133df",
-        "4283bd6a10b34a9d8b910d33e2543458",
-        "893d7044d9d24c49b9158d04f3a2cc64",
-        "789896c8f7c640acb9c20d1d5581c33d",
-        "a9ef52878d2d475ca70fad50be4a59e5",
-        "5cd19f0e4f264557962334ca698781c2",
-        "3dd4d3b3a4f54d088f3a3479d6dc13c6",
-        "d20892553b2242c4bf3bfd9d7fe29c56",
-        "789896c8f7c640acb9c20d1d5581c33d",
-        "a3872f85cadd427ea0b61a4a252ccbcb",
-        "a9ef52878d2d475ca70fad50be4a59e5",
-        "5cd19f0e4f264557962334ca698781c2"
+        "893d7044d9d24c49b9158d04f3a2cc64"
     ],
-    "curNodeIndex": 11,
-    "curNodeLocationID": "FERRIS_WHEEL",
+    "curNodeIndex": 2,
+    "curNodeLocationID": "MERRY_GO_ROUND",
     "lastEncounterType": 5,
-=======
-    "luck": 1,
-    "currentActNum": 0,
-    "mapNodes": [],
-    "totalLevel": 0,
-    "visitedNodeIDList": [],
-    "curNodeIndex": 0,
-    "curNodeLocationID": "",
-    "lastEncounterType": 0,
->>>>>>> 95fcfb14c90d7a36eea01ab1cebf6b5fc311aaff
     "encounterQueue": [],
     "currentStepID": "",
-    "currentEncounterID": "",
-    "enemyName": "",
+    "currentEncounterID": "ACT1_FASTEST_HORSE",
+    "enemyName": "마술사",
     "bossClear": false
 }

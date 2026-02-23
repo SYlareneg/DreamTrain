@@ -493,7 +493,7 @@
       "id": "ACT1_FASTEST_HORSE",
       "nameKO": "가장 빠른 말",
       "type": 0,
-      "imagePath": "Lazy_Horse",
+      "imagePath": "Horse",
       "filePath": "Fastest_Horse",
       "order": 0,
       "isEssential": false
@@ -502,7 +502,7 @@
       "id": "ACT1_LAZY_HORSE",
       "nameKO": "게으른 말",
       "type": 0,
-      "imagePath": "Lazy_Horse",
+      "imagePath": "Horse",
       "filePath": "Lazy_Horse",
       "order": 1,
       "isEssential": true
