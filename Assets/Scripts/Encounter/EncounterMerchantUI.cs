@@ -216,6 +216,7 @@ public class EncounterMerchantUI : MonoBehaviour
         afterEnhance_C.Setup(eItem.enhancedItem);
         
         cardEnhanceConfirmScreen.SetActive(true);
+        cardEnhanceScreen.transform.Find("ExitButton").GetComponent<Button>().interactable = false;
     }
 
     public void EnhanceCardConfirm()
