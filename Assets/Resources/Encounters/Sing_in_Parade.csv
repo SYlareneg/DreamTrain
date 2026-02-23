@@ -28,12 +28,12 @@ P2_F,DESC,"당신은 무슨 노래인지도 모르지만 일단 노래를 부르
 
 결국 잔뜩 찌푸린 얼굴을 한 새가 내려와 당신을 쪼기 시작합니다. 아얏! 이대로 계속 당하고 있을 수만은 없겠죠?
 ",,LoseHP(5),
-P2_F,BRANCH,맞서 싸운다.,P_AFTER_BATTLE,StartBattle(HarshBird),
+P2_F,BRANCH,맞서 싸운다. (전투),P_AFTER_BATTLE,StartBattle(HarshBird),
 P_NOTSING,DESC,"당신은 입을 다물기로 합니다. 그야 무슨 노래인지 모르는걸요.
 
 하지만 굳게 닫힌 당신의 입을 마음에 들어하지 않은 새 한 마리가 내려와 당신을 노려보기 시작합니다. 아무래도 평화롭게 흘러가지는 않을 것 같군요.
 ",,,
-P_NOTSING,BRANCH,맞서 싸운다. (전투),P_AFTER_BATTLE,,
+P_NOTSING,BRANCH,맞서 싸운다. (전투),P_AFTER_BATTLE,StartBattle(HarshBird),
 P_AFTER_BATTLE,DESC,"당신에게 흠씬 혼이 난 새는 시끄럽게 울어대며 도망칩니다. 하지만 여전히 주위에서는 당신을 의심의 눈초리로 바라보고 있군요. 
 
 ""너무 시선이 끌리면 좋지 않아.""
