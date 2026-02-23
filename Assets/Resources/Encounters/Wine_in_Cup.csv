@@ -15,7 +15,7 @@ P1,DESC,"당신은 빙글빙글 도는 찻잔들에 앉아 잠깐 쉬었다가�
 ",,,
 P1,BRANCH,"와인잔을 혼내준다.     (전투)
 ",P_AFTER_BATTLE,StartBattle(Wine),DEFAULT
-P1,BRANCH,거절한다.,P_REJECTION,GetObjet(와인의 눈물),
+P1,BRANCH,거절한다.,P_REJECTION,,
 P_AFTER_BATTLE,DESC,"""그만, 내가 잘못했어! 앞으로는 조용히 와인으로 살아갈테니 그만 해…""
 당신 앞에 의기소침해진 와인잔을 둘러싸고 찻잔들이 조소합니다.
 
@@ -41,6 +41,6 @@ P_AFTER_REJECTION,DESC,"당신은 찻잔들을 멋지게 제압했습니다.
 당신은 와인잔의 선물을 줍고 자리르 떠납니다. 
 
 
-",,,
+",,GetObjet(와인의 눈물),
 P_AFTER_REJECTION,BRANCH,"떠난다
-",END,GetObjet(와인의 눈물),DEFAULT
+",END,,DEFAULT
