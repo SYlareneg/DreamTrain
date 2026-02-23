@@ -85,7 +85,9 @@
         },
         {
             "locationID": "AMUSEMENT_PARK_ENTRANCE",
-            "selectedEncounterPool": [],
+            "selectedEncounterPool": [
+                "ACT1_WHITE_RABBIT"
+            ],
             "ID": "4283bd6a10b34a9d8b910d33e2543458",
             "level": 1,
             "pos": 0,
@@ -132,10 +134,7 @@
         },
         {
             "locationID": "GHOST_HOUSE",
-            "selectedEncounterPool": [
-                "ACT1_GUEST_OR_GHOST",
-                "ACT1_DEVIL_DOLL"
-            ],
+            "selectedEncounterPool": [],
             "ID": "d20892553b2242c4bf3bfd9d7fe29c56",
             "level": 3,
             "pos": 2,
@@ -165,9 +164,7 @@
         },
         {
             "locationID": "ICECREAM_CART",
-            "selectedEncounterPool": [
-                "ACT1_SOUVENIR"
-            ],
+            "selectedEncounterPool": [],
             "ID": "789896c8f7c640acb9c20d1d5581c33d",
             "level": 4,
             "pos": 0,
@@ -184,9 +181,7 @@
         },
         {
             "locationID": "VIKING",
-            "selectedEncounterPool": [
-                "ACT1_HURRAY_AT_VIKING"
-            ],
+            "selectedEncounterPool": [],
             "ID": "a9ef52878d2d475ca70fad50be4a59e5",
             "level": 5,
             "pos": 0,
@@ -313,14 +308,15 @@
         "5cd19f0e4f264557962334ca698781c2",
         "3dd4d3b3a4f54d088f3a3479d6dc13c6",
         "d20892553b2242c4bf3bfd9d7fe29c56",
-        "789896c8f7c640acb9c20d1d5581c33d"
+        "789896c8f7c640acb9c20d1d5581c33d",
+        "a3872f85cadd427ea0b61a4a252ccbcb"
     ],
-    "curNodeIndex": 6,
-    "curNodeLocationID": "ICECREAM_CART",
+    "curNodeIndex": 1,
+    "curNodeLocationID": "AMUSEMENT_PARK_ENTRANCE",
     "lastEncounterType": 5,
     "encounterQueue": [],
     "currentStepID": "",
-    "currentEncounterID": "",
+    "currentEncounterID": "ACT1_SOUVENIR",
     "enemyName": "고장난 로봇",
     "bossClear": false
 }
