@@ -1,10 +1,28 @@
 fileFormatVersion: 2
-guid: 8f7fe5a2f2e941e4dae668e2941dc581
+guid: ff6bc2bd438ccbd41820e7c3e981e675
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6096357606063146938
-    second: "\uC801_\uC6B0\uB294\uC640\uC778_0"
+      213: -4534676312097967601
+    second: "\uCEF5_0"
+  - first:
+      213: -1845546786155127873
+    second: "\uCEF5_1"
+  - first:
+      213: 7823008693782356556
+    second: "\uCEF5_2"
+  - first:
+      213: -2405586210113424597
+    second: "\uCEF5_3"
+  - first:
+      213: 6868398609640971134
+    second: "\uCEF5_4"
+  - first:
+      213: -7119902511205261480
+    second: "\uCEF5_5"
+  - first:
+      213: -5217484204651481886
+    second: "\uCEF5_6"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +64,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
@@ -100,23 +118,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uC801_\uC6B0\uB294\uC640\uC778_0"
+      name: "\uCEF5_6"
       rect:
         serializedVersion: 2
-        x: 1781
-        y: 242
-        width: 1395
-        height: 3317
+        x: 2951
+        y: 3404
+        width: 2099
+        height: 1096
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 648fad2ae03656ba0800000000000000
-      internalID: -6096357606063146938
+      spriteID: 2e4798062c5c797b0800000000000000
+      internalID: -5217484204651481886
       vertices: []
       indices: 
       edges: []
@@ -125,7 +143,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: f39634d26442a764a94f5387aa12dd80
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +153,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\uC801_\uC6B0\uB294\uC640\uC778_0": -6096357606063146938
+      "\uCEF5_0": -4534676312097967601
+      "\uCEF5_1": -1845546786155127873
+      "\uCEF5_2": 7823008693782356556
+      "\uCEF5_3": -2405586210113424597
+      "\uCEF5_4": 6868398609640971134
+      "\uCEF5_5": -7119902511205261480
+      "\uCEF5_6": -5217484204651481886
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

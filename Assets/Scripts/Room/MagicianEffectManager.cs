@@ -90,7 +90,7 @@ public class MagicianEffectManager : MonoBehaviour
         effectSequence.Append(mainCamera.transform.DOMove(mainCameraEffectPosition, 2f).SetEase(Ease.InOutSine).OnComplete(() =>
         {
             spotLight.SetActive(true);
-            spotLight.GetComponent<AudioSource>().PlayOneShot(spotLight.GetComponent<AudioSource>().clip);
+            if(spotLight.GetComponent<AudioSource>().isPlaying == false) spotLight.GetComponent<AudioSource>().PlayOneShot(spotLight.GetComponent<AudioSource>().clip);
             SoundManager.Inst.PlayBGM(SoundManager.Inst.magicianBGM);
         }))
         .AppendInterval(1f).OnComplete(() =>

@@ -869,7 +869,7 @@ public class Card : MonoBehaviour
                 break;
             case "현혹":
             case "현혹+":
-                BuffManager.Inst.AddShowBuff("현혹", EBuffAffectType.Player, GetBuffedVal(item.cardValues[0], ECardValueType.Special), true, new List<int>(1){GetBuffedVal(item.cardValues[1], ECardValueType.Special)}, enemyIdx);
+                BuffManager.Inst.AddShowBuff("현혹", EBuffAffectType.Player, GetBuffedVal(item.cardValues[0], ECardValueType.Special), false, new List<int>(1){GetBuffedVal(item.cardValues[1], ECardValueType.Special)}, enemyIdx);
                 break;
             case "그랜드 피날레":
             case "그랜드 피날레+":
