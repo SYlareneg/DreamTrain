@@ -507,15 +507,18 @@ public class EnemyManager : MonoBehaviour
                 {
                     RouletteManager.Inst.EnchantRoulettePiece(RouletteManager.Inst.enemyLookat, new RouletteType(ERouletteType.Enemy_Special, 0, 0), value);
                 };
+                bool isDamaged = false;
                 TurnManager.OnEnemyDamaged += (damage, source, enemyIdx) =>
                 {
                     if(enemyIdx != 0) return;
+                    if(isDamaged) return;
                     bool hasDoll = false;
                     for(int i = 0; i < RouletteManager.rouletteNum; i++)
                     {
                         if(RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special, 0, 0))
                         {
                             if(!hasDoll) TurnManager.Inst.enemyShieldHealth[0] += damage;
+                            isDamaged = true;
                             RouletteManager.Inst.roulettePieces[i].roulette.value += damage;
                             hasDoll = true;
                         }
@@ -524,6 +527,7 @@ public class EnemyManager : MonoBehaviour
                 TurnManager.OnPlayerTurnStart += () =>
                 {
                     bool checkDoll = false;
+                    isDamaged = false;
                     for(int i = 0; i < RouletteManager.rouletteNum; i++)
                     {
                         if(RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special, 0, 0))
