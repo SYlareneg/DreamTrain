@@ -17,7 +17,7 @@
     {
       "relicName": "모두의 우승",
       "relicTxt": "전투 시작 시 적과 자신이 강화를 2 얻습니다.",
-      "relicSprite": "Not drawn yet",
+      "relicSprite": "오브제_1막_모두의 우승",
       "relicOwner": 9,
       "relicVal": [
         2
@@ -59,7 +59,7 @@
     {
       "relicName": "사건의 지평선",
       "relicTxt": "8번째 턴 시작 시 룰렛에 강화, 보호, 활력을 5 부여합니다.",
-      "relicSprite": "Not drawn yet",
+      "relicSprite": "오브제_1막_사건의 지평선",
       "relicOwner": 12,
       "relicVal": [
         8,
@@ -263,7 +263,7 @@
     {
       "relicName": "저주 인형",
       "relicTxt": "매 전투마다 처음으로 받는 피해를 인형이 대신 받습니다. 받은 피해가 44가 되면 부서집니다.",
-      "relicSprite": "4. 오브제_저주 인형",
+      "relicSprite": "오브제_1막_저주 인형",
       "relicOwner": 1,
       "relicVal": [
         44
@@ -291,7 +291,7 @@
     {
       "relicName": "영원한 웃음",
       "relicTxt": "지혜가 1로 고정됩니다. 전투 시작 시 보호를 2 얻습니다.",
-      "relicSprite": "오브제_영원한 웃음",
+      "relicSprite": "오브제_1막_영원한 웃음",
       "relicOwner": 3,
       "relicVal": [
         1,
@@ -307,7 +307,7 @@
     {
       "relicName": "붉은 꽃잎",
       "relicTxt": "체력이 30%이하이면 턴 시작 시 행동력을 1 얻습니다.",
-      "relicSprite": "8. 오브제_붉은 꽃잎",
+      "relicSprite": "오브제_1막_붉은 꽃잎",
       "relicOwner": 4,
       "relicVal": [
         30,
@@ -323,7 +323,7 @@
     {
       "relicName": "비둘기 코인",
       "relicTxt": "지니고 있으면 행운이 1 증가합니다.",
-      "relicSprite": "6. 오브제_비둘기 코인",
+      "relicSprite": "오브제_1막_비둘기 코인",
       "relicOwner": 5,
       "relicVal": [
         1
@@ -337,7 +337,7 @@
     {
       "relicName": "와인의 눈물",
       "relicTxt": "체력이 50% 이하이면 활력 버프를 1 얻습니다.",
-      "relicSprite": "오브제_와인의 눈물",
+      "relicSprite": "오브제_1막_와인의 눈물",
       "relicOwner": 6,
       "relicVal": [
         50,

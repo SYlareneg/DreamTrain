@@ -846,7 +846,7 @@
           "text": "이 행동의 피해량은 턴마다 2배씩 증가합니다. 이번 턴에 룰렛이 회전할 때마다 피해량이 절반으로 줄어듭니다."
         },
         {
-          "sprite": "행동_도도새_코커스경주",
+          "sprite": "행동_도도새_경주종료",
           "title": "경주 종료!",
           "text": "도도가 값 피해를 받습닏다."
         },
@@ -2991,12 +2991,12 @@
           "text": "마술 모자 1개당 환영 버프를 1 얻습니다. 마술 모자가 하나도 없다면 마술에 실패합니다."
         },
         {
-          "sprite": "행동_마술사_쇼타임",
+          "sprite": "행동_마술사_마술준비",
           "title": "마술 준비-쇼타임",
           "text": "공격, 수비 룰렛을 제외한 모든 룰렛에 마술 모자를 부여합니다."
         },
         {
-          "sprite": "행동_마술 쇼타임",
+          "sprite": "행동_마술사_쇼타임",
           "title": "마술-쇼타임",
           "text": "마술 모자 1개당 6의 피해를 주고, 모든 마술 모자를 제거합니다."
         }
@@ -3059,7 +3059,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "귀신들린 인형",
+          "sprite": "귀신들린인형",
           "scalingFactor": 2
         }
       ],
@@ -3081,7 +3081,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "귀신들린 인형",
+          "sprite": "귀신들린인형",
           "scalingFactor": 1
         }
       ],
@@ -4465,7 +4465,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": true,
-          "sprite": "우는 와인",
+          "sprite": "우는와인",
           "scalingFactor": 1.5
         }
       ],
@@ -4487,7 +4487,7 @@
           ],
           "phaseClear": false,
           "phaseRepeat": false,
-          "sprite": "우는 와인",
+          "sprite": "우는와인",
           "scalingFactor": 1.5
         }
       ],

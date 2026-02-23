@@ -337,7 +337,10 @@ public class TurnManager : MonoBehaviour
     {
         if (damage > 0)
         {
-            damage = BuffManager.Inst.GetBuffedPlayerDamage(damageSource, damage);
+            if(damageSource != EDamageSource.Card)
+            {
+                damage = BuffManager.Inst.GetBuffedPlayerDamage(damageSource, damage);
+            }
             if (damage < 0)
             {
                 damage = 0;
@@ -348,7 +351,10 @@ public class TurnManager : MonoBehaviour
         }
         else
         {
-            damage = -BuffManager.Inst.GetBuffedPlayerHeal(damageSource, -damage);
+            if(damageSource != EDamageSource.Card)
+            {
+                damage = -BuffManager.Inst.GetBuffedPlayerHeal(damageSource, -damage);
+            }
             if (damage > 0)
             {
                 damage = 0;
@@ -407,7 +413,10 @@ public class TurnManager : MonoBehaviour
     {
         if (damage > 0)
         {
-            damage = BuffManager.Inst.GetBuffedEnemyDamage(damageSource, damage);
+            if(damageSource != EDamageSource.Card)
+            {
+                damage = BuffManager.Inst.GetBuffedEnemyDamage(damageSource, damage);
+            }
             if (damage < 0)
             {
                 damage = 0;
@@ -418,7 +427,10 @@ public class TurnManager : MonoBehaviour
         }
         else
         {
-            damage = -BuffManager.Inst.GetBuffedEnemyHeal(damageSource, -damage);
+            if(damageSource != EDamageSource.Card)
+            {
+                damage = -BuffManager.Inst.GetBuffedEnemyHeal(damageSource, -damage);
+            }
             if (damage > 0)
             {
                 damage = 0;

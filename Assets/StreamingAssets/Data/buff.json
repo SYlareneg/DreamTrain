@@ -151,7 +151,7 @@
     {
       "name": "빙그르!",
       "text": "룰렛이 3칸 이상 회전하면 강화를 1 얻습니다. 효과 발동시 횟수를 소모합니다.\n남은 횟수: 값",
-      "icon": "BuffIcon_Example",
+      "icon": "버프_빙그르!",
       "type": 2,
       "effectType": 0,
       "defaultVal": [
