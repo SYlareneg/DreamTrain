@@ -149,9 +149,16 @@ public class RouletteManager : MonoBehaviour
         if (isTriggerActivated)
         {
             int totalVal = BuffManager.Inst.GetBuffedRouletteValue(triggerPiece);
-            Debug.Log("trigger value: " + totalVal.ToString());
             rouletteTriggerEffect.GetComponent<RouletteEffect_Trigger>().triggerVal = totalVal;
-            rouletteTriggerEffect.SetTrigger("Claw");
+            switch(DataManager.Inst.characterSO.personaPiece.persona.dreamPieceNum)
+            {
+                case 3:
+                    rouletteTriggerEffect.SetTrigger("Claw");
+                    break;
+                case 1:
+                    rouletteTriggerEffect.SetTrigger("Magic");
+                    break;
+            }
             // TriggerActivation?.Invoke(isEnemyTrigger(), totalVal);
             Utils.AllignActions(ref TurnManager.OnRouletteActivate, typeof(ShowBuff), typeof(RelicManager));
             TurnManager.OnRouletteActivate?.Invoke();

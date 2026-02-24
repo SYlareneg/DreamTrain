@@ -1900,7 +1900,15 @@ public class EnemyManager : MonoBehaviour
 
                 if(source == EDamageSource.TriggerRoulette)
                 {
-                    enemyDamageSprite.GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.enemyTriggerDamageSFX);
+                    switch(DataManager.Inst.characterSO.personaPiece.persona.dreamPieceNum)
+                    {
+                        case 3:
+                            enemyDamageSprite.GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.enemyTriggerDamageSFX);
+                            break;
+                        default:
+                            enemyDamageSprite.GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.enemyDamageSFX);
+                            break;
+                    }
                 }
                 else if(source == EDamageSource.Roulette && (RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(enemyIdx)].originalTooltipTitle == "발톱" ||
                                                              RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(enemyIdx)].originalTooltipTitle == "발톱+"))

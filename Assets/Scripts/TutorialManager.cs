@@ -395,16 +395,10 @@ public class TutorialManager : MonoBehaviour
                             Action onRouletteTrigger = null;
                             onRouletteTrigger = () =>
                             {
-                                Sequence seq = DOTween.Sequence();
-                                seq.AppendInterval(0.5f);
-                                seq.AppendCallback(() =>
-                                {
-                                    Tooltip.showTooltipSignal = true;
-                                    tutorialScreen.SetActive(false);
-                                    ShowTutorialBox(2, 3, 4);
-                                    TurnManager.OnRouletteTrigger -= onRouletteTrigger;
-                                });
-                                seq.Play();
+                                Tooltip.showTooltipSignal = true;
+                                tutorialScreen.SetActive(false);
+                                ShowTutorialBox(2, 3, 4);
+                                TurnManager.OnRouletteTrigger -= onRouletteTrigger;
                             };
                             TurnManager.OnRouletteTrigger += onRouletteTrigger;
                             break;

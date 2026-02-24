@@ -17,7 +17,7 @@ public class ResultPanel : MonoBehaviour
         AlphaZero();
         winPanel.SetActive(true);
         losePanel.SetActive(false);
-        AlphaTween(1f, 1.5f, () => 
+        AlphaTween(1f, 0.5f, () => 
         {
             AlphaTween(0f, 1.5f, () => 
             {
