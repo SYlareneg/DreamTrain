@@ -142,7 +142,7 @@ public class StartCanvasController : MonoBehaviour
             buttonBlink.Append(newGameButton.GetComponentInChildren<TMP_Text>().DOColor(new Color32(255, 255, 255, 0), 0.1f));
             buttonBlink.Append(newGameButton.GetComponentInChildren<TMP_Text>().DOColor(Color.white, 0.1f));
             buttonBlink.SetLoops(2);
-            StartCoroutine(DataManager.Inst.LoadPlayerData(true));
+            StartCoroutine(InitDataCoroutine());
             buttonBlink.OnComplete(() =>
             {
                 SceneChangeManager.Inst.SceneFadeOut("RoomScene");
@@ -154,6 +154,18 @@ public class StartCanvasController : MonoBehaviour
         {
             SelectNewGame();
         }
+    }
+
+    IEnumerator InitDataCoroutine()
+    {
+        yield return DataManager.Inst.LoadPlayerData(true);
+        DataManager.Inst.playerDataSO.isTutorial = true;
+        DataManager.Inst.playerDataSO.currentActNum = 0;
+        DataManager.Inst.playerDataSO.dreamDust = 0;
+        DataManager.Inst.characterSO.isTutorial = true;
+        DataManager.Inst.actSO.curActNum = 0;
+        DataManager.Inst.characterSO.dreamDust = 0;
+        Utils.SaveData(DataManager.Inst.playerDataSO, "player_data_start.json");
     }
 
     public void SelectNewGame()
