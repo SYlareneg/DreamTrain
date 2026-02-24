@@ -48,5 +48,18 @@ public class RoomObjectManager : MonoBehaviour
                 cat.objectState = "awake";
             }
         }
+
+        RoomClickableObject mirror = roomClickableObjects.OfType<RoomMirror>().FirstOrDefault();
+        if(mirror != null)
+        {
+            if(DataManager.Inst.characterSO.isTutorial)
+            {
+                mirror.objectState = "default";
+            }
+            else
+            {
+                mirror.objectState = "awake";
+            }
+        }
     }
 }
