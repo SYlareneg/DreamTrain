@@ -560,25 +560,17 @@ public class ShowBuff
                 return;
             }
             this.val -= 1;
+            if(this.val <= 0)
+            {
+                RemoveShowBuff();
+            }
             switch (this.affectType)
             {
                 case EBuffAffectType.Roulette:
-                    if (this.val == 0)
-                    {
-                        BuffManager.Inst.rouletteShowBuffs.Remove(this);
-                    }
                     GameManager.Inst.SetRouletteBuffUI(); break;
                 case EBuffAffectType.Enemy:
-                    if (this.val == 0)
-                    {
-                        BuffManager.Inst.enemyShowBuffs[affectEnemyIdx].Remove(this);
-                    }
                     GameManager.Inst.SetEnemyBuffUI(affectEnemyIdx); break;
                 case EBuffAffectType.Player:
-                    if (this.val == 0)
-                    {
-                        BuffManager.Inst.playerShowBuffs.Remove(this);
-                    }
                     GameManager.Inst.SetPlayerBuffUI(); break;
             }
         }
