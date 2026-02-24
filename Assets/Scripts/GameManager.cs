@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField][Tooltip("턴 종료 버튼")] GameObject endTurnBtn;
     [SerializeField][Tooltip("턴 텍스트")] TMP_Text turnNotificationTMP;
     [SerializeField][Tooltip("룰렛 버프 위치")] Vector2 rouletteBuffPos;
+    [SerializeField][Tooltip("코스트 부족 안내")] GameObject costWarningUI;
     [Tooltip("룰렛 버프")] public GameObject rouletteBuffUIView;
     [Header("카드 UI")]
     [SerializeField][Tooltip("카드 목록 UI")] GameObject cardListView;
@@ -186,35 +187,35 @@ public class GameManager : MonoBehaviour
     {
         if (TurnManager.Inst.isLoading == false)
         {
-            // if (Input.GetKeyDown(KeyCode.Q))
-            // {
-            //     Utils.AllignActions(ref TurnManager.OnAddCard, typeof(ShowBuff), typeof(RelicManager));
-            //     TurnManager.OnAddCard?.Invoke();
-            // }
-            // if (Input.GetKeyDown(KeyCode.E))
-            // {
-            //     TurnManager.Inst.EndPlayerTurn();
-            // }
-            // if (Input.GetKeyDown(KeyCode.A))
-            // {
-            //     RouletteManager.Inst.Spin(false, 1);
-            // }
-            // if (Input.GetKeyDown(KeyCode.D))
-            // {
-            //     RouletteManager.Inst.Spin(true, 1);
-            // }
-            // if (Input.GetKeyDown(KeyCode.S))
-            // {
-            //     RouletteManager.Inst.ActivateRoulette();
-            // }
-            // if (Input.GetKeyDown(KeyCode.T))
-            // {
-            //     StartCoroutine(RouletteManager.Inst.TriggerRoulette());
-            // }
-            // if (Input.GetKeyDown(KeyCode.L))
-            // {
-            //     Lever.Inst.ActivateLever();
-            // }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                Utils.AllignActions(ref TurnManager.OnAddCard, typeof(ShowBuff), typeof(RelicManager));
+                TurnManager.OnAddCard?.Invoke();
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                TurnManager.Inst.EndPlayerTurn();
+            }
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                RouletteManager.Inst.Spin(false, 1);
+            }
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                RouletteManager.Inst.Spin(true, 1);
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                RouletteManager.Inst.ActivateRoulette();
+            }
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                StartCoroutine(RouletteManager.Inst.TriggerRoulette());
+            }
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                Lever.Inst.ActivateLever();
+            }
         }
     }
 
@@ -398,6 +399,7 @@ public class GameManager : MonoBehaviour
     // 게임 종료
     public IEnumerator GameOver(bool isMyWin)
     {
+        if(gameOverSignal == true) yield break;
         gameOverSignal = true;
         Utils.AllignActions(ref TurnManager.OnGameEnd, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnGameEnd?.Invoke(isMyWin);
@@ -580,6 +582,44 @@ public class GameManager : MonoBehaviour
             Destroy(rouletteBuffUIView.transform.GetChild(i).gameObject);
         }
         BuffManager.Inst.BuffListToBuffUIList(BuffManager.Inst.rouletteShowBuffs, rouletteBuffUIView, rouletteBuffPos);
+    }
+
+    Sequence showCostWarningSeq;
+    Sequence costBlinkSeq;
+    Color originalCostColor;
+    public void ShowCostWarning(bool isCard)
+    {
+        if(isCard) costWarningUI.GetComponentInChildren<TMP_Text>().text = "행동력이 부족해서 카드를 사용할 수 없어!";
+        else costWarningUI.GetComponentInChildren<TMP_Text>().text = "행동력이 부족해서 룰렛을 발동할 수 없어!";
+        costWarningUI.SetActive(true);
+        if(showCostWarningSeq != null)
+        {
+            showCostWarningSeq.Kill();
+            showCostWarningSeq = null;
+        }
+        costWarningUI.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
+        costWarningUI.GetComponentInChildren<TMP_Text>().color = new Color(0f, 0f, 0f, 0f);
+        showCostWarningSeq = DOTween.Sequence();
+        showCostWarningSeq.Append(costWarningUI.GetComponent<Image>().DOFade(1f, 0.1f));
+        showCostWarningSeq.Join(costWarningUI.GetComponentInChildren<TMP_Text>().DOFade(1f, 0.1f));
+        showCostWarningSeq.AppendInterval(1.5f);
+        showCostWarningSeq.Append(costWarningUI.GetComponent<Image>().DOFade(0f, 0.4f));
+        showCostWarningSeq.Join(costWarningUI.GetComponentInChildren<TMP_Text>().DOFade(0f, 0.4f));
+        showCostWarningSeq.OnComplete(() => costWarningUI.SetActive(false));
+        showCostWarningSeq.Play();
+
+        if(costBlinkSeq != null)
+        {
+            costBlinkSeq.Kill();
+            costBlinkSeq = null;
+            costTMP.color = originalCostColor;
+        }
+        originalCostColor = costTMP.color;
+        costBlinkSeq = DOTween.Sequence();
+        costBlinkSeq.Append(costTMP.DOColor(Color.red, 0.1f));
+        costBlinkSeq.Append(costTMP.DOColor(originalCostColor, 0.1f));
+        costBlinkSeq.SetLoops(4);
+        costBlinkSeq.Play();
     }
 
     public void ShowCardReward()

@@ -116,14 +116,14 @@
     },
     {
       "relicName": "낡은 장갑",
-      "relicTxt": "룰렛을 회전시키면 방어도를 2 얻습니다.",
+      "relicTxt": "룰렛을 발동시키면 방어도를 2 얻습니다.",
       "relicSprite": "오브제_0막_낡은 장갑",
       "relicOwner": 16,
       "relicVal": [
         2
       ],
       "relicName_enhanced": "낡은 장갑+",
-      "relicTxt_enhanced": "룰렛을 회전시키면 방어도를 3 얻습니다.",
+      "relicTxt_enhanced": "룰렛을 발동시키면 방어도를 3 얻습니다.",
       "relicVal_enhanced": [
         3
       ]

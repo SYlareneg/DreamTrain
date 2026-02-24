@@ -294,6 +294,7 @@ public class RouletteManager : MonoBehaviour
         }
         if(roulettePieces[index].roulette.rtype.type != ERouletteType.None)
         {
+            roulettePieces[index].RouletteClear();
             Utils.AllignActions(ref TurnManager.OnRouletteErase, typeof(ShowBuff), typeof(RelicManager));
             TurnManager.OnRouletteErase?.Invoke(index);
         }

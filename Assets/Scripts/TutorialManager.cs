@@ -80,11 +80,11 @@ public class TutorialManager : MonoBehaviour
             hideScreen.SetActive(false);
             tutorialBox.SetActive(true);
             tutorialText.text = "좋아! 이제 혼자서도 할 수 있겠지?\n행운을 빌어!";
-            nextTutorial = () =>
+            TurnManager.Inst.isLoading = false;
+            DOTween.Sequence().AppendInterval(2f).AppendCallback(() =>
             {
                 HideTutorialBox();
-                TurnManager.Inst.isLoading = false;
-            };
+            }).Play();
             return;
         }
         if(stage == 1)

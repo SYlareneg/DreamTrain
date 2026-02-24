@@ -1106,29 +1106,9 @@
             {
               "pattern": [
                 {
-                  "type": 3,
-                  "typeNum": 0,
-                  "val": 5,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
                   "type": 0,
                   "typeNum": 0,
                   "val": 3,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 2,
-                  "typeNum": 0,
-                  "val": 2,
                   "isTrigger": false
                 }
               ]

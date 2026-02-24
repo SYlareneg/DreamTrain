@@ -2,14 +2,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class RoomDPChain : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndDragHandler
 {
     Vector2 originalPivot;
     Vector3 originalPosition;
     [SerializeField] float offset;
-    [SerializeField] GameObject[] chainArrows;
-    Sequence arrowSeq;
+    public GameObject[] chainArrows;
+    public List<Vector2> arrowOriginalPositions = new List<Vector2>();
+    public Sequence arrowSeq;
     public void Activate()
     {
         GetComponent<Image>().enabled = true;
@@ -21,7 +23,7 @@ public class RoomDPChain : MonoBehaviour, IPointerDownHandler, IDragHandler, IEn
             arrowSeq = DOTween.Sequence();
             foreach(var arrow in chainArrows)
             {
-                arrowSeq.Join(arrow.transform.DOMoveX(arrow.transform.position.x - 10f, 0.8f).SetEase(Ease.InOutSine));
+                arrowSeq.Join(arrow.transform.DOLocalMoveX(arrow.transform.localPosition.x - 20, 0.8f).SetEase(Ease.InOutSine));
                 foreach(var arrowSR in arrow.GetComponentsInChildren<Image>())
                 {
                     arrowSeq.Join(arrowSR.DOColor(Color.white, 0.8f).SetEase(Ease.InOutSine));
@@ -31,9 +33,11 @@ public class RoomDPChain : MonoBehaviour, IPointerDownHandler, IDragHandler, IEn
             arrowSeq.Play();
         });
 
+        arrowOriginalPositions.Clear();
         foreach(var arrow in chainArrows)
         {
             arrow.SetActive(true);
+            arrowOriginalPositions.Add(arrow.transform.localPosition);
             foreach(var arrowSR in arrow.GetComponentsInChildren<Image>())
             {
                 Color c = arrowSR.color;
@@ -50,7 +54,7 @@ public class RoomDPChain : MonoBehaviour, IPointerDownHandler, IDragHandler, IEn
         RectTransform rt = GetComponent<RectTransform>();
         DOTween.To(() => rt.pivot, (x) => rt.pivot = x, originalPivot, 0.5f).SetEase(Ease.OutBack);
 
-        arrowSeq.Pause();
+        // arrowSeq.Pause();
         foreach(var arrow in chainArrows)
         {
             arrow.SetActive(false);
@@ -59,7 +63,6 @@ public class RoomDPChain : MonoBehaviour, IPointerDownHandler, IDragHandler, IEn
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        arrowSeq.Pause();
         GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
     }
 

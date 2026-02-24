@@ -85,6 +85,10 @@ public class ActivateButton : MonoBehaviour
             StartCoroutine(ButtonActivate());
             // if(useCost < maxUseCost) useCost += 1;
         }
+        else
+        {
+            GameManager.Inst.ShowCostWarning(false);
+        }
     }
 
     IEnumerator ButtonActivate()
