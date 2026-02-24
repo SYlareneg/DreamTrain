@@ -9,7 +9,11 @@ public class CharacterSO : ScriptableObject
     [Header("Develop")]
     [Tooltip("플레이어 최대 체력")] public int maxHealth;
     [Tooltip("플레이어 남은 체력")] public int curHealth;
-    public int dreamDust;
+    public int dreamDust 
+    {
+        get => _dreamDust;
+        set => _dreamDust = Mathf.Max(0, value); 
+    }
     public int leftPassengers;
     public bool isTutorial;
     public string lastSceneName;
@@ -20,4 +24,6 @@ public class CharacterSO : ScriptableObject
 
     public string enemyName;
     public bool bossClear;
+    private int _dreamDust;
+    
 }

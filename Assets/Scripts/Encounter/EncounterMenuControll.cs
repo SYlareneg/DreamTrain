@@ -93,6 +93,7 @@ public class EncounterMenuControll : MonoBehaviour
     public void RefreshUI()
     {
         if (characterData == null || playerStats == null) return;
+        if (characterData.dreamDust < 0) characterData.dreamDust = 0;
         CheckAndAnimate(hpText, characterData.curHealth, ref prevHP, true, characterData.maxHealth);
         CheckAndAnimate(dreamFragmentText, characterData.dreamDust, ref prevDust);
         CheckAndAnimate(courageText, playerStats.courage, ref prevCourage);

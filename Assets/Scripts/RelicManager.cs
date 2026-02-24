@@ -216,10 +216,17 @@ public class RelicManager : MonoBehaviour
                 return;
             case "영원한 웃음":
             case "영원한 웃음+":
+                if (DataManager.Inst.playerStatsSO != null)
+                {
+                    DataManager.Inst.playerStatsSO.wisdom = 1;
+                }
                 TurnManager.OnGameStart += () =>
                 {
                     BuffManager.Inst.AddShowBuff("보호", EBuffAffectType.Player, relicItem.relicVal[1], false);
                     Debug.Log("Relic Activate: " + relicItem.relicName);
+                    int currentWisdom = DataManager.Inst.playerStatsSO.GetStat(StatType.Wisdom);
+                    if(currentWisdom != 1) DataManager.Inst.playerStatsSO.wisdom = 1;
+
                     if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
                 };
                 return;

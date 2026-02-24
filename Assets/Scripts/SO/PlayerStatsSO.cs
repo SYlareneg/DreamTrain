@@ -29,13 +29,28 @@ public class PlayerStatsSo : ScriptableObject
     
     public void ModifyStat(StatType type, int amount)
     {
+        bool hasEternalSmile = false;
+        if (RelicManager.Inst != null && RelicManager.Inst.relicSO != null)
+        {
+            hasEternalSmile = RelicManager.Inst.relicSO.relicItems.Exists(r => 
+                (r.relicName == "영원한 웃음" || (r.enhancedRelicItem != null && r.enhancedRelicItem.relicName == "영원한 웃음")));
+        }
+        
         switch (type)
         {
             case StatType.Courage:
                 courage = Mathf.Clamp(courage + amount, 0, 9);
                 break;
             case StatType.Wisdom:
-                wisdom = Mathf.Clamp(wisdom + amount, 0, 9);
+                if (hasEternalSmile)
+                {
+                    wisdom = 1;
+                    Debug.Log("[Stat] 영원한 웃음 효과로 인해 지혜가 1로 고정됩니다.");
+                }
+                else
+                {
+                    wisdom = Mathf.Clamp(wisdom + amount, 0, 9);
+                }
                 break;
             case StatType.Luck:
                 luck = Mathf.Clamp(luck + amount, 0, 9);

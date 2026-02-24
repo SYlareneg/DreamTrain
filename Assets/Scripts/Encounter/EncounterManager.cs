@@ -1029,6 +1029,8 @@ public class EncounterManager : MonoBehaviour
                             RelicItem_Enhanceable newRelic = new RelicItem_Enhanceable(foundData);
                             playerRelicSO.relicItems.Add(newRelic);
                             string msg = $"\n<color=#5df86f>오브제 '{foundData.relicName}' 획득!</color>";
+                            if (foundData.relicName == "영원한 웃음" || foundData.relicName == "영원한 웃음+")
+                                playerStats.wisdom = 1;
                             pendingSystemMessage += msg; 
                             Debug.Log($"[Encounter] 오브제 획득 성공: {foundData.relicName}");
                         }
@@ -1051,7 +1053,11 @@ public class EncounterManager : MonoBehaviour
                         msg = $"\n<color=#5df86f>드림 코인 {amount}개 획득!</color>";
                         PlaySFX(coinGetSfx);
                     }
-                    else msg = $"\n<color=#FF0000>드림 코인 {-amount}개 지불!</color>";
+                    else
+                    {
+                        if (characterData.dreamDust - amount <= 0) return; 
+                        msg = $"\n<color=#FF0000>드림 코인 {-amount}개 지불!</color>";
+                    }
                     pendingSystemMessage += msg;
                     characterData.dreamDust += int.Parse(args[0]);
                 }
