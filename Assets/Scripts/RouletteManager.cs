@@ -216,12 +216,12 @@ public class RouletteManager : MonoBehaviour
         {
             roulettePieces[i].Trigger(true);
         }
+        TriggerActivation = PlayerTriggerActivation;
         Utils.AllignActions(ref TurnManager.OnPlayerTrigger, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnPlayerTrigger?.Invoke();
-        TriggerActivation = PlayerTriggerActivation;
+        TurnManager.Inst.isLoading = false;
         Utils.AllignActions(ref TurnManager.OnRouletteTrigger, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnRouletteTrigger?.Invoke();
-        TurnManager.Inst.isLoading = false;
         yield return new WaitForSeconds(0.35f);
         triggerEffect.gameObject.SetActive(false);
     }

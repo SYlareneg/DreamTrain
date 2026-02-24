@@ -395,9 +395,13 @@ public class TutorialManager : MonoBehaviour
                             Action onRouletteTrigger = null;
                             onRouletteTrigger = () =>
                             {
+                                TurnManager.Inst.isLoading = true;
                                 Tooltip.showTooltipSignal = true;
                                 tutorialScreen.SetActive(false);
-                                ShowTutorialBox(2, 3, 4);
+                                DOTween.Sequence().AppendInterval(0.5f).AppendCallback(() =>
+                                {
+                                    ShowTutorialBox(2, 3, 4);
+                                }).Play();
                                 TurnManager.OnRouletteTrigger -= onRouletteTrigger;
                             };
                             TurnManager.OnRouletteTrigger += onRouletteTrigger;
