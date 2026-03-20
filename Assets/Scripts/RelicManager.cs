@@ -404,6 +404,10 @@ public class RelicManager : MonoBehaviour
                     Debug.Log("Relic Activate: " + relicItem.relicName);
                     if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
                 };
+                TurnManager.OnPlayerTurnStart += () =>
+                {
+                    relicItem.relicVal[0] = 1;
+                };
                 TurnManager.OnPlayerTurnEnd += () =>
                 {
                     relicItem.relicVal[0] = 1;

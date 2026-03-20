@@ -90,6 +90,7 @@ public class EnemyManager : MonoBehaviour
     public static Action<RoulettePiece, bool, int, int, bool>[] enemySpecialRouletteActivation = new Action<RoulettePiece, bool, int, int, bool>[Enemy.enemySpecialRouletteNum];
     [Header("적 특수행동")]
     public List<EnemySpecialAction> enemySpecialActions;
+    public static Action checkSpecialAction;
     public static Action<int>[] enemySpecialActivation = new Action<int>[Enemy.enemySpecialActionNum];
     public Animator enemySpecialEffect;
     public List<Action> enemySpecialEffectEndAction = new List<Action>();
@@ -385,10 +386,6 @@ public class EnemyManager : MonoBehaviour
                             piece.RouletteClear();
                         }
                     }
-                    // if (tempMagicHat != 0)
-                    // {
-                    //     TurnManager.Inst.TriggerEnemyPassive(1);
-                    // }
                     TurnManager.Inst.TakeDmg(value, EDamageSource.Enemy);
                 };
                 enemySpecialActivation[1] = (value) =>
@@ -403,7 +400,6 @@ public class EnemyManager : MonoBehaviour
                     }
                     if (tempMagicHat != 0)
                     {
-                        // TurnManager.Inst.TriggerEnemyPassive(1);
                         BuffManager.Inst.AddShowBuff("환영", EBuffAffectType.Enemy, tempMagicHat, true);
                     }
                 };
@@ -466,15 +462,14 @@ public class EnemyManager : MonoBehaviour
                             tempMagicHat++;
                         }
                     }
-                    if(tempMagicHat != magicHat)
-                    {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], (tempMagicHat - magicHat) * 12, 1, 1);
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 1], tempMagicHat - magicHat, 1, 1);
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 3], (tempMagicHat - magicHat) * 6, 1, 1);
-                        magicHat = tempMagicHat;
-                    }
+                    if(tempMagicHat == magicHat) return;
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], (tempMagicHat - magicHat) * 12, 1, 1);
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 1], tempMagicHat - magicHat, 1, 1);
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 3], (tempMagicHat - magicHat) * 6, 1, 1);
+                    magicHat = tempMagicHat;
                     Debug.Log("Current Magic Hat : " + magicHat);
                 };
+                checkSpecialAction += () => countMagicHat(0);
                 TurnManager.OnPlayerTurnStart += () =>
                 {
                     magicHat = 0;
@@ -2033,5 +2028,6 @@ public class EnemyManager : MonoBehaviour
     private void Update()
     {
         CheckPhase();
+        checkSpecialAction?.Invoke();
     }
 }
