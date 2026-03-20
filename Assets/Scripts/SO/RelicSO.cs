@@ -10,6 +10,7 @@ public class RelicItem
     public string relicName;
     public string relicTxt;
     public List<int> relicVal;
+    public bool isCounter;
     public bool isEnhanced;
     public int relicAct;
     public CardRarity rarity; 
@@ -24,6 +25,7 @@ public class RelicItem
         relicName = relicItem.relicName;
         relicTxt = relicItem.relicTxt;
         relicVal = new List<int>(relicItem.relicVal);
+        isCounter = relicItem.isCounter;
         isEnhanced = relicItem.isEnhanced;
         relicAct = relicItem.relicAct;
         rarity = relicItem.rarity;
@@ -49,6 +51,7 @@ public class RelicItem_Enhanceable : RelicItem
         relicName = relicItem_Data.relicName;
         relicTxt = relicItem_Data.relicTxt;
         relicVal = new List<int>(relicItem_Data.relicVal);
+        isCounter = relicItem_Data.isCounter;
         relicAct = relicItem_Data.relicAct;
         rarity = relicItem_Data.rarity;
         cost = relicItem_Data.cost;
@@ -62,7 +65,11 @@ public class RelicItem_Enhanceable : RelicItem
         enhancedRelicItem.relicTxt = relicItem_Data.relicTxt_enhanced;
         enhancedRelicItem.relicVal = new List<int>(relicItem_Data.relicVal_enhanced);
         enhancedRelicItem.isEnhanced = true;
-        
+        enhancedRelicItem.isCounter = relicItem_Data.isCounter;
+        enhancedRelicItem.relicAct = relicItem_Data.relicAct;
+        enhancedRelicItem.rarity = relicItem_Data.rarity;
+        enhancedRelicItem.cost = relicItem_Data.cost;
+        enhancedRelicItem.sellCost = relicItem_Data.sellCost;
     }
 }
 
@@ -74,6 +81,7 @@ public class RelicItem_Data
     public string relicName;
     public string relicTxt;
     public List<int> relicVal;
+    public bool isCounter;
     public int relicAct;
     public CardRarity rarity; 
     public int cost = 100;
@@ -90,6 +98,7 @@ public class RelicItem_Data
         relicName = relicItem_Data.relicName;
         relicTxt = relicItem_Data.relicTxt;
         relicVal = new List<int>(relicItem_Data.relicVal);
+        isCounter = relicItem_Data.isCounter;
         relicAct = relicItem_Data.relicAct;
         rarity = relicItem_Data.rarity;
         cost = relicItem_Data.cost;
@@ -107,6 +116,7 @@ public class RelicItem_Data
         relicName = relicItem.relicName;
         relicTxt = relicItem.relicTxt;
         relicVal = new List<int>(relicItem.relicVal);
+        isCounter = relicItem.isCounter;
         relicAct = relicItem.relicAct;
         rarity = relicItem.rarity;
         cost = relicItem.cost;

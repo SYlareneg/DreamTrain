@@ -305,7 +305,9 @@ public class EnemyManager : MonoBehaviour
                     {
                         if (RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special, 0))
                         {
-                            RouletteManager.Inst.roulettePieces[i].RouletteClear();
+                            RoulettePiece piece = RouletteManager.Inst.roulettePieces[i];
+                            piece.roulette.rtype = new RouletteType(ERouletteType.None, 0);
+                            piece.RouletteClear();
                         }
                     }
                     BuffManager.Inst.enemyBuff_Special[0, 0].Clear();
@@ -378,7 +380,9 @@ public class EnemyManager : MonoBehaviour
                         if (RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special, 0))
                         {
                             tempMagicHat++;
-                            RouletteManager.Inst.roulettePieces[i].RouletteClear();
+                            RoulettePiece piece = RouletteManager.Inst.roulettePieces[i];
+                            piece.roulette.rtype = new RouletteType(ERouletteType.None, 0);
+                            piece.RouletteClear();
                         }
                     }
                     // if (tempMagicHat != 0)
@@ -409,6 +413,7 @@ public class EnemyManager : MonoBehaviour
                     {
                         if (RouletteManager.Inst.roulettePieces[i].roulette.rtype.type != ERouletteType.Attack && RouletteManager.Inst.roulettePieces[i].roulette.rtype.type != ERouletteType.Shield)
                         {
+                            RouletteManager.Inst.roulettePieces[i].roulette.rtype = new RouletteType(ERouletteType.None, 0);
                             RouletteManager.Inst.EnchantRoulettePiece(i, new RouletteType(ERouletteType.Enemy_Special, 0), 1);
                         }
                     }
@@ -419,7 +424,9 @@ public class EnemyManager : MonoBehaviour
                     {
                         if (RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special, 0))
                         {
-                            RouletteManager.Inst.roulettePieces[i].RouletteClear();
+                            RoulettePiece piece = RouletteManager.Inst.roulettePieces[i];
+                            piece.roulette.rtype = new RouletteType(ERouletteType.None, 0);
+                            piece.RouletteClear();
                         }
                     }
                     TurnManager.Inst.TakeDmg(value, EDamageSource.Enemy);

@@ -125,7 +125,7 @@ public class EnemyAction : MonoBehaviour
                 break;
             case EEnemyActionType.Enchant_Random:
                 tooltip.tooltipTitle = "부여";
-                tooltip.tooltipTxt = "무작위 빈 룰렛 칸에 " + EnemyManager.Inst.enemySpecialRoulettes[actionTypeNum].title + "을(를) 부여합니다. 빈 칸이 없을 경우 무작위 칸에 부여합니다.";
+                tooltip.tooltipTxt = "무작위 빈 룰렛 칸에 특수 룰렛을(를) 부여합니다. 빈 칸이 없을 경우 무작위 칸에 부여합니다.";
                 break;
             case EEnemyActionType.Spawn_SubEnemy:
                 tooltip.tooltipTitle = "소환";

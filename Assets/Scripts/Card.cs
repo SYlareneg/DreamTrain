@@ -382,6 +382,24 @@ public class Card : MonoBehaviour
             case "마술 카드":
             case "마술 카드+":
                 RouletteType magicCard = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 1));
+                if(item.name == "마술 카드" || item.name == "마술 카드+")
+                {
+                    switch(PassiveManager.Inst.lastCardType)
+                    {
+                        case CardType.Turn:
+                            character.sprite = Utils.LoadSpriteByName("Cards", "마술카드_클로버");
+                            break;
+                        case CardType.Skill:
+                            character.sprite = Utils.LoadSpriteByName("Cards", "마술카드_다이아");
+                            break;
+                        case CardType.Enchant:
+                            character.sprite = Utils.LoadSpriteByName("Cards", "마술카드_하트");
+                            break;
+                        case CardType.Dream:
+                            character.sprite = Utils.LoadSpriteByName("Cards", "마술카드_스페이드");
+                            break;
+                    }
+                }
                 if(!RouletteManager.Inst.IsRouletteEnchantable(false, magicCard)) return false;
                 break;
             case "수트 체인지":

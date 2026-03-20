@@ -12,6 +12,7 @@ public class RelicUI : MonoBehaviour
     [SerializeField] GameObject relicMask1;
     [SerializeField] Image relicImg2;
     [SerializeField] GameObject relicMask2;
+    [SerializeField] TMP_Text relicCounter;
 
     public RelicItem relicItem1, relicItem2;
     Tooltip tooltip1, tooltip2;
@@ -23,6 +24,7 @@ public class RelicUI : MonoBehaviour
         {
             this.relicItem1 = null;
             this.relicItem2 = null;
+            relicCounter.text = "";
             return;
         }
 
@@ -39,6 +41,7 @@ public class RelicUI : MonoBehaviour
         {
             relicHalf1.SetRelicHalf(relicItem1);
         }
+        relicCounter.text = rItem1.isCounter ? rItem1.relicVal[0].ToString() : "";
 
         if (rItem2 == null)
         {
@@ -76,5 +79,6 @@ public class RelicUI : MonoBehaviour
             tooltip2.tooltipPos = this.GetComponent<RectTransform>().position - Camera.main.WorldToScreenPoint(new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 0));
             tooltip2.tooltipPos += tooltipOffset;
         }
+        relicCounter.text = relicItem1 != null && relicItem1.isCounter ? relicItem1.relicVal[0].ToString() : "";
     }
 }

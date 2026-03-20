@@ -108,10 +108,10 @@ public class RelicManager : MonoBehaviour
                 seq.AppendCallback(() =>
                 {
                     relicUI.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
-                    foreach(Image img in images)
-                    {
-                        img.color = Color.gray;
-                    }
+                    // foreach(Image img in images)
+                    // {
+                    //     img.color = Color.gray;
+                    // }
                 });
                 relicActivateEffectSeq.Join(seq);
             }
@@ -398,9 +398,19 @@ public class RelicManager : MonoBehaviour
             case "빗자루+":
                 TurnManager.OnRouletteErase += (index) =>
                 {
-                    TurnManager.Inst.IncreaseCost(relicItem.relicVal[0]);
+                    if(relicItem.relicVal[0] <= 0) return;
+                    relicItem.relicVal[0]--;
+                    TurnManager.Inst.IncreaseCost(relicItem.relicVal[1]);
                     Debug.Log("Relic Activate: " + relicItem.relicName);
                     if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
+                };
+                TurnManager.OnPlayerTurnEnd += () =>
+                {
+                    relicItem.relicVal[0] = 1;
+                };
+                TurnManager.OnGameEnd += (isWin) =>
+                {
+                    relicItem.relicVal[0] = 1;
                 };
                 return;
             case "파랑 구두":

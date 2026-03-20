@@ -99,6 +99,7 @@ public class MagicianEffectManager : MonoBehaviour
             RoomDialogueManager.OnDialogueEnd += () =>
             {
                 DataManager.Inst.characterSO.enemyName = "마술사";
+                RoomPlayer.Inst.isInteractable = false;
                 SoundManager.Inst.PlayBGM(SoundManager.Inst.magicianBattleBGM);
                 SceneChangeManager.Inst.SceneFadeOut("BattleScene");
             };
