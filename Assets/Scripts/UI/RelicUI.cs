@@ -66,15 +66,21 @@ public class RelicUI : MonoBehaviour
 
     private void Update()
     {
-        if(tooltip1 != null && relicItem1 != null)
+        Vector3 screenCenter = Camera.main.WorldToScreenPoint(new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 0));
+        if(tooltip1 != null && relicItem1 != null && relicMask1 != null)
         {
-            tooltip1.tooltipPos = this.GetComponent<RectTransform>().position - Camera.main.WorldToScreenPoint(new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 0));
-            tooltip1.tooltipPos += tooltipOffset;
+            tooltip1.tooltipPos = (Vector2)relicMask1.transform.position - (Vector2)screenCenter;
+            tooltip1.tooltipPos.y -= 50;
+            tooltip1.tooltipPos.x += 100;
+            Debug.Log(relicMask1.transform.position);
+            Debug.Log(tooltipOffset);
         }
-        if(tooltip2 != null && relicItem2 != null)
+        
+        if(tooltip2 != null && relicItem2 != null && relicMask2 != null)
         {
-            tooltip2.tooltipPos = this.GetComponent<RectTransform>().position - Camera.main.WorldToScreenPoint(new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 0));
-            tooltip2.tooltipPos += tooltipOffset;
+            tooltip2.tooltipPos = (Vector2)relicMask2.transform.position + tooltipOffset - (Vector2)screenCenter;
+            tooltip2.tooltipPos.x += 100;
+            tooltip2.tooltipPos.y -= 50;
         }
     }
 }

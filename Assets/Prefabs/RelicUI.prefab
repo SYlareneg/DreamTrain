@@ -58,6 +58,7 @@ MonoBehaviour:
   tooltipPos: {x: 0, y: 0}
   tooltipPivot: {x: 1, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!114 &4108103281634230073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,9 +326,10 @@ MonoBehaviour:
   tooltipPrefab: {fileID: 5662423541783804191, guid: 8a2fd54085582214fb30bf8c13458231, type: 3}
   tooltipTitle: 
   tooltipTxt: 
-  tooltipPos: {x: 0, y: 0}
+  tooltipPos: {x: 0, y: -100}
   tooltipPivot: {x: 1, y: 1}
   tooltipDisable: 0
+  forceTooltipEnable: 0
 --- !u!114 &496728308428203740
 MonoBehaviour:
   m_ObjectHideFlags: 0

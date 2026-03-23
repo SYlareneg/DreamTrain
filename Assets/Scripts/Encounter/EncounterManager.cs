@@ -736,7 +736,6 @@ public class EncounterManager : MonoBehaviour
         {
             foreach (var option in currentStep.options)
             {
-                // 1. 조건 만족 여부 확인
                 bool isConditionMet = CheckCondition(option.condition);
                 string finalButtonText = option.text;
 
@@ -776,7 +775,14 @@ public class EncounterManager : MonoBehaviour
                             finalButtonText += $"  {endsWith3}";
                         }
                     }
-                    
+                    else if (condName == "CheckRoundNum")
+                    {
+                        string endsWith4 = $"({argsRaw}회차 이상 필요)";
+                        if (!finalButtonText.Contains(endsWith4))
+                        {
+                            finalButtonText += $"  {endsWith4}";
+                        }
+                    }
                 }
 
                 buttonsToCreate.Add(new TempOptionData(finalButtonText, option.nextStepId, option.functionCall, isConditionMet));
@@ -863,6 +869,8 @@ public class EncounterManager : MonoBehaviour
         }
         
         Button btn = btnObj.GetComponent<Button>();
+        
+        Transform lockIcon = btnObj.transform.Find("LockIcon");
         if (!data.isValid)
         {
             CanvasGroup cg = btnObj.GetComponent<CanvasGroup>();
@@ -872,7 +880,13 @@ public class EncounterManager : MonoBehaviour
 
             cg.alpha = 0.4f; 
             btn.interactable = false;
-            return; 
+            
+            if (lockIcon != null) lockIcon.gameObject.SetActive(true); 
+            return;
+        }
+        else
+        {
+            if (lockIcon != null) lockIcon.gameObject.SetActive(false);
         }
         
         btn.onClick.AddListener(() => 
@@ -914,6 +928,13 @@ public class EncounterManager : MonoBehaviour
         Debug.Log(condName);
         switch (condName)
         {
+            case "CheckRoundNum":
+                int requiredRound = int.Parse(argsRaw);
+                if (playerDataSO != null)
+                {
+                    return playerDataSO.currentActNum >= requiredRound;
+                }
+                return false;
             case "NeedKey":
                 if (characterData != null && playerDataSO.earnedKeys != null)
                 {
@@ -926,9 +947,6 @@ public class EncounterManager : MonoBehaviour
                 if (playerRelicSO != null && playerRelicSO.relicItems != null)
                 {
                     bool hasRelic = playerRelicSO.relicItems.Exists(item => item.relicName == argsRaw);
-                    
-                    // Debug.Log($"[CheckCondition] HasObjet({argsRaw}) ? {hasRelic}");
-                    
                     return hasRelic;
                 }
                 return false;

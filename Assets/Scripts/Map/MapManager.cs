@@ -59,8 +59,20 @@ public class MapManager : MonoBehaviour
     bool CheckConstraint(string constraint)
     {
         if (string.IsNullOrEmpty(constraint)) return true;
-
-        if (constraint.StartsWith("NeedKey"))
+        if (constraint.StartsWith("CheckRoundNum"))
+        {
+            string roundStr = constraint.Replace("CheckRoundNum(", "").Replace(")", "").Trim();
+            
+            if (int.TryParse(roundStr, out int requiredRound))
+            {
+                if (playerDataSO != null)
+                {
+                    return playerDataSO.currentActNum >= requiredRound;
+                }
+            }
+            return false; 
+        }
+        else if (constraint.StartsWith("NeedKey"))
         {
             string keyName = constraint.Replace("NeedKey(", "").Replace(")", "").Trim();
             if (!playerDataSO.earnedKeys.Contains(keyName)) return false;

@@ -4,7 +4,7 @@
     "dreamDust": 8,
     "leftPassengers": 0,
     "isTutorial": false,
-    "lastSceneName": "MapScene",
+    "lastSceneName": "EncounterScene",
     "personaPiece": "고양이의 꿈",
     "isPersonaEnhanced": false,
     "personaCards": [
@@ -64,9 +64,11 @@
         }
     ],
     "relics": [
-        24
+        24,
+        7
     ],
     "relicEnhancements": [
+        false,
         false
     ],
     "useableItems": [],
@@ -170,7 +172,9 @@
         },
         {
             "locationID": "ICECREAM_CART",
-            "selectedEncounterPool": [],
+            "selectedEncounterPool": [
+                "ACT1_SOUVENIR"
+            ],
             "ID": "541d8dc01d2f473da4d9175d0e9298bd",
             "level": 4,
             "pos": 0,
@@ -187,7 +191,9 @@
         },
         {
             "locationID": "VIKING",
-            "selectedEncounterPool": [],
+            "selectedEncounterPool": [
+                "ACT1_WAITING_LINE_VIKING"
+            ],
             "ID": "f6e0c25c582148bb849afc0a0702b4a2",
             "level": 5,
             "pos": 0,
@@ -202,7 +208,9 @@
         },
         {
             "locationID": "GYRODROP",
-            "selectedEncounterPool": [],
+            "selectedEncounterPool": [
+                "ACT1_WAITING_LINE_GYRODROP"
+            ],
             "ID": "147e174774ae484eb3e400f3dee2916b",
             "level": 5,
             "pos": -1,
@@ -218,7 +226,9 @@
         },
         {
             "locationID": "ROLLERCOASTER",
-            "selectedEncounterPool": [],
+            "selectedEncounterPool": [
+                "ACT1_WAITING_LINE_ROLLER"
+            ],
             "ID": "ba6f55d2942848be8581cf44bd7d5dd6",
             "level": 5,
             "pos": 1,
@@ -306,9 +316,12 @@
         }
     ],
     "totalLevel": 9,
-    "visitedNodeIDList": [],
-    "curNodeIndex": 1,
-    "curNodeLocationID": "AMUSEMENT_PARK_ENTRANCE",
+    "visitedNodeIDList": [
+        "541d8dc01d2f473da4d9175d0e9298bd",
+        "ba6f55d2942848be8581cf44bd7d5dd6"
+    ],
+    "curNodeIndex": 9,
+    "curNodeLocationID": "ROLLERCOASTER",
     "lastEncounterType": 0,
     "encounterQueue": [],
     "currentStepID": "",
