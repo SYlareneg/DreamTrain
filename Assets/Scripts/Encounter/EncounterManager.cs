@@ -751,10 +751,10 @@ public class EncounterManager : MonoBehaviour
                     {
                         continue; 
                     }
-
                     if (condName == "HasObjet")
                     {
-                        string endsWith = $"({argsRaw} 필요)";
+                        // argsRaw(오브제 이름)과 동일한 이름의 스프라이트 호출
+                        string endsWith = $"(<sprite name=\"{argsRaw}\"> 필요)";
                         if (!finalButtonText.Contains(endsWith))
                         {
                             finalButtonText += $"  {endsWith}";
@@ -762,10 +762,18 @@ public class EncounterManager : MonoBehaviour
                     }
                     else if (condName == "HasDreamPiece")
                     {
-                        string endsWith2 = $"({argsRaw} 조각 필요)";
+                        string endsWith2 = $"(<sprite name=\"{argsRaw}\"> 조각 필요)";
                         if (!finalButtonText.Contains(endsWith2))
                         {
                             finalButtonText += $"  {endsWith2}";
+                        }
+                    }
+                    else if (condName == "HasDreamCoin")
+                    {
+                        string endsWith3 = $"(<sprite name=\"DreamCoin\"> {argsRaw}개 필요)";
+                        if (!finalButtonText.Contains(endsWith3))
+                        {
+                            finalButtonText += $"  {endsWith3}";
                         }
                     }
                     
@@ -1028,7 +1036,7 @@ public class EncounterManager : MonoBehaviour
                         {
                             RelicItem_Enhanceable newRelic = new RelicItem_Enhanceable(foundData);
                             playerRelicSO.relicItems.Add(newRelic);
-                            string msg = $"\n<color=#5df86f>오브제 '{foundData.relicName}' 획득!</color>";
+                            string msg = $"\n<color=#5df86f><sprite name=\"{foundData.relicName}\"> 획득!</color>";
                             if (foundData.relicName == "영원한 웃음" || foundData.relicName == "영원한 웃음+")
                                 playerStats.wisdom = 1;
                             pendingSystemMessage += msg; 
@@ -1050,13 +1058,13 @@ public class EncounterManager : MonoBehaviour
                     string msg = "";
                     if (amount > 0)
                     {
-                        msg = $"\n<color=#5df86f>드림 코인 {amount}개 획득!</color>";
+                        msg = $"\n<color=#5df86f><sprite name=\"DreamCoin\"> {amount}개 획득!</color>";
                         PlaySFX(coinGetSfx);
                     }
                     else
                     {
                         if (characterData.dreamDust - amount <= 0) return; 
-                        msg = $"\n<color=#FF0000>드림 코인 {-amount}개 지불!</color>";
+                        msg = $"\n<color=#FF0000><sprite name=\"DreamCoin\"> {-amount}개 지불!</color>";
                     }
                     pendingSystemMessage += msg;
                     characterData.dreamDust += int.Parse(args[0]);
@@ -1081,7 +1089,7 @@ public class EncounterManager : MonoBehaviour
                             statName = "지혜";
                             break;
                     }
-                    string msg = $"\n<color=#5df86f>'{statName}' {amount}증가!</color>";
+                    string msg = $"\n<color=#5df86f><sprite name=\"{sType.ToString()}\"> {amount} 증가!</color>";
                     pendingSystemMessage += msg; 
                 }
                 break;
@@ -1104,7 +1112,7 @@ public class EncounterManager : MonoBehaviour
                             statName = "지혜";
                             break;
                     }
-                    string msg = $"\n<color=#FF0000>'{statName}' {amount} 감소!</color>";
+                    string msg = $"\n<color=#FF0000><sprite name=\"{sType1.ToString()}\"> {amount} 감소!</color>";
                     pendingSystemMessage += msg;
                 }
                 break;
@@ -1143,7 +1151,7 @@ public class EncounterManager : MonoBehaviour
                     int heal = Mathf.RoundToInt(characterData.maxHealth * (int.Parse(args[0]) / 100f));
                     characterData.curHealth = Mathf.Min(characterData.curHealth + heal, characterData.maxHealth);
             
-                    string msg = $"\n<color=#5df86f>체력 {heal} 회복!</color>";
+                    string msg = $"\n<color=#5df86f><sprite name=\"HP\"> {heal} 회복!</color>";
                     pendingSystemMessage += msg;
                 }
                 break;
@@ -1158,7 +1166,7 @@ public class EncounterManager : MonoBehaviour
              
                     characterData.curHealth = Mathf.Max(1, characterData.curHealth - dmg);
 
-                    string msg = $"\n<color=#FF0000>체력 {dmg} 잃음!</color>";
+                    string msg = $"\n<color=#FF0000><sprite name=\"HP\"> {dmg} 잃음!</color>";
                     pendingSystemMessage += msg;
                 }
                 break;
@@ -1244,7 +1252,7 @@ public class EncounterManager : MonoBehaviour
                         {
                             RelicItem_Enhanceable newRelic = new RelicItem_Enhanceable(foundData);
                             playerRelicSO.relicItems.Remove(newRelic);
-                            string msg = $"\n<color=#5df86f>오브제 '{foundData.relicName}' 파괴!</color>";
+                            string msg = $"\n<color=#FF0000><sprite name=\"{foundData.relicName}\"> 파괴!</color>";
                             pendingSystemMessage += msg; 
                             Debug.Log($"[Encounter] 오브제 획득 성공: {foundData.relicName}");
                         }
@@ -1286,7 +1294,7 @@ public class EncounterManager : MonoBehaviour
                             playerRelicSO.relicItems.Add(newRelic);
                             candidates.RemoveAt(randomIndex);
                             
-                            string msg = $"\n<color=#5df86f>오브제 '{itemToAdd.relicName}' 획득!</color>";
+                            string msg = $"\n<color=#5df86f><sprite name=\"{itemToAdd.relicName}\"> 획득!</color>";
                             pendingSystemMessage += msg; 
                             Debug.Log($"랜덤 오브제 획득: {itemToAdd.relicName}");
                         }

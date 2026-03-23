@@ -19,7 +19,6 @@ public class EncounterMenuControll : MonoBehaviour
     public TextMeshProUGUI luckText;
 
     [Header("UI Button References")]
-    public Button relicButton;
     public GameObject relicPanel;
     public GameObject relicUIPrefab;
 
@@ -65,14 +64,8 @@ public class EncounterMenuControll : MonoBehaviour
         
         if (hpText != null) originalColor = hpText.color; 
         
-        UpdateUI_NoEffect(); 
-
-        relicPanel.SetActive(false);
-        if (characterRelicData.relicItems == null || characterRelicData.relicItems.Count == 0)
-        {
-            relicButton.enabled = false;
-            relicButton.GetComponent<Image>().color = Color.gray;
-        }
+        UpdateUI_NoEffect();
+        ShowRelics();
     }
 
     void InitializeValues()
@@ -198,44 +191,22 @@ public class EncounterMenuControll : MonoBehaviour
         }
     }
 
-    public void ResetAllUIEffects()
-    {
-        foreach (var kvp in activeCoroutines)
-        {
-            if (kvp.Value != null) StopCoroutine(kvp.Value);
-            
-            if (kvp.Key != null)
-            {
-                kvp.Key.color = originalColor;
-                kvp.Key.transform.localScale = originalScale;
-                
-            }
-        }
-        activeCoroutines.Clear();
-    }
 
     public void ShowRelics()
     {
-        if (relicPanel.activeSelf)
+        foreach (Transform child in relicPanel.transform)
         {
-            relicPanel.SetActive(false);
+            Destroy(child.gameObject);
         }
-        else
+        foreach (RelicItem rItem in characterRelicData.relicItems)
         {
-            foreach (Transform child in relicPanel.transform)
-            {
-                Destroy(child.gameObject);
-            }
-            foreach (RelicItem rItem in characterRelicData.relicItems)
-            {
-                GameObject relicUIObj = Instantiate(relicUIPrefab, relicPanel.transform);
-                RelicUI relicUI = relicUIObj.GetComponent<RelicUI>();
-                relicUI.Setup(rItem, null);
-            }
-            if (characterRelicData.relicItems.Count > 0)
-            {
-                relicPanel.SetActive(true);
-            }
+            GameObject relicUIObj = Instantiate(relicUIPrefab, relicPanel.transform);
+            RelicUI relicUI = relicUIObj.GetComponent<RelicUI>();
+            relicUI.Setup(rItem, null);
+        }
+        if (characterRelicData.relicItems.Count > 0)
+        {
+            relicPanel.SetActive(true);
         }
     }
 }
