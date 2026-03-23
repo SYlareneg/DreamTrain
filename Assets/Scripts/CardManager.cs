@@ -448,12 +448,6 @@ public class CardManager : MonoBehaviour
             }
             if(selectedCard.item.isSingleTarget == true && onEnemyCardArea == -1)
             {
-                if(selectedCard.IsCardUseable(0) == false)
-                {
-                    EnlargeCard(false, selectedCard);
-                    selectedCard = null;
-                    return;
-                }
                 // EnlargeCard(false, selectedCard);
                 // selectedCard = null;
                 // TurnManager.Inst.isLoading = true;
@@ -461,6 +455,13 @@ public class CardManager : MonoBehaviour
                 // StartCoroutine(CardEnemySelect());
                 // return;
                 onEnemyCardArea = 0;
+            }
+            if(BuffManager.Inst.GetBuffedCardCost(selectedCard.item) > TurnManager.Inst.nowCost)
+            {
+                GameManager.Inst.ShowCostWarning(true);
+                EnlargeCard(false, selectedCard);
+                selectedCard = null;
+                return;
             }
             // 카드 사용
             // selectedCard.highlight.enabled = false;

@@ -387,7 +387,7 @@ public class RelicManager : MonoBehaviour
                 return;
             case "낡은 장갑":
             case "낡은 장갑+":
-                TurnManager.OnRouletteSpin += (isClockwise, spinCount) =>
+                TurnManager.OnRouletteActivate += () =>
                 {
                     TurnManager.Inst.GetShield(false, relicItem.relicVal[0], EDamageSource.Relic);
                     Debug.Log("Relic Activate: " + relicItem.relicName);

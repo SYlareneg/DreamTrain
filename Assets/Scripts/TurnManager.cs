@@ -574,4 +574,12 @@ public class TurnManager : MonoBehaviour
             }
         }
     }
+
+    void LateUpdate()
+    {
+        if(GameManager.Inst.gameOverSignal == true)
+        {
+            isLoading = true;
+        }
+    }
 }

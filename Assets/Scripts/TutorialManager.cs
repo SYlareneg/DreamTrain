@@ -80,11 +80,11 @@ public class TutorialManager : MonoBehaviour
             hideScreen.SetActive(false);
             tutorialBox.SetActive(true);
             tutorialText.text = "좋아! 이제 혼자서도 할 수 있겠지?\n행운을 빌어!";
-            nextTutorial = () =>
+            TurnManager.Inst.isLoading = false;
+            DOTween.Sequence().AppendInterval(2f).AppendCallback(() =>
             {
                 HideTutorialBox();
-                TurnManager.Inst.isLoading = false;
-            };
+            }).Play();
             return;
         }
         if(stage == 1)
@@ -395,16 +395,14 @@ public class TutorialManager : MonoBehaviour
                             Action onRouletteTrigger = null;
                             onRouletteTrigger = () =>
                             {
-                                Sequence seq = DOTween.Sequence();
-                                seq.AppendInterval(0.5f);
-                                seq.AppendCallback(() =>
+                                TurnManager.Inst.isLoading = true;
+                                Tooltip.showTooltipSignal = true;
+                                tutorialScreen.SetActive(false);
+                                DOTween.Sequence().AppendInterval(0.5f).AppendCallback(() =>
                                 {
-                                    Tooltip.showTooltipSignal = true;
-                                    tutorialScreen.SetActive(false);
                                     ShowTutorialBox(2, 3, 4);
-                                    TurnManager.OnRouletteTrigger -= onRouletteTrigger;
-                                });
-                                seq.Play();
+                                }).Play();
+                                TurnManager.OnRouletteTrigger -= onRouletteTrigger;
                             };
                             TurnManager.OnRouletteTrigger += onRouletteTrigger;
                             break;

@@ -1106,29 +1106,9 @@
             {
               "pattern": [
                 {
-                  "type": 3,
-                  "typeNum": 0,
-                  "val": 5,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
                   "type": 0,
                   "typeNum": 0,
                   "val": 3,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 2,
-                  "typeNum": 0,
-                  "val": 2,
                   "isTrigger": false
                 }
               ]
@@ -1550,26 +1530,6 @@
             {
               "pattern": [
                 {
-                  "type": 3,
-                  "typeNum": 0,
-                  "val": 5,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
-                  "type": 2,
-                  "typeNum": 0,
-                  "val": 2,
-                  "isTrigger": false
-                }
-              ]
-            },
-            {
-              "pattern": [
-                {
                   "type": 0,
                   "typeNum": 0,
                   "val": 3,
@@ -1624,11 +1584,11 @@
         },
         {
           "rtype": {
-            "type": 0,
+            "type": 1,
             "specialTypeIdx": 0,
             "enemyIdx": 0
           },
-          "value": 0
+          "value": 5
         },
         {
           "rtype": {

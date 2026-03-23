@@ -129,6 +129,7 @@ public class RoulettePiece : MonoBehaviour
         {
             case ERouletteType.Player_Special:
                 PassiveManager.playerSpecialRouletteClear[roulette.rtype.specialTypeIdx]?.Invoke(index);
+                BuffManager.Inst.roulettePieceBuff[this].Clear();
                 break;
             default:
                 // RouletteManager.Inst.EnchantRoulettePiece(index, new RouletteType(ERouletteType.None, 0), 0);
@@ -136,6 +137,7 @@ public class RoulettePiece : MonoBehaviour
                 rItem.rtype = new RouletteType(ERouletteType.None, 0);
                 rItem.value = 0;
                 Setup(rItem);
+                BuffManager.Inst.roulettePieceBuff[this].Clear();
                 break;
         }
         if(eraseFlag)

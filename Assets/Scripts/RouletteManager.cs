@@ -149,9 +149,16 @@ public class RouletteManager : MonoBehaviour
         if (isTriggerActivated)
         {
             int totalVal = BuffManager.Inst.GetBuffedRouletteValue(triggerPiece);
-            Debug.Log("trigger value: " + totalVal.ToString());
             rouletteTriggerEffect.GetComponent<RouletteEffect_Trigger>().triggerVal = totalVal;
-            rouletteTriggerEffect.SetTrigger("Claw");
+            switch(DataManager.Inst.characterSO.personaPiece.persona.dreamPieceNum)
+            {
+                case 3:
+                    rouletteTriggerEffect.SetTrigger("Claw");
+                    break;
+                case 1:
+                    rouletteTriggerEffect.SetTrigger("Magic");
+                    break;
+            }
             // TriggerActivation?.Invoke(isEnemyTrigger(), totalVal);
             Utils.AllignActions(ref TurnManager.OnRouletteActivate, typeof(ShowBuff), typeof(RelicManager));
             TurnManager.OnRouletteActivate?.Invoke();
@@ -209,12 +216,12 @@ public class RouletteManager : MonoBehaviour
         {
             roulettePieces[i].Trigger(true);
         }
+        TriggerActivation = PlayerTriggerActivation;
         Utils.AllignActions(ref TurnManager.OnPlayerTrigger, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnPlayerTrigger?.Invoke();
-        TriggerActivation = PlayerTriggerActivation;
+        TurnManager.Inst.isLoading = false;
         Utils.AllignActions(ref TurnManager.OnRouletteTrigger, typeof(ShowBuff), typeof(RelicManager));
         TurnManager.OnRouletteTrigger?.Invoke();
-        TurnManager.Inst.isLoading = false;
         yield return new WaitForSeconds(0.35f);
         triggerEffect.gameObject.SetActive(false);
     }
@@ -294,6 +301,7 @@ public class RouletteManager : MonoBehaviour
         }
         if(roulettePieces[index].roulette.rtype.type != ERouletteType.None)
         {
+            roulettePieces[index].RouletteClear();
             Utils.AllignActions(ref TurnManager.OnRouletteErase, typeof(ShowBuff), typeof(RelicManager));
             TurnManager.OnRouletteErase?.Invoke(index);
         }

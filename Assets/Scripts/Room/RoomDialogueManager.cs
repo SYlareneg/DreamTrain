@@ -196,16 +196,10 @@ public class RoomDialogueManager : MonoBehaviour
                 speakerSprite = null,
                 sound = null
             };
-            DialogueLine startLine2 = new DialogueLine()
-            {
-                speakerName = "",
-                text = "주위를 둘러보는게 좋을 것 같다.",
-                speakerSprite = null,
-                sound = null
-            };
             RoomPlayer.Inst.isInteractable = false;
             SceneChangeManager.Inst.SceneFadeIn(() => {
-                currentDialogueLines = new List<DialogueLine>() { startLine1, startLine2 };
+                currentDialogueLines = new List<DialogueLine>(RoomObjectManager.Inst.GetDialogueLines("고양이", "awake"));
+                currentDialogueLines.Insert(0, startLine1);
                 currentLineIndex = -1;
                 RoomPlayer.Inst.isInteractable = false;
                 ShowNextDialogue(new InputAction.CallbackContext());

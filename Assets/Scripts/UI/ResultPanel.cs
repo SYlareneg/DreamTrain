@@ -17,9 +17,9 @@ public class ResultPanel : MonoBehaviour
         AlphaZero();
         winPanel.SetActive(true);
         losePanel.SetActive(false);
-        AlphaTween(1f, 1.5f, () => 
+        AlphaTween(1f, 0.5f, 1.5f, () => 
         {
-            AlphaTween(0f, 1.5f, () => 
+            AlphaTween(0f, 1.5f, 0f, () => 
             {
                 ScaleZero();
                 onComplete?.Invoke();
@@ -91,17 +91,17 @@ public class ResultPanel : MonoBehaviour
         }
     }
 
-    void AlphaTween(float targetAlpha, float duration, Action onComplete = null)
+    void AlphaTween(float targetAlpha, float inTime, float duration, Action onComplete = null)
     {
         var images = winPanel.GetComponentsInChildren<Image>();
         foreach(var img in images)
         {
-            img.DOFade(targetAlpha, duration);
+            img.DOFade(targetAlpha, inTime);
         }
         var texts = winPanel.GetComponentsInChildren<TMP_Text>();
         foreach(var text in texts)
         {
-            text.DOFade(targetAlpha, duration);
+            text.DOFade(targetAlpha, inTime);
         }
         DOTween.Sequence()
             .AppendInterval(duration)
