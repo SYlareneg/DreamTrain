@@ -72,8 +72,6 @@ public class RelicUI : MonoBehaviour
             tooltip1.tooltipPos = (Vector2)relicMask1.transform.position - (Vector2)screenCenter;
             tooltip1.tooltipPos.y -= 50;
             tooltip1.tooltipPos.x += 100;
-            Debug.Log(relicMask1.transform.position);
-            Debug.Log(tooltipOffset);
         }
         
         if(tooltip2 != null && relicItem2 != null && relicMask2 != null)

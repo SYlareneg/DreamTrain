@@ -198,7 +198,7 @@ public class EncounterMenuControll : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        foreach (RelicItem rItem in characterRelicData.relicItems)
+        foreach (RelicItem_Enhanceable rItem in characterRelicData.relicItems)
         {
             GameObject relicUIObj = Instantiate(relicUIPrefab, relicPanel.transform);
             RelicUI relicUI = relicUIObj.GetComponent<RelicUI>();

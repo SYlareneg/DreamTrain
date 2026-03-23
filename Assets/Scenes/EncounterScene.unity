@@ -6382,6 +6382,7 @@ MonoBehaviour:
   playerStats: {fileID: 11400000, guid: 3814c952094c0884fa9f39e909922626, type: 2}
   actData: {fileID: 11400000, guid: ad73d8b4a4d8e6441bab56db52dc9fbf, type: 2}
   playerRelicSO: {fileID: 11400000, guid: f261c4fa2c6606c4ea86c879ed3f631d, type: 2}
+  relicListSO: {fileID: 11400000, guid: 0e7223e1226b56241819d7fb7d0eca1d, type: 2}
   relicDatabase: {fileID: 11400000, guid: 51dcd8347c98008458816214e380ed75, type: 2}
   dreamPieceDatabase: {fileID: 11400000, guid: fa145bd86cf8d8a47b1d9e3683cef771, type: 2}
   cardDatabase: {fileID: 11400000, guid: 200e71a8166738b4a98d746fa337adde, type: 2}

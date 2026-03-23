@@ -55,6 +55,7 @@ public class EncounterManager : MonoBehaviour
     public PlayerStatsSo playerStats;
     public ActSO actData;
     public RelicSO playerRelicSO;
+    public RelicSO relicListSO;
     public RelicDataSO relicDatabase;
     public DreamPieceSO dreamPieceDatabase;
     public ItemDataSO cardDatabase;
@@ -97,6 +98,8 @@ public class EncounterManager : MonoBehaviour
     public GameObject EndPanel;
     public Button endButton;
     private string pendingSystemMessage = "";
+    
+    private bool isButton = false;
 
     void Awake()
     {
@@ -534,7 +537,7 @@ public class EncounterManager : MonoBehaviour
     }
     string FormatDialogueColor(string content)
     {
-        string pattern = @"([""“])(.*?)([""”])";
+        string pattern = @"(?<!=)([""“])(.*?)([""”])";
         string replacement = "$1<color=#77B0FF>$2</color>$3";
 
         return Regex.Replace(content, pattern, replacement);
@@ -606,6 +609,8 @@ public class EncounterManager : MonoBehaviour
                 pendingSystemMessage = "";
             }
         }
+
+        UpdateInlineImages(descriptionText);
         UpdateOptionsUI();
     }
     public void StartTyping(string content, bool isAppend, System.Action onComplete = null)
@@ -644,8 +649,6 @@ public class EncounterManager : MonoBehaviour
                 descriptionScrollRect.verticalNormalizedPosition = 1f; 
             }
         }
-
-        // 텍스트 정보 갱신 (글자 좌표 계산을 위해 필수)
         descriptionText.ForceMeshUpdate();
 
         int totalVisibleCharacters = descriptionText.textInfo.characterCount;
@@ -660,7 +663,7 @@ public class EncounterManager : MonoBehaviour
             {
                 ScrollToChar(counter - 1);
             }
-
+            UpdateInlineImages(descriptionText);
             counter++;
             yield return new WaitForSeconds(typingSpeed);
         }
@@ -668,7 +671,7 @@ public class EncounterManager : MonoBehaviour
         descriptionText.maxVisibleCharacters = totalVisibleCharacters;
         
         ScrollToChar(totalVisibleCharacters - 1);
-        
+        UpdateInlineImages(descriptionText);
         isTyping = false;
         if (audioSource != null)
         {
@@ -715,6 +718,7 @@ public class EncounterManager : MonoBehaviour
             if (typingCoroutine != null) StopCoroutine(typingCoroutine);
 
             descriptionText.maxVisibleCharacters = descriptionText.textInfo.characterCount;
+            UpdateInlineImages(descriptionText);
             if (audioSource != null)
             {
                 audioSource.Stop();
@@ -739,7 +743,7 @@ public class EncounterManager : MonoBehaviour
                 bool isConditionMet = CheckCondition(option.condition);
                 string finalButtonText = option.text;
 
-                if (!isConditionMet)
+                if (!string.IsNullOrEmpty(option.condition) && option.condition != "DEFAULT" && option.condition != "-")
                 {
                     string condName = option.condition.Split('(')[0].Trim();
                     string argsRaw = "";
@@ -752,16 +756,28 @@ public class EncounterManager : MonoBehaviour
                     }
                     if (condName == "HasObjet")
                     {
-                        // argsRaw(오브제 이름)과 동일한 이름의 스프라이트 호출
-                        string endsWith = $"(<sprite name=\"{argsRaw}\"> 필요)";
-                        if (!finalButtonText.Contains(endsWith))
+                        RelicItem_Data foundData = relicDatabase.relicItems.Find(x => x.relicName == argsRaw);
+                        Debug.Log(foundData);
+                        if (foundData != null)
                         {
-                            finalButtonText += $"  {endsWith}";
+                            string endsWith = $"<color=#FF0000>(<link={foundData.relicName}><space=1.5em></link> 필요)</color>";
+                            
+                            if (finalButtonText.Contains($"({argsRaw} 필요)")) 
+                            {
+                                finalButtonText = finalButtonText.Replace($"({argsRaw} 필요)", endsWith);
+                                Debug.Log(finalButtonText);
+                            }
+                            else 
+                            {
+                                finalButtonText += $"  {endsWith}";
+                                Debug.Log(finalButtonText);
+                            }
+                            isButton = true;
                         }
                     }
                     else if (condName == "HasDreamPiece")
                     {
-                        string endsWith2 = $"(<sprite name=\"{argsRaw}\"> 조각 필요)";
+                        string endsWith2 = $"({argsRaw} 조각 필요)";
                         if (!finalButtonText.Contains(endsWith2))
                         {
                             finalButtonText += $"  {endsWith2}";
@@ -769,7 +785,7 @@ public class EncounterManager : MonoBehaviour
                     }
                     else if (condName == "HasDreamCoin")
                     {
-                        string endsWith3 = $"(<sprite name=\"DreamCoin\"> {argsRaw}개 필요)";
+                        string endsWith3 = $"<color=#FF0000>(<sprite name=\"DreamCoin\"> {argsRaw}개 필요)</color>";
                         if (!finalButtonText.Contains(endsWith3))
                         {
                             finalButtonText += $"  {endsWith3}";
@@ -866,6 +882,8 @@ public class EncounterManager : MonoBehaviour
             tmp.text = data.text;
             Vector2 textSize = tmp.GetPreferredValues(data.text);
             btnRect.sizeDelta = new Vector2(textSize.x, textSize.y);
+            
+            UpdateInlineImages(tmp);
         }
         
         Button btn = btnObj.GetComponent<Button>();
@@ -1054,11 +1072,11 @@ public class EncounterManager : MonoBehaviour
                         {
                             RelicItem_Enhanceable newRelic = new RelicItem_Enhanceable(foundData);
                             playerRelicSO.relicItems.Add(newRelic);
-                            string msg = $"\n<color=#5df86f><sprite name=\"{foundData.relicName}\"> 획득!</color>";
-                            if (foundData.relicName == "영원한 웃음" || foundData.relicName == "영원한 웃음+")
-                                playerStats.wisdom = 1;
+                            string msg = $"\n<color=#5df86f><link={foundData.relicName}><space=1.5em></link> 획득!</color>";
+                            if (foundData.relicName == "영원한 웃음" || foundData.relicName == "영원한 웃음+") playerStats.wisdom = 1;
                             pendingSystemMessage += msg; 
                             Debug.Log($"[Encounter] 오브제 획득 성공: {foundData.relicName}");
+                            headerUI.ShowRelics();
                         }
                     }
                     else
@@ -1076,13 +1094,13 @@ public class EncounterManager : MonoBehaviour
                     string msg = "";
                     if (amount > 0)
                     {
-                        msg = $"\n<color=#5df86f><sprite name=\"DreamCoin\"> {amount}개 획득!</color>";
+                        msg = $"\n  <color=#5df86f><sprite name=\"DreamCoin\"> {amount}개 획득!</color>";
                         PlaySFX(coinGetSfx);
                     }
                     else
                     {
                         if (characterData.dreamDust - amount <= 0) return; 
-                        msg = $"\n<color=#FF0000><sprite name=\"DreamCoin\"> {-amount}개 지불!</color>";
+                        msg = $"\n  <color=#FF0000><sprite name=\"DreamCoin\"> {-amount}개 지불!</color>";
                     }
                     pendingSystemMessage += msg;
                     characterData.dreamDust += int.Parse(args[0]);
@@ -1094,21 +1112,9 @@ public class EncounterManager : MonoBehaviour
                 {
                     int amount = int.Parse(args[1]);
                     playerStats.ModifyStat(sType, amount);
-                    string statName = "";
-                    switch (sType)
-                    {
-                        case StatType.Courage:
-                            statName = "용기";
-                            break;
-                        case StatType.Luck:
-                            statName = "운";
-                            break;
-                        case StatType.Wisdom:
-                            statName = "지혜";
-                            break;
-                    }
-                    string msg = $"\n<color=#5df86f><sprite name=\"{sType.ToString()}\"> {amount} 증가!</color>";
-                    pendingSystemMessage += msg; 
+                    string msg = $"\n  <color=#5df86f><sprite name=\"{sType.ToString()}\"> {amount} 증가!</color>";
+                    pendingSystemMessage += msg;
+                    headerUI.RefreshUI();
                 }
                 break;
             
@@ -1117,21 +1123,10 @@ public class EncounterManager : MonoBehaviour
                 {
                     int amount = int.Parse(args[1]);
                     playerStats.ModifyStat(sType1, -amount);
-                    string statName = "";
-                    switch (sType1)
-                    {
-                        case StatType.Courage:
-                            statName = "용기";
-                            break;
-                        case StatType.Luck:
-                            statName = "운";
-                            break;
-                        case StatType.Wisdom:
-                            statName = "지혜";
-                            break;
-                    }
-                    string msg = $"\n<color=#FF0000><sprite name=\"{sType1.ToString()}\"> {amount} 감소!</color>";
+                    
+                    string msg = $"\n  <color=#FF0000><sprite name=\"{sType1.ToString()}\"> {amount} 감소!</color>";
                     pendingSystemMessage += msg;
+                    headerUI.RefreshUI();
                 }
                 break;
             case "StartBattle": 
@@ -1169,8 +1164,9 @@ public class EncounterManager : MonoBehaviour
                     int heal = Mathf.RoundToInt(characterData.maxHealth * (int.Parse(args[0]) / 100f));
                     characterData.curHealth = Mathf.Min(characterData.curHealth + heal, characterData.maxHealth);
             
-                    string msg = $"\n<color=#5df86f><sprite name=\"HP\"> {heal} 회복!</color>";
+                    string msg = $"\n  <color=#5df86f><sprite name=\"HP\"> {heal} 회복!</color>";
                     pendingSystemMessage += msg;
+                    headerUI.RefreshUI();
                 }
                 break;
 
@@ -1184,8 +1180,9 @@ public class EncounterManager : MonoBehaviour
              
                     characterData.curHealth = Mathf.Max(1, characterData.curHealth - dmg);
 
-                    string msg = $"\n<color=#FF0000><sprite name=\"HP\"> {dmg} 잃음!</color>";
+                    string msg = $"\n  <color=#FF0000><sprite name=\"HP\"> {dmg} 잃음!</color>";
                     pendingSystemMessage += msg;
+                    headerUI.RefreshUI();
                 }
                 break;
             
@@ -1242,7 +1239,6 @@ public class EncounterManager : MonoBehaviour
                         characterData.personaPiece = newPiece;
                         playerDataSO.personaPiece = targetName;
 
-                        // [수정됨] 직접 텍스트 수정 -> pendingSystemMessage 사용
                         string msg = $"\n<color=#D4AF37>꿈 조각 '{targetName}'(으)로 교체!</color>";
                         pendingSystemMessage += msg;
                     }
@@ -1261,23 +1257,20 @@ public class EncounterManager : MonoBehaviour
                         Debug.LogError("[EncounterManager] RelicDatabase 또는 PlayerRelicSO가 Inspector에 연결되지 않았습니다!");
                         return;
                     }
-                    RelicItem_Data foundData = relicDatabase.relicItems.Find(x => x.relicName == objectName);
-
-                    if (foundData != null)
+                    RelicItem_Enhanceable relicToRemove = playerRelicSO.relicItems.Find(r => r.relicName == objectName);
+                    
+                    if (relicToRemove != null)
                     {
-                        bool hasRelic = playerRelicSO.relicItems.Exists(r => r.relicOwner == foundData.relicOwner);
-                        if (hasRelic)
-                        {
-                            RelicItem_Enhanceable newRelic = new RelicItem_Enhanceable(foundData);
-                            playerRelicSO.relicItems.Remove(newRelic);
-                            string msg = $"\n<color=#FF0000><sprite name=\"{foundData.relicName}\"> 파괴!</color>";
-                            pendingSystemMessage += msg; 
-                            Debug.Log($"[Encounter] 오브제 획득 성공: {foundData.relicName}");
-                        }
+                        playerRelicSO.relicItems.Remove(relicToRemove);
+                        
+                        string msg = $"\n  <color=#FF0000><link={objectName}><space=1.5em></link> 파괴!</color>";
+                        pendingSystemMessage += msg; 
+                        Debug.Log($"[Encounter] 오브제 파괴: {objectName}");
+                        headerUI.ShowRelics();
                     }
                     else
                     {
-                        Debug.LogError($"[Encounter] DB에서 오브제를 찾을 수 없습니다: {objectName}. 이름을 확인해주세요.");
+                        Debug.LogWarning($"[Encounter] 파괴할 오브제를 가지고 있지 않습니다: {objectName}");
                     }
                 
                 }
@@ -1312,13 +1305,99 @@ public class EncounterManager : MonoBehaviour
                             playerRelicSO.relicItems.Add(newRelic);
                             candidates.RemoveAt(randomIndex);
                             
-                            string msg = $"\n<color=#5df86f><sprite name=\"{itemToAdd.relicName}\"> 획득!</color>";
+                            string msg = $"\n  <color=#5df86f><link={itemToAdd.relicName}><space=1.5em></link> 획득!</color>";
                             pendingSystemMessage += msg; 
                             Debug.Log($"랜덤 오브제 획득: {itemToAdd.relicName}");
+                            headerUI.ShowRelics();
                         }
                     }
                 }
                 break;
+        }
+    }
+    void UpdateInlineImages(TextMeshProUGUI textComp)
+    {
+        if (textComp == null) return;
+        textComp.ForceMeshUpdate();
+        TMP_TextInfo textInfo = textComp.textInfo;
+
+        List<Image> inlineImages = new List<Image>();
+        foreach (Transform child in textComp.transform)
+        {
+            if (child.name == "InlineImage")  inlineImages.Add(child.GetComponent<Image>());
+        }
+
+        while (inlineImages.Count < textInfo.linkCount)
+        {
+            GameObject imgObj = new GameObject("InlineImage");
+            imgObj.transform.SetParent(textComp.transform, false);
+            
+            RectTransform rectTransform = imgObj.AddComponent<RectTransform>();
+            rectTransform.pivot = new Vector2(0.5f, 0.5f);
+            
+            Image img = imgObj.AddComponent<Image>();
+            img.raycastTarget = false;
+            inlineImages.Add(img);
+        }
+
+        for (int i = 0; i < inlineImages.Count; i++)
+        {
+            if (i < textInfo.linkCount)
+            {
+                TMP_LinkInfo linkInfo = textInfo.linkInfo[i];
+                string linkID = linkInfo.GetLinkID(); 
+                Image img = inlineImages[i];
+                
+                Sprite targetSprite = null;
+
+                if (relicListSO != null)
+                {
+                    var foundRelic = relicListSO.relicItems.Find(x => x.relicName == linkID);
+                    if (foundRelic != null) 
+                    {
+                        targetSprite = foundRelic.relicSprite;
+                    }
+                }
+
+                if (targetSprite == null)
+                {
+                    targetSprite = Resources.Load<Sprite>($"Relics/{linkID}");
+                }
+                img.sprite = targetSprite;
+                img.color = (targetSprite != null) ? Color.white : Color.clear;
+                
+                int charIndex = linkInfo.linkTextfirstCharacterIndex;
+
+                if (charIndex >= textComp.maxVisibleCharacters && textComp.maxVisibleCharacters > 0)
+                {
+                    img.gameObject.SetActive(false);
+                    continue;
+                }
+
+                img.gameObject.SetActive(true);
+                int targetCharIndex = charIndex + linkInfo.linkTextLength;
+
+                while (targetCharIndex < textInfo.characterCount && 
+                       (textInfo.characterInfo[targetCharIndex].character == ' ' || !textInfo.characterInfo[targetCharIndex].isVisible))
+                {
+                    targetCharIndex++;
+                }
+
+                if (targetCharIndex < textInfo.characterCount)
+                {
+                    TMP_CharacterInfo realCharInfo = textInfo.characterInfo[targetCharIndex];
+                    float size = realCharInfo.pointSize * 1.6f; 
+                    img.rectTransform.sizeDelta = new Vector2(size, size);
+                    float cx;
+                    if (isButton) cx = realCharInfo.bottomLeft.x - 80f; 
+                    else cx = realCharInfo.bottomLeft.x - 30f;
+                    float cy = realCharInfo.baseLine + (realCharInfo.pointSize * 0.4f);
+
+                    isButton = false;
+                    img.rectTransform.localPosition = new Vector3(cx, cy, 0);
+                }
+            }
+            else inlineImages[i].gameObject.SetActive(false);
         }
     }
     void OpenGetCardUI(string cardName)
