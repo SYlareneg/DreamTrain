@@ -1016,10 +1016,10 @@ MonoBehaviour:
   fastMode: 1
   turnNum: 0
   maxCardCount: 10
-  drawCardCount: 6
+  drawCardCount: 10
   startCardCount: 0
   turnDraw: 0
-  turnCost: 4
+  turnCost: 10
   nowCost: 0
   extraCost: 0
   maxHealth: 0

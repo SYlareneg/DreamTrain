@@ -205,6 +205,22 @@
       ]
     },
     {
+      "relicName": "방울 목걸이",
+      "relicTxt": "회전 카드 사용 시 33% 확률로 카드를 1장 드로우합니다.",
+      "relicSprite": "오브제_0막_모닥불",
+      "relicOwner": 25,
+      "relicVal": [
+        100,
+        1
+      ],
+      "relicName_enhanced": "방울 목걸이+",
+      "relicTxt_enhanced": "회전 카드 사용 시 50% 확률로 카드를 1장 드로우합니다.",
+      "relicVal_enhanced": [
+        50,
+        1
+      ]
+    },
+    {
       "relicName": "바닐라 콘",
       "relicTxt": "획득 시 지혜가 1 상승합니다.",
       "relicSprite": "오브제_아이스크림 상점_바닐라 콘",

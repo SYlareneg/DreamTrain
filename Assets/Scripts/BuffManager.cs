@@ -531,6 +531,55 @@ public class ShowBuff
                     };
                 }
                 break;
+            case "프로덕션":
+                if(affectType == EBuffAffectType.Player)
+                {
+                    BuffManager.Inst.playerShowBuffs.Add(this);
+                    Action productionCheck = () =>
+                    {
+                        List<RoulettePiece> possiblePieces = new List<RoulettePiece>();
+                        for(int i = 0; i < RouletteManager.rouletteNum; i++)
+                        {
+                            if(RouletteManager.Inst.roulettePieces[i].roulette.rtype.type == ERouletteType.None)
+                            {
+                                possiblePieces.Add(RouletteManager.Inst.roulettePieces[i]);
+                            }
+                        }
+                        if(possiblePieces.Count == 0)
+                        {
+                            possiblePieces = new List<RoulettePiece>(RouletteManager.Inst.roulettePieces);
+                        }
+                        for(int i = 0; i < possiblePieces.Count; i++)
+                        {
+                            int idx = UnityEngine.Random.Range(0, possiblePieces.Count);
+                            (possiblePieces[i], possiblePieces[idx]) = (possiblePieces[idx], possiblePieces[i]);
+                        }
+                        RouletteType magicCard = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == 1, 1));
+                        RouletteManager.Inst.EnchantRoulettePiece(possiblePieces[0], magicCard, PassiveManager.Inst.playerSpecialRoulettes[magicCard.specialTypeIdx].baseVal);
+                    };
+                    PassiveManager.Inst.checkMagicFlag += productionCheck;
+                    removeBuff = () =>
+                    {
+                        PassiveManager.Inst.checkMagicFlag -= productionCheck;
+                    };
+                }
+                break;
+            case "열린 상자":
+                if(affectType == EBuffAffectType.Player)
+                {
+                    BuffManager.Inst.playerShowBuffs.Add(this);
+                    Action<int> getCost = null;
+                    getCost = (index) =>
+                    {
+                        TurnManager.Inst.IncreaseCost(baseVal[0]);
+                    };
+                    PassiveManager.playerSpecialRouletteClear[PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == 1, 0)] += getCost;
+                    removeBuff = () =>
+                    {
+                        PassiveManager.playerSpecialRouletteClear[PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == 1, 0)] -= getCost;
+                    };
+                }
+                break;
         }
     }
 

@@ -16,6 +16,7 @@ public class PassiveManager : MonoBehaviour
     // 마술사 꿈조각용
     public CardType[] playerSpecialRoulette_lastCardType = new CardType[RouletteManager.rouletteNum];
     public CardType lastCardType = CardType.Skill;
+    public Action checkMagicFlag = null;
 
     public static int GetSpecialRouletteIdx(bool isDP1, int idx)
     {

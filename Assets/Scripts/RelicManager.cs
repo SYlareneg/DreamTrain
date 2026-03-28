@@ -454,6 +454,21 @@ public class RelicManager : MonoBehaviour
                     }
                 };
                 return;
+            case "방울 목걸이":
+            case "방울 목걸이+":
+                TurnManager.OnUseCard += (card, enemyIdx) =>
+                {
+                    if(card.item.type == CardType.Turn)
+                    {
+                        if(Random.value <= (float)relicItem.relicVal[0] / 100f)
+                        {
+                            TurnManager.Inst.StartDraw(relicItem.relicVal[1], null);
+                        }
+                        Debug.Log("Relic Activate: " + relicItem.relicName);
+                        if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
+                    }
+                };
+                break;
         }
     }
 
