@@ -251,7 +251,7 @@ public class CardManager : MonoBehaviour
         {
             if(myCards[i].item.isRemain == true) continue;
             StartCoroutine(DiscardSingleCard(myCards[i]));
-            myCards.RemoveAt(i);
+            // myCards.RemoveAt(i);
         }
     }
     
