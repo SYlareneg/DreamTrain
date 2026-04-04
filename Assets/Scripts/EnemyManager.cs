@@ -362,12 +362,18 @@ public class EnemyManager : MonoBehaviour
                 {
                     BuffManager.Inst.rouletteBuff_EnemySpecial[0, 0].Add(new List<Buff>());
                 };
+                TurnManager.OnRouletteErase += (index, type) =>
+                {
+                    if(type == ERouletteType.Enemy_Special && RouletteManager.Inst.roulettePieces[index].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special, 0))
+                    {
+                        TurnManager.Inst.TriggerEnemyPassive(6);
+                    }
+                };
                 enemySpecialRouletteActivation[0] = (rPiece, isEnemy, value, enemyIdx, isEnhanced) =>
                 {
                     if (!isEnemy)
                     {
                         rPiece.RouletteClear();
-                        TurnManager.Inst.TriggerEnemyPassive(6);
                     }
                 };
                 enemySpecialActivation[0] = (value) =>
@@ -484,7 +490,7 @@ public class EnemyManager : MonoBehaviour
                     Debug.Log("Current Magic Hat : " + magicHat);
                 };
                 TurnManager.OnRouletteEnchant += countMagicHat;
-                TurnManager.OnRouletteErase += countMagicHat;
+                TurnManager.OnRouletteErase += (index, type) => countMagicHat(index);
                 break;
             case "귀신들린 인형":
                 BuffManager.InitSpecialRouletteBuffs += () =>
@@ -874,7 +880,7 @@ public class EnemyManager : MonoBehaviour
                         rouletteEffectCnt_brokenRobot = tempCnt;
                     }
                 };
-                TurnManager.OnRouletteErase += (index) =>
+                TurnManager.OnRouletteErase += (index, type) =>
                 {
                     int tempCnt = 0;
                     for(int i = 0; i < RouletteManager.rouletteNum; i++)

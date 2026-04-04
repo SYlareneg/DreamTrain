@@ -130,14 +130,14 @@
     },
     {
       "relicName": "빗자루",
-      "relicTxt": "룰렛에 부여된 효과가 제거될 때 행동력을 1 얻습니다.",
+      "relicTxt": "룰렛에 부여된 효과가 제거될 때 행동력을 1 얻습니다. (턴당 1회)",
       "relicSprite": "오브제_0막_빗자루",
       "relicOwner": 17,
       "relicVal": [
         1
       ],
       "relicName_enhanced": "빗자루+",
-      "relicTxt_enhanced": "룰렛에 부여된 효과가 제거될 때 행동력을 2 얻습니다.",
+      "relicTxt_enhanced": "룰렛에 부여된 효과가 제거될 때 행동력을 2 얻습니다. (턴당 1회)",
       "relicVal_enhanced": [
         2
       ]
@@ -314,10 +314,10 @@
         2
       ],
       "relicName_enhanced": "영원한 웃음+",
-      "relicTxt_enhanced": "지혜가 1로 고정됩니다. 전투 시작 시 보호를 2 얻습니다.",
+      "relicTxt_enhanced": "지혜가 1로 고정됩니다. 전투 시작 시 보호를 3 얻습니다.",
       "relicVal_enhanced": [
         1,
-        2
+        3
       ]
     },
     {

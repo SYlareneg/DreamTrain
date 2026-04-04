@@ -430,7 +430,7 @@ public class Card : MonoBehaviour
                         totalCardVal += BuffManager.Inst.GetBuffedRouletteValue(RouletteManager.Inst.roulettePieces[i]);
                     }
                 }
-                if(totalCardVal == 21) return true;
+                if(totalCardVal >= 21) return true;
                 else return false;
             case "꽁꽁 얼리기":
             case "꽁꽁 얼리기+":
@@ -1053,7 +1053,7 @@ public class Card : MonoBehaviour
                         totalCardVal += BuffManager.Inst.GetBuffedRouletteValue(RouletteManager.Inst.roulettePieces[i]);
                     }
                 }
-                isCardUsed = totalCardVal == 21;
+                isCardUsed = totalCardVal >= 21;
                 if (isCardUsed)
                 {
                     TurnManager.Inst.EnemyTakeDmg(GetBuffedVal(item.cardValues[1], ECardValueType.Damage), EDamageSource.Card);
