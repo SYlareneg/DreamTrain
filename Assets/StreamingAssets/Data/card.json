@@ -1754,25 +1754,31 @@
       "type": 2,
       "dreamPieceNum": 3,
       "sprite": "마구할퀴기",
-      "text": "모든 발톱 룰렛의 값을 절반으로 감소시키고, 소모한 값만큼 적에게 피해를 줍니다.",
+      "text": "모든 발톱 룰렛의 값의 합만큼 피해를 주고, 발톱 룰렛들의 값을 3<특수> 낮춥니다.",
       "isVolatile": false,
       "isVanish": false,
       "isRemain": false,
       "isSingleTarget": false,
       "rarity": 1,
-      "cardValues": [],
-      "cardValueTypes": [],
+      "cardValues": [
+        3
+      ],
+      "cardValueTypes": [
+        3
+      ],
       "name_enhanced": "마구 할퀴기+",
       "cost_enhanced": 2,
-      "text_enhanced": "모든 발톱 룰렛의 값을 절반으로 감소시키고, 소모한 값의 150<특수>%만큼 적에게 피해를 줍니다.",
+      "text_enhanced": "모든 발톱 룰렛의 값의 합의 150%만큼 피해를 주고, 발톱 룰렛들의 값을 3<특수> 낮춥니다.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": false,
       "cardValues_enhanced": [
-        150
+        150,
+        3
       ],
       "cardValueTypes_enhanced": [
+        3,
         3
       ]
     },

@@ -1298,9 +1298,12 @@ public class Card : MonoBehaviour
                     if(RouletteManager.Inst.roulettePieces[i].roulette.rtype == claw || RouletteManager.Inst.roulettePieces[i].roulette.rtype == claw2)
                     {
                         int tempVal = BuffManager.Inst.GetBuffedRouletteValue(RouletteManager.Inst.roulettePieces[i]);
-                        tempVal = tempVal - tempVal / 2;
                         totalDmg_claw += tempVal;
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.roulettePieceBuff[RouletteManager.Inst.roulettePieces[i]], -tempVal, 1, -1);
+                        BuffManager.AddBuffToTarget(BuffManager.Inst.roulettePieceBuff[RouletteManager.Inst.roulettePieces[i]], -3, 1, -1);
+                        if(BuffManager.Inst.GetBuffedRouletteValue(RouletteManager.Inst.roulettePieces[i]) <= 0)
+                        {
+                            RouletteManager.Inst.roulettePieces[i].RouletteClear();
+                        }
                     }
                 }
                 if(item.name == "마구 할퀴기+") totalDmg_claw = (int)(totalDmg_claw * 1.5f);
