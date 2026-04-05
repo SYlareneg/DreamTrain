@@ -228,7 +228,8 @@
       "hideSprite": "회전컵01",
       "encounterPool": [
         "ACT1_WINE_IN_CUP",
-        "ACT1_TEA_TIME"
+        "ACT1_TEA_TIME",
+        "ACT1_SPINNING_CUP"
       ],
       "encounterNum": 2,
       "difficulty": 8,
