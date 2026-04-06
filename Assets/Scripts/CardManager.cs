@@ -219,16 +219,10 @@ public class CardManager : MonoBehaviour
 
     // 핸드에서 card 카드 버림
     IEnumerator DiscardSingleCard(Card card)
-    {
-        // 잔류 카드가 아닐 경우 핸드에서 제거
-        bool isRemain = card.item.isRemain;
-        if (isRemain == false)
-        {
-            myCards.Remove(card);
-        }
-        
-        // 잔류 카드가 아니고, 휘발성 카드가 아닐 경우 무덤에 카드 추가 (소멸 카드의 경우 사용 즉시 소멸됨)
-        if (card.item.isVolatile == false && isRemain == false)
+    {   
+        myCards.Remove(card);
+        // 잔류 카드가 아닐 경우 무덤에 카드 추가 (소멸 카드의 경우 사용 즉시 소멸됨)
+        if (card.item.isVolatile == false)
         {
             itemDiscard.Add(card.item);
             // 카드 버리는 모션
@@ -241,19 +235,23 @@ public class CardManager : MonoBehaviour
         CardAlignment();
         yield return new WaitForSeconds(0.7f);
         // 카드 이동 완료 후 카드 오브젝트 파괴
-        if (isRemain == false)
-        {
-            Destroy(card.gameObject);
-        }
+        Destroy(card.gameObject);
     }
 
     // 핸드의 모든 카드 버림
     void DiscardCard()
     {
-        int cnt = myCards.Count;
-        for (int i = 0; i < cnt; i++)
+        // int cnt = myCards.Count;
+        // for (int i = 0; i < cnt; i++)
+        // {
+        //     if(myCards[0].item.isRemain == true) continue;
+        //     StartCoroutine(DiscardSingleCard(myCards[0]));
+        // }
+        for(int i = myCards.Count - 1; i >= 0; i--)
         {
-            StartCoroutine(DiscardSingleCard(myCards[0]));
+            if(myCards[i].item.isRemain == true) continue;
+            StartCoroutine(DiscardSingleCard(myCards[i]));
+            // myCards.RemoveAt(i);
         }
     }
     
@@ -476,10 +474,6 @@ public class CardManager : MonoBehaviour
             // 카드 사용 횟수 증가
             useCount++;
             useCount_Turn++;
-            // 만약 현재 카드가 '잔류' 카드일 경우, '잔류' 효과에 의해 카드가 버려지지 않는다.
-            // 이를 해결하기 위해 '잔류' 여부를 flag에 저장해 놓고, 잠시 카드의 '잔류' 효과를 해제한 후, 버려진 다음 카드의 '잔류' 여부를 재설정한다.
-            bool flag = selectedCard.item.isRemain;
-            selectedCard.item.isRemain = false;
             // 만약 현재 카드가 '소멸' 카드일 경우, 카드를 파괴한다.
             if (selectedCard.item.isVanish == true)
             {
@@ -493,8 +487,6 @@ public class CardManager : MonoBehaviour
             {
                 StartCoroutine(DiscardSingleCard(selectedCard));
             }
-            // 카드를 버린 후 저장해 놓은 '잔류' 여부에 따라 카드의 '잔류' 여부를 재설정한다.
-            selectedCard.item.isRemain = flag;
             // selectCard 초기화
             selectedCard = null;
             // 카드 재정렬

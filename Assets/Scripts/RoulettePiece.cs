@@ -124,6 +124,7 @@ public class RoulettePiece : MonoBehaviour
     {
         tooltip.HideTooltip();
         int index = Array.IndexOf(RouletteManager.Inst.roulettePieces, this);
+        ERouletteType markedType = roulette.rtype.type;
         bool eraseFlag = roulette.rtype.type != ERouletteType.None;
         switch (roulette.rtype.type)
         {
@@ -143,7 +144,7 @@ public class RoulettePiece : MonoBehaviour
         if(eraseFlag)
         {
             Utils.AllignActions(ref TurnManager.OnRouletteErase, typeof(ShowBuff), typeof(RelicManager));
-            TurnManager.OnRouletteErase?.Invoke(index);
+            TurnManager.OnRouletteErase?.Invoke(index, markedType);
         }
     }
 

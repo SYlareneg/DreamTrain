@@ -16,6 +16,7 @@ public class PassiveManager : MonoBehaviour
     // 마술사 꿈조각용
     public CardType[] playerSpecialRoulette_lastCardType = new CardType[RouletteManager.rouletteNum];
     public CardType lastCardType = CardType.Skill;
+    public Action checkMagicFlag = null;
 
     public static int GetSpecialRouletteIdx(bool isDP1, int idx)
     {
@@ -164,7 +165,7 @@ public class PassiveManager : MonoBehaviour
                                 int val = BuffManager.Inst.GetBuffedRouletteValue(RouletteManager.Inst.roulettePieces[i]);
                                 if (val == 0)
                                 {
-                                    playerSpecialRouletteClear[GetSpecialRouletteIdx(true, 0)]?.Invoke(i);
+                                    RouletteManager.Inst.roulettePieces[i].RouletteClear();
                                 }
                             }
                         }
@@ -260,12 +261,12 @@ public class PassiveManager : MonoBehaviour
                                 if (RouletteManager.Inst.roulettePieces[index].isEnhanced)
                                 {
                                     RouletteManager.Inst.roulettePieces[index].originalTooltipTitle = "클로버 룰렛+";
-                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "값 피해를 줍니다. 스킬 카드가 사용될 때마다 위력이 4 증가합니다.";
+                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "값 피해를 줍니다. 회전 카드가 사용될 때마다 위력이 4 증가합니다.";
                                 }
                                 else
                                 {
                                     RouletteManager.Inst.roulettePieces[index].originalTooltipTitle = "클로버 룰렛";
-                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "값 피해를 줍니다. 스킬 카드가 사용될 때마다 위력이 4 증가합니다.";
+                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "값 피해를 줍니다. 회전 카드가 사용될 때마다 위력이 4 증가합니다.";
                                 }
                                 break;
                             case CardType.Skill:
@@ -274,12 +275,12 @@ public class PassiveManager : MonoBehaviour
                                 if (RouletteManager.Inst.roulettePieces[index].isEnhanced)
                                 {
                                     RouletteManager.Inst.roulettePieces[index].originalTooltipTitle = "다이아몬드 룰렛+";
-                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "방어도를 값만큼 부여합니다. 부여 카드가 사용될 때마다 위력이 4 증가합니다.";
+                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "방어도를 값만큼 부여합니다. 스킬 카드가 사용될 때마다 위력이 4 증가합니다.";
                                 }
                                 else
                                 {
                                     RouletteManager.Inst.roulettePieces[index].originalTooltipTitle = "다이아몬드 룰렛";
-                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "방어도를 값만큼 부여합니다. 부여 카드가 사용될 때마다 위력이 4 증가합니다.";
+                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "방어도를 값만큼 부여합니다. 스킬 카드가 사용될 때마다 위력이 4 증가합니다.";
                                 }
                                 break;
                             case CardType.Enchant:
@@ -288,12 +289,12 @@ public class PassiveManager : MonoBehaviour
                                 if (RouletteManager.Inst.roulettePieces[index].isEnhanced)
                                 {
                                     RouletteManager.Inst.roulettePieces[index].originalTooltipTitle = "하트 룰렛+";
-                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "체력을 값만큼 회복합니다. 회전 카드가 사용될 때마다 위력이 1 증가합니다.";
+                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "체력을 값만큼 회복합니다. 부여 카드가 사용될 때마다 위력이 1 증가합니다.";
                                 }
                                 else
                                 {
                                     RouletteManager.Inst.roulettePieces[index].originalTooltipTitle = "하트 룰렛";
-                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "체력을 값만큼 회복합니다. 회전 카드가 사용될 때마다 위력이 1 증가합니다.";
+                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "체력을 값만큼 회복합니다. 부여 카드가 사용될 때마다 위력이 1 증가합니다.";
                                 }
                                 break;
                             case CardType.Dream:
@@ -793,7 +794,7 @@ public class PassiveManager : MonoBehaviour
                                 int val = BuffManager.Inst.GetBuffedRouletteValue(RouletteManager.Inst.roulettePieces[i]);
                                 if (val == 0)
                                 {
-                                    playerSpecialRouletteClear[GetSpecialRouletteIdx(false, 0)]?.Invoke(i);
+                                    RouletteManager.Inst.roulettePieces[i].RouletteClear();
                                 }
                             }
                         }
@@ -843,12 +844,12 @@ public class PassiveManager : MonoBehaviour
                                 if (RouletteManager.Inst.roulettePieces[index].isEnhanced)
                                 {
                                     RouletteManager.Inst.roulettePieces[index].originalTooltipTitle = "클로버 룰렛+";
-                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "값 피해를 줍니다. 스킬 카드가 사용될 때마다 위력이 6 증가합니다.";
+                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "값 피해를 줍니다. 회전 카드가 사용될 때마다 위력이 6 증가합니다.";
                                 }
                                 else
                                 {
                                     RouletteManager.Inst.roulettePieces[index].originalTooltipTitle = "클로버 룰렛";
-                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "값 피해를 줍니다. 스킬 카드가 사용될 때마다 위력이 4 증가합니다.";
+                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "값 피해를 줍니다. 회전 카드가 사용될 때마다 위력이 4 증가합니다.";
                                 }
                                 break;
                             case CardType.Skill:
@@ -857,12 +858,12 @@ public class PassiveManager : MonoBehaviour
                                 if (RouletteManager.Inst.roulettePieces[index].isEnhanced)
                                 {
                                     RouletteManager.Inst.roulettePieces[index].originalTooltipTitle = "다이아몬드 룰렛+";
-                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "방어도를 값만큼 부여합니다. 부여 카드가 사용될 때마다 위력이 6 증가합니다.";
+                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "방어도를 값만큼 부여합니다. 스킬 카드가 사용될 때마다 위력이 6 증가합니다.";
                                 }
                                 else
                                 {
                                     RouletteManager.Inst.roulettePieces[index].originalTooltipTitle = "다이아몬드 룰렛";
-                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "방어도를 값만큼 부여합니다. 부여 카드가 사용될 때마다 위력이 4 증가합니다.";
+                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "방어도를 값만큼 부여합니다. 스킬 카드가 사용될 때마다 위력이 4 증가합니다.";
                                 }
                                 break;
                             case CardType.Enchant:
@@ -871,12 +872,12 @@ public class PassiveManager : MonoBehaviour
                                 if (RouletteManager.Inst.roulettePieces[index].isEnhanced)
                                 {
                                     RouletteManager.Inst.roulettePieces[index].originalTooltipTitle = "하트 룰렛+";
-                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "체력을 값만큼 회복합니다. 회전 카드가 사용될 때마다 위력이 1 증가합니다.";
+                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "체력을 값만큼 회복합니다. 부여 카드가 사용될 때마다 위력이 1 증가합니다.";
                                 }
                                 else
                                 {
                                     RouletteManager.Inst.roulettePieces[index].originalTooltipTitle = "하트 룰렛";
-                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "체력을 값만큼 회복합니다. 회전 카드가 사용될 때마다 위력이 1 증가합니다.";
+                                    RouletteManager.Inst.roulettePieces[index].originalTooltipText = "체력을 값만큼 회복합니다. 부여 카드가 사용될 때마다 위력이 1 증가합니다.";
                                 }
                                 break;
                             case CardType.Dream:

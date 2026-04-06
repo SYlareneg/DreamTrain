@@ -735,6 +735,7 @@ public class GameManager : MonoBehaviour
             int cardIdx = Random.Range(0, lookat.Count);
             rc.Setup(lookat[cardIdx]);
             rc.gameObject.SetActive(true);
+            lookat.RemoveAt(cardIdx);
         }
     }
 

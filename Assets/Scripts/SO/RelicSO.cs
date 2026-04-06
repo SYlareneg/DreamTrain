@@ -62,7 +62,10 @@ public class RelicItem_Enhanceable : RelicItem
         enhancedRelicItem.relicTxt = relicItem_Data.relicTxt_enhanced;
         enhancedRelicItem.relicVal = new List<int>(relicItem_Data.relicVal_enhanced);
         enhancedRelicItem.isEnhanced = true;
-        
+        enhancedRelicItem.relicAct = relicItem_Data.relicAct;
+        enhancedRelicItem.rarity = relicItem_Data.rarity;
+        enhancedRelicItem.cost = relicItem_Data.cost;
+        enhancedRelicItem.sellCost = relicItem_Data.sellCost;
     }
 }
 

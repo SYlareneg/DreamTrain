@@ -1959,6 +1959,7 @@ MonoBehaviour:
   - {fileID: 254615086}
   - {fileID: 486693079}
   - {fileID: 1923809620}
+  arrowOriginalPositions: []
 --- !u!82 &499431940
 AudioSource:
   m_ObjectHideFlags: 0

@@ -396,11 +396,27 @@ public class RelicManager : MonoBehaviour
                 return;
             case "빗자루":
             case "빗자루+":
-                TurnManager.OnRouletteErase += (index) =>
+                bool broomFlag = false;
+                TurnManager.OnRouletteErase += (index, type) =>
                 {
+                    if(broomFlag) return;
+                    broomFlag = true;
                     TurnManager.Inst.IncreaseCost(relicItem.relicVal[0]);
                     Debug.Log("Relic Activate: " + relicItem.relicName);
                     if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
+                };
+                TurnManager.OnPlayerTurnEnd += () =>
+                {
+                    broomFlag = false;
+                    GameObject relic = GameManager.Inst.relicListScroll.GetComponentsInChildren<RelicUI>().ToList().Find(x => (x.relicItem1 != null && x.relicItem1.relicName == relicItem.relicName) || (x.relicItem2 != null && x.relicItem2.relicName == relicItem.relicName)).gameObject;
+                    if(relic != null)
+                    {
+                        Image[] images = relic.GetComponentsInChildren<Image>();
+                        foreach(Image img in images)
+                        {
+                            img.color = Color.white;
+                        }
+                    }
                 };
                 return;
             case "파랑 구두":
@@ -454,6 +470,21 @@ public class RelicManager : MonoBehaviour
                     }
                 };
                 return;
+            case "방울 목걸이":
+            case "방울 목걸이+":
+                TurnManager.OnUseCard += (card, enemyIdx) =>
+                {
+                    if(card.item.type == CardType.Turn)
+                    {
+                        if(Random.value <= (float)relicItem.relicVal[0] / 100f)
+                        {
+                            TurnManager.Inst.StartDraw(relicItem.relicVal[1], null);
+                        }
+                        Debug.Log("Relic Activate: " + relicItem.relicName);
+                        if(relicActivationList.Find(x => x == relicItem) == null) relicActivationList.Add(relicItem);
+                    }
+                };
+                break;
         }
     }
 
