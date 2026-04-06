@@ -133,7 +133,7 @@ public class EncounterMerchantUI : MonoBehaviour
         
         currentRelicToSell = null;
         GenerateShopInventory();
-        
+        UpdateRelicEnhanceButtonState();
     }
     
     public void OpenEnhanceCardScreen()
@@ -261,6 +261,40 @@ public class EncounterMerchantUI : MonoBehaviour
 
         if(cardEnhanceScreen) cardEnhanceScreen.SetActive(false);
     }
+    
+    public void UpdateRelicEnhanceButtonState()
+    {
+        if (relicEnhanceButton == null || !relicEnhanceButton.activeSelf) return;
+
+        bool hasEnhanceableRelic = false;
+        if (playerRelicSO != null && playerRelicSO.relicItems != null)
+        {
+            hasEnhanceableRelic = playerRelicSO.relicItems.Exists(x => !x.isEnhanced);
+        }
+
+        Button btn = relicEnhanceButton.GetComponent<Button>();
+        if (btn != null)
+        {
+            btn.interactable = hasEnhanceableRelic;
+        }
+
+        Transform hammerTransform = relicEnhanceButton.transform.Find("HammerIMG");
+        Transform textTransform = relicEnhanceButton.transform.Find("Text(TMP)");
+
+        Color targetColor = hasEnhanceableRelic ? Color.white : new Color(0.4f, 0.4f, 0.4f, 1f);
+
+        if (hammerTransform != null)
+        {
+            Image hammerImg = hammerTransform.GetComponent<Image>();
+            if (hammerImg != null) hammerImg.color = targetColor;
+        }
+
+        if (textTransform != null)
+        {
+            TMP_Text textTmp = textTransform.GetComponent<TMP_Text>();
+            if (textTmp != null) textTmp.color = targetColor;
+        }
+    }
 
     public void SetEnhanceRelicList()
     {
@@ -342,6 +376,7 @@ public void EnhanceRelicSelect(EnhanceObjet clickedRelicUI)
         relicEnhanceScreen.SetActive(false);
         menuControll.RefreshUI();
         //SetEnhanceRelicList(); 
+        UpdateRelicEnhanceButtonState();
     }
     
     void GenerateShopInventory()
@@ -817,6 +852,7 @@ public void EnhanceRelicSelect(EnhanceObjet clickedRelicUI)
         currentRelicToSell = null;
         UpdateJunkShopState();
         DrawJunkObjets();
+        UpdateRelicEnhanceButtonState();
     }
     
     public void TryBuyCard(int index)
