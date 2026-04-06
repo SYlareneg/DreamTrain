@@ -255,6 +255,8 @@ public class EncounterMerchantUI : MonoBehaviour
     public void OpenEnhanceRelicScreen()
     {
         if (characterSO.dreamDust < 2) return;
+        if (selectedEnhance != null) selectedEnhance.SetActive(false);
+        currentSelectedRelicUI = null;
         
         SetEnhanceRelicList();
         relicEnhanceScreen.SetActive(true);
@@ -279,7 +281,7 @@ public class EncounterMerchantUI : MonoBehaviour
         }
 
         Transform hammerTransform = relicEnhanceButton.transform.Find("HammerIMG");
-        Transform textTransform = relicEnhanceButton.transform.Find("Text(TMP)");
+        Transform textTransform = relicEnhanceButton.transform.Find("Text (TMP)");
 
         Color targetColor = hasEnhanceableRelic ? Color.white : new Color(0.4f, 0.4f, 0.4f, 1f);
 
@@ -304,6 +306,7 @@ public class EncounterMerchantUI : MonoBehaviour
         }
 
         currentSelectedRelicUI = null;
+        if (selectedEnhance != null) selectedEnhance.SetActive(false);
 
         List<RelicItem_Enhanceable> enhanceableRelics = playerRelicSO.relicItems
             .Where(x => !x.isEnhanced)
