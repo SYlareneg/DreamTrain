@@ -3,7 +3,7 @@
     {
       "relicName": "잃어버린 노래",
       "relicTxt": "카드가 소멸할 때마다 행동력을 1 얻습니다.",
-      "relicSprite": "Not drawn yet",
+      "relicSprite": "오브제_1막_잃어버린노래",
       "relicOwner": 8,
       "relicVal": [
         1
@@ -57,7 +57,7 @@
     {
       "relicName": "자가수리 키트",
       "relicTxt": "치유 룰렛으로 얻는 치유 효과가 50% 증가합니다",
-      "relicSprite": "Not drawn yet",
+      "relicSprite": "오브제_1막_자가수리키트",
       "relicOwner": 11,
       "relicVal": [
         50
@@ -95,7 +95,7 @@
     {
       "relicName": "고대 주화",
       "relicTxt": "어느 시대에 쓰였던 것인지 알 수 없는 동전입니다. 누군가 비싸게 살 지도 모릅니다.",
-      "relicSprite": "Not drawn yet",
+      "relicSprite": "오브제_1막_고대주화",
       "relicOwner": 13,
       "relicVal": [],
       "relicAct": 1,
@@ -337,7 +337,7 @@
     {
       "relicName": "박쥐 날개",
       "relicTxt": "턴 종료 시 남은 행동력x3의 방어도를 얻습니다.",
-      "relicSprite": "5. 오브제_ 박쥐 날개",
+      "relicSprite": "오브제_1막_박쥐날개",
       "relicOwner": 0,
       "relicVal": [
         3
@@ -373,7 +373,7 @@
     {
       "relicName": "꿀",
       "relicTxt": "턴 시작 시, 파괴되지 않고 남은 방어도의 25%를 체력으로 전환합니다.",
-      "relicSprite": "7. 오브제_꿀",
+      "relicSprite": "오브제_1막_꿀",
       "relicOwner": 2,
       "relicVal": [
         25
@@ -469,7 +469,7 @@
     {
       "relicName": "찻잔",
       "relicTxt": "턴 시작 시 1의 체력을 회복합니다.",
-      "relicSprite": "오브제_찻잔",
+      "relicSprite": "오브제_1막_찻잔",
       "relicOwner": 7,
       "relicVal": [
         1
