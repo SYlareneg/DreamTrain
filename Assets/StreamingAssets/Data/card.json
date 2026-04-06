@@ -6,27 +6,27 @@
       "type": 2,
       "dreamPieceNum": 1,
       "sprite": "그랜드피날레01",
-      "text": "모든 적에게 54<피해>의 피해를 줍니다. 룰렛에 클로버, 다이아몬드, 하트, 스페이드 문양이 모두 존재해야 사용할 수 있습니다.",
+      "text": "모든 적에게 72<피해>의 피해를 줍니다. 룰렛에 클로버, 다이아몬드, 하트, 스페이드 문양이 모두 존재해야 사용할 수 있습니다.",
       "isVolatile": false,
       "isVanish": false,
       "isRemain": false,
       "isSingleTarget": false,
       "rarity": 1,
       "cardValues": [
-        54
+        72
       ],
       "cardValueTypes": [
         0
       ],
       "name_enhanced": "그랜드 피날레+",
       "cost_enhanced": 0,
-      "text_enhanced": "모든 적에게 72<피해>의 피해를 줍니다. 룰렛에 클로버, 다이아몬드, 하트, 스페이드 문양이 모두 존재해야 사용할 수 있습니다.",
+      "text_enhanced": "모든 적에게 108<피해>의 피해를 줍니다. 룰렛에 클로버, 다이아몬드, 하트, 스페이드 문양이 모두 존재해야 사용할 수 있습니다.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": false,
       "cardValues_enhanced": [
-        72
+        108
       ],
       "cardValueTypes_enhanced": [
         0
@@ -38,7 +38,7 @@
       "type": 3,
       "dreamPieceNum": 1,
       "sprite": "현혹01",
-      "text": "2<특수>턴 동안, 최근에 사용한 카드와 다른 타입의 카드를 사용할 때마다 행동력을 1<특수> 얻습니다.",
+      "text": "2<특수>턴 동안, 최근에 사용한 카드와 다른 타입의 카드를 사용할 때마다 행동력을 1<특수> 얻습니다. 소멸.",
       "isVolatile": false,
       "isVanish": true,
       "isRemain": false,
@@ -54,7 +54,7 @@
       ],
       "name_enhanced": "현혹+",
       "cost_enhanced": 3,
-      "text_enhanced": "3<특수>턴 동안, 최근에 사용한 카드와 다른 타입의 카드를 사용할 때마다 행동력을 1<특수> 얻습니다.",
+      "text_enhanced": "3<특수>턴 동안, 최근에 사용한 카드와 다른 타입의 카드를 사용할 때마다 행동력을 1<특수> 얻습니다. 소멸.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": true,
       "isRemain_enhanced": false,
@@ -2048,7 +2048,7 @@
       "type": 3,
       "dreamPieceNum": 3,
       "sprite": "놀이시간",
-      "text": "2<특수>턴 동안, 회전 카드를 사용할 때마다 행동력을 1<특수> 얻습니다.",
+      "text": "2<특수>턴 동안, 회전 카드를 사용할 때마다 행동력을 1<특수> 얻습니다. 소멸.",
       "isVolatile": false,
       "isVanish": true,
       "isRemain": false,
@@ -2064,7 +2064,7 @@
       ],
       "name_enhanced": "놀이 시간+",
       "cost_enhanced": 2,
-      "text_enhanced": "3<특수>턴 동안, 회전 카드를 사용할 때마다 행동력을 1<특수> 얻습니다.",
+      "text_enhanced": "3<특수>턴 동안, 회전 카드를 사용할 때마다 행동력을 1<특수> 얻습니다. 소멸.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": true,
       "isRemain_enhanced": false,

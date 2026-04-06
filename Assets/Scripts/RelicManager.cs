@@ -108,10 +108,10 @@ public class RelicManager : MonoBehaviour
                 seq.AppendCallback(() =>
                 {
                     relicUI.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
-                    foreach(Image img in images)
-                    {
-                        img.color = Color.gray;
-                    }
+                    // foreach(Image img in images)
+                    // {
+                    //     img.color = Color.gray;
+                    // }
                 });
                 relicActivateEffectSeq.Join(seq);
             }

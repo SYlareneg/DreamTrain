@@ -4379,8 +4379,8 @@
     {
       "name": "우는 와인",
       "id": "Wine",
-      "health": 60,
-      "triggerNum": 30,
+      "health": 48,
+      "triggerNum": 24,
       "phase": [
         {
           "name": "와인의 눈물",
@@ -4439,7 +4439,7 @@
                 {
                   "type": 6,
                   "typeNum": 0,
-                  "val": 30,
+                  "val": 24,
                   "isTrigger": true
                 }
               ]
