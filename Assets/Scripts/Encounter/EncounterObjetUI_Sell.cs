@@ -100,6 +100,8 @@
             // if(SoundManager.Inst != null && SoundManager.Inst.UISelectSFX != null) 
             //     GetComponent<AudioSource>().PlayOneShot(SoundManager.Inst.UISelectSFX);
         }
+        
+        
 
         public void OnPointerExit(PointerEventData eventData)
         {
@@ -116,9 +118,9 @@
         {
             if (objetIcon != null)
             {
-                string spriteName = data.relicSprite; 
-                Sprite sprite = Resources.Load<Sprite>($"Relics/{spriteName}");
-                
+                string spriteName = data.relicName; 
+                Sprite sprite = Resources.Load<Sprite>($"Relics/MerchantObjet/{spriteName}");
+                Debug.Log("SpriteName: "+ spriteName);
                 if (sprite != null)
                 {
                     objetIcon.sprite = sprite;
@@ -126,6 +128,12 @@
                 }
                 else
                 {
+                    Sprite notDrawn = Resources.Load<Sprite>($"Relics/MerchantObjet/Not drawn yet");
+                    if (notDrawn != null)
+                    {
+                        objetIcon.sprite = notDrawn;
+                        objetIcon.gameObject.SetActive(true);
+                    }
                     objetIcon.color = Color.clear; 
                 }
             }
