@@ -189,6 +189,7 @@ public class MapManager : MonoBehaviour
             var newMapNode = Instantiate(mapNodePrefab, Vector3.zero, Utils.QI);
             MapNodeObject mapNodeObject = newMapNode.GetComponent<MapNodeObject>();
             if(i == 0) mapNodeObject.SetInitNode();
+            else if(i == mp.sortedMapNodeList.Count - 1) mapNodeObject.SetFinalNode();
             MapNode mapNode = mp.sortedMapNodeList[i];
             mapNodeObject.mapNode = mapNode;
             mapNodeObject.spriteRenderer.sprite = mapNode.hideNodeImg;

@@ -178,10 +178,10 @@ public class RoomDPManager : MonoBehaviour
         dpMarker2.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
         startSlider.arrowSeq.Kill();
         startSlider.GetComponent<RectTransform>().pivot = new Vector2(0, 0.5f);
-        for(int i = 0; i < startSlider.chainArrows.Length; i++)
-        {
-            startSlider.chainArrows[i].transform.localPosition = startSlider.arrowOriginalPositions[i];
-        }
+        // for(int i = 0; i < startSlider.chainArrows.Length; i++)
+        // {
+        //     startSlider.chainArrows[i].transform.localPosition = startSlider.arrowOriginalPositions[i];
+        // }
         RoomPlayer.Inst.isInteractable = true;
     }
 

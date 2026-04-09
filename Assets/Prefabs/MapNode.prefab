@@ -78,8 +78,8 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: -8954491687997801117, guid: 5744cd75542861449bb5273488b31d64, type: 3}
+  m_SortingOrder: 3
+  m_Sprite: {fileID: -5348914913943617942, guid: 9dbc11f4b2cc0474db6061a8997fb209, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -116,7 +116,7 @@ Transform:
   m_GameObject: {fileID: 3735587293114403003}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.19999981, z: 10}
+  m_LocalPosition: {x: 0, y: 0.15, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -169,7 +169,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -8885886665983097824, guid: 401e03b3b9161e340b16131964241efe, type: 3}
+  m_Sprite: {fileID: 5869035576387691465, guid: 2f4c4aa6e60bc2143ba3e9c654eb7824, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -337,6 +337,9 @@ MonoBehaviour:
   blinkInterval: 1.3
   initShadowSprite: {fileID: -4821319493476822757, guid: aca4cd03f0a85364ea913a0840e8a90b, type: 3}
   initPlaceholderSprite: {fileID: 3264022833115990926, guid: b42aa519a0998b2448ff2698592163a3, type: 3}
+  finalShadowSprite: {fileID: 6628244124032333834, guid: e2bbf5dd3d47b2d43b5408553ce4f52f, type: 3}
+  finalPlaceholderSprite: {fileID: 5753251494166281861, guid: 57cda9162eff0fb47a273099278dc910, type: 3}
+  finalPlaceholderSprite2: {fileID: -9065050432634045793, guid: 93a815abe9255b74f967c855c4a1d066, type: 3}
 --- !u!114 &6720151756191508630
 MonoBehaviour:
   m_ObjectHideFlags: 0
