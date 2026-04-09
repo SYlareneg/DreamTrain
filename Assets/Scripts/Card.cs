@@ -379,8 +379,8 @@ public class Card : MonoBehaviour
                 RouletteType magicBox = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 0));
                 if(!RouletteManager.Inst.IsRouletteEnchantable(false, magicBox)) return false;
                 break;
-            case "마술 카드":
-            case "마술 카드+":
+            case "트럼프 카드":
+            case "트럼프 카드+":
                 RouletteType magicCard = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 1));
                 if(!RouletteManager.Inst.IsRouletteEnchantable(false, magicCard)) return false;
                 break;
@@ -835,12 +835,12 @@ public class Card : MonoBehaviour
             case "커튼콜+":
                 BuffManager.Inst.AddShowBuff("커튼콜", EBuffAffectType.Player, 1, true);
                 break;
-            case "마술 카드":
-            case "마술 카드+":
+            case "트럼프 카드":
+            case "트럼프 카드+":
                 RouletteType magicCard = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.personaPiece.persona.dreamPieceNum == item.dreamPieceNum, 1));
                 RouletteType magicCard2 = new RouletteType(ERouletteType.Player_Special, PassiveManager.GetSpecialRouletteIdx(TurnManager.Inst.characterSO.shadowPiece.shadow.dreamPieceNum != item.dreamPieceNum, 1));
                 isCardUsed = RouletteManager.Inst.EnchantRoulette(false, magicCard, PassiveManager.Inst.playerSpecialRoulettes[magicCard.specialTypeIdx].baseVal);
-                if (item.name == "마술 카드+" && isCardUsed)
+                if (item.name == "트럼프 카드+" && isCardUsed)
                 {
                     RouletteManager.Inst.EnhanceRoulette(false);
                 }
