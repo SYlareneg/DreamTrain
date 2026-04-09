@@ -43,14 +43,17 @@ public class MapManager : MonoBehaviour
     public Vector3 nodePos2ScreenPos(MapNode mapNode, bool addOffset = false)
     {
         Vector3 retVec = zeroPos;
-        retVec.x += mapNode.level * levelDist;
-        retVec.y += mapNode.pos * posDist;
+        retVec.y += mapNode.level * levelDist;
+        retVec.x += mapNode.pos * posDist;
         if(addOffset)
         {
             float randOffset = 0f;
-            if(mapNode.pos > 0) randOffset = Random.Range(posDist / 8, posDist / 4);
-            else if(mapNode.pos < 0) randOffset = Random.Range(-posDist / 4, -posDist / 8);
-            else randOffset = Random.Range(-posDist / 8, posDist / 8);
+            if(mapNode.pos > 0) randOffset = Random.Range(posDist / 3, posDist * 2 / 3);
+            else if(mapNode.pos < 0) randOffset = Random.Range(-posDist * 2 / 3, -posDist / 3);
+            else randOffset = Random.Range(-posDist / 4, posDist / 4);
+            retVec.x += randOffset;
+
+            randOffset = Random.Range(0, levelDist / 5);
             retVec.y += randOffset;
         }
         return retVec;
@@ -177,27 +180,29 @@ public class MapManager : MonoBehaviour
     {
         foreach(Transform child in mapTransform)
         {
-            if(child.name == "Background") continue;
+            if(child.name == "Background" || child.name == "BackgroundObjects") continue;
             Destroy(child.gameObject);
         }
         mapNodeScreenPos.Clear();
         for(int i = 0; i < mp.sortedMapNodeList.Count; i++)
         {
             var newMapNode = Instantiate(mapNodePrefab, Vector3.zero, Utils.QI);
-            newMapNode.GetComponent<SpriteRenderer>().sprite = mp.sortedMapNodeList[i].hideNodeImg;
             MapNodeObject mapNodeObject = newMapNode.GetComponent<MapNodeObject>();
-            mapNodeObject.mapNode = mp.sortedMapNodeList[i];
-            if(actSO.visitedNodeIDList.Contains(mp.sortedMapNodeList[i].ID))
+            if(i == 0) mapNodeObject.SetInitNode();
+            MapNode mapNode = mp.sortedMapNodeList[i];
+            mapNodeObject.mapNode = mapNode;
+            mapNodeObject.spriteRenderer.sprite = mapNode.hideNodeImg;
+            if(actSO.visitedNodeIDList.Contains(mapNode.ID))
             {
-                newMapNode.GetComponent<SpriteRenderer>().sprite = mp.sortedMapNodeList[i].nodeImg;
+                mapNodeObject.spriteRenderer.sprite = mapNode.nodeImg;
             }
             else
             {
-                newMapNode.GetComponent<SpriteRenderer>().sprite = mp.sortedMapNodeList[i].hideNodeImg;
+                mapNodeObject.spriteRenderer.sprite = mapNode.hideNodeImg;
             }
             MapNodeTooltip mapNodeTooltip = newMapNode.GetComponent<MapNodeTooltip>();
-            mapNodeTooltip.tooltipTitle = mp.sortedMapNodeList[i].title;
-            mapNodeTooltip.tooltipTxt = mp.sortedMapNodeList[i].text;
+            mapNodeTooltip.tooltipTitle = mapNode.title;
+            mapNodeTooltip.tooltipTxt = mapNode.text;
             newMapNode.transform.SetParent(mapTransform);
             if(savedPos != null && savedPos.Count == mp.sortedMapNodeList.Count)
             {
@@ -207,15 +212,15 @@ public class MapManager : MonoBehaviour
             {
                 if(i == 0 || i == mp.sortedMapNodeList.Count - 1)
                 {
-                    newMapNode.transform.position = nodePos2ScreenPos(mp.sortedMapNodeList[i], false);
+                    newMapNode.transform.position = nodePos2ScreenPos(mapNode, false);
                 }
                 else
                 {
-                    newMapNode.transform.position = nodePos2ScreenPos(mp.sortedMapNodeList[i], true);
+                    newMapNode.transform.position = nodePos2ScreenPos(mapNode, true);
                 }
             }
             mapNodeTooltip.tooltipPos = newMapNode.transform.position;
-            mapNodeScreenPos.Add(mp.sortedMapNodeList[i].ID, newMapNode.transform.position);
+            mapNodeScreenPos.Add(mapNode.ID, newMapNode.transform.position);
         }
         foreach(MapNode mapNode in mp.sortedMapNodeList)
         {
@@ -227,7 +232,7 @@ public class MapManager : MonoBehaviour
                 newMapLine.transform.SetParent(mapTransform);
                 newMapLine.transform.position = linePos;
                 Vector3 direction = mapNodeScreenPos[childNode] - mapNodeScreenPos[mapNode.ID];
-                newMapLine.transform.right = direction;
+                newMapLine.transform.up = direction;
                 newMapLine.transform.localScale = new Vector3(lineWidth, lineWidth, 1f);
                 if(actSO.visitedNodeIDList.Contains(mapNode.ID) && actSO.visitedNodeIDList.Contains(childNode))
                 {
@@ -237,7 +242,7 @@ public class MapManager : MonoBehaviour
                 {
                     newMapLine.GetComponent<SpriteRenderer>().sprite = lineSprites[1];
                 }
-                newMapLine.GetComponent<SpriteRenderer>().size = new Vector2(direction.magnitude / lineWidth, 1f);
+                newMapLine.GetComponent<SpriteRenderer>().size = new Vector2(0.3f, direction.magnitude / lineWidth);
                 mapLines.Add((mapNode.ID, childNode), newMapLine);
             }
         }
@@ -363,8 +368,8 @@ public class MapManager : MonoBehaviour
         mapCamera = player.transform.GetComponentInChildren<MapCamera>();
         if(mapCamera != null)
         {
-            mapCamera.minX = Mathf.Min(GetScreenPos(map.sortedMapNodeList[0]).x + 6f, 13.5f);
-            mapCamera.maxX = Mathf.Max(-13.5f, GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).x - 6f);
+            mapCamera.minY = Mathf.Min(GetScreenPos(map.sortedMapNodeList[0]).y + 0.15f, 13.5f);
+            mapCamera.maxY = Mathf.Max(-13.5f, GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).y - 0.5f);
         }
     }
 
@@ -383,8 +388,8 @@ public class MapManager : MonoBehaviour
             mapCamera = player.transform.GetComponentInChildren<MapCamera>();
             if(mapCamera != null)
             {
-                mapCamera.minX = Mathf.Min(GetScreenPos(map.sortedMapNodeList[0]).x + 6f, 13.5f);
-                mapCamera.maxX = Mathf.Max(-13.5f, GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).x - 6f);
+                mapCamera.minY = Mathf.Min(GetScreenPos(map.sortedMapNodeList[0]).y + 0.15f, 13.5f);
+                mapCamera.maxY = Mathf.Max(-13.5f, GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).y - 2.5f);
             }
             SoundManager.Inst.PlayBGM(actSO.curActNum);
         }

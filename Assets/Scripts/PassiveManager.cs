@@ -373,6 +373,8 @@ public class PassiveManager : MonoBehaviour
                     ace.isVolatile = false;
                     ace.isVanish = false;
                     ace.isRemain = false;
+                    ace.isSingleTarget = false;
+                    ace.sprite = Utils.LoadSpriteByName("Cards", "마술사_에이스01");
                     ace.text = "트리거 게이지를 1 얻습니다.";
                     ace.cardValues = new List<int>(1) { 1 };
                     ace.cardValueTypes = new List<ECardValueType>(1) { ECardValueType.Special };

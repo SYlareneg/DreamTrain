@@ -138,9 +138,9 @@ public class Map
 {
     public List<MapNode> sortedMapNodeList;
     public int totalLevel;
-    public static int posValMin = -2;
-    public static int posValMax = 2;
-    public static int layerMaxNodeNum = 4;
+    public static int posValMin = -1;
+    public static int posValMax = 1;
+    public static int layerMaxNodeNum = 3;
     public static float probability = 0.9f; // layer num이 2, 3일 확률
 
     public Map CreateMap(Act act, List<MapNode> normalNodes)
@@ -178,7 +178,8 @@ public class Map
             }
             for(int j = 0; j < essentialNodes_samelayer.Count; j++)
             {
-                essentialNodes_samelayer[j].SetPos(cur_level, (posValMin + posValMax) / 2 + (j + 1) / 2 * ((j % 2 == 0) ? 1 : -1));
+                if(essentialNodes_samelayer.Count == 1) essentialNodes_samelayer[j].SetPos(cur_level, 0);
+                else essentialNodes_samelayer[j].SetPos(cur_level, posValMin + j * (posValMax - posValMin) / (essentialNodes_samelayer.Count - 1));
                 MapNode closest_node = null;
                 foreach(MapNode prev_level_node in prev_level_nodes)
                 {
