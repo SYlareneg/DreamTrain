@@ -886,10 +886,10 @@ public void EnhanceRelicSelect(EnhanceObjet clickedRelicUI)
                 AddObjectToInventory(data.objetItem); 
                 data.isValid = false;
                 //stageSO.merchantSellObjets.RemoveAt(index);
-                stageSO.merchantSellObjets[index] = data; 
-                menuControll.RefreshUI();
+                stageSO.merchantSellObjets[index] = data;
                 if (currentShopId == "souvenir" || currentShopId == "IceCreamShop") DrawRareObjets();
                 else DrawShopUI();
+                menuControll.RefreshUI();
             }
         }
     }
@@ -902,6 +902,7 @@ public void EnhanceRelicSelect(EnhanceObjet clickedRelicUI)
         if (newRelic.relicOwner == 22) playerStatsSO.ModifyStat(StatType.Wisdom, 1);
         else if  (newRelic.relicOwner == 23) playerStatsSO.ModifyStat(StatType.Luck, 1);
         else if (newRelic.relicOwner == 24) playerStatsSO.ModifyStat(StatType.Courage, 1);
+        menuControll.RefreshUI();
     }
     void AddCardToInventory(Item itemToAdd)
     {

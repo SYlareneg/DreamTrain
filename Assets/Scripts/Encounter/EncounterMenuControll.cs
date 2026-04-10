@@ -92,6 +92,7 @@ public class EncounterMenuControll : MonoBehaviour
         CheckAndAnimate(courageText, playerStats.courage, ref prevCourage);
         CheckAndAnimate(wisdomText, playerStats.wisdom, ref prevWisdom);
         CheckAndAnimate(luckText, playerStats.luck, ref prevLuck);
+        ShowRelics();
     }
 
     void UpdateUI_NoEffect()
