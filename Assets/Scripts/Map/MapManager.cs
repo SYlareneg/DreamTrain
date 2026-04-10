@@ -395,8 +395,8 @@ public class MapManager : MonoBehaviour
             mapCamera = player.transform.GetComponentInChildren<MapCamera>();
             if(mapCamera != null)
             {
-                mapCamera.minY = Mathf.Min(GetScreenPos(map.sortedMapNodeList[0]).y + 0.15f, 13.5f);
-                mapCamera.maxY = Mathf.Max(-13.5f, GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).y - 2.5f);
+                mapCamera.minY = Mathf.Min(GetScreenPos(map.sortedMapNodeList[0]).y + 3f, 13.5f);
+                mapCamera.maxY = Mathf.Max(-13.5f, GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).y - 1f);
             }
             SoundManager.Inst.PlayBGM(actSO.curActNum);
         }
