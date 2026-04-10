@@ -190,7 +190,7 @@ public class MapManager : MonoBehaviour
             var newMapNode = Instantiate(mapNodePrefab, Vector3.zero, Utils.QI);
             MapNodeObject mapNodeObject = newMapNode.GetComponent<MapNodeObject>();
             if(i == 0) mapNodeObject.SetInitNode();
-            else if(i == mp.sortedMapNodeList.Count - 1) mapNodeObject.SetFinalNode();
+            else if(i == mp.sortedMapNodeList.Count - 1 && actSO.curActNum == 1) mapNodeObject.SetFinalNode();
             MapNode mapNode = mp.sortedMapNodeList[i];
             mapNodeObject.mapNode = mapNode;
             mapNodeObject.spriteRenderer.sprite = mapNode.hideNodeImg;
@@ -372,11 +372,12 @@ public class MapManager : MonoBehaviour
             GetEncounterType(map.sortedMapNodeList.Find(x => x.ID == nextNodeId).locationID);
         }
         player.transform.position = GetStartPos(curNode);
-        mapCamera = player.transform.GetComponentInChildren<MapCamera>();
+        mapCamera = GameObject.Find("Main Camera").GetComponent<MapCamera>();
         if(mapCamera != null)
         {
             mapCamera.minY = Mathf.Min(GetScreenPos(map.sortedMapNodeList[0]).y + 3f, 13.5f);
-            mapCamera.maxY = Mathf.Max(-13.5f, GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).y - 1f);
+            if(actSO.curActNum == 0) mapCamera.maxY = Mathf.Max(-13.5f, GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).y - 3f);
+            else mapCamera.maxY = Mathf.Max(-13.5f, GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).y - 1f);
         }
     }
 
@@ -396,7 +397,8 @@ public class MapManager : MonoBehaviour
             if(mapCamera != null)
             {
                 mapCamera.minY = Mathf.Min(GetScreenPos(map.sortedMapNodeList[0]).y + 3f, 13.5f);
-                mapCamera.maxY = Mathf.Max(-13.5f, GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).y - 1f);
+                if(actSO.curActNum == 0) mapCamera.maxY = Mathf.Max(-13.5f, GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).y - 3f);
+                else mapCamera.maxY = Mathf.Max(-13.5f, GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).y - 1f);
             }
             SoundManager.Inst.PlayBGM(actSO.curActNum);
         }
