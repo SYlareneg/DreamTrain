@@ -138,7 +138,9 @@
         },
         {
             "locationID": "ICECREAM_CART",
-            "selectedEncounterPool": [],
+            "selectedEncounterPool": [
+                "ACT1_SWEET_THING"
+            ],
             "ID": "2869a1e7cd3e4d2a971e01c2db99b12b",
             "level": 4,
             "pos": 0,
@@ -216,10 +218,7 @@
         },
         {
             "locationID": "PARADE",
-            "selectedEncounterPool": [
-                "ACT1_SING_IN_PARADE",
-                "ACT1_GIANTDODO_PARADE"
-            ],
+            "selectedEncounterPool": [],
             "ID": "3d83eecd4eb44c958d917278d77de8d7",
             "level": 6,
             "pos": -2,
@@ -249,10 +248,7 @@
         },
         {
             "locationID": "STAFF_ONLY",
-            "selectedEncounterPool": [
-                "ACT1_INSPECTION_STAFF_ONLY",
-                "ACT1_REST_IN_STAFF_ONLY"
-            ],
+            "selectedEncounterPool": [],
             "ID": "324155ae3efc4c80978c6e09eac45c8a",
             "level": 7,
             "pos": -1,
@@ -281,16 +277,11 @@
     ],
     "totalLevel": 9,
     "visitedNodeIDList": [
-        "0eb260d1bda74256a054d1fdec3d75fc",
-        "da256cc464464e4fa2a30b1e82fbe84e",
-        "ffb8fea0eb2c4f88a05b2ddf2d4392d0",
-        "153d36a5d86541668e79b2f338d0aa23",
-        "2869a1e7cd3e4d2a971e01c2db99b12b",
-        "7bc6dacecd0a46ec82a1160c9273e965",
-        "3d83eecd4eb44c958d917278d77de8d7"
+        "52430fcbd4354307b7e222f034e759e4",
+        "2869a1e7cd3e4d2a971e01c2db99b12b"
     ],
-    "curNodeIndex": 10,
-    "curNodeLocationID": "PARADE",
+    "curNodeIndex": 5,
+    "curNodeLocationID": "ICECREAM_CART",
     "lastEncounterType": 0,
     "encounterQueue": [],
     "currentStepID": "",
