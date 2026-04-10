@@ -97,8 +97,8 @@
       "id": "PARADE",
       "nameKO": "퍼레이드",
       "descriptionKO": "기나긴 행렬, 수많은 사람들. 모두가 같은 마음이 될 수 있도록. ",
-      "sprite": "페스티벌01_C",
-      "hideSprite": "페스티벌01",
+      "sprite": "페스티벌(호버)",
+      "hideSprite": "페스티벌",
       "encounterPool": [
         "ACT1_SING_IN_PARADE",
         "ACT1_SHEEP_IN_PARADE",
@@ -112,8 +112,8 @@
       "id": "VIKING",
       "nameKO": "바이킹",
       "descriptionKO": "스릴과 두려움 사이, 진정한 즐거움을 찾을 수 있나요?",
-      "sprite": "바이킹01_C",
-      "hideSprite": "바이킹01",
+      "sprite": "바이킹(호버)",
+      "hideSprite": "바이킹",
       "encounterPool": [
         "ACT1_WAITING_LINE_VIKING",
         "ACT1_HURRAY_AT_VIKING"
@@ -126,8 +126,8 @@
       "id": "GYRODROP",
       "nameKO": "자이로드롭",
       "descriptionKO": "비명과 환호 사이, 지구 중심까지 떨어져 볼까요?",
-      "sprite": "자이로드롭01_C",
-      "hideSprite": "자이로드롭01",
+      "sprite": "자이로드롭(호버)",
+      "hideSprite": "자이로드롭",
       "encounterPool": [
         "ACT1_WAITING_LINE_GYRODROP"
       ],
@@ -139,8 +139,8 @@
       "id": "ROLLERCOASTER",
       "nameKO": "롤러코스터",
       "descriptionKO": "아찔함과 즐거움 사이, 빛의 속도로 달릴 수 있을 때까지.",
-      "sprite": "롤러코스터01_C",
-      "hideSprite": "롤러코스터01",
+      "sprite": "롤러코스터(호버)",
+      "hideSprite": "롤러코스터",
       "encounterPool": [
         "ACT1_WAITING_LINE_ROLLER",
         "ACT1_LIGHTSPEED_ROLLER"
@@ -153,8 +153,8 @@
       "id": "START",
       "nameKO": "출발",
       "descriptionKO": "출발 지점입니다.",
-      "sprite": "출발01_C",
-      "hideSprite": "출발01",
+      "sprite": "",
+      "hideSprite": "",
       "encounterPool": [],
       "encounterNum": 0,
       "difficulty": 6,
@@ -164,8 +164,8 @@
       "id": "TUTORIAL_START",
       "nameKO": "튜토리얼 시작",
       "descriptionKO": "출발 지점입니다.",
-      "sprite": "출발01_C",
-      "hideSprite": "출발01",
+      "sprite": "",
+      "hideSprite": "",
       "encounterPool": [],
       "encounterNum": 0,
       "difficulty": 0,
@@ -175,8 +175,8 @@
       "id": "END",
       "nameKO": "도착",
       "descriptionKO": "도착 지점입니다.",
-      "sprite": "도착01_C",
-      "hideSprite": "도착01",
+      "sprite": "도착",
+      "hideSprite": "도착",
       "encounterPool": [],
       "encounterNum": 0,
       "difficulty": 16,
@@ -197,8 +197,8 @@
       "id": "AMUSEMENT_PARK_ENTRANCE",
       "nameKO": "놀이공원 입구",
       "descriptionKO": "여정의 시작은 항상 두근거리는 법이죠.",
-      "sprite": "놀이공원입구01_C",
-      "hideSprite": "놀이공원입구01",
+      "sprite": "놀이공원입구(호버)",
+      "hideSprite": "놀이공원입구",
       "encounterPool": [
         "ACT1_WHITE_RABBIT"
       ],
@@ -210,8 +210,8 @@
       "id": "MERRY_GO_ROUND",
       "nameKO": "회전목마",
       "descriptionKO": "돌고 돌고 돌고. 해가 지고 달이 져도 멈추지 않는 회전목마!",
-      "sprite": "회전목마01_C",
-      "hideSprite": "회전목마01",
+      "sprite": "회전목마(호버)",
+      "hideSprite": "회전목마",
       "encounterPool": [
         "ACT1_FASTEST_HORSE",
         "ACT1_LAZY_HORSE"
@@ -224,8 +224,8 @@
       "id": "TEA_CUPS",
       "nameKO": "회전 컵",
       "descriptionKO": "빙글빙글 도는 컵들과 함께 차 한잔의 여유를!",
-      "sprite": "회전컵01_C",
-      "hideSprite": "회전컵01",
+      "sprite": "회전컵(호버)",
+      "hideSprite": "회전컵",
       "encounterPool": [
         "ACT1_WINE_IN_CUP",
         "ACT1_TEA_TIME",
@@ -239,8 +239,8 @@
       "id": "GHOST_HOUSE",
       "nameKO": "유령의 집",
       "descriptionKO": "으스스하고 위험한 유령의 집. 소문에 의하면 들어갔다가 나오지 못한 손님이 꽤 많다고 합니다. ",
-      "sprite": "유령의집01_C",
-      "hideSprite": "유령의집01",
+      "sprite": "유령의집(호버)",
+      "hideSprite": "유령의집",
       "encounterPool": [
         "ACT1_MISSING_ZIZI",
         "ACT1_DEVIL_DOLL",
@@ -256,8 +256,8 @@
       "id": "MAZE_GARDEN",
       "nameKO": "미로 정원",
       "descriptionKO": "꽃으로 가득한 미로 정원. 길을 잃지 않도록 주의하세요.  ",
-      "sprite": "미로정원01_C",
-      "hideSprite": "미로정원01",
+      "sprite": "미로정원(호버)",
+      "hideSprite": "미로정원",
       "encounterPool": [
         "ACT1_SUNNY_AFTERNOON",
         "ACT1_WHERE_DOVE_FROM",
@@ -274,8 +274,8 @@
       "id": "ICECREAM_CART",
       "nameKO": "아이스크림 카트",
       "descriptionKO": "놀이공원에서 먹는 아이스크림. 지나칠 수 없는 조합이죠.",
-      "sprite": "아이스크림카트01_C",
-      "hideSprite": "아이스크림카트01",
+      "sprite": "아이스크림카트(호버)",
+      "hideSprite": "아이스크림카트",
       "encounterPool": [
         "ACT1_SWEET_THING",
         "ACT1_SOUVENIR"

@@ -12,7 +12,7 @@ public class MapBackground : MonoBehaviour
     void OnMouseDrag()
     {
         Vector2 newCamPos = originalCamPos;
-        newCamPos.x += (originalMousePos.x - Input.mousePosition.x) * 0.01f;
-        if(MapManager.Inst.mapCamera) MapManager.Inst.mapCamera.MoveCamera(newCamPos.x);
+        newCamPos.y += (originalMousePos.y - Input.mousePosition.y) * 0.01f;
+        if(MapManager.Inst.mapCamera) MapManager.Inst.mapCamera.MoveCamera(newCamPos.y);
     }
 }

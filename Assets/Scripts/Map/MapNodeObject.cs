@@ -5,11 +5,31 @@ using DG.Tweening;
 public class MapNodeObject : MonoBehaviour
 {
     public MapNode mapNode;
-    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] public SpriteRenderer spriteRenderer;
     [SerializeField] float expandSize = 1.1f;
     [SerializeField] float blinkInterval = 1f;
     Vector3 originScale;
     Sequence blinkSeq;
+    [SerializeField] Sprite initShadowSprite;
+    [SerializeField] Sprite initPlaceholderSprite;
+    [SerializeField] Sprite finalShadowSprite;
+    [SerializeField] Sprite finalPlaceholderSprite;
+    [SerializeField] Sprite finalPlaceholderSprite2;
+
+    public void SetInitNode()
+    {
+        transform.Find("Shadow").GetComponent<SpriteRenderer>().sprite = initShadowSprite;
+        transform.Find("Placeholder").GetComponent<SpriteRenderer>().sprite = initPlaceholderSprite;
+    }
+
+    public void SetFinalNode()
+    {
+        transform.Find("Shadow").GetComponent<SpriteRenderer>().sprite = finalShadowSprite;
+        transform.Find("Placeholder").GetComponent<SpriteRenderer>().sprite = finalPlaceholderSprite;
+        var placeholder2 = Instantiate(transform.Find("Placeholder").gameObject, transform);
+        placeholder2.GetComponent<SpriteRenderer>().sortingOrder = 2;
+        placeholder2.GetComponent<SpriteRenderer>().sprite = finalPlaceholderSprite2;
+    }
     
     private void OnMouseEnter()
     {
