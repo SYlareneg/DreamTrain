@@ -26,6 +26,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] Sprite[] lineSprites;
     [SerializeField] float lineWidth;
     [SerializeField] Vector3 zeroPos;
+    [SerializeField] Vector3 finalPos;
     [SerializeField] float levelDist;
     [SerializeField] float posDist;
     public Vector2 tooltipOffset;
@@ -211,9 +212,14 @@ public class MapManager : MonoBehaviour
             }
             else
             {
-                if(i == 0 || i == mp.sortedMapNodeList.Count - 1)
+                if(i == 0)
                 {
-                    newMapNode.transform.position = nodePos2ScreenPos(mapNode, false);
+                    newMapNode.transform.position = zeroPos;
+                }
+                else if(i == mp.sortedMapNodeList.Count - 1 && actSO.curActNum == 1)
+                {
+                    newMapNode.transform.position = finalPos;
+                    newMapNode.transform.localScale *= 1.2f;
                 }
                 else
                 {
@@ -369,8 +375,8 @@ public class MapManager : MonoBehaviour
         mapCamera = player.transform.GetComponentInChildren<MapCamera>();
         if(mapCamera != null)
         {
-            mapCamera.minY = Mathf.Min(GetScreenPos(map.sortedMapNodeList[0]).y + 0.15f, 13.5f);
-            mapCamera.maxY = Mathf.Max(-13.5f, GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).y - 0.5f);
+            mapCamera.minY = Mathf.Min(GetScreenPos(map.sortedMapNodeList[0]).y + 3f, 13.5f);
+            mapCamera.maxY = Mathf.Max(-13.5f, GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).y - 1f);
         }
     }
 

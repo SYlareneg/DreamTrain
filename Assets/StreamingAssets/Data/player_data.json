@@ -3,8 +3,8 @@
     "curHealth": 60,
     "dreamDust": 5,
     "leftPassengers": 0,
-    "isTutorial": true,
-    "lastSceneName": "BattleScene",
+    "isTutorial": false,
+    "lastSceneName": "MapScene",
     "personaPiece": "고양이의 꿈",
     "isPersonaEnhanced": false,
     "personaCards": [
@@ -17,15 +17,15 @@
             "num": 1
         }
     ],
-    "shadowPiece": "고양이의 꿈",
+    "shadowPiece": "마술사의 꿈",
     "isShadowEnhanced": false,
     "shadowCards": [
         {
-            "cardName": "실뭉치",
+            "cardName": "마술 상자",
             "num": 1
         },
         {
-            "cardName": "고양이걸음",
+            "cardName": "폭발 마술",
             "num": 1
         }
     ],
@@ -56,81 +56,18 @@
     "useableItems": [],
     "earnedKeys": [],
     "courage": 1,
-    "wisdom": 1,
-    "luck": 1,
-    "currentActNum": 0,
-    "mapNodes": [
-        {
-            "locationID": "TUTORIAL_START",
-            "selectedEncounterPool": [],
-            "ID": "0ff99681386c4796bf5665ed7ffae2a0",
-            "level": 0,
-            "pos": 0,
-            "screenPos": {
-                "x": 0.0,
-                "y": -11.119999885559082,
-                "z": 0.0
-            },
-            "childNodes": [
-                "87868454b90c48e389e67896e4effa06"
-            ]
-        },
-        {
-            "locationID": "TUTORIAL_1",
-            "selectedEncounterPool": [],
-            "ID": "87868454b90c48e389e67896e4effa06",
-            "level": 1,
-            "pos": 0,
-            "screenPos": {
-                "x": -0.4671224355697632,
-                "y": -8.65717601776123,
-                "z": 0.0
-            },
-            "childNodes": [
-                "d0bba41aeccb490787be221068005865"
-            ]
-        },
-        {
-            "locationID": "TUTORIAL_2",
-            "selectedEncounterPool": [],
-            "ID": "d0bba41aeccb490787be221068005865",
-            "level": 2,
-            "pos": 0,
-            "screenPos": {
-                "x": -0.30294477939605715,
-                "y": -6.107325553894043,
-                "z": 0.0
-            },
-            "childNodes": [
-                "bc976e8346ad4aada6cfaec521a26038"
-            ]
-        },
-        {
-            "locationID": "TUTORIAL_END",
-            "selectedEncounterPool": [],
-            "ID": "bc976e8346ad4aada6cfaec521a26038",
-            "level": 3,
-            "pos": 0,
-            "screenPos": {
-                "x": 0.0,
-                "y": -4.220000267028809,
-                "z": 0.0
-            },
-            "childNodes": []
-        }
-    ],
-    "totalLevel": 4,
-    "visitedNodeIDList": [
-        "0ff99681386c4796bf5665ed7ffae2a0",
-        "87868454b90c48e389e67896e4effa06",
-        "d0bba41aeccb490787be221068005865"
-    ],
-    "curNodeIndex": 2,
-    "curNodeLocationID": "TUTORIAL_2",
+    "wisdom": 2,
+    "luck": 2,
+    "currentActNum": 1,
+    "mapNodes": [],
+    "totalLevel": 0,
+    "visitedNodeIDList": [],
+    "curNodeIndex": 0,
+    "curNodeLocationID": "",
     "lastEncounterType": 0,
     "encounterQueue": [],
     "currentStepID": "",
     "currentEncounterID": "",
-    "enemyName": "CardSoldier2",
+    "enemyName": "",
     "bossClear": false
 }

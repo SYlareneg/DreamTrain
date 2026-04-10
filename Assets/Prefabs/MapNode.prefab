@@ -338,8 +338,7 @@ MonoBehaviour:
   initShadowSprite: {fileID: -4821319493476822757, guid: aca4cd03f0a85364ea913a0840e8a90b, type: 3}
   initPlaceholderSprite: {fileID: 3264022833115990926, guid: b42aa519a0998b2448ff2698592163a3, type: 3}
   finalShadowSprite: {fileID: 6628244124032333834, guid: e2bbf5dd3d47b2d43b5408553ce4f52f, type: 3}
-  finalPlaceholderSprite: {fileID: 5753251494166281861, guid: 57cda9162eff0fb47a273099278dc910, type: 3}
-  finalPlaceholderSprite2: {fileID: -9065050432634045793, guid: 93a815abe9255b74f967c855c4a1d066, type: 3}
+  finalPlaceholderSprite: {fileID: -9065050432634045793, guid: 93a815abe9255b74f967c855c4a1d066, type: 3}
 --- !u!114 &6720151756191508630
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.InputSystem;
 
 public class MapCamera : MonoBehaviour
 {
@@ -24,7 +25,6 @@ public class MapCamera : MonoBehaviour
 
     public void MoveCamera(float newY)
     {
-        Debug.Log("MoveCamera called with newY: " + newY);
         Vector3 desiredPosition = transform.position;
         desiredPosition.y = Mathf.Clamp(newY, minY, maxY);
         transform.position = desiredPosition;
@@ -38,6 +38,21 @@ public class MapCamera : MonoBehaviour
             desiredPosition.y = Mathf.Clamp(transform.parent.position.y, minY, maxY);
             transform.DOLocalMove(desiredPosition - transform.parent.position, 0.5f).OnComplete(() => cameraMoveSignal = false);
             cameraMoveSignal = true;
+        }
+        else
+        {
+            if (Mouse.current == null) return;
+
+            Vector2 scroll = Mouse.current.scroll.ReadValue();
+
+            if (scroll.y > 0)
+            {
+                MoveCamera(transform.position.y + 1f);
+            }
+            else if (scroll.y < 0)
+            {
+                MoveCamera(transform.position.y - 1f);
+            }
         }
     }
 

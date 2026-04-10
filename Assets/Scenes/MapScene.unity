@@ -665,7 +665,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: bbaa0443d21358c4fa5b1748e74566b5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8b5727e805e7fa84abef4d92eb2b9311, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -741,7 +741,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 22.507607, y: 37.969997}
+    oldSize: {x: 22.5, y: 37.97}
     newSize: {x: 22.507607, y: 37.969997}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1426,7 +1426,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1878,7 +1878,8 @@ MonoBehaviour:
   - {fileID: 6937817954938267909, guid: 9ce02fec9e8c71d4eab9b9544a5e7e2a, type: 3}
   lineWidth: 0.3
   zeroPos: {x: 0, y: -11.12, z: 0}
-  levelDist: 2.3
+  finalPos: {x: 0, y: 9.7, z: 0}
+  levelDist: 2.5
   posDist: 2
   tooltipOffset: {x: 0.5, y: -0.2}
   map:
@@ -1966,13 +1967,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bf5e40263fda8ab47974f1f9fab20e2e, type: 3}
+  m_Sprite: {fileID: 2660486535323333933, guid: cce128977cb800045baed3bb19a131f7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4517,7 +4518,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -844, y: 440}
+  m_AnchoredPosition: {x: -824, y: 470}
   m_SizeDelta: {x: 230, y: 0}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1111280303
@@ -5272,7 +5273,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -770, y: 979}
+  m_AnchoredPosition: {x: -750, y: 1009}
   m_SizeDelta: {x: 70, y: 40}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1359372143
@@ -7099,7 +7100,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1002.44543, y: -43.525635}
+  m_AnchoredPosition: {x: 1002.44543, y: -33}
   m_SizeDelta: {x: 117.8909, y: 47.0514}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1944182230
@@ -7461,8 +7462,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1111280302}
-  - {fileID: 587094355}
   - {fileID: 1359372141}
+  - {fileID: 587094355}
   - {fileID: 1502846982}
   - {fileID: 1969203259}
   - {fileID: 408023009}
