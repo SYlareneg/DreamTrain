@@ -392,7 +392,7 @@ public class MapManager : MonoBehaviour
                 GetEncounterType(map.sortedMapNodeList.Find(x => x.ID == nextNodeId).locationID);
             }
             player.transform.position = GetStartPos(curNode);
-            mapCamera = player.transform.GetComponentInChildren<MapCamera>();
+            mapCamera = GameObject.Find("Main Camera").GetComponent<MapCamera>();
             if(mapCamera != null)
             {
                 mapCamera.minY = Mathf.Min(GetScreenPos(map.sortedMapNodeList[0]).y + 3f, 13.5f);

@@ -34,7 +34,7 @@ public class MapCamera : MonoBehaviour
     IEnumerator Start()
     {
         yield return null;
-        transform.position = new Vector3(fixedX, transform.parent.position.y, transform.position.z);
+        transform.position = new Vector3(fixedX, GameObject.Find("Player").transform.position.y, transform.position.z);
         desiredPosition = transform.position;
         Debug.Log(transform.position);
     }
@@ -44,7 +44,7 @@ public class MapCamera : MonoBehaviour
         if(MapManager.Inst.player_moveable == false)
         {
             desiredPosition.x = fixedX;
-            desiredPosition.y = Mathf.Clamp(transform.parent.position.y, minY, maxY);
+            desiredPosition.y = Mathf.Clamp(GameObject.Find("Player").transform.position.y, minY, maxY);
         }
         else
         {

@@ -101,6 +101,7 @@ public class MagicianEffectManager : MonoBehaviour
                 DataManager.Inst.characterSO.enemyName = "마술사";
                 SoundManager.Inst.PlayBGM(SoundManager.Inst.magicianBattleBGM);
                 SceneChangeManager.Inst.SceneFadeOut("BattleScene");
+                RoomPlayer.Inst.isInteractable = false;
             };
         });
     }
