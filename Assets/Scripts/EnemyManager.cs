@@ -364,7 +364,7 @@ public class EnemyManager : MonoBehaviour
                 };
                 TurnManager.OnRouletteErase += (index, type) =>
                 {
-                    if(type == ERouletteType.Enemy_Special && RouletteManager.Inst.roulettePieces[index].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special, 0))
+                    if(type == ERouletteType.Enemy_Special)
                     {
                         TurnManager.Inst.TriggerEnemyPassive(6);
                     }
@@ -381,10 +381,14 @@ public class EnemyManager : MonoBehaviour
                     int tempMagicHat = 0;
                     for (int i = 0; i < RouletteManager.rouletteNum; i++)
                     {
-                        if (RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special, 0))
+                        if (RouletteManager.Inst.roulettePieces[i].roulette.rtype.type == ERouletteType.Enemy_Special)
                         {
                             tempMagicHat++;
-                            RouletteManager.Inst.roulettePieces[i].RouletteClear();
+                            RouletteItem rItem = new RouletteItem();
+                            rItem.rtype = new RouletteType(ERouletteType.None, 0);
+                            rItem.value = 0;
+                            RouletteManager.Inst.roulettePieces[i].Setup(rItem);
+                            BuffManager.Inst.roulettePieceBuff[RouletteManager.Inst.roulettePieces[i]].Clear();
                         }
                     }
                     // if (tempMagicHat != 0)
@@ -398,7 +402,7 @@ public class EnemyManager : MonoBehaviour
                     int tempMagicHat = 0;
                     for (int i = 0; i < RouletteManager.rouletteNum; i++)
                     {
-                        if (RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special, 0))
+                        if (RouletteManager.Inst.roulettePieces[i].roulette.rtype.type == ERouletteType.Enemy_Special)
                         {
                             tempMagicHat++;
                         }
@@ -423,7 +427,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     for (int i = 0; i < RouletteManager.rouletteNum; i++)
                     {
-                        if (RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special, 0))
+                        if (RouletteManager.Inst.roulettePieces[i].roulette.rtype.type == ERouletteType.Enemy_Special)
                         {
                             RouletteManager.Inst.roulettePieces[i].RouletteClear();
                         }
@@ -435,7 +439,7 @@ public class EnemyManager : MonoBehaviour
                     for (int i = 0; i <= spin; i++)
                     {
                         int tempIdx = (RouletteManager.Inst.enemyLookat + RouletteManager.rouletteNum + (isClockwise? -1 : 1) * i) % RouletteManager.rouletteNum;
-                        if (RouletteManager.Inst.roulettePieces[tempIdx].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special, 0))
+                        if (RouletteManager.Inst.roulettePieces[tempIdx].roulette.rtype.type == ERouletteType.Enemy_Special)
                         {
                             TurnManager.Inst.GetShield(true, 6, EDamageSource.Enemy);
                         }
@@ -447,14 +451,11 @@ public class EnemyManager : MonoBehaviour
                     magicHat = 0;
                     for (int i = 0; i < RouletteManager.rouletteNum; i++)
                     {
-                        if (RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special, 0))
+                        if (RouletteManager.Inst.roulettePieces[i].roulette.rtype.type == ERouletteType.Enemy_Special)
                         {
                             magicHat++;
                         }
                     }
-                    BuffManager.Inst.enemyBuff_Special[0, 0].Clear();
-                    BuffManager.Inst.enemyBuff_Special[0, 1].Clear();
-                    BuffManager.Inst.enemyBuff_Special[0, 3].Clear();
                     BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], magicHat * 12, 1, 1);
                     BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 1], magicHat, 1, 1);
                     BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 3], magicHat * 6, 1, 1);
@@ -470,27 +471,26 @@ public class EnemyManager : MonoBehaviour
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 3], 0, phaseScale, 1);
                     }
                 };
-                Action<int> countMagicHat = (value) =>
+                Action<int, ERouletteType> countMagicHat = (value, type) =>
                 {
                     int tempMagicHat = 0;
                     for (int i = 0; i < RouletteManager.rouletteNum; i++)
                     {
-                        if (RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special, 0))
+                        if (RouletteManager.Inst.roulettePieces[i].roulette.rtype.type == ERouletteType.Enemy_Special)
                         {
                             tempMagicHat++;
                         }
                     }
-                    if(tempMagicHat != magicHat)
-                    {
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], (tempMagicHat - magicHat) * 12, 1, 1);
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 1], tempMagicHat - magicHat, 1, 1);
-                        BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 3], (tempMagicHat - magicHat) * 6, 1, 1);
-                        magicHat = tempMagicHat;
-                    }
-                    Debug.Log("Current Magic Hat : " + magicHat);
+                    Debug.Log("Current Magic Hat : " + tempMagicHat);
+                    BuffManager.Inst.enemyBuff_Special[0, 0].RemoveAll(x => x.add != 0);
+                    BuffManager.Inst.enemyBuff_Special[0, 1].RemoveAll(x => x.add != 0);
+                    BuffManager.Inst.enemyBuff_Special[0, 3].RemoveAll(x => x.add != 0);
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], tempMagicHat * 12, 1, 1);
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 1], tempMagicHat, 1, 1);
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 3], tempMagicHat * 6, 1, 1);
                 };
-                TurnManager.OnRouletteEnchant += countMagicHat;
-                TurnManager.OnRouletteErase += (index, type) => countMagicHat(index);
+                // TurnManager.OnRouletteEnchant += countMagicHat;
+                TurnManager.OnRouletteErase += countMagicHat;
                 break;
             case "귀신들린 인형":
                 BuffManager.InitSpecialRouletteBuffs += () =>
@@ -565,7 +565,6 @@ public class EnemyManager : MonoBehaviour
                 {
                     if (isClockwise)
                     {
-                        TurnManager.Inst.TriggerEnemyPassive(pieces);
                         TurnManager.Inst.GetShield(true, pieces, EDamageSource.Enemy);
                     }
                 };
@@ -1359,12 +1358,12 @@ public class EnemyManager : MonoBehaviour
                     if(triggerPhaseScale == 0f) triggerPhaseScale = 1f;
                     else triggerPhaseScale *= enemy.triggerPhase[triggerPhaseNum].scalingFactor;
 
-                    Action randomSpin = null;
-                    randomSpin = () =>
-                    {
-                        RouletteManager.Inst.Spin(true, Random.Range(1, 13));
-                    };
-                    TurnManager.OnPlayerTurnStart += randomSpin;
+                    // Action randomSpin = null;
+                    // randomSpin = () =>
+                    // {
+                    //     RouletteManager.Inst.Spin(true, Random.Range(1, 13));
+                    // };
+                    // TurnManager.OnPlayerTurnStart += randomSpin;
 
                     Action detrigger = null;
                     detrigger = () =>
@@ -1374,7 +1373,7 @@ public class EnemyManager : MonoBehaviour
                             phaseNum = 0;
                             TurnManager.Inst.enemyTriggerCnt = 0;
                             TurnManager.OnEnemyTurnEnd -= detrigger;
-                            TurnManager.OnPlayerTurnStart -= randomSpin;
+                            // TurnManager.OnPlayerTurnStart -= randomSpin;
                         }
                     };
                     TurnManager.OnEnemyTurnEnd += detrigger;
