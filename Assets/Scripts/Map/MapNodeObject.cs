@@ -14,7 +14,6 @@ public class MapNodeObject : MonoBehaviour
     [SerializeField] Sprite initPlaceholderSprite;
     [SerializeField] Sprite finalShadowSprite;
     [SerializeField] Sprite finalPlaceholderSprite;
-    [SerializeField] Sprite finalPlaceholderSprite2;
 
     public void SetInitNode()
     {
@@ -26,9 +25,6 @@ public class MapNodeObject : MonoBehaviour
     {
         transform.Find("Shadow").GetComponent<SpriteRenderer>().sprite = finalShadowSprite;
         transform.Find("Placeholder").GetComponent<SpriteRenderer>().sprite = finalPlaceholderSprite;
-        var placeholder2 = Instantiate(transform.Find("Placeholder").gameObject, transform);
-        placeholder2.GetComponent<SpriteRenderer>().sortingOrder = 2;
-        placeholder2.GetComponent<SpriteRenderer>().sprite = finalPlaceholderSprite2;
     }
     
     private void OnMouseEnter()

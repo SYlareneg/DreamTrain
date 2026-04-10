@@ -1,5 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.InputSystem;
+using System.Collections;
 
 public class MapCamera : MonoBehaviour
 {
@@ -7,7 +9,8 @@ public class MapCamera : MonoBehaviour
     [SerializeField] float fixedX;
     public float minY;
     public float maxY;
-    bool cameraMoveSignal = false;
+
+    Vector3 desiredPosition;
 
     public float GetCameraPosRatio()
     {
@@ -24,29 +27,50 @@ public class MapCamera : MonoBehaviour
 
     public void MoveCamera(float newY)
     {
-        Debug.Log("MoveCamera called with newY: " + newY);
-        Vector3 desiredPosition = transform.position;
+        desiredPosition = transform.position;
         desiredPosition.y = Mathf.Clamp(newY, minY, maxY);
-        transform.position = desiredPosition;
+    }
+
+    IEnumerator Start()
+    {
+        yield return null;
+        transform.position = new Vector3(fixedX, transform.parent.position.y, transform.position.z);
+        desiredPosition = transform.position;
+        Debug.Log(transform.position);
     }
 
     void Update()
     {
-        if(MapManager.Inst.player_moveable == false && cameraMoveSignal == false)
+        if(MapManager.Inst.player_moveable == false)
         {
-            Vector3 desiredPosition = transform.position;
+            desiredPosition.x = fixedX;
             desiredPosition.y = Mathf.Clamp(transform.parent.position.y, minY, maxY);
-            transform.DOLocalMove(desiredPosition - transform.parent.position, 0.5f).OnComplete(() => cameraMoveSignal = false);
-            cameraMoveSignal = true;
+        }
+        else
+        {
+            if (Mouse.current == null) return;
+
+            Vector2 scroll = Mouse.current.scroll.ReadValue();
+            if (scroll.y != 0)
+            {
+                MoveCamera(transform.position.y + scroll.y * 1.2f);
+            }
         }
     }
 
+
+    Vector3 aimPos;
+    Tween cameraTween;
     void LateUpdate()
     {
-        Vector3 desiredPosition = transform.position;
         desiredPosition.x = fixedX;
-        desiredPosition.y = Mathf.Clamp(transform.position.y, minY, maxY);
+        desiredPosition.y = Mathf.Clamp(desiredPosition.y, minY, maxY);
 
-        transform.position = desiredPosition;
+        if(aimPos != desiredPosition)
+        {
+            if(cameraTween != null) cameraTween.Kill();
+            cameraTween = transform.DOMove(desiredPosition, 0.2f);
+            aimPos = desiredPosition;
+        }
     }
 }
