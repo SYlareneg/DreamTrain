@@ -1,6 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class MapCamera : MonoBehaviour
 {
@@ -8,7 +9,6 @@ public class MapCamera : MonoBehaviour
     [SerializeField] float fixedX;
     public float minY;
     public float maxY;
-    bool cameraMoveSignal = false;
 
     Vector3 desiredPosition;
 
@@ -31,14 +31,20 @@ public class MapCamera : MonoBehaviour
         desiredPosition.y = Mathf.Clamp(newY, minY, maxY);
     }
 
+    IEnumerator Start()
+    {
+        yield return null;
+        transform.position = new Vector3(fixedX, transform.parent.position.y, transform.position.z);
+        desiredPosition = transform.position;
+        Debug.Log(transform.position);
+    }
+
     void Update()
     {
-        if(MapManager.Inst.player_moveable == false && cameraMoveSignal == false)
+        if(MapManager.Inst.player_moveable == false)
         {
-            desiredPosition = transform.position;
+            desiredPosition.x = fixedX;
             desiredPosition.y = Mathf.Clamp(transform.parent.position.y, minY, maxY);
-            transform.DOLocalMove(desiredPosition - transform.parent.position, 0.5f).OnComplete(() => cameraMoveSignal = false);
-            cameraMoveSignal = true;
         }
         else
         {

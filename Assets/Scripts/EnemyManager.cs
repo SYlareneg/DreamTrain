@@ -441,8 +441,24 @@ public class EnemyManager : MonoBehaviour
                         }
                     }
                 };
+                int magicHat = 0;
                 TurnManager.OnPlayerTurnStart += () =>
                 {
+                    magicHat = 0;
+                    for (int i = 0; i < RouletteManager.rouletteNum; i++)
+                    {
+                        if (RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special, 0))
+                        {
+                            magicHat++;
+                        }
+                    }
+                    BuffManager.Inst.enemyBuff_Special[0, 0].Clear();
+                    BuffManager.Inst.enemyBuff_Special[0, 1].Clear();
+                    BuffManager.Inst.enemyBuff_Special[0, 3].Clear();
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], magicHat * 12, 1, 1);
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 1], magicHat, 1, 1);
+                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 3], magicHat * 6, 1, 1);
+                    Debug.Log("Current Magic Hat : " + magicHat);
                     if(isTriggerActivated)
                     {
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], 0, triggerPhaseScale, 1);
@@ -454,7 +470,6 @@ public class EnemyManager : MonoBehaviour
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 3], 0, phaseScale, 1);
                     }
                 };
-                int magicHat = 0;
                 Action<int> countMagicHat = (value) =>
                 {
                     int tempMagicHat = 0;
@@ -472,21 +487,6 @@ public class EnemyManager : MonoBehaviour
                         BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 3], (tempMagicHat - magicHat) * 6, 1, 1);
                         magicHat = tempMagicHat;
                     }
-                    Debug.Log("Current Magic Hat : " + magicHat);
-                };
-                TurnManager.OnPlayerTurnStart += () =>
-                {
-                    magicHat = 0;
-                    for (int i = 0; i < RouletteManager.rouletteNum; i++)
-                    {
-                        if (RouletteManager.Inst.roulettePieces[i].roulette.rtype == new RouletteType(ERouletteType.Enemy_Special, 0))
-                        {
-                            magicHat++;
-                        }
-                    }
-                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 0], magicHat * 12, 1, 1);
-                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 1], magicHat, 1, 1);
-                    BuffManager.AddBuffToTarget(BuffManager.Inst.enemyBuff_Special[0, 3], magicHat * 6, 1, 1);
                     Debug.Log("Current Magic Hat : " + magicHat);
                 };
                 TurnManager.OnRouletteEnchant += countMagicHat;
