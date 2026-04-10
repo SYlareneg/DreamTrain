@@ -25,8 +25,9 @@ public class MapManager : MonoBehaviour
     [SerializeField] GameObject mapLinePrefab;
     [SerializeField] Sprite[] lineSprites;
     [SerializeField] float lineWidth;
-    [SerializeField] Vector3 zeroPos;
-    [SerializeField] Vector3 finalPos;
+    [SerializeField] List<Vector3> zeroPos;
+    [SerializeField] List<Vector3> finalPos;
+    [SerializeField] List<Vector3> tutorialNodePos;
     [SerializeField] float levelDist;
     [SerializeField] float posDist;
     public Vector2 tooltipOffset;
@@ -43,7 +44,7 @@ public class MapManager : MonoBehaviour
 
     public Vector3 nodePos2ScreenPos(MapNode mapNode, bool addOffset = false)
     {
-        Vector3 retVec = zeroPos;
+        Vector3 retVec = zeroPos[actSO.curActNum];
         retVec.y += mapNode.level * levelDist;
         retVec.x += mapNode.pos * posDist;
         if(addOffset)
@@ -214,17 +215,21 @@ public class MapManager : MonoBehaviour
             {
                 if(i == 0)
                 {
-                    newMapNode.transform.position = zeroPos;
+                    newMapNode.transform.position = zeroPos[actSO.curActNum];
                 }
-                else if(i == mp.sortedMapNodeList.Count - 1 && actSO.curActNum == 1)
+                else if(i == mp.sortedMapNodeList.Count - 1)
                 {
-                    newMapNode.transform.position = finalPos;
-                    newMapNode.transform.localScale *= 1.2f;
+                    newMapNode.transform.position = finalPos[actSO.curActNum];
+                    if(actSO.curActNum == 1) newMapNode.transform.localScale *= 1.2f;
                 }
                 else
                 {
                     newMapNode.transform.position = nodePos2ScreenPos(mapNode, true);
                 }
+            }
+            if(actSO.curActNum == 0)
+            {
+                newMapNode.transform.localScale *= 1.3f;
             }
             mapNodeTooltip.tooltipPos = newMapNode.transform.position;
             mapNodeScreenPos.Add(mapNode.ID, newMapNode.transform.position);
@@ -362,7 +367,14 @@ public class MapManager : MonoBehaviour
             }
         }
         actSO.visitedNodeIDList = new List<string>();
-        PrintMap(map);
+        if(actSO.curActNum == 0)
+        {
+            PrintMap(map, tutorialNodePos);
+        }
+        else
+        {
+            PrintMap(map);
+        }
         SaveMap();
         actSO.curNodeIndex = 0;
         curNode = map.sortedMapNodeList[actSO.curNodeIndex];
@@ -375,8 +387,8 @@ public class MapManager : MonoBehaviour
         mapCamera = GameObject.Find("Main Camera").GetComponent<MapCamera>();
         if(mapCamera != null)
         {
-            mapCamera.minY = Mathf.Min(GetScreenPos(map.sortedMapNodeList[0]).y + 3f, 13.5f);
-            if(actSO.curActNum == 0) mapCamera.maxY = Mathf.Max(-13.5f, GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).y - 3f);
+            mapCamera.minY = Mathf.Max(GetScreenPos(map.sortedMapNodeList[0]).y + 3f, 7f);
+            if(actSO.curActNum == 0) mapCamera.maxY = Mathf.Max(-13.5f, GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).y - 4f);
             else mapCamera.maxY = Mathf.Max(-13.5f, GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).y - 1f);
         }
     }
@@ -396,8 +408,8 @@ public class MapManager : MonoBehaviour
             mapCamera = GameObject.Find("Main Camera").GetComponent<MapCamera>();
             if(mapCamera != null)
             {
-                mapCamera.minY = Mathf.Min(GetScreenPos(map.sortedMapNodeList[0]).y + 3f, 13.5f);
-                if(actSO.curActNum == 0) mapCamera.maxY = Mathf.Max(-13.5f, GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).y - 3f);
+                mapCamera.minY = Mathf.Max(GetScreenPos(map.sortedMapNodeList[0]).y + 3f, 7f);
+                if(actSO.curActNum == 0) mapCamera.maxY = Mathf.Max(-13.5f, GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).y - 4f);
                 else mapCamera.maxY = Mathf.Max(-13.5f, GetScreenPos(map.sortedMapNodeList[map.sortedMapNodeList.Count - 1]).y - 1f);
             }
             SoundManager.Inst.PlayBGM(actSO.curActNum);

@@ -13,4 +13,12 @@ public class MapPlayer : MonoBehaviour
     {
         audioSource.PlayOneShot(audioSource.clip);
     }
+
+    void Start()
+    {
+        if(DataManager.Inst.characterSO.isTutorial)
+        {
+            transform.localScale *= 1.3f;
+        }
+    }
 }

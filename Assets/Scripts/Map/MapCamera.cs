@@ -27,14 +27,15 @@ public class MapCamera : MonoBehaviour
 
     public void MoveCamera(float newY)
     {
-        desiredPosition = transform.position;
+        desiredPosition.x = fixedX;
         desiredPosition.y = Mathf.Clamp(newY, minY, maxY);
+        desiredPosition.z = -10;
     }
 
     IEnumerator Start()
     {
         yield return null;
-        transform.position = new Vector3(fixedX, GameObject.Find("Player").transform.position.y, transform.position.z);
+        transform.position = new Vector3(fixedX, minY, -10);
         desiredPosition = transform.position;
         Debug.Log(transform.position);
     }
@@ -45,6 +46,7 @@ public class MapCamera : MonoBehaviour
         {
             desiredPosition.x = fixedX;
             desiredPosition.y = Mathf.Clamp(GameObject.Find("Player").transform.position.y, minY, maxY);
+            desiredPosition.z = -10;
         }
         else
         {
@@ -65,6 +67,7 @@ public class MapCamera : MonoBehaviour
     {
         desiredPosition.x = fixedX;
         desiredPosition.y = Mathf.Clamp(desiredPosition.y, minY, maxY);
+        desiredPosition.z = -10;
 
         if(aimPos != desiredPosition)
         {
