@@ -1736,15 +1736,17 @@
       ],
       "name_enhanced": "알뜰한 사냥꾼+",
       "cost_enhanced": 0,
-      "text_enhanced": "<color=red>6<특수></color> 이하인 발톱 룰렛을 모두 제거하고 제거한 룰렛당 코스트를 1 얻습니다.",
+      "text_enhanced": "<color=red>6<특수></color> 이하인 발톱 룰렛을 모두 제거하고 제거한 룰렛당 코스트를 1<특수> 얻습니다.",
       "isVolatile_enhanced": false,
       "isVanish_enhanced": false,
       "isRemain_enhanced": false,
       "isSingleTarget_enhanced": false,
       "cardValues_enhanced": [
-        6
+        6,
+        1
       ],
       "cardValueTypes_enhanced": [
+        3,
         3
       ]
     },
