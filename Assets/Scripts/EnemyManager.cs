@@ -176,12 +176,12 @@ public class EnemyManager : MonoBehaviour
                     else
                     {
                         trueDamage = TurnManager.Inst.TakeDmg(value, EDamageSource.Roulette);
-                    }
-                    int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_EnemySpecial[0, 0][1], trueDamage);
-                    TurnManager.Inst.EnemyTakeDmg(-totalVal_Heal, EDamageSource.Roulette);
-                    if (totalVal_Heal > 0)
-                    {
-                        TurnManager.Inst.TriggerEnemyPassive(1);
+                        int totalVal_Heal = BuffManager.GetTargetBuffedValue(BuffManager.Inst.rouletteBuff_EnemySpecial[0, 0][1], trueDamage);
+                        TurnManager.Inst.EnemyTakeDmg(-totalVal_Heal, EDamageSource.Roulette);
+                        if (totalVal_Heal > 0)
+                        {
+                            TurnManager.Inst.TriggerEnemyPassive(1);
+                        }
                     }
                 };
                 enemySpecialActivation[0] = (value) =>
