@@ -58,7 +58,7 @@ public class MapNodeTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         tooltipTMP[0].text = tooltipTitle;
         tooltipTMP[1].text = tooltipTxt;
 
-        Transform mapNodeType = tooltip.transform.Find("MapTooltip/TooltipTitle/MapNodeType");
+        Transform mapNodeType = tooltip.transform.Find("TooltipTitle/MapNodeType");
         if (mapNodeType != null)
         {
             List<string> nextNodeIDs = MapManager.Inst.curNode.childNodes;
