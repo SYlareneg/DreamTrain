@@ -89,6 +89,11 @@ public class MagicianEffectManager : MonoBehaviour
     {
         if(DataManager.Inst.characterSO.bossClear) return;
         mainCamera.GetComponent<PassengerCamera>().lockFollow = true;
+        RoomPlayer.Inst.isInteractable = false;
+        RoomDialogueManager.OnDialogueEnd = () =>
+        {
+            RoomPlayer.Inst.isInteractable = false;
+        };
         Sequence effectSequence = DOTween.Sequence();
         effectSequence.Append(mainCamera.transform.DOMove(mainCameraEffectPosition, 2f).SetEase(Ease.InOutSine).OnComplete(() =>
         {
@@ -99,12 +104,12 @@ public class MagicianEffectManager : MonoBehaviour
         .AppendInterval(1f).OnComplete(() =>
         {
             RoomDialogueManager.Inst.ShowDialogueList(magicianEffectDialogueLines);
+            RoomPlayer.Inst.isInteractable = false;
             RoomDialogueManager.OnDialogueEnd += () =>
             {
                 DataManager.Inst.characterSO.enemyName = "마술사";
                 SoundManager.Inst.PlayBGM(SoundManager.Inst.magicianBattleBGM);
                 SceneChangeManager.Inst.SceneFadeOut("BattleScene");
-                RoomPlayer.Inst.isInteractable = false;
             };
         });
     }

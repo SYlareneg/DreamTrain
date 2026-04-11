@@ -137,6 +137,7 @@ public class RoomDialogueManager : MonoBehaviour
     {
         if(currentDialogueLines == null || currentDialogueLines.Count == 0)
         {
+            HideDialogue();
             return;
         }
         if(typingCoroutine != null)

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class MapBackground : MonoBehaviour
 {
@@ -29,8 +30,10 @@ public class MapBackground : MonoBehaviour
         if(MapManager.Inst.mapCamera) MapManager.Inst.mapCamera.MoveCamera(newCamPos.y);
     }
 
-    void Start()
+    IEnumerator Start()
     {
+        SetBackground(DataManager.Inst.actSO.curActNum);
+        yield return null;
         BoxCollider2D collider = GetComponent<BoxCollider2D>();
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -39,7 +42,5 @@ public class MapBackground : MonoBehaviour
             collider.size = spriteRenderer.sprite.bounds.size;
             collider.offset = spriteRenderer.sprite.bounds.center;
         }
-
-        SetBackground(DataManager.Inst.actSO.curActNum);
     }
 }

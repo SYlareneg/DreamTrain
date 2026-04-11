@@ -155,7 +155,6 @@ public class DataManager : MonoBehaviour
         yield return Utils.LoadData(playerDataSO, "player_data_start.json");
         playerDataSO.isTutorial = false;
         playerDataSO.currentActNum = 1;
-        playerDataSO.dreamDust = 5;
         Utils.SaveData(playerDataSO, "player_data_start.json");
     }
 

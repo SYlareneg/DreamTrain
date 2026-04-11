@@ -147,6 +147,10 @@ public class RoomDPManager : MonoBehaviour
     public void InitDPUI()
     {
         RoomPlayer.Inst.isInteractable = false;
+        RoomDialogueManager.OnDialogueEnd = () =>
+        {
+            RoomPlayer.Inst.isInteractable = false;
+        };
         fadeoutScreen.color = new Color(Color.black.r, Color.black.g, Color.black.b, 0f);
         fadeoutScreen.gameObject.SetActive(true);
         Sequence fadeout = DOTween.Sequence();
@@ -183,6 +187,7 @@ public class RoomDPManager : MonoBehaviour
         //     startSlider.chainArrows[i].transform.localPosition = startSlider.arrowOriginalPositions[i];
         // }
         RoomPlayer.Inst.isInteractable = true;
+        RoomDialogueManager.OnDialogueEnd = null;
     }
 
     public void StartGame()

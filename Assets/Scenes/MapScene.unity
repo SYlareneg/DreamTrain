@@ -358,7 +358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MapBackground
   backgroundSprites:
   - {fileID: 21300000, guid: 7a0c2d0c6dfe0ab408919ad7aef79e02, type: 3}
-  - {fileID: 21300000, guid: a5c1816fb91e3c540be54b662e837dba, type: 3}
+  - {fileID: 21300000, guid: f0a4bc68035990f46b00c038fac310e4, type: 3}
 --- !u!61 &198878565
 BoxCollider2D:
   m_ObjectHideFlags: 0

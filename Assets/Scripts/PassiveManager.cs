@@ -579,10 +579,22 @@ public class PassiveManager : MonoBehaviour
                     if (isEnemy)
                     {
                         TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette, enemyIdx);
+                        var enemyPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(enemyIdx)];
+                        enemyPiece.roulette.value -= 3;
+                        if(enemyPiece.roulette.value <= 0)
+                        {
+                            enemyPiece.RouletteClear();
+                        }
                     }
                     else
                     {
                         TurnManager.Inst.TakeDmg(value, EDamageSource.Roulette);
+                        var playerPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat];
+                        playerPiece.roulette.value -= 3;
+                        if(playerPiece.roulette.value <= 0)
+                        {
+                            playerPiece.RouletteClear();
+                        }
                     }
                 };
                 playerSpecialRouletteClear[GetSpecialRouletteIdx(true, 0)] = (index) =>
@@ -597,10 +609,16 @@ public class PassiveManager : MonoBehaviour
                     if (isEnemy)
                     {
                         TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette, enemyIdx);
+                        var enemyPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(enemyIdx)];
+                        enemyPiece.RouletteClear();
+                        BuffManager.Inst.roulettePieceBuff[enemyPiece].Clear();
                     }
                     else
                     {
                         TurnManager.Inst.TakeDmg(value, EDamageSource.Roulette);
+                        var playerPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat];
+                        playerPiece.RouletteClear();
+                        BuffManager.Inst.roulettePieceBuff[playerPiece].Clear();
                     }
                 };
                 playerSpecialRouletteClear[GetSpecialRouletteIdx(true, 1)] = (index) =>
@@ -609,42 +627,6 @@ public class PassiveManager : MonoBehaviour
                     rItem.rtype = new RouletteType(ERouletteType.None, 0);
                     rItem.value = 0;
                     RouletteManager.Inst.roulettePieces[index].Setup(rItem);
-                };
-                TurnManager.OnRouletteActivate += () =>
-                {
-                    if(RouletteManager.Inst.isTriggerActivated) return;
-                    var playerPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat];
-                    for(int i = 0; i <= Enemy.maxSubEnemyNum; i++)
-                    {
-                        if(i != 0 && (EnemyManager.Inst.subEnemies[i - 1] == null || EnemyManager.Inst.subEnemies[i - 1].name == null)) continue;
-                        var enemyPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(i)];
-                        if (enemyPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 0)))
-                        {
-                            enemyPiece.roulette.value -= 3;
-                            if(enemyPiece.roulette.value <= 0)
-                            {
-                                enemyPiece.RouletteClear();
-                            }
-                        }
-                        else if(enemyPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 1)))
-                        {
-                            enemyPiece.RouletteClear();
-                            BuffManager.Inst.roulettePieceBuff[enemyPiece].Clear();
-                        }
-                    }
-                    if (playerPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 0)))
-                    {
-                        playerPiece.roulette.value -= 3;
-                        if(playerPiece.roulette.value <= 0)
-                        {
-                            playerPiece.RouletteClear();
-                        }
-                    }
-                    else if(playerPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(true, 1)))
-                    {
-                        playerPiece.RouletteClear();
-                        BuffManager.Inst.roulettePieceBuff[playerPiece].Clear();
-                    }
                 };
                 TurnManager.OnRouletteSpin += (isClockwise, spinValue) =>
                 {
@@ -1061,10 +1043,22 @@ public class PassiveManager : MonoBehaviour
                     if (isEnemy)
                     {
                         TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette, enemyIdx);
+                        var enemyPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(enemyIdx)];
+                        enemyPiece.roulette.value -= 3;
+                        if(enemyPiece.roulette.value <= 0)
+                        {
+                            enemyPiece.RouletteClear();
+                        }
                     }
                     else
                     {
                         TurnManager.Inst.TakeDmg(value, EDamageSource.Roulette);
+                        var playerPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat];
+                        playerPiece.roulette.value -= 3;
+                        if(playerPiece.roulette.value <= 0)
+                        {
+                            playerPiece.RouletteClear();
+                        }
                     }
                 };
                 playerSpecialRouletteClear[GetSpecialRouletteIdx(false, 0)] = (index) =>
@@ -1079,10 +1073,16 @@ public class PassiveManager : MonoBehaviour
                     if (isEnemy)
                     {
                         TurnManager.Inst.EnemyTakeDmg(value, EDamageSource.Roulette, enemyIdx);
+                        var enemyPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(enemyIdx)];
+                        enemyPiece.RouletteClear();
+                        BuffManager.Inst.roulettePieceBuff[enemyPiece].Clear();
                     }
                     else
                     {
                         TurnManager.Inst.TakeDmg(value, EDamageSource.Roulette);
+                        var playerPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat];
+                        playerPiece.RouletteClear();
+                        BuffManager.Inst.roulettePieceBuff[playerPiece].Clear();
                     }
                 };
                 playerSpecialRouletteClear[GetSpecialRouletteIdx(false, 1)] = (index) =>
@@ -1091,42 +1091,6 @@ public class PassiveManager : MonoBehaviour
                     rItem.rtype = new RouletteType(ERouletteType.None, 0);
                     rItem.value = 0;
                     RouletteManager.Inst.roulettePieces[index].Setup(rItem);
-                };
-                TurnManager.OnRouletteActivate += () =>
-                {
-                    if(RouletteManager.Inst.isTriggerActivated) return;
-                    var playerPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.playerLookat];
-                    for(int i = 0; i <= Enemy.maxSubEnemyNum; i++)
-                    {
-                        if(i != 0 && (EnemyManager.Inst.subEnemies[i - 1] == null || EnemyManager.Inst.subEnemies[i - 1].name == null)) continue;
-                        var enemyPiece = RouletteManager.Inst.roulettePieces[RouletteManager.Inst.EnemyIdxSpinOffset(i)];
-                        if (enemyPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 0)))
-                        {
-                            enemyPiece.roulette.value -= 3;
-                            if(enemyPiece.roulette.value <= 0)
-                            {
-                                enemyPiece.RouletteClear();
-                            }
-                        }
-                        else if(enemyPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 1)))
-                        {
-                            enemyPiece.RouletteClear();
-                            BuffManager.Inst.roulettePieceBuff[enemyPiece].Clear();
-                        }
-                    }
-                    if (playerPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 0)))
-                    {
-                        playerPiece.roulette.value -= 3;
-                        if(playerPiece.roulette.value <= 0)
-                        {
-                            playerPiece.RouletteClear();
-                        }
-                    }
-                    else if(playerPiece.roulette.rtype == new RouletteType(ERouletteType.Player_Special, GetSpecialRouletteIdx(false, 1)))
-                    {
-                        playerPiece.RouletteClear();
-                        BuffManager.Inst.roulettePieceBuff[playerPiece].Clear();
-                    }
                 };
                 TurnManager.OnRouletteSpin += (isClockwise, spinValue) =>
                 {
