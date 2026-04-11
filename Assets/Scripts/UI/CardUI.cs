@@ -166,6 +166,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     void Start()
     {
         originalScale = this.transform.localScale;
+        if(item != null) Setup(item);
     }
 
     public virtual void OnPointerEnter(PointerEventData eventData)

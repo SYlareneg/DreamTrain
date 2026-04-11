@@ -4519,6 +4519,7 @@ MonoBehaviour:
     text: "\uADF8\uB7FC \uC1FC\uB97C \uC2DC\uC791\uD558\uACA0\uC2B5\uB2C8\uB2E4!"
     speakerSprite: {fileID: 0}
     sound: {fileID: 0}
+  blocker: {fileID: 237974118}
 --- !u!1001 &1183834672
 PrefabInstance:
   m_ObjectHideFlags: 0

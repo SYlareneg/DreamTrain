@@ -27,6 +27,7 @@ public class MagicianEffectManager : MonoBehaviour
     [SerializeField] GameObject magician_alive;
     [SerializeField] GameObject magician_dead;
     [SerializeField] List<DialogueLine> magicianEffectDialogueLines;
+    [SerializeField] GameObject blocker;
 
     void Start()
     {
@@ -56,6 +57,7 @@ public class MagicianEffectManager : MonoBehaviour
             {
                 stageLight.GetComponent<Light2D>().intensity = 0.5f;
             }
+            blocker.SetActive(true);
         }
         else
         {
@@ -79,6 +81,7 @@ public class MagicianEffectManager : MonoBehaviour
             {
                 stageLight.GetComponent<Light2D>().intensity = 0f;
             }
+            blocker.SetActive(false);
         }
     }
 

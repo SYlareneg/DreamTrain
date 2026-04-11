@@ -35,7 +35,7 @@ public class MapCamera : MonoBehaviour
     IEnumerator Start()
     {
         yield return null;
-        transform.position = new Vector3(fixedX, minY, -10);
+        transform.position = new Vector3(fixedX, Mathf.Clamp(GameObject.Find("Player").transform.position.y, minY, maxY), -10);
         desiredPosition = transform.position;
         Debug.Log(transform.position);
     }
@@ -72,7 +72,7 @@ public class MapCamera : MonoBehaviour
         if(aimPos != desiredPosition)
         {
             if(cameraTween != null) cameraTween.Kill();
-            cameraTween = transform.DOMove(desiredPosition, 0.2f);
+            cameraTween = transform.DOMove(desiredPosition, 0.5f);
             aimPos = desiredPosition;
         }
     }

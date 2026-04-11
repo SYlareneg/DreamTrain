@@ -565,7 +565,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     if (isClockwise)
                     {
-                        TurnManager.Inst.GetShield(true, pieces, EDamageSource.Enemy);
+                        TurnManager.Inst.TriggerEnemyPassive(pieces);
                     }
                 };
                 TurnManager.OnPlayerTurnStart += () =>
