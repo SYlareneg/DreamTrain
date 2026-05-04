@@ -393,9 +393,8 @@ public class EncounterManager : MonoBehaviour
         if (actData.encounterQueue != null && actData.encounterQueue.Count > 0)
         {
             string nextID = actData.encounterQueue[0];
-            actData.encounterQueue.RemoveAt(0); // 큐에서 제거
+            actData.encounterQueue.RemoveAt(0); 
 
-            // ActSO에 현재 상태 기록 시작
             actData.currentEncounterID = nextID;
             actData.currentStepID = "P1"; 
             
@@ -423,10 +422,8 @@ public class EncounterManager : MonoBehaviour
         TextAsset csvAsset = null;
         string resourcePath = $"Encounters/{meta.filePath}"; 
         Debug.Log(resourcePath);
-        // 1차 시도: ID 그대로 로드
         csvAsset = Resources.Load<TextAsset>(resourcePath);
 
-        // 2차 시도: 실패했고 ID에 '_'가 있다면 접두사 제거 후 재시도 (예: ACT1_Rabbit -> Rabbit)
         if (csvAsset == null && encounterID.Contains("_"))
         {
             string fileNameOnly = encounterID.Substring(encounterID.IndexOf('_') + 1);
@@ -456,11 +453,10 @@ public class EncounterManager : MonoBehaviour
         if (!string.IsNullOrEmpty(meta.imagePath)) 
         {
             string imgName = Path.GetFileNameWithoutExtension(meta.imagePath);
-            Sprite img = Resources.Load<Sprite>($"Encounters/Images/{imgName}"); // 경로가 Encounters/Images 라고 가정
+            Sprite img = Resources.Load<Sprite>($"Encounters/Images/{imgName}"); 
             if (img == null) img = Resources.Load<Sprite>(imgName); 
             if (img != null) illustrationImage.sprite = img;
         }
-        // 제목 설정
         if (titleText != null) titleText.text = meta.nameKO;
 
         ParseEncounterCSV(meta.csvRawData);
@@ -946,7 +942,7 @@ public class EncounterManager : MonoBehaviour
         Debug.Log(condName);
         switch (condName)
         {
-            case "CheckRoundNum":
+            case "OverRoundNum":
                 int requiredRound = int.Parse(argsRaw);
                 if (playerDataSO != null)
                 {
