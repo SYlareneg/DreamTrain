@@ -223,4 +223,48 @@ public class EncounterRouletteUI : MonoBehaviour
         panelRoot.SetActive(false);
         onCompleteCallback?.Invoke(result);
     }
+
+    public float GetSuccessProbability(string statName, int requiredStat)
+    {
+        StatType type = (StatType)System.Enum.Parse(typeof(StatType), statName);
+    
+        if (playerStats.IsAutoFail(type)) return 0f;
+
+        int currentStatVal = playerStats.GetStat(type);
+        int failCount = 4;
+        int successCount = 7;
+        int greatCount = 1;
+
+        int diff = currentStatVal - requiredStat;
+
+        if (diff > 0) 
+        {
+            int convertToSuccess = Mathf.Min(failCount - 1, diff);
+            failCount -= convertToSuccess;
+            successCount += convertToSuccess;
+            int remainingDiff = diff - convertToSuccess;
+            if (remainingDiff > 0)
+            {
+                successCount -= remainingDiff;
+                greatCount += remainingDiff;
+            }
+        }
+        else if (diff < 0)
+        {
+            int absDiff = Mathf.Abs(diff);
+            int convertToFail = Mathf.Min(successCount - 1, absDiff);
+            successCount -= convertToFail;
+            failCount += convertToFail;
+        }
+    
+        if (playerStats.GetStat(StatType.Luck) >= 9)
+        {
+            int convertToGreat = Mathf.FloorToInt(successCount / 2f);
+            successCount -= convertToGreat;
+            greatCount += convertToGreat;
+        }
+
+        // (성공 + 대성공) / 전체 슬롯 비율 반환
+        return (float)(successCount + greatCount) / totalSlots * 100f;
+    }
 }

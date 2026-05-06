@@ -613,7 +613,6 @@ public class EncounterManager : MonoBehaviour
     {
         if (typingCoroutine != null) StopCoroutine(typingCoroutine);
         
-        // 현재 완료 콜백 저장 (SkipTyping에서 쓰기 위해)
         this.onTypingComplete = onComplete; 
         
         typingCoroutine = StartCoroutine(TypeWriterRoutine(content, isAppend));
@@ -793,6 +792,29 @@ public class EncounterManager : MonoBehaviour
                         if (!finalButtonText.Contains(endsWith4))
                         {
                             finalButtonText += $"  {endsWith4}";
+                        }
+                    }
+                }
+                if (!string.IsNullOrEmpty(option.functionCall))
+                {
+                    Match match = Regex.Match(option.functionCall, @"(StartRoulette|StartRoullete)\(([^)]*)\)");
+                    if (match.Success)
+                    {
+                        string[] args = match.Groups[2].Value.Split(',');
+                        if (args.Length >= 2 && rouletteUI != null)
+                        {
+                            string statName = args[0].Trim();
+                            if (int.TryParse(args[1].Trim(), out int difficulty))
+                            {
+                                float prob = rouletteUI.GetSuccessProbability(statName, difficulty);
+                            
+                                string probText = $"( <sprite name=\"{statName}\"> : {prob:F0}% )";
+                            
+                                if (!finalButtonText.Contains("%)")) 
+                                {
+                                    finalButtonText += probText;
+                                }
+                            }
                         }
                     }
                 }

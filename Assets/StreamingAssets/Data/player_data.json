@@ -170,7 +170,9 @@
         },
         {
             "locationID": "VIKING",
-            "selectedEncounterPool": [],
+            "selectedEncounterPool": [
+                "ACT1_WAITING_LINE_VIKING"
+            ],
             "ID": "225022021d2b44b7a31f76bdd869a117",
             "level": 5,
             "pos": -1,
@@ -289,12 +291,12 @@
     ],
     "totalLevel": 9,
     "visitedNodeIDList": [
-        "8b21d0cc6dd144059a8d29c549a0f8cd",
-        "f1faae06b5a24d4f9c0648b49c96b9ac",
-        "1aca382bcbdd49b88bae23e41c19d49d"
+        "a3344ddc3aaa4f9d8b674f8abc35d1f0",
+        "6e5b4415956043ba9b8a450381727234",
+        "225022021d2b44b7a31f76bdd869a117"
     ],
-    "curNodeIndex": 3,
-    "curNodeLocationID": "TEA_CUPS",
+    "curNodeIndex": 7,
+    "curNodeLocationID": "VIKING",
     "lastEncounterType": 0,
     "encounterQueue": [],
     "currentStepID": "",
